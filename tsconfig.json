@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"outDir": "./support",
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"rootDir": ".",
+		"sourceMap": false,
+		"target": "ES5"
+	},
+	"include": [
+		"./support/**/*.ts"
+	]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "dojo.io",
+  "version": "1.0.0-pre",
+  "description": "Static site for the Dojo Toolkit",
+  "private": true,
+  "scripts": {
+    "build": "ts-node ./support/build",
+    "clean": "ts-node ./support/clean",
+    "ci": "ts-node ./support/ci",
+    "docker": "ts-node ./support/docker",
+    "publish": "ts-node ./support/publish",
+    "test": "ts-node ./support/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SitePen/dojoio.git"
+  },
+  "keywords": [
+    "dojo",
+    "site"
+  ],
+  "author": "SitePen <support@sitepen.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/SitePen/dojoio/issues"
+  },
+  "homepage": "https://dojo.io",
+  "devDependencies": {
+    "@types/node": "^6.0.55",
+    "shelljs": "^0.7.5",
+    "ts-node": "^2.0.0",
+    "typescript": "^2.1.4"
+  }
+}
