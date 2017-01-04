@@ -38,3 +38,7 @@ jspm_packages
 
 #JetBrains
 .idea
+
+_dist
+.ghpublish
+.apitemp
