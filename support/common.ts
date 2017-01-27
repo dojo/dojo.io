@@ -31,3 +31,6 @@ export const apiDirectory = join(distDirectory, 'api');
 export const tempDirectory = join(rootDirectory, '.apitemp');
 
 export const publishDirectory = '.ghpublish';
+
+// This is considered the master branch as far as the CI is concerned
+export const masterBranch = 'master';

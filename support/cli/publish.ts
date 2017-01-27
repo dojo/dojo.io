@@ -1,12 +1,9 @@
 #!/usr/bin/env node
-import { distDirectory, publishDirectory, rootDirectory, gitConfig } from '../common';
+import { distDirectory, publishDirectory, rootDirectory, gitConfig, masterBranch } from '../common';
 import { config, headRevision, ensureGitRepo, getUrl } from '../util/git';
 import { isBranch } from '../util/travis';
 const ghpages = require('gh-pages');
 const shell = require('shelljs');
-
-// This is considered the master branch as far as the CI is concerned
-const MASTER_BRANCH = 'cd';
 
 /*
  * Publish the distribution to GitHub Pages
@@ -19,7 +16,7 @@ function shouldPush(args: string[]) {
 		}
 	}
 
-	return isBranch(MASTER_BRANCH);
+	return isBranch(masterBranch);
 }
 
 function buildOptions() {
