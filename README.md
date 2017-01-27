@@ -1,5 +1,7 @@
 # dojo.io
 
+[![Build Status](https://travis-ci.com/SitePen/dojoio.svg?token=iyehyStnJABkD5DAaT6V&branch=master)](https://travis-ci.com/SitePen/dojoio)
+
 Published to [GitHub Pages](https://sitepen.github.io/dojoio/)
 
 ## Quick Start
