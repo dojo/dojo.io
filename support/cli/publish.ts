@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { distDirectory, publishDirectory, rootDirectory, gitConfig, masterBranch } from '../common';
 import { config, headRevision, ensureGitRepo, getUrl } from '../util/git';
-import { isBranch } from '../util/travis';
+import { hasDeployKey, isBranch } from '../util/travis';
 const ghpages = require('gh-pages');
 const shell = require('shelljs');
 
@@ -16,7 +16,7 @@ function shouldPush(args: string[]) {
 		}
 	}
 
-	return isBranch(masterBranch);
+	return isBranch(masterBranch) && hasDeployKey();
 }
 
 function buildOptions() {
@@ -44,7 +44,7 @@ function publish(options: any) {
 					else {
 						resolve();
 					}
-				})
+				});
 			});
 		});
 }

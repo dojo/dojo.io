@@ -6,6 +6,8 @@ env:
   global:
   - SAUCE_USERNAME: dojo2-ts-ci
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
+  - SSH_KEY: deploy.key
+  - SSH_KEY_TAG: 6cabdb9ea6b2
   - secure: kZ4I5R0luNY/bXLf534vG0uEiw7hK8XyGnQ7S8qhn4r7n3mVkVe7FOKhmEFip34rRfr6wztW+/FYCdQCDuu6+e3ga2P9MaXJ9i6g9P7pHicamAEwREH6iaxAGvSYEmJIUNtkX1g10NCcR0oVlZ23ZwhYIyrhCJLtAfowyWgGriQonu/j2QYokU+p6QlcIGpDAH0ScSfhRfwHDmGrHLeIPRU4FKYl9UsXVWBF9V7mZBDtqdOvda0l8LXKOG/RjYY1e0+XaXkOjNCsWSUtkl03lhA2PR2bm1NRxFnM0jNUXaVFXbIutr6FFPLGEw4oPCcEq5bbFf4a5g8bpvZr21DQJyBNQSL8IDpLYq6tngOv7o+Qy2BwkBetB/HKFjubm99P1NSgDqW9AXM3SaJ4HRfMdhYMah3GRFy0bnEKIit24b9R31k3yos3fSRubpmXD6nKBN97BJIj8XGGthCcWoIE0sFDqgn67HnuF5LaulTnE1/Jpi0vxouIz7JBTvda/bPfmxQBM3LD+ProFFBpWav5CvSmTp/4w/b+RrBX+qSa5CFwY3asFwhBUDD/XkFpO6ZnnoEyDHOW1xzx4cVHW0yAg+SLtOM+HA0CFGkySerpZIVS+foOKU9Op1CZP/XQ6hIGZ88lRkwcAcBv6yTLA8Rl3NwFLvQhTbsMkI36bx160B0=
 cache:
   directories:
@@ -14,3 +16,5 @@ script: npm run ci
 notifications:
   slack:
     secure: RvW7LoV4mBzNz481eqfhLB/QNuJYht9Fpz7F+vtVjD/RacDJfc7397/8pJcl2yP+Ft2X7yJsM6bx3Uq22CfMiZ7HTVOfb+tYQNBQ5vcluUvd3fYV72M4oWe/TTFTlAulC04vWs4/QRHqbvmsXXr8Rn8Jj2LjsxnKvP0UNr0aLxk=
+before_install:
+- openssl aes-256-cbc -K $encrypted_6cabdb9ea6b2_key -iv $encrypted_6cabdb9ea6b2_iv -in deploy.key.enc -out deploy.key -d
