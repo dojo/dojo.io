@@ -14,24 +14,24 @@ highlight-purple = #cc99cc
 
 $code-block
   background: highlight-background
-  margin: 0 article-padding * -1
-  padding: 15px article-padding
+  margin: 0 $article-padding * -1
+  padding: 15px $article-padding
   border-style: solid
-  border-color: color-border
+  border-color: $color-border
   border-width: 1px 0
   overflow: auto
   color: highlight-foreground
-  line-height: font-size * line-height
+  $line-height: $font-size * $line-height
 
 $line-numbers
   color: #666
-  font-size: 0.85em
+  $font-size: 0.85em
 
 .article-entry
   pre, code
-    font-family: font-mono
+    font-family: $font-mono
   code
-    background: color-background
+    background: $color-background
     text-shadow: 0 1px #fff
     padding: 0 0.3em
   pre
@@ -54,9 +54,9 @@ $line-numbers
       padding: 0
     figcaption
       clearfix()
-      font-size: 0.85em
+      $font-size: 0.85em
       color: highlight-comment
-      line-height: 1em
+      $line-height: 1em
       margin-bottom: 1em
       a
         float: right
@@ -65,19 +65,19 @@ $line-numbers
       text-align: right
       padding-right: 20px
     .line
-      height: font-size * line-height
+      height: $font-size * $line-height
     .line.marked
       background: highlight-selection
   .gist
-    margin: 0 article-padding * -1
+    margin: 0 $article-padding * -1
     border-style: solid
-    border-color: color-border
+    border-color: $color-border
     border-width: 1px 0
     background: highlight-background
-    padding: 15px article-padding 15px 0
+    padding: 15px $article-padding 15px 0
     .gist-file
       border: none
-      font-family: font-mono
+      font-family: $font-mono
       margin: 0
       .gist-data
         background: none
@@ -96,13 +96,13 @@ $line-numbers
       .gist-meta
         background: highlight-background
         color: highlight-comment
-        font: 0.85em font-sans
+        font: 0.85em $font-sans
         text-shadow: 0 0
         padding: 0
         margin-top: 1em
-        margin-left: article-padding
+        margin-left: $article-padding
         a
-          color: color-link
+          color: $color-link
           font-weight: normal
           &:hover
             text-decoration: underline
@@ -156,3 +156,4 @@ pre
   .keyword
   .javascript .function
     color: highlight-purple
+
