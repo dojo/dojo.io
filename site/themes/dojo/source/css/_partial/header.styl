@@ -18,7 +18,7 @@
   }
 }
 
-$nav-link
+$nav-link {
   display: inline-block;
   color: #fff;
   opacity: 0.6;
@@ -26,91 +26,29 @@ $nav-link
   text-shadow: 0 1px rgba(0, 0, 0, 0.2);
   transition: opacity 0.2s;
   padding: 20px 15px;
-  &:hover
-    opacity: 1
+  &:hover {
+    opacity: 1;
+  }
+}
 
-.nav-icon
-  @extend $nav-link
-  font-family: $font-icon
-  text-align: center
-  $font-size: $font-size
-  width: $font-size
-  height: $font-size
-  padding: 20px 15px
-  position: relative
-  cursor: pointer
+.nav-icon {
+  @extend $nav-link;
+  font-family: $font-icon;
+  text-align: center;
+  $font-size: $font-size;
+  width: $font-size;
+  height: $font-size;
+  padding: 20px 15px;
+  position: relative;
+  cursor: pointer;
+}
+  
+.main-nav-link {
+  @extend $nav-link;
+  font-weight: 300;
+  letter-spacing: 1px;
 
-.main-nav-link
-  @extend $nav-link
-  font-weight: 300
-  letter-spacing: 1px
-  @media $mq-mobile
-    display: none
-
-#main-nav-toggle
-  display: none
-  &:before
-    content: "\f0c9"
-  @media $mq-mobile
-    display: block
-
-#sub-nav
-  float: right
-  margin-right: -15px
-
-#nav-rss-link
-  &:before
-    content: "\f09e"
-
-#nav-search-btn
-  &:before
-    content: "\f002"
-
-#search-form-wrap
-  position: absolute
-  top: 15px
-  width: 150px
-  height: 30px
-  right: -150px
-  opacity: 0
-  transition: 0.2s ease-out
-  &.on
-    opacity: 1
-    right: 0
-  @media $mq-mobile
-    width: 100%
-    right: -100%
-
-.search-form
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-  background: #fff
-  padding: 5px 15px
-  border-radius: 15px
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
-
-.search-form-input
-  border: none
-  background: none
-  color: $color-default
-  width: 100%
-  font: 13px $font-sans
-  outline: none
-  &::-webkit-search-results-decoration
-  &::-webkit-search-cancel-button
-    -webkit-appearance: none
-
-.search-form-submit
-  position: absolute
-  top: 50%
-  right: 10px
-  margin-top: -7px
-  font: 13px $font-icon
-  border: none
-  background: none
-  color: #bbb
-  cursor: pointer
-  &:hover, &:focus
-    color: #777
+  @media $mq-mobile {
+    display: none;
+  }
+}
