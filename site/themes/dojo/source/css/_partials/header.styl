@@ -1,0 +1,42 @@
+.site-header {
+  background: $header-background;
+  
+  .row {
+      align-items: center;
+      justify-content: space-between;
+  }
+
+  .header-logo {
+    height: $logo-size;
+  }
+
+  .site-nav {
+  }
+
+  .main-nav-link {
+    
+  }
+}
+
+$nav-link {
+  display: inline-block;
+  color: #fff;
+  opacity: 0.6;
+  text-decoration: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s;
+  padding: 20px 15px;
+  &:hover {
+    opacity: 1;
+  }
+}
+  
+.main-nav-link {
+  @extend $nav-link;
+  font-weight: 300;
+  letter-spacing: 1px;
+
+  @media $mq-mobile {
+    display: none;
+  }
+}
