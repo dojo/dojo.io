@@ -1,0 +1,26 @@
+// Named ratios - http://modularscale.com
+
+$double_octave = 4 / 1.0;
+$major_twelfth = 3 / 1.0;
+$major_eleventh = 8 / 3.0;
+$major_tenth = 5 / 2.0;
+$octave = 2 / 1.0;
+$major_seventh = 15 / 8.0;
+$minor_seventh = 16 /9.0;
+$major_sixth = 5 / 3.0;
+$minor_sixth = 8 / 5.0;
+$fifth = 3 / 2.0;
+$augmented_fourth = 1.414;
+$golden = 1.6180339887;
+$fourth = 4 / 3.0;
+$major_third = 5 / 4.0;
+$minor_third = 6 / 5.0;
+$major_second = 9 / 8.0;
+$minor_second = 16 / 15.0;
+
+ms(step = 0, unit = px, context = $base-font-size, ratio = $modular_scale)
+  //base size should be ms(0)
+  step = step + 1
+  //use the base-font-size if it exists
+  return (step * ratio * 10)unit if unit is 'px'
+  return (step * ratio * 10) / context unit if unit is 'em'

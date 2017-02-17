@@ -15,7 +15,8 @@
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.10",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0"
+    "hexo-server": "^0.2.0",
+    "typesettings": "^4.0.0"
   },
   "devDependencies": {
     "s-grid": "^1.2.0"

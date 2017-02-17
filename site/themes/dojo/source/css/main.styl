@@ -1,5 +1,16 @@
 @import nib;
-global-reset();
+normalize-css();
+@import "_util/modular-scale";
 @import "_variables";
+@import "../../../node_modules/typesettings/_typesettings";
+
+// Global
+@import "_views/layout";
+
+// Partials
 @import "_partials/header";
+
+// Views
 @import "_views/home";
+@import "_views/article";
+

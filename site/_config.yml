@@ -69,3 +69,7 @@ theme: dojo
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+stylus:
+  compress: true
+  use: typesettings

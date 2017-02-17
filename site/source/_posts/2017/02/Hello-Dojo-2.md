@@ -8,7 +8,7 @@ Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [docume
 
 ## Quick Start
 
-### Create a new post
+### Create a new post	{.classTest}
 
 ``` bash
 $ hexo new "My New Post"

@@ -1,17 +1,15 @@
 <header class="container site-header">
-  <div class="outer">
-    <div class="row">
-      <h1 class="header-logo">
-        <a href="<%- url_for() %>"><img src="<%- url_for('images/dojo2-logo-white.svg') %>" alt="<%= config.title %>" class="header-logo"></a>
-      </h1>
-      <nav class="site-nav">
-          <% for (var i in theme.menu){ %>
-            <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-          <% } %>
-          <% if (theme.rss){ %>
-            <a class="nav-icon" href="<%- theme.rss %>" title="<%= __('rss_feed') %>"></a>
-          <% } %>
-      </nav>
-    </div>
+  <div class="row">
+    <h1 class="header-logo">
+      <a href="<%- url_for() %>"><img src="<%- url_for('images/dojo2-logo-white.svg') %>" alt="<%= config.title %>" class="header-logo"></a>
+    </h1>
+    <nav class="site-nav">
+        <% for (var i in theme.menu){ %>
+          <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+        <% } %>
+        <% if (theme.rss){ %>
+          <a class="nav-icon" href="<%- theme.rss %>" title="<%= __('rss_feed') %>"></a>
+        <% } %>
+    </nav>
   </div>
 </header>
