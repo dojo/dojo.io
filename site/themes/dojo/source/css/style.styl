@@ -5,31 +5,14 @@
 global-reset();
 
 
-@font-face {
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
-  background: $color-background;
-  font: $font-size $font-sans;
-  -webkit-text-size-adjust: 100%;
-}
-
 .outer {
   clearfix();
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 $gutter-width;
 }
 
 .container {
-  padding: 0 $gutter-width;
+  
 }
 
 .inner {
@@ -39,23 +22,6 @@ body {
 .row {
   display: flex;
   align-items: center;
-}
-
-.left, .alignleft {
-  float: left;
-}
-
-.right, .alignright {
-  float: right;
-}
-
-.clear {
-  clear: both;
-}
-
-
-.mobile-nav-on {
-  overflow: hidden;
 }
 
 @import "_extend";

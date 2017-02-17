@@ -1,7 +1,3 @@
-// Config
-$support-for-ie = false;
-$vendor-prefixes = webkit moz ms official;
-
 // Colors
 $color-default = #222127;
 $color-grey = #999;
@@ -18,52 +14,5 @@ $color-facebook = #3b5998;
 $color-pinterest = #cb2027;
 $color-google = #dd4b39;
 
-// Fonts
-$font-sans = "Source Sans Pro", Helvetica, Arial, sans-serif;
-$font-serif = "Source Serif Pro", "Times New Roman", serif;
-$font-mono = "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
-$font-icon = FontAwesome;
-$font-icon-path = "fonts/fontawesome-webfont";
-$font-icon-version = "4.0.3";
-
-
-$text-color = #000;
-$base-font-size = 18px;
-$ms-ratio = 1.414;
-$paragraph-indent = true;
-$paragraph-justify = true;
-$load-typesetted = true;
-
-$font-size = $base-font-size;
-
-// Header
+$header-background = #000;
 $logo-size = 40px;
-$header-background = #222127;
-
-$sidebar = hexo-config("$sidebar");
-
-// Layout
-$block-margin = 50px;
-$article-padding = 20px;
-$mobile-nav-width = 280px;
-$main-column = 9;
-$sidebar-column = 3;
-
-$layout-inset-max-width = 740px;
-$layout-outset-max-width = 1000px;
-$layout-full-max-width = 100%;
-
-if $sidebar and $sidebar isnt bottom
-  _$sidebar-column = $sidebar-column;
-else
-  _$sidebar-column = 0;
-
-// Grids
-$column-width = 80px;
-$gutter-width = 20px;
-$columns = $main-column + _$sidebar-column;
-
-// Media queries
-$mq-mobile = "screen and (max-width: 479px)";
-$mq-tablet = "screen and (min-width: 480px) and (max-width: 767px)";
-$mq-normal = "screen and (min-width: 768px)";
