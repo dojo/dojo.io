@@ -1,5 +1,5 @@
 <%- partial('_partial/head') %>
-<body>
+<body class="<% if(is_home()){ %>body-front-page<% } %><% if(is_post()){ %>body-single-page<% } %><% if(is_archive()){ %>body-archive<% } %><% if(is_year()){ %>body-year<% } %><% if(is_month()){ %>body-month<% } %><% if(is_category()){ %>body-category<% } %><% if(is_tag()){ %>body-tag<% } %>">
   <div id="container">
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
