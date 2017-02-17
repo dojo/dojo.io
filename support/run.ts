@@ -2,4 +2,6 @@
 
 import { runCommands } from './commands/runCommand';
 
-runCommands(process.argv.slice(2).join(' '));
+runCommands(process.argv.slice(2).join(' ')).catch(error => {
+	console.error(error);
+});
