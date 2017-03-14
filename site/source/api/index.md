@@ -1,7 +1,7 @@
 ---
 layout: page
 template: 
-title: api
+title: API
 date:
 ---
 

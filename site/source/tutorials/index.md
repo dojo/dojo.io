@@ -1,7 +1,7 @@
 ---
 layout: page
 template: 
-title: tutorials
+title: Tutorials
 date:
 ---
 

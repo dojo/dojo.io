@@ -1,7 +1,7 @@
 ---
 layout: page
 template: community
-title: community
+title: Community
 date:
 ---
 
