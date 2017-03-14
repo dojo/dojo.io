@@ -1,6 +1,6 @@
 ---
 layout: page
-template: 
+template: tutorial
 title: Tutorials
 date:
 ---
