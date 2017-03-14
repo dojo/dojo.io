@@ -1,0 +1,23 @@
+<%- getBodyClass() %>
+<%
+	function getBodyClass() {
+		if(is_home()){
+			return "body-front-page";
+		}
+
+		if(is_post()){
+			return "body-single-page";
+		}
+
+		if(is_archive()) {
+			return "body-archive";
+		}
+
+		if(is_page()){ 
+			if(page.layout == "tutorial") {
+				return "body-tutorial";
+			}
+		}
+	}
+ %>
+ 
