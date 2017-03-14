@@ -42,3 +42,4 @@ jspm_packages
 _dist
 .ghpublish
 .apitemp
+/site/bower_components

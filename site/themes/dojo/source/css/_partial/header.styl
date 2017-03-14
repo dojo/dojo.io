@@ -1,0 +1,51 @@
+.site-header {
+  background: $header-background;
+
+  .outer {
+    max-width: 1000px;
+  }
+  
+  .row {
+      align-items: center;
+      justify-content: space-between;
+      height: emRhythm(6, $ms-down1);
+  }
+
+// Flexbox Item - Left
+  .header-logo {
+    margin: 0;
+    padding: emRhythm(1, $ms-down1) 0 0 0;
+    height: emRhythm(3, $ms-down2);
+  }
+
+// Flexbox Item - Right
+  .site-nav {
+    .main-nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      display: inline-block;
+      font-family: $font-slab;
+      font-size: emRhythm(1, $ms-down3);
+      font-weight: 300;
+      flex: 0 1 auto;
+      transition: color 0.3s;
+      padding-left: emRhythm(1, $ms-down1);
+      
+
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+
+      .nav-icon {
+        width: auto;
+        height: 1.5em;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        vertical-align: middle;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
