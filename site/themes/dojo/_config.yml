@@ -1,5 +1,7 @@
 # Header
 menu:
+  Tutorials: /tutorials
+  API: /api
   Community: /community
   Blog: /blog
 rss: /atom.xml
@@ -29,8 +31,9 @@ show_count: false
 
 # Miscellaneous
 google_analytics:
-favicon: ./images/favicons/favicon.ico
+favicon: /images/favicons/favicon.ico
 twitter:
 google_plus:
 fb_admins:
 fb_app_id:
+github: https://github.com/dojo/meta

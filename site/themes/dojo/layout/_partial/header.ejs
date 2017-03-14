@@ -7,6 +7,9 @@
           <% for (var i in theme.menu){ %>
             <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
           <% } %>
+          <% if(theme.github){%>
+            <a class="main-nav-link" href="<%- theme.github %>"><img src="<%- url_for('images/logos/github-white.svg') %>" alt="Dojo on Github" class="nav-icon github"></a>
+          <% } %>
           <% if (theme.rss){ %>
             <a class="nav-icon" href="<%- theme.rss %>" title="<%= __('rss_feed') %>"></a>
           <% } %>

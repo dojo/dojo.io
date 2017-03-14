@@ -11,37 +11,43 @@
       height: emRhythm(6, $ms-down1);
   }
 
+// Flexbox Item - Left
   .header-logo {
     margin: 0;
     padding: emRhythm(1, $ms-down1) 0 0 0;
     height: emRhythm(3, $ms-down2);
   }
 
+// Flexbox Item - Right
   .site-nav {
-  }
+    .main-nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      display: inline-block;
+      font-family: $font-slab;
+      font-size: emRhythm(1, $ms-down3);
+      font-weight: 300;
+      flex: 0 1 auto;
+      transition: color 0.3s;
+      padding-left: emRhythm(1, $ms-down1);
+      
 
-  .main-nav-link {
-    color: rgba(255, 255, 255, 0.8);
-    transition: color 0.3s;
-    padding-left: emRhythm(1, $ms-down1);
-    setType(3, $ms-down1);
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
 
-    &:hover {
-      color: rgba(255, 255, 255, 1);
+      .nav-icon {
+        width: auto;
+        height: 1.5em;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        vertical-align: middle;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
-
   }
-}
 
-$nav-link {
-  display: inline-block;
-  color: #fff;
-  opacity: 0.6;
-  text-decoration: none;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.2s;
-  padding: 20px 15px;
-  &:hover {
-    opacity: 1;
-  }
+  
 }
