@@ -1,16 +1,18 @@
-@import nib;
-normalize-css();
-@import "_util/modular-scale";
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Roboto+Slab:100,300,400,700');
+@import "nib";
 @import "_variables";
-@import "../../../node_modules/typesettings/_typesettings";
 
-// Global
-@import "_views/layout";
+global-reset();
 
-// Partials
-@import "_partials/header";
+@import "../../../../node_modules/typesettings/_typesettings";
 
-// Views
-@import "_views/home";
-@import "_views/article";
-
+@import "_partial/common";
+@import "_partial/header";
+@import "_partial/blog";
+@import "_partial/article";
+@import "_partial/home";
+@import "_partial/comment";
+@import "_partial/archive";
+@import "_partial/footer";
+@import "_partial/highlight";
+@import "_partial/mobile";
