@@ -1,1 +1,7 @@
-<%- partial('_page/'+page.title, {post: page, index: false}) %>
+<% 
+	tpl = "default";
+		if(typeof page.template != 'undefined') {
+			tpl = page.template;
+		}
+%>
+<%- partial('_page/'+tpl, {post: page, index: false}) %>

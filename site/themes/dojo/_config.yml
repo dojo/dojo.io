@@ -1,7 +1,7 @@
 # Header
 menu:
-  Home: /
-  Blog: /archives
+  Community: /community
+  Blog: /blog
 rss: /atom.xml
 
 # Content
@@ -29,7 +29,7 @@ show_count: false
 
 # Miscellaneous
 google_analytics:
-favicon: images/favicons/favicon.ico
+favicon: ./images/favicons/favicon.ico
 twitter:
 google_plus:
 fb_admins:

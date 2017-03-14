@@ -18,7 +18,8 @@
     "hexo-renderer-pandoc": "^0.1.1",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
-    "pretty-styl": "0.0.5"
+    "pretty-styl": "0.0.5",
+    "typesettings": "^4.0.0"
   },
   "devDependencies": {
     "s-grid": "^1.2.0"

@@ -1,20 +1,35 @@
 .site-header {
   background: $header-background;
+
+  .outer {
+    max-width: 1000px;
+  }
   
   .row {
       align-items: center;
       justify-content: space-between;
+      height: emRhythm(6, $ms-down1);
   }
 
   .header-logo {
-    height: $logo-size;
+    margin: 0;
+    padding: emRhythm(1, $ms-down1) 0 0 0;
+    height: emRhythm(3, $ms-down2);
   }
 
   .site-nav {
   }
 
   .main-nav-link {
-    
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s;
+    padding-left: emRhythm(1, $ms-down1);
+    setType(3, $ms-down1);
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+
   }
 }
 
