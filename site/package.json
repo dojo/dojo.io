@@ -14,9 +14,12 @@
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-ejs": "^0.2.0",
-    "hexo-renderer-marked": "^0.2.10",
+    "hexo-renderer-markdown-it": "^3.4.1",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
+    "markdown-it": "^8.3.1",
+    "markdown-it-classy": "^0.2.0",
+    "markdown-it-container": "^2.0.0",
     "pretty-styl": "0.0.5",
     "typesettings": "^4.0.0"
   },

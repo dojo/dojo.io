@@ -6,3 +6,6 @@ date:
 ---
 
 # Community
+
+[Gitter](https://gitter.im/dojo/dojo2)
+ 
