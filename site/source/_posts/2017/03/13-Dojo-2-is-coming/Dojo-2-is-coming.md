@@ -1,7 +1,7 @@
 ---
 title: Dojo 2 is coming
 date: 2017-03-13 14:32:37
-tags:
+authorId: dylan
 ---
 
 Dojo 2 is the most substantial rethink to the Dojo Toolkit in ten years. As it nears Beta status for the majority of its modules, quite a bit has changed these past few months as it has evolved into a powerful solution for building enterprise applications.

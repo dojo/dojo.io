@@ -44,6 +44,15 @@ highlight:
   auto_detect: false
   tab_replace:
 
+# Authors
+authors:
+  default:
+    name: The Dojo Team
+  dylan:
+    name: Dylan Schiemann
+    email: dylan@sitepen.com
+  
+
 # Markdown
 ## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
 
