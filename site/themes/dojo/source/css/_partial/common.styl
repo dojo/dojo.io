@@ -9,8 +9,8 @@ body {
   padding: 0 emRhythm(2, $ms-down1);
 }
 
-.container {
-  
+.page-content {
+  padding-top: emRhythm(2, $ms-down1);
 }
 
 .inner {
@@ -31,8 +31,23 @@ h6 {
 	font-weight: 400;
 }
 
-
 a:link,
 a:hover {
 	text-decoration: none;
+}
+
+code {
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    font-size: 80%;
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
+
+    &:before,
+    &:after {
+      letter-spacing: -0.2em;
+      content: "\00a0";
+    }
 }
