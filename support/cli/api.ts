@@ -2,88 +2,48 @@
  * Build API documentation from a dojo 2 project
  */
 import exec from '../commands/exec';
-import request from 'dojo-core/request';
-import { apiDirectory, tempDirectory, dojoProjectOwner } from '../common';
-import { existsSync } from 'fs';
+import { apiDirectory, tempDirectory, dojoProjectOwner, repos } from '../common';
 import { join as joinPath } from 'path';
-import { getUrl, clone, usetag } from '../util/git';
+import { existsSync } from 'fs';
+import { fetchTag } from '../util/git';
+import GitHub, { Release } from '../util/GitHub';
 const shell = require('shelljs');
 
-interface Release {
-	name: string;
-	commit: {
-		sha: string;
-		url: string;
-	}
+/**
+ * @return {Promise<Release[]>} a list of releases not present in the rootDir
+ */
+async function fetchMissing(repo: GitHub): Promise<Release[]> {
+	const releases = await repo.fetchReleases();
+
+	return releases.filter(function (release: Release) {
+		const path = joinPath(apiDirectory, repo.name, release.name);
+		return !existsSync(path);
+	});
 }
 
-const repos = Object.freeze([
-	// 'actions',
-	// 'app',
-	// 'cli',
-	'compose',
-	'core',
-	// 'dataviz',
-	// 'dom',
-	'has',
-	'interfaces',
-	// 'i18n',
-	'loader',
-	// 'routing',
-	'shim',
-	// 'stores',
-	'streams'
-	// 'widgets'
-]);
-
-function fetchReleases(): Promise<Release[]> {
-	const url = `${ getUrl() }/tags`;
-
-	return <any> request<Buffer>(url)
-		.then<Release[]>(function (response) {
-			if (response.statusCode >= 200 && response.statusCode < 300) {
-				const releases: Release[] = JSON.parse(response.data.toString());
-				return releases;
-			}
-			else {
-				throw new Error(`${ response.statusCode } ${ response.nativeResponse.statusMessage }`);
-			}
-		});
-}
-
-function fetchMissing(repo: string): Promise<Release[]> {
-	return fetchReleases()
-		.then(function (releases) {
-			return releases.filter(function (release: Release) {
-				return !existsSync(joinPath(apiDirectory, repo, release.name))
-			});
-		});
-}
-
-function fetchTag(repo: string, version: string) {
-	const repoDir = joinPath(tempDirectory, repo, version);
-
-	shell.mkdir('-p', repoDir);
-	shell.rm('-rf', repoDir);
-	return clone(getUrl(), repoDir)
-		.then(function () {
-			shell.cd(repoDir);
-			return usetag(version);
-		})
-}
-
-function buildDocs(owner: string, repo: string, version: string) {
+async function buildDocs(repo: GitHub, version: string) {
 	// TODO add support for npm install and typings install?
 
-	const repoDir = joinPath(tempDirectory, repo, version);
-	console.log(`building api docs for ${ owner }/${ repo }@${ version }`);
-	return fetchTag(repo, version)
-		.then(function () {
-			const targetDir = joinPath(apiDirectory, repo, version);
-			const command = `typedoc --mode modules ${ repoDir }/src/ --out ${ targetDir } --excludeNotExported --ignoreCompilerErrors`;
-			shell.mkdir('-p', targetDir);
-			return exec(command);
-		});
+	console.log(`building api docs for ${ repo.owner }/${ repo.name }@${ version }`);
+
+	const repoDir = joinPath(tempDirectory, repo.name, version);
+	const targetDir = joinPath(apiDirectory, repo.name, version);
+
+	await fetchTag(repoDir, repo.getCloneUrl(), version);
+
+	const typingsJson = joinPath(repoDir, 'typings.json');
+	shell.cd(repoDir);
+	await exec('npm install');
+
+	if (existsSync(typingsJson)) {
+		await exec('typings install');
+	}
+
+	// TODO use grunt doc when typedoc is released w/ TS 2.2.1 support
+	// await exec('grunt doc');
+	shell.mkdir('-p', targetDir);
+	const command = `typedoc --mode modules ${ repoDir }/src/ --out ${ targetDir } --excludeNotExported --ignoreCompilerErrors`;
+	return exec(command);
 }
 
 const commands = {
@@ -92,37 +52,26 @@ const commands = {
 		console.log(repos.join('\n'));
 	},
 
-	releases(owner: string, repo: string) {
-		if (!owner) {
-			return Promise.reject(new Error('A repo owner must be specified'));
+	async releases(owner: string, repoName: string) {
+		const repo = new GitHub(owner, repoName);
+		const releases = await repo.fetchReleases();
+		for (let release of releases) {
+			console.log(release.name);
 		}
-		if (!repo) {
-			return Promise.reject(new Error('A repo must be specified'));
-		}
-
-		return fetchReleases()
-			.then(function (releases: Release[]): Release[] {
-				for (let release of releases) {
-					console.log(release.name);
-				}
-				return releases;
-			});
 	},
 
-	missing(owner: string, repo: string) {
-		// list releases where apis are missing
-
-		return fetchMissing(repo)
-			.then(function (releases: Release[]): Release[] {
-				for (let release of releases) {
-					console.log(release.name);
-				}
-				return releases;
-			});
+	async missing(owner: string, repoName: string) {
+		const repo = new GitHub(owner, repoName);
+		const missing = await fetchMissing(repo);
+		for (let release of missing) {
+			console.log(release.name);
+		}
+		return missing;
 	},
 
-	build(owner: string, repo: string, version: string) {
-		return buildDocs(owner, repo, version);
+	async build(owner: string, repoName: string, version: string) {
+		const repo = new GitHub(owner, repoName);
+		await buildDocs(repo, version);
 	},
 
 	createIndex(_project: string) {
@@ -133,12 +82,12 @@ const commands = {
 	async all() {
 		// TODO blacklist apis older than a certain age/version (maybe based on typings)
 		const owner = dojoProjectOwner;
-		for (let repo of repos) {
-			console.log(owner, repo);
+		for (let repoName of repos) {
+			const repo = new GitHub(owner, repoName);
 			const releases: Release[] = await fetchMissing(repo);
 
 			for (let release of releases) {
-				await buildDocs(owner, repo, release.name);
+				await buildDocs(repo, release.name);
 			}
 		}
 	}

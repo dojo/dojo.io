@@ -2,6 +2,9 @@
   "name": "dojo.io",
   "version": "1.0.0-pre",
   "description": "Static site for the Dojo Toolkit",
+  "engines": {
+    "node": ">= 6.0"
+  },
   "private": true,
   "scripts": {
     "api": "ts-node ./support/run api",
@@ -42,7 +45,8 @@
     "s-grid": "^1.2.0",
     "shelljs": "^0.7.5",
     "ts-node": "^2.0.0",
-    "typescript": "^2.1.4",
+    "tslint-sitepen": "^0.1.0",
+    "typescript": "^2.2.1",
     "webserv": "^0.6.1"
   }
 }
