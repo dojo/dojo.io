@@ -1,2 +1,4 @@
-<%- post.author.name %>
-<%-	image_tag(gravatar(post.author.email)) %>
+<div class="author-meta">
+	<%-	image_tag(gravatar(post.author.email), {alt: post.author.name, class:'author-avatar'}) %>
+	<span class="author-name"><%- post.author.name %></span>
+</div>

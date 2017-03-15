@@ -48,5 +48,8 @@
     "tslint-sitepen": "^0.1.0",
     "typescript": "^2.2.1",
     "webserv": "^0.6.1"
+  },
+  "dependencies": {
+    "typedoc": "^0.5.7"
   }
 }
