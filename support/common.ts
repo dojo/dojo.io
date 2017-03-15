@@ -34,3 +34,22 @@ export const publishDirectory = '.ghpublish';
 
 // This is considered the master branch as far as the CI is concerned
 export const masterBranch = 'master';
+
+export const repos = Object.freeze([
+	// 'actions',
+	// 'app',
+	// 'cli',
+	'compose',
+	'core',
+	// 'dataviz',
+	// 'dom',
+	'has',
+	'interfaces',
+	// 'i18n',
+	'loader',
+	// 'routing',
+	'shim',
+	// 'stores',
+	'streams'
+	// 'widgets'
+]);
