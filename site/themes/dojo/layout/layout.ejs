@@ -1,14 +1,14 @@
 <%- partial('_partial/head') %>
 <body class="<%- partial('_partial/body')%>">
   <div id="container">
-    <div id="wrap">
-      <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-      <div class="outer page-content">
-        <section id="main"><%- body %></section>
-      </div>
-      <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
-    </div>
-    <%- partial('_partial/after-footer') %>
+	<div id="wrap">
+	  <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+	  <div class="outer page-content">
+		<section id="main"><%- body %></section>
+	  </div>
+	  <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+	</div>
+	<%- partial('_partial/after-footer') %>
   </div>
 </body>
 </html>

@@ -26,6 +26,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+tutorial_dir: /docs/tutorials/
 
 # Writing
 new_post_name: :year/:month/:day-:title/:title.md # File name of new posts
