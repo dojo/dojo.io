@@ -5,12 +5,4 @@ require('ts-node').register({
 	}
 });
 
-const tsconfig = require('./tsconfig.json');
-const config = require('./tasks/config');
-
-module.exports = function (grunt) {
-	require('load-grunt-tasks')(grunt);
-	grunt.loadNpmTasks('webserv');
-
-	grunt.initConfig(config);
-};
+module.exports = require('./tasks');

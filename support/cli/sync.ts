@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-import { distDirectory, ghPagesBranch, gitConfig } from '../common';
-import { clone, usetag, pull, getUrl } from '../util/git';
+import { distDirectory, ghPagesBranch, gitConfig, dojoioRepo } from '../common';
+import { clone, usetag, pull } from '../util/git';
 import { existsSync } from 'fs';
 import { isRunningOnTravis } from '../util/travis';
+import GitHub from '../util/GitHub';
 const shell = require('shelljs');
 
 /*
@@ -15,7 +16,9 @@ function ensureGhPages(): Promise<any> {
 	}
 	else {
 		const config = isRunningOnTravis() ? gitConfig : null;
-		return clone(getUrl(), distDirectory, config);
+		const repo = new GitHub(dojoioRepo.owner, dojoioRepo.name);
+
+		return clone(repo.getCloneUrl(), distDirectory, config);
 	}
 }
 

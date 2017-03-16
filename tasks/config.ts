@@ -1,16 +1,34 @@
 import { Config } from 'webserv/commands/createServer';
 import { middleware } from './webserv';
 
-interface WebServerConfig {
-	[ key: string ]: Config
+export interface WebServerConfig {
+	[ key: string ]: Config;
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Variables
+// ---------------------------------------------------------------------------------------------------------------------
 export * from '../support/common';
 
-export const clean: any = {
+// ---------------------------------------------------------------------------------------------------------------------
+// Task Configuration
+// ---------------------------------------------------------------------------------------------------------------------
+export const clean = {
 	api: [ '<%= tempDirectory %>' ],
 	dist: [ '<%= distDirectory %>' ],
-	publish: [ '<%= publishDirectory %>' ]
+	publish: [ '<%= publishDirectory %>' ],
+	compiledFiles: [ './+(tasks|support)/**/*.d.ts', './+(tasks|support)/**/*.js' ]
+};
+
+export const shell = {
+	'build-ts': {
+		command: 'tsc',
+		options: {
+			execOptions: {
+				cwd: 'support'
+			}
+		}
+	}
 };
 
 /**

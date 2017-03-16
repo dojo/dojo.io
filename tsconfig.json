@@ -1,14 +1,19 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
-		"declaration": true,
+		"lib": [
+			"DOM",
+			"ES5",
+			"es2015.iterable",
+			"ES2015.symbol.wellknown",
+			"ES2015.Symbol"
+		],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"outDir": "./support",
 		"preserveConstEnums": true,
 		"removeComments": true,
 		"rootDir": ".",
@@ -16,6 +21,7 @@
 		"target": "ES5"
 	},
 	"include": [
-		"./support/**/*.ts"
+		"./support/**/*.ts",
+		"./tasks/**/*.ts"
 	]
 }

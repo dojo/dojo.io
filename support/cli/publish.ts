@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { distDirectory, publishDirectory, rootDirectory, gitConfig, masterBranch } from '../common';
-import { config, headRevision, ensureGitRepo, getUrl } from '../util/git';
+import { distDirectory, publishDirectory, rootDirectory, gitConfig, masterBranch, dojoioRepo } from '../common';
+import { config, headRevision, ensureGitRepo } from '../util/git';
+import GitHub from '../util/GitHub';
 import { decryptDeployKey, isBranch } from '../util/travis';
 const ghpages = require('gh-pages');
 const shell = require('shelljs');
@@ -32,8 +33,9 @@ function publish(options: any) {
 	if (!options.push) {
 		console.log('Skipping publish to repo. Commit only.');
 	}
+	const repo = new GitHub(dojoioRepo.owner, dojoioRepo.name);
 
-	return ensureGitRepo(distDirectory, getUrl())
+	return ensureGitRepo(distDirectory, repo.getCloneUrl())
 		.then(function () {
 			return new Promise(function (resolve, reject) {
 				shell.cd(rootDirectory);
