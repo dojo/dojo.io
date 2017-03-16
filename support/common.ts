@@ -28,6 +28,8 @@ export const siteDirectory = join(rootDirectory, 'site');
 
 export const apiDirectory = join(distDirectory, 'api');
 
+export const apiThemeDirectory = join(distDirectory, 'api-theme');
+
 export const tempDirectory = join(rootDirectory, '.apitemp');
 
 export const publishDirectory = '.ghpublish';

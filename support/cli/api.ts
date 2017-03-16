@@ -2,7 +2,7 @@
  * Build API documentation from a dojo 2 project
  */
 import exec from '../commands/exec';
-import { apiDirectory, tempDirectory, dojoProjectOwner, repos } from '../common';
+import { apiDirectory, tempDirectory, dojoProjectOwner, repos, apiThemeDirectory } from '../common';
 import { join as joinPath } from 'path';
 import { existsSync } from 'fs';
 import { fetchTag } from '../util/git';
@@ -42,7 +42,7 @@ async function buildDocs(repo: GitHub, version: string) {
 	// TODO use grunt doc when typedoc is released w/ TS 2.2.1 support
 	// await exec('grunt doc');
 	shell.mkdir('-p', targetDir);
-	const command = `typedoc --mode modules ${ repoDir }/src/ --out ${ targetDir } --excludeNotExported --ignoreCompilerErrors`;
+	const command = `typedoc --mode modules ${repoDir}/src/ --out ${targetDir} --theme ${apiThemeDirectory} --excludeNotExported --ignoreCompilerErrors`;
 	return exec(command);
 }
 
