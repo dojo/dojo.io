@@ -6,6 +6,7 @@
     "version": "3.2.2"
   },
   "dependencies": {
+    "headroom.js": "^0.9.3",
     "hexo": "^3.2.0",
     "hexo-authors": "^0.1.0",
     "hexo-cli": "^1.0.2",

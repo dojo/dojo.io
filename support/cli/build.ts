@@ -12,7 +12,7 @@ const hexoBin = join(siteDirectory, 'node_modules', '.bin', 'hexo');
 
 const commands = {
 	blog() {
-		return exec(`${ hexoBin } --cwd ${ siteDirectory } generate`);
+		return exec(`${ hexoBin } --cwd ${ siteDirectory } generate --watch`);
 	},
 
 	'default': 'blog'
