@@ -53,6 +53,7 @@
     "webserv": "^0.6.1"
   },
   "dependencies": {
+    "hexo-renderer-yasr": "^4.0.0",
     "typedoc": "^0.5.7"
   }
 }

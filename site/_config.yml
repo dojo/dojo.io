@@ -26,6 +26,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - "**/*/demo"
 tutorial_dir: /docs/tutorials/
 
 # Writing
@@ -69,6 +70,14 @@ markdown:
     - markdown-it-abbr
     - markdown-it-footnote
 
+yasr:
+  axis: true              # Enables Axis (Recommends Nib) 
+  compress: false         # Disables Compression 
+  jeet: true              # Enables Jeet 
+  nib: true               # Enables Nib 
+  rupture: true           # Enables Rupture 
+  typographic: true       # Enables Typographic 
+
 
 # Category & Tag
 default_category: dojo
@@ -98,7 +107,3 @@ theme: dojo
 deploy:
   type:
 
-# Stylus
-stylus:
-  compress: true
-  use: typesettings
