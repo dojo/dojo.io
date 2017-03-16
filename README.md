@@ -33,36 +33,31 @@ TODO We need to answer were tutorials should be located and if they're more simi
 
 ### Listing API Versions
 
-TODO not yet implemented
+To get a listing of all released versions for a project
 
-Get a list of unbuilt versions with
-
+```bash
+	npm run api releases dojo <name>
 ```
-npm run api list [package name]
+
+To get a list of all versions of a project with unbuilt API documentation
+
+```bash
+	npm run api missing dojo <name>
 ```
 
 ### Building APIs
 
-TODO not yet implemented
+Building documentation for a project requires the project repository to be checked out to a temporary location and
+	where its dependencies are added and `typedoc` is ran against the repository. It is a relatively resource intensive
+	task.
 
-APIs are built using `typedoc`.
-
+```bash
+	npm run api build dojo <name> <version>
 ```
-npm run api build [package name] 2.0.0
-```
 
-A shallow copy of the repo is cloned into a temp directory, is built using `typedoc` and output to `_dist`.
+This will build documentation to `_dist/api/<name>/<version>`
 
-### Validating up-to-date API documentation
-
-TODO not yet implemented
-
-API builds generate metadata including the git hash which they wre built against. To determine if a build is current
-or needs to be regenerated use
-
-```
-npm run api current [pacakge name] [version]
-```
+NOTE: It currently requires `typedoc` be installed globally on your system (`npm i typedoc -g`).
 
 ## Deployment
 
