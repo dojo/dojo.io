@@ -3,10 +3,10 @@
 	will-change: transform;
 	transition: transform 200ms linear;
 	position: fixed;
-    z-index: 10;
-    right: 0;
-    left: 0;
-    top: 0;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  top: 0;
 	
   .outer {
     max-width: 1000px;
@@ -14,15 +14,29 @@
   
   .row {
       align-items: center;
+      flex-flow: row wrap;
       justify-content: space-between;
-      height: vr(7, $ms-down1);
+      min-height: vr(7, $ms-down1);
+
+      +below(2) {
+          justify-content: center;
+      }
   }
+
 
 // Flexbox Item - Left
   .header-logo {
     margin: 0;
-    padding: vr(1, $ms-down1) 0 0 0;
     height: 2.5em;
+
+    img {
+      height: 2.5em;
+    }
+
+    +below(2) {
+      padding: 0.25em;
+      margin-bottom: vr(1, $ms-down1);
+    }
   }
 
 // Flexbox Item - Right

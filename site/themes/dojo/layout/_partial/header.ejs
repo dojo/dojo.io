@@ -1,7 +1,7 @@
 <header class="container site-header">
   <div class="outer">
     <div class="row">
-        <a href="<%- url_for() %>"><img src="<%- url_for('images/dojo2-logo-white.svg') %>" alt="<%= config.title %>" class="header-logo"></a>
+        <a href="<%- url_for() %>" class="header-logo"><img src="<%- url_for('images/dojo2-logo-white.svg') %>" alt="<%= config.title %>"></a>
       <nav class="site-nav">
           <a class="nav-icon"></a>
           <% for (var i in theme.menu){ %>
