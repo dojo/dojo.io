@@ -29,15 +29,17 @@ async function buildDocs(repo: GitHub, version: string) {
 	const repoDir = joinPath(tempDirectory, repo.name, version);
 	const targetDir = joinPath(apiDirectory, repo.name, version);
 
-	await fetchTag(repoDir, repo.getCloneUrl(), version);
+	if(!existsSync(repoDir)){
+		await fetchTag(repoDir, repo.getCloneUrl(), version);
+		const typingsJson = joinPath(repoDir, 'typings.json');
+		shell.cd(repoDir);
+		await exec('npm install');
 
-	const typingsJson = joinPath(repoDir, 'typings.json');
-	shell.cd(repoDir);
-	await exec('npm install');
-
-	if (existsSync(typingsJson)) {
-		await exec('typings install');
+		if (existsSync(typingsJson)) {
+			await exec('typings install');
+		}
 	}
+	
 
 	// TODO use grunt doc when typedoc is released w/ TS 2.2.1 support
 	// await exec('grunt doc');
