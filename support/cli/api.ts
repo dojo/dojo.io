@@ -31,13 +31,13 @@ async function buildDocs(repo: GitHub, version: string) {
 
 	if(!existsSync(repoDir)){
 		await fetchTag(repoDir, repo.getCloneUrl(), version);
-		const typingsJson = joinPath(repoDir, 'typings.json');
-		shell.cd(repoDir);
-		await exec('npm install');
+	}
+	const typingsJson = joinPath(repoDir, 'typings.json');
+	shell.cd(repoDir);
+	await exec('npm install');
 
-		if (existsSync(typingsJson)) {
-			await exec('typings install');
-		}
+	if (existsSync(typingsJson)) {
+		await exec('typings install');
 	}
 	
 
