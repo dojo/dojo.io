@@ -1,1 +1,9 @@
 <%- page.content %>
+<%
+    var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
+    _.each(tuts, function(value) {
+%>
+        <div><a href="<%- url_for(value.path) %>"><%- value.title %></a></div>
+<%
+    });
+%>

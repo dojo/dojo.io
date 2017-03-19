@@ -1,0 +1,22 @@
+.outer {
+  clearfix();
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $pad;
+}
+
+.page-content {
+  padding-top: $header-offset;
+
+  +below(2) {
+    padding-top: vr(12, $ms-down1);
+  }
+}
+
+.inner {
+	max-width: 740px;
+}
+
+.row {
+  display: flex;
+}
