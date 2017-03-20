@@ -9,65 +9,63 @@
   top: 0;
 	
   .outer {
-    max-width: 100%;
+    max-width: $max-width;
   }
   
   .row {
+      min-height: $header-height;
+  }
+
+  .site-nav {
+      display:flex;
       align-items: center;
       flex-flow: row wrap;
       justify-content: space-between;
-      min-height: vr(6);
+      width: 100%;
 
-      +below(2) {
-          justify-content: center;
-      }
-  }
-
-
-// Flexbox Item - Left
-  .header-logo {
-    margin: 0;
-    height: 2.5em;
-
-    img {
-      height: 2em;
-      padding-top: 0.25em;
-    }
-
-    +below(2) {
-      padding: 0.25em;
-      margin-bottom: vr(1, $ms-down1);
-    }
-  }
-
-// Flexbox Item - Right
-  .site-nav {
     .main-nav-link {
+      
       color: rgba(255, 255, 255, 0.8);
       display: inline-block;
+      flex: 1 1 auto;
       font-family: $font-slab;
       font-size: 0.9em;
       font-weight: 300;
-      flex: 0 1 auto;
       transition: color 0.3s;
-      padding-left: 1rem;
+      //padding-left: 1rem;
+      uppercase();
       
+
 
       &:hover {
         color: rgba(255, 255, 255, 1);
       }
+    }
+  }
+  
+  .nav-icon {
+    width: auto;
+    height: 1.5em;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    vertical-align: middle;
 
-      .nav-icon {
-        width: auto;
-        height: 1.5em;
-        opacity: 0.8;
-        transition: opacity 0.3s;
-        vertical-align: middle;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  .header-logo {
+    flex: 2 1 auto;
+    margin: 0.5em 0 0 0;
 
-        &:hover {
-          opacity: 1;
-        }
-      }
+    img {
+      height: vr(5);
+    }
+
+    +below(2) {
+      padding: 0.25em;
+      //margin-bottom: vr(1);
     }
   }
 }
