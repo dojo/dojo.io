@@ -7,6 +7,7 @@
 
     .tsd-page-top,
     .page-footer  {
+        transition: all 0.3s;
         background: #fff;
         z(1);
     }
@@ -28,11 +29,33 @@
         cell(1, 2);
 
         &.menu-sticky-wrap {
-            transition: all 0.3s;
            &.sticky .menu-sticky {
+                transition: all 0.3s;
                 position: fixed;
                 top: $header-height;
-           } 
+           }
+        }
+    }
+
+    .site-header.headroom--not-top + .page-content {
+        .tsd-page-toolbar {
+            transition: all 0.3s;
+            position: fixed;
+            top: 0;
+            z-index: 2;
+            width: 100%;
+            background: #fff;
+            z(1);
+        }
+    }
+
+    .site-header.headroom--not-top.slideDown + .page-content {
+        .tsd-page-toolbar {
+            top: $header-height;
+        }
+
+        .col-4 .menu-sticky {
+            top: vr(15)
         }
     }
 
