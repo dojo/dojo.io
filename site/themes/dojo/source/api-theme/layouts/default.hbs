@@ -9,37 +9,36 @@
 
     <link rel="stylesheet" href="{{relativeURL "/css/main.css"}}">
 </head>
-<body>
+<body class="page-api">
 
 {{> header}}
 
-<div class="container container-main">
-    <div class="outer page-content">
-        {{> page-toolbar}}
-        <div class="row">
-            <div class="col-8 col-content">
-                {{{contents}}}
-            </div>
-            <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-                <nav class="tsd-navigation primary">
-                    <ul>
-                        {{#each navigation.children}}
-                            {{> navigation}}
-                        {{/each}}
-                    </ul>
-                </nav>
+<div class="page-content">
+    {{> page-toolbar}}
+    <div class="row content-container">
+        <div class="col-8 col-content">
+            {{{contents}}}
+        </div>
+        <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+            <nav class="tsd-navigation primary">
+                <ul>
+                    {{#each navigation.children}}
+                        {{> navigation}}
+                    {{/each}}
+                </ul>
+            </nav>
 
-                <nav class="tsd-navigation secondary menu-sticky">
-                    <ul class="before-current">
-                        {{#each toc.children}}
-                            {{> toc.root}}
-                        {{/each}}
-                    </ul>
-                </nav>
-            </div>
+            <nav class="tsd-navigation secondary menu-sticky">
+                <ul class="before-current">
+                    {{#each toc.children}}
+                        {{> toc.root}}
+                    {{/each}}
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
+
 
 {{> footer}}
 

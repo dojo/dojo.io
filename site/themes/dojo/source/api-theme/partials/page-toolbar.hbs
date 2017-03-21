@@ -1,8 +1,8 @@
-<div class="tsd-page-toolbar">
-	<div class="container">
-		<div class="table-wrap">
+<div class="tsd-page-top">
+	<div class="tsd-page-toolbar">
+		<div class="table-wrap content-container">
 			<div class="table-cell" id="tsd-search" data-index="{{relativeURL " assets/js/search.js "}}" data-base="{{relativeURL " ./
-			 "}}">
+			"}}">
 				<div class="field">
 					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 					<input id="tsd-search-field" type="text" />
@@ -13,7 +13,7 @@
 					<li class="state failure">The search index is not available</li>
 				</ul>
 
-				<a href="{{relativeURL " index.html "}}" class="title">{{project.name}}</a>
+				<a href="{{relativeURL "index.html "}}" class="title">{{project.name}}</a>
 			</div>
 
 			<div class="table-cell" id="tsd-widgets">
@@ -42,16 +42,16 @@
 			</div>
 		</div>
 	</div>
-</div>
 
-
-<div class="tsd-page-title">
-	<div class="container">
-		<ul class="tsd-breadcrumb">
-			{{#with model}}{{> breadcrumb}}{{/with}}
-		</ul>
-		<h1>{{#compact}} {{model.kindString}}&nbsp; {{model.name}} {{#if model.typeParameters}} &lt; {{#each model.typeParameters}}
-			{{#if @index}},&nbsp;{{/if}} {{name}} {{/each}} &gt; {{/if}} {{/compact}}
-		</h1>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				{{#with model}}{{> breadcrumb}}{{/with}}
+			</ul>
+			<h1>{{#compact}} {{model.kindString}}&nbsp; {{model.name}} {{#if model.typeParameters}} &lt; {{#each model.typeParameters}}
+				{{#if @index}},&nbsp;{{/if}} {{name}} {{/each}} &gt; {{/if}} {{/compact}}
+			</h1>
+		</div>
 	</div>
+	
 </div>

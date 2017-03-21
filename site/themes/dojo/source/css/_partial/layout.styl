@@ -1,22 +1,26 @@
-.outer {
-  clearfix();
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: 0 pad(4);
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
 .page-content {
-  padding-top: $header-offset;
+	padding-top: $header-offset;
+	flex: 1;
+}
 
-  +below(2) {
-    
-  }
+.content-container {
+	contain();
+}
+
+.outer {
+	outer();
 }
 
 .inner {
-	max-width: 740px;
+	max-width: $max-width;
 }
 
 .row {
-  display: flex;
+	display: flex;
 }

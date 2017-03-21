@@ -1,16 +1,14 @@
 <%- partial('_partial/head') %>
 <body class="<%- partial('_partial/body')%>">
-  <div id="container">
-	<div id="wrap">
-	  <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-	  <div class="outer page-content">
-		<section id="main"><%- body %></section>
-	  </div>
-	  <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+	<%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+	<div class="page-content">
+		<section class="content-container" id="main"><%- body %></section>
 	</div>
-	<%- partial('_partial/after-footer') %>
-  </div>
+	<div>
+		<%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+		<%- partial('_partial/after-footer') %>
+	</div>
 </body>
-  <script src='<%- url_for("js/headroom.js") %>'></script>
-  <script src='<%- url_for("js/site.js") %>'></script>
+	<script src='<%- url_for("js/headroom.js") %>'></script>
+	<script src='<%- url_for("js/site.js") %>'></script>
 </html>

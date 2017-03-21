@@ -26,12 +26,12 @@ async function buildDocs(repo: GitHub, version: string) {
 
 	console.log(`building api docs for ${ repo.owner }/${ repo.name }@${ version }`);
 
-	const repoDir = joinPath(tempDirectory, repo.name, version);
+	const repoDir = joinPath(tempDirectory, repo.name, version, 'src');
 	const targetDir = joinPath(apiDirectory, repo.name, version);
 
-	//if(!existsSync(repoDir)){
+	if(!existsSync(repoDir)){
 		await fetchTag(repoDir, repo.getCloneUrl(), version);
-	//}
+	}
 	const typingsJson = joinPath(repoDir, 'typings.json');
 	shell.cd(repoDir);
 	await exec('npm install');
@@ -44,7 +44,7 @@ async function buildDocs(repo: GitHub, version: string) {
 	// TODO use grunt doc when typedoc is released w/ TS 2.2.1 support
 	// await exec('grunt doc');
 	shell.mkdir('-p', targetDir);
-	const command = `typedoc --mode modules ${repoDir}/src/ --out ${targetDir} --theme ${apiThemeDirectory} --excludeNotExported --ignoreCompilerErrors`;
+	const command = `typedoc --mode modules ${repoDir} --out ${targetDir} --theme ${apiThemeDirectory} --externalPattern '**/+(example|examples|node_modules|tests|typings)/**/*.ts' --excludeExternals --excludeNotExported --ignoreCompilerErrors`;
 	return exec(command);
 }
 
