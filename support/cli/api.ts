@@ -29,9 +29,9 @@ async function buildDocs(repo: GitHub, version: string) {
 	const repoDir = joinPath(tempDirectory, repo.name, version);
 	const targetDir = joinPath(apiDirectory, repo.name, version);
 
-	if(!existsSync(repoDir)){
+	//if(!existsSync(repoDir)){
 		await fetchTag(repoDir, repo.getCloneUrl(), version);
-	}
+	//}
 	const typingsJson = joinPath(repoDir, 'typings.json');
 	shell.cd(repoDir);
 	await exec('npm install');

@@ -76,7 +76,7 @@ yasr:
   jeet: true              # Enables Jeet 
   nib: true               # Enables Nib 
   rupture: true           # Enables Rupture 
-  typographic: true       # Enables Typographic 
+  typographic: false       # Enables Typographic 
 
 
 # Category & Tag
