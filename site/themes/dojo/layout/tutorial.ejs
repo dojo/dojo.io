@@ -1,1 +1,15 @@
-<%- partial('_page/default', {post: page, index: false}) %>
+<% 
+if(page.editorUrl) {
+%>
+<div class="split-content">
+<% } %>
+	<div class="tutorial-content">
+		<%- page.content %>
+	</div>
+
+<% if(page.editorUrl) { %>
+	<div class="editor">
+		<iframe src="<%- page.editorUrl %>" class="editor-frame">
+	</div>
+</div>
+<% } %>
