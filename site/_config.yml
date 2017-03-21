@@ -99,11 +99,6 @@ pagination_dir: page
 # index-generator-3
 ## Docs https://github.com/carlhopf/hexo-generator-index3
 index_generator:
-  index:
-    per_page: 0
-    order_by: -date
-    layout:
-      - page
 
   tutorials:
     per_page: 0
