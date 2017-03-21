@@ -26,6 +26,14 @@
 
     .col-4 {
         cell(1, 2);
+
+        &.menu-sticky-wrap {
+            transition: all 0.3s;
+           &.sticky .menu-sticky {
+                position: fixed;
+                top: $header-height;
+           } 
+        }
     }
 
 }
@@ -1195,6 +1203,9 @@
     margin: 0;
     padding: 0;
     color: #808080;
+
+    breadcrumb: '>'
+
 }
 .tsd-breadcrumb a {
     color: #808080;
@@ -1206,9 +1217,7 @@
 .tsd-breadcrumb li {
     display: inline;
 }
-.tsd-breadcrumb li:after {
-    content: " / ";
-}
+
 /*html.minimal .container {
     margin: 0;
 }
@@ -1367,6 +1376,10 @@ footer .tsd-legend {
     list-style: none;
     line-height: 1.333em;
     vertical-align: top;
+
+    li {
+        list-style-type: none;
+    }
 }
 .tsd-hierarchy {
     list-style: square;
