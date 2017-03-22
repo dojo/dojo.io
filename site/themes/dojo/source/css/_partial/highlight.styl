@@ -1,120 +1,118 @@
-// API Docs
-.container-main {
-  pre {
-    background: #eee;
-    padding: 1em;
-  }
+/*
+ * highlightjs-material-dark-theme
+ * Material Dark theme for Highlight.js
+ * Based off of https://github.com/equinusocio/material-theme 
+ * For use with Highlight.js, https://github.com/isagalaev/highlight.js
+ */ 
+.hljs > *::selection {
+  background-color: #3e4451;
 }
 
-figure.highlight
-  background #eee
-  border 1px solid $color-border
-  margin: vr(1) 0;
-  padding 7px 15px
-  border-radius 2px
-  text-shadow 0 0 1px #fff
-  line-height 1.6
-  overflow auto
-  position relative
-  font-size 0.9em
-  figcaption
-    color $color-meta
-    margin-bottom 5px
-    text-shadow 0 0 1px #fff
-    a
-      position absolute
-      right 15px
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  background: #2B2B2D;
+  color: #CDD3D8;
+  margin-bottom: vr(5);
 
-  pre
-    border none
-    padding 0
-    margin 0
+  .comment {
+    color: #656565;
+    font-style: italic;
+  }
 
-  table
-    margin-top 0
-    border-spacing 0
+  .selector-tag {
+    color: #C792EA;
+  }
 
-  .gutter
-    color color-meta
-    padding-right 15px
-    border-right 1px solid $color-border
-    text-align right
+  .string,
+  .subst {
+    color: #C3E88D;
+  }
 
-  .code
-    padding-left 15px
-    border-left 1px solid #fff
-    color #666
+  .number,
+  .regexp,
+  .variable,
+  .template-variable {
+    color: #F77669;
+  }
 
-  .line.marked
-    background: #d6d6d6
+  .keyword {
+    color: #C792EA;
+  }
+  .function > .title {
+    color: #75A5FF;
+  }
+  .tag {
+    color: #abb2bf;
+  }
+  .name {
+    color: #e06c75;
+  }
+  .type {
+    color: #da4939;
+  }
 
-pre
-  // Theme: Solarized - Light
-  // More theme here: http://softwaremaniacs.org/media/soft/highlight/test.html
-  .comment
-  .template_comment
-  .diff .header
-  .doctype
-  .pi
-  .lisp .string
-  .javadoc
-    color #93a1a1
-    font-style italic
+  .attribute {
+    color: #80CBBF;
+  }
 
-  .keyword
-  .winutils
-  .method
-  .addition
-  .css .tag
-  .request
-  .status
-  .nginx .title
-    color #859900
+  .symbol,
+  .bullet,
+  .built_in,
+  .builtin-name,
+  .link {
+    color: #C792EA;
+  }
 
-  .number
-  .command
-  .string
-  .tag .value
-  .phpdoc
-  .tex .formula
-  .regexp
-  .hexcolor
-    color #2aa198
+  .params {
+    color: #EEFFF7;
+  }
 
-  .title
-  .localvars
-  .chunk
-  .decorator
-  .built_in
-  .identifier
-  .vhdl
-  .literal
-  .id
-    color #268bd2
 
-  .attribute
-  .variable
-  .lisp .body
-  .smalltalk .number
-  .constant
-  .class .title
-  .parent
-  .haskell .type
-    color #b58900
+  .meta {
+    color: #75A5FF;
+  }
 
-  .preprocessor
-  .preprocessor .keyword
-  .shebang
-  .symbol
-  .symbol .string
-  .diff .change
-  .special
-  .attr_selector
-  .important
-  .subst
-  .cdata
-  .clojure .title
-    color #cb4b16
+  .title {
+    color: #75A5FF;
+  }
 
-  .deletion
-    color #dc322f
+  .section {
+    color: #ffc66d;
+  }
+
+  .addition {
+    background-color: #144212;
+    color: #e6e1dc;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .deletion {
+    background-color: #600;
+    color: #e6e1dc;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .selector-class {
+    color: #FFCB68;
+  }
+
+  .selector-id {
+    color: #F77669;
+  }
+
+  .emphasis {
+    font-style: italic;
+  }
+
+  .strong {
+    font-weight: bold;
+  }
+
+  .link {
+    text-decoration: underline;
+  }
+}

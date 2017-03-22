@@ -23,6 +23,7 @@
     "markdown-it": "^8.3.1",
     "markdown-it-classy": "^0.2.0",
     "markdown-it-container": "^2.0.0",
+    "markdown-it-highlightjs": "^3.0.0",
     "pretty-styl": "0.0.5",
     "typesettings": "^4.0.0"
   },
