@@ -1,11 +1,13 @@
 <%- page.content %>
+<div class="index-tutorials">
 <%
     var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
     tuts = _.orderBy(tuts, ['path']);
 
     _.each(tuts, function(tut) {
 %>
-    <div><a href="<%- url_for(tut.path) %>"><%- tut.title %></a></div>
+    <div class="tutorial-item"><a href="<%- url_for(tut.path) %>"><%- tut.title %></a></div>
 <%
     });
 %>
+</div>
