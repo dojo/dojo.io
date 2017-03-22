@@ -1,12 +1,3 @@
-p code {
-  code();
-}
-
-code {
-  font-family: $font-mono;
-  font-size: 0.9rem;
-}
-
 // API Docs
 .container-main {
   pre {
@@ -15,44 +6,10 @@ code {
   }
 }
 
-.entry
-  .gist
-    background #eee
-    margin-top 15px
-    padding 7px 15px
-    border-radius 2px
-    text-shadow 0 0 1px #fff
-    line-height 1.6
-    overflow auto
-    color #666
-    .gist-file
-      border none
-      font-family inherit
-      margin 0
-      font-size 0.9em
-      .gist-data
-        background none
-        border-bottom none
-        pre
-          padding 0 !important
-          font-family $font-mono
-      .gist-meta
-        background none
-        color color-meta
-        margin-top 5px
-        padding 0
-        text-shadow 0 0 1px #fff
-        font-size 100%
-        a
-          color $color-link
-          &:visited
-            color $color-link
-
 figure.highlight
   background #eee
   border 1px solid $color-border
-  margin-top 15px
-  margin-left: 0;
+  margin: vr(1) 0;
   padding 7px 15px
   border-radius 2px
   text-shadow 0 0 1px #fff
@@ -161,102 +118,3 @@ pre
 
   .deletion
     color #dc322f
-
-/* Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name> */
-.hljs {
-    display: inline-block;
-    padding: 0.5em;
-    background: white;
-    color: black;
-}
-.hljs-comment,
-.hljs-annotation,
-.hljs-template_comment,
-.diff .hljs-header,
-.hljs-chunk,
-.apache .hljs-cbracket {
-    color: #008000;
-}
-.hljs-keyword,
-.hljs-id,
-.hljs-built_in,
-.css .smalltalk .hljs-class,
-.hljs-winutils,
-.bash .hljs-variable,
-.tex .hljs-command,
-.hljs-request,
-.hljs-status,
-.nginx .hljs-title {
-    color: #00f;
-}
-.xml .hljs-tag {
-    color: #00f;
-}
-.xml .hljs-tag .hljs-value {
-    color: #00f;
-}
-.hljs-string,
-.hljs-title,
-.hljs-parent,
-.hljs-tag .hljs-value,
-.hljs-rules .hljs-value {
-    color: #a31515;
-}
-.ruby .hljs-symbol {
-    color: #a31515;
-}
-.ruby .hljs-symbol .hljs-string {
-    color: #a31515;
-}
-.hljs-template_tag,
-.django .hljs-variable,
-.hljs-addition,
-.hljs-flow,
-.hljs-stream,
-.apache .hljs-tag,
-.hljs-date,
-.tex .hljs-formula,
-.coffeescript .hljs-attribute {
-    color: #a31515;
-}
-.ruby .hljs-string,
-.hljs-decorator,
-.hljs-filter .hljs-argument,
-.hljs-localvars,
-.hljs-array,
-.hljs-attr_selector,
-.hljs-pseudo,
-.hljs-pi,
-.hljs-doctype,
-.hljs-deletion,
-.hljs-envvar,
-.hljs-shebang,
-.hljs-preprocessor,
-.hljs-pragma,
-.userType,
-.apache .hljs-sqbracket,
-.nginx .hljs-built_in,
-.tex .hljs-special,
-.hljs-prompt {
-    color: #2b91af;
-}
-.hljs-phpdoc,
-.hljs-javadoc,
-.hljs-xmlDocTag {
-    color: #808080;
-}
-.vhdl .hljs-typename {
-    font-weight: bold;
-}
-.vhdl .hljs-string {
-    color: #666666;
-}
-.vhdl .hljs-literal {
-    color: #a31515;
-}
-.vhdl .hljs-attribute {
-    color: #00b0e8;
-}
-.xml .hljs-attribute {
-    color: #f00;
-}

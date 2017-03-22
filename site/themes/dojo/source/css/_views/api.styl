@@ -3,6 +3,10 @@
 
     .page-content {
         padding-top: $header-height;
+
+        .content-container {
+            max-width: $max-width;
+        }
     }
 
     .tsd-page-top,
@@ -22,11 +26,11 @@
     }
 
     .col-8 {
-        cell(2, 2);
+        cell(9, 12);
     }
 
     .col-4 {
-        cell(1, 2);
+        cell(3, 12);
 
         &.menu-sticky-wrap {
            &.sticky .menu-sticky {
