@@ -7,7 +7,7 @@
             <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
           <% } %>
           <% if(theme.github){%>
-            <a class="main-nav-link" href="<%- theme.github %>"><img src="<%- url_for('images/logos/github-white.svg') %>" alt="Dojo on Github" class="nav-icon github"></a>
+            <a class="main-nav-link main-nav-icon-link" href="<%- theme.github %>"><img src="<%- url_for('images/logos/github-white.svg') %>" alt="Dojo on Github" class="nav-icon github"></a>
           <% } %>
       </nav>
     </div>
