@@ -1,3 +1,7 @@
+// Hexo Tag Plugin
+// Imports a code file and highlights the result.
+// File path must be a child .md file.
+
 var fs = require('hexo-fs');
 var pathFn = require('path');
 var hljs = require('highlight.js');
