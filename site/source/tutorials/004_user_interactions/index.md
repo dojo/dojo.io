@@ -271,10 +271,7 @@ tasks: [
 
 When you are ready, click the button below to see our solution.
 
-<button data-target="showSolution1">Show solution</button>
-<section id="showSolution1">
-TODO: this should be hidden until the 'Show solution' button is clicked
-
+{% solution showSolution1 %}
 The widget's parent is responsible for passing properties to the widget. In this application, `Worker` widgets are contained by the `WorkerContainer` widget. To pass the specified properties to the first worker, the first element in the `workers` array needs to be updated to the following:
 
 ```ts
@@ -289,7 +286,7 @@ w(Worker, {
 	]
 })
 ```
-</section>
+{% endsolution %}
 
 ## Summary
 
