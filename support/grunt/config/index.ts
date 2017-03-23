@@ -33,7 +33,7 @@ export const shell = {
 
 export const tutorials = {
 	'dojo2-tutorials': {
-		src: 'site/source/docs/tutorials',
+		src: 'site/source/tutorials',
 		dest: 'test'
 	}
 };
