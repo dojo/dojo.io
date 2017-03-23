@@ -31,10 +31,7 @@ archive_type: 'monthly'
 show_count: false
 
 # Miscellaneous
-google_analytics:
+google_analytics: UA-3242977-15
 favicon: /images/favicons/favicon.ico
-twitter:
-google_plus:
-fb_admins:
-fb_app_id:
+twitter: https://twitter.com/dojo
 github: https://github.com/dojo/meta
