@@ -23,11 +23,11 @@ public_dir: ../_dist
 tag_dir: tags
 archive_dir: blog
 category_dir: categories
-code_dir: downloads/code
+code_dir: tutorials
 i18n_dir: :lang
 skip_render:
   - "**/*/demo"
-tutorial_dir: /docs/tutorials/
+tutorial_dir: tutorials
 
 # Writing
 new_post_name: :year/:month/:day-:title/:title.md # File name of new posts

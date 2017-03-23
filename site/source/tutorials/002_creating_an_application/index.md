@@ -7,7 +7,8 @@ editorUrl: https://embed.plnkr.co/KXkx10/?show=index.html,preview&preview=index.
 # Building your first Dojo 2 application
 
 ## Overview
-In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that is created by the `dojo create` command.
+In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that is created by the `dojo create` command.  
+
 
 ## Prerequisites
 
@@ -64,22 +65,7 @@ The second image shows how widgets ensure that components only interact accordin
 
 In our demo application, we only have one widget, the HelloWorld widget:
 
-```ts
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { v } from '@dojo/widget-core/d';
-
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	render() {
-		return v('h1', {
-			styles: {
-				'text-align': 'center'
-			}
-		},
-		[ 'Biz-E-Bodies' ]);
-	}
-}
-```
+{% codefile 'tutorials/002_creating_an_application/demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' ts %}
 
 This is very simple, containing a single h1 tag and no behavior, but it demonstrates some important concepts. Notice the `render` method, which provides the virtual nodes (also known as vNodes) for the Projector to determine what to add to the HTML document. In this example, the widget is simple enough that the function always returns the same result. We could make this widget more sophisticated by giving it some internal state that can be used to alter how the vNodes are generated without having to change how the rest of the application interacts with it. This encourages the development of loosely coupled components that are easier to develop and maintain over time.
 
