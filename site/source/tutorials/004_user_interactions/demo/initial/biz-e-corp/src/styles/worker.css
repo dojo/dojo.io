@@ -1,0 +1,10 @@
+.worker {
+	width: 27%;
+	margin: 0 3%;
+	text-align: center;
+	display: inline-block;
+}
+
+.image {
+	width: 100%;
+}

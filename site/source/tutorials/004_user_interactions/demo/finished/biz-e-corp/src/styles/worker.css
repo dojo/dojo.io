@@ -1,0 +1,39 @@
+.worker {
+	width: 27%;
+	margin: 0 3%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.workerFront {
+	composes: worker;
+	text-align: center;
+}
+
+.workerBack {
+	composes: worker;
+	font-size: 0.5em;
+}
+
+.image {
+	width: 100%;
+}
+
+.imageSmall {
+	width: 40%;
+}
+
+.generalInfo {
+	width: 55%;
+	display: inline-block;
+}
+
+.task {
+	border: solid 1px #333;
+	border-radius: 0.3em;
+	text-align: left;
+}
+
+.label {
+	font-weight: bold;
+}
