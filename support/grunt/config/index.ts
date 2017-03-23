@@ -34,7 +34,7 @@ export const shell = {
 export const tutorials = {
 	'dojo2-tutorials': {
 		src: 'site/source/tutorials',
-		dest: 'test'
+		dest: '<%= distDirectory %>/tutorials/_packs'
 	}
 };
 
