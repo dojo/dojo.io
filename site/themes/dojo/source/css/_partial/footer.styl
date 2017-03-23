@@ -1,3 +1,18 @@
 .page-footer {
 	background: $footer-background;
+	padding: vr(2) 0;
+
+	.content-container {
+		grid('row', 'center');
+
+		.footer-logo,
+		.info {
+			cell(6, 12);
+		}
+
+		.info {
+			font-size: $ms-down1;
+			text-align: right;
+		}
+	}
 }
