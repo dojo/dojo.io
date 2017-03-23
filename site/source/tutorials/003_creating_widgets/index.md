@@ -325,11 +325,7 @@ const WorkerContainerBase = ThemeableMixin(WidgetBase);
 
 @theme(styles)
 export default class WorkerContainer extends WorkerContainerBase<ThemeableProperties> {
-<<<<<<< HEAD:tutorials/003_creating_widgets/index.md
-	render() {
-=======
 	render(): DNode {
->>>>>>> update tutorial 003 reflect latest Dojo version:tutorials/003_creating_widgets/index.md
 		return v('div', {
 			classes: this.classes(styles.container)
 		}, []);
