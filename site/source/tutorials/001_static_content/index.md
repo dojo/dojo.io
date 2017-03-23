@@ -54,8 +54,7 @@ return v('div', [ 'Hello, Dojo World!' ]);
 
 The `v` function simply creates a `<div>` tag and places the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document. When you are finished, click on show solution to see the results.
 
-<button data-target="showSolution1">Show solution</button>
-<section id="showSolution1">
+{% solution showSolution1 %}
 
 ```typescript
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -68,7 +67,7 @@ export default class HelloWorld extends WidgetBase<WidgetProperties> {
 	}
 }
 ```
-</section>
+{% endsolution %}
 
 Now, let's look at the `v` function again. We're intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. However, we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a "virtual" DOM.
 
