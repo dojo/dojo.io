@@ -7,6 +7,7 @@ export = function (grunt: IGrunt) {
 			const srcs = file.src;
 			const dest = file.dest;
 
+			grunt.file.mkdir(dest);
 			return Promise.all(srcs.map(function (src) {
 				return archiveTutorials(src, dest);
 			}));
