@@ -15,6 +15,16 @@ full() {
 	margin-right: -50vw;
 	max-width: 100vw;
 }
+
+extend() {
+	width: 80vw;
+	position: relative;
+	left: 40%;
+	right: 40%;
+	margin-left: -35vw;
+	margin-right: -35vw;
+	max-width: 80vw;
+}
 	
 contain() {
 	clearfix();
@@ -33,15 +43,12 @@ card() {
 
 // z-depth official shadows
 // (https://www.polymer-project.org/components/paper-elements/demo.html#paper-shadow)
-
-
 $shadow1 = 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 $shadow2 = 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 $shadow3 = 0 13px 25px 0 rgba(0, 0, 0, 0.3), 0 11px 7px 0 rgba(0, 0, 0, 0.19);
 $shadow4 = 0 20px 40px 0 rgba(0, 0, 0, 0.3), 0 14px 12px 0 rgba(0, 0, 0, 0.17);
 $shadow5 = 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 $shadows = $shadow1, $shadow2, $shadow3, $shadow4, $shadow5;
-
 
 z($depth = 1) {
 	box-shadow: $shadows[$depth - 1];

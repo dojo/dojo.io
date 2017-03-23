@@ -2,7 +2,7 @@
 menu:
   Tutorials: /tutorials
   API: /api
-  Community: /community
+  #Community: /community
   Blog: /blog
 rss: /atom.xml
 

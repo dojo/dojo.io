@@ -1,14 +1,10 @@
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
-	<div class="article-meta">
-		<%- partial('post/author-meta') %>
-		<%- partial('post/category') %>
-		 <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-	</div>
 	<div class="article-inner">
 		<%- partial('post/gallery') %>
 		<% if (post.link || post.title){ %>
 			<header class="article-header">
 				<%- partial('post/title', {class_name: 'article-title'}) %>
+				<%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
 			</header>
 		<% } %>
 		<div class="article-entry" itemprop="articleBody">
@@ -24,7 +20,10 @@
 			<% } %>
 		</div>
 		<footer class="article-footer">
-			<a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+			<div class="article-meta">
+				<%- partial('post/author-meta') %>
+				<%- partial('post/category') %>
+			</div>
 			<% if (post.comments && config.disqus_shortname){ %>
 				<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
 			<% } %>
