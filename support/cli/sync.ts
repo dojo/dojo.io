@@ -1,37 +1,32 @@
 #!/usr/bin/env node
-import { distDirectory, ghPagesBranch, gitConfig, dojoioRepo } from '../common';
-import { clone, usetag, pull } from '../util/git';
+import { distDirectory, ghPagesBranch, dojoioRepo } from '../common';
+import Git from '../util/git';
 import { existsSync } from 'fs';
-import { isRunningOnTravis } from '../util/travis';
 import GitHub from '../util/GitHub';
-const shell = require('shelljs');
+import getRepoUrl from '../commands/getRepoUrl';
 
 /*
  * syncs dojo.io gh-pages
  */
 
-function ensureGhPages(): Promise<any> {
-	if (existsSync(distDirectory)) {
-		return Promise.resolve();
-	}
-	else {
-		const config = isRunningOnTravis() ? gitConfig : null;
+async function ensureGhPages(): Promise<any> {
+	if (!existsSync(distDirectory)) {
 		const repo = new GitHub(dojoioRepo.owner, dojoioRepo.name);
 
-		return clone(repo.getCloneUrl(), distDirectory, config);
+		const git = new Git(distDirectory);
+		await git.setConfig('user.name', 'Travis CI');
+		await git.setConfig('user.email', 'support@sitepen.com');
+		await git.clone(getRepoUrl(repo));
 	}
 }
 
 const commands = {
-	ghpages() {
-		return ensureGhPages()
-			.then(function () {
-				shell.cd(distDirectory);
-				return usetag(ghPagesBranch);
-			})
-			.then(function () {
-				return pull();
-			})
+	async ghpages() {
+		const git = new Git(distDirectory);
+
+		await ensureGhPages();
+		await git.checkout(ghPagesBranch);
+		await git.pull();
 	},
 
 	'default': 'ghpages'

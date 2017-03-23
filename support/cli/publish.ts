@@ -31,11 +31,12 @@ function buildOptions() {
 
 function publish(options: any) {
 	if (!options.push) {
-		console.log('Skipping publish to repo. Commit only.');
+		console.log('Skipping publish to repo.');
+		return;
 	}
 	const repo = new GitHub(dojoioRepo.owner, dojoioRepo.name);
 
-	return ensureGitRepo(distDirectory, repo.getCloneUrl())
+	return ensureGitRepo(distDirectory, repo.getSshUrl())
 		.then(function () {
 			return new Promise(function (resolve, reject) {
 				shell.cd(rootDirectory);

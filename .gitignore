@@ -43,3 +43,6 @@ _dist
 .ghpublish
 .apitemp
 /site/bower_components
+/delpoy_key
+/delpoy_key.pub
+/support/**/*.js
