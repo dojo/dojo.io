@@ -31,8 +31,33 @@
 		}
 	}
 
+	.solution-container {
+		area: #D4EEF8
+		margin-bottom: vr(4);
+
+		pre[class*="language-"] {
+			margin-bottom: 0;
+		}
+
+		[id^='showS'] {
+			pre code {
+				transition(opacity 0.3s);
+				opacity: 1;
+			}
+
+			&.hidden {
+				pre code {
+					opacity: 0.05;
+				}
+			}
+		}
+
+		
+	}
+
 	.toggle-solution {
 		button();
+		width: 100%;
 
 		&:active {
 			  click-down();
