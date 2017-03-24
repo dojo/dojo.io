@@ -1,11 +1,10 @@
 .page-api {
-    background: $color-background-light;
 
     .page-content {
         padding-top: $header-height;
 
         .content-container {
-            max-width: $max-width;
+            max-width: 90%;
         }
     }
 
@@ -27,10 +26,13 @@
 
     .col-8 {
         cell(9, 12);
+        order(2);
+        padding-left: vr(2);
     }
 
     .col-4 {
         cell(3, 12);
+        order(1);
 
         &.menu-sticky-wrap {
            &.sticky .menu-sticky {
@@ -1524,7 +1526,7 @@ footer .tsd-legend {
     border-bottom: none;
 }
 .tsd-navigation {
-    padding: 0 0 0 40px;
+    padding: 0 0 0 0;
 }
 .tsd-navigation a {
     display: block;
@@ -1555,8 +1557,6 @@ footer .tsd-legend {
 }
 .tsd-navigation.primary a {
     display: block;
-    padding-top: 6px;
-    padding-bottom: 6px;
 }
 .tsd-navigation.primary ul li a {
     padding-left: 5px;
@@ -1577,10 +1577,10 @@ footer .tsd-legend {
     padding-left: 105px;
 }
 .tsd-navigation.primary > ul {
-    border-bottom: 1px solid #eee;
+    //border-bottom: 1px solid #eee;
 }
 .tsd-navigation.primary li {
-    border-top: 1px solid #eee;
+    //border-top: 1px solid #eee;
 }
 .tsd-navigation.primary li.current > a {
     font-weight: bold;
@@ -1664,10 +1664,7 @@ footer .tsd-legend {
 
 
 .tsd-panel {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    
 }
 
 .tsd-panel:empty {
