@@ -41,9 +41,14 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
-  auto_detect: false
+  line_number: false
+  auto_detect: true
   tab_replace:
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'default'
+  line_number: false    # default false
 
 # Authors
 authors:
@@ -52,24 +57,6 @@ authors:
   dylan:
     name: Dylan Schiemann
     email: dylan@sitepen.com
-  
-
-# Markdown
-## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
-
-markdown:
-  html: true
-  anchors:
-    level: 2
-    collisionSuffix: 'v'
-    permalink: true
-    permalinkClass: header-anchor
-    permalinkSymbol: ''
-  plugins:
-    - markdown-it-classy
-    - markdown-it-abbr
-    - markdown-it-footnote
-    - markdown-it-highlightjs
 
 yasr:
   axis: true              # Enables Axis (Recommends Nib) 
