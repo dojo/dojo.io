@@ -55,7 +55,6 @@ return v('div', [ 'Hello, Dojo World!' ]);
 The `v` function simply creates a `<div>` tag and places the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document. When you are finished, click on show solution to see the results.
 
 {% solution showSolution1 %}
-
 ```typescript
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';

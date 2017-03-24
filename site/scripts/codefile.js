@@ -20,6 +20,6 @@ hexo.extend.tag.register('codefile', function(args){
 	return fs.readFile(path).then(function(content){
 		lang = 'javascript';
 		var highlighted = Prism.highlight(content, Prism.languages[lang]);
-		return '<pre class="language-'+lang+'"><code>'+highlighted+'</code></pre>';
+		return `<pre class="language-${lang}"><code>${highlighted}</code></pre>`;
 	});
 }, {async: true});
