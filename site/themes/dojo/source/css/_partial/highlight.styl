@@ -4,7 +4,7 @@ body {
  * Inspired by Github syntax coloring
  */
 
-  p code {
+  *:not(pre) code {
     background-color: $color-code-background;
     border: 1px solid darken($color-border, 5%);
     border-radius: 3px;
@@ -54,11 +54,16 @@ body {
 
   /* Code blocks */
   .tsd-panel pre,
+  &.body-tutorial pre,
   pre[class*="language-"] {
       padding: 1em;
       overflow: auto;
       border: 1px solid #dddddd;
       background-color: white;
+
+      code {
+        border: 0;
+      }
   }
 
   :not(pre) > code[class*="language-"],
