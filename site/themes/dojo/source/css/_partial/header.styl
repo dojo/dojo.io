@@ -10,7 +10,7 @@
   top: 0;
   
   .row {
-      min-height: $header-height;
+      header-height();
   }
 
   .site-nav {
@@ -19,6 +19,7 @@
       flex-flow: row wrap;
       justify-content: space-between;
       width: 100%;
+      
 
     .main-nav-link {
       color: rgba(255, 255, 255, 0.8);
@@ -35,6 +36,7 @@
         font-size: 0.8em;
         margin: 0 vr(1);
       }
+
 
       &:hover {
         color: rgba(255, 255, 255, 1);
@@ -86,13 +88,14 @@
     img {
       transition: height 0.3s;
       height: vr(5);
-        +below(2) {
-          height: vr(4);
-        }
 
-        +below(1) {
-          height: vr(3);
-        }
+      +below(2) {
+        height: vr(4);
+      }
+
+      +below(1) {
+        height: vr(3);
+      }
     }
   }
 
