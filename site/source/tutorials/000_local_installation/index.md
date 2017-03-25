@@ -22,9 +22,7 @@ This command installs the Dojo command-line tool (`@dojo/cli`) to simplify devel
 
 In order to create your first Dojo 2 application, run the following command in the directory that will host the new application:
 
-```bash
-dojo create --name biz-e-corp
-```
+`dojo create --name biz-e-corp`
 
 This command will create the basic scaffolding for a Dojo 2 application in the newly created "biz-e-corp" directory with all of its dependencies pre-installed.
 
