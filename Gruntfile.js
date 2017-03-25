@@ -5,4 +5,4 @@ require('ts-node').register({
 	}
 });
 
-module.exports = require('./tasks');
+module.exports = require('./support/grunt');
