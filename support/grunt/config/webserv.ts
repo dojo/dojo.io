@@ -9,10 +9,10 @@ import { Handler } from 'webserv/handlers/Handler';
 export function middleware(): Handler[] {
 	return [
 		new LogRequest(),
-		route(/./).transform(relativeUrl('/dojoio')).wrap([
+		route(/./).transform(relativeUrl('/dojo.io')).wrap([
 			new ServeFile('./_dist'),
 			new ServeDirectory('./_dist')
 		]),
-		new WebProxy('http://sitepen.github.io')
+		new WebProxy('http://dojo.github.io')
 	];
 }

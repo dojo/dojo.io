@@ -43,7 +43,11 @@ export default class GitHub {
 		}
 	}
 
-	getCloneUrl() {
+	getHttpsUrl() {
+		return `https://github.com/${ this.owner }/${ this.name }.git`;
+	}
+
+	getSshUrl() {
 		return `git@github.com:${ this.owner }/${ this.name }.git`;
 	}
 }

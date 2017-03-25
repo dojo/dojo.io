@@ -10,11 +10,11 @@ const commands = {
 	'default'() {
 		const server = new WebServer();
 		server.app.middleware
-			.add(route().transform(relativeUrl('/dojoio')).wrap([
+			.add(route().transform(relativeUrl('/dojo.io')).wrap([
 				new ServeFile('./_dist'),
 				new ServeDirectory('./_dist')
 			]))
-			.add(new Proxy('http://sitepen.github.io'));
+			.add(new Proxy('http://dojo.github.io'));
 		server.start();
 		console.log(`started server on ${ server.config.port }`);
 	}

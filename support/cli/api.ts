@@ -5,8 +5,9 @@ import exec from '../commands/exec';
 import { apiDirectory, tempDirectory, dojoProjectOwner, repos, apiThemeDirectory } from '../common';
 import { join as joinPath } from 'path';
 import { existsSync } from 'fs';
-import { fetchTag } from '../util/git';
+import Git from '../util/git';
 import GitHub, { Release } from '../util/GitHub';
+import getRepoUrl from '../commands/getRepoUrl';
 const shell = require('shelljs');
 
 /**
@@ -30,7 +31,10 @@ async function buildDocs(repo: GitHub, version: string) {
 	const targetDir = joinPath(apiDirectory, repo.name, version);
 
 	if(!existsSync(repoDir)){
-		await fetchTag(repoDir, repo.getCloneUrl(), version);
+		const git = new Git(repoDir);
+		await git.ensureConfig();
+		await git.clone(getRepoUrl(repo));
+		await git.checkout(version);
 	}
 	const typingsJson = joinPath(repoDir, 'typings.json');
 	shell.cd(repoDir);
@@ -44,7 +48,8 @@ async function buildDocs(repo: GitHub, version: string) {
 	// TODO use grunt doc when typedoc is released w/ TS 2.2.1 support
 	// await exec('grunt doc');
 	shell.mkdir('-p', targetDir);
-	const command = `typedoc --mode modules ${repoDir} --out ${targetDir} --theme ${apiThemeDirectory} --externalPattern '**/+(example|examples|node_modules|tests|typings)/**/*.ts' --excludeExternals --excludeNotExported --ignoreCompilerErrors`;
+	const typedocBin = require.resolve('typedoc/bin/typedoc');
+	const command = `${ typedocBin } --mode modules ${repoDir} --out ${targetDir} --theme ${apiThemeDirectory} --externalPattern '**/+(example|examples|node_modules|tests|typings)/**/*.ts' --excludeExternals --excludeNotExported --ignoreCompilerErrors`;
 	return exec(command);
 }
 

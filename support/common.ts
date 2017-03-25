@@ -5,13 +5,13 @@ import { join } from 'path';
  */
 
 export const dojoioRepo = {
-	owner: 'SitePen',
-	name: 'dojoio'
+	owner: 'dojo',
+	name: 'dojo.io'
 };
 
 export const gitConfig = Object.freeze({
 	name: 'Travis CI',
-	email: 'pshannon@sitepen.com'
+	email: 'support@sitepen.com'
 });
 
 export const dojoProjectOwner = 'dojo';

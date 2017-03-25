@@ -9,11 +9,12 @@
   "scripts": {
     "api": "ts-node ./support/run api",
     "build": "ts-node ./support/run build",
-    "clean": "ts-node ./support/run clean",
+    "clean": "grunt clean",
     "command": "ts-node ./support/run",
     "ci": "ts-node ./support/run ci",
     "install": "cd site && npm i",
     "publish": "ts-node ./support/run publish",
+    "self-test": "tsc",
     "serve": "grunt webserv",
     "test": "ts-node ./support/run test"
   },
@@ -33,7 +34,6 @@
   "homepage": "https://dojo.io",
   "devDependencies": {
     "@types/archiver": "^0.15.37",
-    "@types/es6-promise": "0.0.32",
     "@types/github": "0.0.0",
     "@types/grunt": "^0.4.21",
     "@types/node": "^6.0.55",
@@ -47,17 +47,18 @@
     "github": "^8.0.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
+    "grunt-dojo2": "^2.0.0-beta.39",
     "grunt-shell": "^2.1.0",
     "load-grunt-tasks": "^3.5.2",
     "s-grid": "^1.2.0",
     "shelljs": "^0.7.5",
     "ts-node": "^2.0.0",
     "tslint-sitepen": "^0.1.0",
+    "typedoc": "0.5.9",
     "typescript": "^2.2.1",
     "webserv": "^0.6.1"
   },
   "dependencies": {
-    "hexo-renderer-yasr": "^4.0.0",
-    "typedoc": "^0.5.7"
+    "hexo-renderer-yasr": "^4.0.0"
   }
 }
