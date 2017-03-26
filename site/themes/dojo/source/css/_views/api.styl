@@ -1,7 +1,7 @@
 .page-api {
 
     .page-content {
-        padding-top: $header-height;
+        header-offset(0);
 
         .content-container {
             max-width: 90%;
@@ -26,19 +26,17 @@
 
     .col-8 {
         cell(9, 12);
-        order(2);
         padding-left: vr(2);
     }
 
     .col-4 {
         cell(3, 12);
-        order(1);
 
         &.menu-sticky-wrap {
            &.sticky .menu-sticky {
                 transition: all 0.3s;
                 position: fixed;
-                top: $header-height;
+                top: header-height();
            }
         }
     }

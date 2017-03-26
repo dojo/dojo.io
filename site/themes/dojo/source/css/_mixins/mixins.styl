@@ -40,27 +40,35 @@ card() {
     z(1);
 }
 
+$header-height-default = 9;
+
 header-height() {
-	min-height: vr(9);
+	min-height: vr($header-height-default);
 
 	+below(2) {
-		min-height: vr(8);
+		min-height: vr($header-height-default - 1);
 	}
 
 	+below(1) {
-		min-height: vr(6);
+		min-height: vr($header-height-default - 3);
 	}
 }
 
-header-offset() {
-	padding-top: vr(12);
+header-offset($gap = true) {
+	if(!$gap) {
+		$offset = $header-height-default;
+	} else {
+		$offset = $header-height-default + 3;
+	}
+	
+	padding-top: vr($offset);
 
 	+below(2) {
-		padding-top: vr(10);
+		padding-top: vr($offset - 1);
 	}
 
 	+below(1) {
-		padding-top: vr(8);
+		padding-top: vr($offset - 2);
 	}
 
 }

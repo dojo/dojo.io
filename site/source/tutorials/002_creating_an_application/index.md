@@ -2,7 +2,7 @@
 layout: tutorial
 title: Building your first Dojo 2 application
 editorUrl: https://embed.plnkr.co/KXkx10/?show=index.html,preview&preview=index.html
-overview: In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that is created by the `dojo create` command.  
+overview: In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application.
 ---
 
 # Building your first Dojo 2 application
