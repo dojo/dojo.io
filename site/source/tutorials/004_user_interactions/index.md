@@ -2,6 +2,7 @@
 layout: tutorial
 title: Responding to events
 editorUrl: https://embed.plnkr.co/g5qEcD/?show=src/widgets/Worker.ts,preview&preview=index.html
+overview: In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.
 ---
 # Responding to events
 

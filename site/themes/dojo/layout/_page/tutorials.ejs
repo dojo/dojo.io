@@ -6,7 +6,12 @@
 
     _.each(tuts, function(tut) {
 %>
-    <div class="tutorial-item"><a href="<%- url_for(tut.path) %>"><%- tut.title %></a></div>
+    <div class="tutorial-item">
+        <h4><a href="<%- url_for(tut.path) %>"><%- tut.title %></a></h4>
+        <div class="excerpt">
+            <%- tut.overview %>
+        </div>
+    </div>
 <%
     });
 %>

@@ -2,6 +2,7 @@
 title: Your first Dojo 2 application
 layout: tutorial
 editorUrl: https://embed.plnkr.co/DWwvSO/?show=src/widgets/HelloWorld.ts,preview&preview=index.html
+overview: In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.
 ---
 
 # Your first Dojo 2 application

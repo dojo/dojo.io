@@ -2,6 +2,7 @@
 layout: tutorial
 title: Creating widgets
 editorUrl: https://embed.plnkr.co/9dfUeb/?show=src/widgets/Worker.ts,preview&preview=index.html
+overview: In this tutorial, you will learn how to create and style custom widgets in Dojo 2.
 ---
 
 # Creating widgets
@@ -42,13 +43,7 @@ projector.append(root).then(() => {
 });
 ```
 
-This line:
-
-```ts
-const Projector = ProjectorMixin(Banner);
-```
-
-tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget.. Add these lines at the top of the file.
+This line: `const Projector = ProjectorMixin(Banner);` tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget.. Add these lines at the top of the file.
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';

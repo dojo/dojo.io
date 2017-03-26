@@ -84,17 +84,6 @@ time_format: HH:mm:ss
 per_page: 15
 pagination_dir: page
 
-# index-generator-3
-## Docs https://github.com/carlhopf/hexo-generator-index3
-# index_generator:
-#  tutorials:
-#    per_page: 4
-#    order_by: -date
-#    include:
-#      - tag tutorials
-#    layout: 
-#      - archive
-
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
