@@ -1521,8 +1521,6 @@ footer .tsd-legend {
     position: relative;
 }
 .tsd-member .tsd-anchor + h3 {
-    margin-top: 0;
-    margin-bottom: 0;
     border-bottom: none;
 }
 .tsd-navigation {
@@ -1662,10 +1660,20 @@ footer .tsd-legend {
     }
 }
 
+:not(.tsd-panel) > .tsd-panel {
+    margin-bottom:vr(4);
+    card();
+}
 
 .tsd-panel {
-    card();
-    margin-bottom:vr(4);
+    .tsd-panel {
+        border: 1px solid $color-border;
+        box-shadow: none;
+        font-size: 80%;
+        margin-bottom: vr(1);
+        padding: pad(3);
+        
+    }
 }
 
 .tsd-panel:empty {
@@ -1817,8 +1825,8 @@ footer .tsd-legend {
     margin: 0 0 1em 0;
     padding: 10px;
     border: 1px solid #eee;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 14px;
+    font-family: $font-mono;
+    font-size: 1rem;
 }
 .tsd-signature.tsd-kind-icon {
     padding-left: 30px;
@@ -1839,10 +1847,11 @@ footer .tsd-legend {
     left: 20px;
 }
 .tsd-signature-symbol {
-    color: #808080;
+    color: #36acaa;
     font-weight: normal;
 }
 .tsd-signature-type {
+    color: #458;
     font-style: italic;
     font-weight: normal;
 }
@@ -1921,8 +1930,8 @@ ul.tsd-descriptions .tsd-index-panel h3,
 ul.tsd-parameters,
 ul.tsd-type-parameters {
     list-style: square;
-    margin: 0;
-    padding-left: 20px;
+    margin: 0 0 0 vr(3);
+    padding-left: pad(1);
 
     li {
         list-style-type: square;
