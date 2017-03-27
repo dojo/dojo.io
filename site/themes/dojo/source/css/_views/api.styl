@@ -2,10 +2,6 @@
 
     .page-content {
         header-offset(0);
-
-        .content-container {
-            max-width: 90%;
-        }
     }
 
     .tsd-page-top,
@@ -28,6 +24,10 @@
         cell(9, 12);
         margin:0;
         padding: 0 vr(1) 0 0;
+
+        +below(901px) {
+            cell(12, 12);
+        }
     }
 
     .col-4 {
