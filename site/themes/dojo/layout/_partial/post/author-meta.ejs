@@ -2,6 +2,6 @@
 	<%
 		image_tag(gravatar(post.author.email), {alt: post.author.name, class:'author-avatar'}) 
 	%>
-	By <span class="author-name"> <%- post.author.name %></span>
+	<span class="author-name"> <%- post.author.name %></span>
 	<%- partial('date', {class_name: 'article-date', date_format: null}) %>
 </div>

@@ -76,7 +76,7 @@ tag_map:
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: MMMM Do YYYY, h:mm:ss a
+date_format: MMMM Do YYYY, h:mm a
 time_format: HH:mm:ss
 
 # Pagination

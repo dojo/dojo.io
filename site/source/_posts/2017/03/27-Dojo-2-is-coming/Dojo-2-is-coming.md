@@ -1,12 +1,13 @@
 ---
 title: Dojo 2 is coming
-date: 2017-03-13 14:32:37
+date: 2017-03-27 14:32:37
 authorId: dylan
-featured_image: bg.jpg
+featured_image: featured.png
 ---
 
-
 Dojo 2 is the most substantial rethink to the Dojo Toolkit in ten years. As it nears Beta status for the majority of its modules, quite a bit has changed these past few months as it has evolved into a powerful solution for building enterprise applications.
+
+{% asset_img featured.png feature-full %}
 
 ## A new generation
 
@@ -18,7 +19,7 @@ Dojo 2 is a next generation framework authored to emphasize:
 
 * Modularity.  Designed as a collection of packages that may be used independently or cooperatively, allowing for development flexibility.
 
-* Focus. The focus is enterprise-driven, highlighting scalability as well as powerful, built-in features including support for large data sets, a11y and i18n. 
+* Focus. The focus is enterprise-driven, highlighting scalability as well as powerful, built-in features including support for large data sets, a11y and i18n.
 
 <!-- more -->
 
