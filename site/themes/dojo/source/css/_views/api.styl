@@ -38,7 +38,7 @@
            &.sticky .menu-sticky {
                 transition: all 0.3s;
                 position: fixed;
-                top: header-height();
+                top: vr($header-height-default);
            }
         }
     }
@@ -57,7 +57,7 @@
 
     .site-header.headroom--not-top.slideDown + .page-content {
         .tsd-page-toolbar {
-            top: $header-height;
+            top: vr($header-height-default);
         }
 
         .col-4 .menu-sticky {
