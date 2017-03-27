@@ -49,7 +49,7 @@ async function buildDocs(repo: GitHub, version: string) {
 	// await exec('grunt doc');
 	shell.mkdir('-p', targetDir);
 	const typedocBin = require.resolve('typedoc/bin/typedoc');
-	const command = `${ typedocBin } --mode modules ${repoDir} --out ${targetDir} --theme ${apiThemeDirectory} --externalPattern '**/+(example|examples|node_modules|tests|typings)/**/*.ts' --excludeExternals --excludeNotExported --ignoreCompilerErrors`;
+	const command = `${ typedocBin } --mode file ${repoDir} --out ${targetDir} --theme ${apiThemeDirectory} --externalPattern '**/+(example|examples|node_modules|tests|typings)/**/*.ts' --excludeExternals --excludeNotExported --ignoreCompilerErrors`;
 	return exec(command);
 }
 
