@@ -44,10 +44,13 @@
 {{> footer}}
 
 <div class="overlay"></div>
-<script src="{{relativeURL "assets/js/main.js"}}"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="{{relativeURL "assets/js/search.js"}}"><' + '/script>');</script>
-<script src="{{relativeURL "/js/headroom.js "}}"></script>
-<script src="{{relativeURL "/js/site.js"}}"></script>
+<script src="/js/combined.js"></script>
+
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+
 {{> analytics}}
 
 </body>

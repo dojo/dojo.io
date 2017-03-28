@@ -18,7 +18,7 @@ With the Dojo 2 tutorial series, you may work with the examples following two di
 
 The browser embedded editor is intended to make it easy to quickly see the examples in action, but does not match a normal development environment, and does not provide all of the benefits of TypeScript.
 
-If you prefer a local installation, please visit the [Dojo 2 Installation Guide](../comingsoon.html) before proceeding further with this tutorial.
+If you prefer a local installation, please visit the [Dojo 2 Installation Guide](../000_local_installation/) before proceeding further with this tutorial.
 
 Whether you are working locally or using the embedded editor, you need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -33,7 +33,7 @@ First, jump over to the `index.html` file in the `src` directory and remove the 
 
 Notice that, whether you are working locally or online, the page has automatically updated for us. That means that we can immediately see the impact of the change without having to stop our work and refresh or rebuild the application.
 
-Now, let's remove the "Hello, Dojo World!" message. To do that, open up the `HelloWorld.ts` file. If you are working locally, it is located in `/src/widgets`. If, however, you are using the embedded editor then it is located ***TODO: where will this be?***. You should see something like this:
+Now, let's remove the "Hello, Dojo World!" message. To do that, open up the `HelloWorld.ts` file. If you are working locally, it is located in `/src/widgets`. If, however, you are using the embedded editor then it is pinned to the bottom of your browser. You should see something like this:
 
 ```typescript
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';

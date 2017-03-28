@@ -58,14 +58,59 @@ authors:
     name: Dylan Schiemann
     email: dylan@sitepen.com
 
+# Yet Another Stylus Renderer
+# https://github.com/celsomiranda/hexo-renderer-yasr
+
 yasr:
   axis: true              # Enables Axis (Recommends Nib) 
   compress: false         # Disables Compression 
-  jeet: true              # Enables Jeet 
+  jeet: false              # Enables Jeet 
   nib: true               # Enables Nib 
   rupture: true           # Enables Rupture 
   typographic: false       # Enables Typographic 
 
+# Hexo Filter Cleanup
+# https://github.com/mamboer/hexo-filter-cleanup
+hfc_useref:
+  enable: true
+  concat: true
+  exclude: 
+
+hfc_css:
+  enable: true
+  exclude: 
+    - '*.min.css'
+
+hfc_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude: 
+    - '*.min.js'
+
+hfc_html:
+  enable: true
+  exclude: 
+
+hfc_img:
+  enable: true
+  interlaced: false
+  multipass: false
+  optimizationLevel: 2
+  pngquant: false
+  progressive: false
+  webp: true
+  webpQuality: 75
+  gifslice: true
+  jpegtran: true
+  jpegrecompress: false
+  jpegrecompressQuality: 'medium'
+  optipng: true
+  svgo: true
+
+hfc_favicons:
+  enable: false
 
 # Category & Tag
 default_category: dojo

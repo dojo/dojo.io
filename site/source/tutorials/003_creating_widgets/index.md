@@ -19,7 +19,7 @@ With the Dojo 2 tutorial series, you may work with the examples following two di
 
 The browser embedded editor is intended to make it easy to quickly see the examples in action, but does not match a normal development environment, and does not provide all of the benefits of TypeScript.
 
-If you prefer a local installation, please visit the [Dojo 2 Installation Guide](../comingsoon.html) before proceeding further with this tutorial.
+If you prefer a local installation, please visit the [Dojo 2 Installation Guide](../000_local_installation/) before proceeding further with this tutorial.
 
 Whether you are working locally or using the embedded editor, you need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 

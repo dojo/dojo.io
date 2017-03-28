@@ -11,6 +11,7 @@
     "hexo-authors": "^0.1.0",
     "hexo-cli": "^1.0.2",
     "hexo-featured-image": "^0.2.0",
+    "hexo-filter-cleanup": "^1.0.7",
     "hexo-filter-fenced-code": "^1.0.2",
     "hexo-filter-highlight": "0.0.3",
     "hexo-generator-archive": "^0.1.4",

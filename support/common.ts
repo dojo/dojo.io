@@ -28,7 +28,7 @@ export const siteDirectory = join(rootDirectory, 'site');
 
 export const apiDirectory = join(distDirectory, 'api');
 
-export const apiThemeDirectory = join(distDirectory, 'api-theme');
+export const apiThemeDirectory = join(siteDirectory, 'themes/dojo/source/_api-theme');
 
 export const tempDirectory = join(rootDirectory, '.apitemp');
 
