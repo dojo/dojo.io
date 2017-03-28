@@ -3,7 +3,7 @@ vr(n) {
 }
 
 pad(n) {
-	vr(n);
+	vr(n * 2);
 }
 
 full() {
@@ -75,7 +75,22 @@ header-offset($gap = true) {
 	+below(1) {
 		padding-top: vr($offset - 2);
 	}
+}
 
+article-title() {
+	text-align: center;
+
+	+above(3) {
+		font-size: emRhythm(4, $ms-down3);
+	}
+	
+	+below(3) {
+		font-size: emRhythm(4, $ms-down2);
+	}
+
+	+below(2) {
+		font-size: emRhythm(3, $ms-down2);
+	}
 }
 
 // z-depth official shadows

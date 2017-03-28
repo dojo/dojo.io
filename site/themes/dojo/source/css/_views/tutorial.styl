@@ -1,8 +1,14 @@
 .body-tutorial {
 	.page-content {
 
-		.split-content {
+		.tutorial-content {
+			& > h1 {
+				article-title();
+				margin: pad(1.5) 0;
+			}
+		}
 
+		.split-content {
 			.tutorial-content {
 				padding-bottom: 45vh;
 			}
@@ -47,8 +53,6 @@
 				}
 			}
 		}
-
-		
 	}
 
 	.toggle-solution {
