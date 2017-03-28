@@ -392,4 +392,4 @@ Additionally, we learned how to style widgets by using CSS modules. These module
 
 If you would like, you can download the [demo application](../assets/003_creating_widgets-finished.zip).
 
-In the [next tutorial](../004_user_interactions), we'll explore the rich set of widgets included with Dojo 2 to create applications quickly and efficiently.
+In the [next tutorial](../004_user_interactions), we will explore the rich set of widgets included with Dojo 2 to create applications quickly and efficiently.

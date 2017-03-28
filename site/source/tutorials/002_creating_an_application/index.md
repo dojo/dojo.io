@@ -95,4 +95,4 @@ dojo test
 ## Summary
 This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are will be present in all of them.
 
-In the [next](../003_creating_widgets) tutorial, we are going to dig deeper into Dojo 2 widgets. We'll go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.
+In the [next tutorial](../003_creating_widgets), we will take a deeper look at Dojo 2 widgets. We'll go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.

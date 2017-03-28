@@ -54,6 +54,8 @@ For short event handlers you might be tempted to use an anonymous function like 
 return v('div', {
 	classes: this.classes(styles.worker),
 	onclick: () => {
+		/* Note: Do not do this, this is an
+		example of an anti-pattern */
 		console.log('the handler has been called');
 	}
 }, ...
@@ -65,6 +67,8 @@ While this appears to work, Maquette doesn't allow an event handler to be update
 return v('div', {
 	classes: this.classes(styles.worker),
 	onclick: () => {
+		/* Note: Do not do this, this is an
+		example of an anti-pattern */
 		console.log('the handler has been called');
 		this.invalidate();
 	}
@@ -295,4 +299,4 @@ In this tutorial, we learned how to attach event listeners to respond to widget-
 
 If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
 
-In the [next](../comingsoon.html) tutorial, you will learn how to work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In the [next tutorial](../comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
