@@ -59,7 +59,7 @@ Its widget-scoped CSS classes and autocomplete make it easy to discover those cl
 
 #### Roadmap
 
-The Dojo 2 roadmap highlights many of the details, but at a high level Dojo 2 will be released in mid-2017 following 3 Beta releases and and a release candidate phase.
+The [Dojo 2 roadmap](https://github.com/dojo/meta/wiki/Roadmap) highlights many of the details, but at a high level our goal is to release Dojo 2 later this year following 3 Beta releases and a release candidate phase.
 
 #### Community
 
@@ -67,4 +67,4 @@ Though positioned to meet the needs of the enterprise, at its core, Dojo 2 will 
 
 #### Evaluate
 
-Dojo 2’s Beta 1 release is intentional and focused.  We welcome you to explore Dojo 2 through our initial tutorials and source code via Github.
+Dojo 2’s Beta 1 release is intentional and focused.  We welcome you to explore Dojo 2 through our [initial tutorials](/tutorials) and source code via [Github](https://github.com/dojo/meta).

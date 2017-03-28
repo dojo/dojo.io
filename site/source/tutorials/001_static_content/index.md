@@ -88,6 +88,6 @@ v('h1', {
 
 Notice that we have added a third parameter between the tag and content. This object can be used to set any attribute that is needed on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
-Congratulations! You are off to a good start on your journey to master Dojo 2. In the next tutorial, we will take a deeper look at the application that the @dojo/cli created for us and, along the way, start to get familiar with the major components of a Dojo 2 application.
+Congratulations! You are off to a good start on your journey to master Dojo 2. In the [next tutorial](../002_creating_an_application), we will take a deeper look at the application that the @dojo/cli created for us and, along the way, start to get familiar with the major components of a Dojo 2 application.
 
 If you would like, you can download the [demo application](../assets/001_static_content-finished.zip).

@@ -140,7 +140,7 @@ export default class Worker extends WidgetBase<WidgetProperties> {
 
 This is nearly identical to the `App` widget with one exception: we are not importing the `w` function as the `Worker` widget will not contain any child widgets.
 
-Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the portrait and a `<strong>` tag to display the worker's name. Try and implement that using the URL `images/worker.jpg` (for the embedded editor, use: `https://dojo.io/tutorials/003_creating_widgets/demo/finished/biz-e-corp/src/images/worker.jpg`) for the image's source and print the first and last names. If you need help, or want to check your solution, click the button below to see our solution.
+Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the portrait and a `<strong>` tag to display the worker's name. Try and implement that using the URL `images/worker.jpg` (for the embedded editor, use: `http://dojo.io/tutorials/003_creating_widgets/demo/finished/biz-e-corp/src/images/worker.jpg`) for the image's source and print the first and last names. If you need help, or want to check your solution, click the button below to see our solution.
 
 {% solution showSolution1 %}
 ```ts
