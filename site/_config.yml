@@ -139,5 +139,6 @@ theme: dojo
 deploy:
   type: git
   repo: https://github.com/dojo/dojo.io.git
+  branch: gh-pages
 
 
