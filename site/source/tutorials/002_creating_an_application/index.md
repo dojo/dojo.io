@@ -36,13 +36,13 @@ HTML pages are the foundation for every web application, and Dojo 2 applications
 const root = document.querySelector('my-app') || undefined;
 ```
 
-Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach. First, a Dojo 2 application can easily coexist on a page with other content. That content can consist of static assets, a legacy application or even another Dojo 2 application. The next advantage is that Dojo 2 can take leverage third-party libraries with ease. For example, if you would like to use the [moment.js](https://momentjs.com/) library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.
+Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach. First, a Dojo 2 application can easily coexist on a page with other content. That content can consist of static assets, a legacy application or even another Dojo 2 application.
 
 ### The projector
 In the [last](../001_static_content) tutorial we reviewed Dojo 2's use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in the `main.ts` file:
 
 ```ts
-const Projector = ProjectorMixin(HelloWorld);
+const Projector = ProjectorMixin(App);
 const projector = new Projector();
 
 projector.append(root).then(() => {
@@ -50,7 +50,7 @@ projector.append(root).then(() => {
 });
 ```
 
-These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root of the application, making it aware of the Dojo 2 application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
+These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `APP` widget as the root of the application, making it aware of the Dojo 2 application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
 
 Whenever a Dojo 2 application needs to update the view, it informs the projector. The projector does not immediately re-render the page, however. Instead, it registers a render request with the application via the window's [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application's current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application's responsiveness.
 
