@@ -36,12 +36,20 @@ Notice that, whether you are working locally or online, the page has automatical
 Now, let's remove the "Hello, Dojo World!" message. To do that, open up the `HelloWorld.ts` file. If you are working locally, it is located in `/src/widgets`. If, however, you are using the embedded editor then it is pinned to the bottom of your browser. You should see something like this:
 
 ```typescript
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
+import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	render() {
+import * as css from './styles/HelloWorld.css';
+
+...
+
+export default class HelloWorld extends HelloWorldBase<HelloWorldProperties> {
+
+...
+
+	protected render(): DNode {
 		return v('div', [ 'Hello, Dojo World!' ]);
 	}
 }
@@ -53,19 +61,11 @@ Some of this code may not make sense now, but over the next few tutorials, you w
 return v('div', [ 'Hello, Dojo World!' ]);
 ```
 
-The `v` function simply creates a `<div>` tag and places the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document. When you are finished, click on show solution to see the results.
+The `v` function simply creates a HTML element, in this case a `<div>` tag, and places the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document. When you are finished, click on show solution to see the results.
 
 {% solution showSolution1 %}
 ```typescript
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { v } from '@dojo/widget-core/d';
-
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	render() {
-		return v('h1', [ 'Biz-E Bodies' ]);
-	}
-}
+return v('h1', [ 'Hello, Dojo World!' ]);
 ```
 {% endsolution %}
 
@@ -75,15 +75,10 @@ In traditional web applications, keeping the DOM and JavaScript application logi
 
 Within Dojo 2, we leverage the [Maquette](http://maquettejs.org/) virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../comingsoon.html) and [Reactive Programming](../comingsoon.html) articles in the reference section. For now, let's get back to our application and make some more changes.
 
-Suppose we want to change the justification of our page title. Let's add some styling to that element by adding a `style` attribute to the tag we've created by updating our `v` function call. While we would normally modify our styles in a different manner, this quickly shows the power of working with Dojo 2's approach to the virtual DOM.
+We can also add attributes to the nodes created by `v`. If we wanted to add a tooltip to our page title, we can do this by adding `title` attribute to the tag we've created by updating our `v` function call. This quickly shows the power of working with Dojo 2's approach to the virtual DOM.
 
 ```typescript
-v('h1', {
-	styles: {
-		'text-align': 'center'
-	}
-},
-[ 'Biz-E Bodies' ]);
+v('h1', { 'title': 'I am a tooltip!' },[ 'Biz-E Bodies' ]);
 ```
 
 Notice that we have added a third parameter between the tag and content. This object can be used to set any attribute that is needed on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
