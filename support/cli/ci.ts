@@ -13,7 +13,7 @@ const commands = {
 			'sync',
 			'build',
 			// 'api all',
-			'publish'
+			// 'publish'
 		);
 	}
 };
