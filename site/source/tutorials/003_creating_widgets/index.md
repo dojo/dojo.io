@@ -38,9 +38,7 @@ const root = document.querySelector('my-app') || undefined;
 const Projector = ProjectorMixin(Banner);
 const projector = new Projector();
 
-projector.append(root).then(() => {
-	console.log('Attached!');
-});
+projector.append(root);
 ```
 
 This line: `const Projector = ProjectorMixin(Banner);` tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget.. Add these lines at the top of the file.

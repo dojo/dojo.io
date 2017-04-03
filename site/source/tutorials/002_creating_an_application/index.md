@@ -8,7 +8,7 @@ overview: In this tutorial, you will learn about the structure of a simple Dojo 
 # Building your first Dojo 2 application
 
 ## Overview
-In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that is created by the `dojo create` command.  
+In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that is created by the `dojo create` command.
 
 
 ## Prerequisites
@@ -45,9 +45,7 @@ In the [last](../001_static_content) tutorial we reviewed Dojo 2's use of a virt
 const Projector = ProjectorMixin(HelloWorld);
 const projector = new Projector();
 
-projector.append(root).then(() => {
-	console.log('Attached!');
-});
+projector.append(root);
 ```
 
 These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root of the application, making it aware of the Dojo 2 application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
