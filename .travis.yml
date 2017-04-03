@@ -6,15 +6,11 @@ env:
   global:
   - SAUCE_USERNAME: dojo2-ts-ci
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
-  - SSH_KEY: deploy.key
-  - SSH_KEY_TAG: 6cabdb9ea6b2
-  - secure: kZ4I5R0luNY/bXLf534vG0uEiw7hK8XyGnQ7S8qhn4r7n3mVkVe7FOKhmEFip34rRfr6wztW+/FYCdQCDuu6+e3ga2P9MaXJ9i6g9P7pHicamAEwREH6iaxAGvSYEmJIUNtkX1g10NCcR0oVlZ23ZwhYIyrhCJLtAfowyWgGriQonu/j2QYokU+p6QlcIGpDAH0ScSfhRfwHDmGrHLeIPRU4FKYl9UsXVWBF9V7mZBDtqdOvda0l8LXKOG/RjYY1e0+XaXkOjNCsWSUtkl03lhA2PR2bm1NRxFnM0jNUXaVFXbIutr6FFPLGEw4oPCcEq5bbFf4a5g8bpvZr21DQJyBNQSL8IDpLYq6tngOv7o+Qy2BwkBetB/HKFjubm99P1NSgDqW9AXM3SaJ4HRfMdhYMah3GRFy0bnEKIit24b9R31k3yos3fSRubpmXD6nKBN97BJIj8XGGthCcWoIE0sFDqgn67HnuF5LaulTnE1/Jpi0vxouIz7JBTvda/bPfmxQBM3LD+ProFFBpWav5CvSmTp/4w/b+RrBX+qSa5CFwY3asFwhBUDD/XkFpO6ZnnoEyDHOW1xzx4cVHW0yAg+SLtOM+HA0CFGkySerpZIVS+foOKU9Op1CZP/XQ6hIGZ88lRkwcAcBv6yTLA8Rl3NwFLvQhTbsMkI36bx160B0=
 cache:
   directories:
   - node_modules
+before_install:
+  - if [ ${TRAVIS_BRANCH-""} == "master" ] && [ -n ${encrypted_12c8071d2874_key-""} ]; then openssl aes-256-cbc -K
+    $encrypted_12c8071d2874_key -iv $encrypted_12c8071d2874_iv
+    -in deploy_key.enc -out deploy_key -d; fi
 script: npm run ci
-notifications:
-  slack:
-    rooms:
-    - secure: FPesIcAc3XFFr11g+omnr+mbwVjbF0LZIEnxT7AiGRtbtSIS1b8j7GqybIiboAdxLB5XAPKWfvNFPs8I1onlngWHcfo1W6j5O1L6P/S6I5VT6eBNia5lXlrTr5AYRM3smVE8ScY1KdP5eyvZWOeVyrJN7VABx9TFt/AwgZl7WBN/sCTtoFUcayHcSpwCpnhrk7W32+zQR4Zqy9sSigqVBRvnOJeAlb2qOQ8oicKjyEOVNRpaTM9mVlQvwChV89wQnKAhSsgqT7VUuaGerSVsXpTk6PKSzN5MhvmqhZCh/l91UUaOHn3bAdmyzXO+W68f09Gd1tneggeLgaAeTOFHzRTT9veVD21TJ1eAaUyJHjRanyleyqIlwH/k92eY2hbIj/b/VpzCGQmSUVGMhkeTjZmAkBBabjNAk3JQnzrjGGFBX1ZHYqnFLcHXvuEDiB3ZlVAqj+Xr6HU1eRP0ZLmGv8OsWESH21ngaVAw35GMGAf5QUGzGqTGSdNnnMNU5Sy8cxKvhjNid3cXeU/IKQfYhbJ0p4ZoBxIX280TlmVPxPvSZE5N1fTmxQYhWuVxPL8HWo8yDfnZ1JucyTTrDyzMY+BIDtUiw1MkCQT5J0ShPJHD+OBOjXTZugioDcdvjbBA+mtw4YORxTUe/x24W5xWSGpUxVDA7144gQG/FXznbbY=
-    on_success: always
