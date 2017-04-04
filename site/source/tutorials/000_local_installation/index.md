@@ -27,10 +27,18 @@ In order to create your first Dojo 2 application, run the following command in t
 
 This command will create the basic scaffolding for a Dojo 2 application in the newly created "biz-e-corp" directory with all of its dependencies pre-installed.
 
-At this point, we've successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another `@dojo/cli` command. You don't have to install this one, it was added when you installed the other dependencies. In the terminal, enter the command:
+At this point, we've successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another `@dojo/cli` command, `build`. You have to install this one, so in the terminal, type:
+
+`npm install @dojo/cli-build-webpack`
+
+The `build` command should be installed locally to your project, rather than installed globally. A local install of `build` allows you to run a specific version of `build` on a per-project basis.
+
+Once the `build` command has been installed, in the terminal, run the command:
 
 `dojo build --watch`
 
-This command will invoke Dojo 2's tool to build and transpile the project using [Webpack](https://webpack.github.io/), a popular tool for optimizing JavaScript source code. The `--watch` flag also starts a simple web server which allows us to run our application in the browser while we make modifications. Additionally, the watch flag will keep an eye on the project's files and rebuild it whenever any changes are saved.
+This command runs Dojo 2's toolchain to transpile, build and package the current project. We transpile from TypeScript into JavaScript and then use [Webpack](https://webpack.github.io/), a popular tool for packaging JavaScript source code.
+
+The `--watch` flag also starts a simple web server which allows us to run our application in the browser while we make modifications. Additionally, the watch flag will keep an eye on the project's files and rebuild it whenever any changes are saved.
 
 In order to see what the application looks like, open a modern web browser (such as the latest version of Chrome, Edge, Firefox, Internet Explorer, or Safari) and navigate to [`http://localhost:9999`](http://localhost:9999). You will be greeted by a humble page that welcomes you to your new application.
