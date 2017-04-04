@@ -16,6 +16,7 @@ hexo.extend.tag.register('include_codefile', function(args) {
     var filename = args[0];
     var lang = false;
     var lines = false;
+    var solution = false;
     var content = '';
 
     _.forEach(args.slice(1), function(arg){
@@ -25,6 +26,9 @@ hexo.extend.tag.register('include_codefile', function(args) {
         if (_.startsWith(arg, "line")) {
             lines = arg.replace(/([a-zA-Z]+?)(s\b|\b):/gm, "");
             lines = cf.parseLinesRange(lines);
+        }
+        if(_.startsWith(arg, "solution:")) {
+            solution = arg.replace("solution:", "");
         }
     });
 
@@ -39,7 +43,13 @@ hexo.extend.tag.register('include_codefile', function(args) {
     }
 
    var highlighted = Prism.highlight(content, Prism.languages[lang]);
-   return `<pre class="language-${lang}"><code>${highlighted}</code></pre>`;
+   var codeString = `<pre class="language-${lang}"><code>${highlighted}</code></pre>`;
+
+   if(solution) {
+       return `<div class="solution-container"><button class="toggle-solution" data-target="${solution}">Toggle Solution</button><section id="${solution}" class="hidden">${codeString}</section></div>`;
+   } else {
+       return codeString;
+   }
 
 }, { async: true });
 
