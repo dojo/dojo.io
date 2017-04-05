@@ -3,7 +3,7 @@ import { distDirectory, ghPagesBranch, repoOwner, repoName } from '../common';
 import Git from '../util/git';
 import { existsSync } from 'fs';
 import GitHub from '../util/GitHub';
-import getRepoUrl from '../commands/getRepoUrl';
+import hasGitCredentials from '../commands/hasGitCredentials';
 
 /*
  * syncs dojo.io gh-pages
@@ -12,11 +12,12 @@ import getRepoUrl from '../commands/getRepoUrl';
 async function ensureGhPages(): Promise<any> {
 	if (!existsSync(distDirectory)) {
 		const repo = new GitHub(repoOwner, repoName);
+		const url = hasGitCredentials() ? repo.getSshUrl() : repo.getHttpsUrl();
 
 		const git = new Git(distDirectory);
 		await git.setConfig('user.name', 'Travis CI');
 		await git.setConfig('user.email', 'support@sitepen.com');
-		await git.clone(getRepoUrl(repo));
+		await git.clone(url);
 	}
 }
 
