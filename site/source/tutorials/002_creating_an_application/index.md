@@ -66,7 +66,7 @@ The second image shows how widgets ensure that components only interact accordin
 
 In our demo application, we only have one widget, the HelloWorld widget:
 
-{% codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' ts %}
+{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' %}
 
 This is very simple, containing a single h1 tag and no behavior, but it demonstrates some important concepts. Notice the `render` method, which provides the virtual nodes (also known as vNodes) for the Projector to determine what to add to the HTML document. In this example, the widget is simple enough that the function always returns the same result. We could make this widget more sophisticated by giving it some internal state that can be used to alter how the vNodes are generated without having to change how the rest of the application interacts with it. This encourages the development of loosely coupled components that are easier to develop and maintain over time.
 
