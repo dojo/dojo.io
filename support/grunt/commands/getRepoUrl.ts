@@ -11,13 +11,14 @@ export default async function getRepoUrl(options: any, grunt: IGrunt) {
 		return options.url;
 	}
 
-	const repo = grunt.option<string>('repo') || options.repo || process.env.TRAVIS_SLUG;
+	const repo = grunt.option<string>('repo') || options.repo || process.env.TRAVIS_REPO_SLUG;
 	if (repo) {
 		const [ owner, name ] = repo.split('/');
 		const gh = new GitHub(owner, name);
 		return getUrlFromEnvironment(gh);
 	}
 	else {
+		console.log('Repository not explicitly defined. Using current git repository url.');
 		const git = new Git(process.cwd());
 		options.url = await git.getConfig('remote.origin.url');
 	}
