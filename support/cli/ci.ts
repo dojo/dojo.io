@@ -11,9 +11,7 @@ const commands = {
 		return runCommands(
 			'clean',
 			'sync',
-			'build',
-			// 'api all',
-			// 'publish'
+			'build'
 		);
 	}
 };

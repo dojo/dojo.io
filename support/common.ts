@@ -4,10 +4,9 @@ import { join } from 'path';
  * Common variables shared between modules
  */
 
-export const dojoioRepo = {
-	owner: 'dojo',
-	name: 'dojo.io'
-};
+export const repoSlug = process.env.TRAVIS_REPO_SLUG || 'dojo/dojo.io';
+
+export const [ repoOwner, repoName ] = repoSlug.split('/');
 
 export const gitConfig = Object.freeze({
 	name: 'Travis CI',

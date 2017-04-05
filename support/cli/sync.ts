@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { distDirectory, ghPagesBranch, dojoioRepo } from '../common';
+import { distDirectory, ghPagesBranch, repoOwner, repoName } from '../common';
 import Git from '../util/git';
 import { existsSync } from 'fs';
 import GitHub from '../util/GitHub';
@@ -11,7 +11,7 @@ import getRepoUrl from '../commands/getRepoUrl';
 
 async function ensureGhPages(): Promise<any> {
 	if (!existsSync(distDirectory)) {
-		const repo = new GitHub(dojoioRepo.owner, dojoioRepo.name);
+		const repo = new GitHub(repoOwner, repoName);
 
 		const git = new Git(distDirectory);
 		await git.setConfig('user.name', 'Travis CI');

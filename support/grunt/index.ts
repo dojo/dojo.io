@@ -17,4 +17,5 @@ export = function (grunt: IGrunt) {
 	grunt.initConfig(config);
 
 	grunt.registerTask('test', [ 'shell:build-ts', 'clean:compiledFiles' ]);
+	grunt.registerTask('ci', [ 'clean', 'sync', 'hexo', 'publish' ])
 };
