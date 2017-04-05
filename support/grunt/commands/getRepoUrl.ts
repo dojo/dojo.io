@@ -11,7 +11,7 @@ export default async function getRepoUrl(options: any, grunt: IGrunt) {
 		return options.url;
 	}
 
-	const repoOption = grunt.option<string>('repoOption') || options.repo || process.env.TRAVIS_REPO_SLUG;
+	const repoOption = grunt.option<string>('repo') || options.repo || process.env.TRAVIS_REPO_SLUG;
 	if (repoOption) {
 		const [ owner, name ] = repoOption.split('/');
 		const repo = new GitHub(owner, name);
