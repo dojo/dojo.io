@@ -1,9 +1,10 @@
 import archiveTutorials from '../../commands/archiveTutorials';
 import IMultiTask = grunt.task.IMultiTask;
+import wrapAsyncTask from '../commands/wrapAsyncTask';
 
 export = function (grunt: IGrunt) {
 	function tutorialsTask(this: IMultiTask<any>) {
-		Promise.all(this.files.map((file) => {
+		return Promise.all(this.files.map((file) => {
 			const srcs = file.src;
 			const dest = file.dest;
 
@@ -11,8 +12,8 @@ export = function (grunt: IGrunt) {
 			return Promise.all(srcs.map(function (src) {
 				return archiveTutorials(src, dest);
 			}));
-		})).then(this.async())
+		}));
 	}
 
-	grunt.registerMultiTask('tutorials', tutorialsTask)
+	grunt.registerMultiTask('tutorials', wrapAsyncTask(tutorialsTask));
 };

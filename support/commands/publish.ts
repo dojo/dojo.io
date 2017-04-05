@@ -4,7 +4,7 @@ export type PublishMode = 'publish' | 'commit' | 'skip';
 export interface Options {
 	branch: string;
 	publishMode: (() => PublishMode) | PublishMode;
-	repo: Git
+	repo: Git;
 	username?: string;
 	useremail?: string;
 }

@@ -1,6 +1,6 @@
 # dojo.io
 
-[![Build Status](https://travis-ci.org/dojo/dojo.io.svg?branch=master)](https://travis-ci.org/dojo/dojo.io)
+[![Build Status](https://travis-ci.org/dojo/dojo.io.svg?token=iyehyStnJABkD5DAaT6V&branch=master)](https://travis-ci.org/dojo/dojo.io)
 
 Published to [GitHub Pages](https://dojo.github.io/dojo.io/) and [Dojo.io](http://dojo.io)
 
@@ -96,12 +96,12 @@ API documentation will be built on a nightly cron by Travis. This is a WIP.
 
 ### Creating a Staging Environment
 
-This section discusses how to get a complete staging environment working on a `dojo/dojo.io` fork using GitHub and
+This section discusses how to get a complete staging environment working on a `dojo/dojo.io` fork using GitHub and 
  Travis. It is **not necessary** to do this when simply developing content as there is a local development environment
  available that you can run on your machine and see changes. You would typically set up a staging environment when you
  need to test updates to the continuous deployment scripts or want to host a preview of the site on GitHub.
-
-These instructions assume you already have an account on GitHub and Travis and have installed the
+ 
+These instructions assume you already have an account on GitHub and Travis and have installed the 
  [Travis command line client](https://blog.travis-ci.com/2013-01-14-new-client/).
 
 1. Fork the `dojo/dojo.io` repo to your GitHub account
