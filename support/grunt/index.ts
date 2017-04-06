@@ -10,11 +10,12 @@ export = function (grunt: IGrunt) {
 		return extname(path) === '.ts';
 	}).forEach(function (file) {
 		const mid = join(tasksDirectory, basename(file, '.ts'));
-		console.log(mid);
 		require(mid)(grunt);
 	});
 
 	grunt.initConfig(config);
 
+	grunt.registerTask('default', [ 'clean', 'sync', 'hexo' ]);
+	grunt.registerTask('generate', [ 'hexo' ]);
 	grunt.registerTask('test', [ 'shell:build-ts', 'clean:compiledFiles' ]);
 };

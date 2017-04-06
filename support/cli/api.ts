@@ -7,7 +7,7 @@ import { join as joinPath } from 'path';
 import { existsSync } from 'fs';
 import Git from '../util/git';
 import GitHub, { Release } from '../util/GitHub';
-import getRepoUrl from '../commands/getRepoUrl';
+import hasGitCredentials from '../commands/hasGitCredentials';
 const shell = require('shelljs');
 
 /**
@@ -31,9 +31,10 @@ async function buildDocs(repo: GitHub, version: string) {
 	const targetDir = joinPath(apiDirectory, repo.name, version);
 
 	if(!existsSync(repoDir)){
+		const url = hasGitCredentials() ? repo.getSshUrl() : repo.getHttpsUrl();
 		const git = new Git(repoDir);
 		await git.ensureConfig();
-		await git.clone(getRepoUrl(repo));
+		await git.clone(url);
 		await git.checkout(version);
 	}
 	const typingsJson = joinPath(repoDir, 'typings.json');
