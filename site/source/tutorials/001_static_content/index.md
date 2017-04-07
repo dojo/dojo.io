@@ -78,7 +78,7 @@ If we want to create a `h1` element with additional attributes, then these attri
 v('h1', { title: 'I am a title!' },[ 'Biz-E Bodies' ]);
 ```
 
-Notice that we have added a parameter between the tag and content parameters. This object can be used to set any attribute that is needed on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
+Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
 Congratulations! You are off to a good start on your journey to master Dojo 2. In the [next tutorial](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo 2 application.
 
