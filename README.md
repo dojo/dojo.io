@@ -6,10 +6,11 @@ Published to [GitHub Pages](https://dojo.github.io/dojo.io/) and [Dojo.io](http:
 
 ## Quick Start
 
+1. `npm install grunt-cli -g`
 1. `npm install`
-2. `npm run build`
-3. `npm run serve`
-4. open [http://localhost:8888](localhost:8888)
+1. `grunt`
+1. `grunt webserv`
+1. open [http://localhost:8888](localhost:8888)
 
 ## Adding Content
 
@@ -17,47 +18,37 @@ Published to [GitHub Pages](https://dojo.github.io/dojo.io/) and [Dojo.io](http:
 
 Blogs are built using hexo and are located in `site/source/_posts`
 
-TODO add more information
-
 ### Adding a static page
 
-Static pages are build from markdown located in `site/source`
-
-TODO provide addition information
+Static pages are built from markdown located in `site/source`. Please see `site/source/tutorials` for examples of static
+ content.
 
 ### Writing a Tutorial
 
-TODO We need to answer were tutorials should be located and if they're more similar to blogs or static pages
+Tutorials are located in `site/source/tutorials` and are similar to static pages. They use the tutorial layout 
+ (`layout: tutorial`) and have code content provided in the `demo` subdirectory that is archived during the tutorials
+ build process (`grunt tutorials`).
 
 ## APIs
 
-### Listing API Versions
-
-To get a listing of all released versions for a project
-
-```bash
-	npm run api releases dojo <name>
-```
-
-To get a list of all versions of a project with unbuilt API documentation
-
-```bash
-	npm run api missing dojo <name>
-```
+APIs are built using the `grunt api` command to the `_dist/api/<project name>/<version>` directory. We currently use
+typedoc to build projects released via GitHub to this location.
 
 ### Building APIs
 
 Building documentation for a project requires the project repository to be checked out to a temporary location and
-	where its dependencies are added and `typedoc` is ran against the repository. It is a relatively resource intensive
-	task.
+ where its dependencies are added and `typedoc` is ran against the repository. It is a relatively resource intensive
+ task.
+ 
+Missing APIs are built using the `grunt api` task. You can build APIs for a specific project by selecting the 
+ appropriate configuration. You can also limit what versions get built using semver matching or the "latest" keyword
+ either in the grunt configuration of via the `--apiversion` command line argument.
 
 ```bash
-	npm run api build dojo <name> <version>
+	grunt api:cli --apiversion="latest"
 ```
 
-This will build documentation to `_dist/api/<name>/<version>`
-
-NOTE: It currently requires `typedoc` be installed globally on your system (`npm i typedoc -g`).
+This will build API documentation to `_dist/api/<name>/<version>`
 
 ## Deployment
 
@@ -68,16 +59,16 @@ repository so it can automatically deploy to the `gh-pages` branch.
 
 1. a change is checked in to the `master` branch
 1. Travis decrypts the `deploy_key.enc` file to `deploy_key`
-1. Travis begins a build by running `npm run ci`
+1. Travis begins a build by running `grunt`
 1. The build syncs the origin's `gh-pages` branch to a temporary directory
 1. Hexo builds against the `gh-pages` branch
 1. Tutorial files are packaged and added
-1. Travis pushes changes to `gh-pages`
+1. On master, travis runs `grunt publish` and pushes changes to `gh-pages`
 
 *On Non-Master Branch Commit*:
 
 The same steps as above are followed except Travis does not decrypt the `deploy_key` and does not attempt
- to push any changes. Automated scripts should not take any action requiring authentication to git or GitHub
+ to publish any changes. Automated scripts should not take any action requiring authentication to git or GitHub
  because credentials will not exist.
 
 *On Nightly Cron*:
@@ -86,13 +77,13 @@ API documentation will be built on a nightly cron by Travis. This is a WIP.
 
 1. Travis triggers a build on the master branch through a cron job
 1. Travis decrypts the `deploy_key.enc` file to `deploy_key`
-1. Travis begins a build by running `npm run cron`
+1. Travis begins a build by running `grunt api`
 1. The build syncs the origin's `gh-pages` branch to a temporary directory
 1. The build script uses GitHub's APIs to check for new releases
 1. If a new release is found, Travis clones the repository and builds API documentation
 1. The built API documentation is moved to the site
 1. Each watched project is checked and API documentation is built
-1. Travis pushes changes to `gh-pages`
+1. Travis runs `grunt publish` and pushes changes to `gh-pages`
 
 ### Creating a Staging Environment
 
@@ -110,14 +101,14 @@ These instructions assume you already have an account on GitHub and Travis and h
    We'll call the public key `deploy_key.pub` and the private key `deploy_key`.
 1. On GitHub go to your repo's Deploy Keys (under Settings)
 1. Click *Add deploy key*, paste the contents of `deploy_key.pub`, and check *Allow write access*
-1. Ensure travis has the proper settings for your repository by running `git config travis.slug`. An empty config value
+1. Ensure Travis has the proper settings for your repository by running `git config travis.slug`. An empty config value
    is ok (This step is most important for people with commit access to dojo/dojo.io).
 1. Log in to travis using the command line client: `travis login`
 1. Encrypt `deploy_key` (the private key) using `travis encrypt-file deploy_key`
 1. Commit the newly created `deploy_key.enc` file to your repository and push to GitHub
-1. Commits to master will now be build and deployed to your repositories GitHub pages
+1. Commits to master will now be built and deployed to your repositories GitHub pages
 
-You should not be set up to build a staging environment automatically using Travis and GitHub. The recommended
+You should now be set up to build a staging environment automatically using Travis and GitHub. The recommended
 development pattern is
 
 * Work on a branch
@@ -125,16 +116,9 @@ development pattern is
 * Make sure you never overwrite your `deploy_key.enc`
 * Push and watch the magic!
 
-### Deploy to Production
+### Automated Deploy to Production
 
-TODO not yet implemented
+TODO This feature has been temporarily disabled while completing work on dojo/dojo.io. It will work by:
 
-Deploy to the `gh-pages` branch using `npm run publish`
+Deploy to the `gh-pages` branch using `grunt publish`
 
-## Travis Support
-
-TODO not yet implemented
-
-This site is built for continious deployment from TravisCI. This requires it to have write access to the `gh-pages`
- branch of this project to fulfill automatic deployment duties. Access tokens should be encrypted with TravisCI and
- supplied through an environment variable used in deployment.
