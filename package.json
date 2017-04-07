@@ -8,15 +8,9 @@
   "private": true,
   "scripts": {
     "api": "ts-node ./support/run api",
-    "build": "ts-node ./support/run build",
-    "clean": "grunt clean",
     "command": "ts-node ./support/run",
-    "ci": "ts-node ./support/run ci",
     "install": "cd site && npm i",
-    "publish": "ts-node ./support/run publish",
-    "self-test": "tsc",
-    "serve": "grunt webserv",
-    "test": "ts-node ./support/run test"
+    "serve": "grunt webserv"
   },
   "repository": {
     "type": "git",

@@ -17,19 +17,17 @@ export function currentBranch() {
 		.then(useStdout);
 }
 
-export function ensureGitRepo(path: string, repoUrl: string) {
-	return getRemoteUrl()
-		.then(function (url) {
-			shell.cd(path);
+export async function ensureGitRepo(path: string, repoUrl: string) {
+	const url = await getRemoteUrl();
+	shell.cd(path);
 
-			if (!existsSync(joinPath(path, '.git'))) {
-				throw new Error('Not a git repository');
-			}
+	if (!existsSync(joinPath(path, '.git'))) {
+		throw new Error('Not a git repository');
+	}
 
-			if (url !== repoUrl) {
-				throw new Error(`expected repo url of ${ repoUrl }. Instead got ${ url }`);
-			}
-		});
+	if (url !== repoUrl) {
+		throw new Error(`expected repo url of ${ repoUrl }. Instead got ${ url }`);
+	}
 }
 
 export function getRemoteUrl() {
@@ -58,6 +56,10 @@ export default class Git {
 		this.keyFile = keyFile;
 	}
 
+	async add(... params: string[]): Promise<any> {
+		return exec(`git add ${ params.join(' ') }`, { silent: true, cwd: this.cloneDirectory});
+	}
+
 	checkout(version: string) {
 		return exec(`git checkout ${ version }`, { silent: true, cwd: this.cloneDirectory});
 	}
@@ -69,6 +71,19 @@ export default class Git {
 		console.log(`Cloning ${ url } to ${ this.cloneDirectory }`);
 		await this.execSSHAgent('git', [ 'clone', url, this.cloneDirectory ], { silent: false });
 		this.url = url;
+	}
+
+	async commit(message: string): Promise<any> {
+		return this.execSSHAgent('git', ['commit', '-m', `"${ message }"`], { silent: true, cwd: this.cloneDirectory });
+	}
+
+	async createOrphan(branch: string) {
+		if (!this.cloneDirectory) {
+			throw new Error('A clone directory must be set');
+		}
+		await exec(`git checkout --orphan ${ branch }`, { silent: true, cwd: this.cloneDirectory });
+		await exec('git rm -rf .', { silent: true, cwd: this.cloneDirectory });
+		console.log(`Created "${ branch }" branch`);
 	}
 
 	ensureConfig(user: string = 'Travis CI', email: string = 'support@sitepen.com'): Promise<any> {
@@ -97,16 +112,21 @@ export default class Git {
 			return exec(`ssh-agent bash -c 'ssh-add ${ relativeDeployKey }; ${ command } ${ args.join(' ') }'`, options);
 		}
 		else {
-			console.log(`Deploy Key "${ this.keyFile }" is not present. Using environment credentials.`);
+			console.log(`Deploy Key "${ this.keyFile }" is not present. Using environment credentials for ${ args[0] }.`);
 			return spawn(command, args, options);
 		}
 	}
 
 	getConfig(key: string): Promise<string> {
-		return exec(`git config ${ key }`, { silent: true })
+		return exec(`git config ${ key }`, { silent: false })
 			.then(function (proc) {
 				return proc.stdout.toString();
 			})
+	}
+
+	async areFilesChanged(): Promise<boolean> {
+		const result: ChildProcess = await exec('git status --porcelain', { silent: true, cwd: this.cloneDirectory });
+		return result.stdout.toString() !== '';
 	}
 
 	hasConfig(key: string): Promise<boolean> {
@@ -131,8 +151,9 @@ export default class Git {
 		});
 	}
 
-	push(branch: string) {
-		return this.execSSHAgent('git', [ 'push', 'origin', branch ], { silent: true, cwd: this.cloneDirectory });
+	push(branch?: string, remote: string = 'origin') {
+		const params: string[] = branch ? [ 'push', remote, branch ] : [ 'push' ];
+		return this.execSSHAgent('git', params, { silent: true, cwd: this.cloneDirectory });
 	}
 
 	setConfig(key: string, value: string) {

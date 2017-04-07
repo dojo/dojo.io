@@ -20,6 +20,20 @@ export const clean = {
 	compiledFiles: [ './+(tasks|support)/**/*.d.ts', './+(tasks|support)/**/*.js' ]
 };
 
+export const hexo = {
+	build: '<%= siteDirectory %>'
+};
+
+export const publish = {
+	'gh-pages': {
+		options: {
+			branch: 'gh-pages',
+			publishMode: 'commit',
+			cloneDirectory: '<%= distDirectory %>'
+		}
+	}
+};
+
 export const shell = {
 	'build-ts': {
 		command: 'tsc',
@@ -27,6 +41,15 @@ export const shell = {
 			execOptions: {
 				cwd: 'support'
 			}
+		}
+	}
+};
+
+export const sync = {
+	'gh-pages': {
+		options: {
+			branch: 'gh-pages',
+			cloneDirectory: '<%= distDirectory %>'
 		}
 	}
 };
