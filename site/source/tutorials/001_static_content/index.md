@@ -72,7 +72,7 @@ In traditional web applications, keeping the DOM and JavaScript application logi
 
 Within Dojo 2, we leverage the [Maquette](http://maquettejs.org/) virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../comingsoon.html) and [Reactive Programming](../comingsoon.html) articles in the reference section. For now, let's get back to our application and make some more changes.
 
-If we want to add an attribute to the `h1` we just created, then attributes can be passed in the second argument to the `v` function. Updating our `v` function call, with a `title` attribute would look like this:
+If we want to create a `h1` element with additional attributes, then these attributes can be passed in the second argument to the `v` function. Updating our `v` function call, with a `title` attribute would look like this:
 
 ```typescript
 v('h1', { title: 'I am a title!' },[ 'Biz-E Bodies' ]);
