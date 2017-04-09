@@ -15,5 +15,5 @@ export = function (grunt: IGrunt) {
 		wrapProcess(proc, grunt.log, done);
 	}
 
-	grunt.registerMultiTask('hexo', buildTask)
+	grunt.registerMultiTask('hexo', buildTask);
 };

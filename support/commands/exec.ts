@@ -1,9 +1,9 @@
 const shell = require('shelljs');
 
 export interface Result {
-	code: number
-	stdout: string,
-	stderr: string
+	code: number;
+	stdout: string;
+	stderr: string;
 }
 
 /**
@@ -34,5 +34,5 @@ export default function exec(command: string, print: boolean = true): Promise<Re
 				reject(error);
 			}
 		});
-	})
+	});
 }

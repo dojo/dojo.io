@@ -50,4 +50,8 @@ export default class GitHub {
 	getSshUrl() {
 		return `git@github.com:${ this.owner }/${ this.name }.git`;
 	}
+
+	toString() {
+		return `${ this.owner }/${ this.name }`;
+	}
 }

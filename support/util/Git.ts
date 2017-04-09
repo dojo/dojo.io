@@ -1,10 +1,9 @@
 import shellExec from '../commands/exec';
-import { promiseExec as exec, promiseSpawn as spawn } from './process';
-import { existsSync } from 'fs';
-import { join as joinPath } from 'path';
-import { chmodSync } from 'fs';
-import { relative } from 'path';
+import { promiseExec, promiseSpawn, exec } from './process';
+import { existsSync, chmodSync } from 'fs';
+import { join as joinPath, relative } from 'path';
 import { ChildProcess } from 'child_process';
+import { toString } from './buffer';
 const shell = require('shelljs');
 
 export function config(key: string): Promise<string> {
@@ -51,17 +50,17 @@ export default class Git {
 
 	url?: string;
 
-	constructor(cloneDirectory: string, keyFile: string = 'deploy_key') {
+	constructor(cloneDirectory: string = process.cwd(), keyFile: string = 'deploy_key') {
 		this.cloneDirectory = cloneDirectory;
 		this.keyFile = keyFile;
 	}
 
 	async add(... params: string[]): Promise<any> {
-		return exec(`git add ${ params.join(' ') }`, { silent: true, cwd: this.cloneDirectory});
+		return promiseExec(`git add ${ params.join(' ') }`, { silent: true, cwd: this.cloneDirectory});
 	}
 
 	checkout(version: string) {
-		return exec(`git checkout ${ version }`, { silent: true, cwd: this.cloneDirectory});
+		return promiseExec(`git checkout ${ version }`, { silent: true, cwd: this.cloneDirectory});
 	}
 
 	async clone(url: string) {
@@ -69,6 +68,13 @@ export default class Git {
 			throw new Error('A clone directory must be set');
 		}
 		console.log(`Cloning ${ url } to ${ this.cloneDirectory }`);
+		if (existsSync(this.cloneDirectory)) {
+			console.log(`Repository exists at ${ this.cloneDirectory }`);
+			const repoUrl = await this.getConfig('remote.origin.url');
+			if (repoUrl !== url) {
+				throw new Error(`Repository mismatch. Expected "${ repoUrl }" to be "${ url }".`);
+			}
+		}
 		await this.execSSHAgent('git', [ 'clone', url, this.cloneDirectory ], { silent: false });
 		this.url = url;
 	}
@@ -81,8 +87,8 @@ export default class Git {
 		if (!this.cloneDirectory) {
 			throw new Error('A clone directory must be set');
 		}
-		await exec(`git checkout --orphan ${ branch }`, { silent: true, cwd: this.cloneDirectory });
-		await exec('git rm -rf .', { silent: true, cwd: this.cloneDirectory });
+		await promiseExec(`git checkout --orphan ${ branch }`, { silent: true, cwd: this.cloneDirectory });
+		await promiseExec('git rm -rf .', { silent: true, cwd: this.cloneDirectory });
 		console.log(`Created "${ branch }" branch`);
 	}
 
@@ -90,12 +96,12 @@ export default class Git {
 		return Promise.all([
 			this.hasConfig('user.name').then((result) => {
 				if (!result) {
-					return this.setConfig('user.name', user)
+					return this.setConfig('user.name', user);
 				}
 			}),
 			this.hasConfig('user.email').then((result) => {
 				if (!result) {
-					return this.setConfig('user.email', email)
+					return this.setConfig('user.email', email);
 				}
 			})
 		]);
@@ -109,23 +115,21 @@ export default class Git {
 			const deployKey: string = <string> this.keyFile;
 			const relativeDeployKey = options.cwd ? relative(options.cwd, deployKey) : deployKey;
 			chmodSync(deployKey, '600');
-			return exec(`ssh-agent bash -c 'ssh-add ${ relativeDeployKey }; ${ command } ${ args.join(' ') }'`, options);
+			return promiseExec(`ssh-agent bash -c 'ssh-add ${ relativeDeployKey }; ${ command } ${ args.join(' ') }'`, options);
 		}
 		else {
 			console.log(`Deploy Key "${ this.keyFile }" is not present. Using environment credentials for ${ args[0] }.`);
-			return spawn(command, args, options);
+			return promiseSpawn(command, args, options);
 		}
 	}
 
-	getConfig(key: string): Promise<string> {
-		return exec(`git config ${ key }`, { silent: false })
-			.then(function (proc) {
-				return proc.stdout.toString();
-			})
+	async getConfig(key: string): Promise<string> {
+		const proc = await exec(`git config ${ key }`, { cwd: this.cloneDirectory });
+		return (await toString(proc.stdout)).trim();
 	}
 
 	async areFilesChanged(): Promise<boolean> {
-		const result: ChildProcess = await exec('git status --porcelain', { silent: true, cwd: this.cloneDirectory });
+		const result: ChildProcess = await promiseExec('git status --porcelain', { silent: true, cwd: this.cloneDirectory });
 		return result.stdout.toString() !== '';
 	}
 
@@ -158,6 +162,6 @@ export default class Git {
 
 	setConfig(key: string, value: string) {
 		// TODO make global optional
-		return exec(`git config --global ${ key } ${ value }`, { silent: true });
+		return promiseExec(`git config --global ${ key } ${ value }`, { silent: true });
 	}
 }
