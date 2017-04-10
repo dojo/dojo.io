@@ -314,8 +314,6 @@ import * as styles from '../styles/workerContainer.css';
 
 const WorkerContainerBase = ThemeableMixin(WidgetBase);
 
-const WorkerContainerBase = ThemeableMixin(WidgetBase);
-
 @theme(styles)
 export default class WorkerContainer extends WorkerContainerBase<ThemeableProperties> {
 	render(): DNode {
