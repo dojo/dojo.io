@@ -1,11 +1,10 @@
-import { exec as execChild, spawn as spawnChild } from 'child_process';
-import { ChildProcess } from 'child_process';
-
-function applyOptions(options: any = {}) {
-	options.encoding = options.encoding || 'utf8';
-	options.stdio = options.stdio || (options.silent ? 'pipe' : 'inherit');
-	return options;
-}
+import {
+	exec as execChild,
+	spawn as spawnChild,
+	ChildProcess,
+	ExecOptions as ChildExecOptions,
+	SpawnOptions as ChildSpawnOptions
+} from 'child_process';
 
 export function promisify(proc: ChildProcess): Promise<ChildProcess> {
 	return new Promise(function (resolve, reject) {
@@ -21,20 +20,44 @@ export function promisify(proc: ChildProcess): Promise<ChildProcess> {
 	});
 }
 
-export function exec(command: string, options?: any) {
-	// Use execSync from child_process instead of shelljs.exec for better
-	// handling of pass-through stdio
-	return execChild(command, applyOptions(options));
+export interface CommonProcessOptions {
+	display?: boolean;
+	silent?: boolean;
 }
 
-export function promiseExec(command: string, options?: any) {
+export interface ExecOptions extends CommonProcessOptions, ChildExecOptions {
+}
+
+function applyOptions(proc: ChildProcess, options: CommonProcessOptions) {
+	if (options.silent === false || options.display === true) {
+		proc.stdout.pipe(process.stdout);
+		proc.stderr.pipe(process.stderr);
+	}
+}
+
+export function exec(command: string, options?: ExecOptions): ChildProcess {
+	const proc: ChildProcess = execChild(command, options);
+	applyOptions(proc, options);
+	return proc;
+}
+
+export function promiseExec(command: string, options: ExecOptions = {}) {
+	// We don't have access to stdout and stderr buffers so we want then to output to console by default
+	options.silent = options.silent || false;
 	return promisify(exec(command, options));
 }
 
-export function spawn(command: string, args: string[], options?: any) {
-	return spawnChild(command, args, applyOptions(options));
+export interface SpawnOptions extends CommonProcessOptions, ChildSpawnOptions {
 }
 
-export function promiseSpawn(command: string, args: string[], options?: any) {
+export function spawn(command: string, args: string[], options?: SpawnOptions): ChildProcess {
+	const proc: ChildProcess = spawnChild(command, args, options);
+	applyOptions(proc, options);
+	return proc;
+}
+
+export function promiseSpawn(command: string, args: string[], options: SpawnOptions = {}) {
+	// We don't have access to stdout and stderr buffers so we want then to output to console by default
+	options.silent = options.silent || false;
 	return promisify(spawn(command, args, options));
 }

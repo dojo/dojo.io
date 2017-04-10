@@ -6,7 +6,7 @@ import hasGitCredentials from '../../commands/hasGitCredentials';
  * Resolve the target repository URL using grunt and the state of the environment. Essentially we want to use the
  * ssh+git repository if we think we have credentials and use the https repository otherwise.
  */
-export default async function getRepoUrl(options: any, grunt: IGrunt) {
+export default async function getRepoUrl(options: any, grunt: IGrunt): Promise<string> {
 	if (options.url) {
 		return options.url;
 	}
@@ -17,9 +17,8 @@ export default async function getRepoUrl(options: any, grunt: IGrunt) {
 		const repo = new GitHub(owner, name);
 		return hasGitCredentials() ? repo.getSshUrl() : repo.getHttpsUrl();
 	}
-	else {
-		console.log('Repository not explicitly defined. Using current git repository url.');
-		const git = new Git(process.cwd());
-		options.url = await git.getConfig('remote.origin.url');
-	}
+
+	console.log('Repository not explicitly defined. Using current git repository url.');
+	const git = new Git();
+	return await git.getConfig('remote.origin.url');
 }

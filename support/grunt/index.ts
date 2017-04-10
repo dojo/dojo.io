@@ -4,6 +4,7 @@ import { readdirSync } from 'fs';
 
 export = function (grunt: IGrunt) {
 	require('load-grunt-tasks')(grunt);
+	grunt.loadNpmTasks('webserv');
 
 	const tasksDirectory = join(__dirname, 'tasks');
 	readdirSync(tasksDirectory).filter(function (path) {
@@ -17,5 +18,5 @@ export = function (grunt: IGrunt) {
 
 	grunt.registerTask('default', [ 'clean', 'sync', 'hexo' ]);
 	grunt.registerTask('generate', [ 'hexo' ]);
-	grunt.registerTask('test', [ 'shell:build-ts', 'clean:compiledFiles' ]);
+	grunt.registerTask('test', [ 'tslint', 'shell:build-ts', 'clean:compiledFiles' ]);
 };

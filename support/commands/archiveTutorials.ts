@@ -1,9 +1,6 @@
 import * as archiver from 'archiver';
-import { createWriteStream } from 'fs';
-import { readdirSync } from 'fs';
-import { statSync } from 'fs';
+import { createWriteStream, readdirSync, statSync, existsSync } from 'fs';
 import { join } from 'path';
-import { existsSync } from 'fs';
 
 interface FixedArchiver extends archiver.Archiver {
 	pointer(): number;
@@ -65,5 +62,5 @@ export function archiveTutorial(directory: string, targetFile: string, internal:
 		archive.pipe(output);
 		archive.directory(directory, internal);
 		archive.finalize();
-	})
+	});
 }
