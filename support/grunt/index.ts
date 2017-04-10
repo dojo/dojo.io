@@ -1,6 +1,7 @@
 import * as config from './config';
 import { join, basename, extname } from 'path';
 import { readdirSync } from 'fs';
+import { isCronJob } from '../util/environment';
 
 export = function (grunt: IGrunt) {
 	require('load-grunt-tasks')(grunt);
@@ -19,4 +20,11 @@ export = function (grunt: IGrunt) {
 	grunt.registerTask('default', [ 'clean', 'sync', 'hexo' ]);
 	grunt.registerTask('generate', [ 'hexo' ]);
 	grunt.registerTask('test', [ 'tslint', 'shell:build-ts', 'clean:compiledFiles' ]);
+
+	if (isCronJob()) {
+		grunt.registerTask('ci', [ 'default', 'api' ]);
+	}
+	else {
+		grunt.registerTask('ci', [ 'default' ]);
+	}
 };
