@@ -235,7 +235,8 @@ If you are following along locally, you should already see the new values. Howev
 At this point, we have a good start to our widget, but it still doesn't look very good. In the next section we'll address that by learning how to use CSS to style our widgets.
 
 ## Styling widgets with CSS modules
-We can use CSS files to establish the look and feel of an application. Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, plus two additional benefits: type support in TypeScript and localized styling rules to help prevent inadvertent rule collisions.
+We can use CSS files to establish the look and feel of a widget or application.
+Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of [typed css modules](https://github.com/Quramy/typed-css-modules), so that we can provide css typing files, so you can target css file in your import statements.
 
 To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality. Add the following import to the top of `widgets/Worker.ts`:
 
@@ -297,7 +298,7 @@ render(): DNode {
 }
 ```
 
-If you return to the browser, you'll see that the widget now has the styles applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
+If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command's use of CSS Modules when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
 
 We've almost achieved our goal of displaying a collection of Biz-E Bodies, but we have one thing remaining. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will handle the layout of the `Worker` widgets.
 
@@ -343,7 +344,7 @@ const workers: DNode[] = [
 ];
 ```
 
-Replace the empty array in the `v` function's third argument with this array:
+We can now pass these workers as children to the container, by replacing the empty array in the `v` function's third argument with this array:
 
 ```ts
 return v('div', {
