@@ -256,7 +256,7 @@ With the imports in place, we can add the **@theme** decorator and apply the mix
 ```ts
 const WorkerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class Worker extends WorkerBase<WorkerProperties>
 ```
 
@@ -315,7 +315,7 @@ import * as css from '../styles/workerContainer.css';
 
 const WorkerContainerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class WorkerContainer extends WorkerContainerBase<ThemeableProperties> {
 	protected render(): DNode {
 		return v('div', {
