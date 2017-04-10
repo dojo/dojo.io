@@ -5,7 +5,7 @@ import Banner from './Banner';
 import WorkerContainer from './WorkerContainer';
 
 export default class App extends WidgetBase<WidgetProperties> {
-	render(): DNode {
+	protected render(): DNode {
 		return v('div', [
 			w(Banner, {}),
 			w(WorkerContainer, {})
