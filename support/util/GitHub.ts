@@ -1,4 +1,5 @@
 import request from 'dojo-core/request';
+import { hasGitCredentials } from './environment';
 
 export interface Release {
 	name: string;
@@ -41,6 +42,10 @@ export default class GitHub {
 		else {
 			throw new Error(`${ response.statusCode } ${ response.nativeResponse.statusMessage }`);
 		}
+	}
+
+	get url(): string {
+		return hasGitCredentials() ? this.getSshUrl() : this.getHttpsUrl();
 	}
 
 	getHttpsUrl() {

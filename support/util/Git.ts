@@ -56,7 +56,7 @@ export default class Git {
 	}
 
 	async add(... params: string[]): Promise<any> {
-		return promiseExec(`git add ${ params.join(' ') }`, { silent: true, cwd: this.cloneDirectory});
+		return promiseExec(`git add ${ params.join(' ') }`, { silent: false, cwd: this.cloneDirectory});
 	}
 
 	checkout(version: string) {
@@ -80,7 +80,7 @@ export default class Git {
 	}
 
 	async commit(message: string): Promise<any> {
-		return this.execSSHAgent('git', ['commit', '-m', `"${ message }"`], { silent: true, cwd: this.cloneDirectory });
+		return this.execSSHAgent('git', ['commit', '-m', `"${ message }"`], { silent: false, cwd: this.cloneDirectory });
 	}
 
 	async createOrphan(branch: string) {
@@ -92,6 +92,11 @@ export default class Git {
 		console.log(`Created "${ branch }" branch`);
 	}
 
+	/**
+	 * Ensures configuration required by GitHub exists
+	 * @param user a fallback user name if one does not exist
+	 * @param email a fallback email if one does not exist
+	 */
 	ensureConfig(user: string = 'Travis CI', email: string = 'support@sitepen.com'): Promise<any> {
 		return Promise.all([
 			this.hasConfig('user.name').then((result) => {
@@ -133,13 +138,9 @@ export default class Git {
 		return result.stdout.toString() !== '';
 	}
 
-	hasConfig(key: string): Promise<boolean> {
-		return this.getConfig(key)
-			.then(function () {
-				return true;
-			}, function () {
-				return false;
-			});
+	async hasConfig(key: string): Promise<boolean> {
+		const value = await this.getConfig(key);
+		return !!value;
 	}
 
 	/**
