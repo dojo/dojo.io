@@ -43,6 +43,13 @@ export function hasKeyFile(file: string = keyFile()): boolean {
 }
 
 /**
+ * @return if the build was triggered by a cron job
+ */
+export function isCronJob(): boolean {
+	return process.env.TRAVIS_EVENT_TYPE === 'cron';
+}
+
+/**
  * @return {boolean} if we are currently running on Travis
  */
 export function isRunningOnTravis(): boolean {

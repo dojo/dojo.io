@@ -10,7 +10,8 @@ before_install:
     $encrypted_12c8071d2874_key -iv $encrypted_12c8071d2874_iv
     -in deploy_key.enc -out deploy_key -d; fi
   - npm install grunt-cli -g
-script: grunt
+script:
+  - grunt ci
 deploy:
   provider: script
   script: "grunt publish"
