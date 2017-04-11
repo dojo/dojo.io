@@ -74,5 +74,5 @@ export function publishMode(defaultValue: PublishMode = isRunningOnTravis() ? 's
  * @return the current Github repository as defined by the environment (e.g. dojo/core)
  */
 export function repositorySource(): string {
-	return process.env.TRAVIS_REPO_SLUG;
+	return process.env.PUBLISH_TARGET_REPO || process.env.TRAVIS_REPO_SLUG || '';
 }

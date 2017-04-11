@@ -1,19 +1,18 @@
 import IMultiTask = grunt.task.IMultiTask;
-import { exec } from '../../util/process';
+import { exec, promisify } from '../../util/process';
 import { join } from 'path';
-import wrapProcess from '../commands/wrapProcess';
+import wrapAsyncTask from '../commands/wrapAsyncTask';
 
 /**
  * Builds the hexo site
  */
 export = function (grunt: IGrunt) {
 	function buildTask(this: IMultiTask<any>) {
-		const done = this.async();
 		const siteDirectory = this.filesSrc[0];
 		const hexoBin = join(siteDirectory, 'node_modules', '.bin', 'hexo');
-		const proc = exec(`${ hexoBin } --cwd ${ siteDirectory } generate`, { silent: true });
-		wrapProcess(proc, grunt.log, done);
+		const proc = exec(`${ hexoBin } --cwd ${ siteDirectory } generate`, { silent: false });
+		return promisify(proc);
 	}
 
-	grunt.registerMultiTask('hexo', buildTask);
+	grunt.registerMultiTask('hexo', wrapAsyncTask(buildTask));
 };

@@ -11,6 +11,7 @@ before_install:
     -in deploy_key.enc -out deploy_key -d; fi
   - npm install grunt-cli -g
 script:
+  - grunt test
   - grunt ci
 deploy:
   provider: script
