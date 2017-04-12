@@ -60,7 +60,7 @@ export default class Git {
 	}
 
 	checkout(version: string) {
-		return promiseExec(`git checkout ${ version }`, { silent: true, cwd: this.cloneDirectory});
+		return promiseExec(`git checkout ${ version }`, { silent: false, cwd: this.cloneDirectory});
 	}
 
 	async clone(url: string) {

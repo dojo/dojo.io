@@ -5,11 +5,11 @@ import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import * as styles from '../styles/worker.css';
 
 export interface WorkerProperties extends WidgetProperties {
-	firstName?: string
-	lastName?: string
-	email?: string
-	timePerTask?: number
-	tasks?: string[]
+	firstName?: string;
+	lastName?: string;
+	email?: string;
+	timePerTask?: number;
+	tasks?: string[];
 }
 
 const WorkerBase = ThemeableMixin(WidgetBase);
