@@ -236,7 +236,7 @@ At this point, we have a good start to our widget, but it still doesn't look ver
 
 ## Styling widgets with CSS modules
 We can use CSS files to establish the look and feel of a widget or application.
-Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of [typed css modules](https://github.com/Quramy/typed-css-modules), so that we can provide css typing files, enabling you to target css file in your import statements.
+Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of [typed CSS modules](https://github.com/Quramy/typed-css-modules), so that we can provide CSS typing files, enabling you to target CSS files in your import statements.
 
 To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality. Add the following import to the top of `widgets/Worker.ts`:
 
