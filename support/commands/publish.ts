@@ -1,4 +1,5 @@
 import Git from '../util/Git';
+import { gitCommit } from '../util/environment';
 export type PublishMode = 'publish' | 'commit' | 'skip';
 
 export interface Options {
@@ -11,7 +12,7 @@ export interface Options {
 
 async function createCommitMessage(repo: Git): Promise<string> {
 	const username = await repo.getConfig('user.name');
-	const commit = process.env.TRAVIS_COMMIT;
+	const commit = gitCommit();
 	let message = `Published by ${ username }`;
 
 	if (commit) {
@@ -33,6 +34,13 @@ export default async function publish(options: Options) {
 	if (!(await repo.areFilesChanged())) {
 		console.log('No files changed. Skipping publish.');
 		return;
+	}
+
+	if (publishMode === 'publish') {
+		console.log(`Publishing to ${ repo.cloneDirectory }`);
+	}
+	else {
+		console.log(`Committing ${ repo.cloneDirectory }. Skipping publish.`);
 	}
 
 	await repo.ensureConfig(options.username, options.useremail);

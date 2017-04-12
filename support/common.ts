@@ -1,10 +1,11 @@
 import { join } from 'path';
+import { repositorySource } from './util/environment';
 
 /*
  * Common variables shared between modules
  */
 
-export const repoSlug = process.env.TRAVIS_REPO_SLUG || 'dojo/dojo.io';
+export const repoSlug = repositorySource() || 'dojo/dojo.io';
 
 export const [ repoOwner, repoName ] = repoSlug.split('/');
 

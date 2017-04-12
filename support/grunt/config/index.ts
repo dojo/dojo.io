@@ -31,6 +31,7 @@ export const api = {
 	'cli-json': {
 		options: {
 			repo: 'dojo/cli',
+			dest: '<%= apiDirectory %>/_json/cli.json',
 			format: 'json'
 		}
 	},
@@ -123,7 +124,6 @@ export const publish = {
 	'gh-pages': {
 		options: {
 			branch: 'gh-pages',
-			publishMode: 'commit',
 			cloneDirectory: '<%= distDirectory %>'
 		}
 	}

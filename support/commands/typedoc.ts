@@ -1,7 +1,6 @@
 import GitHub, { Release } from '../util/GitHub';
 import { join, basename, dirname } from 'path';
 import { existsSync } from 'fs';
-import hasGitCredentials from './hasGitCredentials';
 import Git from '../util/Git';
 import { promiseExec as exec } from '../util/process';
 import * as shell from 'shelljs';
@@ -72,10 +71,9 @@ export default async function typedoc(options: Options) {
 
 		// Ensure we have a copy of the repository we want to make API docs from
 		if (!existsSync(repoDir)) {
-			const url = hasGitCredentials() ? repo.getSshUrl() : repo.getHttpsUrl();
 			const git = new Git(repoDir);
 			await git.ensureConfig();
-			await git.clone(url);
+			await git.clone(repo.url);
 			await git.checkout(version);
 		}
 
