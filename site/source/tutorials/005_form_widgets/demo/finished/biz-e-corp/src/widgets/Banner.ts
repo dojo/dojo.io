@@ -1,9 +1,8 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
-import { Button, TextInput } from '@dojo/widgets/main';
+import { v } from '@dojo/widget-core/d';
 
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
+export default class Banner extends WidgetBase<WidgetProperties> {
 	render() {
 		return v('div', {}, [
 			v('h1', {
