@@ -86,7 +86,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 						const value = (<HTMLInputElement> event.target).value;
 						onBlur && onBlur('lastName', value);
 					}
-				}),
+				})
 			]),
 			w<TextInputProperties>(TextInput, {
 				key: 'input3',

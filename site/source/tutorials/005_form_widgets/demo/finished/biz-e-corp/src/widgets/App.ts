@@ -57,7 +57,7 @@ export default class App extends AppBase<WidgetProperties> {
 	}
 
 	private _validateWorkerData(field: string, value: string) {
-		switch(field) {
+		switch (field) {
 			case 'firstName':
 			case 'lastName':
 				return typeof value !== 'undefined' && value.length > 0;
