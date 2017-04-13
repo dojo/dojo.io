@@ -1,13 +1,14 @@
 import IMultiTask = grunt.task.IMultiTask;
+import { logger } from '../../log';
 
-export default function wrapAsyncTask<T>(task: (this: IMultiTask<T>) => Promise<any>, grunt?: IGrunt) {
+export default function wrapAsyncTask<T>(task: (this: IMultiTask<T>) => Promise<any>) {
 	return function (this: IMultiTask<T>) {
 		const done = this.async();
 		task.call(this).then(done, function (e: Error) {
-			if (grunt && e) {
-				grunt.log.error(e.message);
+			if (e) {
+				logger.error(e.message);
 			}
-			done();
+			done(false);
 		});
 	};
 }

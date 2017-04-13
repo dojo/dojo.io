@@ -6,6 +6,7 @@ import { isCronJob } from '../util/environment';
 export = function (grunt: IGrunt) {
 	require('load-grunt-tasks')(grunt);
 	grunt.loadNpmTasks('webserv');
+	grunt.loadNpmTasks('intern');
 
 	const tasksDirectory = join(__dirname, 'tasks');
 	readdirSync(tasksDirectory).filter(function (path) {
@@ -19,7 +20,8 @@ export = function (grunt: IGrunt) {
 
 	grunt.registerTask('default', [ 'clean', 'sync', 'hexo' ]);
 	grunt.registerTask('generate', [ 'hexo' ]);
-	grunt.registerTask('test', [ 'tslint', 'shell:build-ts', 'clean:compiledFiles' ]);
+	grunt.registerTask('test', [ 'clean:compiledFiles', 'tslint', 'shell:build-ts', 'intern' ]);
+	grunt.registerTask('setup', [ 'prompt:github', 'setupAutomation' ]);
 
 	if (isCronJob()) {
 		grunt.registerTask('ci', [ 'default', 'api' ]);

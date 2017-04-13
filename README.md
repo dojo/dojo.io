@@ -92,6 +92,8 @@ This section discusses how to get a complete staging environment working on a `d
  available that you can run on your machine and see changes. You would typically set up a staging environment when you
  need to test updates to the continuous deployment scripts or want to host a preview of the site on GitHub.
  
+This process has been largely automated with the `grunt setup --repo='you/dojo.io'` command.
+ 
 These instructions assume you already have an account on GitHub and Travis and have installed the 
  [Travis command line client](https://blog.travis-ci.com/2013-01-14-new-client/).
 

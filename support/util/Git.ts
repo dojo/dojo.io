@@ -3,7 +3,7 @@ import { promiseExec, promiseSpawn, exec } from './process';
 import { existsSync, chmodSync } from 'fs';
 import { join as joinPath, relative } from 'path';
 import { ChildProcess } from 'child_process';
-import { toString } from './buffer';
+import { toString } from './streams';
 const shell = require('shelljs');
 
 export function config(key: string): Promise<string> {
@@ -158,7 +158,7 @@ export default class Git {
 
 	push(branch?: string, remote: string = 'origin') {
 		const params: string[] = branch ? [ 'push', remote, branch ] : [ 'push' ];
-		return this.execSSHAgent('git', params, { silent: true, cwd: this.cloneDirectory });
+		return this.execSSHAgent('git', params, { silent: false, cwd: this.cloneDirectory });
 	}
 
 	setConfig(key: string, value: string) {

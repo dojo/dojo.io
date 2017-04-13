@@ -50,8 +50,6 @@ export default async function publish(options: Options) {
 	await repo.commit(await createCommitMessage(repo));
 
 	if (publishMode === 'publish') {
-		// TODO
-		console.log('publish!', branch);
-		// await repo.push(branch);
+		await repo.push(branch);
 	}
 }
