@@ -183,7 +183,7 @@ export const publish = {
 	}
 };
 
-export const setupAutomation = {
+export const initAutomation = {
 	repo: {
 		options: {
 			repoOwner: '<%= repoOwner %>',

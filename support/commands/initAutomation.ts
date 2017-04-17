@@ -1,12 +1,10 @@
 import { logger } from '../log';
 import GitHub, { AuthResponse } from '../util/GitHub';
 import { existsSync, createReadStream, createWriteStream } from 'fs';
-import { createDeployKey, encryptData, decryptDeployKey } from '../util/crypto';
+import { createDeployKey, encryptData, decryptData } from '../util/crypto';
 import Travis from '../util/Travis';
 import { equal } from '../util/streams';
-
-const PUBLISH_KEY_ENV_NAME = 'publish_deploy_key';
-const PUBLISH_IV_ENV_NAME = 'publish_deploy_iv';
+import * as env from '../util/environment';
 
 export default async function setupAutomation(repo: GitHub) {
 	let auth: AuthResponse = null;
@@ -39,12 +37,12 @@ export default async function setupAutomation(repo: GitHub) {
 
 		logger.info('Registering environment variables');
 		await travisRepo.setEnvironmentVariables(
-			{ name: PUBLISH_KEY_ENV_NAME, value: enc.key, isPublic: false },
-			{ name: PUBLISH_IV_ENV_NAME, value: enc.iv, isPublic: false }
+			{ name: env.decryptKeyName(), value: enc.key, isPublic: false },
+			{ name: env.decryptIvName(), value: enc.iv, isPublic: false }
 		);
 
 		logger.info(`Confirm decrypt deploy key`);
-		await equal(decryptDeployKey(encryptedKeyFile, enc.key, enc.iv), createReadStream(keys.privateKey));
+		await equal(decryptData(createReadStream(encryptedKeyFile), enc.key, enc.iv), createReadStream(keys.privateKey));
 
 		logger.info('Adding deployment key to GitHub');
 		await repo.addDeployKey(keys.publicKey, 'Auto-created Travis Deploy Key', false);
@@ -53,7 +51,7 @@ export default async function setupAutomation(repo: GitHub) {
 		logger.info(`Please commit this to your GitHub repository. The unencrypted keys "${ keys.publicKey }"`);
 		logger.info(`and "${ keys.privateKey }" may be deleted.`);
 		logger.info(`Variables to decrypt this key have been added to your Travis repository with the name`);
-		logger.info(`"${ PUBLISH_KEY_ENV_NAME } and ${ PUBLISH_IV_ENV_NAME }.`);
+		logger.info(`"${ env.decryptKeyName() } and ${ env.decryptIvName() }.`);
 		logger.info('To begin publishing this site please add the DEPLOY_DOCS environment variable to Travis');
 		logger.info('and set its value to "publish"');
 	}

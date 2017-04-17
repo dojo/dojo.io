@@ -9,6 +9,27 @@ export function currentBranch(): string {
 }
 
 /**
+ * @return the environment variable name holding the decryption iv value
+ */
+export function decryptIvName() {
+	return 'publish_deploy_iv';
+}
+
+/**
+ * @return the environment variable name holding the decryption key value
+ */
+export function decryptKeyName() {
+	return 'publish_deploy_key';
+}
+
+/**
+ * @return the name of the encrypted keyFile
+ */
+export function encryptedKeyFile(file = keyFile()) {
+	return `${ file }.enc`;
+}
+
+/**
  * @return the hash of the commit that triggered this build
  */
 export function gitCommit(): string {

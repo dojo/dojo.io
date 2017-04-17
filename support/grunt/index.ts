@@ -21,12 +21,12 @@ export = function (grunt: IGrunt) {
 	grunt.registerTask('default', [ 'clean', 'sync', 'hexo' ]);
 	grunt.registerTask('generate', [ 'hexo' ]);
 	grunt.registerTask('test', [ 'clean:compiledFiles', 'tslint', 'shell:build-ts', 'intern' ]);
-	grunt.registerTask('setup', [ 'prompt:github', 'setupAutomation' ]);
+	grunt.registerTask('init', [ 'prompt:github', 'initAutomation' ]);
 
 	if (isCronJob()) {
-		grunt.registerTask('ci', [ 'default', 'api' ]);
+		grunt.registerTask('ci', [ 'prebuild', 'default', 'tutorials', 'api' ]);
 	}
 	else {
-		grunt.registerTask('ci', [ 'default' ]);
+		grunt.registerTask('ci', [ 'prebuild', 'default', 'tutorials' ]);
 	}
 };

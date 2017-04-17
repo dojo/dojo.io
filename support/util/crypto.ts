@@ -2,7 +2,6 @@ import * as crypto from 'crypto';
 import { Cipher, Decipher } from 'crypto';
 import { exec, promisify } from './process';
 import ReadableStream = NodeJS.ReadableStream;
-import { createReadStream } from 'fs';
 
 export interface EncryptResult {
 	encrypted: Cipher;
@@ -27,11 +26,6 @@ export async function createDeployKey(deployKeyFile: string = 'deploy_key', keyC
 		publicKey: `${ deployKeyFile }.pub`,
 		privateKey: deployKeyFile
 	};
-}
-
-export function decryptDeployKey(keyFile: string, key: string, iv: string) {
-	const fileStream = createReadStream(keyFile);
-	return decryptData(fileStream, key, iv);
 }
 
 export function decryptData(data: ReadableStream, key: string, iv: string): Decipher {

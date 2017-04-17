@@ -2,7 +2,7 @@ import IMultiTask = grunt.task.IMultiTask;
 import wrapAsyncTask from '../commands/wrapAsyncTask';
 import GitHub from '../../util/GitHub';
 import getGithubSlug from '../commands/getGithubSlug';
-import setupAutomation from '../../commands/setupAutomation';
+import initAutomation from '../../commands/initAutomation';
 
 interface Options {
 	password?: string;
@@ -12,7 +12,7 @@ interface Options {
 }
 
 export = function (grunt: IGrunt) {
-	async function setupTask(this: IMultiTask<any>) {
+	async function initTask(this: IMultiTask<any>) {
 		const options = this.options<Options>({
 			password: grunt.config.get<string>('github.password'),
 			username: grunt.config.get<string>('github.username')
@@ -22,8 +22,8 @@ export = function (grunt: IGrunt) {
 			password: options.password,
 			username: options.username
 		});
-		return setupAutomation(repo);
+		return initAutomation(repo);
 	}
 
-	grunt.registerMultiTask('setupAutomation', wrapAsyncTask(setupTask));
+	grunt.registerMultiTask('initAutomation', wrapAsyncTask(initTask));
 };
