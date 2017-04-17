@@ -2,7 +2,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
-import * as styles from '../styles/worker.css';
+import * as css from '../styles/worker.css';
 
 export interface WorkerProperties extends WidgetProperties {
 	firstName?: string;
@@ -14,13 +14,13 @@ export interface WorkerProperties extends WidgetProperties {
 
 const WorkerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class Worker extends WorkerBase<WorkerProperties> {
 	private _isFlipped = false;
 
 	render(): DNode {
 		return v('div', {
-			classes: this.classes(styles.worker, this._isFlipped ? styles.reverse : null)
+			classes: this.classes(css.worker, this._isFlipped ? css.reverse : null)
 		}, [
 			this._renderFront(),
 			this._renderBack()
@@ -35,17 +35,17 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 
 		return v('div', {
 			key: 'front',
-			classes: this.classes(styles.workerFront),
+			classes: this.classes(css.workerFront),
 			onclick: this.flip
 		}, [
 			v('img', {
-				classes: this.classes(styles.image),
-					src: 'images/worker.svg' }),
-				v('div', [
-					v('strong', [ `${lastName}, ${firstName}` ])
-				])
-			]
-		);
+				classes: this.classes(css.image),
+				src: 'images/worker.svg'
+			}),
+			v('div', [
+				v('strong', [ `${lastName}, ${firstName}` ])
+			])
+		]);
 	}
 
 	private _renderBack(): DNode {
@@ -59,26 +59,26 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 
 		return v('div', {
 			key: 'back',
-			classes: this.classes(styles.workerBack),
+			classes: this.classes(css.workerBack),
 			onclick: this.flip
 			}, [
 				v('img', {
-						classes: this.classes(styles.imageSmall),
-						src: 'images/worker.svg'
+					classes: this.classes(css.imageSmall),
+					src: 'images/worker.svg'
 				}),
 				v('div', {
-					classes: this.classes(styles.generalInfo)
+					classes: this.classes(css.generalInfo)
 				}, [
 					v('div', {
-						classes : this.classes(styles.label)
+						classes : this.classes(css.label)
 					}, ['Name']),
 					v('div', [`${lastName}, ${firstName}`]),
 					v('div', {
-						classes: this.classes(styles.label)
+						classes: this.classes(css.label)
 					}, ['Email']),
 					v('div', [`${email}`]),
 					v('div', {
-						classes: this.classes(styles.label)
+						classes: this.classes(css.label)
 					}, ['Avg. Time per Task']),
 					v('div', [`${timePerTask}`])
 				]),
@@ -86,10 +86,8 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 					v('strong', ['Current Tasks']),
 					v('div', tasks.map(task => {
 						return v('div', {
-								classes: this.classes(styles.task)
-							},
-							[task]
-						);
+							classes: this.classes(css.task)
+						}, [task]);
 					}))
 				])
 			]

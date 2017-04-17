@@ -5,7 +5,7 @@ import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mi
 import Button, { ButtonProperties } from '@dojo/widgets/button/Button';
 import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
 import { WorkerProperties } from './Worker';
-import * as styles from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.css';
 
 export interface WorkerFormProperties extends ThemeableProperties {
 	firstName: string;
@@ -21,7 +21,7 @@ export interface WorkerFormProperties extends ThemeableProperties {
 
 export const WorkerFormBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 
 	private _onSubmit(event: Event) {
@@ -44,20 +44,20 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		} = this.properties;
 
 		return v('form', {
-			classes: this.classes(styles.workerForm),
+			classes: this.classes(css.workerForm),
 			onsubmit: this._onSubmit
 		}, [
-			v('fieldset', { classes: this.classes(styles.nameField) }, [
-				v('legend', { classes: this.classes(styles.nameLabel) }, [ 'Name' ]),
+			v('fieldset', { classes: this.classes(css.nameField) }, [
+				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
 				w<TextInputProperties>(TextInput, {
 					key: 'input1',
-					type: 'text' as 'text',
+					invalid: <boolean> firstNameInvalid,
 					label: {
 						content: 'First Name',
 						hidden: true
 					},
-					invalid: <boolean> firstNameInvalid,
 					placeholder: 'Given name',
+					type: 'text' as 'text',
 					value: <string> firstName,
 					onChange: (event: Event) => {
 						const value = (<HTMLInputElement> event.target).value;
@@ -70,13 +70,13 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				}),
 				w<TextInputProperties>(TextInput, {
 					key: 'input2',
-					type: 'text' as 'text',
+					invalid: <boolean> lastNameInvalid,
 					label: {
 						content: 'Last Name',
 						hidden: true
 					},
-					invalid: <boolean> lastNameInvalid,
 					placeholder: 'Family name',
+					type: 'text' as 'text',
 					value: <string> lastName,
 					onChange: (event: Event) => {
 						const value = (<HTMLInputElement> event.target).value;
@@ -90,9 +90,9 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 			]),
 			w<TextInputProperties>(TextInput, {
 				key: 'input3',
-				type: 'email',
-				label: 'Email address',
 				invalid: <boolean> emailInvalid,
+				label: 'Email address',
+				type: 'email',
 				value: <string> email,
 				onChange: (event: Event) => {
 					const value = (<HTMLInputElement> event.target).value;

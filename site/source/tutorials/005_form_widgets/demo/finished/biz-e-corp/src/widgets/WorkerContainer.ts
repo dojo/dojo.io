@@ -3,7 +3,7 @@ import { DNode } from '@dojo/widget-core/interfaces';
 import { w, v } from '@dojo/widget-core/d';
 import Worker, { WorkerProperties } from './Worker';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
-import * as styles from '../styles/workerContainer.css';
+import * as css from '../styles/workerContainer.css';
 
 export interface WorkerContainerProperties extends ThemeableProperties {
 	workerData?: WorkerProperties[];
@@ -11,7 +11,7 @@ export interface WorkerContainerProperties extends ThemeableProperties {
 
 const WorkerContainerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class WorkerContainer extends WorkerContainerBase<WorkerContainerProperties> {
 
 	render(): DNode {
@@ -25,7 +25,7 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 		}));
 
 		return v('div', {
-			classes: this.classes(styles.container)
+			classes: this.classes(css.container)
 		}, workers);
 	}
 }
