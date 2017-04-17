@@ -1,5 +1,6 @@
 import { Readable } from 'stream';
 import EventEmitter = NodeJS.EventEmitter;
+import { logger } from '../log';
 
 interface Stream extends EventEmitter {
 	readable: Readable['readable'];
@@ -37,7 +38,7 @@ export function equal(a: Stream, b: Stream) {
 			const toCompare = max - comparedLength;
 			for (let i = 0; i < toCompare; i++) {
 				if (aData.charAt(i) !== bData.charAt(i)) {
-					console.log('difference', i);
+					logger.info('difference', i);
 					throw new Error(`Difference at ${ comparedLength } ${ aData.charAt(i) }:${ bData.charAt(i) }`);
 				}
 				comparedLength++;

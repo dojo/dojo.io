@@ -1,3 +1,4 @@
+import { logger } from '../log';
 const shell = require('shelljs');
 
 export interface Result {
@@ -17,8 +18,8 @@ export default function exec(command: string, print: boolean = true): Promise<Re
 	return new Promise(function (resolve, reject) {
 		shell.exec(command, { async: true }, function (code: number, stdout: Buffer, stderr: Buffer) {
 			if (print) {
-				console.log(stdout.toString());
-				console.log(stderr.toString());
+				logger.info(stdout.toString());
+				logger.info(stderr.toString());
 			}
 
 			if (code === 0) {
