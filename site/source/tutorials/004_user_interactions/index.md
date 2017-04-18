@@ -34,7 +34,7 @@ The first step is to add the listener itself. In Dojo 2, an event listener is as
 
 ```ts
 {
-	classes: this.classes(styles.workerFront),
+	classes: this.classes(css.workerFront),
 	onclick: this.flip
 }
 ```
@@ -52,7 +52,7 @@ Now, run the app (using `dojo build --watch`) and navigate to [localhost:9999](h
 For short event handlers you might be tempted to use an anonymous function like this:
 ```ts
 return v('div', {
-	classes: this.classes(styles.worker),
+	classes: this.classes(css.worker),
 	onclick: () => {
 		/* Note: Do not do this, this is an
 		example of an anti-pattern */
@@ -65,7 +65,7 @@ While this appears to work, Maquette doesn't allow an event handler to be update
 
 ```ts
 return v('div', {
-	classes: this.classes(styles.worker),
+	classes: this.classes(css.worker),
 	onclick: () => {
 		/* Note: Do not do this, this is an
 		example of an anti-pattern */
@@ -79,7 +79,7 @@ Open up your browser's development tools and display the console tab then click 
 
 ```ts
 return v('div', {
-	classes: this.classes(styles.worker),
+	classes: this.classes(css.worker),
 	onclick: this.flip
 },...
 ```
@@ -97,11 +97,11 @@ private _renderFront(): DNode {
 	} = this.properties;
 
 	return v('div', {
-		classes: this.classes(styles.workerFront),
+		classes: this.classes(css.workerFront),
 		onclick: this.flip
 	}, [
 		v('img', {
-			classes: this.classes(styles.image),
+			classes: this.classes(css.image),
 				src: 'images/worker.jpg' }, []),
 			v('div', [
 				v('strong', [ `${lastName}, ${firstName}` ])
@@ -123,27 +123,27 @@ private _renderBack(): DNode {
 	} = this.properties;
 
 	return v('div', {
-		classes: this.classes(styles.workerBack),
+		classes: this.classes(css.workerBack),
 		onclick: this.flip
 		}, [
 			v('img', {
-					classes: this.classes(styles.imageSmall),
+					classes: this.classes(css.imageSmall),
 					src: 'images/worker.jpg'
 				}, []
 			),
 			v('div', {
-				classes: this.classes(styles.generalInfo)
+				classes: this.classes(css.generalInfo)
 			}, [
 				v('div', {
-					classes : this.classes(styles.label)
+					classes : this.classes(css.label)
 				}, ['Name']),
 				v('div', [`${lastName}, ${firstName}`]),
 				v('div', {
-					classes: this.classes(styles.label)
+					classes: this.classes(css.label)
 				}, ['Email']),
 				v('div', [`${email}`]),
 				v('div', {
-					classes: this.classes(styles.label)
+					classes: this.classes(css.label)
 				}, ['Avg. Time per Task']),
 				v('div', [`${timePerTask}`])
 			]),
@@ -151,7 +151,7 @@ private _renderBack(): DNode {
 				v('strong', ['Current Tasks']),
 				v('div', tasks.map(task => {
 					return v('div', {
-							classes: this.classes(styles.task)
+							classes: this.classes(css.task)
 						},
 						[task]
 					);
@@ -219,7 +219,7 @@ Now, we need to add the CSS selectors that will provide the rules for rendering 
 }
 ```
 
-We also need to update the CSS selector for the front view, by changing the selector from `styles.worker` to `styles.workerFront`.
+We also need to update the CSS selector for the front view, by changing the selector from `css.worker` to `css.workerFront`.
 
 ```ts
 private _renderFront(): DNode {
@@ -228,7 +228,7 @@ private _renderFront(): DNode {
 		lastName="lastName"} = this.properties;
 
 	return v('div', {
-		classes: this.classes(styles.workerFront),
+		classes: this.classes(css.workerFront),
 		onclick: this.flip
 	},...
 ```
@@ -242,7 +242,7 @@ private _isFlipped = false;
 The use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget's published state. For internal state, however, private fields are used to allow widget to encapsulate state information that should not be exposed publicly. Let's use that field's value to determine which side to show:
 
 ```ts
-render(): DNode {
+protected render(): DNode {
 	return this._isFlipped ? this._renderBack() : this._renderFront();
 }
 ```
