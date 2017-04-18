@@ -66,10 +66,10 @@ export default class App extends WidgetBase<WidgetProperties> {
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we are have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
-Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `render() : DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions. To start, let's use the simplest `render` method by adding this to the `App` class:
+Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render() : DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions. To start, let's use the simplest `render` method by adding this to the `App` class:
 
 ```ts
-render(): DNode {
+protected render(): DNode {
 	return v('div', []);
 }
 ```
@@ -77,7 +77,7 @@ render(): DNode {
 This method will generate a `div` virtual node with no children. To render the `Banner` as a child of the div, we'll use the `w` function that is designed to render widgets. Update the `render` method to the following:
 
 ```ts
-render(): DNode {
+protected render(): DNode {
 	return v('div', [
 		w(Banner, {})
 	]);
@@ -130,7 +130,7 @@ import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 
 export default class Worker extends WidgetBase<WidgetProperties> {
-	render(): DNode {
+	protected render(): DNode {
 		return v('div', []);
 	}
 }
@@ -142,7 +142,7 @@ Our next step is to extend the `render()` method to customize the widget's appea
 
 {% solution showSolution1 %}
 ```ts
-render(): DNode {
+protected render(): DNode {
 	return v('div', [
 			v('img', { src: 'images/worker.jpg' }, []),
 			v('div', [
@@ -165,7 +165,7 @@ import Banner from './Banner';
 import Worker from './Worker';
 
 export default class App extends WidgetBase<WidgetProperties> {
-	render(): DNode {
+	protected render(): DNode {
 		return v('div', [
 			w(Banner, {}),
 			w(Worker, {})
@@ -206,7 +206,7 @@ This code retrieves the appropriate property and provides a reasonable default, 
 The new `render` method should look like this:
 
 ```ts
-render(): DNode {
+protected render(): DNode {
 	const {
 		firstName = 'firstName',
 		lastName = 'lastName'
@@ -235,9 +235,10 @@ If you are following along locally, you should already see the new values. Howev
 At this point, we have a good start to our widget, but it still doesn't look very good. In the next section we'll address that by learning how to use CSS to style our widgets.
 
 ## Styling widgets with CSS modules
-In the first tutorial, we were able to adjust the look of the `Banner` widget by directly manipulating the `styles` property of the generated virtual DOM. While this was effective, it is generally considered better to use external CSS files to establish the look and feel of an application. Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, plus two additional benefits: type support in TypeScript and localized styling rules to help prevent inadvertent rule collisions.
+We can use CSS files to establish the look and feel of a widget or application.
+Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of [typed CSS modules](https://github.com/Quramy/typed-css-modules), so that we can provide CSS typing files, enabling you to target CSS files in your import statements.
 
-To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, apply a "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a base class to add useful functionality. Add the following import to the top of `widgets/Worker.ts`:
+To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality. Add the following import to the top of `widgets/Worker.ts`:
 
 ```ts
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
@@ -245,17 +246,17 @@ import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
 We also need to `import` our CSS:
 ```ts
-import * as styles from '../styles/worker.css';
+import * as css from '../styles/worker.css';
 ```
 
-`worker.css` contains CSS selectors and rules to be consumed by the widget and its components.
+`worker.css` contains CSS selectors and rules to be consumed by our widget and its components.
 
 With the imports in place, we can add the **@theme** decorator and apply the mixin to the `Worker` class in `widgets/Worker.ts`:
 
 ```ts
 const WorkerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class Worker extends WorkerBase<WorkerProperties>
 ```
 
@@ -284,10 +285,10 @@ render(): DNode {
 	} = this.properties;
 
 	return v('div', {
-		classes: this.classes(styles.worker)
+		classes: this.classes(css.worker)
 	}, [
 			v('img', {
-				classes: this.classes(styles.image),
+				classes: this.classes(css.image),
 				src: 'images/worker.jpg' }, []),
 			v('div', [
 				v('strong', [ `${lastName}, ${firstName}` ])
@@ -297,7 +298,7 @@ render(): DNode {
 }
 ```
 
-If you return to the browser, you'll see that the widget now has the styles applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
+If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command's use of CSS Modules when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
 
 We've almost achieved our goal of displaying a collection of Biz-E Bodies, but we have one thing remaining. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will handle the layout of the `Worker` widgets.
 
@@ -310,15 +311,15 @@ import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { w, v } from '@dojo/widget-core/d';
 import Worker from './Worker';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
-import * as styles from '../styles/workerContainer.css';
+import * as css from '../styles/workerContainer.css';
 
 const WorkerContainerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class WorkerContainer extends WorkerContainerBase<ThemeableProperties> {
-	render(): DNode {
+	protected render(): DNode {
 		return v('div', {
-			classes: this.classes(styles.container)
+			classes: this.classes(css.container)
 		}, []);
 	}
 }
@@ -343,7 +344,7 @@ const workers: DNode[] = [
 ];
 ```
 
-Replace the empty array in the `v` function's third argument with this array:
+We can now pass these workers as children to the container, by replacing the empty array in the `v` function's third argument with this array:
 
 ```ts
 return v('div', {
@@ -370,7 +371,7 @@ import Banner from './Banner';
 import WorkerContainer from './WorkerContainer';
 
 export default class App extends WidgetBase<WidgetProperties> {
-	render(): DNode {
+	protected render(): DNode {
 		return v('div', [
 			w(Banner, {}),
 			w(WorkerContainer, {})

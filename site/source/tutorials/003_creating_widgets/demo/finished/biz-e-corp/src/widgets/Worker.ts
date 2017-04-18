@@ -2,7 +2,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
-import * as styles from '../styles/worker.css';
+import * as css from '../styles/worker.css';
 
 export interface WorkerProperties extends WidgetProperties {
 	firstName?: string;
@@ -11,19 +11,19 @@ export interface WorkerProperties extends WidgetProperties {
 
 const WorkerBase = ThemeableMixin(WidgetBase);
 
-@theme(styles)
+@theme(css)
 export default class Worker extends WorkerBase<WorkerProperties> {
-	render(): DNode {
+	protected render(): DNode {
 		const {
 			firstName = 'firstName',
 			lastName = 'lastName'
 		} = this.properties;
 
 		return v('div', {
-			classes: this.classes(styles.worker)
+			classes: this.classes(css.worker)
 		}, [
 				v('img', {
-					classes: this.classes(styles.image),
+					classes: this.classes(css.image),
 					src: 'images/worker.jpg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
