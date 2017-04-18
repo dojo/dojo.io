@@ -2,9 +2,19 @@ import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
 import * as crypto from 'support/util/crypto';
 import { Readable } from 'stream';
+import { existsSync } from 'fs';
+import { tmpFile } from '../../_support/tmpFiles';
 
 registerSuite({
-	name: 'support/util/crypto',
+	name: 'util/crypto',
+
+	async createDeployKey() {
+		const tmp = tmpFile('deployKey');
+		const keys = await crypto.createDeployKey(tmp);
+
+		assert.isTrue(existsSync(keys.publicKey));
+		assert.isTrue(existsSync(keys.privateKey));
+	},
 
 	async encrypt() {
 		const expected = 'Hello World!';

@@ -5,6 +5,7 @@ import {
 	ExecOptions as ChildExecOptions,
 	SpawnOptions as ChildSpawnOptions
 } from 'child_process';
+import { LogStream } from '../log';
 
 export function promisify(proc: ChildProcess): Promise<ChildProcess> {
 	return new Promise(function (resolve, reject) {
@@ -30,8 +31,8 @@ export interface ExecOptions extends CommonProcessOptions, ChildExecOptions {
 
 function applyOptions(proc: ChildProcess, options: CommonProcessOptions) {
 	if (options.silent === false || options.display === true) {
-		proc.stdout.pipe(process.stdout);
-		proc.stderr.pipe(process.stderr);
+		proc.stdout.pipe(new LogStream());
+		proc.stderr.pipe(new LogStream('error'));
 	}
 }
 

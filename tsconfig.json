@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
+		"importHelpers": true,
 		"lib": [
 			"DOM",
 			"ES5",
@@ -20,7 +21,7 @@
 		"preserveConstEnums": true,
 		"removeComments": true,
 		"rootDir": ".",
-		"sourceMap": false,
+		"sourceMap": true,
 		"target": "ES5"
 	},
 	"include": [

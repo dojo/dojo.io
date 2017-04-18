@@ -1,6 +1,5 @@
 import { Readable } from 'stream';
 import EventEmitter = NodeJS.EventEmitter;
-import { logger } from '../log';
 
 interface Stream extends EventEmitter {
 	readable: Readable['readable'];
@@ -27,56 +26,54 @@ export function toString(stream: Stream): Promise<string> {
 	});
 }
 
-export function equal(a: Stream, b: Stream) {
+export function equal(aStream: Stream, bStream: Stream) {
 	return new Promise(function (resolve, reject) {
-		let aData = '';
-		let bData = '';
+		const a = addListeners(aStream);
+		const b = addListeners(bStream);
 		let comparedLength = 0;
 
+		function addListeners(stream: Stream) {
+			const data = {
+				data: '',
+				closed: false
+			};
+
+			stream.on('data', function (chunk: string) {
+				data.data += String(chunk);
+				compare();
+			}).on('error', function (error: Error) {
+				reject(error);
+			}).on('close', function () {
+				data.closed = true;
+				closed(data);
+			}).on('end', function () {
+				data.closed = true;
+				closed(data);
+			});
+
+			return data;
+		}
+
 		function compare() {
-			const max = Math.min(aData.length, bData.length);
+			const max = Math.min(a.data.length, b.data.length);
 			const toCompare = max - comparedLength;
 			for (let i = 0; i < toCompare; i++) {
-				if (aData.charAt(i) !== bData.charAt(i)) {
-					logger.info('difference', i);
-					throw new Error(`Difference at ${ comparedLength } ${ aData.charAt(i) }:${ bData.charAt(i) }`);
+				if (a.data.charAt(i) !== b.data.charAt(i)) {
+					reject(new Error(`Difference at ${ comparedLength } ${ a.data.charAt(i) }:${ b.data.charAt(i) }`));
 				}
 				comparedLength++;
 			}
 		}
 
-		a.on('data', function (chunk: string) {
-			aData += String(chunk);
+		function closed(data: { data: string, closed: boolean }) {
+			data.closed = true;
 			compare();
-		}).on('error', function (error: Error) {
-			reject(error);
-		}).on('close', function () {
-			aData = null;
-			if (bData === null) {
+			if (a.data.length > comparedLength || b.data.length > comparedLength) {
+				reject(new Error(`Difference at ${ comparedLength }`));
+			}
+			if (a.closed && b.closed) {
 				resolve();
 			}
-		}).on('end', function () {
-			aData = null;
-			if (bData === null) {
-				resolve();
-			}
-		});
-
-		b.on('data', function (chunk: string) {
-			bData += String(chunk);
-			compare();
-		}).on('error', function (error: Error) {
-			reject(error);
-		}).on('close', function () {
-			bData = null;
-			if (aData === null) {
-				resolve();
-			}
-		}).on('end', function () {
-			bData = null;
-			if (aData === null) {
-				resolve();
-			}
-		});
+		}
 	});
 }

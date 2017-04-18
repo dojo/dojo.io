@@ -49,3 +49,4 @@ html-report
 /deploy_key.pub
 /deploy_key.enc
 /support/**/*.js
+/.test
