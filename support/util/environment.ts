@@ -55,6 +55,10 @@ export function hasGitCredentials(keyFile?: string): boolean {
 	return true;
 }
 
+export function hexoRootOverride() {
+	return process.env.HEXO_ROOT;
+}
+
 /**
  * @param file the filename of the key file used ssh+git permissions
  * @return {boolean} if the defined key file exists
