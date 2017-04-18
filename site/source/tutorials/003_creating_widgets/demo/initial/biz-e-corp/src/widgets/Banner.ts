@@ -1,4 +1,4 @@
-import { WidgetBase, } from '@dojo/widget-core/WidgetBase';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 
