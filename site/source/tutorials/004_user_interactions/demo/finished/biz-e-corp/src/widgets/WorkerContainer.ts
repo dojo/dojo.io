@@ -12,6 +12,7 @@ export default class WorkerContainer extends WorkerContainerBase<ThemeableProper
 	render(): DNode {
 		const workers: DNode[] = [
 			w(Worker, {
+				key: '1',
 				firstName: 'Tim',
 				lastName: 'Jones',
 				email: 'tim.jones@bizecorp.org',
@@ -22,10 +23,12 @@ export default class WorkerContainer extends WorkerContainerBase<ThemeableProper
 				]
 			}),
 			w(Worker, {
+				key: '2',
 				firstName: 'Alicia',
 				lastName: 'Fitzgerald'
 			}),
 			w(Worker, {
+				key: '3',
 				firstName: 'Hans',
 				lastName: 'Mueller'
 			})
