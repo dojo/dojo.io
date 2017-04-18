@@ -344,6 +344,11 @@ const workers: DNode[] = [
 ];
 ```
 
+Notice that we have added an `id` property to each child.
+This is needed so that we can tell the children apart.
+If you add multiple children that have the same tagname, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
+In the code above we have added an `id` property and set the value to be unique for each child widget.
+
 We can now pass these workers as children to the container, by replacing the empty array in the `v` function's third argument with this array:
 
 ```ts
