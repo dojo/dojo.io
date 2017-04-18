@@ -18,7 +18,6 @@ registerSuite({
 
 	after() {
 		log.logger.clear();
-		console.log(log.logger.transports);
 		for (let key in cachedTransports) {
 			log.logger.add(cachedTransports[key], null, true);
 		}

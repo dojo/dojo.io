@@ -13,13 +13,11 @@ export interface Slug {
  * A standard way of configuring the target Github repository
  * @return {{name: string, owner: string}}
  */
-export default function getGithubSlug(options: Options, grunt: IGrunt): Slug {
-	const repoOption = grunt.option<string>('repo') || options.repo || repositorySource();
-	if (repoOption) {
-		const [ owner, name ] = repoOption.split('/');
-		return {
-			name,
-			owner
-		};
-	}
+export default function getGithubSlug(options?: Options, grunt?: IGrunt): Slug {
+	const repoOption = (grunt && grunt.option<string>('repo')) || (options && options.repo) || repositorySource();
+	const [ owner, name ] = repoOption ? repoOption.split('/') : [ undefined, undefined ];
+	return {
+		name,
+		owner
+	};
 }

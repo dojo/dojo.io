@@ -15,9 +15,8 @@ async function getRepoUrl(options: any, grunt: IGrunt): Promise<string> {
 		return options.url;
 	}
 
-	const repoOption = grunt.option<string>('repo') || options.repo || getGithubSlug(options, grunt);
-	if (repoOption) {
-		const [ owner, name ] = repoOption.split('/');
+	const { name, owner } = getGithubSlug(options, grunt);
+	if (name && owner) {
 		const repo = new GitHub(owner, name);
 		return repo.url;
 	}
