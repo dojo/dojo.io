@@ -3,7 +3,8 @@ import { promiseExec, promiseSpawn, exec } from './process';
 import { existsSync, chmodSync } from 'fs';
 import { join as joinPath, relative } from 'path';
 import { ChildProcess } from 'child_process';
-import { toString } from './buffer';
+import { toString } from './streams';
+import { logger } from '../log';
 const shell = require('shelljs');
 
 export function config(key: string): Promise<string> {
@@ -67,9 +68,9 @@ export default class Git {
 		if (!this.cloneDirectory) {
 			throw new Error('A clone directory must be set');
 		}
-		console.log(`Cloning ${ url } to ${ this.cloneDirectory }`);
+		logger.info(`Cloning ${ url } to ${ this.cloneDirectory }`);
 		if (existsSync(this.cloneDirectory)) {
-			console.log(`Repository exists at ${ this.cloneDirectory }`);
+			logger.info(`Repository exists at ${ this.cloneDirectory }`);
 			const repoUrl = await this.getConfig('remote.origin.url');
 			if (repoUrl !== url) {
 				throw new Error(`Repository mismatch. Expected "${ repoUrl }" to be "${ url }".`);
@@ -89,7 +90,7 @@ export default class Git {
 		}
 		await promiseExec(`git checkout --orphan ${ branch }`, { silent: true, cwd: this.cloneDirectory });
 		await promiseExec('git rm -rf .', { silent: true, cwd: this.cloneDirectory });
-		console.log(`Created "${ branch }" branch`);
+		logger.info(`Created "${ branch }" branch`);
 	}
 
 	/**
@@ -123,7 +124,7 @@ export default class Git {
 			return promiseExec(`ssh-agent bash -c 'ssh-add ${ relativeDeployKey }; ${ command } ${ args.join(' ') }'`, options);
 		}
 		else {
-			console.log(`Deploy Key "${ this.keyFile }" is not present. Using environment credentials for ${ args[0] }.`);
+			logger.info(`Deploy Key "${ this.keyFile }" is not present. Using environment credentials for ${ args[0] }.`);
 			return promiseSpawn(command, args, options);
 		}
 	}
@@ -158,7 +159,7 @@ export default class Git {
 
 	push(branch?: string, remote: string = 'origin') {
 		const params: string[] = branch ? [ 'push', remote, branch ] : [ 'push' ];
-		return this.execSSHAgent('git', params, { silent: true, cwd: this.cloneDirectory });
+		return this.execSSHAgent('git', params, { silent: false, cwd: this.cloneDirectory });
 	}
 
 	setConfig(key: string, value: string) {

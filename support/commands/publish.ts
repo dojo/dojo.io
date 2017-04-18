@@ -1,5 +1,6 @@
 import Git from '../util/Git';
 import { gitCommit } from '../util/environment';
+import { logger } from '../log';
 export type PublishMode = 'publish' | 'commit' | 'skip';
 
 export interface Options {
@@ -27,20 +28,20 @@ export default async function publish(options: Options) {
 	const { branch, repo } = options;
 
 	if (publishMode !== 'commit' && publishMode !== 'publish') {
-		console.log('skipping publish.');
+		logger.info('skipping publish.');
 		return;
 	}
 
 	if (!(await repo.areFilesChanged())) {
-		console.log('No files changed. Skipping publish.');
+		logger.info('No files changed. Skipping publish.');
 		return;
 	}
 
 	if (publishMode === 'publish') {
-		console.log(`Publishing to ${ repo.cloneDirectory }`);
+		logger.info(`Publishing to ${ repo.cloneDirectory }`);
 	}
 	else {
-		console.log(`Committing ${ repo.cloneDirectory }. Skipping publish.`);
+		logger.info(`Committing ${ repo.cloneDirectory }. Skipping publish.`);
 	}
 
 	await repo.ensureConfig(options.username, options.useremail);
@@ -50,8 +51,6 @@ export default async function publish(options: Options) {
 	await repo.commit(await createCommitMessage(repo));
 
 	if (publishMode === 'publish') {
-		// TODO
-		console.log('publish!', branch);
-		// await repo.push(branch);
+		await repo.push(branch);
 	}
 }

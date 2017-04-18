@@ -1,6 +1,8 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"importHelpers": true,
 		"lib": [
 			"DOM",
 			"ES5",
@@ -9,20 +11,21 @@
 			"ES2015.symbol.wellknown",
 			"ES2015.Symbol"
 		],
-		"module": "commonjs",
+		"module": "umd",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
+		"outDir": "./_build",
 		"preserveConstEnums": true,
 		"removeComments": true,
 		"rootDir": ".",
-		"sourceMap": false,
+		"sourceMap": true,
 		"target": "ES5"
 	},
 	"include": [
 		"./support/**/*.ts",
-		"./tasks/**/*.ts"
+		"./tests/**/*.ts"
 	]
 }

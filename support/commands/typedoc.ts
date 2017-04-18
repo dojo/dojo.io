@@ -5,6 +5,7 @@ import Git from '../util/Git';
 import { promiseExec as exec } from '../util/process';
 import * as shell from 'shelljs';
 import * as semver from 'semver';
+import { logger } from '../log';
 
 export interface Options {
 	apiThemeDirectory: string;
@@ -57,17 +58,17 @@ export default async function typedoc(options: Options) {
 
 	if (missingReleases.length) {
 		const versions = missingReleases.map(release => release.name).join(', ');
-		console.log(`Preparing to build API documentation for ${ repo.toString() } versions: ${ versions }`);
+		logger.info(`Preparing to build API documentation for ${ repo.toString() } versions: ${ versions }`);
 	}
 	else {
-		console.log(`API documentation for ${ repo.toString() } is up to date`);
+		logger.info(`API documentation for ${ repo.toString() } is up to date`);
 	}
 
 	for (let release of missingReleases) {
 		const version = release.name;
 		const repoDir = join(buildDirectory, repo.name, version, 'src');
 		const packageTargetDir = join(targetDir, version);
-		console.log(`building api docs for ${ repo.owner }/${ repo.name }@${ version }`);
+		logger.info(`building api docs for ${ repo.owner }/${ repo.name }@${ version }`);
 
 		// Ensure we have a copy of the repository we want to make API docs from
 		if (!existsSync(repoDir)) {
@@ -78,7 +79,7 @@ export default async function typedoc(options: Options) {
 		}
 
 		// install any dependencies to the package
-		console.log('Installing dependencies');
+		logger.info('Installing dependencies');
 		const typingsJson = join(repoDir, 'typings.json');
 		await exec('npm install', { silent: false, cwd: repoDir });
 
@@ -87,7 +88,7 @@ export default async function typedoc(options: Options) {
 		}
 
 		// build docs
-		console.log('Building API Documentation');
+		logger.info('Building API Documentation');
 		shell.mkdir('-p', packageTargetDir);
 		const typedocBin = require.resolve('typedoc/bin/typedoc');
 		let outputOption: string;

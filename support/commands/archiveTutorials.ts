@@ -1,6 +1,7 @@
 import * as archiver from 'archiver';
 import { createWriteStream, readdirSync, statSync, existsSync } from 'fs';
 import { join } from 'path';
+import { logger } from '../log';
 
 interface FixedArchiver extends archiver.Archiver {
 	pointer(): number;
@@ -28,7 +29,7 @@ export default async function archiveTutorials(tutorialRoot: string, targetDirec
 				const archivePath = join(targetDirectory, `${ tutorialName }-${ directory }.zip`);
 				const internalDestination = join(tutorialName, directory);
 				await archiveTutorial(exampleDirectory, archivePath, internalDestination);
-				console.log(`archived tutorial ${ tutorialName } ${ directory } to ${ targetDirectory }`);
+				logger.info(`archived tutorial ${ tutorialName } ${ directory } to ${ targetDirectory }`);
 			}
 		}
 	}

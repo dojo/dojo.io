@@ -40,9 +40,13 @@ jspm_packages
 .idea
 
 _dist
+_build
+html-report
 .ghpublish
 .apitemp
 /site/bower_components
-/delpoy_key
-/delpoy_key.pub
+/deploy_key
+/deploy_key.pub
+/deploy_key.enc
 /support/**/*.js
+/.test

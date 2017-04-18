@@ -1,6 +1,6 @@
 import { Config } from 'webserv/commands/createServer';
-import { middleware } from './webserv';
-import { repositorySource } from '../../util/environment';
+import { middleware } from './config/webserv';
+import { repositorySource } from '../util/environment';
 import { join } from 'path';
 
 export interface WebServerConfig {
@@ -136,11 +136,42 @@ export const clean = {
 	api: [ '<%= tempDirectory %>' ],
 	dist: [ '<%= distDirectory %>' ],
 	publish: [ '<%= publishDirectory %>' ],
-	compiledFiles: [ './+(tasks|support)/**/*.d.ts', './+(tasks|support)/**/*.js' ]
+	compiledFiles: [ './+(tests|support)/**/*.d.ts', './+(tests|support)/**/*.js' ]
 };
 
 export const hexo = {
 	build: '<%= siteDirectory %>'
+};
+
+export const intern = {
+	unit: {
+		options: {
+			runType: 'client',
+			config: '_build/tests/intern',
+			reporters: [
+				'Console', 'LcovHtml'
+			]
+		}
+	}
+};
+
+export const prompt = {
+	github: {
+		options: {
+			questions: [
+				{
+					config: 'github.username',
+					type: 'input',
+					message: 'Github username'
+				},
+				{
+					config: 'github.password',
+					type: 'password',
+					message: 'Github password'
+				}
+			]
+		}
+	}
 };
 
 export const publish = {
@@ -152,7 +183,24 @@ export const publish = {
 	}
 };
 
+export const initAutomation = {
+	repo: {
+		options: {
+			repoOwner: '<%= repoOwner %>',
+			repoName: '<%= repoName %>'
+		}
+	}
+};
+
 export const shell = {
+	'build-tests': {
+		command: 'tsc',
+		options: {
+			execOptions: {
+				cwd: 'tests'
+			}
+		}
+	},
 	'build-ts': {
 		command: 'tsc',
 		options: {
