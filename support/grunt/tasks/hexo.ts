@@ -1,19 +1,22 @@
 import IMultiTask = grunt.task.IMultiTask;
-import { exec, promisify } from '../../util/process';
 import { join } from 'path';
 import wrapAsyncTask from '../commands/wrapAsyncTask';
 import { writeFileSync } from 'fs';
 import * as env from '../../util/environment';
+import hexo from '../../commands/hexo';
 
 /**
  * Builds the hexo site
  */
 export = function (grunt: IGrunt) {
-	function buildTask(this: IMultiTask<any>) {
-		const siteDirectory = this.filesSrc[0];
-		const hexoBin = join('node_modules', '.bin', 'hexo');
+	async function buildTask(this: IMultiTask<any>) {
+		const { src: [ siteDirectory ], dest: distDirectory } = this.files[0];
+		const apiDirectory = join(distDirectory, 'api');
 		const configs = [ '_config.yml' ];
-		const options = this.options<any>({ });
+		const options = this.options<any>({
+			apiSource: join(siteDirectory, 'source/api/_apiTemplate.md'),
+			apiTarget: join(siteDirectory, 'source/api/index.md')
+		});
 		const overrideRoot = env.hexoRootOverride();
 
 		if (options.overrides || overrideRoot) {
@@ -27,8 +30,13 @@ export = function (grunt: IGrunt) {
 			configs.push('_overrides.json');
 		}
 
-		const proc = exec(`${ hexoBin } --config=${ configs.join(',') } generate`, { silent: false, cwd: siteDirectory });
-		return promisify(proc);
+		await hexo({
+			apiDirectory,
+			apiTemplate: options.apiSource,
+			apiTarget: options.apiTarget,
+			configs,
+			siteDirectory
+		});
 	}
 
 	grunt.registerMultiTask('hexo', wrapAsyncTask(buildTask));

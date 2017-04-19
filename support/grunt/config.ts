@@ -140,7 +140,10 @@ export const clean = {
 };
 
 export const hexo = {
-	build: '<%= siteDirectory %>'
+	generate: {
+		src: '<%= siteDirectory %>',
+		dest: '<%= distDirectory %>'
+	}
 };
 
 export const intern = {
