@@ -40,7 +40,7 @@ export const api = {
 	options: {
 		buildDirectory: '<%= tempDirectory %>',
 		dest: '<%= apiDirectory %>',
-		filter: '>=2.0.0-beta1.0',
+		filter: 'latest',
 		format: 'html',
 		themeDirectory: '<%= apiThemeDirectory %>'
 	},

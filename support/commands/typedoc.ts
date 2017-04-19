@@ -27,8 +27,12 @@ function noopFilter() {
 
 async function filterReleases(releases: Release[], baseDirectory: string, filter: ReleaseFilter | string = noopFilter) {
 	// Ensure a sorted list
-	releases = releases.sort(function (a: Release, b: Release) {
-		return semver.compare(a.name, b.name);
+	releases = releases.filter(function (release) {
+		return semver.clean(release.name);
+	}).sort(function (a: Release, b: Release) {
+		const left = semver.clean(a.name);
+		const right = semver.clean(b.name);
+		return semver.compare(left, right, true);
 	});
 
 	let filterMethod: ReleaseFilter = noopFilter;
@@ -44,7 +48,6 @@ async function filterReleases(releases: Release[], baseDirectory: string, filter
 
 	return releases.filter(function (release: Release) {
 		const path = join(baseDirectory, release.name);
-
 		return filterMethod(release) && !existsSync(path);
 	});
 }
@@ -53,7 +56,7 @@ export default async function typedoc(options: Options) {
 	const { target, apiThemeDirectory, buildDirectory, format, owner, repoName } = options;
 	const repo = new GitHub(owner, repoName);
 	const releases = await repo.fetchReleases();
-	const targetDir = join(dirname(target), repo.name);
+	const targetDir = join(format === 'json' ? dirname(target) : target, repo.name);
 	const missingReleases = await filterReleases(releases, targetDir, options.filter);
 
 	if (missingReleases.length) {

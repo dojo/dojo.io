@@ -1,6 +1,9 @@
 import { existsSync } from 'fs';
 import { PublishMode } from '../commands/publish';
 
+export function commitMessage(): string {
+	return process.env.TRAVIS_COMMIT_MESSAGE;
+}
 /**
  * @return the current branch as defined by the environment
  */

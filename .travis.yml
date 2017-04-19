@@ -6,7 +6,7 @@ cache:
   directories:
   - node_modules
 before_install:
-  - npm install grunt-cli -g
+  - npm install grunt-cli typings -g
 script:
   - grunt test
   - grunt ci
