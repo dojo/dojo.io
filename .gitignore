@@ -52,3 +52,4 @@ html-report
 /.test
 /site/_overrides.json
 /site/_multiconfig.yml
+/site/source/api/index.md

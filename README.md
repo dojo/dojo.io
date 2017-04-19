@@ -1,6 +1,6 @@
 # dojo.io
 
-[![Build Status](https://travis-ci.org/dojo/dojo.io.svg?token=iyehyStnJABkD5DAaT6V&branch=master)](https://travis-ci.org/dojo/dojo.io)
+[![Build Status](https://travis-ci.org/dojo/dojo.io.svg?branch=master)](https://travis-ci.org/dojo/dojo.io)
 
 Published to [GitHub Pages](https://dojo.github.io/dojo.io/) and [Dojo.io](http://dojo.io)
 
