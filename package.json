@@ -29,6 +29,7 @@
     "@types/archiver": "^0.15.37",
     "@types/github": "0.0.0",
     "@types/grunt": "^0.4.21",
+    "@types/mockery": "^1.4.29",
     "@types/node": "^6.0.55",
     "@types/semver": "^5.3.31",
     "@types/sinon": "^2.1.2",
