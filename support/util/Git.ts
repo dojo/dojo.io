@@ -98,19 +98,13 @@ export default class Git {
 	 * @param user a fallback user name if one does not exist
 	 * @param email a fallback email if one does not exist
 	 */
-	ensureConfig(user: string = 'Travis CI', email: string = 'support@sitepen.com'): Promise<any> {
-		return Promise.all([
-			this.hasConfig('user.name').then((result) => {
-				if (!result) {
-					return this.setConfig('user.name', user);
-				}
-			}),
-			this.hasConfig('user.email').then((result) => {
-				if (!result) {
-					return this.setConfig('user.email', email);
-				}
-			})
-		]);
+	async ensureConfig(user: string = 'Travis CI', email: string = 'support@sitepen.com') {
+		if (!(await this.hasConfig('user.name'))) {
+			await this.setConfig('user.name', user);
+		}
+		if (!(await this.hasConfig('user.email'))) {
+			await this.setConfig('user.email', email);
+		}
 	}
 
 	/**
@@ -130,7 +124,7 @@ export default class Git {
 	}
 
 	async getConfig(key: string): Promise<string> {
-		const proc = await exec(`git config ${ key }`, { cwd: this.cloneDirectory });
+		const proc = await exec(`git config ${ key }`, { silent: true, cwd: this.cloneDirectory });
 		return (await toString(proc.stdout)).trim();
 	}
 
@@ -164,6 +158,6 @@ export default class Git {
 
 	setConfig(key: string, value: string) {
 		// TODO make global optional
-		return promiseExec(`git config --global ${ key } ${ value }`, { silent: true });
+		return promiseExec(`git config --global ${ key } ${ value }`, { silent: false });
 	}
 }
