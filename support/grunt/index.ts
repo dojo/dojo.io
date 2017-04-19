@@ -1,7 +1,12 @@
 import * as config from './config';
 import { join, basename, extname } from 'path';
 import { readdirSync } from 'fs';
-import { isCronJob } from '../util/environment';
+import * as env from '../util/environment';
+
+function shouldBuildApi() {
+	const message = env.commitMessage() || '';
+	return env.isCronJob() || message.indexOf('[build-api]') !== -1;
+}
 
 export = function (grunt: IGrunt) {
 	require('load-grunt-tasks')(grunt);
@@ -23,8 +28,8 @@ export = function (grunt: IGrunt) {
 	grunt.registerTask('test', [ 'clean:compiledFiles', 'tslint', 'shell:build-ts', 'intern' ]);
 	grunt.registerTask('init', [ 'prompt:github', 'initAutomation' ]);
 
-	if (isCronJob()) {
-		grunt.registerTask('ci', [ 'prebuild', 'default', 'tutorials', 'api' ]);
+	if (shouldBuildApi()) {
+		grunt.registerTask('ci', [ 'prebuild', 'clean', 'sync', 'api', 'hexo', 'tutorials' ]);
 	}
 	else {
 		grunt.registerTask('ci', [ 'prebuild', 'default', 'tutorials' ]);
