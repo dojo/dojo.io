@@ -3,12 +3,7 @@ import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 
 export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	render() {
-		return v('h1', {
-			styles: {
-				'text-align': 'center'
-			}
-		},
-		[ 'Biz-E-Bodies' ]);
+	render(): DNode {
+		return v('h1', { title: 'I am a title!' }, [ 'Biz-E Bodies' ]);
 	}
 }
