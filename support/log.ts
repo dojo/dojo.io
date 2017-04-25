@@ -34,7 +34,7 @@ export class LogStream extends Writable {
 		this.emit('end');
 	}
 
-	protected _write(chunk: any, encoding: string, callback: Function): void {
+	_write(chunk: any, encoding: string, callback: Function): void {
 		if (encoding === 'buffer') {
 			encoding = 'utf-8';
 		}
