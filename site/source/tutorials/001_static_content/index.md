@@ -40,7 +40,6 @@ import { v } from '@dojo/widget-core/d';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
-
 export default class HelloWorld extends WidgetBase<WidgetProperties> {
 	protected render(): DNode {
 		return v('div', [ 'Hello, Dojo World!' ]);
@@ -59,7 +58,7 @@ The `v` function simply instructs Dojo 2 to create a HTML element, in this case 
 {% solution showSolution1 %}
 ```typescript
 export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	render() {
+	render(): DNode {
 		return v('h1', [ 'Biz-E Bodies' ]);
 	}
 }

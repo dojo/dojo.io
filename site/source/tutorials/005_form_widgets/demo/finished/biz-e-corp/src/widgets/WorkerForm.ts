@@ -31,7 +31,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		onSubmit && onSubmit(event);
 	}
 
-	render() {
+	render(): DNode {
 		const {
 			firstName,
 			firstNameInvalid,
