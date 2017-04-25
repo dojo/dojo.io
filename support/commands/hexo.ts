@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { exec, promisify } from '../util/process';
+import { exec, promisify } from 'grunt-dojo2-extras/src/util/process';
 import { readFileSync, writeFileSync } from 'fs';
 import { EOL } from 'os';
 import getApiPackages, { DocumentedApi } from './getApiPackages';
@@ -7,7 +7,6 @@ import getApiPackages, { DocumentedApi } from './getApiPackages';
 function generateHexo(siteDirectory: string, configs: string[] = [ '_config.yml' ]) {
 	const hexoBin = join('node_modules', '.bin', 'hexo');
 	const proc = exec(`${ hexoBin } --config=${ configs.join(',') } generate`, { silent: false, cwd: siteDirectory });
-	console.log(`${ hexoBin } --config=${ configs.join(',') } generate`);
 	return promisify(proc);
 }
 

@@ -1,8 +1,8 @@
 import IMultiTask = grunt.task.IMultiTask;
+import wrapAsyncTask from 'grunt-dojo2-extras/tasks/util/wrapAsyncTask';
 import { join } from 'path';
-import wrapAsyncTask from '../commands/wrapAsyncTask';
 import { writeFileSync } from 'fs';
-import * as env from '../../util/environment';
+import * as env from 'grunt-dojo2-extras/src/util/environment';
 import hexo from '../../commands/hexo';
 
 /**
