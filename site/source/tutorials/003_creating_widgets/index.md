@@ -1,7 +1,6 @@
 ---
 layout: tutorial
 title: Creating widgets
-editorUrl: https://embed.plnkr.co/9dfUeb/?show=src/widgets/Worker.ts,preview&preview=index.html
 overview: In this tutorial, you will learn how to create and style custom widgets in Dojo 2.
 ---
 
@@ -11,23 +10,12 @@ overview: In this tutorial, you will learn how to create and style custom widget
 In this tutorial, you will learn how to create and style custom widgets in Dojo 2.
 
 ## Prerequisites
+You can [download](./assets/003_creating_widgets-initial.zip) the demo project to get started.
 
-With the Dojo 2 tutorial series, you may work with the examples following two different paths:
-
-* A browser embedded editor
-* A local installation
-
-The browser embedded editor is intended to make it easy to quickly see the examples in action, but does not match a normal development environment, and does not provide all of the benefits of TypeScript.
-
-If you prefer a local installation, please visit the [Dojo 2 Installation Guide](../000_local_installation/) before proceeding further with this tutorial.
-
-Whether you are working locally or using the embedded editor, you need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
-
-## Demo files
-If you are following along locally, you can [download](../assets/003_creating_widgets-initial.zip) the demo project to get started.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](./comingsoon.html) article.
 
 ## Creating the application widget
-In the [first tutorial](../001_static_content) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we're going to expand our application to show each worker's portrait as well as their name. Before we get to that we have some refactoring to do. Our demo application is currently hard-wired to render our single widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in the `main.ts` file here:
+In the [first tutorial](./001_static_content) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we're going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in the `main.ts` file here:
 
 ```ts
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
@@ -41,7 +29,7 @@ const projector = new Projector();
 projector.append(root);
 ```
 
-This line: `const Projector = ProjectorMixin(Banner);` tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget.. Add these lines at the top of the file.
+This line: `const Projector = ProjectorMixin(Banner);` tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget. Add these lines at the top of the file.
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -49,7 +37,7 @@ import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 ```
 
-The `WidgetBase` class will be used as the base class for our `App` widget. `WidgetBase` (and its descendants) work with the `WidgetProperties` interface to define the publicly accessible properties of the widget. Finally, the `v` and `w` functions are used to render virtual DOM nodes (with the `v` function) or widgets (via `w`). Both virtual DOM nodes and widgets are rendered generate `DNode`s, the base type of all virtual DOM nodes in Dojo 2.
+The `WidgetBase` class will be used as the base class for our `App` widget. `WidgetBase` (and its descendants) work with the `WidgetProperties` interface to define the publicly accessible properties of the widget. Finally, the `v` and `w` functions are used to render virtual DOM nodes (with the `v` function) or widgets (via `w`). Both virtual DOM nodes and widgets ultimately generate `DNode`s, the base type of all virtual DOM nodes in Dojo 2.
 
 Our next dependency to load is the Banner widget that we created in the first tutorial. To import it, add the following statement to `App.ts`:
 
@@ -64,9 +52,9 @@ export default class App extends WidgetBase<WidgetProperties> {
 }
 ```
 
-Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we are have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
+Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
-Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render() : DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions. To start, let's use the simplest `render` method by adding this to the `App` class:
+Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions. To start, let's use the simplest `render` method by adding this to the `App` class:
 
 ```ts
 protected render(): DNode {
@@ -118,11 +106,11 @@ then open up a web browser and navigate to [`http://localhost:9999`](http://loca
 In the next section, we'll create the `Worker` widget that will show the portrait and name of our Biz-E bodies.
 
 ## Creating the Worker widget
-Now it is time to create our Worker widget. This widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
+Now it is time to create our Worker widget. FOr now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
 
-![worker_widget](resources/worker.png)
+<p class="center">![worker_widget](resources/worker.png)</p>
 
-The first step is to create the worker widget. We will put the implementation in `widgets/Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `widget/Worker.ts`:
+The first step is to create the worker widget. We will put the implementation in `src/widgets/Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `src/widget/Worker.ts`:
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -138,9 +126,9 @@ export default class Worker extends WidgetBase<WidgetProperties> {
 
 This is nearly identical to the `App` widget with one exception: we are not importing the `w` function as the `Worker` widget will not contain any child widgets.
 
-Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the portrait and a `<strong>` tag to display the worker's name. Try and implement that using the URL `images/worker.jpg` (for the embedded editor, use: `http://dojo.io/tutorials/003_creating_widgets/demo/finished/biz-e-corp/src/images/worker.jpg`) for the image's source and print the first and last names. If you need help, or want to check your solution, click the button below to see our solution.
+Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the worker's portrait and a `<strong>` tag to display the worker's name. Try and implement that using the URL `images/worker.jpg` and print the first and last names. If you need help, or want to check your solution, click the button below to see our solution.
 
-{% solution showSolution1 %}
+{% solution showsolution1 %}
 ```ts
 protected render(): DNode {
 	return v('div', [
@@ -154,9 +142,9 @@ protected render(): DNode {
 ```
 {% endsolution %}
 
-Before we continue to refine this widget, let's review our progress by adding the `Worker` widget to the app. Within `App.ts`, import the `Worker` widget and then update the `App`'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Show solution" button.
+Before we continue to refine this widget, let's review our progress by adding the `Worker` widget to the app. Within `App.ts`, import the `Worker` widget and then update the `App`'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.
 
-{% solution showSolution2 %}
+{% solution showsolution2 %}
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
@@ -177,7 +165,7 @@ export default class App extends WidgetBase<WidgetProperties> {
 
 Now run the application with `dojo build --watch` and navigate to [`http://localhost:9999`](http://localhost:9999). We have succeeded in rendering the widget, but there seems to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface that extends `WidgetProperties` and using that to pass configuration information into the widget.
 
-Return to `widgets/Worker.ts` and add an interface with the custom properties that we need:
+Return to `Worker.ts` and add an interface with the custom properties that we need:
 
 ```ts
 export interface WorkerProperties extends WidgetProperties {
@@ -201,7 +189,7 @@ const {
 } = this.properties;
 ```
 
-This code retrieves the appropriate property and provides a reasonable default, in case the widget doesn't receive a value. We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.
+This code retrieves the appropriate property and provides a reasonable default in case the widget doesn't receive a value. This is done via a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment). We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.
 
 The new `render` method should look like this:
 
@@ -222,7 +210,7 @@ protected render(): DNode {
 }
 ```
 
-The final step in creating this widget is to update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
+The final step in creating this widget is to update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working stores in Dojo 2, take a look at the [dojo/stores](./comingsoon.html) tutorial in the advanced section.
 
 In `App.ts`, update the line that is rendering the `Worker` to contain values for the `firstName` and `lastName` properties:
 
@@ -230,7 +218,7 @@ In `App.ts`, update the line that is rendering the `Worker` to contain values fo
 w(Worker, { firstName: 'Tim', lastName: 'Jones' })
 ```
 
-If you are following along locally, you should already see the new values. However, if you shut down the build watcher, you can start it up again by running `dojo build --watch` and navigating to `http://localhost:9999`.
+You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build --watch` and navigating to `http://localhost:9999`.
 
 At this point, we have a good start to our widget, but it still doesn't look very good. In the next section we'll address that by learning how to use CSS to style our widgets.
 
@@ -238,7 +226,7 @@ At this point, we have a good start to our widget, but it still doesn't look ver
 We can use CSS files to establish the look and feel of a widget or application.
 Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of [typed CSS modules](https://github.com/Quramy/typed-css-modules), so that we can provide CSS typing files, enabling you to target CSS files in your import statements.
 
-To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality. Add the following import to the top of `widgets/Worker.ts`:
+To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality. Add the following import to the top of `Worker.ts`:
 
 ```ts
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
@@ -251,7 +239,7 @@ import * as css from '../styles/worker.css';
 
 `worker.css` contains CSS selectors and rules to be consumed by our widget and its components.
 
-With the imports in place, we can add the **@theme** decorator and apply the mixin to the `Worker` class in `widgets/Worker.ts`:
+With the imports in place, we can add the **@theme** decorator and apply the mixin to the `Worker` class in `Worker.ts`:
 
 ```ts
 const WorkerBase = ThemeableMixin(WidgetBase);
@@ -260,7 +248,7 @@ const WorkerBase = ThemeableMixin(WidgetBase);
 export default class Worker extends WorkerBase<WorkerProperties>
 ```
 
-Next, let's add our CSS rules in `src/styles/` which will allow us to style the `Worker` widget:
+Next, let's add our CSS rules in `src/styles/worker.css` which will allow us to style the `Worker` widget:
 
 ```css
 .worker {
@@ -275,7 +263,7 @@ Next, let's add our CSS rules in `src/styles/` which will allow us to style the 
 }
 ```
 
-`dojo build --watch` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget. Return to `widgets/Worker.ts` and update the render method:
+`dojo build --watch` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget. Return to `Worker.ts` and update the render method:
 
 ```ts
 render(): DNode {
@@ -298,12 +286,12 @@ render(): DNode {
 }
 ```
 
-If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command's use of CSS Modules when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
+If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command's use of CSS Modules when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](./comingsoon.html) tutorial in the Cookbook section.
 
-We've almost achieved our goal of displaying a collection of Biz-E Bodies, but we have one thing remaining. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will handle the layout of the `Worker` widgets.
+We've almost achieved our goal of displaying a collection of Biz-E Bodies, but we have one task remaining. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
 
 ## Moving the Worker into a container
-The `WorkerContainer` has many of the same responsibilities of the `App` widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the `Worker` widget, we will apply some styling to it. Putting this all together, add the following to `widgets/WorkerContainer.ts`:
+The `WorkerContainer` has many of the same responsibilities as the `App` widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the `Worker` widget, we will apply some styling to it. Putting this all together, add the following to `WorkerContainer.ts`:
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -347,9 +335,8 @@ const workers: DNode[] = [
 ];
 ```
 
-Notice that we have added an `id` property to each child. This is needed so that we can differentiate between the children.
-If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
-In the code example shown above, we have added an `id` property and set the value to be unique for each child widget.
+Notice that we have added an `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
+In the code example shown above, we have added an `key` property and set the value to be unique for each child widget.
 
 We can now pass these workers as children to the container, by replacing the empty array in the `v` function's third argument with this array:
 
@@ -359,7 +346,7 @@ return v('div', {
 }, workers);
 ```
 
-Now it is time to add the `container` CSS rule inside `styles/workerContainer.css`:
+Now it is time to add styling rules for the `WorkerContainer`. Inside  of `styles/workerContainer.css`, add the following rule:
 
 ```css
 .container {
@@ -394,6 +381,6 @@ In this tutorial, we have created and styled widgets within Dojo 2. Widgets are 
 
 Additionally, we learned how to style widgets by using CSS modules. These modules provide all of the flexibility of CSS with the additional advantages of providing strongly typed and localized class names that allow a widget to be styled without the risk of affecting other aspects of the application.
 
-If you would like, you can download the [demo application](../assets/003_creating_widgets-finished.zip).
+If you would like, you can download the completed [demo application](./assets/003_creating_widgets-finished.zip).
 
-In the [next tutorial](../004_user_interactions), we will explore the rich set of widgets included with Dojo 2 to create applications quickly and efficiently.
+In the [next tutorial](./004_user_interactions), we will explore the how to add event handlers to allow our application to respond to user interactions.

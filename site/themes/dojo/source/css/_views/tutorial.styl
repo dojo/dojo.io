@@ -8,7 +8,7 @@
 			margin-left: auto;
 			margin-right: auto;
 			max-width: $article-max-width;
-			
+
 
 			& > h1 {
 				article-title();
@@ -49,14 +49,21 @@
 		}
 
 		[id*='solution'] {
-			pre code {
-				transition(opacity 0.3s);
-				opacity: 1;
+			transition(height 10s);
+			overflow-y: hidden;
+			pre {
+				code {
+					transition(opacity 0.3s);
+					opacity: 1;
+				}
 			}
 
 			&.hidden {
-				pre code {
-					opacity: 0.05;
+				height: 0;
+				pre {
+					code {
+						opacity: 0.05;
+					}
 				}
 			}
 		}
@@ -73,5 +80,15 @@
 		&:focus {
 			outline: 0;
 		}
+	}
+
+	img{
+		&.half-width {
+			width: 40%;
+			margin: 0 5%;
+		}
+	}
+	p.center {
+		text-align: center;
 	}
 }
