@@ -1,7 +1,7 @@
 import * as config from './config';
-import { join, basename, extname } from 'path';
+import { basename, extname, join } from 'path';
 import { readdirSync } from 'fs';
-import * as env from '../util/environment';
+import * as env from 'grunt-dojo2-extras/src/util/environment';
 
 function shouldBuildApi() {
 	const message = env.commitMessage() || '';
@@ -12,6 +12,7 @@ export = function (grunt: IGrunt) {
 	require('load-grunt-tasks')(grunt);
 	grunt.loadNpmTasks('webserv');
 	grunt.loadNpmTasks('intern');
+	grunt.loadNpmTasks('grunt-dojo2-extras');
 
 	const tasksDirectory = join(__dirname, 'tasks');
 	readdirSync(tasksDirectory).filter(function (path) {
