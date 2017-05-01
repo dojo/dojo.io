@@ -41,7 +41,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-dojo2": "^2.0.0-beta.39",
-    "grunt-dojo2-extras": "^2.0.0-beta1.1",
+    "grunt-dojo2-extras": "^2.0.0-beta1.2",
     "grunt-shell": "^2.1.0",
     "grunt-tslint": "^4.0.1",
     "intern": "^3.4.3",
