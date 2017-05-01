@@ -1,0 +1,744 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/compose</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-index=" assets/js/search.js " data-base=" ./
+				">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text" />
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+				<a href="index.html " class="title">@dojo/compose</a>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked />
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>  @dojo/compose
+			</h1>
+		</div>
+	</div>
+	</div>    <div class="row content-container">
+	<div class="col-8 col-content">
+		<div class="tsd-panel tsd-typography">
+			<h1 id="-dojo-compose">@dojo/compose</h1>
+			<p><a href="https://travis-ci.org/dojo/compose"><img src="https://travis-ci.org/dojo/compose.svg?branch=master" alt="Build Status"></a>
+				<a href="http://codecov.io/github/dojo/compose?branch=master"><img src="http://codecov.io/github/dojo/compose/coverage.svg?branch=master" alt="codecov.io"></a>
+			<a href="https://badge.fury.io/js/%40dojo%2Fcompose"><img src="https://badge.fury.io/js/%40dojo%2Fcompose.svg" alt="npm version"></a></p>
+			<p>A composition library, which works well in a TypeScript environment.</p>
+			<p><strong>WARNING</strong> This is <em>beta</em> software.  While we do not anticipate significant changes to the API at this stage, we may feel the need to do so.  This is not yet production ready, so you should use at your own risk.</p>
+			<h2 id="background">Background</h2>
+			<p>In creating this library, we were looking to solve the following problems with Classes and inheritance in ES6+ and TypeScript:</p>
+			<ul>
+				<li>Single inheritance: ES6 classes are essentially syntactic sugar around prototypal inheritance. A descended class can only derive from a single ancestor class</li>
+				<li>Confusion around mixins and inheritance</li>
+				<li>No plans to add mixins to ES6+ (original proposal was withdrawn)</li>
+				<li>TypeScript class decorators do not augment the shape of the underlying class based on the decorator, and were not an effective mechanism to provide mixins/traits functionality</li>
+				<li>ES6 classes do not support properties in the class prototype</li>
+				<li>TypeScript classes do support properties in the class prototype plus some visibility modifiers. However, TypeScript’s private properties are headed on a collision course with ES private properties with are currently proposed for a future version of the language</li>
+				<li>Both ES6 and TypeScript classes allow for the mutability of ancestor code, which can cause unexpected side effects</li>
+				<li>Traditional inheritance often leads to large base classes and complex inheritance chains</li>
+			</ul>
+			<p>Prior to TypeScript 1.6, we did not have an easy way to solve this, but thankfully the TypeScript team added support for generic types which made this library possible.</p>
+			<h2 id="goals">Goals</h2>
+			<h3 id="pragmatism">Pragmatism</h3>
+			<p>A purely functional library or a purely OO library does not solve the needs of our users.</p>
+			<h3 id="composition">Composition</h3>
+			<p>Embrace the concepts of &quot;composition&quot; versus classical Object Oriented inheritance.  The classical model follows a pattern whereby you add functionality to an ancestor by extending it.  Subsequently all other descendants from that class will also inherit that functionality.</p>
+			<p>In a composition model, the preferred pattern is to create logical feature classes which are then composited together to create a resulting class.  It is believed that this pattern increases code reuse, focuses on the engineering of self contained &quot;features&quot; with minimal cross dependency.</p>
+			<h3 id="factories">Factories</h3>
+			<p>The other pattern supported by compose is the factory pattern.  When you create a new class with compose, it will return a factory function.  To create a new instance of an object, you simply call the factory function.  When using constructor functions, where the <code>new</code> keyword is used, it limits the ability of construction to do certain things, like the ability for resource pooling.</p>
+			<h3 id="immutability">Immutability</h3>
+			<p>Also, all the classes generated by the library are &quot;immutable&quot;.  Any extension of the class will result in a new class constructor and prototype.  This is in order to minimize the amount of unanticipated consequences of extension for anyone who is referencing a previous class.</p>
+			<p>The library was specifically designed to work well in a environment where TypeScript is used, to try to take advantage of TypeScript&#39;s type inference, intersection types, and union types.  This in ways constrained the design, but we feel that it has created an API that is very semantically functional.</p>
+			<h3 id="challenges-and-possible-changes">Challenges and possible changes</h3>
+			<p>The TypeScript 2.2 team made a recent change to their Class implementation that improves support for mixins and composable classes, which may be sufficient for most use cases.</p>
+			<p>In parallel, we&#39;ve found that there remain challenges in properly typing widgets and other composed classes, which is a potential barrier to entry for new and experienced users. Furthermore, we&#39;re finding that the promise of composition has not been fully appreciated with <code>@dojo/widgets</code>. For example, with the <code>createDialog</code> widget, it&#39;s already dependent on <code>themeable</code> and <code>createWidgetBase</code>. Both of these depend on <code>createEvented</code>, which depends on <code>createDestroyable</code>. While four layers deep isn&#39;t terrible, <code>dojo/compose</code> is not currently preventing us from repeating history unfortunately.</p>
+			<p>As such, we are exploring options for leveraging TypeScript 2.2 Classes for Dojo 2, which may change dojo/compose or may reduce our reliance on it. We&#39;ll have an update once we know more. Regardless of the final approach we take, Dojo 2 will have a solid solution for object composition.</p>
+			<h2 id="usage">Usage</h2>
+			<p>To use <code>@dojo/compose</code>, install the package along with its required peer dependencies:</p>
+			<pre><code class="lang-bash">npm install @dojo/compose
+
+<span class="hljs-comment"># peer dependencies</span>
+npm install @dojo/core
+npm install @dojo/has
+npm install @dojo/shim
+</code></pre>
+			<h2 id="features">Features</h2>
+			<ul>
+				<li><a href="#class-creation">Class Creation</a><ul>
+						<li><a href="#creation">Creation</a></li>
+						<li><a href="#creation-with-initializer">Creation with Initializer</a></li>
+					</ul>
+				</li>
+				<li><a href="#class-extension">Class Extension</a><ul>
+						<li><a href="#implementing-an-interface">Implementing an Interface</a></li>
+					</ul>
+				</li>
+				<li><a href="#adding-initialization-functions">Adding Initialization Functions</a></li>
+				<li><a href="#merging-of-arrays">Merging of Arrays</a></li>
+				<li><a href="#using-generics">Using Generics</a></li>
+				<li><a href="#overlaying-functionality">Overlaying Functionality</a></li>
+				<li><a href="#adding-static-properties-to-a-factory">Adding static properties to a factory</a></li>
+				<li><a href="#mixins">Mixins</a></li>
+			</ul>
+			<p>The examples below are provided in TypeScript syntax.  The package does work under JavaScript, but for clarity, the examples will only include one syntax.  See below for how to utilize the package under JavaScript.</p>
+			<h3 id="class-creation">Class Creation</h3>
+			<p>The library supports creating a &quot;base&quot; class from ES6 Classes, JavaScript constructor functions, or an object literal prototype.  In addition an initialization function can be provided.</p>
+			<h4 id="creation">Creation</h4>
+			<p>The <code>compose</code> module&#39;s default export is a function which creates classes.  This is also available as <code>.create()</code> which is decorated onto the <code>compose</code> function.</p>
+			<p>If you want to create a new class via a prototype and create an instance of it, you would want to do something like this:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/compose/compose'</span>;
+
+<span class="hljs-keyword">const</span> fooFactory = compose({
+    foo: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'foo'</span>);
+    },
+    bar: <span class="hljs-string">'bar'</span>,
+    qat: <span class="hljs-number">1</span>
+});
+
+<span class="hljs-keyword">const</span> foo = fooFactory();
+</code></pre>
+			<p>If you want to create a new class via an ES6/TypeScript class and create an instance of it, you would want to do something like this:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/compose/compose'</span>;
+
+<span class="hljs-keyword">class</span> Foo {
+    foo() {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'foo'</span>);
+    };
+    bar: <span class="hljs-built_in">string</span> = <span class="hljs-string">'bar'</span>;
+    qat: <span class="hljs-built_in">number</span> = <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">const</span> fooFactory = compose(Foo);
+
+<span class="hljs-keyword">const</span> foo = fooFactory();
+</code></pre>
+			<p>You can also subclass:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/compose/compose'</span>;
+
+<span class="hljs-keyword">const</span> fooFactory = compose({
+    foo: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'foo'</span>);
+    },
+    bar: <span class="hljs-string">'bar'</span>,
+    qat: <span class="hljs-number">1</span>
+});
+
+<span class="hljs-keyword">const</span> myFooFactory = compose(fooFactory);
+
+<span class="hljs-keyword">const</span> foo = myFooFactory();
+</code></pre>
+			<h4 id="creation-with-initializer">Creation with Initializer</h4>
+			<p>During creation, <code>compose</code> takes a second optional argument, which is an initializer function.  The constructor pattern for all <code>compose</code> classes is to take an optional <code>options</code> argument.  Therefore the initialization function should take this optional argument:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/compose/compose'</span>;
+
+<span class="hljs-keyword">interface</span> FooOptions {
+    foo?: <span class="hljs-built_in">Function</span>,
+    bar?: <span class="hljs-built_in">string</span>,
+    qat?: <span class="hljs-built_in">number</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fooInit</span>(<span class="hljs-params">options?: FooOptions</span>) </span>{
+    <span class="hljs-keyword">if</span> (options) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> options) {
+            <span class="hljs-keyword">this</span>[key] = options[key]
+        }
+    }
+}
+
+<span class="hljs-keyword">const</span> fooFactory = compose({
+    foo: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'foo'</span>);
+    },
+    bar: <span class="hljs-string">'bar'</span>,
+    qat: <span class="hljs-number">1</span>
+}, fooInit);
+
+<span class="hljs-keyword">const</span> foo1 = fooFactory();
+<span class="hljs-keyword">const</span> foo2 = fooFactory({
+    bar: <span class="hljs-string">'baz'</span>
+});
+</code></pre>
+			<h3 id="class-extension">Class Extension</h3>
+			<p>The <code>compose</code> module&#39;s default export also has a property, <code>extend</code>, which allows the enumerable, own properties of a literal object or the prototype of a class or ComposeFactory to be added to the prototype of a class. The type of the resulting class will be inferred and include all properties of the extending object. It can be used to extend an existing compose class like this:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'dojo/compose'</span>;
+
+<span class="hljs-keyword">let</span> fooFactory = compose.create({
+    foo: <span class="hljs-string">'bar'</span>
+});
+
+fooFactory = compose.extend(fooFactory, {
+    bar: <span class="hljs-number">1</span>
+});
+
+<span class="hljs-keyword">let</span> foo = fooFactory();
+
+foo.foo = <span class="hljs-string">'baz'</span>;
+foo.bar = <span class="hljs-number">2</span>;
+</code></pre>
+			<p>Or using chaining:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'dojo/compose'</span>;
+
+<span class="hljs-keyword">const</span> fooFactory = compose.create({
+    foo: <span class="hljs-string">'bar'</span>
+}).extend({
+    bar: <span class="hljs-number">1</span>
+});
+
+<span class="hljs-keyword">let</span> foo = fooFactory();
+
+foo.foo = <span class="hljs-string">'baz'</span>;
+foo.bar = <span class="hljs-number">2</span>;
+</code></pre>
+			<h4 id="implementing-an-interface">Implementing an interface</h4>
+			<p><code>extend</code> can also be used to implement an interface:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'dojo/compose'</span>;
+
+<span class="hljs-keyword">interface</span> Bar {
+    bar?: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">const</span> fooFactory = compose.create({
+    foo: <span class="hljs-string">'bar'</span>
+}).extend&lt;Bar&gt;({});
+</code></pre>
+			<p>Or</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> fooFactory = compose.create({
+    foo: <span class="hljs-string">'bar'</span>
+}).extend(&lt;Bar&gt; {});
+</code></pre>
+			<h3 id="adding-initialization-functions">Adding Initialization Functions</h3>
+			<p>As factories are extended or otherwise modified, it is often desirable to
+				provide additional initialization logic for the new factory. The <code>init</code> method
+				can be used to provide a new initializer to an existing factory. The type
+				of the instance and options will default to the type of the compose factory
+				prototype and the type of the options argument for the last provided
+			initializer.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({
+    foo: <span class="hljs-string">''</span>
+}, <span class="hljs-function">(<span class="hljs-params">instance, options: { foo: <span class="hljs-built_in">string</span> } = { foo: 'foo' }</span>) =&gt;</span> {
+    <span class="hljs-comment">// Instance type is inferred based on the type passed to</span>
+    <span class="hljs-comment">// compose</span>
+    instance.foo = options.foo;
+});
+
+<span class="hljs-keyword">const</span> createFooWithNewInitializer = createFoo
+    .init(<span class="hljs-function">(<span class="hljs-params">instance, options?</span>) =&gt;</span> {
+        <span class="hljs-comment">// If we don't type the options it defaults to { foo: string }</span>
+        instance.foo = (options &amp;&amp; options.foo) || instance.foo;
+    });
+
+<span class="hljs-keyword">const</span> createFooBar = createFoo
+    .extend({ bar: <span class="hljs-string">'bar'</span> })
+    .init(<span class="hljs-function">(<span class="hljs-params">instance, options?</span>) =&gt;</span> {
+        <span class="hljs-comment">// Instance type is updated as the factory prototype is</span>
+        <span class="hljs-comment">// modified, it now has foo and bar properties</span>
+        instance.foo = instance.bar = (options &amp;&amp; options.foo) || instance.foo;
+    });
+</code></pre>
+			<p>Sometimes, as in the <code>createFooBar</code> example above, additional properties may need to be added to the options parameter of the initialize function. A new type can be specified as a generic or by explicitly typing options in the function declaration.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({
+    foo: <span class="hljs-string">''</span>
+}, <span class="hljs-function">(<span class="hljs-params">instance, options: { foo: <span class="hljs-built_in">string</span> } = { foo: 'foo' }</span>) =&gt;</span> {
+    instance.foo = options.foo;
+});
+
+<span class="hljs-keyword">const</span> createFooBar = createFoo
+    .extend({ bar: <span class="hljs-string">'bar'</span> })
+    <span class="hljs-comment">// Extend options type with generic</span>
+    .init&lt;{ foo: <span class="hljs-built_in">string</span>, bar: <span class="hljs-built_in">string</span> }&gt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">instance, options?</span>) =&gt; {
+        instance.foo = (<span class="hljs-params">options &amp;&amp; options.foo</span>) || 'foo';
+        instance.bar = (<span class="hljs-params">options &amp;&amp; options.bar</span>) || 'bar';
+    }</span>);
+
+<span class="hljs-params">const</span> <span class="hljs-params">createFooBarToo</span> = <span class="hljs-params">createFoo</span>
+    .<span class="hljs-params">extend</span>(<span class="hljs-params">{ bar: 'bar' }</span>)
+    // <span class="hljs-params">Extend</span> <span class="hljs-params">options</span> <span class="hljs-params">type</span> <span class="hljs-params">in</span> <span class="hljs-params">function</span> <span class="hljs-params">signature</span>
+    .<span class="hljs-params">init</span>(<span class="hljs-params">instance, options?: { foo: <span class="hljs-built_in">string</span>, bar: <span class="hljs-built_in">string</span> }</span>) =&gt;</span> {
+        instance.foo = (options &amp;&amp; options.foo) || <span class="hljs-string">'foo'</span>;
+        instance.bar = (options &amp;&amp; options.bar) || <span class="hljs-string">'bar'</span>;
+    });
+</code></pre>
+			<h3 id="merging-of-arrays">Merging of Arrays</h3>
+			<p>When mixing in or extending classes which contain array literals as a value of a property, <code>compose</code> will merge these values
+			instead of over writing, which it does with other value types.</p>
+			<p>For example, if I have an array of strings in my original class, and provide a mixin which shares the same property that is
+			also an array, those will get merged:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({
+    foo: [ <span class="hljs-string">'foo'</span> ]
+});
+
+<span class="hljs-keyword">const</span> createBarMixin = compose({
+    foo: [ <span class="hljs-string">'bar'</span> ]
+});
+
+<span class="hljs-keyword">const</span> createFooBar = createFoo.mixin(createBarMixin);
+
+<span class="hljs-keyword">const</span> foo = createFooBar();
+
+foo.foo; <span class="hljs-comment">// [ 'foo', 'bar' ]</span>
+</code></pre>
+			<p>There are some things to note:</p>
+			<ul>
+				<li>The merge process will eliminate duplicates.</li>
+				<li>When the factory is invoked, it will &quot;duplicate&quot; the array from the prototype, so <code>createFoo.prototype.foo !== foo.foo</code>.</li>
+				<li>If the source and the target are not arrays, like other mixing in, last one wins.</li>
+			</ul>
+			<h3 id="using-generics">Using Generics</h3>
+			<p><code>compose</code> utilizes TypeScript generics and type inference to type the resulting classes.  Most of the time, this will work without any need to declare your types.  There are situations though where you may want to be more explicit about your interfaces and <code>compose</code> can accommodate that by passing in generics when using the API. Here is an example of creating a class that requires generics using <code>compose</code>:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> Foo&lt;T&gt; {
+    foo: T;
+}
+
+<span class="hljs-keyword">class</span> Bar&lt;T&gt; {
+    bar(opt: T): <span class="hljs-built_in">void</span> {
+        <span class="hljs-built_in">console</span>.log(opt);
+    }
+}
+
+<span class="hljs-keyword">interface</span> FooBarClass {
+    &lt;T, U&gt;(): Foo&lt;T&gt;&amp;Bar&lt;U&gt;;
+}
+
+<span class="hljs-keyword">let</span> fooBarFactory: FooBarClass = compose(Foo).extend(Bar);
+
+<span class="hljs-keyword">let</span> fooBar = fooBarFactory&lt;<span class="hljs-built_in">number</span>, <span class="hljs-built_in">any</span>&gt;();
+</code></pre>
+			<h3 id="overlaying-functionality">Overlaying Functionality</h3>
+			<p>If you want to make modifications to the prototype of a class that are difficult to perform with simple mixins or extensions, you can use the <code>overlay</code> function provided on the default export of the <code>compose</code> module. <code>overlay</code> takes one argument, a function which will be passed a copy of the prototype of the existing class, and returns a new class whose type reflects the modifications made to the existing prototype:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'dojo/compose'</span>;
+
+<span class="hljs-keyword">const</span> fooFactory = compose.create({
+    foo: <span class="hljs-string">'bar'</span>
+});
+
+<span class="hljs-keyword">const</span> myFooFactory = fooFactory.overlay(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">proto</span>) </span>{
+    proto.foo = <span class="hljs-string">'qat'</span>;
+});
+
+<span class="hljs-keyword">const</span> myFoo = myFooFactory();
+<span class="hljs-built_in">console</span>.log(myFoo.foo); <span class="hljs-comment">// logs "qat"</span>
+</code></pre>
+			<p>Note that as with all the functionality provided by <code>compose</code>, the existing class is not modified.</p>
+			<h3 id="adding-static-properties-to-a-factory">Adding static properties to a factory</h3>
+			<p>If you want to add static methods or constants to a <code>ComposeFactory</code>, the <code>static</code> method allows you to do so. Any properties
+				set this way cannot be altered, as the returned factory is frozen. In order to modify or remove a static property
+			on a factory, a new factory would need to be created.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({
+    foo: <span class="hljs-number">1</span>
+}).static({
+    doFoo(): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'foo'</span>;
+    }
+});
+
+<span class="hljs-built_in">console</span>.log(createFoo.doFoo()); <span class="hljs-comment">// logs 'foo'</span>
+
+<span class="hljs-comment">// This will throw an error</span>
+<span class="hljs-comment">// createFoo.doFoo = function() {</span>
+<span class="hljs-comment">//     return 'bar'</span>
+<span class="hljs-comment">// }</span>
+
+<span class="hljs-keyword">const</span> createNewFoo = createFoo.static({
+    doFoo(): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>;
+    }
+});
+
+<span class="hljs-built_in">console</span>.log(createNewFoo.doFoo()); <span class="hljs-comment">// logs 'bar'</span>
+</code></pre>
+			<p>If a factory already has static properties, calling its static method again will not maintain those properties on the
+			returned factory. The original factory will still maintain its static properties.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({
+    foo: <span class="hljs-number">1</span>
+}).static({
+    doFoo(): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'foo'</span>;
+    }
+})
+
+<span class="hljs-built_in">console</span>.log(createFoo.doFoo()); <span class="hljs-comment">//logs 'foo'</span>
+
+<span class="hljs-keyword">const</span> createFooBar = createFoo.static({
+    doBar(): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>;
+    }
+});
+
+<span class="hljs-built_in">console</span>.log(createFooBar.doBar()); <span class="hljs-comment">//logs 'bar'</span>
+<span class="hljs-built_in">console</span>.log(createFoo.doFoo()); <span class="hljs-comment">//logs 'foo'</span>
+<span class="hljs-comment">//console.log(createFooBar.doFoo()); Doesn't compile</span>
+<span class="hljs-comment">//console.log(createFoo.doBar()); Doesn't compile</span>
+</code></pre>
+			<p>Static properties will also be lost when calling mixin or extend. Because of this, static properties should be applied
+			to the &#39;final&#39; factory in a chain.</p>
+			<h3 id="mixins">Mixins</h3>
+			<p>One of the goals of compose is to enable the reuse of code, and to allow
+				clean separation of concerns. Mixins provide a way to encapsulate
+			functionality that may be reused across many different factories.</p>
+			<p>This example shows how to create and apply a mixin:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({ foo: <span class="hljs-string">'foo'</span>});
+
+<span class="hljs-keyword">const</span> fooMixin = compose.createMixin(createFoo);
+
+createFoo.mixin(fooMixin);
+</code></pre>
+			<p>In this case the mixin won&#39;t actually do anything, because we applied it
+				immediately after creating it. Another thing to note in this exapmle, is
+				that passing <code>createFoo</code> to <code>createMixin</code> is optional, but is generally
+				a good idea. This lets the mixin know that it should be mixed into something
+				that provides at least the same functionality as <code>createFoo</code>, so the mixin
+			can automatically include the prototype and options types from <code>createFoo</code>.</p>
+			<p>In order to create a mixin that&#39;s actually useful, we can use any of the
+				<code>ComposeFactory</code> methods discussed above. The mixin will record these calls,
+				and when mixed into a factory will apply them as if they were called directly
+			on the factory.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> createFoo = compose({
+    foo: <span class="hljs-string">'foo'</span>
+}, <span class="hljs-function">(<span class="hljs-params">instance, options?: { foo: <span class="hljs-built_in">string</span> }</span>) =&gt;</span> {
+    instance.foo = (options &amp;&amp; options.foo) || <span class="hljs-string">'foo'</span>;
+});
+
+<span class="hljs-keyword">const</span> createFooBar = createFoo.extend({ bar: <span class="hljs-string">'bar'</span>});
+
+<span class="hljs-keyword">const</span> fooMixin = compose.createMixin(createFoo)
+    <span class="hljs-comment">// Because we passed createFoo, the types of instance and options</span>
+    <span class="hljs-comment">// are both { foo: string }</span>
+    .init(<span class="hljs-function">(<span class="hljs-params">instance, options?</span>) =&gt;</span> {
+        instance.foo = (options &amp;&amp; options.foo) + <span class="hljs-string">'bar'</span>;
+    });
+    .extend({ baz: <span class="hljs-string">'baz'</span>});
+
+<span class="hljs-keyword">const</span> createFooBaz = createFoo.mixin(fooMixin);
+<span class="hljs-comment">/* Equivalent to calling
+    createFoo
+        .init((instance, options?) =&gt; {
+            instance.foo = (options &amp;&amp; options.foo) + 'bar';
+        });
+        .extend({ baz: 'baz'});
+*/</span>
+
+<span class="hljs-keyword">const</span> createFooBarBaz = createFooBar.mixin(fooMixin);
+<span class="hljs-comment">/* Equivalent to calling
+    createFooBar
+        .init((instance, options?) =&gt; {
+            instance.foo = (options &amp;&amp; options.foo) + 'bar';
+        });
+        .extend({ baz: 'baz'});
+*/</span>
+</code></pre>
+			<p>Compose also provides the ability to mixin a factory directly, or a
+				<code>FactoryDescriptor</code> object, but these are allowed only for the backwards
+				compatibility. The <code>createMixin</code> API is the preferred method for creating
+			and applying mixins.</p>
+			<h2 id="how-do-i-use-this-package-">How do I use this package?</h2>
+			<p>The easiest way to use this package is to install it via <code>npm</code>:</p>
+			<pre><code>$ <span class="hljs-built_in">npm</span> install @dojo/compose
+</code></pre><p>In addition, you can clone this repository and use the Grunt build scripts to manage the package.</p>
+			<p>Using under TypeScript or ES6 modules, you would generally want to just <code>import</code> the <code>@dojo/compose/compose</code> module:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> compose <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/compose/compose'</span>;
+
+<span class="hljs-keyword">const</span> createFoo = compose({
+    foo: <span class="hljs-string">'foo'</span>
+}, <span class="hljs-function">(<span class="hljs-params">instance, options</span>) =&gt;</span> {
+    <span class="hljs-comment">/* do some initialization */</span>
+});
+
+<span class="hljs-keyword">const</span> foo = createFoo();
+</code></pre>
+			<h2 id="how-do-i-contribute-">How do I contribute?</h2>
+			<p>We appreciate your interest!  Please see the <a href="https://github.com/dojo/meta/blob/master/CONTRIBUTING.md">Contributing Guidelines</a> and <a href="https://github.com/dojo/meta/blob/master/STYLE.md">Style Guide</a>.</p>
+			<h3 id="installation">Installation</h3>
+			<p>To start working with this package, clone the repository and run <code>npm install</code>.</p>
+			<p>In order to build the project run <code>grunt dev</code> or <code>grunt dist</code>.</p>
+			<h3 id="testing">Testing</h3>
+			<p>Test cases MUST be written using <a href="https://theintern.github.io">Intern</a> using the Object test interface and Assert assertion interface.</p>
+			<p>90% branch coverage MUST be provided for all code submitted to this repository, as reported by Istanbul’s combined coverage results for all supported platforms.</p>
+			<h2 id="prior-art-and-inspiration">Prior Art and Inspiration</h2>
+			<p>A lot of thinking, talks, publications by <a href="https://ericelliottjs.com/">Eric Elliott</a> (@ericelliott) inspired @bryanforbes and @kitsonk to take a look at the composition and factory pattern.</p>
+			<p>@kriszyp helped bring AOP to Dojo 1 and we found a very good fit for those concepts in <code>dojo/compose</code>.</p>
+			<p><a href="https://github.com/dojo/dojo/blob/master/_base/declare.js"><code>dojo/_base/declare</code></a> was the starting point for bringing Classes and classical inheritance to Dojo 1 and without @uhop we wouldn&#39;t have had Dojo 1&#39;s class system.</p>
+			<p>@pottedmeat and @kitsonk iterated on the original API, trying to figure a way to get types to work well within TypeScript and @maier49 worked with the rest of the <a href="https://github.com/SitePen/dgrid">dgrid</a> team to make the whole API more usable.</p>
+			<p>© 2015 - 2017 JS Foundation. <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a> license.</p>
+		</div>
+	</div>
+	<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+		<nav class="tsd-navigation primary">
+			<ul>
+				<li class="globals  ">
+					<a href="globals.html"><em>Globals</em></a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="tsd-navigation secondary menu-sticky">
+			<ul class="before-current">
+				<li class=" tsd-kind-enum">
+					<a href="enums/advicetype.html" class="tsd-kind-icon">Advice<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/advisingfunction.html" class="tsd-kind-icon">Advising<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/afteradvice.html" class="tsd-kind-icon">After<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/aroundadvice.html" class="tsd-kind-icon">Around<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/aspectadvice.html" class="tsd-kind-icon">Aspect<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/beforeadvice.html" class="tsd-kind-icon">Before<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/cancelableevent.html" class="tsd-kind-icon">Cancelable<wbr>Event</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/compose.html" class="tsd-kind-icon">Compose</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composecreatedmixin.html" class="tsd-kind-icon">Compose<wbr>Created<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composefactory.html" class="tsd-kind-icon">Compose<wbr>Factory</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composeinitializationfunction.html" class="tsd-kind-icon">Compose<wbr>Initialization<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composemixindescriptor.html" class="tsd-kind-icon">Compose<wbr>Mixin<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composemixinable.html" class="tsd-kind-icon">Compose<wbr>Mixinable</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/destroyablemixin.html" class="tsd-kind-icon">Destroyable<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/dispatchadvice.html" class="tsd-kind-icon">Dispatch<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/eventedmixin.html" class="tsd-kind-icon">Evented<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/genericclass.html" class="tsd-kind-icon">Generic<wbr>Class</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/genericfunction.html" class="tsd-kind-icon">Generic<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/overlayfunction.html" class="tsd-kind-icon">Overlay<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/statefulmixin.html" class="tsd-kind-icon">Stateful<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#composemixinitem" class="tsd-kind-icon">Compose<wbr>Mixin<wbr>Item</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#removethis" class="tsd-kind-icon">remove<wbr>This</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#after" class="tsd-kind-icon">after</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#around" class="tsd-kind-icon">around</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#before" class="tsd-kind-icon">before</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getinitfunctionnames" class="tsd-kind-icon">get<wbr>Init<wbr>Function<wbr>Names</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#hasconfigurablename" class="tsd-kind-icon">has<wbr>Configurable<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#hastostringtag" class="tsd-kind-icon">has<wbr>ToString<wbr>Tag</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#iscomposefactory" class="tsd-kind-icon">is<wbr>Compose<wbr>Factory</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isdestroyable" class="tsd-kind-icon">is<wbr>Destroyable</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#resolvelistener" class="tsd-kind-icon">resolve<wbr>Listener</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

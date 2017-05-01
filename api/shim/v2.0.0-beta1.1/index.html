@@ -1,0 +1,601 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/shim</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-index=" assets/js/search.js " data-base=" ./
+				">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text" />
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+				<a href="index.html " class="title">@dojo/shim</a>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked />
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>  @dojo/shim
+			</h1>
+		</div>
+	</div>
+	</div>    <div class="row content-container">
+	<div class="col-8 col-content">
+		<div class="tsd-panel tsd-typography">
+			<h1 id="-dojo-shim">@dojo/shim</h1>
+			<p><a href="https://travis-ci.org/dojo/shim"><img src="https://travis-ci.org/dojo/shim.svg?branch=master" alt="Build Status"></a>
+				<a href="https://codecov.io/gh/dojo/shim"><img src="https://codecov.io/gh/dojo/shim/branch/master/graph/badge.svg" alt="codecov"></a>
+			<a href="https://badge.fury.io/js/%40dojo%2Fshim"><img src="https://badge.fury.io/js/%40dojo%2Fshim.svg" alt="npm version"></a></p>
+			<p>This package provides functional shims for ECMAScript.</p>
+			<p>It is targeted at providing function shims for ECMAScript 6 and beyond targeted at ECMAScript 5.  It is different
+				other solutions of shimming or polyfilling functionality, in that it does not provide the functionality via
+			augmenting the built in classes in the global namespace.</p>
+			<p>The one exception to this though is the <code>Symbol</code> functionality, in that the well-known symbols need to be located
+			off of the global <code>Symbol</code> object in order to ensure that the correct symbol is referenced.</p>
+			<p><strong>WARNING</strong> This is <em>beta</em> software.  While we do not anticipate significant changes to the API at this stage, we may feel the need to do so.  This is not yet production ready, so you should use at your own risk.</p>
+			<h2 id="usage">Usage</h2>
+			<p>To use <code>@dojo/shim</code>, install the package along with its required peer dependencies:</p>
+			<pre><code class="lang-bash">npm install @dojo/shim
+
+<span class="hljs-comment"># peer dependencies</span>
+npm install @dojo/has
+</code></pre>
+			<h2 id="features">Features</h2>
+			<p>Many of the features in this package will fallback to a native implementation if one is available.</p>
+			<ul>
+				<li><a href="#array-methods">Array</a></li>
+				<li><a href="#data-structures">Data Structures</a><ul>
+						<li><a href="#map">Map</a></li>
+						<li><a href="#set">Set</a></li>
+						<li><a href="#weakmap">WeakMap</a></li>
+					</ul>
+				</li>
+				<li><a href="#iterators">Iterators</a></li>
+				<li><a href="#math">Math</a></li>
+				<li><a href="#number">Number</a></li>
+				<li><a href="#object">Object</a></li>
+				<li><a href="#observables">Observables</a></li>
+				<li><a href="#promises">Promises</a></li>
+				<li><a href="#string">String</a></li>
+				<li><a href="#symbols">Symbols</a></li>
+			</ul>
+			<h3 id="array-methods">Array Methods</h3>
+			<p><a href="docs/array.md"><code>@dojo/shim/array</code></a> provides implementations of many array utilities.</p>
+			<h3 id="data-structures">Data Structures</h3>
+			<h4 id="map">Map</h4>
+			<p>The <a href="docs/Map.md"><code>@dojo/shim/Map</code> class</a> is an implementation of the ES2015 Map specification
+			without iterators for use in older browsers.</p>
+			<h4 id="set">Set</h4>
+			<p>The <code>@dojo/shim/Set</code> class is an implementation of the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-set-objects">ES2015 Set specification</a>.  A Set is used to a collection of unique values.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> Set <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/shim/Set'</span>;
+
+<span class="hljs-keyword">const</span> values = <span class="hljs-keyword">new</span> Set&lt;<span class="hljs-built_in">string</span>&gt;();
+values.add(<span class="hljs-string">'one'</span>);
+values.add(<span class="hljs-string">'two'</span>);
+values.add(<span class="hljs-string">'one'</span>);
+
+values.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(value);
+});
+
+<span class="hljs-comment">// output:</span>
+<span class="hljs-comment">// one</span>
+<span class="hljs-comment">// two</span>
+</code></pre>
+			<h4 id="weakmap">WeakMap</h4>
+			<p>The <code>@dojo/shim/WeakMap</code> class is an implementation of the ES2015 WeakMap specification
+				without iterators for use in older browsers. The main difference between WeakMap and Map
+				is that WeakMap&#39;s keys can only be objects and that the store has a weak reference
+			to the key/value pair. This allows for the garbage collector to remove pairs.</p>
+			<p>Look at <a href="docs/Map.md">Map</a> for more information on how to use WeakMap.</p>
+			<h3 id="iterators">Iterators</h3>
+			<p>The <code>@dojo/shim/iterator</code> module is an implementation of the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-iteration">ES2015 Iterator specification</a>.</p>
+			<h3 id="math">Math</h3>
+			<p>The <a href="docs/math.md"><code>@dojo/shim/math</code></a> module provides implementations for many math methods.</p>
+			<h3 id="number">Number</h3>
+			<p>The <code>dojo/shim/number</code> module provides implementations for several <code>Number</code> methods.</p>
+			<ul>
+				<li><code>isNaN</code></li>
+				<li><code>isFinite</code></li>
+				<li><code>isInteger</code></li>
+				<li><code>isSafeInteger</code></li>
+			</ul>
+			<h3 id="object">Object</h3>
+			<p>The <code>dojo/shim/object</code> provides implementations of <code>Object</code> methods.</p>
+			<ul>
+				<li>is</li>
+				<li>getOwnPropertySymbols</li>
+				<li>getOwnPropertyNames</li>
+				<li>getOwnPropertyDescriptor</li>
+				<li>values</li>
+				<li>entries</li>
+			</ul>
+			<h3 id="observables">Observables</h3>
+			<p>The <a href="docs/Observable.md"><code>@dojo/shim/Observable</code></a> class is an implementation of the proposed <a href="https://tc39.github.io/proposal-observable/">Observable specification</a>.  Observables are further extended in <a href="https://github.com/dojo/core/blob/master/src/Observable.ts"><code>@dojo/core/Observable</code></a>.</p>
+			<h3 id="promises">Promises</h3>
+			<p><a href="docs/Promise.md"><code>@dojo/shim/Promise</code></a> is an implementation of the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects">ES2015 Promise specification</a>.</p>
+			<h3 id="string">String</h3>
+			<p>The <a href="docs/string.md"><code>@dojo/shim/string</code></a> module contains <code>String</code> methods.</p>
+			<h3 id="symbols">Symbols</h3>
+			<p><code>@dojo/shim/Symbol</code> provides an implementation of the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-symbol-objects">ES2015 Symbol specification</a> for environments that do not natively support <code>Symbol</code>.</p>
+			<h2 id="how-do-i-contribute-">How do I contribute?</h2>
+			<p>We appreciate your interest!  Please see the <a href="https://github.com/dojo/meta#readme">Dojo 2 Meta Repository</a> for the
+			Contributing Guidelines and Style Guide.</p>
+			<h3 id="installation">Installation</h3>
+			<p>To start working with this package, clone the repository and run <code>npm install</code>.</p>
+			<p>In order to build the project run <code>grunt dev</code> or <code>grunt dist</code>.</p>
+			<h3 id="testing">Testing</h3>
+			<p>Test cases MUST be written using <a href="https://theintern.github.io">Intern</a> using the Object test interface and Assert assertion interface.</p>
+			<p>90% branch coverage MUST be provided for all code submitted to this repository, as reported by istanbul’s combined coverage results for all supported platforms.</p>
+			<p>To test locally in node run:</p>
+			<p><code>grunt test</code></p>
+			<p>To test against browsers with a local selenium server run:</p>
+			<p><code>grunt test:local</code></p>
+			<p>To test against BrowserStack or Sauce Labs run:</p>
+			<p><code>grunt test:browserstack</code></p>
+			<p>or</p>
+			<p><code>grunt test:saucelabs</code></p>
+			<h2 id="licensing-information">Licensing information</h2>
+			<p>© <a href="https://js.foundation/">JS Foundation</a> &amp; contributors. <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a> license.</p>
+		</div>
+	</div>
+	<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+		<nav class="tsd-navigation primary">
+			<ul>
+				<li class="globals  ">
+					<a href="globals.html"><em>Globals</em></a>
+				</li>
+				<li class=" tsd-kind-module">
+					<a href="modules/shim.html">Shim</a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="tsd-navigation secondary menu-sticky">
+			<ul class="before-current">
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/map.html" class="tsd-kind-icon">Map</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/observable.html" class="tsd-kind-icon">Observable</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/promise.html" class="tsd-kind-icon">Promise</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/set.html" class="tsd-kind-icon">Set</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/shimiterator.html" class="tsd-kind-icon">Shim<wbr>Iterator</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/weakmap.html" class="tsd-kind-icon">Weak<wbr>Map</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/executor.html" class="tsd-kind-icon">Executor</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/findcallback.html" class="tsd-kind-icon">Find<wbr>Callback</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/forofcallback.html" class="tsd-kind-icon">For<wbr>OfCallback</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/from.html" class="tsd-kind-icon">From</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/iterable.html" class="tsd-kind-icon">Iterable</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/iterableiterator.html" class="tsd-kind-icon">Iterable<wbr>Iterator</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/iterator.html" class="tsd-kind-icon">Iterator</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/iteratorresult.html" class="tsd-kind-icon">Iterator<wbr>Result</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/mapcallback.html" class="tsd-kind-icon">Map<wbr>Callback</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/mapconstructor.html" class="tsd-kind-icon">Map<wbr>Constructor</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/observableobject.html" class="tsd-kind-icon">Observable<wbr>Object</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/observer.html" class="tsd-kind-icon">Observer</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/promisetype.html" class="tsd-kind-icon">Promise<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/queueitem.html" class="tsd-kind-icon">Queue<wbr>Item</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/setconstructor.html" class="tsd-kind-icon">Set<wbr>Constructor</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/subscribable.html" class="tsd-kind-icon">Subscribable</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/subscriber.html" class="tsd-kind-icon">Subscriber</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/subscription.html" class="tsd-kind-icon">Subscription</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/subscriptionobserver.html" class="tsd-kind-icon">Subscription<wbr>Observer</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/weakmapconstructor.html" class="tsd-kind-icon">Weak<wbr>Map<wbr>Constructor</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#epsilon" class="tsd-kind-icon">EPSILON</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#high_surrogate_max" class="tsd-kind-icon">HIGH_<wbr>SURROGATE_<wbr>MAX</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#high_surrogate_min" class="tsd-kind-icon">HIGH_<wbr>SURROGATE_<wbr>MIN</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#low_surrogate_max" class="tsd-kind-icon">LOW_<wbr>SURROGATE_<wbr>MAX</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#low_surrogate_min" class="tsd-kind-icon">LOW_<wbr>SURROGATE_<wbr>MIN</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#max_safe_integer" class="tsd-kind-icon">MAX_<wbr>SAFE_<wbr>INTEGER</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#min_safe_integer" class="tsd-kind-icon">MIN_<wbr>SAFE_<wbr>INTEGER</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#acosh" class="tsd-kind-icon">acosh</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#asinh" class="tsd-kind-icon">asinh</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#atanh" class="tsd-kind-icon">atanh</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#cbrt" class="tsd-kind-icon">cbrt</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#clz32" class="tsd-kind-icon">clz32</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#codepointat" class="tsd-kind-icon">code<wbr>Point<wbr>At</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#copywithin" class="tsd-kind-icon">copy<wbr>Within</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#cosh" class="tsd-kind-icon">cosh</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#endswith" class="tsd-kind-icon">ends<wbr>With</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#entries" class="tsd-kind-icon">entries</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#expm1" class="tsd-kind-icon">expm1</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#fill" class="tsd-kind-icon">fill</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#find" class="tsd-kind-icon">find</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#findindex" class="tsd-kind-icon">find<wbr>Index</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#from" class="tsd-kind-icon">from</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#fromcodepoint" class="tsd-kind-icon">from<wbr>Code<wbr>Point</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#fround" class="tsd-kind-icon">fround</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#getownpropertydescriptor" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#getownpropertydescriptors" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Descriptors</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#getownpropertynames" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Names</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#getownpropertysymbols" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Symbols</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#hypot" class="tsd-kind-icon">hypot</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#imul" class="tsd-kind-icon">imul</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#includes" class="tsd-kind-icon">includes</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#is" class="tsd-kind-icon">is</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#issymbol" class="tsd-kind-icon">is<wbr>Symbol</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#keys" class="tsd-kind-icon">keys</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#log10" class="tsd-kind-icon">log10</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#log1p" class="tsd-kind-icon">log1p</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#log2" class="tsd-kind-icon">log2</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#of" class="tsd-kind-icon">of</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#padend" class="tsd-kind-icon">pad<wbr>End</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#padstart" class="tsd-kind-icon">pad<wbr>Start</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#queueanimationtask" class="tsd-kind-icon">queue<wbr>Animation<wbr>Task</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#queuemicrotask" class="tsd-kind-icon">queue<wbr>Micro<wbr>Task</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#queuetask" class="tsd-kind-icon">queue<wbr>Task</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#raw" class="tsd-kind-icon">raw</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#repeat" class="tsd-kind-icon">repeat</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#sign" class="tsd-kind-icon">sign</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#sinh" class="tsd-kind-icon">sinh</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#startswith" class="tsd-kind-icon">starts<wbr>With</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#tanh" class="tsd-kind-icon">tanh</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#trunc" class="tsd-kind-icon">trunc</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#values" class="tsd-kind-icon">values</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#addpromisetests" class="tsd-kind-icon">add<wbr>Promise<wbr>Tests</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#forof" class="tsd-kind-icon">for<wbr>Of</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#get" class="tsd-kind-icon">get</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#getvaluedescriptor" class="tsd-kind-icon">get<wbr>Value<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#hasclass" class="tsd-kind-icon">has<wbr>Class</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isarraylike" class="tsd-kind-icon">is<wbr>Array<wbr>Like</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#iseventuallyrejected" class="tsd-kind-icon">is<wbr>Eventually<wbr>Rejected</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isfinite" class="tsd-kind-icon">is<wbr>Finite</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isinteger" class="tsd-kind-icon">is<wbr>Integer</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isiterable" class="tsd-kind-icon">is<wbr>Iterable</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isnan" class="tsd-kind-icon">is<wbr>NaN</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#issafeinteger" class="tsd-kind-icon">is<wbr>Safe<wbr>Integer</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#main" class="tsd-kind-icon">main</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#throwimmediatly" class="tsd-kind-icon">throw<wbr>Immediatly</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#wrapnative" class="tsd-kind-icon">wrap<wbr>Native</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
