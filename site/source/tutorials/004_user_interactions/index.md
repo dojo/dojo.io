@@ -18,7 +18,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 ## Creating an event listener
 In the [previous](./003_creating_widgets) tutorial in this series, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
 
-The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level DNode has one property assigned: `classes`. Update the object containing that property as follows:
+The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level `DNode` has one property assigned: `classes`. Update the object containing that property as follows:
 
 ```ts
 {
@@ -42,7 +42,7 @@ For short event handlers you might be tempted to use an anonymous function like 
 return v('div', {
 	classes: this.classes(css.worker),
 	onclick: () => {
-		// Note: Do not do this, this is an
+		// Note: DO NOT DO THIS, this is an
 		// example of an anti-pattern
 		console.log('the handler has been called');
 	}
@@ -55,7 +55,7 @@ While this appears to work, Maquette doesn't allow an event handler to be update
 return v('div', {
 	classes: this.classes(css.worker),
 	onclick: () => {
-		// Note: Do not do this, this is an
+		// Note: DO NOT DO THIS, this is an
 		// example of an anti-pattern
 		console.log('the handler has been called');
 		this.invalidate();

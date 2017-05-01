@@ -16,7 +16,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## Printing static content
 
-Okay, now it is time to start customizing the application. To begin, let's startup the application with the development server so that we can see the impact of our changes. Run the following command in the application's root directory:
+Now it is time to start customizing the application. To begin, let's startup the application with the development server and observe the impact of our changes. Run the following command in the application's root directory:
 
 `dojo build -w`
 
