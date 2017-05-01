@@ -1,0 +1,1 @@
+window.MonacoEnvironment={getWorkerUrl:function(){return"/web-editor/worker-proxy.js"}};require.config({paths:{"@dojo/web-editor":"/web-editor",vs:"//unpkg.com/monaco-editor/min/vs","@dojo":"//unpkg.com/@dojo"}});function loadEditor(o){require(["@dojo/web-editor/main"],function(o){})}
