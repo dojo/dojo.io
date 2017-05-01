@@ -8,8 +8,7 @@ overview: In this tutorial, you will learn about the structure of a simple Dojo 
 # Building your first Dojo 2 application
 
 ## Overview
-In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that is created by the `dojo create` command.
-
+In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that we started with in the [previous tutorial](./001_static_content).
 
 ## Prerequisites
 
