@@ -1,0 +1,963 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/compose</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-index=" assets/js/search.js " data-base=" ./
+				">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text" />
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+				<a href="index.html " class="title">@dojo/compose</a>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked />
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>  @dojo/compose
+			</h1>
+		</div>
+	</div>
+	</div>    <div class="row content-container">
+	<div class="col-8 col-content">
+		<section class="tsd-panel-group tsd-index-group">
+			<h2>Index</h2>
+			<section class="tsd-panel tsd-index-panel">
+				<div class="tsd-index-content">
+					<section class="tsd-index-section ">
+						<h3>Enumerations</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-enum"><a href="enums/advicetype.html" class="tsd-kind-icon">Advice<wbr>Type</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Interfaces</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-interface"><a href="interfaces/advisingfunction.html" class="tsd-kind-icon">Advising<wbr>Function</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/afteradvice.html" class="tsd-kind-icon">After<wbr>Advice</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/aroundadvice.html" class="tsd-kind-icon">Around<wbr>Advice</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/aspectadvice.html" class="tsd-kind-icon">Aspect<wbr>Advice</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/beforeadvice.html" class="tsd-kind-icon">Before<wbr>Advice</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/cancelableevent.html" class="tsd-kind-icon">Cancelable<wbr>Event</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/compose.html" class="tsd-kind-icon">Compose</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/composecreatedmixin.html" class="tsd-kind-icon">Compose<wbr>Created<wbr>Mixin</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/composefactory.html" class="tsd-kind-icon">Compose<wbr>Factory</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/composeinitializationfunction.html" class="tsd-kind-icon">Compose<wbr>Initialization<wbr>Function</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/composemixindescriptor.html" class="tsd-kind-icon">Compose<wbr>Mixin<wbr>Descriptor</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/composemixinable.html" class="tsd-kind-icon">Compose<wbr>Mixinable</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/destroyablemixin.html" class="tsd-kind-icon">Destroyable<wbr>Mixin</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/dispatchadvice.html" class="tsd-kind-icon">Dispatch<wbr>Advice</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/eventedmixin.html" class="tsd-kind-icon">Evented<wbr>Mixin</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/genericclass.html" class="tsd-kind-icon">Generic<wbr>Class</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/genericfunction.html" class="tsd-kind-icon">Generic<wbr>Function</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/options.html" class="tsd-kind-icon">Options</a></li>
+							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/overlayfunction.html" class="tsd-kind-icon">Overlay<wbr>Function</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/statefulmixin.html" class="tsd-kind-icon">Stateful<wbr>Mixin</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Type aliases</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias"><a href="globals.html#composemixinitem" class="tsd-kind-icon">Compose<wbr>Mixin<wbr>Item</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Variables</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable"><a href="globals.html#environments" class="tsd-kind-icon">environments</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#removethis" class="tsd-kind-icon">remove<wbr>This</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#suites" class="tsd-kind-icon">suites</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Functions</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#after" class="tsd-kind-icon">after</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#around" class="tsd-kind-icon">around</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#before" class="tsd-kind-icon">before</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#getinitfunctionnames" class="tsd-kind-icon">get<wbr>Init<wbr>Function<wbr>Names</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#hasconfigurablename" class="tsd-kind-icon">has<wbr>Configurable<wbr>Name</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#hastostringtag" class="tsd-kind-icon">has<wbr>ToString<wbr>Tag</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#iscomposefactory" class="tsd-kind-icon">is<wbr>Compose<wbr>Factory</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#isdestroyable" class="tsd-kind-icon">is<wbr>Destroyable</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#resolvelistener" class="tsd-kind-icon">resolve<wbr>Listener</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Object literals</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-object-literal"><a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a></li>
+							<li class="tsd-kind-object-literal"><a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a></li>
+							<li class="tsd-kind-object-literal"><a href="globals.html#loaders" class="tsd-kind-icon">loaders</a></li>
+							<li class="tsd-kind-object-literal"><a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a></li>
+						</ul>
+					</section>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Type aliases</h2>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias">
+				<a name="composemixinitem" class="tsd-anchor"></a>
+				<h3>Compose<wbr>Mixin<wbr>Item</h3>
+				<div class="tsd-signature tsd-kind-icon">Compose<wbr>Mixin<wbr>Item<span class="tsd-signature-symbol">:</span> <a href="interfaces/genericclass.html" class="tsd-signature-type">GenericClass</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/composefactory.html" class="tsd-signature-type">ComposeFactory</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">O</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/compose.ts#L753">src/compose.ts:753</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Either a class, object literal, or a factory</p>
+					</div>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="environments" class="tsd-anchor"></a>
+				<h3>environments</h3>
+				<div class="tsd-signature tsd-kind-icon">environments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[{ browserName: &#x27;internet explorer&#x27;, version: [ &#x27;10.0&#x27;, &#x27;11.0&#x27; ], platform: &#x27;Windows 7&#x27; },{ browserName: &#x27;microsoftedge&#x27;, platform: &#x27;Windows 10&#x27; },{ browserName: &#x27;firefox&#x27;, version: &#x27;43&#x27;, platform: &#x27;Windows 10&#x27; },{ browserName: &#x27;chrome&#x27;, platform: &#x27;Windows 10&#x27; },{ browserName: &#x27;safari&#x27;, version: &#x27;9&#x27;, platform: &#x27;OS X 10.11&#x27; },/*{ browserName: &#x27;android&#x27;, platform: &#x27;Linux&#x27;, version: &#x27;4.4&#x27;, deviceName: &#x27;Google Nexus 7 HD Emulator&#x27; },*/{ browserName: &#x27;iphone&#x27;, version: &#x27;9.1&#x27;, deviceName: &#x27;iPhone 6&#x27; }]</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L22">tests/intern.ts:22</a></li>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-local.ts#L9">tests/intern-local.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-saucelabs.ts#L3">tests/intern-saucelabs.ts:3</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="excludeinstrumentation" class="tsd-anchor"></a>
+				<h3>exclude<wbr>Instrumentation</h3>
+				<div class="tsd-signature tsd-kind-icon">exclude<wbr>Instrumentation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;/(?:node_modules|bower_components|tests|_modules)[\/\\]/</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L70">tests/intern.ts:70</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="functionalsuites" class="tsd-anchor"></a>
+				<h3>functional<wbr>Suites</h3>
+				<div class="tsd-signature tsd-kind-icon">functional<wbr>Suites<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[ &#x27;tests/functional/all&#x27; ]</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L67">tests/intern.ts:67</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="initialbaseurl" class="tsd-anchor"></a>
+				<h3>initial<wbr>Base<wbr>Url</h3>
+				<div class="tsd-signature tsd-kind-icon">initial<wbr>Base<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;(function () {if (typeof location !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; location.pathname.indexOf(&#x27;__intern/&#x27;) &gt; -1) {return &#x27;/&#x27;;}return null;})()</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L37">tests/intern.ts:37</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="maxconcurrency" class="tsd-anchor"></a>
+				<h3>max<wbr>Concurrency</h3>
+				<div class="tsd-signature tsd-kind-icon">max<wbr>Concurrency<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">4</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L31">tests/intern.ts:31</a></li>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-saucelabs.ts#L14">tests/intern-saucelabs.ts:14</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="proxyport" class="tsd-anchor"></a>
+				<h3>proxy<wbr>Port</h3>
+				<div class="tsd-signature tsd-kind-icon">proxy<wbr>Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">9000</span><span class="tsd-signature-symbol"> =&nbsp;9000</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L1">tests/intern.ts:1</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="proxyurl" class="tsd-anchor"></a>
+				<h3>proxy<wbr>Url</h3>
+				<div class="tsd-signature tsd-kind-icon">proxy<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"http://localhost:9000/"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://localhost:9000/&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L4">tests/intern.ts:4</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="removethis" class="tsd-anchor"></a>
+				<h3>remove<wbr>This</h3>
+				<div class="tsd-signature tsd-kind-icon">remove<wbr>This<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">1</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/functional/all.ts#L1">tests/functional/all.ts:1</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="suites" class="tsd-anchor"></a>
+				<h3>suites</h3>
+				<div class="tsd-signature tsd-kind-icon">suites<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[ &#x27;tests/unit/all&#x27; ]</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L64">tests/intern.ts:64</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="tunnel" class="tsd-anchor"></a>
+				<h3>tunnel</h3>
+				<div class="tsd-signature tsd-kind-icon">tunnel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"SauceLabsTunnel"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;SauceLabsTunnel&quot;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L34">tests/intern.ts:34</a></li>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-local.ts#L3">tests/intern-local.ts:3</a></li>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-saucelabs.ts#L16">tests/intern-saucelabs.ts:16</a></li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Functions</h2>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="after" class="tsd-anchor"></a>
+				<h3>after</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">after&lt;F, T&gt;<span class="tsd-signature-symbol">(</span>joinPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span>, advice<span class="tsd-signature-symbol">: </span><a href="interfaces/afteradvice.html" class="tsd-signature-type">AfterAdvice</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/aspect.ts#L158">src/aspect.ts:158</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Apply advice <em>after</em> the supplied joinPoint (function)</p>
+							</div>
+						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/genericfunction.html" class="tsd-signature-type">GenericFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+							<li>
+								<h4>T</h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>joinPoint: <span class="tsd-signature-type">F</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>A function that should have advice applied to</p>
+								</div>
+							</li>
+							<li>
+								<h5>advice: <a href="interfaces/afteradvice.html" class="tsd-signature-type">AfterAdvice</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The after advice</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">F</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="around" class="tsd-anchor"></a>
+				<h3>around</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">around&lt;F, T&gt;<span class="tsd-signature-symbol">(</span>joinPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span>, advice<span class="tsd-signature-symbol">: </span><a href="interfaces/aroundadvice.html" class="tsd-signature-type">AroundAdvice</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/aspect.ts#L168">src/aspect.ts:168</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Apply advice <em>around</em> the supplied joinPoint (function)</p>
+							</div>
+						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/genericfunction.html" class="tsd-signature-type">GenericFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+							<li>
+								<h4>T</h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>joinPoint: <span class="tsd-signature-type">F</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>A function that should have advice applied to</p>
+								</div>
+							</li>
+							<li>
+								<h5>advice: <a href="interfaces/aroundadvice.html" class="tsd-signature-type">AroundAdvice</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The around advice</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">F</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="before" class="tsd-anchor"></a>
+				<h3>before</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">before&lt;F&gt;<span class="tsd-signature-symbol">(</span>joinPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span>, advice<span class="tsd-signature-symbol">: </span><a href="interfaces/beforeadvice.html" class="tsd-signature-type">BeforeAdvice</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/aspect.ts#L148">src/aspect.ts:148</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Apply advice <em>before</em> the supplied joinPoint (function)</p>
+							</div>
+						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/genericfunction.html" class="tsd-signature-type">GenericFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>joinPoint: <span class="tsd-signature-type">F</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>A function that should have advice applied to</p>
+								</div>
+							</li>
+							<li>
+								<h5>advice: <a href="interfaces/beforeadvice.html" class="tsd-signature-type">BeforeAdvice</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The before advice</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">F</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="getinitfunctionnames" class="tsd-anchor"></a>
+				<h3>get<wbr>Init<wbr>Function<wbr>Names</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Init<wbr>Function<wbr>Names<span class="tsd-signature-symbol">(</span>factory<span class="tsd-signature-symbol">: </span><a href="interfaces/composefactory.html" class="tsd-signature-type">ComposeFactory</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/compose.ts#L179">src/compose.ts:179</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>For a given factory, return the names of the initialization functions that will be
+								invoked upon construction.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>factory: <a href="interfaces/composefactory.html" class="tsd-signature-type">ComposeFactory</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The factory that the array of function names should be returned for</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">undefined</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="hasconfigurablename" class="tsd-anchor"></a>
+				<h3>has<wbr>Configurable<wbr>Name</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">has<wbr>Configurable<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/support/util.ts#L7">tests/support/util.ts:7</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Detects if functions have configurable names, some browsers that are not 100% ES2015
+								compliant do not.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="hastostringtag" class="tsd-anchor"></a>
+				<h3>has<wbr>ToString<wbr>Tag</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">has<wbr>ToString<wbr>Tag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/support/util.ts#L23">tests/support/util.ts:23</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Detects if the runtime environment supports specifying a Symbol.toStringTag</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="iscomposefactory" class="tsd-anchor"></a>
+				<h3>is<wbr>Compose<wbr>Factory</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Compose<wbr>Factory<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/compose.ts#L443">src/compose.ts:443</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A custom type guard that determines if the value is a ComposeFactory</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The target to check</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						<p>Return true if it is a ComposeFactory, otherwise false</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="isdestroyable" class="tsd-anchor"></a>
+				<h3>is<wbr>Destroyable</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Destroyable<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/bases/destroyableMixin.ts#L34">src/bases/destroyableMixin.ts:34</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A type guard that determines if the value is a destroyableMixin</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The value to guard for</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="resolvelistener" class="tsd-anchor"></a>
+				<h3>resolve<wbr>Listener</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">resolve<wbr>Listener&lt;T, E&gt;<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventedListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventedCallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/src/bases/eventedMixin.ts#L52">src/bases/eventedMixin.ts:52</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>An internal function that always returns an EventedCallback</p>
+							</div>
+						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>T</h4>
+							</li>
+							<li>
+								<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventTargettedObject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>listener: <span class="tsd-signature-type">EventedListener</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Either a <code>EventedCallback</code> or an <code>Actionable</code></p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">EventedCallback</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Object literals</h2>
+			<section class="tsd-panel tsd-member tsd-kind-object-literal">
+				<a name="capabilities" class="tsd-anchor"></a>
+				<h3>capabilities</h3>
+				<div class="tsd-signature tsd-kind-icon">capabilities<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L12">tests/intern.ts:12</a></li>
+					</ul>
+				</aside>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="capabilities.browserstack_debug" class="tsd-anchor"></a>
+					<h3>browserstack.debug</h3>
+					<div class="tsd-signature tsd-kind-icon">browserstack.debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L13">tests/intern.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="capabilities.fixsessioncapabilities" class="tsd-anchor"></a>
+					<h3>fix<wbr>Session<wbr>Capabilities</h3>
+					<div class="tsd-signature tsd-kind-icon">fix<wbr>Session<wbr>Capabilities<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L16">tests/intern.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="capabilities.name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;@dojo/compose&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L15">tests/intern.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="capabilities.project" class="tsd-anchor"></a>
+					<h3>project</h3>
+					<div class="tsd-signature tsd-kind-icon">project<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Dojo 2&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L14">tests/intern.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-object-literal">
+				<a name="loaderoptions" class="tsd-anchor"></a>
+				<h3>loader<wbr>Options</h3>
+				<div class="tsd-signature tsd-kind-icon">loader<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L53">tests/intern.ts:53</a></li>
+					</ul>
+				</aside>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="loaderoptions.packages" class="tsd-anchor"></a>
+					<h3>packages</h3>
+					<div class="tsd-signature tsd-kind-icon">packages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[{ name: &#x27;src&#x27;, location: &#x27;_build/src&#x27; },{ name: &#x27;tests&#x27;, location: &#x27;_build/tests&#x27; },{ name: &#x27;@dojo&#x27;, location: &#x27;node_modules/@dojo&#x27; },{ name: &#x27;grunt-dojo2&#x27;, location: &#x27;node_modules/grunt-dojo2&#x27; }]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L55">tests/intern.ts:55</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-object-literal">
+				<a name="loaders" class="tsd-anchor"></a>
+				<h3>loaders</h3>
+				<div class="tsd-signature tsd-kind-icon">loaders<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L46">tests/intern.ts:46</a></li>
+					</ul>
+				</aside>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="loaders.host_browser" class="tsd-anchor"></a>
+					<h3>host-<wbr>browser</h3>
+					<div class="tsd-signature tsd-kind-icon">host-<wbr>browser<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;node_modules/@dojo/loader/loader.js&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L47">tests/intern.ts:47</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="loaders.host_node" class="tsd-anchor"></a>
+					<h3>host-<wbr>node</h3>
+					<div class="tsd-signature tsd-kind-icon">host-<wbr>node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;@dojo/loader&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern.ts#L48">tests/intern.ts:48</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-object-literal">
+				<a name="tunneloptions" class="tsd-anchor"></a>
+				<h3>tunnel<wbr>Options</h3>
+				<div class="tsd-signature tsd-kind-icon">tunnel<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-local.ts#L4">tests/intern-local.ts:4</a></li>
+					</ul>
+				</aside>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="tunneloptions.hostname" class="tsd-anchor"></a>
+					<h3>hostname</h3>
+					<div class="tsd-signature tsd-kind-icon">hostname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;localhost&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-local.ts#L5">tests/intern-local.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<a name="tunneloptions.port" class="tsd-anchor"></a>
+					<h3>port</h3>
+					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;4444&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dojo/compose/blob/e4a9f54/tests/intern-local.ts#L6">tests/intern-local.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+		</section>
+	</div>
+	<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+		<nav class="tsd-navigation primary">
+			<ul>
+				<li class="globals current ">
+					<a href="globals.html"><em>Globals</em></a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="tsd-navigation secondary menu-sticky">
+			<ul class="before-current">
+				<li class=" tsd-kind-enum">
+					<a href="enums/advicetype.html" class="tsd-kind-icon">Advice<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/advisingfunction.html" class="tsd-kind-icon">Advising<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/afteradvice.html" class="tsd-kind-icon">After<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/aroundadvice.html" class="tsd-kind-icon">Around<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/aspectadvice.html" class="tsd-kind-icon">Aspect<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/beforeadvice.html" class="tsd-kind-icon">Before<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/cancelableevent.html" class="tsd-kind-icon">Cancelable<wbr>Event</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/compose.html" class="tsd-kind-icon">Compose</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composecreatedmixin.html" class="tsd-kind-icon">Compose<wbr>Created<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composefactory.html" class="tsd-kind-icon">Compose<wbr>Factory</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composeinitializationfunction.html" class="tsd-kind-icon">Compose<wbr>Initialization<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composemixindescriptor.html" class="tsd-kind-icon">Compose<wbr>Mixin<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/composemixinable.html" class="tsd-kind-icon">Compose<wbr>Mixinable</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/destroyablemixin.html" class="tsd-kind-icon">Destroyable<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/dispatchadvice.html" class="tsd-kind-icon">Dispatch<wbr>Advice</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/eventedmixin.html" class="tsd-kind-icon">Evented<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/genericclass.html" class="tsd-kind-icon">Generic<wbr>Class</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/genericfunction.html" class="tsd-kind-icon">Generic<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/overlayfunction.html" class="tsd-kind-icon">Overlay<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/statefulmixin.html" class="tsd-kind-icon">Stateful<wbr>Mixin</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#composemixinitem" class="tsd-kind-icon">Compose<wbr>Mixin<wbr>Item</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#removethis" class="tsd-kind-icon">remove<wbr>This</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#after" class="tsd-kind-icon">after</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#around" class="tsd-kind-icon">around</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#before" class="tsd-kind-icon">before</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getinitfunctionnames" class="tsd-kind-icon">get<wbr>Init<wbr>Function<wbr>Names</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#hasconfigurablename" class="tsd-kind-icon">has<wbr>Configurable<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#hastostringtag" class="tsd-kind-icon">has<wbr>ToString<wbr>Tag</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#iscomposefactory" class="tsd-kind-icon">is<wbr>Compose<wbr>Factory</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isdestroyable" class="tsd-kind-icon">is<wbr>Destroyable</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#resolvelistener" class="tsd-kind-icon">resolve<wbr>Listener</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

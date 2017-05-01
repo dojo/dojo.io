@@ -1,0 +1,718 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/i18n</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-index=" assets/js/search.js " data-base=" ./
+				">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text" />
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+				<a href="index.html " class="title">@dojo/i18n</a>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked />
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>  @dojo/i18n
+			</h1>
+		</div>
+	</div>
+	</div>    <div class="row content-container">
+	<div class="col-8 col-content">
+		<div class="tsd-panel tsd-typography">
+			<h1 id="-dojo-i18n">@dojo/i18n</h1>
+			<p><a href="https://travis-ci.org/dojo/i18n"><img src="https://travis-ci.org/dojo/i18n.svg?branch=master" alt="Build Status"></a>
+				<a href="http://codecov.io/github/dojo/i18n?branch=master"><img src="http://codecov.io/github/dojo/i18n/coverage.svg?branch=master" alt="codecov.io"></a>
+			<a href="https://badge.fury.io/js/%40dojo%2Fi18n"><img src="https://badge.fury.io/js/%40dojo%2Fi18n.svg" alt="npm version"></a></p>
+			<p>An internationalization library that provides locale-specific message loading, and support for locale-specific message, date, and number formatting.</p>
+			<p><strong>WARNING</strong> This is <em>beta</em> software. While we do not anticipate significant changes to the API at this stage, we may feel the need to do so. This is not yet production ready, so you should use at your own risk.</p>
+			<ul>
+				<li><a href="#usage">Usage</a></li>
+				<li><a href="#features">Features</a><ul>
+						<li><a href="#message-bundle-loading">Message Bundle Loading</a></li>
+						<li><a href="#determining-the-current-locale">Determining the Current Locale</a></li>
+						<li><a href="#changing-the-root-locale-and-observering-locale-changes">Changing the Root Locale and Observing Locale Changes</a></li>
+						<li><a href="#loading-cldr-data">Loading CLDR data</a></li>
+						<li><a href="#icu-message-formatting">ICU Message Formatting</a></li>
+						<li><a href="#date-and-number-formatting">Date and number formatting</a></li>
+					</ul>
+				</li>
+				<li><a href="#how-do-i-contribute">How do I contribute?</a><ul>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#testing">Testing</a></li>
+					</ul>
+				</li>
+				<li><a href="#licensing-information">Licensing information</a></li>
+			</ul>
+			<h2 id="usage">Usage</h2>
+			<p>To use <code>@dojo/i18n</code>, install the package along with its required peer dependencies:</p>
+			<pre><code class="lang-bash">npm install @dojo/i18n
+
+<span class="hljs-comment"># peer dependencies</span>
+npm install @dojo/core
+npm install @dojo/has
+npm install @dojo/shim
+</code></pre>
+			<p>With TypeScript or ES6 modules, you would generally want to just import the @dojo/i18n/i18n module:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> i18n, { Messages } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/i18n'</span>;
+<span class="hljs-keyword">import</span> messageBundle <span class="hljs-keyword">from</span> <span class="hljs-string">'path/to/bundle'</span>;
+
+i18n(messageBundle, <span class="hljs-string">'fr'</span>).then(<span class="hljs-function">(<span class="hljs-params">messages: Messages</span>) =&gt;</span> {
+    <span class="hljs-comment">// locale-specific messages ready to use...</span>
+});
+</code></pre>
+			<h2 id="features">Features</h2>
+			<p>The examples below are provided in TypeScript syntax. The package does work under JavaScript, but for clarity, the examples will only include one syntax.</p>
+			<h3 id="message-bundle-loading">Message Bundle Loading</h3>
+			<p><code>@dojo/i18n</code> provides a means for loading locale-specific messages, and updating those messages when the locale changes. Each bundle has a default module that is <code>import</code>ed like any other TypeScript module. Locale-specific messages are then loaded via the <code>i18n</code> method. Every default bundle MUST provide a <code>bundlePath</code> that will be used to determine locale bundle locations, a <code>locales</code> array of supported locales, and a <code>messages</code> map of default messages. For example, suppose the module located at <code>nls/common.ts</code> contains the following contents:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> bundlePath = <span class="hljs-string">'nls/common'</span>;
+<span class="hljs-keyword">const</span> locales = [ <span class="hljs-string">'fr'</span>, <span class="hljs-string">'ar'</span>, <span class="hljs-string">'ar-JO'</span> ];
+<span class="hljs-keyword">const</span> messages = {
+    hello: <span class="hljs-string">'Hello'</span>,
+    goodbye: <span class="hljs-string">'Goodbye'</span>
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> { bundlePath, locales, messages };
+</code></pre>
+			<p>There are three things to note about the structure of default bundles. First, the <code>messages</code> object contains default messages for all keys used through the bundle. These messages are used as fallbacks for any messages not included in locale-specific bundles.</p>
+			<p>Second, the <code>locales</code> array indicates that the listed locales have corresponding directories underneath the parent directory. In the above example, the fact that &quot;fr&quot; (French) is supported indicates that the default bundle&#39;s parent directory also contains a <code>fr/common.ts</code> module (which would be represented by the module ID <code>nls/fr/common</code>). Alternatively, if the default messages were housed in the module ID <code>arbitrary/path/numbers.ts</code>, the corresponding &quot;fr&quot; messages would be expected at <code>arbitrary/path/fr/numbers.ts</code>.</p>
+			<p>Third, the <code>bundlePath</code> indicates where the bundle is located, using whichever module path format is understood by the underlying system loader (<code>global.require</code>, assumed to be the default <code>require</code> in Node, and the <a href="https://github.com/dojo/loader/">Dojo 2 loader</a> in browser environments). The <code>bundlePath</code> is not only required, but also MUST be in the format <code>{basePath}{separator}{filename}</code> in order for the i18n system to correctly find locale-specific bundles.</p>
+			<p>Once the default bundle is in place, any locale-specific messages are loaded by passing the default bundle to the <code>i18n</code> function. The locale bundles expose their messages on their default exports:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> messages = {
+    hello: <span class="hljs-string">'Bonjour'</span>,
+    goodbye: <span class="hljs-string">'Au revoir'</span>
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> messages;
+</code></pre>
+			<p>Using the previous example as the default bundle, any locale-specific messages are loaded as follows:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> i18n, { Messages } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/main'</span>;
+<span class="hljs-keyword">import</span> bundle <span class="hljs-keyword">from</span> <span class="hljs-string">'nls/common'</span>;
+
+i18n(bundle, <span class="hljs-string">'fr'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">messages: Messages</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(messages.hello); <span class="hljs-comment">// "Bonjour"</span>
+    <span class="hljs-built_in">console</span>.log(messages.goodbye); <span class="hljs-comment">// "Au revoir"</span>
+});
+</code></pre>
+			<p>If an unsupported locale is passed to <code>i18n</code>, then the default messages are returned. Further, any messages not provided by the locale-specific bundle will also fall back to their defaults. As such, the default bundle should contain <em>all</em> message keys used by any of the locale-specific bundles.</p>
+			<p>Once locale dictionaries for a bundle have been loaded, they are cached and can be accessed synchronously via <code>getCachedMessages</code>:</p>
+			<pre><code><span class="hljs-keyword">const</span> messages = getCachedMessages(bundle, <span class="hljs-string">'fr'</span>);
+<span class="hljs-built_in">console</span>.log(messages.hello); <span class="hljs-comment">// "Bonjour"</span>
+<span class="hljs-built_in">console</span>.log(messages.goodbye); <span class="hljs-comment">// "Au revoir"</span>
+</code></pre><p><code>getCachedMessages</code> will look up the bundle&#39;s supported <code>locales</code> to determine whether the default messages should be returned. Locales are also normalized to their most specific messages. For example, if the &#39;fr&#39; locale is supported, but &#39;fr-CA&#39; is not, <code>getCachedMessages</code> will return the messages for the &#39;fr&#39; locale:</p>
+			<pre><code><span class="hljs-keyword">const</span> frenchMessages = getCachedMessages(bundle, <span class="hljs-string">'fr-CA'</span>);
+<span class="hljs-built_in">console</span>.log(frenchMessages.hello); <span class="hljs-comment">// "Bonjour"</span>
+<span class="hljs-built_in">console</span>.log(frenchMessages.goodbye); <span class="hljs-comment">// "Au revoir"</span>
+
+<span class="hljs-keyword">const</span> madeUpLocaleMessages = getCachedMessages(bundle, <span class="hljs-string">'made-up-locale'</span>);
+<span class="hljs-built_in">console</span>.log(madeUpLocaleMessages.hello); <span class="hljs-comment">// "Hello"</span>
+<span class="hljs-built_in">console</span>.log(madeUpLocaleMessages.goodbye); <span class="hljs-comment">// "Goodbye"</span>
+</code></pre><p>If need be, bundle caches can be cleared with <code>invalidate</code>. If called with a bundle path, only the messages for that particular bundle are removed from the cache. Otherwise, all messages are cleared:</p>
+			<pre><code><span class="hljs-keyword">import</span> i18n <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/main'</span>;
+<span class="hljs-keyword">import</span> bundle <span class="hljs-keyword">from</span> <span class="hljs-string">'nls/common'</span>;
+
+i18n(bundle, <span class="hljs-string">'ar'</span>).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    invalidate(bundle.bundlePath);
+    <span class="hljs-built_in">console</span>.log(getCachedMessages(bundle, <span class="hljs-string">'ar'</span>)); <span class="hljs-regexp">//</span> <span class="hljs-literal">undefined</span>
+});
+</code></pre><h3 id="determining-the-current-locale">Determining the Current Locale</h3>
+			<p>The current locale can be accessed via the read-only property <code>i18n.locale</code>, which will always be either the locale set via <code>switchLocale</code> (see below) or the <code>systemLocale</code>. <code>systemLocale</code> is always set to the user&#39;s default locale.</p>
+			<h3 id="changing-the-root-locale-and-observing-locale-changes">Changing the Root Locale and Observing Locale Changes</h3>
+			<p>The <code>switchLocale</code> method changes the root locale and notifies all <a href="https://github.com/dojo/shim"><code>Observers</code></a> registered with <code>observeLocale</code> (no <code>error</code> or <code>complete</code> methods are currently used when switching locales).</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> i18n, { observeLocale, switchLocale } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/i18n'</span>;
+<span class="hljs-keyword">import</span> bundle <span class="hljs-keyword">from</span> <span class="hljs-string">'nls/bundle'</span>;
+
+<span class="hljs-comment">// Register an `Observable`</span>
+observeLocale({
+    next(locale: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-comment">// handle locale change...</span>
+    }
+});
+
+<span class="hljs-comment">// Change the locale to German. The registered observer's `next` method will be called</span>
+<span class="hljs-comment">// with the new locale.</span>
+switchLocale(<span class="hljs-string">'de'</span>);
+
+<span class="hljs-comment">// The locale is again switched to German, but since the current root locale is</span>
+<span class="hljs-comment">// already German, registered observers will not be notified.</span>
+switchLocale(<span class="hljs-string">'de'</span>);
+</code></pre>
+			<h3 id="loading-cldr-data">Loading CLDR data</h3>
+			<p>Given the very large size of the <a href="http://cldr.unicode.org">Unicode CLDR data</a>, it is not included as a dependency of <code>@dojo/i18n</code>. For applications that use <code>@dojo/i18n</code> only for selecting unformatted, locale-specific messages, this is not a concern. However, if using the <a href="http://userguide.icu-project.org/formatparse/messages">ICU-formatted messages</a> or any of the other formatters provided by <code>@dojo/i18n</code> (see below), applications must explicitly load any required CLDR data via the <code>loadCldrData</code> method exported by <code>@dojo/i18n/cldr/load</code>. <code>loadCldrData</code> accepts either an object of CLDR data, or an array of URLs to CLDR JSON files. All CLDR data MUST match the format used by the <a href="https://github.com/unicode-cldr/cldr-json">Unicode CLDR JSON</a> files. Supplemental data MUST be nested within a top-level <code>supplemental</code> object, and locale-specific data MUST be nested under locale objects within a top-level <code>main</code> object:</p>
+			<pre><code><span class="hljs-keyword">import</span> loadCldrData from <span class="hljs-string">'@dojo/i18n/cldr/load'</span>;
+
+// Using a CLDR data object.
+loadCldrData({
+    <span class="hljs-string">"supplemental"</span>: {
+        <span class="hljs-string">"likelySubtags"</span>: { ... }
+    },
+    <span class="hljs-string">"main"</span>: {
+        <span class="hljs-string">"en"</span>: {
+            <span class="hljs-string">"numbers"</span>: { ... }
+        }
+    }
+});
+
+// Using an <span class="hljs-keyword">array</span> <span class="hljs-keyword">of</span> URLs
+loadCldrData([
+    <span class="hljs-string">'cldr-data/supplemental/likelySubtags.json'</span>,
+    <span class="hljs-string">'cldr-data/main/en/numbers.json'</span>
+]);
+</code></pre><p><code>@dojo/i18n</code> requires the following CLDR data:</p>
+			<p>For ICU message formatting:</p>
+			<ul>
+				<li><code>supplemental/likelySubtags</code></li>
+			</ul>
+			<p>For date/time formatting:</p>
+			<ul>
+				<li><code>main/{locale}/ca-gregorian</code></li>
+				<li><code>main/{locale}/dateFields</code></li>
+				<li><code>main/{locale}/numbers</code></li>
+				<li><code>main/{locale}/timeZoneNames</code></li>
+				<li><code>supplemental/likelySubtags</code></li>
+				<li><code>supplemental/numberingSystems</code></li>
+				<li><code>supplemental/ordinals</code></li>
+				<li><code>supplemental/plurals</code></li>
+				<li><code>supplemental/timeData</code></li>
+				<li><code>supplemental/weekData</code></li>
+			</ul>
+			<p>For number/currency formatting:</p>
+			<ul>
+				<li><code>main/{locale}/currencies</code></li>
+				<li><code>main/{locale}/numbers</code></li>
+				<li><code>supplemental/currencyData</code></li>
+				<li><code>supplemental/likelySubtags</code></li>
+				<li><code>supplemental/numberingSystems</code></li>
+				<li><code>supplemental/ordinals</code></li>
+				<li><code>supplemental/plurals</code></li>
+			</ul>
+			<p>For unit formatting:</p>
+			<ul>
+				<li><code>main/{locale}/numbers</code></li>
+				<li><code>main/{locale}/units</code></li>
+				<li><code>supplemental/likelySubtags</code></li>
+				<li><code>supplemental/numberingSystems</code></li>
+				<li><code>supplemental/ordinals</code></li>
+				<li><code>supplemental/plurals</code></li>
+			</ul>
+			<h3 id="icu-message-formatting">ICU Message Formatting</h3>
+			<p><strong>Note</strong>: This feature requires CLDR data (see above).</p>
+			<p><code>@dojo/i18n</code> relies on <a href="https://github.com/jquery/globalize/blob/master/doc/api/message/message-formatter.md">Globalize.js</a> for <a href="http://userguide.icu-project.org/formatparse/messages">ICU message formatting</a>, and as such all of the features offered by Globalize.js are available through <code>@dojo/i18n</code>. The <code>i18n</code> module exposes two methods that handle message formatting: 1) <code>formatMessage</code>, which directly returns a formatted message based on its inputs, and 2) <code>getMessageFormatter</code>, which returns a method dedicated to formatting a single message.</p>
+			<p>As an example, suppose there is a locale bundle with a <code>guestInfo</code> message:</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> messages = {
+    guestInfo: <span class="hljs-string">`{gender, select,
+        female {
+            {guestCount, plural, offset:1
+            =0 {{host} does not give a party.}
+            =1 {{host} invites {guest} to her party.}
+            =2 {{host} invites {guest} and one other person to her party.}
+            other {{host} invites {guest} and # other people to her party.}}}
+        male {
+            {guestCount, plural, offset:1
+            =0 {{host} does not give a party.}
+            =1 {{host} invites {guest} to his party.}
+            =2 {{host} invites {guest} and one other person to his party.}
+            other {{host} invites {guest} and # other people to his party.}}}
+        other {
+            {guestCount, plural, offset:1
+            =0 {{host} does not give a party.}
+            =1 {{host} invites {guest} to their party.}
+            =2 {{host} invites {guest} and one other person to their party.}
+            other {{host} invites {guest} and # other people to their party.}}}}`</span>
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> messages;
+</code></pre>
+			<p>The above message can be converted directly with <code>formatMessage</code>, or <code>getMessageFormatter</code> can be used to generate a function that can be used over and over with different options. Note that the formatters created and used by both methods are cached, so there is no performance penalty from compiling the same message multiple times.</p>
+			<p>Since the Globalize.js formatting methods use message paths rather than the message strings themselves, the <code>@dojo/i18n</code> methods also require both the bundle path and the message key, which will be resolved to a message path. If an optional locale is provided, then the corresponding locale-specific message will be used. Otherwise, the current locale is assumed.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> i18n, { formatMessage, getMessageFormatter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/i18n'</span>;
+<span class="hljs-keyword">import</span> bundle <span class="hljs-keyword">from</span> <span class="hljs-string">'nls/main'</span>;
+
+<span class="hljs-comment">// 1. Load the messages for the locale.</span>
+i18n(bundle, <span class="hljs-string">'en'</span>).then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> message = formatMessage(bundle.bundlePath, <span class="hljs-string">'guestInfo'</span>, {
+        host: <span class="hljs-string">'Margaret Mead'</span>,
+        gender: <span class="hljs-string">'female'</span>,
+        guest: <span class="hljs-string">'Laura Nader'</span>,
+        guestCount: <span class="hljs-number">20</span>
+    }, <span class="hljs-string">'en'</span>);
+    <span class="hljs-built_in">console</span>.log(message); <span class="hljs-comment">// "Margaret Mead invites Laura Nader and 19 other people to her party."</span>
+
+    <span class="hljs-keyword">const</span> formatter = getMessageFormatter(bundle.bundlePath, <span class="hljs-string">'guestInfo'</span>, <span class="hljs-string">'en'</span>);
+    <span class="hljs-built_in">console</span>.log(formatter({
+        host: <span class="hljs-string">'Margaret Mead'</span>,
+        gender: <span class="hljs-string">'female'</span>,
+        guest: <span class="hljs-string">'Laura Nader'</span>,
+        guestCount: <span class="hljs-number">20</span>
+    })); <span class="hljs-comment">// "Margaret Mead invites Laura Nader and 19 other people to her party."</span>
+
+    <span class="hljs-built_in">console</span>.log(formatter({
+        host: <span class="hljs-string">'Marshall Sahlins'</span>,
+        gender: <span class="hljs-string">'male'</span>,
+        guest: <span class="hljs-string">'Bronisław Malinowski'</span>
+    })); <span class="hljs-comment">// "Marshall Sahlins invites Bronisław Malinowski to his party."</span>
+});
+</code></pre>
+			<h3 id="date-and-number-formatting-">Date and number formatting.</h3>
+			<p><strong>Note</strong>: This feature requires CLDR data (see above).</p>
+			<p>As with the message formatting capabilities, <code>@dojo/i18n</code> relies on Globalize.js to provide locale-specific formatting for dates, times, currencies, numbers, and units. The formatters themselves are essentially light wrappers around their Globalize.js counterparts, which helps maintain consistency with the Dojo 2 ecosystem and prevents the need to work with the <code>Globalize</code> object directly. Unlike the message formatters, the date, number, and unit formatters are not cached, as they have a more complex set of options. As such, executing the various &quot;get formatter&quot; methods multiple times with the same inputs does not return the exact same function object.</p>
+			<p><code>@dojo/i18n</code> groups the various formatters accordingly: date and time formatters (<code>@dojo/i18n/date</code>); number, currency, and pluralization formatters (<code>@dojo/i18n/number</code>); and unit formatters (<code>@dojo/i18n/unit</code>). Each method corresponds to a Globalize.js method (see below), and each method follows the same basic format: the last argument is an optional locale, and the penultimate argument is the method options. If specifying a locale but no options, pass <code>null</code> as the <code>options</code> argument. If no locale is provided, then the current (<code>i18n.locale</code>) is assumed.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { formatDate, getDateFormatter, formatRelativeTime } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/date'</span>;
+<span class="hljs-keyword">import</span> { formatCurrency, getCurrencyFormatter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/number'</span>;
+<span class="hljs-keyword">import</span> { formatUnit, getUnitFormatter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/i18n/unit'</span>;
+
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">1815</span>, <span class="hljs-number">11</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">27</span>);
+
+<span class="hljs-comment">// Assume the current locale is "en"</span>
+<span class="hljs-keyword">const</span> enDateFormatter = getDateFormatter({ datetime: <span class="hljs-string">'medium'</span> });
+enDateFormatter(date); <span class="hljs-comment">// Dec 10, 1815, 11:27:00 AM</span>
+formatDate(date, { date: <span class="hljs-string">'short'</span> }); <span class="hljs-comment">// 12/10/15</span>
+
+<span class="hljs-keyword">const</span> frDateFormatter = getDateFormatter({ datetime: <span class="hljs-string">'medium'</span> }, <span class="hljs-string">'fr'</span>);
+frDateFormatter(date); <span class="hljs-comment">// 10 déc. 1815 à 11:27:00</span>
+formatDate(date, { date: <span class="hljs-string">'short'</span> }, <span class="hljs-string">'fr'</span>); <span class="hljs-comment">// 10/12/1815</span>
+
+formatRelativeTime(<span class="hljs-number">-1</span>, <span class="hljs-string">'week'</span>); <span class="hljs-comment">// "last week"</span>
+formatRelativeTime(<span class="hljs-number">-1</span>, <span class="hljs-string">'week'</span>, { form: <span class="hljs-string">'short'</span> }); <span class="hljs-comment">// "last wk."</span>
+formatRelativeTime(<span class="hljs-number">-3</span>, <span class="hljs-string">'week'</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">'fr'</span>); <span class="hljs-comment">// "il y a 3 semaines"</span>
+formatRelativeTime(<span class="hljs-number">-3</span>, <span class="hljs-string">'week'</span>, { form: <span class="hljs-string">'short'</span> }, <span class="hljs-string">'fr'</span>); <span class="hljs-comment">// "il y a 3 sem."</span>
+
+<span class="hljs-keyword">const</span> enCurrencyFormatter = getCurrencyFormatter(<span class="hljs-string">'USD'</span>, { style: <span class="hljs-string">'code'</span> });
+enCurrencyFormatter(<span class="hljs-number">1234.56</span>); <span class="hljs-comment">// "1,234.56 USD"</span>
+formatCurrency(<span class="hljs-number">12345.56</span>, <span class="hljs-string">'USD'</span>, { style: <span class="hljs-string">'code'</span> }); <span class="hljs-comment">// "1,234.56 USD"</span>
+
+<span class="hljs-keyword">const</span> frCurrencyFormatter = getCurrencyFormatter(<span class="hljs-string">'EUR'</span>, { style: <span class="hljs-string">'code'</span> }, <span class="hljs-string">'fr'</span>);
+frCurrencyFormatter(<span class="hljs-number">1234.56</span>); <span class="hljs-comment">// "1 234,56 EUR"</span>
+formatCurrency(<span class="hljs-number">12345.56</span>, <span class="hljs-string">'EUR'</span>, { style: <span class="hljs-string">'code'</span> }, <span class="hljs-string">'fr'</span>); <span class="hljs-comment">// "1 234,56 EUR"</span>
+
+<span class="hljs-keyword">const</span> enUnitFormatter = getUnitFormatter(<span class="hljs-string">'feet'</span>, { form: <span class="hljs-string">'narrow'</span> });
+enUnitFormatter(<span class="hljs-number">5280</span>); <span class="hljs-comment">// 5,280′</span>
+formatUnit(<span class="hljs-number">5280</span>, <span class="hljs-string">'feet'</span>, { form: <span class="hljs-string">'narrow'</span> }); <span class="hljs-comment">// 5,280′</span>
+
+<span class="hljs-keyword">const</span> frUnitFormatter = getUnitFormatter(<span class="hljs-string">'meter'</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">'fr'</span>);
+frUnitFormatter(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 000 mètres'</span>
+formatUnit(<span class="hljs-number">1000</span>, <span class="hljs-string">'meter'</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">'fr); // 1 000 mètres'</span>
+</code></pre>
+			<p><strong><code>@dojo/i18n/date</code> methods:</strong></p>
+			<ul>
+				<li><code>formatDate</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-formatter.md"><code>Globalize.formatDate</code></a></li>
+				<li><code>formatRelativeTime</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/relative-time/relative-time-formatter.md"><code>Globalize.formatRelativeTime</code></a></li>
+				<li><code>getDateFormatter</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-formatter.md"><code>Globalize.dateFormatter</code></a></li>
+				<li><code>getDateParser</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-parser.md"><code>Globalize.dateParser</code></a></li>
+				<li><code>getRelativeTimeFormatter</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/relative-time/relative-time-formatter.md"><code>Globalize.relativeTimeFormatter</code></a></li>
+				<li><code>parseDate</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-parser.md"><code>Globalize.parseDate</code></a></li>
+			</ul>
+			<p><strong><code>@dojo/i18n/number</code> methods:</strong></p>
+			<ul>
+				<li><code>formatCurrency</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md"><code>Globalize.formatCurrency</code></a></li>
+				<li><code>formatNumber</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-formatter.md"><code>Globalize.formatNumber</code></a></li>
+				<li><code>getCurrencyFormatter</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md"><code>Globalize.currencyFormatter</code></a></li>
+				<li><code>getNumberFormatter</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-formatter.md"><code>Globalize.numberFormatter</code></a></li>
+				<li><code>getNumberParser</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-parser.md"><code>Globalize.numberParser</code></a></li>
+				<li><code>getPluralGenerator</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/plural/plural-generator.md"><code>Globalize.pluralGenerator</code></a></li>
+				<li><code>parseNumber</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-parser.md"><code>Globalize.parseNumber</code></a></li>
+				<li><code>pluralize</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/plural/plural-generator.md"><code>Globalize.plural</code></a></li>
+			</ul>
+			<p><strong><code>@dojo/i18n/unit</code> methods:</strong></p>
+			<ul>
+				<li><code>formatUnit</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/unit/unit-formatter.md"><code>Globalize.formatUnit</code></a></li>
+				<li><code>getUnitFormatter</code> =&gt; <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/unit/unit-formatter.md"><code>Globalize.unitFormatter</code></a></li>
+			</ul>
+			<h2 id="how-do-i-contribute-">How do I contribute?</h2>
+			<p>We appreciate your interest!  Please see the <a href="https://github.com/dojo/guidelines#readme">Guidelines Repository</a> for the
+			Contributing Guidelines and Style Guide.</p>
+			<h3 id="installation">Installation</h3>
+			<p>To start working with this package, clone the repository and run <code>npm install</code>.</p>
+			<p>In order to build the project run <code>grunt dev</code> or <code>grunt dist</code>.</p>
+			<h3 id="testing">Testing</h3>
+			<p>Test cases MUST be written using Intern using the Object test interface and Assert assertion interface.</p>
+			<p>90% branch coverage MUST be provided for all code submitted to this repository, as reported by istanbul’s combined coverage results for all supported platforms.</p>
+			<h2 id="licensing-information">Licensing information</h2>
+			<ul>
+				<li><a href="https://github.com/globalizejs/globalize">Globalize.js</a> (<a href="http://spdx.org/licenses/MIT">MIT</a>)</li>
+			</ul>
+			<p>© 2017 <a href="https://js.foundation/">JS Foundation</a>. <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a> license.</p>
+		</div>
+	</div>
+	<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+		<nav class="tsd-navigation primary">
+			<ul>
+				<li class="globals  ">
+					<a href="globals.html"><em>Globals</em></a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="tsd-navigation secondary menu-sticky">
+			<ul class="before-current">
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/bundle.html" class="tsd-kind-icon">Bundle</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/cldrdata.html" class="tsd-kind-icon">Cldr<wbr>Data</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/commonnumberformatteroptions.html" class="tsd-kind-icon">Common<wbr>Number<wbr>Formatter<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/dateformatter.html" class="tsd-kind-icon">Date<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/dateparser.html" class="tsd-kind-icon">Date<wbr>Parser</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/delegatoroptions.html" class="tsd-kind-icon">Delegator<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/formatterdelegatoroptions.html" class="tsd-kind-icon">Formatter<wbr>Delegator<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/i18n.html" class="tsd-kind-icon">I18n</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/localedata.html" class="tsd-kind-icon">Locale<wbr>Data</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/messageformatter.html" class="tsd-kind-icon">Message<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/messages.html" class="tsd-kind-icon">Messages</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/numberformatter.html" class="tsd-kind-icon">Number<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/numberparser.html" class="tsd-kind-icon">Number<wbr>Parser</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/thenable.html" class="tsd-kind-icon">Thenable</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#cldrgroup" class="tsd-kind-icon">Cldr<wbr>Group</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#currencyformatteroptions" class="tsd-kind-icon">Currency<wbr>Formatter<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#currencystyleoption" class="tsd-kind-icon">Currency<wbr>Style<wbr>Option</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#dateformatteroptions" class="tsd-kind-icon">Date<wbr>Formatter<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#datelength" class="tsd-kind-icon">Date<wbr>Length</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#numberformatteroptions" class="tsd-kind-icon">Number<wbr>Formatter<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#numberparseroptions" class="tsd-kind-icon">Number<wbr>Parser<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#numberstyleoption" class="tsd-kind-icon">Number<wbr>Style<wbr>Option</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#pluralgeneratoroptions" class="tsd-kind-icon">Plural<wbr>Generator<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#pluralgroup" class="tsd-kind-icon">Plural<wbr>Group</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#pluraltypeoption" class="tsd-kind-icon">Plural<wbr>Type<wbr>Option</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#relativetimeformatteroptions" class="tsd-kind-icon">Relative<wbr>Time<wbr>Formatter<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#relativetimelength" class="tsd-kind-icon">Relative<wbr>Time<wbr>Length</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#roundnumberoption" class="tsd-kind-icon">Round<wbr>Number<wbr>Option</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#unitformatteroptions" class="tsd-kind-icon">Unit<wbr>Formatter<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#unitlength" class="tsd-kind-icon">Unit<wbr>Length</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#mainpackages" class="tsd-kind-icon">main<wbr>Packages</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#normalizelocale" class="tsd-kind-icon">normalize<wbr>Locale</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#observelocale" class="tsd-kind-icon">observe<wbr>Locale</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#removethis" class="tsd-kind-icon">remove<wbr>This</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#supplementalpackages" class="tsd-kind-icon">supplemental<wbr>Packages</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#systemlocale" class="tsd-kind-icon">system<wbr>Locale</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#fetchcldrdata" class="tsd-kind-icon">fetch<wbr>Cldr<wbr>Data</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#formatcurrency" class="tsd-kind-icon">format<wbr>Currency</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#formatdate" class="tsd-kind-icon">format<wbr>Date</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#formatmessage" class="tsd-kind-icon">format<wbr>Message</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#formatnumber" class="tsd-kind-icon">format<wbr>Number</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#formatrelativetime" class="tsd-kind-icon">format<wbr>Relative<wbr>Time</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#formatunit" class="tsd-kind-icon">format<wbr>Unit</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#generatelocales" class="tsd-kind-icon">generate<wbr>Locales</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#getcachedmessages" class="tsd-kind-icon">get<wbr>Cached<wbr>Messages</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getcurrencyformatter" class="tsd-kind-icon">get<wbr>Currency<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getdateformatter" class="tsd-kind-icon">get<wbr>Date<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getdateparser" class="tsd-kind-icon">get<wbr>Date<wbr>Parser</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getglobalize" class="tsd-kind-icon">get<wbr>Globalize</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getmessageformatter" class="tsd-kind-icon">get<wbr>Message<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getnumberformatter" class="tsd-kind-icon">get<wbr>Number<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getnumberparser" class="tsd-kind-icon">get<wbr>Number<wbr>Parser</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getpluralgenerator" class="tsd-kind-icon">get<wbr>Plural<wbr>Generator</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getrelativetimeformatter" class="tsd-kind-icon">get<wbr>Relative<wbr>Time<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#getunitformatter" class="tsd-kind-icon">get<wbr>Unit<wbr>Formatter</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#globalizedelegator" class="tsd-kind-icon">globalize<wbr>Delegator</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#invalidate" class="tsd-kind-icon">invalidate</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#iseventuallyrejected" class="tsd-kind-icon">is<wbr>Eventually<wbr>Rejected</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isloaded" class="tsd-kind-icon">is<wbr>Loaded</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#loadcldrdata" class="tsd-kind-icon">load<wbr>Cldr<wbr>Data</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#parsedate" class="tsd-kind-icon">parse<wbr>Date</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#parsenumber" class="tsd-kind-icon">parse<wbr>Number</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#pluralize" class="tsd-kind-icon">pluralize</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#reset" class="tsd-kind-icon">reset</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#switchlocale" class="tsd-kind-icon">switch<wbr>Locale</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#throwimmediatly" class="tsd-kind-icon">throw<wbr>Immediatly</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#validatelocale" class="tsd-kind-icon">validate<wbr>Locale</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

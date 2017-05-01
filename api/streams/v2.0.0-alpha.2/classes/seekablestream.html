@@ -1,0 +1,1027 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SeekableStream | @dojo/streams</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-index="../ assets/js/search.js " data-base="../ ./
+				">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text" />
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+				<a href="../index.html " class="title">@dojo/streams</a>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked />
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="seekablestream.html">SeekableStream</a>
+				</li>
+			</ul>
+			<h1>Class  SeekableStream  &lt;T  &gt;
+			</h1>
+		</div>
+	</div>
+	</div>    <div class="row content-container">
+	<div class="col-8 col-content">
+		<section class="tsd-panel tsd-type-parameters">
+			<h3>Type parameters</h3>
+			<ul class="tsd-type-parameters">
+				<li>
+					<h4>T</h4>
+				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">SeekableStream</span>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel-group tsd-index-group">
+			<h2>Index</h2>
+			<section class="tsd-panel tsd-index-panel">
+				<div class="tsd-index-content">
+					<section class="tsd-index-section ">
+						<h3>Constructors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="seekablestream.html#constructor" class="tsd-kind-icon">constructor</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Properties</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_pullingpromise" class="tsd-kind-icon">_pulling<wbr>Promise</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_started" class="tsd-kind-icon">_started</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_startedpromise" class="tsd-kind-icon">_started<wbr>Promise</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_strategy" class="tsd-kind-icon">_strategy</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_underlyingsource" class="tsd-kind-icon">_underlying<wbr>Source</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#closerequested" class="tsd-kind-icon">close<wbr>Requested</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#controller" class="tsd-kind-icon">controller</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="seekablestream.html#preventclose" class="tsd-kind-icon">prevent<wbr>Close</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#pullscheduled" class="tsd-kind-icon">pull<wbr>Scheduled</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#queue" class="tsd-kind-icon">queue</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="seekablestream.html#reader" class="tsd-kind-icon">reader</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#state" class="tsd-kind-icon">state</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#storederror" class="tsd-kind-icon">stored<wbr>Error</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Accessors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_allowpull" class="tsd-kind-icon">_allow<wbr>Pull</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#desiredsize" class="tsd-kind-icon">desired<wbr>Size</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#hassource" class="tsd-kind-icon">has<wbr>Source</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#locked" class="tsd-kind-icon">locked</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#queuesize" class="tsd-kind-icon">queue<wbr>Size</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#readable" class="tsd-kind-icon">readable</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#started" class="tsd-kind-icon">started</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="seekablestream.html#strategy" class="tsd-kind-icon">strategy</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_cancel" class="tsd-kind-icon">_cancel</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="seekablestream.html#_shouldapplybackpressure" class="tsd-kind-icon">_should<wbr>Apply<wbr>Back<wbr>Pressure</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#cancel" class="tsd-kind-icon">cancel</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#close" class="tsd-kind-icon">close</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#enqueue" class="tsd-kind-icon">enqueue</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#error" class="tsd-kind-icon">error</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="seekablestream.html#getreader" class="tsd-kind-icon">get<wbr>Reader</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#pipethrough" class="tsd-kind-icon">pipe<wbr>Through</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#pipeto" class="tsd-kind-icon">pipe<wbr>To</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#pull" class="tsd-kind-icon">pull</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="seekablestream.html#requestclose" class="tsd-kind-icon">request<wbr>Close</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="seekablestream.html#seek" class="tsd-kind-icon">seek</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="seekablestream.html#tee" class="tsd-kind-icon">tee</a></li>
+						</ul>
+					</section>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Constructors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+				<a name="constructor" class="tsd-anchor"></a>
+				<h3>constructor</h3>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Seekable<wbr>Stream<span class="tsd-signature-symbol">(</span>underlyingSource<span class="tsd-signature-symbol">: </span><a href="../interfaces/source.html" class="tsd-signature-type">Source</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, strategy<span class="tsd-signature-symbol">?: </span><a href="../interfaces/strategy.html" class="tsd-signature-type">Strategy</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, preventClose<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="seekablestream.html" class="tsd-signature-type">SeekableStream</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Overrides <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#constructor">constructor</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L9">src/SeekableStream.ts:9</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>underlyingSource: <a href="../interfaces/source.html" class="tsd-signature-type">Source</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> strategy: <a href="../interfaces/strategy.html" class="tsd-signature-type">Strategy</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> preventClose: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>(default=true) Prevent the stream from closing when it reaches the end.
+											If true, the stream will not close when requestClose is called on the controller (which is typically done by the
+											source when it reaches its end). This allows for re-seeking in a stream that has already been read to the end.
+										The stream can be closed by calling ReadableStream#close.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="seekablestream.html" class="tsd-signature-type">SeekableStream</a></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_pullingpromise" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _pulling<wbr>Promise</h3>
+				<div class="tsd-signature tsd-kind-icon">_pulling<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_pullingpromise">_pullingPromise</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L144">src/ReadableStream.ts:144</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_started" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _started</h3>
+				<div class="tsd-signature tsd-kind-icon">_started<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_started">_started</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L145">src/ReadableStream.ts:145</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_startedpromise" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _started<wbr>Promise</h3>
+				<div class="tsd-signature tsd-kind-icon">_started<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_startedpromise">_startedPromise</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L146">src/ReadableStream.ts:146</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_strategy" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _strategy</h3>
+				<div class="tsd-signature tsd-kind-icon">_strategy<span class="tsd-signature-symbol">:</span> <a href="../interfaces/strategy.html" class="tsd-signature-type">Strategy</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_strategy">_strategy</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L147">src/ReadableStream.ts:147</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_underlyingsource" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _underlying<wbr>Source</h3>
+				<div class="tsd-signature tsd-kind-icon">_underlying<wbr>Source<span class="tsd-signature-symbol">:</span> <a href="../interfaces/source.html" class="tsd-signature-type">Source</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_underlyingsource">_underlyingSource</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L148">src/ReadableStream.ts:148</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="closerequested" class="tsd-anchor"></a>
+				<h3>close<wbr>Requested</h3>
+				<div class="tsd-signature tsd-kind-icon">close<wbr>Requested<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#closerequested">closeRequested</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L150">src/ReadableStream.ts:150</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="controller" class="tsd-anchor"></a>
+				<h3>controller</h3>
+				<div class="tsd-signature tsd-kind-icon">controller<span class="tsd-signature-symbol">:</span> <a href="readablestreamcontroller.html" class="tsd-signature-type">ReadableStreamController</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#controller">controller</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L151">src/ReadableStream.ts:151</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="preventclose" class="tsd-anchor"></a>
+				<h3>prevent<wbr>Close</h3>
+				<div class="tsd-signature tsd-kind-icon">prevent<wbr>Close<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L8">src/SeekableStream.ts:8</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="pullscheduled" class="tsd-anchor"></a>
+				<h3>pull<wbr>Scheduled</h3>
+				<div class="tsd-signature tsd-kind-icon">pull<wbr>Scheduled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#pullscheduled">pullScheduled</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L152">src/ReadableStream.ts:152</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="queue" class="tsd-anchor"></a>
+				<h3>queue</h3>
+				<div class="tsd-signature tsd-kind-icon">queue<span class="tsd-signature-symbol">:</span> <a href="sizequeue.html" class="tsd-signature-type">SizeQueue</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#queue">queue</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L153">src/ReadableStream.ts:153</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+				<a name="reader" class="tsd-anchor"></a>
+				<h3>reader</h3>
+				<div class="tsd-signature tsd-kind-icon">reader<span class="tsd-signature-symbol">:</span> <a href="seekablestreamreader.html" class="tsd-signature-type">SeekableStreamReader</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<p>Overrides <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#reader">reader</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L9">src/SeekableStream.ts:9</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="state" class="tsd-anchor"></a>
+				<h3>state</h3>
+				<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">State</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#state">state</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L155">src/ReadableStream.ts:155</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="storederror" class="tsd-anchor"></a>
+				<h3>stored<wbr>Error</h3>
+				<div class="tsd-signature tsd-kind-icon">stored<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Error</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#storederror">storedError</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L156">src/ReadableStream.ts:156</a></li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Accessors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_allowpull" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _allow<wbr>Pull</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> _allowPull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_allowpull">_allowPull</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L88">src/ReadableStream.ts:88</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+				<a name="desiredsize" class="tsd-anchor"></a>
+				<h3>desired<wbr>Size</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> desiredSize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#desiredsize">desiredSize</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L105">src/ReadableStream.ts:105</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a number indicating how much additional data can be pushed by the source to the stream&#39;s queue before it
+									exceeds its <code>highWaterMark</code>. An underlying source should use this information to determine when and how to apply
+								backpressure.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						<p>The stream&#39;s strategy&#39;s <code>highWaterMark</code> value minus the queue size</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+				<a name="hassource" class="tsd-anchor"></a>
+				<h3>has<wbr>Source</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hasSource<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#hassource">hasSource</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L109">src/ReadableStream.ts:109</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+				<a name="locked" class="tsd-anchor"></a>
+				<h3>locked</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> locked<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#locked">locked</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L121">src/ReadableStream.ts:121</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A stream can only have one reader at a time. This value indicates if a stream already has a reader, and hence
+									cannot be read from other than by that reader. When a consumer is done with a reader they can dissociate it
+								by calling {@link ReadableStreamReader#releaseLock}.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						<p>True if the stream has a reader associated with it</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+				<a name="queuesize" class="tsd-anchor"></a>
+				<h3>queue<wbr>Size</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> queueSize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#queuesize">queueSize</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L140">src/ReadableStream.ts:140</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+				<a name="readable" class="tsd-anchor"></a>
+				<h3>readable</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> readable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#readable">readable</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L125">src/ReadableStream.ts:125</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+				<a name="started" class="tsd-anchor"></a>
+				<h3>started</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> started<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#started">started</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L136">src/ReadableStream.ts:136</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>This promise will resolve when the stream&#39;s underlying source has started and is ready to provide data. If
+									the {@link ReadableStreamReader#read} method is called before the stream has started it will not do anything.
+								Wait for this promise to resolve to ensure that your <code>read</code> calls are responded to as promptly as possible.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise that resolves when the stream is ready to be read from.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="strategy" class="tsd-anchor"></a>
+				<h3>strategy</h3>
+				<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> strategy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/strategy.html" class="tsd-signature-type">Strategy</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L62">src/SeekableStream.ts:62</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/strategy.html" class="tsd-signature-type">Strategy</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_cancel" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _cancel</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">_cancel<span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_cancel">_cancel</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L187">src/ReadableStream.ts:187</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> reason: <span class="tsd-signature-type">any</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="_shouldapplybackpressure" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> _should<wbr>Apply<wbr>Back<wbr>Pressure</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">_should<wbr>Apply<wbr>Back<wbr>Pressure<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#_shouldapplybackpressure">_shouldApplyBackPressure</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L203">src/ReadableStream.ts:203</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="cancel" class="tsd-anchor"></a>
+				<h3>cancel</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">cancel<span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#cancel">cancel</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L215">src/ReadableStream.ts:215</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> reason: <span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>A description of the reason the stream is being canceled.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>A promise that resolves when the stream has closed and the call to the underlying source&#39;s <code>cancel</code>
+						method has completed.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="close" class="tsd-anchor"></a>
+				<h3>close</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">close<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#close">close</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L229">src/ReadableStream.ts:229</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Closes the stream without regard to the status of the queue.  Use <a href="seekablestream.html#requestclose">requestClose</a> to close the
+								stream and allow the queue to flush.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="enqueue" class="tsd-anchor"></a>
+				<h3>enqueue</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">enqueue<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#enqueue">enqueue</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L242">src/ReadableStream.ts:242</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>chunk: <span class="tsd-signature-type">T</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="error" class="tsd-anchor"></a>
+				<h3>error</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#error">error</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L267">src/ReadableStream.ts:267</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>error: <span class="tsd-signature-type">Error</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+				<a name="getreader" class="tsd-anchor"></a>
+				<h3>get<wbr>Reader</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Reader<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="seekablestreamreader.html" class="tsd-signature-type">SeekableStreamReader</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Overrides <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#getreader">getReader</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L23">src/SeekableStream.ts:23</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <a href="seekablestreamreader.html" class="tsd-signature-type">SeekableStreamReader</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="pipethrough" class="tsd-anchor"></a>
+				<h3>pipe<wbr>Through</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">pipe<wbr>Through<span class="tsd-signature-symbol">(</span>transformStream<span class="tsd-signature-symbol">: </span><a href="transformstream.html" class="tsd-signature-type">TransformStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/pipeoptions.html" class="tsd-signature-type">PipeOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#pipethrough">pipeThrough</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L296">src/ReadableStream.ts:296</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>transformStream: <a href="transformstream.html" class="tsd-signature-type">TransformStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/pipeoptions.html" class="tsd-signature-type">PipeOptions</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="pipeto" class="tsd-anchor"></a>
+				<h3>pipe<wbr>To</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">pipe<wbr>To<span class="tsd-signature-symbol">(</span>dest<span class="tsd-signature-symbol">: </span><a href="writablestream.html" class="tsd-signature-type">WritableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/pipeoptions.html" class="tsd-signature-type">PipeOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#pipeto">pipeTo</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L301">src/ReadableStream.ts:301</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>dest: <a href="writablestream.html" class="tsd-signature-type">WritableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="../interfaces/pipeoptions.html" class="tsd-signature-type">PipeOptions</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="pull" class="tsd-anchor"></a>
+				<h3>pull</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">pull<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#pull">pull</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L381">src/ReadableStream.ts:381</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+				<a name="requestclose" class="tsd-anchor"></a>
+				<h3>request<wbr>Close</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<li class="tsd-signature tsd-kind-icon">request<wbr>Close<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Overrides <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#requestclose">requestClose</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L31">src/SeekableStream.ts:31</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="seek" class="tsd-anchor"></a>
+				<h3>seek</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">seek<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/SeekableStream.ts#L37">src/SeekableStream.ts:37</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>position: <span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="tee" class="tsd-anchor"></a>
+				<h3>tee</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">tee<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="readablestream.html">ReadableStream</a>.<a href="readablestream.html#tee">tee</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/dojo/streams/blob/0ee2777/src/ReadableStream.ts#L426">src/ReadableStream.ts:426</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Tee a readable stream, returning a two-element array containing
+								the two resulting ReadableStream instances</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="readablestream.html" class="tsd-signature-type">ReadableStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+	</div>
+	<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+		<nav class="tsd-navigation primary">
+			<ul>
+				<li class="globals  ">
+					<a href="../globals.html"><em>Globals</em></a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="tsd-navigation secondary menu-sticky">
+			<ul class="before-current">
+			</ul>
+			<ul class="current">
+				<li class="current tsd-kind-class tsd-has-type-parameter">
+					<a href="seekablestream.html" class="tsd-kind-icon">Seekable<wbr>Stream</a>
+					<ul>
+						<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+							<a href="seekablestream.html#constructor" class="tsd-kind-icon">constructor</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_pullingpromise" class="tsd-kind-icon">_pulling<wbr>Promise</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_started" class="tsd-kind-icon">_started</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_startedpromise" class="tsd-kind-icon">_started<wbr>Promise</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_strategy" class="tsd-kind-icon">_strategy</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_underlyingsource" class="tsd-kind-icon">_underlying<wbr>Source</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#closerequested" class="tsd-kind-icon">close<wbr>Requested</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#controller" class="tsd-kind-icon">controller</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class">
+							<a href="seekablestream.html#preventclose" class="tsd-kind-icon">prevent<wbr>Close</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#pullscheduled" class="tsd-kind-icon">pull<wbr>Scheduled</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#queue" class="tsd-kind-icon">queue</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+							<a href="seekablestream.html#reader" class="tsd-kind-icon">reader</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#state" class="tsd-kind-icon">state</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#storederror" class="tsd-kind-icon">stored<wbr>Error</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_allowpull" class="tsd-kind-icon">_allow<wbr>Pull</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#desiredsize" class="tsd-kind-icon">desired<wbr>Size</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#hassource" class="tsd-kind-icon">has<wbr>Source</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#locked" class="tsd-kind-icon">locked</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#queuesize" class="tsd-kind-icon">queue<wbr>Size</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#readable" class="tsd-kind-icon">readable</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#started" class="tsd-kind-icon">started</a>
+						</li>
+						<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<a href="seekablestream.html#strategy" class="tsd-kind-icon">strategy</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_cancel" class="tsd-kind-icon">_cancel</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+							<a href="seekablestream.html#_shouldapplybackpressure" class="tsd-kind-icon">_should<wbr>Apply<wbr>Back<wbr>Pressure</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#cancel" class="tsd-kind-icon">cancel</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#close" class="tsd-kind-icon">close</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#enqueue" class="tsd-kind-icon">enqueue</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#error" class="tsd-kind-icon">error</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+							<a href="seekablestream.html#getreader" class="tsd-kind-icon">get<wbr>Reader</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#pipethrough" class="tsd-kind-icon">pipe<wbr>Through</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#pipeto" class="tsd-kind-icon">pipe<wbr>To</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#pull" class="tsd-kind-icon">pull</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+							<a href="seekablestream.html#requestclose" class="tsd-kind-icon">request<wbr>Close</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class">
+							<a href="seekablestream.html#seek" class="tsd-kind-icon">seek</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="seekablestream.html#tee" class="tsd-kind-icon">tee</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="after-current">
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
