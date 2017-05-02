@@ -1,7 +1,7 @@
 import * as config from './config';
-import { join, basename, extname } from 'path';
+import { basename, extname, join } from 'path';
 import { readdirSync } from 'fs';
-import * as env from '../util/environment';
+import * as env from 'grunt-dojo2-extras/src/util/environment';
 
 function shouldBuildApi() {
 	const message = env.commitMessage() || '';
@@ -12,6 +12,7 @@ export = function (grunt: IGrunt) {
 	require('load-grunt-tasks')(grunt);
 	grunt.loadNpmTasks('webserv');
 	grunt.loadNpmTasks('intern');
+	grunt.loadNpmTasks('grunt-dojo2-extras');
 
 	const tasksDirectory = join(__dirname, 'tasks');
 	readdirSync(tasksDirectory).filter(function (path) {
@@ -27,11 +28,7 @@ export = function (grunt: IGrunt) {
 	grunt.registerTask('generate', [ 'hexo' ]);
 	grunt.registerTask('test', [ 'clean:compiledFiles', 'tslint', 'shell:build-ts', 'intern' ]);
 	grunt.registerTask('init', [ 'prompt:github', 'initAutomation' ]);
-
-	if (shouldBuildApi()) {
-		grunt.registerTask('ci', [ 'prebuild', 'clean', 'sync', 'api', 'hexo', 'tutorials' ]);
-	}
-	else {
-		grunt.registerTask('ci', [ 'prebuild', 'default', 'tutorials' ]);
-	}
+	grunt.registerTask('ci-api', [ 'prebuild', 'clean', 'sync', 'api', 'hexo', 'tutorials' ]);
+	grunt.registerTask('ci-site', [ 'prebuild', 'default', 'tutorials' ]);
+	grunt.registerTask('ci', shouldBuildApi() ? [ 'ci-api' ] : [ 'ci-site']);
 };

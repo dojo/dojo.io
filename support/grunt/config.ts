@@ -1,6 +1,6 @@
 import { Config } from 'webserv/commands/createServer';
 import { middleware } from './config/webserv';
-import { repositorySource } from '../util/environment';
+import { repositorySource } from 'grunt-dojo2-extras/src/util/environment';
 import { join } from 'path';
 
 export interface WebServerConfig {
@@ -26,6 +26,8 @@ export const apiDirectory = join(distDirectory, 'api');
 
 export const apiThemeDirectory = join(siteDirectory, 'themes/dojo/source/_api-theme');
 
+export const syncDirectory = '.sync';
+
 export const tempDirectory = '.apitemp';
 
 export const publishDirectory = '.ghpublish';
@@ -38,23 +40,31 @@ export const masterBranch = 'master';
 // ---------------------------------------------------------------------------------------------------------------------
 export const api = {
 	options: {
-		buildDirectory: '<%= tempDirectory %>',
 		dest: '<%= apiDirectory %>',
 		filter: 'latest',
 		format: 'html',
-		themeDirectory: '<%= apiThemeDirectory %>'
+		typedoc: {
+			mode: 'file',
+			externalPattern: '**/+(example|examples|node_modules|tests|typings)/**/*.ts',
+			excludeExternals: true,
+			excludeNotExported: true,
+			ignoreCompilerErrors: true,
+			theme: '<%= apiThemeDirectory %>'
+		}
 	},
 
 	cli: {
 		options: {
+			cloneDirectory: '<%= syncDirectory %>/cli',
 			repo: 'dojo/cli'
 		}
 	},
 
 	'cli-json': {
 		options: {
-			repo: 'dojo/cli',
+			cloneDirectory: '<%= syncDirectory %>/cli',
 			dest: '<%= apiDirectory %>/_json/cli.json',
+			repo: 'dojo/cli',
 			format: 'json'
 		}
 	},
@@ -136,6 +146,7 @@ export const clean = {
 	api: [ '<%= tempDirectory %>' ],
 	dist: [ '<%= distDirectory %>' ],
 	publish: [ '<%= publishDirectory %>' ],
+	sync: [ '<%= syncDirectory %>' ],
 	compiledFiles: [ './+(tests|support)/**/*.d.ts', './+(tests|support)/**/*.js' ]
 };
 

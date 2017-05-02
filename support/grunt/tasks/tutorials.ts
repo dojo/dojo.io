@@ -1,6 +1,6 @@
 import archiveTutorials from '../../commands/archiveTutorials';
 import IMultiTask = grunt.task.IMultiTask;
-import wrapAsyncTask from '../commands/wrapAsyncTask';
+import wrapAsyncTask from 'grunt-dojo2-extras/tasks/util/wrapAsyncTask';
 
 export = function (grunt: IGrunt) {
 	function tutorialsTask(this: IMultiTask<any>) {
