@@ -6,7 +6,7 @@
 
 	_.each(tuts, function(tut) {
 		// remove index.html from the path to make relative URLs work consistently
-		var urlRaw = tut.path.substr(0, tut.path.length - 11 /* length of '/index.html' */);
+		var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
 %>
 	<div class="tutorial-item">
 		<h4><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></h4>

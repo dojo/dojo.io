@@ -11,12 +11,12 @@ In this tutorial, you will learn how to update an application in response to use
 We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, "Biz-E Corp". In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.
 
 ## Prerequisites
-You can [download](./assets/004_user_interactions-initial.zip) the demo project to get started.
+You can [download](../assets/004_user_interactions-initial.zip) the demo project to get started.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](./comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
 ## Creating an event listener
-In the [previous](./003_creating_widgets) tutorial in this series, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
+In the [previous](../003_creating_widgets/) tutorial in this series, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
 
 The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level `DNode` has one property assigned: `classes`. Update the object containing that property as follows:
 
@@ -155,6 +155,6 @@ w(Worker, {
 
 In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that the value of an event handler cannot change once the widget has been rendered the first time. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.
 
-If you would like, you can download the [demo application](./assets/004_user_interactions-finished.zip).
+If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
 
-In the [next tutorial](./comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In the [next tutorial](../comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
