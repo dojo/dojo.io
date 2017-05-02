@@ -17,50 +17,27 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 ## Creating the application widget
 In the [first tutorial](./001_static_content) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we're going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in the `main.ts` file here:
 
-```ts
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import Banner from './widgets/Banner';
-
-const root = document.querySelector('my-app') || undefined;
-
-const Projector = ProjectorMixin(Banner);
-const projector = new Projector();
-
-projector.append(root);
-```
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
 This line: `const Projector = ProjectorMixin(Banner);` tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget. Add these lines at the top of the file.
 
-```ts
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-3 %}
 
 The `WidgetBase` class will be used as the base class for our `App` widget. `WidgetBase` (and its descendants) work with the `WidgetProperties` interface to define the publicly accessible properties of the widget. Finally, the `v` and `w` functions are used to render virtual DOM nodes (with the `v` function) or widgets (via `w`). Both virtual DOM nodes and widgets ultimately generate `DNode`s, the base type of all virtual DOM nodes in Dojo 2.
 
 Our next dependency to load is the Banner widget that we created in the first tutorial. To import it, add the following statement to `App.ts`:
 
-```ts
-import Banner from './Banner';
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:4 %}
 
 With all of the dependencies in place, let's create the `App` widget itself:
 
-```ts
-export default class App extends WidgetBase<WidgetProperties> {
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:7,14 %}
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
 Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions. To start, let's use the simplest `render` method by adding this to the `App` class:
 
-```ts
-protected render(): DNode {
-	return v('div', []);
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:8-9,12-13 %}
 
 This method will generate a `div` virtual node with no children. To render the `Banner` as a child of the div, we'll use the `w` function that is designed to render widgets. Update the `render` method to the following:
 
@@ -85,15 +62,11 @@ Both of these properties are optional, so we can pass an empty object for now.
 
 Our `App` class is now complete and ready to replace the `Banner` class as the root of the application. To do that, we will edit `main.ts`. The first update will replace the `import` statement from the `Banner` class to the new `App` class:
 
-```ts
-import App from './widgets/App';
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:2 %}
 
 The only other change we need to make is to pass the `App` class into the `ProjectorMixin` function call on line 6:
 
-```ts
-const Projector = ProjectorMixin(App);
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:6 %}
 
 With that change, the `App` widget is ready to serve as the root of our application. Let's test everything by building and running the project. If you are working locally, run the following command:
 
@@ -167,27 +140,15 @@ Now run the application with `dojo build --watch` and navigate to [`http://local
 
 Return to `Worker.ts` and add an interface with the custom properties that we need:
 
-```ts
-export interface WorkerProperties extends WidgetProperties {
-	firstName?: string
-	lastName?: string
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:7-10 %}
 
 Then change the generic parameter passed into `WidgetBase` with the new interface:
 
-```ts
-export default class Worker extends WidgetBase<WorkerProperties>
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:15 %}
 
 The `WorkerProperties` interface adds two new optional properties that we'll be able to use. Now that these are available, let's use them to make the name of the worker dynamic. Inside of the render method, add the following code to create some local constants for the first and last names:
 
-```ts
-const {
-	firstName = 'firstName',
-	lastName = 'lastName'
-} = this.properties;
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:17-20 %}
 
 This code retrieves the appropriate property and provides a reasonable default in case the widget doesn't receive a value. This is done via a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment). We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.
 
@@ -228,63 +189,24 @@ Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to prov
 
 To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality. Add the following import to the top of `Worker.ts`:
 
-```ts
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:4 %}
 
 We also need to `import` our CSS:
-```ts
-import * as css from '../styles/worker.css';
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:5 %}
 
 `worker.css` contains CSS selectors and rules to be consumed by our widget and its components.
 
 With the imports in place, we can add the **@theme** decorator and apply the mixin to the `Worker` class in `Worker.ts`:
 
-```ts
-const WorkerBase = ThemeableMixin(WidgetBase);
-
-@theme(css)
-export default class Worker extends WorkerBase<WorkerProperties>
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:12-15 %}
 
 Next, let's add our CSS rules in `src/styles/worker.css` which will allow us to style the `Worker` widget:
 
-```css
-.worker {
-	width: 27%;
-	margin: 0 3%;
-	text-align: center;
-	display: inline-block;
-}
-
-.image {
-	width: 100%;
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
 
 `dojo build --watch` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget. Return to `Worker.ts` and update the render method:
 
-```ts
-render(): DNode {
-	const {
-		firstName = 'firstName',
-		lastName = 'lastName'
-	} = this.properties;
-
-	return v('div', {
-		classes: this.classes(css.worker)
-	}, [
-			v('img', {
-				classes: this.classes(css.image),
-				src: 'images/worker.jpg' }, []),
-			v('div', [
-				v('strong', [ `${lastName}, ${firstName}` ])
-			])
-		]
-	);
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:16-33 %}
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. This obfuscation is done by the `dojo build` command's use of CSS Modules when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](./comingsoon.html) tutorial in the Cookbook section.
 
@@ -315,64 +237,22 @@ export default class WorkerContainer extends WorkerContainerBase<ThemeableProper
 
 Now we can update the `render` method to include some workers. Add the following to the top of the `render` method:
 
-```ts
-const workers: DNode[] = [
-	w(Worker, {
-		key: '1',
-		firstName: 'Tim',
-		lastName: 'Jones'
-	}),
-	w(Worker, {
-		key: '2',
-		firstName: 'Alicia',
-		lastName: 'Fitzgerald'
-	}),
-	w(Worker, {
-		key: '3',
-		firstName: 'Hans',
-		lastName: 'Mueller'
-	})
-];
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:13-29 %}
 
 Notice that we have added an `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
 In the code example shown above, we have added an `key` property and set the value to be unique for each child widget.
 
 We can now pass these workers as children to the container, by replacing the empty array in the `v` function's third argument with this array:
 
-```ts
-return v('div', {
-	classes: this.classes(styles.container)
-}, workers);
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:31-33 %}
 
 Now it is time to add styling rules for the `WorkerContainer`. Inside  of `styles/workerContainer.css`, add the following rule:
 
-```css
-.container {
-	width: 80%;
-	margin: 0 auto;
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.css' lang:css %}
 
 Finally, let's update the `App` class to replace the `Worker` widget with the new `WorkerContainer`.
 
-```ts
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
-import Banner from './Banner';
-import WorkerContainer from './WorkerContainer';
-
-export default class App extends WidgetBase<WidgetProperties> {
-	protected render(): DNode {
-		return v('div', [
-			w(Banner, {}),
-			w(WorkerContainer, {})
-		]);
-	}
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' %}
 
 The application now renders three workers in the `WorkerContainer` widget, allowing us to control how they are laid out without impacting the overall application.
 

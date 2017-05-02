@@ -19,21 +19,14 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 ### The main HTML document
 HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in the `main.ts` file:
 
-```ts
-const root = document.querySelector('my-app') || undefined;
-```
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' line:4 %}
 
 Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach. First, a Dojo 2 application can easily coexist on a page with other content. That content can consist of static assets, a legacy application or even another Dojo 2 application. The next advantage is that Dojo 2 can take leverage third-party libraries with ease. For example, if you would like to use the [moment.js](https://momentjs.com/) library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.
 
 ### The projector
 In the [last](./001_static_content) tutorial we reviewed Dojo 2's use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in the `main.ts` file:
 
-```ts
-const Projector = ProjectorMixin(HelloWorld);
-const projector = new Projector();
-
-projector.append(root);
-```
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:6-9 %}
 
 These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root widget, making it aware of the Dojo 2 application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
 
@@ -59,15 +52,7 @@ The final aspect that our basic application contains is its test suite. Dojo 2 i
 
 Our demo application includes some tests to verify that it is working as expected. The tests are found in `tests/unit/widgets/HelloWorld.ts`. Let's examine this part of the test code:
 
-```ts
-	'render'() {
-		const helloWorld = new HelloWorld();
-
-		const vnode = <VNode> helloWorld.__render__();
-		assert.strictEqual(vnode.vnodeSelector, 'h1');
-		assert.equal(vnode.text, 'Biz-E-Bodies');
-	}
-```
+{% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:8-14 %}
 
 This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal command:
 

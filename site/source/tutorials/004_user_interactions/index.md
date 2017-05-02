@@ -77,78 +77,11 @@ Now that we have an event handler it is time to extend the `render` method to be
 
 We could add the additional rendering logic in the current `render` method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the `render` method. To start, create a new private method called `_renderFront` and move the existing render code inside it:
 
-```ts
-private _renderFront(): DNode {
-	const {
-		firstName = 'firstName',
-		lastName = 'lastName'
-	} = this.properties;
-
-	return v('div', {
-		classes: this.classes(css.workerFront),
-		onclick: this.flip
-	}, [
-		v('img', {
-			classes: this.classes(css.image),
-				src: 'images/worker.jpg' }, []),
-			v('div', [
-				v('strong', [ `${lastName}, ${firstName}` ])
-			])
-		]
-	);
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:25-43 %}
 
 Next, create another private method called `_renderBack` to render the back view:
-```ts
-private _renderBack(): DNode {
-	const {
-		firstName = 'firstName',
-		lastName = 'lastName',
-		email = 'unavailable',
-		timePerTask = 0,
-		tasks = []
-	} = this.properties;
 
-	return v('div', {
-		classes: this.classes(css.workerBack),
-		onclick: this.flip
-		}, [
-			v('img', {
-					classes: this.classes(css.imageSmall),
-					src: 'images/worker.jpg'
-				}, []
-			),
-			v('div', {
-				classes: this.classes(css.generalInfo)
-			}, [
-				v('div', {
-					classes : this.classes(css.label)
-				}, ['Name']),
-				v('div', [`${lastName}, ${firstName}`]),
-				v('div', {
-					classes: this.classes(css.label)
-				}, ['Email']),
-				v('div', [`${email}`]),
-				v('div', {
-					classes: this.classes(css.label)
-				}, ['Avg. Time per Task']),
-				v('div', [`${timePerTask}`])
-			]),
-			v('div', [
-				v('strong', ['Current Tasks']),
-				v('div', tasks.map(task => {
-					return v('div', {
-							classes: this.classes(css.task)
-						},
-						[task]
-					);
-				}))
-			])
-		]
-	);
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:45-91 %}
 
 This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
 
@@ -156,97 +89,29 @@ Three new properties need to be added to the `WorkerProperties` interface. These
 
 Update the `WorkerProperties` interface to:
 
-```ts
-export interface WorkerProperties extends WidgetProperties {
-	firstName?: string
-	lastName?: string
-	email?: string
-	timePerTask?: number
-	tasks?: string[]
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:7-13 %}
 
 Now, we need to add the CSS selectors that will provide the rules for rendering this view's elements. Open up the `worker.css` file in `src/styles` and update it as follows:
 
-```css
-.workerFront {
-	width: 27%;
-	margin: 0 3%;
-	display: inline-block;
-	vertical-align: top;
-	text-align: center;
-}
-
-.workerBack {
-	width: 27%;
-	margin: 0 3%;
-	display: inline-block;
-	vertical-align: top;
-	font-size: 0.5em;
-}
-
-.image {
-	width: 100%;
-}
-
-.imageSmall {
-	width: 40%;
-}
-
-.generalInfo {
-	width: 55%;
-	display: inline-block;
-}
-
-.task {
-	border: solid 1px #333;
-	border-radius: 0.3em;
-	text-align: left;
-}
-
-.label {
-	font-weight: bold;
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lines:8-39 lang:css %}
 
 We also need to update the CSS selector for the front view, by changing the selector from `css.worker` to `css.workerFront`.
 
-```ts
-private _renderFront(): DNode {
-	const {
-		firstName="firstName",
-		lastName="lastName"} = this.properties;
-
-	return v('div', {
-		classes: this.classes(css.workerFront),
-		onclick: this.flip
-	},...
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:25-43 %}
 
 Finally, we need to update the `render` method to choose between the two rendering methods. To do that, add a private field to the class:
 
-```ts
-private _isFlipped = false;
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:19 %}
 
 The use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget's published state. For internal state, however, private fields are used to allow widget to encapsulate state information that should not be exposed publicly. Let's use that field's value to determine which side to show:
 
-```ts
-protected render(): DNode {
-	return this._isFlipped ? this._renderBack() : this._renderFront();
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:21-23 %}
 
 Confirm that everything is working by viewing the application in a browser - all three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application recompiles, all three widgets should be showing their back faces.
 
 In order to re-render our widget, we need to update the `flip` method to toggle the `_isFlipped` field and invalidate the widget
 
-```ts
-flip(): void {
-	this._isFlipped = !this._isFlipped;
-	this.invalidate();
-}
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:93-96 %}
 
 Now, the widget can be flipped between its front and back sides by clicking on it.
 

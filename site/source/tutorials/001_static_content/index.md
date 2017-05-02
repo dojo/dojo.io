@@ -30,23 +30,11 @@ Notice that the page has automatically updated for us. That means that we can im
 
 Now, let's remove the "Hello, Dojo World!" message. To do that, open up the `HelloWorld.ts` file. It is located in `/src/widgets`. You should see something like this:
 
-```typescript
-import { v } from '@dojo/widget-core/d';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	protected render(): DNode {
-		return v('div', [ 'Hello, Dojo World!' ]);
-	}
-}
-```
+{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' %}
 
 Some of this code may not make sense now, but over the next few tutorials, you will find out what all of it means. For now, let's focus on this line:
 
-```typescript
-return v('div', [ 'Hello, Dojo World!' ]);
-```
+{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:7 %}
 
 The `v` function simply instructs Dojo 2 to create a HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document. When you are finished, click on show solution to see the results.
 
@@ -68,9 +56,7 @@ Within Dojo 2, we leverage the [Maquette](http://maquettejs.org/) virtual DOM li
 
 If we want to create a `h1` element with additional attributes, then these attributes can be passed in the second argument to the `v` function. Updating our `v` function call, with a `title` attribute would look like this:
 
-```typescript
-v('h1', { title: 'I am a title!' },[ 'Biz-E Bodies' ]);
-```
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' line:7 %}
 
 Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
