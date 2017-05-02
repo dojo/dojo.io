@@ -28,11 +28,7 @@ export = function (grunt: IGrunt) {
 	grunt.registerTask('generate', [ 'hexo' ]);
 	grunt.registerTask('test', [ 'clean:compiledFiles', 'tslint', 'shell:build-ts', 'intern' ]);
 	grunt.registerTask('init', [ 'prompt:github', 'initAutomation' ]);
-
-	if (shouldBuildApi()) {
-		grunt.registerTask('ci', [ 'prebuild', 'clean', 'sync', 'api', 'hexo', 'tutorials' ]);
-	}
-	else {
-		grunt.registerTask('ci', [ 'prebuild', 'default', 'tutorials' ]);
-	}
+	grunt.registerTask('ci-api', [ 'prebuild', 'clean', 'sync', 'api', 'hexo', 'tutorials' ]);
+	grunt.registerTask('ci-site', [ 'prebuild', 'default', 'tutorials' ]);
+	grunt.registerTask('ci', shouldBuildApi() ? [ 'ci-api' ] : [ 'ci-site']);
 };

@@ -3,6 +3,7 @@ import { exec, promisify } from 'grunt-dojo2-extras/src/util/process';
 import { readFileSync, writeFileSync } from 'fs';
 import { EOL } from 'os';
 import getApiPackages, { DocumentedApi } from './getApiPackages';
+import { logger } from '../log';
 
 function generateHexo(siteDirectory: string, configs: string[] = [ '_config.yml' ]) {
 	const hexoBin = join('node_modules', '.bin', 'hexo');
@@ -17,6 +18,7 @@ export function buildApiIndex(apis: DocumentedApi[], source: string): string {
 	for (let api of apis) {
 		links.push(`[${ api.package }](/api/${ api.package }/${ api.latest })`);
 	}
+	logger.info(`Generated API index for ${ links.length } APIs`);
 
 	return template + links.join(EOL);
 }
