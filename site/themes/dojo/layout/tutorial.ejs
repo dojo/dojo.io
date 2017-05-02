@@ -1,15 +1,3 @@
-<% 
-if(page.editorUrl) {
-%>
-<div class="split-content">
-<% } %>
-	<div class="tutorial-content">
-		<%- page.content %>
-	</div>
-
-<% if(page.editorUrl) { %>
-	<div class="editor">
-		<iframe src="<%- page.editorUrl %>" class="editor-frame"></iframe>
-	</div>
+<div class="tutorial-content">
+	<%- page.content %>
 </div>
-<% } %>

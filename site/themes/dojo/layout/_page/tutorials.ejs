@@ -1,18 +1,20 @@
 <%- page.content %>
 <div class="index-tutorials">
 <%
-    var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
-    tuts = _.orderBy(tuts, ['path']);
+	var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
+	tuts = _.orderBy(tuts, ['path']);
 
-    _.each(tuts, function(tut) {
+	_.each(tuts, function(tut) {
+		// remove index.html from the path to make relative URLs work consistently
+		var urlRaw = tut.path.substr(0, tut.path.length - 11 /* length of '/index.html' */);
 %>
-    <div class="tutorial-item">
-        <h4><a href="<%- url_for(tut.path) %>"><%- tut.title %></a></h4>
-        <div class="excerpt">
-            <%- tut.overview %>
-        </div>
-    </div>
+	<div class="tutorial-item">
+		<h4><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></h4>
+		<div class="excerpt">
+			<%- tut.overview %>
+		</div>
+	</div>
 <%
-    });
+	});
 %>
 </div>

@@ -1,7 +1,6 @@
 ---
 layout: tutorial
 title: Responding to events
-editorUrl: https://embed.plnkr.co/g5qEcD/?show=src/widgets/Worker.ts,preview&preview=index.html
 overview: In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.
 ---
 # Responding to events
@@ -9,28 +8,17 @@ overview: In this tutorial, you will learn how to update an application in respo
 ## Overview
 In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.
 
-We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, "Biz-E Corp". In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of the active tasks for the worker.
+We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, "Biz-E Corp". In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.
 
 ## Prerequisites
+You can [download](./assets/004_user_interactions-initial.zip) the demo project to get started.
 
-With the Dojo 2 tutorial series, you may work with the examples following two different paths:
-
-* A browser embedded editor
-* A local installation
-
-The browser embedded editor is intended to make it easy to quickly see the examples in action, but does not match a normal development environment, and does not provide all of the benefits of TypeScript.
-
-If you prefer a local installation, please visit the [Dojo 2 Installation Guide](../000_local_installation/) before proceeding further with this tutorial.
-
-Whether you are working locally or using the embedded editor, you need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
-
-## Demo files
-If you are following along locally, you can [download](../assets/004_user_interactions-initial.zip) the demo project to get started.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](./comingsoon.html) article.
 
 ## Creating an event listener
-In the [previous](../003_creating_widgets) tutorial in this series, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
+In the [previous](./003_creating_widgets) tutorial in this series, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
 
-The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level vNode has one property assigned: `classes`. Update the object containing that property as follows:
+The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level `DNode` has one property assigned: `classes`. Update the object containing that property as follows:
 
 ```ts
 {
@@ -47,15 +35,15 @@ flip(): void {
 }
 ```
 
-Now, run the app (using `dojo build --watch`) and navigate to [localhost:9999](http://localhost:9999). Once there, open the console window and click on any of the worker widgets to confirm that the `flip` method is being called as expected.
+Now, run the app (using `dojo build --watch` or `dojo build -w`) and navigate to [localhost:9999](http://localhost:9999). Once there, open the console window and click on any of the worker widgets to confirm that the `flip` method is being called as expected.
 
 For short event handlers you might be tempted to use an anonymous function like this:
 ```ts
 return v('div', {
 	classes: this.classes(css.worker),
 	onclick: () => {
-		/* Note: Do not do this, this is an
-		example of an anti-pattern */
+		// Note: DO NOT DO THIS, this is an
+		// example of an anti-pattern
 		console.log('the handler has been called');
 	}
 }, ...
@@ -67,15 +55,15 @@ While this appears to work, Maquette doesn't allow an event handler to be update
 return v('div', {
 	classes: this.classes(css.worker),
 	onclick: () => {
-		/* Note: Do not do this, this is an
-		example of an anti-pattern */
+		// Note: DO NOT DO THIS, this is an
+		// example of an anti-pattern
 		console.log('the handler has been called');
 		this.invalidate();
 	}
 }, ...
 ```
 
-Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console. To avoid an error, all event handlers should be defined once, such as via a method. Update the `onclick` property to its previous value:
+Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console. To avoid an error, all event handlers must be defined once, such as via a method. Update the `onclick` property to its previous value:
 
 ```ts
 return v('div', {
@@ -87,7 +75,7 @@ return v('div', {
 ## Adding a second visual state
 Now that we have an event handler it is time to extend the `render` method to be able to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.
 
-We could add the additional rendering logic in the current `render` method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the `render` method. To start, create a new private method called `_renderFront` and move the existing render code inside it::
+We could add the additional rendering logic in the current `render` method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the `render` method. To start, create a new private method called `_renderFront` and move the existing render code inside it:
 
 ```ts
 private _renderFront(): DNode {
@@ -162,9 +150,11 @@ private _renderBack(): DNode {
 }
 ```
 
-None of this code is new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
+This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
 
-Three new properties need to be added to the `WorkerProperties` interface. These properties are the email address of the worker, the average number of hours they take to complete a task, and the active tasks for the worker..  Update the `WorkerProperties` interface to:
+Three new properties need to be added to the `WorkerProperties` interface. These properties are the email address of the worker, the average number of hours they take to complete a task, and the active tasks for the worker.
+
+Update the `WorkerProperties` interface to:
 
 ```ts
 export interface WorkerProperties extends WidgetProperties {
@@ -233,7 +223,7 @@ private _renderFront(): DNode {
 	},...
 ```
 
-Finally, we need to update the `render method` to choose between the two rendering methods. To do that, add a private field to the class:
+Finally, we need to update the `render` method to choose between the two rendering methods. To do that, add a private field to the class:
 
 ```ts
 private _isFlipped = false;
@@ -276,8 +266,11 @@ tasks: [
 
 When you are ready, click the button below to see our solution.
 
-{% solution showSolution1 %}
-The widget's parent is responsible for passing properties to the widget. In this application, `Worker` widgets are contained by the `WorkerContainer` widget. To pass the specified properties to the first worker, the first element in the `workers` array needs to be updated to the following:
+{% solution showsolution1 %}
+The widget's parent is responsible for passing properties to the widget.
+In this application, `Worker` widgets are contained by the `WorkerContainer` widget.
+To pass the specified properties to the first worker, the first element in
+the `workers` array needs to be updated to the following:
 
 ```ts
 w(Worker, {
@@ -297,6 +290,6 @@ w(Worker, {
 
 In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that the value of an event handler cannot change once the widget has been rendered the first time. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.
 
-If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
+If you would like, you can download the [demo application](./assets/004_user_interactions-finished.zip).
 
-In the [next tutorial](../comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In the [next tutorial](./comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
