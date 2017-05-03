@@ -10,9 +10,9 @@ overview: In this tutorial, you will learn how to the create your first Dojo 2 a
 In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.
 
 ## Prerequisites
-You can [download](./assets/001_static_content-initial.zip) the demo project to get started.
+You can [download](../assets/001_static_content-initial.zip) the demo project to get started.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](./comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
 ## Printing static content
 
@@ -52,7 +52,7 @@ Now, let's look at the `v` function again. We're intentionally avoiding somethin
 
 In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.
 
-Within Dojo 2, we leverage the [Maquette](http://maquettejs.org/) virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](./comingsoon.html) and [Reactive Programming](./comingsoon.html) articles in the reference section. For now, let's get back to our application and make some more changes.
+Within Dojo 2, we leverage the [Maquette](http://maquettejs.org/) virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../comingsoon.html) and [Reactive Programming](../comingsoon.html) articles in the reference section. For now, let's get back to our application and make some more changes.
 
 If we want to create a `h1` element with additional attributes, then these attributes can be passed in the second argument to the `v` function. Updating our `v` function call, with a `title` attribute would look like this:
 
@@ -60,6 +60,6 @@ If we want to create a `h1` element with additional attributes, then these attri
 
 Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
-Congratulations! You are off to a good start on your journey to master Dojo 2. In the [next tutorial](./002_creating_an_application), we will start to get familiar with the major components of a Dojo 2 application.
+Congratulations! You are off to a good start on your journey to master Dojo 2. In the [next tutorial](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo 2 application.
 
-If you would like, you can download the completed [demo application](./assets/001_static_content-finished.zip) from this tutorial.
+If you would like, you can download the completed [demo application](../assets/001_static_content-finished.zip) from this tutorial.

@@ -7,12 +7,12 @@ overview: In this tutorial, you will learn about the structure of a simple Dojo 
 # Building your first Dojo 2 application
 
 ## Overview
-In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that we started with in the [previous tutorial](./001_static_content).
+In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the parts that can potentially be a part of a Dojo 2 application. Instead, we are going to focus on the minimum application that we started with in the [previous tutorial](../001_static_content/).
 
 ## Prerequisites
-You can [download](./assets/002_creating_an_application-initial.zip) the demo project to get started.
+You can [download](../assets/002_creating_an_application-initial.zip) the demo project to get started.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](./comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
 ## Components of a Dojo 2 application
 
@@ -24,7 +24,7 @@ HTML pages are the foundation for every web application and Dojo 2 applications 
 Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach. First, a Dojo 2 application can easily coexist on a page with other content. That content can consist of static assets, a legacy application or even another Dojo 2 application. The next advantage is that Dojo 2 can take leverage third-party libraries with ease. For example, if you would like to use the [moment.js](https://momentjs.com/) library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.
 
 ### The projector
-In the [last](./001_static_content) tutorial we reviewed Dojo 2's use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in the `main.ts` file:
+In the [last](../001_static_content/) tutorial we reviewed Dojo 2's use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in the `main.ts` file:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:6-9 %}
 
@@ -35,7 +35,7 @@ Whenever a Dojo 2 application needs to update the view, it informs the projector
 ### Widgets
 Widgets are the basic building blocks of Dojo 2's user interface. They combine both the visual and behavioral aspects of a component into a single element. Both of these aspects are encapsulated within the widget's implementation. The widget then exposes properties and methods that allow other components to interact with it. Consider the following diagrams:
 
-<img src="./resources/html_js.svg" title="HTML and JavaScript" class="half-width"/><img src="./resources/widget.svg" title="Widget" class="half-width"/>
+<img src="../resources/html_js.svg" title="HTML and JavaScript" class="half-width"/><img src="../resources/widget.svg" title="Widget" class="half-width"/>
 
 The first diagram shows a traditional HTML + JavaScript architecture. Since the the visual (HTML) and behavioral (JavaScript) aspects of the application are publicly accessible, the application's components can be manipulated directly which can lead to the HTML and JavaScript getting out of sync with each other. Extensive test suites are often needed to make sure that this does not happen.
 
@@ -63,4 +63,4 @@ dojo test
 ## Summary
 This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are will be present in all of them.
 
-In the [next tutorial](./003_creating_widgets), we will take a deeper look at Dojo 2 widgets. We'll go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.
+In the [next tutorial](../003_creating_widgets/), we will take a deeper look at Dojo 2 widgets. We'll go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.
