@@ -3,7 +3,7 @@ import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import Banner from './Banner';
 import WorkerContainer from './WorkerContainer';
-import { WokerProperties } from './Worker';
+import { WorkerProperties } from './Worker';
 
 export default class App extends WidgetBase<WidgetProperties> {
 	private _workerData: WorkerProperties[] = [

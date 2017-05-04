@@ -1,4 +1,8 @@
 .container {
-	width: 80%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
 	margin: 0 auto;
+	width: 100%;
 }

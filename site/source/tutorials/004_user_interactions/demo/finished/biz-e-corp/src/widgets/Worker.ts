@@ -19,7 +19,12 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 	private _isFlipped = false;
 
 	protected render(): DNode {
-		return this._isFlipped ? this._renderBack() : this._renderFront();
+		return v('div', {
+			classes: this.classes(css.worker, this._isFlipped ? css.reverse : null)
+		}, [
+			this._renderFront(),
+			this._renderBack()
+		]);
 	}
 
 	private _renderFront(): DNode {
@@ -34,7 +39,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		}, [
 			v('img', {
 				classes: this.classes(css.image),
-					src: 'images/worker.jpg' }, []),
+					src: 'images/worker.svg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])
@@ -57,7 +62,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 			}, [
 				v('img', {
 						classes: this.classes(css.imageSmall),
-						src: 'images/worker.jpg'
+						src: 'images/worker.svg'
 					}, []
 				),
 				v('div', {
