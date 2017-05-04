@@ -24,7 +24,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		}, [
 				v('img', {
 					classes: this.classes(css.image),
-					src: 'images/worker.jpg' }, []),
+					src: 'images/worker.svg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])
