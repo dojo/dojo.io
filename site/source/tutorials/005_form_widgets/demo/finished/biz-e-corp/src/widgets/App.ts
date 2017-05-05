@@ -2,7 +2,6 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { StatefulMixin } from '@dojo/widget-core/mixins/Stateful';
-import Button from '@dojo/widgets/button/Button';
 import Banner from './Banner';
 import WorkerForm from './WorkerForm';
 import { WorkerProperties } from './Worker';
@@ -71,7 +70,7 @@ export default class App extends AppBase<WidgetProperties> {
 		}
 	}
 
-	render(): DNode {
+	protected render(): DNode {
 		const {
 			formData = {}
 		} = this.state;

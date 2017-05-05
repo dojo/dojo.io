@@ -154,4 +154,4 @@ In this tutorial, we learned how to attach event listeners to respond to widget-
 
 If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
 
-In the [next tutorial](../comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In the [next tutorial](../005_form_widgets/), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.

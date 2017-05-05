@@ -14,7 +14,7 @@ const WorkerContainerBase = ThemeableMixin(WidgetBase);
 @theme(css)
 export default class WorkerContainer extends WorkerContainerBase<WorkerContainerProperties> {
 
-	render(): DNode {
+	protected render(): DNode {
 		const {
 			workerData = []
 		} = this.properties;

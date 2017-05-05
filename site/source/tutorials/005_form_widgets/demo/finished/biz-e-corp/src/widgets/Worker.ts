@@ -18,7 +18,7 @@ const WorkerBase = ThemeableMixin(WidgetBase);
 export default class Worker extends WorkerBase<WorkerProperties> {
 	private _isFlipped = false;
 
-	render(): DNode {
+	protected render(): DNode {
 		return v('div', {
 			classes: this.classes(css.worker, this._isFlipped ? css.reverse : null)
 		}, [
