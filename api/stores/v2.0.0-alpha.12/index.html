@@ -1,0 +1,843 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/stores</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-index=" assets/js/search.js " data-base=" ./
+				">
+				<div class="field">
+					<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+					<input id="tsd-search-field" type="text" />
+				</div>
+				<ul class="results">
+					<li class="state loading">Preparing search index...</li>
+					<li class="state failure">The search index is not available</li>
+				</ul>
+				<a href="index.html " class="title">@dojo/stores</a>
+			</div>
+			<div class="table-cell" id="tsd-widgets">
+				<div id="tsd-filter">
+					<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+					<div class="tsd-filter-group">
+						<div class="tsd-select" id="tsd-filter-visibility">
+							<span class="tsd-select-label">All</span>
+							<ul class="tsd-select-list">
+								<li data-value="public">Public</li>
+								<li data-value="protected">Public/Protected</li>
+								<li data-value="private" class="selected">All</li>
+							</ul>
+						</div>
+						<input type="checkbox" id="tsd-filter-inherited" checked />
+						<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+					</div>
+				</div>
+				<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="content-container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>  @dojo/stores
+			</h1>
+		</div>
+	</div>
+	</div>    <div class="row content-container">
+	<div class="col-8 col-content">
+		<div class="tsd-panel tsd-typography">
+			<h1 id="-dojo-stores">@dojo/stores</h1>
+			<p><a href="https://travis-ci.org/dojo/stores"><img src="https://travis-ci.org/dojo/stores.svg?branch=master" alt="Build Status"></a>
+				<a href="http://codecov.io/gh/dojo/stores/branch/master"><img src="http://codecov.io/gh/dojo/stores/branch/master/graph/badge.svg" alt="codecov.io"></a>
+			<a href="https://badge.fury.io/js/%40dojo%2Fstores"><img src="https://badge.fury.io/js/%40dojo%2Fstores.svg" alt="npm version"></a></p>
+			<p>This library provides a basic data store, as well as extensions that provide the ability to query and observe the store.</p>
+			<p><strong>WARNING</strong> This is <em>alpha</em> software. It is not yet production ready, so you should use at your own risk.</p>
+			<ul>
+				<li><a href="#usage">Usage</a></li>
+				<li><a href="#features">Features</a><ul>
+						<li><a href="#storage">Storage</a></li>
+						<li><a href="#store">Store</a><ul>
+								<li><a href="#basic-usage">Basic Usage</a></li>
+								<li><a href="#store-observable">Store Observable</a></li>
+							</ul>
+						</li>
+						<li><a href="#observablestore">ObservableStore</a><ul>
+								<li><a href="#observing-the-store">Observing the store</a></li>
+							</ul>
+						</li>
+						<li><a href="#queryablestore">QueryableStore</a><ul>
+								<li><a href="#mappedqueryresult">MappedQueryResult</a></li>
+							</ul>
+						</li>
+						<li><a href="#fetch-results">Fetch Results</a></li>
+					</ul>
+				</li>
+				<li><a href="#how-do-i-contribute">How do I contribute?</a><ul>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#testing">Testing</a></li>
+					</ul>
+				</li>
+				<li><a href="#licensing-information">Licensing information</a></li>
+			</ul>
+			<h2 id="usage">Usage</h2>
+			<p>To use <code>@dojo/stores</code>, install the package along with its required peer dependencies:</p>
+			<pre><code class="lang-bash">npm install @dojo/stores
+
+<span class="hljs-comment"># peer dependencies</span>
+npm install @dojo/compose
+npm install @dojo/core
+npm install @dojo/has
+npm install @dojo/shim
+</code></pre>
+			<h2 id="features">Features</h2>
+			<h3 id="storage">Storage</h3>
+			<p>The underlying <code>Storage</code> interface provides the basic CRUD functionality, and is leveraged to provide the <code>Store</code> interface, which is the interface intended to be consumed. This allows the <code>StoreBase</code>, <code>ObservableStore</code>, and <code>QueryableStore</code> classes to be repurposed to interact with any storage medium by providing an object implementing the simpler <code>Storage</code> interface at instantiation. By default these classes all use the <code>InMemoryStorage</code> implementation.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> StoreBase <span class="hljs-keyword">from</span> <span class="hljs-string">'store/StoreBase'</span>;
+<span class="hljs-keyword">import</span> { Storage } <span class="hljs-keyword">from</span> <span class="hljs-string">'store/interfaces'</span>;
+<span class="hljs-keyword">const</span> myCustomStorage: Storage = {
+  <span class="hljs-comment">// Implement storage API</span>
+}
+<span class="hljs-keyword">const</span> myCustomStore = <span class="hljs-keyword">new</span> StoreBase({
+  storage: myCustomStorage
+});
+</code></pre>
+			<h3 id="store">Store</h3>
+			<p>The <code>Store</code> interface provides basic CRUD operations, methods to retrieve records, and methods to create IDs. </p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">get</span>(ids: <span class="hljs-built_in">string</span>[]): <span class="hljs-built_in">Promise</span>&lt;T[]&gt;;
+<span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">Promise</span>&lt;T | <span class="hljs-literal">undefined</span>&gt;;
+<span class="hljs-keyword">get</span>(ids: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">string</span>[]): <span class="hljs-built_in">Promise</span>&lt;T | <span class="hljs-literal">undefined</span> | T[]&gt;;
+</code></pre>
+			<p>Retrieves store items associated with the provided ID or IDs. Will return undefined for any items that don&#39;t exist in the store.</p>
+			<pre><code class="lang-typescript">identify(items: T[]): <span class="hljs-built_in">string</span>[];
+identify(items: T): <span class="hljs-built_in">string</span>;
+identify(items: T | T[]): <span class="hljs-built_in">string</span> | <span class="hljs-built_in">string</span>[];
+</code></pre>
+			<p>Returns the IDs for the passed in items. By default the store will look for an <code>id</code> property on an item, if another property should be used, the <code>idProperty</code> can be specified when creating the store. The <code>idFunction</code> property can be provided if a more complicated or composite ID is needed.</p>
+			<pre><code class="lang-typescript">createId(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt;;
+</code></pre>
+			<p>Generates a new ID. The default implementation of <code>createId</code> leverages  <a href="https://github.com/dojo/core/blob/master/src/uuid.ts">@dojo/core/uuid</a></p>
+			<pre><code class="lang-typescript">add(items: T[] | T, options?: O): StoreObservable&lt;T, U&gt;;
+</code></pre>
+			<p>Adds the item(s) to the store, failing if they already exist, unless the <code>rejectOverwrite</code> property is set to <code>false</code>. For the default store implementation <code>rejectOverwrite</code> is the only option used by the store.</p>
+			<pre><code class="lang-typescript">put(items: T[] | T, options?: O): StoreObservable&lt;T, U&gt;;
+</code></pre>
+			<p>Adds or overwrites the specified items in the store. If overwrites should not be allowed, <code>rejectOverwrite</code> should be set to <code>true</code> in the provided options.</p>
+			<pre><code class="lang-typescript">patch(updates: PatchArgument&lt;T&gt;, options?: O): StoreObservable&lt;T, U&gt;;
+</code></pre>
+			<p>Updates the item(s) indicated by PatchArgument in place in the store. The <code>Patch</code> interface is based on the <a href="https://tools.ietf.org/html/rfc6902">JSON Patch spec</a>, and can be serialized(not fully tested) to a format compliant with an HTTP patch request</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">delete</span>(ids: <span class="hljs-built_in">string</span>[] | <span class="hljs-built_in">string</span>): StoreObservable&lt;<span class="hljs-built_in">string</span>, U&gt;;
+</code></pre>
+			<p>Delete the item(s) with the provided IDs from the store</p>
+			<pre><code class="lang-typescript">fetch(query?: Query&lt;T&gt;): FetchResult&lt;T&gt;;
+</code></pre>
+			<p>Returns a promise that will resolve to the data in the store that matches the query if one is provided, and all data otherwise</p>
+			<h4 id="basic-usage">Basic Usage</h4>
+			<pre><code class="lang-typescript">store.fetch().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">storeData</span>) </span>{
+    <span class="hljs-comment">// storeData = data;</span>
+});
+store.delete(<span class="hljs-string">'1'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">deleted</span>) </span>{
+    <span class="hljs-comment">// deleted = [ '1' ]</span>
+});
+store.delete([ <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span> ]).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">deleted</span>) </span>{
+    <span class="hljs-comment">// delete = [ '2', '3' ]</span>
+});
+store.add([
+    { id: <span class="hljs-string">'1'</span>, value: <span class="hljs-number">2</span> },
+    { id: <span class="hljs-string">'2'</span>, value: <span class="hljs-number">3</span> },
+    { id: <span class="hljs-string">'3'</span>, value: <span class="hljs-number">4</span> }
+]);
+store.put([
+    { id: <span class="hljs-string">'1'</span>, value: <span class="hljs-number">5</span> },
+    { id: <span class="hljs-string">'4'</span>, value: <span class="hljs-number">4</span> }
+]);
+<span class="hljs-comment">// These won't compile, because they don't match</span>
+<span class="hljs-comment">// the item type. The item type was inferred by the data argument</span>
+<span class="hljs-comment">// in the StoreBase initialization options, but it can also be</span>
+<span class="hljs-comment">// specified explicitly(i.e. new StoreBase&lt;TypeOfData&gt;();)</span>
+<span class="hljs-comment">// store.put({ id: '5', value: '' });</span>
+<span class="hljs-comment">// store.add('5');</span>
+store.patch({ id: <span class="hljs-string">'2'</span>, patch: diff(
+    { id: <span class="hljs-string">'2'</span>, value: <span class="hljs-number">3</span> },
+    { id: <span class="hljs-string">'2'</span>, value: <span class="hljs-number">10</span> }
+)});
+store.fetch().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+    <span class="hljs-comment">// data =  [</span>
+    <span class="hljs-comment">//      { id: '1', value: 5 },</span>
+    <span class="hljs-comment">//     { id: '2', value: 10 },</span>
+    <span class="hljs-comment">//     { id: '3', value: 4 },</span>
+    <span class="hljs-comment">//     { id: '4', value: 4 }</span>
+    <span class="hljs-comment">// ]);</span>
+});
+</code></pre>
+			<h4 id="store-observable">Store Observable</h4>
+			<p>The return type of the CRUD methods on the <code>Store</code> interface is a <code>StoreObservable</code>. This type extends <code>Promise</code>. <code>then</code> returns the final results of the operation to the callback provided if it is successful, and passes any errors that occurred to the error callback otherwise.</p>
+			<p>But it is also observable. By default any subscribers will get exactly one <code>UpdateResults</code> object or an error before being completed.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> UpdateResults&lt;T&gt; {
+    currentItems?: T[];
+    failedData?: CrudArgument&lt;T&gt;[];
+    successfulData: T[] | <span class="hljs-built_in">string</span>[];
+    <span class="hljs-keyword">type</span>: StoreOperation;
+}
+</code></pre>
+			<p>The built in store will only populate the <code>type</code> and <code>successfulData</code> properties, but this provides an extension point for store implementations to provide more details about the results of the operation, report results incrementally, or allow for the operation to be retried in the case of recoverable errors(e.g. data conflicts or network errors).</p>
+			<h3 id="observablestore">ObservableStore</h3>
+			<p>This store provides an API for observing the store itself, or specific items within the store.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ObservableStoreInterface&lt;T, O <span class="hljs-keyword">extends</span> CrudOptions, U <span class="hljs-keyword">extends</span> UpdateResults&lt;T&gt;&gt; <span class="hljs-keyword">extends</span> Store&lt;T, O, U&gt; {
+    <span class="hljs-comment">/**
+     * Observe the entire store, receiving deltas indicating the changes to the store.
+     * When observing, an initial update will be sent with the last known state of the store in the `afterAll` property.
+     * If fetchAroundUpdates is true, the store's local data will by synchronized with the underlying Storage.
+     * If fetchAroundUpdates is not true, then the data will be the result of locally applying updates to the data
+     * retrieved from the last fetch.
+     */</span>
+    observe(): Observable&lt;StoreDelta&lt;T&gt;&gt;;
+    <span class="hljs-comment">/**
+     * Receives the current state of the item with the specified ID whenever it is updated. This observable will be
+     * completed if the item is deleted
+     * @param id The ID of the item to observe
+     */</span>
+    observe(id: <span class="hljs-built_in">string</span>): Observable&lt;T&gt;;
+    <span class="hljs-comment">/**
+     * Receives the current state of the items in an `ItemUpdate` object whenever they are updated. When any of the
+     * items are deleted an `ItemUpdate` with the item's ID and no item property will be sent out. When all of the
+     * observed items are deleted the observable will be completed.
+     * @param ids - The IDS of the items to observe
+     */</span>
+    observe(ids: <span class="hljs-built_in">string</span>[]): Observable&lt;ItemUpdate&lt;T&gt;&gt;;
+}
+
+<span class="hljs-keyword">interface</span> StoreDelta&lt;T&gt; {
+    updates: T[];
+    deletes: <span class="hljs-built_in">string</span>[];
+    adds: T[];
+    beforeAll: T[];
+    afterAll: T[];
+}
+
+<span class="hljs-keyword">interface</span> ItemUpdate&lt;T&gt; {
+    item?: T;
+    id: <span class="hljs-built_in">string</span>;
+}
+</code></pre>
+			<h4 id="observing-the-store">Observing the store</h4>
+			<p>When observing the whole store, an initial update will be received that contains the current data in the store in the <code>afterAll</code> property, and subsequent updates will represent the changes in the store since the last update.</p>
+			<p>If the <code>fetchAroundUpdates</code> property is set to <code>true</code> in the options when creating the store, then the data in the store will be kept up to date with the underlying storage, and any updates will represent the latest data from the storage. If <code>fetchAroundUpdates</code> is <code>false</code> or not specified, then the local data will be modified in place according to the updates indicated by the <code>StoreDelta</code>, but it may become out of sync with the underlying storage. In this case, when fetching manually, the local data will be synced again. An update is sent after a <code>fetch</code>, and the update following a fetch may contain new items in the <code>afterAll</code> property that are not represented by the <code>updates</code>, <code>adds</code>, and <code>deletes</code> of the <code>StoreDelta</code> when <code>fetchAroundUpdates</code> is <code>false</code> and the store is out of sync with its storage.</p>
+			<p>Example usage</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> ObservableStore <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/stores/store/ObservableStore'</span>;
+
+<span class="hljs-keyword">const</span> observableStore = <span class="hljs-keyword">new</span> ObservableStore({
+    data: [{ id: <span class="hljs-string">'1'</span>, value: <span class="hljs-number">1</span> }]
+});
+
+observableStore.observe().subscribe(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">update</span>) </span>{
+    <span class="hljs-comment">// update = {</span>
+    <span class="hljs-comment">//      updates: [ any items updated since last notification ],</span>
+    <span class="hljs-comment">//      deletes: [ any items deleted since last notification ],</span>
+    <span class="hljs-comment">//      beforeAll: [ Empty for the first update, previous state for following updates],</span>
+    <span class="hljs-comment">//      afterAll: [ Current state of the sotre ],</span>
+    <span class="hljs-comment">//      adds: [ any items added since last notification ]</span>
+    <span class="hljs-comment">// }</span>
+});
+
+observableStore.observe(<span class="hljs-string">'itemId'</span>).subscribe(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">update</span>) </span>{
+    <span class="hljs-comment">// update will be the item itself</span>
+}, <span class="hljs-literal">undefined</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// completion callback will be called if the item is deleted</span>
+});
+
+observableStore.observe([ <span class="hljs-string">'itemId'</span>, <span class="hljs-string">'otherItemId'</span> ]).subscribe(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// update = {</span>
+    <span class="hljs-comment">//   item: The updated or null if the item was deleted,</span>
+    <span class="hljs-comment">//   id: The id of the item</span>
+    <span class="hljs-comment">// }</span>
+}, <span class="hljs-literal">undefined</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// completion callback will be called if all items are deleted</span>
+});
+</code></pre>
+			<h3 id="queryablestore">QueryableStore</h3>
+			<p>This store provides the ability to filter, sort, select a range of, transform, or query for items using a custom query function. </p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> QueryableStoreInterface&lt;T, O <span class="hljs-keyword">extends</span> CrudOptions, U <span class="hljs-keyword">extends</span> UpdateResults&lt;T&gt;&gt; <span class="hljs-keyword">extends</span> ObservableStoreInterface&lt;T, O, U&gt; {
+    <span class="hljs-comment">/**
+     * Creates a query transform result with the provided query
+     * @param query
+     */</span>
+    query(query: Query&lt;T&gt;): MappedQueryResultInterface&lt;T, <span class="hljs-keyword">this</span>&gt;;
+    <span class="hljs-comment">/**
+     * Creates a query transform result with the provided filter
+     * @param filter
+     */</span>
+    filter(filter: Filter&lt;T&gt;): MappedQueryResultInterface&lt;T, <span class="hljs-keyword">this</span>&gt;;
+    <span class="hljs-comment">/**
+     * Creates a query transform result with a filter built from the provided test
+     * @param test
+     */</span>
+    filter(test: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): MappedQueryResultInterface&lt;T, <span class="hljs-keyword">this</span>&gt;;
+    <span class="hljs-comment">/**
+     * Creates a query transform result with the provided range
+     * @param range
+     */</span>
+    range(range: StoreRange&lt;T&gt;): MappedQueryResultInterface&lt;T, <span class="hljs-keyword">this</span>&gt;;
+    <span class="hljs-comment">/**
+     * Creates a query transform result with a range built based on the provided start and count
+     * @param start
+     * @param cound
+     */</span>
+    range(start: <span class="hljs-built_in">number</span>, count: <span class="hljs-built_in">number</span>): MappedQueryResultInterface&lt;T, <span class="hljs-keyword">this</span>&gt;;
+    <span class="hljs-comment">/**
+     * Creates a query transform result with the provided sort or a sort build from the provided comparator or a
+     * comparator for the specified property
+     * @param sort
+     * @param descending
+     */</span>
+    sort(sort: Sort&lt;T&gt; | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">a: T, b: T</span>) =&gt; <span class="hljs-built_in">number</span></span>) | <span class="hljs-params">keyof</span> <span class="hljs-params">T</span>, <span class="hljs-params">descending</span>?: <span class="hljs-params">boolean</span>): <span class="hljs-params">MappedQueryResultInterface</span>&lt;<span class="hljs-params">T</span>, <span class="hljs-params">this</span>&gt;;
+    /**
+     * <span class="hljs-params">Create</span> <span class="hljs-params">a</span> <span class="hljs-params">query</span> <span class="hljs-params">transform</span> <span class="hljs-params">result</span> <span class="hljs-params">that</span> <span class="hljs-params">cannot</span> <span class="hljs-params">be</span> <span class="hljs-params">tracked</span>, <span class="hljs-params">and</span> <span class="hljs-params">cannot</span> <span class="hljs-params">send</span> <span class="hljs-params">tracked</span> <span class="hljs-params">updates</span>. <span class="hljs-params">This</span> <span class="hljs-params">is</span> <span class="hljs-params">the</span> <span class="hljs-params">case</span> <span class="hljs-params">because</span>
+     * <span class="hljs-params">the</span> <span class="hljs-params">resulting</span> <span class="hljs-params">query</span> <span class="hljs-params">transform</span> <span class="hljs-params">result</span> <span class="hljs-params">will</span> <span class="hljs-params">have</span> <span class="hljs-params">no</span> <span class="hljs-params">way</span> <span class="hljs-params">to</span> <span class="hljs-params">identify</span> <span class="hljs-params">items</span>, <span class="hljs-params">making</span> <span class="hljs-params">it</span> <span class="hljs-params">impossible</span> <span class="hljs-params">to</span> <span class="hljs-params">determine</span>
+     * <span class="hljs-params">whether</span> <span class="hljs-params">their</span> <span class="hljs-params">position</span> <span class="hljs-params">has</span> <span class="hljs-params">shifted</span> <span class="hljs-params">or</span> <span class="hljs-params">differentiating</span> <span class="hljs-params">between</span> <span class="hljs-params">updates</span> <span class="hljs-params">and</span> <span class="hljs-params">adds</span>
+     * @<span class="hljs-params">param</span> <span class="hljs-params">transformation</span>
+     */
+    <span class="hljs-params">transform</span>&lt;<span class="hljs-params">V</span>&gt;(<span class="hljs-params">transformation: Patch&lt;T, V&gt; | (<span class="hljs-params">(<span class="hljs-params">item: T</span>) =&gt; V</span>)</span>): <span class="hljs-params">QueryResultInterface</span>&lt;<span class="hljs-params">V</span>, <span class="hljs-params">this</span>&gt;;
+    /**
+     * <span class="hljs-params">Create</span> <span class="hljs-params">a</span> <span class="hljs-params">trackable</span> <span class="hljs-params">query</span> <span class="hljs-params">transform</span> <span class="hljs-params">result</span> <span class="hljs-params">with</span> <span class="hljs-params">the</span> <span class="hljs-params">specified</span> <span class="hljs-params">transformation</span>
+     * @<span class="hljs-params">param</span> <span class="hljs-params">transformation</span>
+     * @<span class="hljs-params">param</span> <span class="hljs-params">idTransform</span>
+     */
+    <span class="hljs-params">transform</span>&lt;<span class="hljs-params">V</span>&gt;(<span class="hljs-params">transformation: Patch&lt;T, V&gt; | (<span class="hljs-params">(<span class="hljs-params">item: T</span>) =&gt; V</span>), idTransform: <span class="hljs-built_in">string</span> | (<span class="hljs-params">(<span class="hljs-params">item: V</span>) =&gt; <span class="hljs-built_in">string</span></span>)</span>): <span class="hljs-params">MappedQueryResultInterface</span>&lt;<span class="hljs-params">V</span>, <span class="hljs-params">this</span>&gt;;
+}</span>
+</code></pre>
+			<p>The return value of a call to query or transform will be an instance of the <code>QueryResult</code> interface.</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> QueryResultInterface&lt;T, S <span class="hljs-keyword">extends</span> QueryableStoreInterface&lt;any, any, any&gt;&gt; {
+    query(query: Query&lt;T&gt;): <span class="hljs-keyword">this</span>;
+    filter(filter: Filter&lt;T&gt;): <span class="hljs-keyword">this</span>;
+    filter(test: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-keyword">this</span>;
+    range(range: StoreRange&lt;T&gt;): <span class="hljs-keyword">this</span>;
+    range(start: <span class="hljs-built_in">number</span>, count: <span class="hljs-built_in">number</span>): <span class="hljs-keyword">this</span>;
+    sort(sort: Sort&lt;T&gt; | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">a: T, b: T</span>) =&gt; <span class="hljs-built_in">number</span></span>) | <span class="hljs-params">string</span>, <span class="hljs-params">descending</span>?: <span class="hljs-params">boolean</span>): <span class="hljs-params">this</span>;
+    <span class="hljs-params">observe</span><span class="hljs-params">()</span>: <span class="hljs-params">Observable</span>&lt;<span class="hljs-params">StoreDelta</span>&lt;<span class="hljs-params">T</span>&gt;&gt;;
+    <span class="hljs-params">observe</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>): <span class="hljs-params">Observable</span>&lt;<span class="hljs-params">T</span>&gt;;
+    <span class="hljs-params">observe</span>(<span class="hljs-params">ids: <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-params">Observable</span>&lt;<span class="hljs-params">ItemUpdate</span>&lt;<span class="hljs-params">T</span>&gt;&gt;;
+    <span class="hljs-params">get</span>(<span class="hljs-params">ids: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">string</span>[]</span>): <span class="hljs-params">Promise</span>&lt;<span class="hljs-params">T</span>[]&gt;;
+    <span class="hljs-params">transform</span>&lt;<span class="hljs-params">V</span>&gt;(<span class="hljs-params">transformation: Patch&lt;T, V&gt; | (<span class="hljs-params">(<span class="hljs-params">item: T</span>) =&gt; V</span>)</span>): <span class="hljs-params">QueryResultInterface</span>&lt;<span class="hljs-params">V</span>, <span class="hljs-params">S</span>&gt;;
+    <span class="hljs-params">transform</span>&lt;<span class="hljs-params">V</span>&gt;(<span class="hljs-params">transformation: Patch&lt;T, V&gt; | (<span class="hljs-params">(<span class="hljs-params">item: T</span>) =&gt; V</span>), idTransform: <span class="hljs-built_in">string</span> | (<span class="hljs-params">(<span class="hljs-params">item: V</span>) =&gt; <span class="hljs-built_in">string</span></span>)</span>): <span class="hljs-params">MappedQueryResult</span>&lt;<span class="hljs-params">V</span>, <span class="hljs-params">S</span>&gt;;
+    <span class="hljs-params">fetch</span>(<span class="hljs-params">query?: Query&lt;T&gt;</span>): <span class="hljs-params">FetchResult</span>&lt;<span class="hljs-params">T</span>&gt;;
+    <span class="hljs-params">source</span>: <span class="hljs-params">S</span>;
+}</span>
+</code></pre>
+			<p>The <code>QueryResult</code> can be further queried or transformed, as well as observed, and has a reference to the source store if updates need to be performed on the original data.</p>
+			<p>The observation API for the <code>QueryResult</code> is very similar to the store&#39;s, with a few changes.</p>
+			<h4 id="mappedquerytransformresult">MappedQueryTransformResult</h4>
+			<p>Unless the transform method is called without an <code>idTransform</code>, the result of any queries to a <code>QueryableStore</code> will be a <code>MappedQueryResult</code>, which includes additional data in its <code>StoreDelta</code> updates, and provides a <code>track()</code> method. The <code>StoreDelta</code> interface is extended by the <code>TrackedStoreDelta</code> interface which the <code>MappedQueryResult</code> provides to observers. This augments the interface by providing data indicating the current and previous indices of items that have been moved within, added to, or removed from, the view represented by the <code>MappedQueryResult</code>. Unlike <code>updates</code>, <code>deletes</code>, and <code>adds</code>, these properties are not related to specific operations, but instead just represent changes in the position of items within the collection. </p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> TrackableStoreDelta&lt;T&gt; <span class="hljs-keyword">extends</span> StoreDelta&lt;T&gt; {
+    <span class="hljs-comment">/**
+     * Contains info for any items that were formerly in the tracked collection and are now not, regardless of how
+     * those items were removed
+     */</span>
+    removedFromTracked: { item: T; id: <span class="hljs-built_in">string</span>; previousIndex: <span class="hljs-built_in">number</span>; }[];
+    <span class="hljs-comment">/**
+     * Contains info for any items that are now in the tracked collection and formerly were not, regardless of how
+     * those items were added
+     */</span>
+    addedToTracked: { item: T; id: <span class="hljs-built_in">string</span>; index: <span class="hljs-built_in">number</span>; }[];
+    <span class="hljs-comment">/**
+     * Contains info were previously and still are in the tracked collection but have changed position, regardless of
+     * how the items were moved.
+     */</span>
+    movedInTracked: { item: T; id: <span class="hljs-built_in">string</span>; previousIndex: <span class="hljs-built_in">number</span>; index: <span class="hljs-built_in">number</span> }[];
+}
+</code></pre>
+			<p>As with the <code>ObservableStore</code>, the locally tracked data in a <code>MappedQueryResult</code> has the potential to become out of sync with the underlying storage. If the source <code>ObservableStore</code> has <code>fetchAroundUpdates</code> set to true, then any query transform results produced from it will only send up to date information to observers. If the source is not fetching around updates, the <code>track()</code> method provided as part of the <code>MappedQueryResult</code> interface can be used to create a copy of a <code>QueryResult</code> that will fetch after any updates from its source to make sure it has the latest data. <code>track()</code> produces a <code>TrackedQueryResult</code>, which has a <code>release()</code> method that provides a new, non-tracked query transform result.</p>
+			<p>When <code>transform()</code> is called without an <code>idTransform</code>, the resulting <code>QueryResult</code> has no way of determining the ID of a transformed item, and so it cannot tell whether changes from the source store represent updates or additions, and cannot keep an index to easily track the position of items within the store. As a result, a <code>QueryResult</code> created this way will not contain positional information in its updates to observers, and cannot be tracked.</p>
+			<p>Example Usage</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> QueryableStore <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/stores/store/QueryableStore'</span>;
+
+<span class="hljs-keyword">const</span> data = [
+        { id: <span class="hljs-string">'1'</span>, value: <span class="hljs-number">1</span> },
+        { id: <span class="hljs-string">'2'</span>, value: <span class="hljs-number">2</span> },
+        { id: <span class="hljs-string">'3'</span>, value: <span class="hljs-number">3</span> }
+     ];
+<span class="hljs-keyword">const</span> queryStore = <span class="hljs-keyword">new</span> QueryableStore({
+    data: data
+});
+
+<span class="hljs-keyword">const</span> filteredView = queryStore.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.value &gt; <span class="hljs-number">1</span>);
+filteredView.fetch().then(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
+    <span class="hljs-comment">// data = [ { id: '2', value: 2 }, { id: '3', value: 3 } ]</span>
+});
+
+filteredView.observe().subscribe(<span class="hljs-function">(<span class="hljs-params">update</span>) =&gt;</span> {
+    <span class="hljs-comment">/*
+        initial update = {
+            deletes: [],
+            adds: [],
+            updates: [],
+            addedToTracked: [],
+            removedFromTracked: [],
+            movedInTracked: [],
+            beforeAll: [],
+            afterAll: []
+        }
+
+        subsequent update = {
+            deletes: [],
+            adds: data,
+            updates: [],
+            addedToTracked: [
+                {
+                    id: '1',
+                    item: data[0],
+                    index: 0
+                },
+                {
+                    id: '2',
+                    item: data[1],
+                    index: 1
+                },
+                {
+                    id: '3',
+                    item: data[2],
+                    index: 2
+                }
+            ],
+            beforeAll: [],
+            afterAll: []
+        };
+
+    */</span>
+});
+</code></pre>
+			<p>If the observer starts observing after the initial add is already resolved, the first update they receive will be the <code>subsequent update</code> in this example. Here the first update is provided to an observer that subscribes synchronously with the initialization of the store, but the initial add happens asynchronously and so is not yet resolved. For a tracked collection, the first update will contain the data from a <code>fetch</code> to the source.</p>
+			<h3 id="fetch-results">Fetch Results</h3>
+			<p>Both the <code>Store</code> and <code>QueryResult</code> interfaces return a type called a <code>FetchResult</code> from <code>fetch</code>.
+				This is a <code>Promise</code> that resolves to the fetched data, but it also has two other properties: <code>totalLength</code> and <code>dataLength</code>.
+				For both the <code>Store</code> and <code>QueryResult</code>, <code>totalLength</code> is a <code>Promise</code> that resolves to the total number of items
+			in the underlying <code>Storage</code>.</p>
+			<p>For a <code>Store</code>, <code>dataLength</code> resolves to the same value as <code>totalLength</code>, and is only provided for consistency between the interfaces.</p>
+			<p>For a <code>QueryResult</code>, <code>dataLength</code> resolves to the number of items that match the <code>QueryResult</code>&#39;s
+			queries. Note that in all cases, these values do not change if a query is passed to fetch.</p>
+			<p>Example Usage</p>
+			<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> QueryableStore <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/stores/store/QueryableStore'</span>;
+<span class="hljs-keyword">const</span> queryStore = <span class="hljs-keyword">new</span> QueryableStore({
+    data: [
+        { id: <span class="hljs-string">'item-1'</span>, value: <span class="hljs-number">1</span> },
+        { id: <span class="hljs-string">'item-2'</span>, value: <span class="hljs-number">2</span> },
+        { id: <span class="hljs-string">'item-3'</span>, value: <span class="hljs-number">3</span> }
+    ]
+});
+
+<span class="hljs-keyword">const</span> withoutQuery = queryStore.fetch();
+<span class="hljs-comment">// This filter will not change the value of dataLength or totalLength</span>
+<span class="hljs-keyword">const</span> withQuery = queryStore.fetch(createFilter&lt;<span class="hljs-built_in">any</span>&gt;().lessThan(<span class="hljs-string">'value'</span>, <span class="hljs-number">2</span>));
+
+<span class="hljs-built_in">Promise</span>.all(
+    [ withoutQuery.totalLength, withoutQuery.dataLength, withQuery.totalLength, withQuery.dataLength ]
+).then(<span class="hljs-function">(<span class="hljs-params">values</span>) =&gt;</span> {
+    <span class="hljs-comment">// values[0] === values[1] === values[2] === values[3] === 3</span>
+});
+
+<span class="hljs-keyword">const</span> queryResult = queryStore.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.value &lt; <span class="hljs-number">3</span>);
+<span class="hljs-keyword">const</span> queryResultWithoutQuery = queryResult.fetch();
+<span class="hljs-comment">// This filter will not change the value of dataLength or totalLength</span>
+<span class="hljs-keyword">const</span> queryResultsWithQuery = queryResult.fetch(createFilter&lt;<span class="hljs-built_in">any</span>&gt;().lessThan(<span class="hljs-string">'value'</span>, <span class="hljs-number">2</span>));
+<span class="hljs-built_in">Promise</span>.all([
+    queryResultWithoutQuery.totalLength,
+    queryResultsWithQuery.totalLength,
+    queryResultWithoutQuery.dataLength,
+    queryResultsWithQuery.dataLength
+]).then(<span class="hljs-function">(<span class="hljs-params">values</span>) =&gt;</span> {
+    <span class="hljs-comment">// values[0] === values[1] === 3 The totalLength in both cases is still the total number of items</span>
+    <span class="hljs-comment">// values[2] === values[3] === 2 The dataLength in both cases is the number of items matching the</span>
+    <span class="hljs-comment">// result's queries</span>
+});
+</code></pre>
+			<h2 id="how-do-i-contribute-">How do I contribute?</h2>
+			<p>We appreciate your interest!  Please see the <a href="https://github.com/dojo/meta#readme">Dojo 2 Meta Repository</a> for the
+			Contributing Guidelines and Style Guide.</p>
+			<h3 id="installation">Installation</h3>
+			<p>To start working with this package, clone the repository and run <code>npm install</code>.</p>
+			<p>In order to build the project run <code>grunt dev</code> or <code>grunt dist</code>.</p>
+			<h3 id="testing">Testing</h3>
+			<p>Test cases MUST be written using <a href="https://theintern.github.io">Intern</a> using the Object test interface and Assert assertion interface.</p>
+			<p>90% branch coverage MUST be provided for all code submitted to this repository, as reported by istanbul’s combined coverage results for all supported platforms.</p>
+			<p>To test locally in node run:</p>
+			<p><code>grunt test</code></p>
+			<p>To test against browsers with a local selenium server run:</p>
+			<p><code>grunt test:local</code></p>
+			<p>To test against BrowserStack or Sauce Labs run:</p>
+			<p><code>grunt test:browserstack</code></p>
+			<p>or</p>
+			<p><code>grunt test:saucelabs</code></p>
+			<h2 id="licensing-information">Licensing information</h2>
+			<p>TODO: If third-party code was used to write this library, make a list of project names and licenses here</p>
+			<ul>
+				<li><a href="https//github.com/foo/bar">Third-party lib one</a> (<a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a>)</li>
+			</ul>
+			<p>© 2017 <a href="https://js.foundation/">JS Foundation</a>. <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a> license.</p>
+		</div>
+	</div>
+	<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+		<nav class="tsd-navigation primary">
+			<ul>
+				<li class="globals  ">
+					<a href="globals.html"><em>Globals</em></a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="tsd-navigation secondary menu-sticky">
+			<ul class="before-current">
+				<li class=" tsd-kind-enum">
+					<a href="enums/booleanop.html" class="tsd-kind-icon">Boolean<wbr>Op</a>
+				</li>
+				<li class=" tsd-kind-enum">
+					<a href="enums/filtertype.html" class="tsd-kind-icon">Filter<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-enum">
+					<a href="enums/operationtype.html" class="tsd-kind-icon">Operation<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/asyncstorage.html" class="tsd-kind-icon">Async<wbr>Storage</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/compoundquery.html" class="tsd-kind-icon">Compound<wbr>Query</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/inmemorystorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Storage</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/indexeddbstorage.html" class="tsd-kind-icon">IndexedDBStorage</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="classes/jsonpointer.html" class="tsd-kind-icon">Json<wbr>Pointer</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/mappedqueryresult.html" class="tsd-kind-icon">Mapped<wbr>Query<wbr>Result</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/patch.html" class="tsd-kind-icon">Patch</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/queryresult.html" class="tsd-kind-icon">Query<wbr>Result</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/storebase.html" class="tsd-kind-icon">Store<wbr>Base</a>
+				</li>
+				<li class=" tsd-kind-class tsd-has-type-parameter">
+					<a href="classes/trackedqueryresult.html" class="tsd-kind-icon">Tracked<wbr>Query<wbr>Result</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/add.html" class="tsd-kind-icon">Add</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/booleanfilter.html" class="tsd-kind-icon">Boolean<wbr>Filter</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/copy.html" class="tsd-kind-icon">Copy</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/filter.html" class="tsd-kind-icon">Filter</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/filterarray.html" class="tsd-kind-icon">Filter<wbr>Array</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/filterdescriptor.html" class="tsd-kind-icon">Filter<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/indexquerydescriptor.html" class="tsd-kind-icon">Index<wbr>Query<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/indexeddboptions.html" class="tsd-kind-icon">IndexedDBOptions</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/itemtype.html" class="tsd-kind-icon">Item<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/itemupdate.html" class="tsd-kind-icon">Item<wbr>Update</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/mappedmaterialization.html" class="tsd-kind-icon">Mapped<wbr>Materialization</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/mappedqueryresultinterface.html" class="tsd-kind-icon">Mapped<wbr>Query<wbr>Result<wbr>Interface</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/materialization.html" class="tsd-kind-icon">Materialization</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/move.html" class="tsd-kind-icon">Move</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/observablestoreinterface.html" class="tsd-kind-icon">Observable<wbr>Store<wbr>Interface</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/observablestoreoptions.html" class="tsd-kind-icon">Observable<wbr>Store<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/operation.html" class="tsd-kind-icon">Operation</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/queryoptions.html" class="tsd-kind-icon">Query<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/queryresultinterface.html" class="tsd-kind-icon">Query<wbr>Result<wbr>Interface</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/queryablestoreinterface.html" class="tsd-kind-icon">Queryable<wbr>Store<wbr>Interface</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/queryablestoreinterfaceoptions.html" class="tsd-kind-icon">Queryable<wbr>Store<wbr>Interface<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/remove.html" class="tsd-kind-icon">Remove</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/replace.html" class="tsd-kind-icon">Replace</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/simplefilter.html" class="tsd-kind-icon">Simple<wbr>Filter</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/sort.html" class="tsd-kind-icon">Sort</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/storedelta.html" class="tsd-kind-icon">Store<wbr>Delta</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/storerange.html" class="tsd-kind-icon">Store<wbr>Range</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="interfaces/test.html" class="tsd-kind-icon">Test</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/thenable.html" class="tsd-kind-icon">Thenable</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/trackablestoredelta.html" class="tsd-kind-icon">Trackable<wbr>Store<wbr>Delta</a>
+				</li>
+				<li class=" tsd-kind-interface tsd-has-type-parameter">
+					<a href="interfaces/trackedqueryresultinterface.html" class="tsd-kind-icon">Tracked<wbr>Query<wbr>Result<wbr>Interface</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#filterarrayentry" class="tsd-kind-icon">Filter<wbr>Array<wbr>Entry</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#filterchainmember" class="tsd-kind-icon">Filter<wbr>Chain<wbr>Member</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#filterfunction" class="tsd-kind-icon">Filter<wbr>Function</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#indices" class="tsd-kind-icon">Indices</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#objectpointer" class="tsd-kind-icon">Object<wbr>Pointer</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#observersetentry" class="tsd-kind-icon">Observer<wbr>Set<wbr>Entry</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#sortparameter" class="tsd-kind-icon">Sort<wbr>Parameter</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="globals.html#transformationdescriptor" class="tsd-kind-icon">Transformation<wbr>Descriptor</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#patcheditems" class="tsd-kind-icon">patched<wbr>Items</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#patches" class="tsd-kind-icon">patches</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#removethis" class="tsd-kind-icon">remove<wbr>This</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+				</li>
+				<li class=" tsd-kind-variable">
+					<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#buildindex" class="tsd-kind-icon">build<wbr>Index</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#createdata" class="tsd-kind-icon">create<wbr>Data</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#createrequestpromise" class="tsd-kind-icon">create<wbr>Request<wbr>Promise</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#createstoreobservable" class="tsd-kind-icon">create<wbr>Store<wbr>Observable</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#createupdates" class="tsd-kind-icon">create<wbr>Updates</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#diff" class="tsd-kind-icon">diff</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#isequal" class="tsd-kind-icon">is<wbr>Equal</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#iseventuallyrejected" class="tsd-kind-icon">is<wbr>Eventually<wbr>Rejected</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#isfilter" class="tsd-kind-icon">is<wbr>Filter</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#issort" class="tsd-kind-icon">is<wbr>Sort</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#materialize" class="tsd-kind-icon">materialize</a>
+				</li>
+				<li class=" tsd-kind-function tsd-has-type-parameter">
+					<a href="globals.html#mergedeltas" class="tsd-kind-icon">merge<wbr>Deltas</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#navigate" class="tsd-kind-icon">navigate</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#shouldrecurseinto" class="tsd-kind-icon">should<wbr>Recurse<wbr>Into</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="globals.html#throwimmediatly" class="tsd-kind-icon">throw<wbr>Immediatly</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+				</li>
+				<li class=" tsd-kind-object-literal">
+					<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
