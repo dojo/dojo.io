@@ -1,7 +1,7 @@
 ---
 title: Dojo 2 local installation
 layout: tutorial
-overview: The Dojo 2 tutorial series may either be run from an embedded editor or setup in your local environment. This tutorial covers setup in your local environment. If you are just checking Dojo 2 out and want to use the embedded editor, you can skip ahead.
+overview: This tutorial covers the basics of creating a Dojo 2 application.
 ---
 
 # Dojo 2 local installation
