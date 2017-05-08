@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
 import Button, { ButtonProperties } from '@dojo/widgets/button/Button';
@@ -31,7 +31,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		onSubmit && onSubmit(event);
 	}
 
-	render(): DNode {
+	protected render(): DNode {
 		const {
 			firstName,
 			firstNameInvalid,
@@ -49,7 +49,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		}, [
 			v('fieldset', { classes: this.classes(css.nameField) }, [
 				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
-				w<TextInputProperties>(TextInput, {
+				w(TextInput, {
 					key: 'input1',
 					invalid: <boolean> firstNameInvalid,
 					label: {
@@ -68,7 +68,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 						onBlur && onBlur('firstName', value);
 					}
 				}),
-				w<TextInputProperties>(TextInput, {
+				w(TextInput, {
 					key: 'input2',
 					invalid: <boolean> lastNameInvalid,
 					label: {
@@ -88,7 +88,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 					}
 				})
 			]),
-			w<TextInputProperties>(TextInput, {
+			w(TextInput, {
 				key: 'input3',
 				invalid: <boolean> emailInvalid,
 				label: 'Email address',
@@ -103,7 +103,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 					onBlur && onBlur('email', value);
 				}
 			}),
-			w<ButtonProperties>(Button, {
+			w(Button, {
 				content: 'Save',
 				type: 'submit'
 			})
