@@ -293,27 +293,27 @@ The application now renders three workers in the `WorkerContainer` widget, allow
 
 ## Final steps - refactoring worker data to App
 
-When we created the `WorkerContainer`, we added the `Worker` data directly into it to ensure that it functioned properly. While this allowed us to develop the widget quickly, it will limit our ability to interact with that data since it is scoped to the `WorkerContainer` widget. In order to make the data more accessible, we need to move it up to the `App` widget. To do this, we will make two changes. First, we will move the `Worker` data up to the `App` widget and then we will update the `WorkerContainer` to receive it.
+When we created the `WorkerContainer`, we added the `Worker` data directly into the container. While this allowed us to develop the widget quickly, it would be better to remove the `Worker` data from the `WorkerContainer` and inject it from the `App` class to make the container more flexible and reusable. To do this, we will move the `Worker` data to the `App` widget and then update the `WorkerContainer` to receive it.
 
 Let's start by moving the `Worker` data into the `App` class. First, add the following import to the `App.ts` file:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:6 %}
 
-Notice that we are going to be using the `WorkerProperties` interface, not the `Worker` widget. We want the `App` class to work with the **data** that describes the application's state, not the **widgets** that will render it. This keeps our application more flexible my deferring the decision about how to render the `WorkerProperties` data to a lower-level widget in our application.
+Notice that we are going to be using the `WorkerProperties` interface, not the `Worker` widget. We want the `App` class to work with the **data** that describes the application's state, not the **widgets** that will render it. This keeps our application more flexible my delegating how to render the `WorkerProperties` data to more specialized widgets in our application, specifically the `WorkerContainer` and `Worker` widgets.
 
 Now it's time to specify the worker data. Add this code to the top of the `App` class definition:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:9-22 %}
 
-This data is the same as what we had previous with exception of the `key` property. The keys should be added by whatever widget is rendering the `Worker`s so that it can ensure that each one receives a unique value.
+This adds a `key` property to our data set. The keys should be added by whatever widget is rendering the `Worker`s so that it can ensure that each one receives a unique value.
 
-The last thing we need to do in this file is pass the worker data into the `WorkerContainer`. Update the `render` method to do that:
+The final modification to `WorkerContainer` is to pass the `Worker` data into the `render` method:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:24-31 %}
 
-Now, let's update the `WorkerContainer.ts` file to be able to accept and render this data.
+Now, let's update `WorkerContainer.ts` file to accept and render this data.
 
-Start by updating the import statement that is retrieving the `Worker` class to import the `WorkerProperties` interface as well:
+Start by updating the `import` statement that is retrieving the `Worker` class and `WorkerProperties` interface:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:4 %}
 
@@ -325,11 +325,11 @@ Next, update the class declaration to work with the new `WorkerContainerProperti
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:15 %}
 
-Finally, update the `render` method to remove the previous, hard-coded widgets and replace that will code that will dynamically generate `Worker`s based on the `workerData` property:
+Finally, update the `render` method to remove the previous, hard-coded widgets and replace that with code to dynamically generate `Worker`s based on the `workerData` property:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:16-29 %}
 
-Refactoring the application has made the `WorkerContainer` more flexible than the initial implementation. This is because it is no longer responsible for determining where its data comes from. It can receive data from any external provider, such as the `App` class or a data store, and renders it.
+Refactoring the application has made the `WorkerContainer` more flexible than the initial implementation. This is because it is no longer responsible for determining its data source. It can receive data from any external provider, such as the `App` class or a data store, and renders it.
 
 ## Summary
 In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from `WidgetBase<WidgetProperties>`. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the `render` method, a widget can generate the virtual DOM nodes that control how it is rendered.
