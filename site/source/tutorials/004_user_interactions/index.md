@@ -91,7 +91,7 @@ Update the `WorkerProperties` interface to:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:7-13 %}
 
-Now, we need to update the CSS selectors that will provide the rules for rendering the updated widget. Open up the `worker.css` file and update it as follows:
+Now, we need to update the CSS selectors that will provide the rules for rendering the updated widget. Edit `worker.css` as follows:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
 
@@ -129,7 +129,7 @@ When you are ready, click the button below to see our solution.
 
 {% solution showsolution1 %}
 The widget's parent is responsible for passing properties to the widget.
-In this application, `Worker` widgets are getting their data from the `App` class via the `WorkerContainer`.
+In this application, `Worker` widgets are receiving data from the `App` class via the `WorkerContainer`.
 
 To pass the specified properties to the first worker, the first element in
 `App`'s `_workerData` array needs to be updated to the following:
