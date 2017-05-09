@@ -81,7 +81,7 @@ We could add the additional rendering logic in the current `render` method, but 
 
 Next, create another private method called `_renderBack` to render the back view:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:50-96 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:50-91 %}
 
 This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
 
@@ -107,7 +107,7 @@ Confirm that everything is working by viewing the application in a browser - all
 
 In order to re-render our widget, we need to update the `flip` method to toggle the `_isFlipped` field and invalidate the widget
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:98-101 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:93-96 %}
 
 Now, the widget can be flipped between its front and back sides by clicking on it.
 

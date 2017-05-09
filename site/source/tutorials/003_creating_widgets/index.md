@@ -39,7 +39,7 @@ Our next step is to override `WidgetBase`'s `render` method to generate the appl
 
 ```ts
 	protected render(): DNode {
-		return v('div', []);
+		return v('div');
 	}
 ```
 
@@ -96,7 +96,7 @@ import { v } from '@dojo/widget-core/d';
 
 export default class Worker extends WidgetBase<WidgetProperties> {
 	protected render(): DNode {
-		return v('div', []);
+		return v('div');
 	}
 }
 ```
@@ -109,7 +109,7 @@ Our next step is to extend the `render()` method to customize the widget's appea
 ```ts
 protected render(): DNode {
 	return v('div', [
-			v('img', { src: 'images/worker.svg' }, []),
+			v('img', { src: 'images/worker.svg' }),
 			v('div', [
 				v('strong', [ 'lastName, firstName' ])
 			])
@@ -168,7 +168,7 @@ protected render(): DNode {
 	} = this.properties;
 
 	return v('div', [
-			v('img', { src: 'images/worker.svg' }, []),
+			v('img', { src: 'images/worker.svg' }),
 			v('div', [
 				v('strong', [ `${lastName}, ${firstName}` ])
 			])
@@ -236,7 +236,7 @@ export default class WorkerContainer extends WorkerContainerBase<ThemeableProper
 	protected render(): DNode {
 		return v('div', {
 			classes: this.classes(css.container)
-		}, []);
+		});
 	}
 }
 ```
@@ -299,19 +299,17 @@ Let's start by moving the `Worker` data into the `App` class. First, add the fol
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:6 %}
 
-Notice that we are going to be using the `WorkerProperties` interface, not the `Worker` widget. We want the `App` class to work with the **data** that describes the application's state, not the **widgets** that will render it. This keeps our application more flexible my delegating how to render the `WorkerProperties` data to more specialized widgets in our application, specifically the `WorkerContainer` and `Worker` widgets.
+Notice that we are going to be using the `WorkerProperties` interface, not the `Worker` widget. We want the `App` class to work with the **data** that describes the application's state, not the **widgets** that will render it. This keeps our application more flexible by delegating how to render the `WorkerProperties` data to more specialized widgets in our application, specifically the `WorkerContainer` and `Worker` widgets.
 
 Now it's time to specify the worker data. Add this code to the top of the `App` class definition:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:9-22 %}
 
-This adds a `key` property to our data set. The keys should be added by whatever widget is rendering the `Worker`s so that it can ensure that each one receives a unique value.
-
-The final modification to `WorkerContainer` is to pass the `Worker` data into the `render` method:
+The final modification to `App` is to pass the `Worker` data into the `WorkerContainer`. Update the `render` method:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:24-31 %}
 
-Now, let's update `WorkerContainer.ts` to accept and render this data.
+Now, let's update `WorkerContainer.ts` to accept the `workerData` and use it to and render `Worker` widgets.
 
 Start by updating the `import` statement that is retrieving the `Worker` class and `WorkerProperties` interface:
 
@@ -329,7 +327,9 @@ Finally, update the `render` method to remove the previous, hard-coded widgets a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:16-29 %}
 
-Refactoring the application has made the `WorkerContainer` more flexible than the initial implementation. This is because it is no longer responsible for determining its data source. It can receive data from any external provider, such as the `App` class or a data store, and renders it.
+Notice that the `render` method adds a `key` property to each `workerData` entry as it is passed into the `Worker` widget. The keys should be added by whatever widget is rendering the `Worker`s so that it can ensure that each one receives a unique value.
+
+Refactoring the application has made the `WorkerContainer` more flexible than the initial implementation. This is because it is no longer responsible for determining its data source. It can receive data from any external provider, such as the `App` class or a data store, and simply renders it.
 
 ## Summary
 In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from `WidgetBase<WidgetProperties>`. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the `render` method, a widget can generate the virtual DOM nodes that control how it is rendered.

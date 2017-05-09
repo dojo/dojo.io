@@ -34,12 +34,12 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-			classes: this.classes(css.workerFront),
-			onclick: this.flip
-		}, [
-			v('img', {
-				classes: this.classes(css.image),
-					src: 'images/worker.svg' }, []),
+				classes: this.classes(css.workerFront),
+				onclick: this.flip
+			}, [
+				v('img', {
+					classes: this.classes(css.image),
+						src: 'images/worker.svg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])
@@ -57,14 +57,13 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-			classes: this.classes(css.workerBack),
-			onclick: this.flip
+				classes: this.classes(css.workerBack),
+				onclick: this.flip
 			}, [
 				v('img', {
-						classes: this.classes(css.imageSmall),
-						src: 'images/worker.svg'
-					}, []
-				),
+					classes: this.classes(css.imageSmall),
+					src: 'images/worker.svg'
+				}),
 				v('div', {
 					classes: this.classes(css.generalInfo)
 				}, [
@@ -84,11 +83,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 				v('div', [
 					v('strong', ['Current Tasks']),
 					v('div', tasks.map(task => {
-						return v('div', {
-								classes: this.classes(css.task)
-							},
-							[task]
-						);
+						return v('div', { classes: this.classes(css.task) }, [ task ]);
 					}))
 				])
 			]
