@@ -15,7 +15,7 @@ You can [download](../assets/003_creating_widgets-initial.zip) the demo project 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
 ## Creating the application widget
-In the [first tutorial](../001_static_content/) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we're going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in `main.ts` here:
+In the [first tutorial](../001_static_content/) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we are going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in `main.ts`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
@@ -327,7 +327,7 @@ Finally, update the `render` method to remove the previous, hard-coded widgets a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:16-29 %}
 
-Notice that the `render` method adds a `key` property to each `workerData` entry as it is passed into the `Worker` widget. The keys should be added by whatever widget is rendering the `Worker`s so that it can ensure that each one receives a unique value.
+Notice that the `render` method adds a `key` property to each `workerData` entry as it is passed into the `Worker` widget. The keys should be added by whatever widget is rendering the `Worker`s so that the `WorkerContainer` can ensure that each one receives a unique value.
 
 Refactoring the application has made the `WorkerContainer` more flexible than the initial implementation. This is because it is no longer responsible for determining its data source. It can receive data from any external provider, such as the `App` class or a data store, and simply renders it.
 
