@@ -60,14 +60,14 @@ Each tutorial should be written as a journey, taking the learner from the initia
 
 Consider the knowledge level of the learner and make sure that the tutorial is written so that they can easily understand what is being taught.
 
-- **Don't** patronize the learner by explaining concepts that it is reasonable to assume that they know. For example, it is reasonable to expect that a visitor to dojo.io knows what HTML is and what it is used for. There is no need to explain it to them.
-- **Do** take the time to explain concepts that might be new to them. Many Dojo 2 developers have been working with the concept of the virtual DOM and reactive programming for years, but the average front end developer probably doesn't have significant experience with these techniques. Taking a few sentences (and linking to resources) to explain these concepts will help keep the learner from feeling overwhelmed.
+- **Do not** patronize the learner by explaining concepts that it is reasonable to assume that they know. For example, it is reasonable to expect that a visitor to dojo.io knows what HTML is and what it is used for. There is no need to explain it to them.
+- **Do** take the time to explain concepts that might be new to them. Many Dojo 2 developers have been working with the concept of the virtual DOM and reactive programming for years, but the average front end developer probably does not have significant experience with these techniques. Taking a few sentences (and linking to resources) to explain these concepts will help keep the learner from feeling overwhelmed.
 
 ### Story-arc in place
 
 Consider separating the tutorial into three major sections.
 
-- The beginning of the tutorial should contain some brief remarks about the concepts that will be discussed and how to get started with the demo project. When introducing the demo project, briefly describe what it already does as well as what features will be added or deficiencies will be addressed in the tutorial. If there is anything that the the learner should know before starting the tutorial, those prerequisites should also be listed in this section.
+- The beginning of the tutorial should contain some brief remarks about the concepts that will be discussed and how to get started with the demo project. When introducing the demo project, briefly describe what it already does as well as what features will be added or deficiencies will be addressed in the tutorial. If there is anything that the learner should know before starting the tutorial, those prerequisites should also be listed in this section.
 - The middle of the tutorial should take the learner on the journey through the content of the tutorial. It should be divided into sub-sections, each taking one step toward the ultimate solution. If possible, these subsections should setup the next problem to be solved, walk the learner through the solution, and then briefly recap what was done and why.
 - The ending section of the tutorial should provide a summary of what was discussed during the tutorial and revisit critical things for them to remember. It should also contain links to download the finished demo project as well as links to any tutorials that would be good next steps for the learner to take.
 
@@ -83,7 +83,7 @@ When asking learner to do something, however, avoid pronouns and just tell them 
 
 If the tutorial is discussing benefits, feel free to use the 2nd person ("you") to emphasize the benefit.
 
-> Now it is time to see what **our** application can do! First, **we** are going to leverage another `@dojo/cli` command. **You** don't have to install this one, it was added when **you** installed the other dependencies. In the terminal, enter the command:
+> Now it is time to see what **our** application can do! First, **we** are going to leverage another `@dojo/cli` command. **You** do not have to install this one, it was added when **you** installed the other dependencies. In the terminal, enter the command:
 
 ### No unnecessary contractions or slang
 
@@ -91,7 +91,7 @@ Contractions and slang expression (expressions that are specific to a culture or
 
 ### No pronouns or, if used, have an obvious meaning to non-native English speakers
 
-Many potential users of Dojo 2 are not native speakers of the English language. A common point of confusion with non-native English speakers is determining what a noun a pronoun (he, she, it, etc.) is referring. In order to make Dojo 2's tutorials as clear as possible, pronouns should be avoided unless it is extremely obvious what noun is being referred to.
+Many potential users of Dojo 2 are not native speakers of the English language. A common point of confusion with non-native English speakers is determining what noun a pronoun (he, she, it, etc.) is referring. In order to make Dojo 2's tutorials as clear as possible, pronouns should be avoided unless it is extremely obvious what noun is being referred to.
 
 ### No abbreviations
 
@@ -107,7 +107,7 @@ Dojo 2 is being created and maintained by a multi-cultural community and, as a r
 
 ### 'aside' tags used for short, supporting script
 
-In the course of teaching a concept, there are often points that are useful for the learner to be made aware of but don't fit within the tutorial itself. In these situations, consider using the `aside` tag to allow the desired content to be added without disrupting the overall flow of the tutorial. In general, asides should be fairly short (one or two sentences) and placed as close to the relevant content.
+In the course of teaching a concept, there are often points that are useful for the learner to be made aware of but do not fit within the tutorial itself. In these situations, consider using the `aside` tag to allow the desired content to be added without disrupting the overall flow of the tutorial. In general, asides should be fairly short (one or two sentences) and placed as close to the relevant content.
 
 Example:
 
@@ -132,9 +132,9 @@ Since Dojo 2 tutorials are demo-driven, they tend to contain a lot of code snipp
 
 ```
 
-This will replace the tag with the file's contents and apply syntax-highlight to it with the assumption that the contents are JavaScript code.
+This will replace the tag with the file's contents and apply syntax highlighting to it with the assumption that the contents are JavaScript code.
 
-- If the file doesn't contain JavaScript, then the `lang` parameter can be added to change the syntax highlighting rules:
+- If the file does not contain JavaScript, then the `lang` parameter can be added to change the syntax highlighting rules:
 
  ```markdown
 
