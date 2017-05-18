@@ -1,3 +1,16 @@
 <div class="tutorial-content">
-	<%- page.content %>
+	<div class="scrollable">
+		<%- page.content %>
+	</div>
+
+	<div id="actionBar" class="action-bar"></div>
+	<style>
+		html, body {
+			height: 100%;
+		}
+	</style>
+	<script src="/js/tutorial-support.js"></script>
+	<script>
+		tutorial.populateActionBar(document.getElementById('actionBar'));
+	</script>
 </div>

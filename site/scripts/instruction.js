@@ -1,0 +1,17 @@
+hexo.extend.tag.register('instruction', function(args) {
+	return `<div class="instruction">${convertCodeAndLinks(args[0])}</div>`;
+});
+
+function convertCodeAndLinks(content) {
+	// replace backticks with <code> tags
+	content = content && content.replace(/`(.*?)`/g, function (match, param) {
+		return `<code>${param}</code>`;
+	});
+
+	// replace markdown for hyperlink with proper HTML
+	content = content && content.replace(/\[(.*?)\]\((.*?)\)/g, function (match, title, url) {
+		return `<a href=	'${url}'>${title}</a>`;
+	});
+
+	return content;
+}
