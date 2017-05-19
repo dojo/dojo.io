@@ -35,7 +35,9 @@ Our next dependency to load is the Banner widget that we created in the first tu
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:4 %}
 
-{% instruction 'With all of the dependencies in place, let's create the `App` widget itself' %}
+With all of the dependencies in place, let's create the `App` widget itself.
+
+{% instruction 'Add the following class definition.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:8,32 %}
 
@@ -72,7 +74,7 @@ export interface WidgetProperties {
 }
 ```
 
-Both of these properties are optional, so we can pass an empty object for now.
+Both of these properties are optional, so we can pass an empty object for now. Next, we will replace the `Banner` class with the `App` as the root of our application.
 
 {% section %}
 
