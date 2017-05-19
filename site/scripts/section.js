@@ -1,10 +1,10 @@
 hexo.extend.tag.register('section', function(args) {
 	var result = '<section class="tutorial hidden hiding">';
 	switch (args[0]) {
-		case 'start':
+		case 'first':
 			// no-op
 			break;
-		case 'end':
+		case 'last':
 			result = '</section>';
 			break;
 		default:

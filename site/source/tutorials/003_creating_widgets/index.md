@@ -4,7 +4,7 @@ title: Creating widgets
 overview: In this tutorial, you will learn how to create and style custom widgets in Dojo 2.
 ---
 
-{% section 'start' %}
+{% section 'first' %}
 # Creating widgets
 
 ## Overview
@@ -376,4 +376,4 @@ If you would like, you can download the completed [demo application](../assets/0
 
 In the [next tutorial](../004_user_interactions/), we will explore the how to add event handlers to allow our application to respond to user interactions.
 
-{% section 'end' %}
+{% section 'last' %}

@@ -82,11 +82,12 @@ tutorial.populateActionBar = function(container) {
 		}
 		activateSelector(newSelector);
 
+
+
 	});
 
 	function activateSelector(target) {
 		var sectionToActivate = target.getAttribute('data-section-num');
-		console.log(sectionToActivate);
 
 		sectionSelectors.forEach(function (sectionSelector) {
 			if (sectionSelector === target) {
@@ -116,6 +117,11 @@ tutorial.populateActionBar = function(container) {
 			}
 			document.querySelector('.scrollable').scrollTop = 0;
 
+			if (parseInt(sectionToActivate, 10) === sections.length - 1) {
+				nextButton.classList.add('hidden');
+			} else {
+				nextButton.classList.remove('hidden');
+			}
 		}, 300, sectionToActivate);
 	}
 
