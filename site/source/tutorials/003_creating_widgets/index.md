@@ -19,6 +19,10 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## Creating the application widget
 
+{% task 'Create a new root node for the application.' %}
+
+In the [first tutorial](../001_static_content/) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we are going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in `main.ts`:
+
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
 This line: `const Projector = ProjectorMixin(Banner);` tells the application to use the `Banner` widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called `App` that represents the entire application that we are building. To start that process, go into the empty `App.ts` file located in the `src/widgets` directory. First, we need to add the required dependencies to create the `App` widget.
@@ -114,7 +118,7 @@ Now it is time to create our Worker widget. For now, this widget will only rende
 
 <p class="center">![worker_widget](../resources/worker.png)</p>
 
-The first step is to create the worker widget. We will put the implementation in `src/widgets/Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `src/widget/Worker.ts`.
+The first step is to create the worker widget. We will put the implementation in `Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `Worker.ts`.
 
 {% instruction 'Add this code:' %}
 
@@ -134,7 +138,9 @@ This is nearly identical to the `App` widget with one exception: we are not impo
 
 Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the worker's portrait and a `<strong>` tag to display the worker's name.
 
-{% instruction 'Try and implement that using the URL `images/worker.jpg` and print the first and last names. If you need help, or want to check your solution, click the button below to see our solution.' %}
+{% instruction 'Try and implement that using the URL `images/worker.jpg` and print the first and last names.' %}
+
+If you need help, or want to check your solution, click the button below to see our solution.
 
 {% solution showsolution1 %}
 ```ts
@@ -251,7 +257,7 @@ At this point, we have a good start to our widget, but it still doesn't look ver
 We can use CSS files to establish the look and feel of a widget or application.
 Dojo leverages [CSS Modules](https://github.com/css-modules/css-modules) to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of [typed CSS modules](https://github.com/Quramy/typed-css-modules), so that we can provide CSS typing files, enabling you to target CSS files in your import statements.
 
-To allow our Worker widget to be styled, we need to modify the Widget class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme "mixin" to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.
+To allow our `Worker` widget to be styled, we need to modify the class. First, apply a [decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) to the class to modify the widget's constructor and prepare its instances to work with CSS modules. Also, we will apply a theme *mixin* to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.
 
 {% instruction 'Add the following import to the top of `Worker.ts`:' %}
 

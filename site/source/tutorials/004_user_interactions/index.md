@@ -79,7 +79,7 @@ return v('div', {
 }, ...
 ```
 
-Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console. To avoid an error, all event handlers must be defined once, such as via a method.
+Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console. To avoid an error, all event handlers must be defined once, normally via a method.
 
 {% instruction 'Restore the `onclick` property to its previous value.' %}
 
@@ -120,11 +120,9 @@ Now, we need to add the CSS selectors that will provide the rules for rendering 
 
 {% instruction 'Open up the `worker.css` file and update it as follows.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lines:8-39 lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
 
 We also need to update the CSS selector for the front view, by changing the selector from `css.worker` to `css.workerFront`.
-
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
 
 Finally, we need to update the `render` method to choose between the two rendering methods.
 

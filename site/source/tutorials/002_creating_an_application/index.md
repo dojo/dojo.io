@@ -22,7 +22,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## The main HTML document
 
-HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in the `main.ts` file:
+HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in `main.ts`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' line:4 %}
 
@@ -32,7 +32,7 @@ Notice that we are searching for the `my-app` element and assigning it to the co
 
 ## The projector
 
-In the [last](../001_static_content/) tutorial we reviewed Dojo 2's use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in the `main.ts` file:
+In the [last](../001_static_content/) tutorial we reviewed Dojo 2's use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in `main.ts`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:6-9 %}
 
@@ -42,7 +42,7 @@ In the [last](../001_static_content/) tutorial we reviewed Dojo 2's use of a vir
 
 These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root widget, making it aware of the Dojo 2 application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
 
-Whenever a Dojo 2 application needs to update the view, it informs the projector. The projector does not immediately re-render the page, however. Instead, it registers a render request with the application via the window's [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this, update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application's current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application's responsiveness.
+Whenever a Dojo 2 application needs to update the view, it informs the projector. The projector does not, however, immediately re-render the page. Instead, it registers a render request with the application via the window's [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this, update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application's current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application's responsiveness.
 
 {% section %}
 
@@ -60,7 +60,7 @@ In our demo application, we only have one widget, the HelloWorld widget:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' %}
 
-This is very simple, containing a single h1 tag and no behavior, but it demonstrates some important concepts. Notice the `render` method, which provides the virtual nodes (also known as DNodes) for the Projector to determine what to add to the HTML document. In this example, the widget is simple enough that the function always returns the same result. We could make this widget more sophisticated by giving it some internal state that can be used to alter how the DNodes are generated without having to change how the rest of the application interacts with it. This encourages the development of loosely coupled components that are easier to develop and maintain over time.
+This is very simple, containing a single `<h1>` tag and no behavior, but it demonstrates some important concepts. Notice the `render` method, which provides the virtual nodes (also known as DNodes) for the Projector to determine what to add to the HTML document. In this example, the widget is simple enough that the function always returns the same result. We could make this widget more sophisticated by giving it some internal state that can be used to alter how the DNodes are generated without having to change how the rest of the application interacts with it. This encourages the development of loosely coupled components that are easier to develop and maintain over time.
 
 {% section %}
 

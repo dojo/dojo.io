@@ -20,7 +20,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## Starting the development server
 
-{% task 'Build and run an application' %}
+{% task 'Build and run the application' %}
 
 Before we start making changes, let's start the application with the development server so that we can observe the impact of our changes. Run the following command in the application's root directory:
 
@@ -34,7 +34,7 @@ In the next step, we will start to customize the application.
 
 ## Page content
 
-{% task 'Change the what is rendered to the page' %}
+{% task 'Change what is rendered to the page' %}
 
 To start customizing the application, let's remove the content that is already there. There are two places we need to go to do this. The first line, "Welcome to biz-e-corp" is being generated from the `index.html` file.
 
@@ -64,11 +64,11 @@ export default class HelloWorld extends WidgetBase<WidgetProperties> {
 ```
 {% endsolution %}
 
-Now, let's look at the `v` function again. We're intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a "virtual" DOM.
+Now, let's look at the `v` function again. We are intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a *virtual* DOM.
 
 In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.
 
-Within Dojo 2, we leverage the [Maquette](http://maquettejs.org/) virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../comingsoon.html) and [Reactive Programming](../comingsoon.html) articles in the reference section. For now, let's get back to our application and make some more changes.
+Dojo 2 leverages the [Maquette](http://maquettejs.org/) virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../comingsoon.html) and [Reactive Programming](../comingsoon.html) articles in the reference section. For now, let's get back to our application and make some more changes.
 
 In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
 
