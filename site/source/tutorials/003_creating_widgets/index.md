@@ -15,7 +15,7 @@ You can [download](../assets/003_creating_widgets-initial.zip) the demo project 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
 ## Creating the application widget
-In the [first tutorial](../001_static_content/) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we're going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in the `main.ts` file here:
+In the [first tutorial](../001_static_content/) in this series, we created an application with a single widget, which we modified to show the title of our Biz-E Bodies view. In this tutorial, we are going to expand our application to show each worker's portrait as well as their name. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate `Banner` in this tutorial. This can be found in `main.ts`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
@@ -31,22 +31,26 @@ Our next dependency to load is the Banner widget that we created in the first tu
 
 With all of the dependencies in place, let's create the `App` widget itself:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:7,14 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:8,32 %}
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
 Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions. To start, let's use the simplest `render` method by adding this to the `App` class:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:8-9,12-13 %}
+```ts
+	protected render(): DNode {
+		return v('div');
+	}
+```
 
 This method will generate a `div` virtual node with no children. To render the `Banner` as a child of the div, we'll use the `w` function that is designed to render widgets. Update the `render` method to the following:
 
 ```ts
-protected render(): DNode {
-	return v('div', [
-		w(Banner, {})
-	]);
-}
+	protected render(): DNode {
+		return v('div', [
+			w(Banner, {})
+		]);
+	}
 ```
 
 Notice that the `w` function takes two parameters - a widget class and an object literal. That literal must implement the interface that was passed to `WidgetBase` via TypeScript generics. In this case, the `Banner` class uses `WidgetProperties` which has the following definition:
@@ -79,11 +83,11 @@ then open up a web browser and navigate to [`http://localhost:9999`](http://loca
 In the next section, we'll create the `Worker` widget that will show the portrait and name of our Biz-E bodies.
 
 ## Creating the Worker widget
-Now it is time to create our Worker widget. FOr now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
+Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
 
-<p class="center">![worker_widget](resources/worker.png)</p>
+<p class="center">![worker_widget](../resources/worker.png)</p>
 
-The first step is to create the worker widget. We will put the implementation in `src/widgets/Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `src/widget/Worker.ts`:
+The first step is to create the worker widget. We will put the implementation in `Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `Worker.ts`:
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -92,7 +96,7 @@ import { v } from '@dojo/widget-core/d';
 
 export default class Worker extends WidgetBase<WidgetProperties> {
 	protected render(): DNode {
-		return v('div', []);
+		return v('div');
 	}
 }
 ```
@@ -105,7 +109,7 @@ Our next step is to extend the `render()` method to customize the widget's appea
 ```ts
 protected render(): DNode {
 	return v('div', [
-			v('img', { src: 'images/worker.jpg' }, []),
+			v('img', { src: 'images/worker.svg' }),
 			v('div', [
 				v('strong', [ 'lastName, firstName' ])
 			])
@@ -144,7 +148,9 @@ Return to `Worker.ts` and add an interface with the custom properties that we ne
 
 Then change the generic parameter passed into `WidgetBase` with the new interface:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:15 %}
+```ts
+export default class Worker extends WidgetBase<WorkerProperties>
+```
 
 The `WorkerProperties` interface adds two new optional properties that we'll be able to use. Now that these are available, let's use them to make the name of the worker dynamic. Inside of the render method, add the following code to create some local constants for the first and last names:
 
@@ -162,7 +168,7 @@ protected render(): DNode {
 	} = this.properties;
 
 	return v('div', [
-			v('img', { src: 'images/worker.jpg' }, []),
+			v('img', { src: 'images/worker.svg' }),
 			v('div', [
 				v('strong', [ `${lastName}, ${firstName}` ])
 			])
@@ -230,21 +236,43 @@ export default class WorkerContainer extends WorkerContainerBase<ThemeableProper
 	protected render(): DNode {
 		return v('div', {
 			classes: this.classes(css.container)
-		}, []);
+		});
 	}
 }
 ```
 
 Now we can update the `render` method to include some workers. Add the following to the top of the `render` method:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:13-29 %}
+```ts
+		const workers: DNode[] = [
+			w(Worker, {
+				key: '1',
+				firstName: 'Tim',
+				lastName: 'Jones'
+			}),
+			w(Worker, {
+				key: '2',
+				firstName: 'Alicia',
+				lastName: 'Fitzgerald'
+			}),
+			w(Worker, {
+				key: '3',
+				firstName: 'Hans',
+				lastName: 'Mueller'
+			})
+		];
+```
 
 Notice that we have added an `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
 In the code example shown above, we have added an `key` property and set the value to be unique for each child widget.
 
 We can now pass these workers as children to the container, by replacing the empty array in the `v` function's third argument with this array:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:31-33 %}
+```ts
+		return v('div', {
+			classes: this.classes(css.container)
+		}, workers);
+```
 
 Now it is time to add styling rules for the `WorkerContainer`. Inside  of `styles/workerContainer.css`, add the following rule:
 
@@ -252,9 +280,56 @@ Now it is time to add styling rules for the `WorkerContainer`. Inside  of `style
 
 Finally, let's update the `App` class to replace the `Worker` widget with the new `WorkerContainer`.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' %}
+```ts
+	protected render(): DNode {
+		return v('div', [
+			w(Banner, {}),
+			w(WorkerContainer, {})
+		]);
+	}
+```
 
 The application now renders three workers in the `WorkerContainer` widget, allowing us to control how they are laid out without impacting the overall application.
+
+## Final steps - refactoring worker data to App
+
+When we created the `WorkerContainer`, we added the `Worker` data directly into the container. While this allowed us to develop the widget quickly, it would be better to remove the `Worker` data from the `WorkerContainer` and inject it from the `App` class to make the container more flexible and reusable. To do this, we will move the `Worker` data to the `App` widget and then update the `WorkerContainer` to receive it.
+
+Let's start by moving the `Worker` data into the `App` class. First, add the following import to the `App.ts` file:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:6 %}
+
+Notice that we are going to be using the `WorkerProperties` interface, not the `Worker` widget. We want the `App` class to work with the **data** that describes the application's state, not the **widgets** that will render it. This keeps our application more flexible by delegating how to render the `WorkerProperties` data to more specialized widgets in our application, specifically the `WorkerContainer` and `Worker` widgets.
+
+Now it's time to specify the worker data. Add this code to the top of the `App` class definition:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:9-22 %}
+
+The final modification to `App` is to pass the `Worker` data into the `WorkerContainer`. Update the `render` method:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:24-31 %}
+
+Now, let's update `WorkerContainer.ts` to accept the `workerData` and use it to and render `Worker` widgets.
+
+Start by updating the `import` statement that is retrieving the `Worker` class and `WorkerProperties` interface:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:4 %}
+
+Now we need to create a new interface that extends `ThemeableProperties` to allow the `WorkerContainer` to accept an array of `WorkerProperties`. Add these lines:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:8-10 %}
+
+Next, update the class declaration to work with the new `WorkerContainerProperties` interface:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:15 %}
+
+Finally, update the `render` method to remove the previous, hard-coded widgets and replace that with code to dynamically generate `Worker`s based on the `workerData` property:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:16-29 %}
+
+Notice that the `render` method adds a `key` property to each `workerData` entry as it is passed into the `Worker` widget. The keys should be added by whatever widget is rendering the `Worker`s so that the `WorkerContainer` can ensure that each one receives a unique value.
+
+Refactoring the application has made the `WorkerContainer` more flexible than the initial implementation. This is because it is no longer responsible for determining its data source. It can receive data from any external provider, such as the `App` class or a data store, and simply renders it.
 
 ## Summary
 In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from `WidgetBase<WidgetProperties>`. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the `render` method, a widget can generate the virtual DOM nodes that control how it is rendered.

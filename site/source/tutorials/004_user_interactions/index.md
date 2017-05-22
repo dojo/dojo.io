@@ -22,7 +22,7 @@ The first step is to add the listener itself. In Dojo 2, an event listener is as
 
 ```ts
 {
-	classes: this.classes(css.workerFront),
+	classes: this.classes(css.worker),
 	onclick: this.flip
 }
 ```
@@ -77,11 +77,11 @@ Now that we have an event handler it is time to extend the `render` method to be
 
 We could add the additional rendering logic in the current `render` method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the `render` method. To start, create a new private method called `_renderFront` and move the existing render code inside it:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:25-43 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:30-48 %}
 
 Next, create another private method called `_renderBack` to render the back view:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:45-91 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:50-91 %}
 
 This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
 
@@ -91,13 +91,9 @@ Update the `WorkerProperties` interface to:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:7-13 %}
 
-Now, we need to add the CSS selectors that will provide the rules for rendering this view's elements. Open up the `worker.css` file in `src/styles` and update it as follows:
+Now, we need to update the CSS selectors that will provide the rules for rendering the updated widget. Edit `worker.css` as follows:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lines:8-39 lang:css %}
-
-We also need to update the CSS selector for the front view, by changing the selector from `css.worker` to `css.workerFront`.
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:25-43 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
 
 Finally, we need to update the `render` method to choose between the two rendering methods. To do that, add a private field to the class:
 
@@ -105,7 +101,7 @@ Finally, we need to update the `render` method to choose between the two renderi
 
 The use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget's published state. For internal state, however, private fields are used to allow widget to encapsulate state information that should not be exposed publicly. Let's use that field's value to determine which side to show:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:21-23 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:21-28 %}
 
 Confirm that everything is working by viewing the application in a browser - all three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application recompiles, all three widgets should be showing their back faces.
 
@@ -133,12 +129,13 @@ When you are ready, click the button below to see our solution.
 
 {% solution showsolution1 %}
 The widget's parent is responsible for passing properties to the widget.
-In this application, `Worker` widgets are contained by the `WorkerContainer` widget.
+In this application, `Worker` widgets are receiving data from the `App` class via the `WorkerContainer`.
+
 To pass the specified properties to the first worker, the first element in
-the `workers` array needs to be updated to the following:
+`App`'s `_workerData` array needs to be updated to the following:
 
 ```ts
-w(Worker, {
+{
 	firstName: 'Tim',
 	lastName: 'Jones',
 	email: 'tim.jones@bizecorp.org',
@@ -147,7 +144,7 @@ w(Worker, {
 		'4384 - Shred documents',
 		'9663 - Digitize 1985 archive'
 	]
-})
+}
 ```
 {% endsolution %}
 
@@ -157,4 +154,4 @@ In this tutorial, we learned how to attach event listeners to respond to widget-
 
 If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
 
-In the [next tutorial](../comingsoon.html), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In the [next tutorial](../005_form_widgets/), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
