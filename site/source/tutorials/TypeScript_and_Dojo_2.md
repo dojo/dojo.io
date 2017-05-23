@@ -49,7 +49,7 @@ In addition to supporting team-coordination, the ability to describe a data stru
 
 ### The transpiler
 
-{% aside 'Transpiler?' $}
+{% aside 'Transpiler?' %}
 A *compiler* converts source code into instructions that can be read by the computer, either natively or via a runtime interpreter. A *transpiler* converts code from one language to another. Since TypeScript code is run as JavaScript, it is transpiled, not compiled.
 {% endaside %}
 
