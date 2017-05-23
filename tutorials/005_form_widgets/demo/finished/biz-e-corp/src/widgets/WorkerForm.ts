@@ -2,9 +2,8 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
-import Button, { ButtonProperties } from '@dojo/widgets/button/Button';
-import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
-import { WorkerProperties } from './Worker';
+import Button from '@dojo/widgets/button/Button';
+import TextInput from '@dojo/widgets/textinput/TextInput';
 import * as css from '../styles/workerForm.css';
 
 export interface WorkerFormProperties extends ThemeableProperties {
