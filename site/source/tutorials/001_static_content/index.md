@@ -36,9 +36,9 @@ In the next step, we will start to customize the application.
 
 {% task 'Change what is rendered to the page' %}
 
-To start customizing the application, let's remove the content that is already there. There are two places we need to go to do this. The first line, "Welcome to biz-e-corp" is being generated from the `index.html` file.
+To start customizing the application, let's remove the existing content. There are two places we need to go to do this. The first line, "Welcome to biz-e-corp" is being generated from `index.html`.
 
-{% instruction 'Jump over to the `index.html` file in the `src` directory and remove the `<p>` tag and its content, "Welcome to biz-e-corp".' %}
+{% instruction 'Open `index.html` file in the `src` directory and remove the `<p>` tag and its content, "Welcome to biz-e-corp".' %}
 
 Notice that the page has automatically updated for us. That means that we can immediately see the impact of the change without having to stop our work and refresh or rebuild the application.
 

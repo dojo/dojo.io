@@ -54,7 +54,7 @@ Next, we'll add the visual elements of the form.
 
 {% task 'Populating the form' %}
 
-Our form will contain fields allowing the user to enter the worker's first name, last name and e-mail address. It will also contain a save button that will use the form's data to create a new worker. We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these things in mind.
+Our form will contain fields allowing the user to enter the worker's first name, last name and e-mail address. It will also contain a save button that will use the form's data to create a new worker. We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
 
 {% instruction 'Add the following imports to `WorkerForm.ts`.' %}
 
@@ -111,7 +111,7 @@ At this point, the user interface for the form is available, but it does not do 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:43-86 %}
 
-This form of the `render` method now does everything that we need from: it creates the user interface and registers the event handlers that will update the application as the user enters information. However, we need to add a few more methods to the `WorkerForm` to define the event handlers.
+This form of the `render` method now does everything that we need: it creates the user interface and registers event handlers that will update the application as the user enters information. However, we need to add a few more methods to the `WorkerForm` to define the event handlers.
 
 {% instruction 'Add these methods:' %}
 
@@ -133,7 +133,7 @@ The first thing that we see is a `key` property. As mentioned before, a key is n
 
 The `value` property renders the value of the field that is passed into the widget via its properties. Notice that there is no code that manipulates this value within the widget. As parts of a [reactive framework](https://en.wikipedia.org/wiki/Reactive_programming), Dojo 2 widgets do not normally update their own state. Rather, they inform their parent that a change has occurred via events or some other mechanism. The parent will then pass updated properties back into the widget after all of the changes have been processed. This allows Dojo 2 applications to centralize data and keep the entire application synchronized.
 
-The final property assigns the `onFirstNameInput` method to the `onInput` property. The `onFirstNameInput` method, in turn calls the `onFormInput` property, informing the `WorkerForm`'s parent that a change has occurred. This is another common pattern within Dojo 2 applications - the `WorkerForm` does not expose any of the components that it is using to build the form. Rather, the `WorkerForm` manages its children internally and, if necessary, calls its event properties to inform its parent of any changes. This decouples the consumers of the `WorkerForm` widget and frees them from having to understand the internal structure of the widget. Additionally, it allows the `WorkerForm` to change its implementation without affecting its parent as long as it continues to fulfill the `WorkerFormProperties` interface.
+The final property assigns the `onFirstNameInput` method to the `onInput` property. The `onFirstNameInput` method, in turn, calls the `onFormInput` property, informing the `WorkerForm`'s parent that a change has occurred. This is another common pattern within Dojo 2 applications - the `WorkerForm` does not expose any of the components that it is using to build the form. Rather, the `WorkerForm` manages its children internally and, if necessary, calls its event properties to inform its parent of any changes. This decouples the consumers of the `WorkerForm` widget and frees them from having to understand the internal structure of the widget. Additionally, it allows the `WorkerForm` to change its implementation without affecting its parent as long as it continues to fulfill the `WorkerFormProperties` interface.
 
 The last change that needs to be made in the `WorkerForm` is to update the `_onSubmit` method to delegate to the `onFormSave` property when it is called.
 
@@ -141,7 +141,7 @@ The last change that needs to be made in the `WorkerForm` is to update the `_onS
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:26-29 %}
 
-The form is now ready to be integrated into the application, we will do that in the next step.
+The form is now ready to be integrated into the application. We will do that in the next step.
 
 {% section %}
 
@@ -149,13 +149,13 @@ The form is now ready to be integrated into the application, we will do that in 
 
 {% task 'Integrate the form into the application' %}
 
-Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We could add private fields in the class to store those values, but that would be difficult to maintain as the application gets more complicated and more data needs to be stored. Instead, we are going to take advantage of another mixin that comes with Dojo 2 that is designed to handle state for us - the `StatefulMixin`.
+Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We could add private fields in the class to store those values, but that would be difficult to maintain as the application grows and needs to store more data. Instead, we are going to leverage another mixin that comes with Dojo 2 that is designed to handle state for us - the `StatefulMixin`.
 
 {% aside 'StatefulMixin versus dojo/Stateful' %}
 	The `StatefulMixin` might remind some users of Dojo 1's `dojo/Stateful` module. In Dojo 1, the `Stateful` module allowed properties to be retrieved, set, and observed. All of which are now part of the JavaScript language. In Dojo 2, `StatefulMixin` adds functionality to a class that provides a standard mechanism to store state information and automatically re-render when the state changes.
 {% endaside %}
 
-The `StatefulMixin` allows a class to store data in an object that can be updated by calling the `setState` method. The `StatefulMixin` is designed to accept partial updates to the contained state. In this application, the `WorkerForm` is only going to provide data on one property at a time. When the `setState` method is called with a partial state update like this, it will only update the state of values that have been provided. Additionally, calling the `setState` method will raise an event that will trigger the application to re-render the relevant portions of the user interface to reflect the new state.
+The `StatefulMixin` allows a class to store data in an object that can be updated by calling the `setState` method. The `StatefulMixin` is designed to accept partial updates to the contained state. In this application, the `WorkerForm` is only going to provide data on one property at a time. When the `setState` method is called with a partial state update, it will only update the state of values that have been provided. Additionally, calling the `setState` method will raise an event that will trigger the application to re-render the relevant portions of the user interface to reflect the new state.
 
 {% instruction 'Import the `StatefulMixin` by adding this line to the top of `App.ts`.' %}
 
