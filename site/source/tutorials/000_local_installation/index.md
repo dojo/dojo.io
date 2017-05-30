@@ -2,6 +2,7 @@
 title: Dojo 2 local installation
 layout: tutorial
 overview: This tutorial covers the basics of creating a Dojo 2 application.
+nosections: true
 ---
 
 # Dojo 2 local installation
@@ -21,7 +22,11 @@ This command installs the Dojo command-line tool (`@dojo/cli`) to simplify devel
 
 In order to create your first Dojo 2 application, run the following command in the directory that will host the new application:
 
-`dojo create --name first-dojo-2-app` (or, the shorter, `dojo create -n first-dojo-2-app`)
+{% aside 'Dojo create arguments' %}
+	Many of the arguments passed to `dojo create` have abbreviated versions. So `dojo create -n first-dojo-2-app` is equivalent to `dojo create --name first-dojo-2-app`.
+{% endaside %}
+
+`dojo create --name first-dojo-2-app`
 
 This command will create the basic scaffolding for a Dojo 2 application in the newly created "first-dojo-2-app" directory with all of its dependencies pre-installed.
 
