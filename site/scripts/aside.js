@@ -6,7 +6,6 @@ hexo.extend.tag.register('aside', function(args, content) {
 
 	// replace markdown for hyperlink with proper HTML
 	content = content && content.replace(/\[(.*?)\]\((.*?)\)/g, function (match, title, url) {
-		console.log(arguments);
 		return `<a href='${url}'>${title}</a>`;
 	});
 
