@@ -1,21 +1,21 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, WidgetProperties, TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
 import Button from '@dojo/widgets/button/Button';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import * as css from '../styles/workerForm.css';
 
-export interface WorkerFormProperties extends ThemeableProperties {
+export interface WorkerFormData {
 	firstName: string;
-	firstNameInvalid: boolean;
 	lastName: string;
-	lastNameInvalid: boolean;
 	email: string;
-	emailInvalid: boolean;
-	onChange?(field: string, value: string): void;
-	onBlur?(field: string, value: string): void;
-	onSubmit?(event: Event): void;
+}
+
+export interface WorkerFormProperties extends ThemeableProperties {
+	formData: WorkerFormData;
+	onFormInput: (data: Partial<WorkerFormData>) => void;
+	onFormSave: () => void;
 }
 
 export const WorkerFormBase = ThemeableMixin(WidgetBase);
@@ -25,21 +25,24 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 
 	private _onSubmit(event: Event) {
 		event.preventDefault();
+		this.properties.onFormSave();
+	}
 
-		const { onSubmit } = this.properties;
-		onSubmit && onSubmit(event);
+	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+		this.properties.onFormInput({ firstName });
+	}
+
+	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+		this.properties.onFormInput({ lastName });
+	}
+
+	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
+		this.properties.onFormInput({ email });
 	}
 
 	protected render(): DNode {
 		const {
-			firstName,
-			firstNameInvalid,
-			lastName,
-			lastNameInvalid,
-			email,
-			emailInvalid,
-			onChange,
-			onBlur
+			formData: { firstName, lastName, email }
 		} = this.properties;
 
 		return v('form', {
@@ -49,63 +52,36 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 			v('fieldset', { classes: this.classes(css.nameField) }, [
 				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
 				w(TextInput, {
-					key: 'input1',
-					invalid: <boolean> firstNameInvalid,
+					key: 'firstNameInput',
 					label: {
 						content: 'First Name',
 						hidden: true
 					},
 					placeholder: 'Given name',
-					type: 'text' as 'text',
-					value: <string> firstName,
-					onChange: (event: Event) => {
-						const value = (<HTMLInputElement> event.target).value;
-						onChange && onChange('firstName', value);
-					},
-					onBlur: (event: Event) => {
-						const value = (<HTMLInputElement> event.target).value;
-						onBlur && onBlur('firstName', value);
-					}
+					value: firstName,
+					required: true,
+					onInput: this.onFirstNameInput
 				}),
 				w(TextInput, {
-					key: 'input2',
-					invalid: <boolean> lastNameInvalid,
+					key: 'lastNameInput',
 					label: {
 						content: 'Last Name',
 						hidden: true
 					},
-					placeholder: 'Family name',
-					type: 'text' as 'text',
-					value: <string> lastName,
-					onChange: (event: Event) => {
-						const value = (<HTMLInputElement> event.target).value;
-						onChange && onChange('lastName', value);
-					},
-					onBlur: (event: Event) => {
-						const value = (<HTMLInputElement> event.target).value;
-						onBlur && onBlur('lastName', value);
-					}
+					placeholder: 'Surname name',
+					value: lastName,
+					required: true,
+					onInput: this.onLastNameInput
 				})
 			]),
 			w(TextInput, {
-				key: 'input3',
-				invalid: <boolean> emailInvalid,
 				label: 'Email address',
 				type: 'email',
-				value: <string> email,
-				onChange: (event: Event) => {
-					const value = (<HTMLInputElement> event.target).value;
-					onChange && onChange('email', value);
-				},
-				onBlur: (event: Event) => {
-					const value = (<HTMLInputElement> event.target).value;
-					onBlur && onBlur('email', value);
-				}
+				value: email,
+				required: true,
+				onInput: this.onEmailInput
 			}),
-			w(Button, {
-				content: 'Save',
-				type: 'submit'
-			})
+			w(Button, { content: 'Save' })
 		]);
 	}
 }
