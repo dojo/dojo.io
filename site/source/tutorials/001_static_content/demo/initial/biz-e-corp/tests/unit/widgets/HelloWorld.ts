@@ -9,7 +9,8 @@ registerSuite({
 		const helloWorld = new HelloWorld();
 
 		const vnode = <VNode> helloWorld.__render__();
-		assert.strictEqual(vnode.vnodeSelector, 'div');
-		assert.equal(vnode.text, 'Hello, Dojo World!');
+		assert.strictEqual(vnode.vnodeSelector, 'h1');
+		assert.equal(vnode.text, 'Biz-E Bodies');
+		assert.equal(vnode.properties.title, 'I am a title!');
 	}
 });
