@@ -23,7 +23,7 @@ This command installs the Dojo command-line tool (`@dojo/cli`) to simplify devel
 In order to create your first Dojo 2 application, run the following command in the directory that will host the new application:
 
 {% aside 'Dojo create arguments' %}
-	Many of the arguments passed to `dojo create` have abbreviated versions. So `dojo create -n first-dojo-2-app` is equivalent to `dojo create --name first-dojo-2-app`.
+Many of the arguments passed to `dojo create` have abbreviated versions. So `dojo create -n first-dojo-2-app` is equivalent to `dojo create --name first-dojo-2-app`.
 {% endaside %}
 
 `dojo create --name first-dojo-2-app`
