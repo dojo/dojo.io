@@ -8,7 +8,7 @@ overview: Designing accessible applications requires specialized knowledge that 
 
 Dojo 2 is grounded in the belief that accessibility is as important online as it is in our built environments and architects of both share a similar responsibility to provide access to all. Instances of poor accessibility abound in each setting and are very obvious once one starts looking:
 
-| ![Bad wheelchair ramp example](https://smhigley.github.io/assets/ramp-bad.jpg)  | &nbsp; | ![Good ramp example](https://smhigley.github.io/assets/ramp-good.jpg) |
+| ![Bad wheelchair ramp example](./resources/ramp-bad.jpg)  | &nbsp; | ![Good ramp example](./resources/ramp-good.jpg) |
 |:---:|:---:|:---:|
 | Afterthought Accessibility | &nbsp; | Designed Accessibility |
 
@@ -18,13 +18,13 @@ The guidelines provided by the Web Accessibility Initiative ([WAI-ARIA](https://
 
 ## Using Dojo 2 widgets
 
-All widgets provided through the `@dojo/widgets` package have been created with a range of assistive technology and perceptual differences in mind. However, they are not foolproof. There are a number of instances where additional information is required before peak accessibility can be achieved. Often, a few properties are required to enable a widget is to be fully accessible by all users. To help developers achieve this goal, each widget’s example page models best practices. Additionally, many of the properties exposed by a widget are related to accessibility, providing valid values for those properties allows a developer to be sure that they are not missing any a11y enhancements.
+All widgets provided through the `@dojo/widgets` package have been created with a range of assistive technology and perceptual differences in mind. However, they are not foolproof. There are a number of instances where additional information is required before peak accessibility can be achieved. Often, a few properties are required to enable a widget to be fully accessible for all users. To help developers achieve this goal, each widget’s example page models best practices. Additionally, many of the properties exposed by a widget are related to accessibility, providing valid values for those properties allows a developer to be sure that they are not missing any a11y enhancements.
 
 ### Form controls
 
-All simple form controls, such as `TextInput`, `Textarea`, and `Select`, use either a styled native control or provide a native fallback, which allows them to take advantage of built-in accessibility features wherever possible. Properties are provided in the widget interface to control relevant ARIA (Accessible Rich Internet Applications Suite) attributes like `aria-invalid`, `aria-describedby`, and `aria-readonly`.
+All simple form controls, such as `TextInput`, `Textarea`, and `Select`, use either a styled native control or provide a native fallback, which allows the controls to take advantage of built-in accessibility features wherever possible. Properties are provided in the widget interface to control relevant ARIA (Accessible Rich Internet Applications Suite) attributes like `aria-invalid`, `aria-describedby`, and `aria-readonly`.
 
-For example, a `TextInput` widget with the following properties:
+For example, consider a `TextInput` widget with the following properties:
 
 ```ts
 w(TextInput, {
@@ -35,14 +35,14 @@ w(TextInput, {
 });
 ```
 
-Would create the following attributes on the input node:
+This code would create the following attributes on the input node:
 `<input type=“email” aria-describedby=“foo” aria-invalid=“true” disabled>`
 
 ### Label
 
-Most form widgets contain a `label` property that allows users to easily associate a text label with the control along with options to position it or keep it visually hidden. `Label` is also available as a separate widget for use with custom form controls.
+Most form widgets contain a `label` property that allows users to easily associate a text label with the control along with options to position it or keep the label visually hidden. `Label` is also available as a separate widget for use with custom form controls.
 
-The `label` property on both form widgets and the `Label` widget accepts either a string or an [options object](https://github.com/dojo/widgets/blob/master/src/label/Label.ts#L13-17) that allows customization of where the label is placed (before or after the input), and whether it is visually hidden. Visually hiding a label is done by using screen reader-accessible CSS styles to hide text content, and is recommended for use with form controls that have no visible label.
+The `label` property on both form widgets and the `Label` widget accepts either a string or an [options object](https://github.com/dojo/widgets/blob/master/src/label/Label.ts#L13-17) that allows customization of where the label is placed (before or after the input), and whether it is visually hidden. Screen reader-accessible CSS rules are used to visually hide text content, and is recommended for use with form controls with no visible label.
 
 A `<label>` element with hidden text was chosen over the `aria-label` attribute for invisible labels due to [still-inconsistent](https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/) screen reader support for the latter.
 
@@ -85,7 +85,7 @@ v('button', {
 
 Since this example uses a `<button>` element, it requires neither an explicit `tabindex` nor an `onkeydown` event to work properly with a keyboard. Wherever possible, Dojo 2 takes advantage of built-in accessibility by using native elements. However, while native functionality is the most straightforward path to good accessibility, there are times when it is not possible, such as when no built-in element gives the desired functionality.
 
-For those times, this checklist is a good starting point to ensure that a widget is accessible:
+For those times when native functionality is insufficient, this checklist is a good starting point to ensure that a widget is accessible:
 
 - Ensure nodes that support any sort of user interaction are both focusable and have accessible descriptive text.
 - Leave native focus styles intact or provide a sufficiently visible alternative.
@@ -93,4 +93,6 @@ For those times, this checklist is a good starting point to ensure that a widget
 - Make a quick proof-of-concept and try [inspecting its accessibility attributes](http://khan.github.io/tota11y/) in the browser and running through one of the [many](https://medium.com/@addyosmani/accessible-ui-components-for-the-web-39e727101a67) [excellent](http://www-03.ibm.com/able/guidelines/ci162/accessibility_checklist.html) [a11y](https://www.wuhcag.com/wcag-checklist/) [checklists](https://ebay.gitbooks.io/oatmeal/content/).
 - Try operating the widget with only a keyboard and, if possible, a screen reader.
 - If applicable, try turning off your sound.
-- Look at your widget with high contrast mode enabled
+- Look at your widget with high contrast mode enabled.
+
+Designing web applications to be accessible is often perceived to be a difficult problem. While some work is required to ensure that all users are served as well as possible, Dojo 2 has simplified the work as much as possible. By providing the correct properties and considering things like color-contrast, a web application can reach entire new groups of users.
