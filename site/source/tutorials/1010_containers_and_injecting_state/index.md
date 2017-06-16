@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: false
 title: State management
 overview: In this tutorial, you will learn what a Containers and Injectors are and how to use them to manage external state and inject this into the parts of the widget tree.
 ---
