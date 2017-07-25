@@ -16,3 +16,5 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+ notifications:
+    slack: sitepen:MsdhAVCTMq6gTp6TMATIsD2q
