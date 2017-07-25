@@ -6,15 +6,16 @@ cache:
   directories:
   - node_modules
 before_install:
-  - npm install grunt-cli typings -g
+- npm install grunt-cli typings -g
 script:
-  - grunt test
-  - grunt ci
+- grunt test
+- grunt ci
 deploy:
   provider: script
-  script: "grunt publish"
+  script: grunt publish
   skip_cleanup: true
   on:
     branch: master
- notifications:
-    slack: sitepen:MsdhAVCTMq6gTp6TMATIsD2q
+notifications:
+  slack:
+    secure: pa7a/RNr73mJwoWK1Ho5FbZNV59jB3HoK4v6LOgk2Yz2eB+tyDDppserU3JLSFntg73e5zshU1cne7CR+rgEJCQDLFYr9sl5FMw8hkveXYdaI/uq3pyWF5hkAScI6jVjl5soWSnMc5UCMpOmKeddFkPtDcyAWkrTpTUqHlubEgUpP7pezVqd/vESvZhwFXRrBkZGsDdm+fNLKql8ph1sZlGT/K1B9inkWAfxPnGGJVNrVBffwZPjr4gOn06dW7qgN9uljOBF3iI3xNfTjyQIb2/7ysvsO7qOXzIxV5o1TICYCm616m5+zwC7CfVYfHDR9FiKfQlg+nTtwc4Cyyy5+akw7i7/Urw0ORfU7QQf8felMadsLgjf6Qii2MApBYqryWzh9fTwjYLckOLERnPTtzqV3GmiSFvQvjODdYuW53mUKcBbd+3HBQACF9hAZhBdwj1dsoQkbnHD/hKeZLo2GupyonB3XPdTcEofmJNR+ljBJxQ/oyLZ31xdGZ8PuCDWpBfPNIr53LxloSJwfSqQ5Li2oSQtP99g1I/hoTjQXO5Y5kxDrax7pnY7PmsjH4Hp4RSRgkcMYB3eTuQnLedRC5HTDB4y+dBcJ44Qmw/5ooVlxAuRiTOx51ZVkUbgRdj4k3X6P4F55du+uYt8QRy5sZadeSvcypmNxoytgQaj5y0=
