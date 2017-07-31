@@ -34,7 +34,13 @@ Many of the arguments passed to `dojo create` have abbreviated versions. So `doj
 
 This command will create the basic scaffolding for a Dojo 2 application in the newly created "first-dojo-2-app" directory with all of its dependencies pre-installed.
 
-At this point, we've successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another `@dojo/cli` command. You don't have to install this one, it was added when you installed the other dependencies. In the terminal, enter the command:
+At this point, we've successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another `@dojo/cli` command, which is installed with the following terminal command:
+
+```bash
+npm install -g @dojo/cli-build-webpack
+```
+
+Then, in the terminal, enter the command:
 
 ```bash
 dojo build --watch
