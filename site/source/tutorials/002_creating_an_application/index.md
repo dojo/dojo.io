@@ -83,7 +83,7 @@ dojo test
 {% section %}
 
 ## Summary
-This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are will be present in all of them.
+This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.
 
 If you would like, you can download the completed [demo application](../assets/002_creating_an_application-finished.zip) from this tutorial.
 
