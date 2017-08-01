@@ -338,7 +338,7 @@ export default class WorkerContainer extends WorkerContainerBase<ThemeableProper
 		];
 ```
 
-Notice that we have added an `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
+Notice that we have added a `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
 In the code example shown above, we have added an `key` property and set the value to be unique for each child widget.
 
 We can now pass these workers as children to the container.
