@@ -112,7 +112,7 @@ In the next section, we'll create the `Worker` widget that will show the portrai
 
 ## Creating the Worker widget
 
-{% task 'Create the `Worker` widget and use it to some information about a worker' %}
+{% task 'Create the `Worker` widget and use it to display some information about a worker' %}
 
 Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
 
