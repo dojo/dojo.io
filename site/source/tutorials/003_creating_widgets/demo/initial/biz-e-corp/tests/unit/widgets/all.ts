@@ -1,1 +1,1 @@
-import './HelloWorld';
+import './Banner';
