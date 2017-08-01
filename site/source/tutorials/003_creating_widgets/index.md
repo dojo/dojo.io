@@ -348,7 +348,7 @@ You may notice that we are calling `this.classes` with the `container` class as 
 ```
 
 Notice that we have added a `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
-In the code example shown above, we have added an `key` property and set the value to be unique for each child widget.
+In the code example shown above, we have added a `key` property and set the value to be unique for each child widget.
 
 We can now pass these workers as children to the container.
 
