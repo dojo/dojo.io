@@ -185,7 +185,7 @@ export default class App extends WidgetBase<WidgetProperties> {
 
 {% instruction 'Run the application with `dojo build --watch` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
-We have succeeded in rendering the widget, but there seems to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface that extends `WidgetProperties` and using that to pass configuration information into the widget.
+We have succeeded in rendering the widget, but there seem to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface that extends `WidgetProperties` and using that to pass configuration information into the widget.
 
 {% section %}
 
