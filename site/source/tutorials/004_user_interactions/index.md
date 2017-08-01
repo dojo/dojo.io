@@ -154,8 +154,8 @@ Now, the widget can be flipped between its front and back sides by clicking on i
 
 Currently, several of the properties are missing for the widgets. As an exercise, try to update the first widget to contain the following properties:
 ```ts
-firstName: 'Tim'
-lastName: 'Jones'
+firstName: 'Tim',
+lastName: 'Jones',
 email: 'tim.jones@bizecorp.org',
 tasks: [
 	'6267 - Untangle paperclips',
