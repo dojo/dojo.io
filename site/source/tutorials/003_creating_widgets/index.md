@@ -236,7 +236,7 @@ protected render(): DNode {
 
 {% task 'Pass properties to the Worker widget to configure it.' %}
 
-To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
+To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working with stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
 
 {% instruction 'In `App.ts`, update the line that is rendering the `Worker` to contain values for the `firstName` and `lastName` properties:' %}
 
