@@ -70,7 +70,7 @@ The final aspect that our basic application contains is its test suite. Dojo 2 i
 
 Our demo application includes some tests to verify that it is working as expected. The tests are found in `tests/unit/widgets/HelloWorld.ts`. Let's examine this part of the test code:
 
-{% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:8-14 %}
+{% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:19-21 %}
 
 This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal command:
 
