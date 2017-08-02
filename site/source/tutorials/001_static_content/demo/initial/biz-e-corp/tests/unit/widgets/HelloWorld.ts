@@ -16,6 +16,6 @@ registerSuite({
 	},
 
 	render() {
-		helloWorldHarness.expectRender(v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ]));
+		helloWorldHarness.expectRender(v('div', [ 'Hello, Dojo World!' ]));
 	}
 });
