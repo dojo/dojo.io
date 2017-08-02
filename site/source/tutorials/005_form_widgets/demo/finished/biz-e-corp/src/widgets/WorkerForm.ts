@@ -13,7 +13,7 @@ export interface WorkerFormData {
 }
 
 export interface WorkerFormProperties extends ThemeableProperties {
-	formData: WorkerFormData;
+	formData: Partial<WorkerFormData>;
 	onFormInput: (data: Partial<WorkerFormData>) => void;
 	onFormSave: () => void;
 }
