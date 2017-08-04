@@ -4,6 +4,6 @@ import { v } from '@dojo/widget-core/d';
 
 export default class HelloWorld extends WidgetBase<WidgetProperties> {
 	protected render(): DNode {
-		return v('h1', { title: 'I am a title!' }, [ 'Biz-E Bodies' ]);
+		return v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ]);
 	}
 }

@@ -50,7 +50,7 @@ Some of this code may not make sense now, but over the next few tutorials, you w
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:7 %}
 
-The `v` function simply instructs Dojo 2 to create a HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document.
+The `v` function simply instructs Dojo 2 to create a HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E-Bodies" to the document.
 
 {% instruction 'When you are finished, click on show solution to see the results.' %}
 
@@ -58,7 +58,7 @@ The `v` function simply instructs Dojo 2 to create a HTML element, in this case 
 ```typescript
 export default class HelloWorld extends WidgetBase<WidgetProperties> {
 	render(): DNode {
-		return v('h1', [ 'Biz-E Bodies' ]);
+		return v('h1', [ 'Biz-E-Bodies' ]);
 	}
 }
 ```
