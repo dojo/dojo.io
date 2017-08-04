@@ -86,9 +86,9 @@ tutorial.populateActionBar = function(container) {
 	parseActiveSection();
 	window.addEventListener('hashchange', parseActiveSection);
 
-	function activateSelector(target) {
+	function activateSelector(target, shouldSkipHistoryUpdate) {
 		var sectionToActivate = (target.getAttribute && target.getAttribute('data-section-num')) || target;
-		if (window.history.state !== sectionToActivate) {
+		if (!shouldSkipHistoryUpdate && window.history.state !== sectionToActivate) {
 			window.history.pushState(sectionToActivate, '', '#' + sectionToActivate);
 		}
 
@@ -151,10 +151,12 @@ tutorial.populateActionBar = function(container) {
 
 	function parseActiveSection() {
 		var urlSectionSegment = window.location.href.split('/').pop();
-		var pageSection = (urlSectionSegment && urlSectionSegment[0] === '#' && urlSectionSegment.slice(1)) || '0';
-		activateSelector(
-			document.querySelector('.section-selector[data-section-num="' + pageSection + '"]') || pageSection
-		);
+		var includesSection = urlSectionSegment && urlSectionSegment[0] === '#';
+		var pageSection = (includesSection && urlSectionSegment.slice(1)) || '0';
+			activateSelector(
+				document.querySelector('.section-selector[data-section-num="' + pageSection + '"]') || pageSection,
+				!includesSection
+			);
 
 	}
 };
