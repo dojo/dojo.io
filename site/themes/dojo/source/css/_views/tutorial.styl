@@ -161,12 +161,14 @@
 
 			.section-container {
 				margin-top: 15px;
-				position: relative;
-				left: 50%;
 				display: inline-block;
-              	.center-section-container {
+              	@media(min-width: 601px) {
 					position: relative;
-					left: -50%;
+					left: 50%;
+					.center-section-container {
+						position: relative;
+						left: -50%;
+					}
 				}
 
 				.section-selector {
@@ -194,8 +196,11 @@
 				top:7.5px;
 			}
 
-			button.previous {
-				position: absolute;
+			button.back {
+				@media(max-width: 600px) {
+					display: none;
+				}
+                position: absolute;
 				left: 2rem;
 				top: 7.5px;
 			}

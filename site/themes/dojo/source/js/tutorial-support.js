@@ -21,7 +21,7 @@ tutorial.populateActionBar = function(container) {
 	sectionOneContainer.appendChild(ownEditorButton);
 
 	var backButton = document.createElement('button');
-	backButton.classList.add('previous', 'green');
+	backButton.classList.add('back', 'green');
 	backButton.innerHTML = 'Back';
 	otherSectionContainer.appendChild(backButton);
 
