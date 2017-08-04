@@ -63,8 +63,6 @@ tutorial.populateActionBar = function(container) {
 	}
 
 	ownEditorButton.addEventListener('click', function () {
-		sectionOneContainer.classList.add('hidden');
-		otherSectionContainer.classList.remove('hidden');
 		activateSelector(document.querySelector('.section-selector[data-section-num="1"]'));
 	});
 
@@ -84,8 +82,15 @@ tutorial.populateActionBar = function(container) {
 	nextButton.addEventListener('click', function () {
 		navigate(1);
 	});
+
+	parseActiveSection();
+	window.addEventListener('hashchange', parseActiveSection);
+
 	function activateSelector(target) {
 		var sectionToActivate = (target.getAttribute && target.getAttribute('data-section-num')) || target;
+		if (window.history.state !== sectionToActivate) {
+			window.history.pushState(sectionToActivate, '', '#' + sectionToActivate);
+		}
 
 		sectionSelectors.forEach(function (sectionSelector) {
 			if (sectionSelector === target) {
@@ -125,6 +130,9 @@ tutorial.populateActionBar = function(container) {
 			if (!sectionToActivateNum) {
 				sectionOneContainer.classList.remove('hidden');
 				otherSectionContainer.classList.add('hidden');
+			} else {
+				sectionOneContainer.classList.add('hidden');
+				otherSectionContainer.classList.remove('hidden');
 			}
 		}, 300, sectionToActivate);
 	}
@@ -139,5 +147,14 @@ tutorial.populateActionBar = function(container) {
 		}
 		var newSelector = document.querySelector('.section-selector[data-section-num="' + sectionNumber + '"]');
 		activateSelector(newSelector || '0');
+	}
+
+	function parseActiveSection() {
+		var urlSectionSegment = window.location.href.split('/').pop();
+		var pageSection = (urlSectionSegment && urlSectionSegment[0] === '#' && urlSectionSegment.slice(1)) || '0';
+		activateSelector(
+			document.querySelector('.section-selector[data-section-num="' + pageSection + '"]') || pageSection
+		);
+
 	}
 };
