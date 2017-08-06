@@ -9,10 +9,12 @@ overview: In this tutorial, you will learn how to use some of Dojo 2's built-in 
 # Working with forms
 
 ## Overview
-This tutorial will extend on the [previous](../004_user_interactions/) tutorial where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
+This tutorial will extend on [Responding to events](../004_user_interactions/) where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
 
 ## Prerequisites
-You can [download](../assets/005_form_widgets-initial.zip) the demo project to get started.
+You can [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.
+
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -20,7 +22,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## Forms
 
-{% task 'Creating a form' %}
+{% task 'Create a form.' %}
 
 The first step to allowing the user to create new workers is to create a form. This form will contain the input elements that will accept the new worker's initial settings.
 
@@ -52,7 +54,7 @@ Next, we'll add the visual elements of the form.
 
 ## Form widgets
 
-{% task 'Populating the form' %}
+{% task 'Populate the form.' %}
 
 Our form will contain fields allowing the user to enter the worker's first name, last name and e-mail address. It will also contain a save button that will use the form's data to create a new worker. We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
 
@@ -129,7 +131,7 @@ There are two types of properties that we are using in this form. The `firstName
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-64 %}
 
-The first thing that we see is a `key` property. As mentioned before, a key is necessary whenever the same type of widget or virtual DOM element will be rendered by a widget. The `label`, `placeholder`, and `required` fields map to their expected properties.
+The first thing that we see is a `key` property. As mentioned before, a key is necessary whenever more than one of the same type of widget or virtual DOM element will be rendered by a widget. The `label`, `placeholder`, and `required` fields map to their expected properties.
 
 The `value` property renders the value of the field that is passed into the widget via its properties. Notice that there is no code that manipulates this value within the widget. As parts of a [reactive framework](https://en.wikipedia.org/wiki/Reactive_programming), Dojo 2 widgets do not normally update their own state. Rather, they inform their parent that a change has occurred via events or some other mechanism. The parent will then pass updated properties back into the widget after all of the changes have been processed. This allows Dojo 2 applications to centralize data and keep the entire application synchronized.
 
@@ -147,7 +149,7 @@ The form is now ready to be integrated into the application. We will do that in 
 
 ## Using forms
 
-{% task 'Integrate the form into the application' %}
+{% task 'Integrate the form into the application.' %}
 
 Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We could add private fields in the class to store those values, but that would be difficult to maintain as the application grows and needs to store more data. Instead, we are going to leverage another mixin that comes with Dojo 2 that is designed to handle state for us - the `StatefulMixin`.
 
@@ -191,7 +193,7 @@ The `_addWorker` method pushes the stored state (which is the current `WorkerFor
 
 The `defaultForm` object resets all of the state properties to `undefined`. This will serve to clear the `WorkerForm` when the application renders it again, which will happen automatically after the new state has been stored.
 
-With the `WidgetForm` in place and the `App` configured to handle it, let's try it. First test the [happy path](https://en.wikipedia.org/wiki/Happy_path) by providing the expected values to the form. Provide values for the fields, for example: "Suzette McNamara (smcnamara359@email.com)" and click the `Save` button. As expected, the form is cleared and a new `Worker` widget is added to the page. Clicking on the new `Worker` widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.
+With the `WidgetForm` in place and the `App` configured to handle it, let's try it. For now let's test the [happy path](https://en.wikipedia.org/wiki/Happy_path) by providing the expected values to the form. Provide values for the fields, for example: "Suzette McNamara (smcnamara359@email.com)" and click the `Save` button. As expected, the form is cleared and a new `Worker` widget is added to the page. Clicking on the new `Worker` widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.
 
 {% section %}
 
@@ -199,6 +201,8 @@ With the `WidgetForm` in place and the `App` configured to handle it, let's try 
 
 In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2's reactive programming style allows an application's state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2's widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.
 
-In the [next tutorial](../comingsoon.html), we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.
+If you would like, you can download the completed [demo application](../assets/005_form_widgets-finished.zip) from this tutorial.
+
+In [Deploying to production](../006_deploying_to_production/), we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.
 
 {% section 'last' %}

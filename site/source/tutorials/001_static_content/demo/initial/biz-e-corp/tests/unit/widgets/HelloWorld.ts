@@ -10,7 +10,7 @@ registerSuite({
 
 		const vnode = <VNode> helloWorld.__render__();
 		assert.strictEqual(vnode.vnodeSelector, 'h1');
-		assert.equal(vnode.text, 'Biz-E Bodies');
+		assert.equal(vnode.text, 'Biz-E-Bodies');
 		assert.equal(vnode.properties && vnode.properties.title, 'I am a title!');
 	}
 });

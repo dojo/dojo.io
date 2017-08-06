@@ -10,14 +10,12 @@ overview: This tutorial shows how to prepare a Dojo 2 application for production
 
 ## Overview
 
-{% aside 'Recommendation' %}
-To get the most value out of this tutorial, we recommend downloading the [demo project](../assets/006_deploying_to_production-initial.zip) and working locally.
-{% endaside %}
-
 This tutorial will extend on the [previous](../005_form_widgets/) tutorial where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployment to production.
 
 ## Prerequisites
-You can [download](../assets/006_deploying_to_production-initial.zip) the demo project to get started.
+You can [download](../assets/006_deploying_to_production-initial.zip) the demo project and run `npm install` to get started.
+
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -31,7 +29,7 @@ Creating a production build of a Dojo 2 application is straightforward. We have 
 
 {% instruction 'Run the `dojo build` command.' %}
 
-The build command creates a new folder, `dist`, where all of the built files are located. Open that directory and examine `index.html`. This version of `index.html` is slightly different than the one in the `src` directory - the build process has added links to `main.css` and `src/main.js` so that the application and its styling rules will be available.
+The build command creates a new folder, `dist`, where all of the built files are located. Open that directory and examine `index.html`. This version of `index.html` is slightly different than the one in the `src` directory - the build process has added links to `main.css` and `src/main.js` so the application and its styling rules will be available.
 
 `main.css` contains the styling rules for the application's custom widgets as well as the `Button` and `TextInput` widgets that are used in the `WorkerForm`. `main.css.map` provides information that development tools use to map the styling rules in `main.css` to the original sources.
 
@@ -69,7 +67,7 @@ Dojo 2 has a complete set of internationalization (i18n) capabilities that are b
 
 The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configure the build's support for internationalization. The `--locale` argument is used to specify which language should be considered the *default*. Whenever a different locale is used that does not have a specific translation, the default locale's translation will be used. The `--supportedLocales` argument is used to specify all of the provided locales for the application. Each locale that is added here will have its rules for date formatting, currency, etc. added to the build. Finally, the `--messageBundles` argument specifies all of the message bundles (translations) that should be included in the build. For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
 
-The next two arguments that are listed when the `dojo build help` command is run are the `--element` and `--elementPrefix`. These two fields are primarily used when exporting Dojo 2 widgets as [web components](https://en.wikipedia.org/wiki/Web_Components) rather than for building stand alone Dojo 2 applications.
+The next two arguments that are listed when the `dojo build help` command is run are the `--element` and `--elementPrefix`. These two fields are primarily used when exporting Dojo 2 widgets as [web components](https://en.wikipedia.org/wiki/Web_Components) rather than for building stand alone Dojo 2 applications. For more information, refer to the [Exporting Dojo 2 widgets as web components](../comingsoon.html) article.
 
 The `--debug` argument will cause the builder to generate `profile.json`, providing a great deal of information about the build itself, including what modules were included and how long they took to build. A profile be inspected using WebPack's [analyze tool](https://webpack.github.io/analyse/).
 
