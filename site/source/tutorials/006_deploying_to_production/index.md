@@ -1,16 +1,16 @@
 ---
 layout: tutorial
-title: Deploying to Production
+title: Deploying to production
 overview: This tutorial shows how to prepare a Dojo 2 application for production deployment.
 ---
 
 {% section 'first' %}
 
-# Deploying to Production
+# Deploying to production
 
 ## Overview
 
-This tutorial will extend on the [previous](../005_form_widgets/) tutorial where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployment to production.
+This tutorial will extend on [Form widgets](../005_form_widgets/), where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployment to production.
 
 ## Prerequisites
 You can [download](../assets/006_deploying_to_production-initial.zip) the demo project and run `npm install` to get started.

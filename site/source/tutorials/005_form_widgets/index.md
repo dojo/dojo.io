@@ -9,7 +9,7 @@ overview: In this tutorial, you will learn how to use some of Dojo 2's built-in 
 # Working with forms
 
 ## Overview
-This tutorial will extend on [Responding to events](../004_user_interactions/) where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
+This tutorial will extend on [Responding to events](../004_user_interactions/), where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
 
 ## Prerequisites
 You can [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.

@@ -114,7 +114,7 @@ In the next section, we'll create the `Worker` widget that will show the portrai
 
 ## Creating the Worker widget
 
-{% task 'Create the `Worker` widget and use it to some information about a worker.' %}
+{% task 'Create the `Worker` widget and use it to display some information about a worker.' %}
 
 Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
 
@@ -140,7 +140,7 @@ This is nearly identical to the `App` widget with one exception: we are not impo
 
 Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the worker's portrait and a `<strong>` tag to display the worker's name.
 
-{% instruction 'Try and implement that using the URL `images/worker.svg` and `'lastName, firstName'` as the worker's name.' %}
+{% instruction 'Try and implement that using the URL `images/worker.svg` and `"lastName, firstName"` as the worker\'s name.' %}
 
 If you need help, or want to check your solution, click the button below to see our solution.
 

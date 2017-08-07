@@ -46,7 +46,7 @@ Notice that the page has automatically updated for us. That means that we can im
 
 Now, let's remove the "Hello, Dojo World!" message.
 
-{% instruction Open `HelloWorld.ts`, located in `/src/widgets`. %}
+{% instruction 'Open `HelloWorld.ts`, located in `/src/widgets`.' %}
 
 You should see something like this:
 
@@ -58,7 +58,7 @@ Some of this code may not make sense now, but over the next few tutorials, you w
 
 The `v` function simply instructs Dojo 2 to create an HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. We will build a view that allows the user to view Biz-E Corp's workers, so let's update the tag and message to something more appropriate.
 
-{% instruction Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies" %}
+{% instruction 'Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"' %}
 
 {% instruction 'When you are finished, click on show solution to see the results.' %}
 
