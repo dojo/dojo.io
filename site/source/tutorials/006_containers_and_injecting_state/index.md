@@ -43,4 +43,4 @@ To do this we need to import the `BaseInjector` and the `Injector` mixin that ca
 
 ## Summary
 
-Summarise lift state outside of the widget components, registering an injector with an context that can hold state and/or a functional API and swapping out the existing widgets for the newly created containers.
+Summarize lift state outside of the widget components, registering an injector with an context that can hold state and/or a functional API and swapping out the existing widgets for the newly created containers.

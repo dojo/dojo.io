@@ -288,14 +288,14 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
 
-We've now updated our application to display a single Biz-E-Body, but our goal is to display a collection of them. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
+We've now updated our application to display a single Biz-E-Body, but our goal is to display a collection of Biz-E-Body items. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
 
 {% section %}
 
 ## Moving the Worker into a container
 {% task 'Create a container to handle the layout of Worker widgets.' %}
 
-The `WorkerContainer` manages the layout of our `Worker` widgets and makes it easier to properly style them. The `WorkerContainer` has many of the same responsibilities as the `App` widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the `Worker` widget, we will apply some styling to it.
+The `WorkerContainer` manages the layout of our `Worker` widgets and makes it easier to style these widgets. The `WorkerContainer` has many of the same responsibilities as the `App` widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the `Worker` widget, we will apply some styling to it.
 
 {% instruction 'Putting this all together, add the following to `WorkerContainer.ts`:' %}
 
