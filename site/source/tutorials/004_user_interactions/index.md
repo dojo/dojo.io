@@ -14,7 +14,9 @@ In this tutorial, you will learn how to update an application in response to use
 We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, "Biz-E Corp". In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.
 
 ## Prerequisites
-You can [download](../assets/004_user_interactions-initial.zip) the demo project to get started.
+You can [download](../assets/004_user_interactions-initial.zip) the demo project and run `npm install` to get started.
+
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -22,9 +24,9 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## Event listeners
 
-{% task 'Create an event listener' %}
+{% task 'Create an event listener.' %}
 
-In the [previous](../003_creating_widgets/) tutorial in this series, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
+In [Creating widgets](../003_creating_widgets/), we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.
 
 The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level `DNode` has one property assigned: `classes`.
 
@@ -79,7 +81,7 @@ return v('div', {
 }, ...
 ```
 
-Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console. To avoid an error, all event handlers must be defined once, normally via a method.
+Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console: `Error: Functions may not be updated on subsequent renders`. To avoid an error, all event handlers must be defined once, normally via a method.
 
 {% instruction 'Restore the `onclick` property to its previous value.' %}
 
@@ -94,9 +96,9 @@ return v('div', {
 
 ## Using event handlers
 
-{% task 'Add a second visual state' %}
+{% task 'Add a second visual state.' %}
 
-Now that we have an event handler it is time to extend the `render` method to be able to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.
+Now that we have an event handler, it is time to extend the `render` method to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.
 
 We could add the additional rendering logic in the current `render` method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the `render` method.
 
@@ -122,7 +124,7 @@ Now, we need to add the CSS selectors that will provide the rules for rendering 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
 
-We also need to update the CSS selector for the front view, by changing the selector from `css.worker` to `css.workerFront`.
+We also need to update the CSS selector for the front view by changing the selector from `css.worker` to `css.workerFront`.
 
 Finally, we need to update the `render` method to choose between the two rendering methods.
 
@@ -130,13 +132,13 @@ Finally, we need to update the `render` method to choose between the two renderi
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:19 %}
 
-The use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget's published state. For internal state, however, private fields are used to allow widget to encapsulate state information that should not be exposed publicly.
+In general, the use of private state should be minimized. Dojo 2 encourages the use of a form of the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) pattern, where the behavior of an individual component is controlled by the properties passed to it from its parent. This helps make components more modular and reusable, since the parent component is in complete control of the child component's behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget's published state, and private fields are used to allow widgets to encapsulate state information that should not be exposed publicly.
 
 {% instruction 'Use that field\'s value to determine which side to show.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:21-28 %}
 
-Confirm that everything is working by viewing the application in a browser - all three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application recompiles, all three widgets should be showing their back faces.
+Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application recompiles, all three widgets should be showing their back faces.
 
 In order to re-render our widget, we need to update the `flip` method to toggle the `_isFlipped` field and invalidate the widget
 
@@ -150,7 +152,7 @@ Now, the widget can be flipped between its front and back sides by clicking on i
 
 ## Final steps
 
-{% task 'Provide additional properties' %}
+{% task 'Provide additional properties.' %}
 
 Currently, several of the properties are missing for the widgets. As an exercise, try to update the first widget to contain the following properties:
 ```ts
@@ -191,10 +193,10 @@ To pass the specified properties to the first worker, the first element in
 
 ## Summary
 
-In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that the value of an event handler cannot change once the widget has been rendered the first time. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.
+In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that once a widget has been rendered for the first time the values of its event handler properties cannot change. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.
 
 If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
 
-In the [next tutorial](../005_form_widgets/), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In [Form widgets](../005_form_widgets/), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
 
 {% section 'last' %}

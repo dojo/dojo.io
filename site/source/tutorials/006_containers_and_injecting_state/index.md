@@ -10,7 +10,9 @@ overview: In this tutorial, you will learn what a Container and Injector are and
 This tutorial will extend on the [previous](../005_form_widgets/) tutorial where we demonstrated how to create form widgets and lift up state to a common shared parent. In this tutorial, we will extract that state from the application managing it externally using `Containers` to connect our widgets to an `Injector` that will provide inject configured state.
 
 ## Prerequisites
-You can [download](../assets/005_form_widgets-initial.zip) the demo project to get started.
+You can [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.
+
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -41,4 +43,4 @@ To do this we need to import the `BaseInjector` and the `Injector` mixin that ca
 
 ## Summary
 
-Summarise lift state outside of the widget components, registering an injector with an context that can hold state and/or a functional API and swapping out the existing widgets for the newly created containers.
+Summarize lift state outside of the widget components, registering an injector with an context that can hold state and/or a functional API and swapping out the existing widgets for the newly created containers.

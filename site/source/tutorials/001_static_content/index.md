@@ -12,7 +12,9 @@ overview: In this tutorial, you will learn how to the create your first Dojo 2 a
 In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.
 
 ## Prerequisites
-You can [download](../assets/001_static_content-initial.zip) the demo project to get started.
+You can [download](../assets/001_static_content-initial.zip) the demo project and run `npm install` to get started.
+
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -20,7 +22,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## Starting the development server
 
-{% task 'Build and run the application' %}
+{% task 'Build and run the application.' %}
 
 Before we start making changes, let's start the application with the development server so that we can observe the impact of our changes. Run the following command in the application's root directory:
 
@@ -34,7 +36,7 @@ In the next step, we will start to customize the application.
 
 ## Page content
 
-{% task 'Change what is rendered to the page' %}
+{% task 'Change what is rendered to the page.' %}
 
 To start customizing the application, let's remove the existing content. There are two places we need to go to do this. The first line, "Welcome to biz-e-corp" is being generated from `index.html`.
 
@@ -42,7 +44,11 @@ To start customizing the application, let's remove the existing content. There a
 
 Notice that the page has automatically updated for us. That means that we can immediately see the impact of the change without having to stop our work and refresh or rebuild the application.
 
-Now, let's remove the "Hello, Dojo World!" message. To do that, open up the `HelloWorld.ts` file. It is located in `/src/widgets`. You should see something like this:
+Now, let's remove the "Hello, Dojo World!" message.
+
+{% instruction 'Open `HelloWorld.ts`, located in `/src/widgets`.' %}
+
+You should see something like this:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' %}
 
@@ -50,7 +56,9 @@ Some of this code may not make sense now, but over the next few tutorials, you w
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:7 %}
 
-The `v` function simply instructs Dojo 2 to create a HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. Now, let's replace the `<div>` tag with an `<h1>` tag. We will build a view that allows the user to view Biz-E Corp's workers, so we will add the content "Biz-E Bodies" to the document.
+The `v` function simply instructs Dojo 2 to create an HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. We will build a view that allows the user to view Biz-E Corp's workers, so let's update the tag and message to something more appropriate.
+
+{% instruction 'Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"' %}
 
 {% instruction 'When you are finished, click on show solution to see the results.' %}
 
@@ -58,7 +66,7 @@ The `v` function simply instructs Dojo 2 to create a HTML element, in this case 
 ```typescript
 export default class HelloWorld extends WidgetBase<WidgetProperties> {
 	render(): DNode {
-		return v('h1', [ 'Biz-E Bodies' ]);
+		return v('h1', [ 'Biz-E-Bodies' ]);
 	}
 }
 ```
@@ -78,7 +86,7 @@ In the final part of this tutorial, we will learn how to set properties on virtu
 
 {% task 'Set properties on virtual DOM nodes.' %}
 
-If we want to create a `h1` element with additional attributes, then these attributes can be passed in the second argument to the `v` function.
+Now we will add some additional attributes to the `<h1>` element we created earlier in `HelloWorld.ts`. These attributes can be passed in the second argument to the `v` function.
 
 {% instruction 'Update the `v` function call, with a `title` attribute like this.' %}
 
@@ -86,7 +94,11 @@ If we want to create a `h1` element with additional attributes, then these attri
 
 Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
-Congratulations! You are off to a good start on your journey to master Dojo 2. In the [next tutorial](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo 2 application.
+{% section %}
+
+## Summary
+
+Congratulations! You are off to a good start on your journey to master Dojo 2. In [Components of a Dojo 2 application](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo 2 application.
 
 If you would like, you can download the completed [demo application](../assets/001_static_content-finished.zip) from this tutorial.
 
