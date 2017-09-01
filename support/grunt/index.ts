@@ -13,6 +13,7 @@ export = function (grunt: IGrunt) {
 	grunt.loadNpmTasks('webserv');
 	grunt.loadNpmTasks('intern');
 	grunt.loadNpmTasks('grunt-dojo2-extras');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	const tasksDirectory = join(__dirname, 'tasks');
 	readdirSync(tasksDirectory).filter(function (path) {
@@ -22,7 +23,7 @@ export = function (grunt: IGrunt) {
 		require(mid)(grunt);
 	});
 
-	grunt.initConfig(config);
+	grunt.initConfig(config.gruntConfig);
 
 	grunt.registerTask('default', [ 'clean', 'sync', 'hexo' ]);
 	grunt.registerTask('generate', [ 'hexo' ]);
@@ -31,4 +32,16 @@ export = function (grunt: IGrunt) {
 	grunt.registerTask('ci-api', [ 'prebuild', 'clean', 'sync', 'api', 'hexo', 'tutorials' ]);
 	grunt.registerTask('ci-site', [ 'prebuild', 'default', 'tutorials' ]);
 	grunt.registerTask('ci', shouldBuildApi() ? [ 'ci-api' ] : [ 'ci-site']);
+
+	grunt.registerTask('test-tutorials', testTutorialTasks);
 };
+
+// Create an array that can be used to create the tutorial test grunt task.
+const testTutorialTasks: Array<string> = ['copy:pretest-tutorials'];
+Object.keys(config.tutorialLocations).forEach(function (tutorialName) {
+	const npmConfigName = 'npm-' + tutorialName;
+	const shellConfigName = 'dojo-test-' + tutorialName;
+
+	testTutorialTasks.push('npm-command:' + npmConfigName);
+	testTutorialTasks.push('shell:' + shellConfigName);
+});
