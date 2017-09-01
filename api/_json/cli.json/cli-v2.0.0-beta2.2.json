@@ -1,0 +1,6215 @@
+{
+	"id": 311,
+	"name": "@dojo/cli",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 419,
+			"name": "ConfigurationHelperFactory",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 420,
+					"name": "sandbox",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 421,
+							"name": "sandbox",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 422,
+									"name": "groupName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 423,
+									"name": "commandName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "ConfigurationHelper",
+								"id": 315
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/configurationHelper.ts",
+							"line": 83,
+							"character": 8
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						420
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/configurationHelper.ts",
+					"line": 82,
+					"character": 39
+				}
+			]
+		},
+		{
+			"id": 424,
+			"name": "HelperFactory",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "The Helper that is passed to each command's 'run' function. Provides\na 'context' object that can be used to share data between tasks and\na CommandHelper that allows tasks to 'run' and check the existance of\nother tasks."
+			},
+			"children": [
+				{
+					"id": 425,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 426,
+							"name": "new HelperFactory",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 427,
+									"name": "commandHelper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CommandHelper",
+										"id": 321
+									}
+								},
+								{
+									"id": 428,
+									"name": "yargs",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Yargs"
+									}
+								},
+								{
+									"id": 429,
+									"name": "context",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 430,
+									"name": "configurationFactory",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "ConfigurationHelperFactory",
+										"id": 419
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "HelperFactory",
+								"id": 424
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/Helper.ts",
+							"line": 11,
+							"character": 28
+						}
+					]
+				},
+				{
+					"id": 431,
+					"name": "command",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/Helper.ts",
+							"line": 18,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "CommandHelper",
+						"id": 321
+					}
+				},
+				{
+					"id": 434,
+					"name": "configurationFactory",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/Helper.ts",
+							"line": 21,
+							"character": 21
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "ConfigurationHelperFactory",
+						"id": 419
+					}
+				},
+				{
+					"id": 433,
+					"name": "context",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/Helper.ts",
+							"line": 20,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 432,
+					"name": "yargs",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/Helper.ts",
+							"line": 19,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Yargs"
+					}
+				},
+				{
+					"id": 435,
+					"name": "sandbox",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 436,
+							"name": "sandbox",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 437,
+									"name": "groupName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 438,
+									"name": "commandName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Helper",
+								"id": 331
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/Helper.ts",
+							"line": 23,
+							"character": 8
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						425
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						431,
+						434,
+						433,
+						432
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						435
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/Helper.ts",
+					"line": 11,
+					"character": 26
+				}
+			]
+		},
+		{
+			"id": 551,
+			"name": "MockModule",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 556,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 557,
+							"name": "new MockModule",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 558,
+									"name": "moduleUnderTestPath",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "MockModule",
+								"id": 551
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 49,
+							"character": 37
+						}
+					]
+				},
+				{
+					"id": 552,
+					"name": "basePath",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 46,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 554,
+					"name": "mocks",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 48,
+							"character": 14
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 553,
+					"name": "moduleUnderTestPath",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 47,
+							"character": 28
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 555,
+					"name": "sandbox",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 49,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "sinon.SinonSandbox"
+					}
+				},
+				{
+					"id": 559,
+					"name": "dependencies",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 560,
+							"name": "dependencies",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 561,
+									"name": "dependencies",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 58,
+							"character": 13
+						}
+					]
+				},
+				{
+					"id": 567,
+					"name": "destroy",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 568,
+							"name": "destroy",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 107,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 562,
+					"name": "getMock",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 563,
+							"name": "getMock",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 564,
+									"name": "dependencyName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 96,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 565,
+					"name": "getModuleUnderTest",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 566,
+							"name": "getModuleUnderTest",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "tests/support/MockModule.ts",
+							"line": 100,
+							"character": 19
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						556
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						552,
+						554,
+						553,
+						555
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						559,
+						567,
+						562,
+						565
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/MockModule.ts",
+					"line": 45,
+					"character": 31
+				}
+			]
+		},
+		{
+			"id": 439,
+			"name": "SingleCommandHelper",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "CommandHelper class which is passed into each command's run function\nallowing commands to call one another. Provides 'run' and 'exists' functions"
+			},
+			"children": [
+				{
+					"id": 443,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 444,
+							"name": "new SingleCommandHelper",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 445,
+									"name": "commandsMap",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CommandsMap",
+										"id": 400
+									}
+								},
+								{
+									"id": 446,
+									"name": "context",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 447,
+									"name": "configurationHelperFactory",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "ConfigurationHelperFactory",
+										"id": 419
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SingleCommandHelper",
+								"id": 439
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/CommandHelper.ts",
+							"line": 19,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 440,
+					"name": "_commandsMap",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/CommandHelper.ts",
+							"line": 17,
+							"character": 21
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "CommandsMap",
+						"id": 400
+					}
+				},
+				{
+					"id": 441,
+					"name": "_configurationFactory",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/CommandHelper.ts",
+							"line": 18,
+							"character": 30
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "ConfigurationHelperFactory",
+						"id": 419
+					}
+				},
+				{
+					"id": 442,
+					"name": "_context",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isPrivate": true,
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/CommandHelper.ts",
+							"line": 19,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 453,
+					"name": "exists",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 454,
+							"name": "exists",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 455,
+									"name": "group",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 456,
+									"name": "commandName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "CommandHelper.exists",
+								"id": 328
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/CommandHelper.ts",
+							"line": 38,
+							"character": 7
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "CommandHelper.exists",
+						"id": 327
+					}
+				},
+				{
+					"id": 448,
+					"name": "run",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 449,
+							"name": "run",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 450,
+									"name": "group",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 451,
+									"name": "commandName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 452,
+									"name": "args",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "yargs.Argv"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								]
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "CommandHelper.run",
+								"id": 323
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/CommandHelper.ts",
+							"line": 27,
+							"character": 4
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "CommandHelper.run",
+						"id": 322
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						443
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						440,
+						441,
+						442
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						453,
+						448
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/CommandHelper.ts",
+					"line": 16,
+					"character": 32
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"name": "CommandHelper",
+					"id": 321
+				}
+			]
+		},
+		{
+			"id": 345,
+			"name": "Alias",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 347,
+					"name": "description",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 37,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 346,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 36,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 348,
+					"name": "options",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 38,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"name": "AliasOption",
+							"id": 349
+						}
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						347,
+						346,
+						348
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 35,
+					"character": 22
+				}
+			]
+		},
+		{
+			"id": 349,
+			"name": "AliasOption",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Represents one alias option. The option name is the full name of the option, and not the abbreviation. For\nexample, if an option is (-w or --watch), you will specify \"watch\" as the option name."
+			},
+			"children": [
+				{
+					"id": 350,
+					"name": "option",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 46,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 351,
+					"name": "value",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 47,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							},
+							{
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							{
+								"type": "intrinsic",
+								"name": "number"
+							}
+						]
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						350,
+						351
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 45,
+					"character": 28
+				}
+			]
+		},
+		{
+			"id": 359,
+			"name": "Command",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Inbuilt commands specify their name and group - installed commands have these props parsed out of their package dir name"
+			},
+			"children": [
+				{
+					"id": 374,
+					"name": "alias",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 71,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Alias",
+									"id": 345
+								}
+							},
+							{
+								"type": "reference",
+								"name": "Alias",
+								"id": 345
+							}
+						]
+					}
+				},
+				{
+					"id": 360,
+					"name": "description",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 65,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 373,
+					"name": "group",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 70,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 372,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 69,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 369,
+					"name": "eject",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"signatures": [
+						{
+							"id": 370,
+							"name": "eject",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 371,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "EjectOutput",
+								"id": 355
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 68,
+							"character": 6
+						}
+					]
+				},
+				{
+					"id": 361,
+					"name": "register",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 362,
+							"name": "register",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 363,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "OptionsHelper",
+										"id": 378
+									}
+								},
+								{
+									"id": 364,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 66,
+							"character": 9
+						}
+					]
+				},
+				{
+					"id": 365,
+					"name": "run",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 366,
+							"name": "run",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 367,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								},
+								{
+									"id": 368,
+									"name": "args",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "Argv"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 67,
+							"character": 4
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						374,
+						360,
+						373,
+						372
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						369,
+						361,
+						365
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 64,
+					"character": 24
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"name": "CommandWrapper",
+					"id": 383
+				}
+			]
+		},
+		{
+			"id": 375,
+			"name": "CommandError",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 376,
+					"name": "exitCode",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 75,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "number"
+							}
+						]
+					}
+				},
+				{
+					"id": 377,
+					"name": "message",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 76,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						376,
+						377
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 74,
+					"character": 29
+				}
+			]
+		},
+		{
+			"id": 321,
+			"name": "CommandHelper",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 327,
+					"name": "exists",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 328,
+							"name": "exists",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 329,
+									"name": "group",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 330,
+									"name": "commandName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 14,
+							"character": 7
+						}
+					]
+				},
+				{
+					"id": 322,
+					"name": "run",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 323,
+							"name": "run",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 324,
+									"name": "group",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 325,
+									"name": "commandName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "intrinsic",
+												"name": "string"
+											}
+										]
+									}
+								},
+								{
+									"id": 326,
+									"name": "args",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "Argv"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 13,
+							"character": 4
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						327,
+						322
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 12,
+					"character": 30
+				}
+			],
+			"implementedBy": [
+				{
+					"type": "reference",
+					"name": "SingleCommandHelper",
+					"id": 439
+				}
+			]
+		},
+		{
+			"id": 383,
+			"name": "CommandWrapper",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 399,
+					"name": "alias",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 71,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Alias",
+									"id": 345
+								}
+							},
+							{
+								"type": "reference",
+								"name": "Alias",
+								"id": 345
+							}
+						]
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.alias",
+						"id": 374
+					}
+				},
+				{
+					"id": 387,
+					"name": "description",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 65,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.description",
+						"id": 360
+					}
+				},
+				{
+					"id": 385,
+					"name": "group",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/command.ts",
+							"line": 6,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"overwrites": {
+						"type": "reference",
+						"name": "Command.group",
+						"id": 373
+					}
+				},
+				{
+					"id": 384,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/command.ts",
+							"line": 5,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"overwrites": {
+						"type": "reference",
+						"name": "Command.name",
+						"id": 372
+					}
+				},
+				{
+					"id": 386,
+					"name": "path",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/command.ts",
+							"line": 7,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 396,
+					"name": "eject",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"signatures": [
+						{
+							"id": 397,
+							"name": "eject",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 398,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "EjectOutput",
+								"id": 355
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Command.eject",
+								"id": 369
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 68,
+							"character": 6
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.eject",
+						"id": 369
+					}
+				},
+				{
+					"id": 388,
+					"name": "register",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 389,
+							"name": "register",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 390,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "OptionsHelper",
+										"id": 378
+									}
+								},
+								{
+									"id": 391,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Command.register",
+								"id": 361
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 66,
+							"character": 9
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.register",
+						"id": 361
+					}
+				},
+				{
+					"id": 392,
+					"name": "run",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 393,
+							"name": "run",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 394,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								},
+								{
+									"id": 395,
+									"name": "args",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "Argv"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								]
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Command.run",
+								"id": 365
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 67,
+							"character": 4
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.run",
+						"id": 365
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						399,
+						387,
+						385,
+						384,
+						386
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						396,
+						388,
+						392
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/command.ts",
+					"line": 4,
+					"character": 31
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "Command",
+					"id": 359
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"name": "EjectableCommandWrapper",
+					"id": 506
+				}
+			]
+		},
+		{
+			"id": 574,
+			"name": "CommandWrapperConfig",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 577,
+					"name": "description",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/testHelper.ts",
+							"line": 15,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 580,
+					"name": "eject",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/testHelper.ts",
+							"line": 18,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "true"
+							},
+							{
+								"type": "intrinsic",
+								"name": "false"
+							}
+						]
+					}
+				},
+				{
+					"id": 575,
+					"name": "group",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/testHelper.ts",
+							"line": 13,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 576,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/testHelper.ts",
+							"line": 14,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 578,
+					"name": "path",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/testHelper.ts",
+							"line": 16,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				},
+				{
+					"id": 579,
+					"name": "runs",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/support/testHelper.ts",
+							"line": 17,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "intrinsic",
+								"name": "true"
+							},
+							{
+								"type": "intrinsic",
+								"name": "false"
+							}
+						]
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						577,
+						580,
+						575,
+						576,
+						578,
+						579
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/testHelper.ts",
+					"line": 12,
+					"character": 37
+				}
+			]
+		},
+		{
+			"id": 312,
+			"name": "Config",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"indexSignature": [
+				{
+					"id": 313,
+					"name": "__index",
+					"kind": 8192,
+					"kindString": "Index signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 314,
+							"name": "key",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 3,
+					"character": 23
+				},
+				{
+					"fileName": "src/config.ts",
+					"line": 5,
+					"character": 18
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 457,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/config.ts",
+							"line": 5,
+							"character": 20
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 315,
+			"name": "ConfigurationHelper",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 319,
+					"name": "get",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 320,
+							"name": "get",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "__type"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 9,
+							"character": 4
+						}
+					]
+				},
+				{
+					"id": 316,
+					"name": "set",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 317,
+							"name": "set",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 318,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Config",
+										"id": 312
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 8,
+							"character": 4
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						319,
+						316
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 7,
+					"character": 36
+				}
+			]
+		},
+		{
+			"id": 501,
+			"name": "EjectArgs",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"indexSignature": [
+				{
+					"id": 504,
+					"name": "__index",
+					"kind": 8192,
+					"kindString": "Index signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 505,
+							"name": "key",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"children": [
+				{
+					"id": 503,
+					"name": "$0",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "typings/modules/yargs/index.d.ts",
+							"line": 7,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Argv.'$0'"
+					}
+				},
+				{
+					"id": 502,
+					"name": "_",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "typings/modules/yargs/index.d.ts",
+							"line": 6,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Argv._"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						503,
+						502
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/commands/eject.ts",
+					"line": 16,
+					"character": 26
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "Argv"
+				}
+			]
+		},
+		{
+			"id": 355,
+			"name": "EjectOutput",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 357,
+					"name": "copy",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 57,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "FileCopyConfig",
+						"id": 352
+					}
+				},
+				{
+					"id": 358,
+					"name": "hints",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 58,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 356,
+					"name": "npm",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 56,
+							"character": 4
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "NpmPackage",
+						"id": 336
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						357,
+						358,
+						356
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 55,
+					"character": 28
+				}
+			]
+		},
+		{
+			"id": 506,
+			"name": "EjectableCommandWrapper",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 522,
+					"name": "alias",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 71,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "Alias",
+									"id": 345
+								}
+							},
+							{
+								"type": "reference",
+								"name": "Alias",
+								"id": 345
+							}
+						]
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.alias",
+						"id": 374
+					}
+				},
+				{
+					"id": 513,
+					"name": "description",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 65,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.description",
+						"id": 360
+					}
+				},
+				{
+					"id": 511,
+					"name": "group",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/command.ts",
+							"line": 6,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"overwrites": {
+						"type": "reference",
+						"name": "Command.group",
+						"id": 373
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "CommandWrapper.group",
+						"id": 385
+					}
+				},
+				{
+					"id": 510,
+					"name": "name",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/command.ts",
+							"line": 5,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"overwrites": {
+						"type": "reference",
+						"name": "Command.name",
+						"id": 372
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "CommandWrapper.name",
+						"id": 384
+					}
+				},
+				{
+					"id": 512,
+					"name": "path",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/command.ts",
+							"line": 7,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "CommandWrapper.path",
+						"id": 386
+					}
+				},
+				{
+					"id": 507,
+					"name": "eject",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 508,
+							"name": "eject",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 509,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "EjectOutput",
+								"id": 355
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "Command.eject",
+								"id": 369
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/commands/eject.ts",
+							"line": 19,
+							"character": 6
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "Command.eject",
+						"id": 369
+					}
+				},
+				{
+					"id": 514,
+					"name": "register",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 515,
+							"name": "register",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 516,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "OptionsHelper",
+										"id": 378
+									}
+								},
+								{
+									"id": 517,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Command.register",
+								"id": 361
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 66,
+							"character": 9
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.register",
+						"id": 361
+					}
+				},
+				{
+					"id": 518,
+					"name": "run",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 519,
+							"name": "run",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 520,
+									"name": "helper",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Helper",
+										"id": 331
+									}
+								},
+								{
+									"id": 521,
+									"name": "args",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "Argv"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "any"
+									}
+								]
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Command.run",
+								"id": 365
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 67,
+							"character": 4
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Command.run",
+						"id": 365
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						522,
+						513,
+						511,
+						510,
+						512
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						507,
+						514,
+						518
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/commands/eject.ts",
+					"line": 18,
+					"character": 40
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "CommandWrapper",
+					"id": 383
+				}
+			]
+		},
+		{
+			"id": 352,
+			"name": "FileCopyConfig",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 354,
+					"name": "files",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 52,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				},
+				{
+					"id": 353,
+					"name": "path",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 51,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						354,
+						353
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 50,
+					"character": 31
+				}
+			]
+		},
+		{
+			"id": 331,
+			"name": "Helper",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 333,
+					"name": "command",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 19,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "CommandHelper",
+						"id": 321
+					}
+				},
+				{
+					"id": 335,
+					"name": "configuration",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 21,
+							"character": 14
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "ConfigurationHelper",
+						"id": 315
+					}
+				},
+				{
+					"id": 334,
+					"name": "context",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 20,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 332,
+					"name": "yargs",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 18,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Yargs"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						333,
+						335,
+						334,
+						332
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 17,
+					"character": 23
+				}
+			]
+		},
+		{
+			"id": 336,
+			"name": "NpmPackage",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 341,
+					"name": "dependencies",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 30,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 342,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"indexSignature": [
+										{
+											"id": 343,
+											"name": "__index",
+											"kind": 8192,
+											"kindString": "Index signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 344,
+													"name": "name",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"id": 337,
+					"name": "devDependencies",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 27,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "intrinsic",
+								"name": "undefined"
+							},
+							{
+								"type": "reflection",
+								"declaration": {
+									"id": 338,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"indexSignature": [
+										{
+											"id": 339,
+											"name": "__index",
+											"kind": 8192,
+											"kindString": "Index signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 340,
+													"name": "name",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						341,
+						337
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 26,
+					"character": 27
+				}
+			]
+		},
+		{
+			"id": 595,
+			"name": "Thenable",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Thenable represents any object with a callable `then` property."
+			},
+			"typeParameter": [
+				{
+					"id": 596,
+					"name": "T",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {}
+				}
+			],
+			"children": [
+				{
+					"id": 597,
+					"name": "then",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 598,
+							"name": "then",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"typeParameter": [
+								{
+									"id": 599,
+									"name": "U",
+									"kind": 131072,
+									"kindString": "Type parameter",
+									"flags": {}
+								}
+							],
+							"parameters": [
+								{
+									"id": 600,
+									"name": "onFulfilled",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 601,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 602,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"parameters": [
+																{
+																	"id": 603,
+																	"name": "value",
+																	"kind": 32768,
+																	"kindString": "Parameter",
+																	"flags": {
+																		"isOptional": true
+																	},
+																	"type": {
+																		"type": "reference",
+																		"name": "T",
+																		"id": 596
+																	}
+																}
+															],
+															"type": {
+																"type": "union",
+																"types": [
+																	{
+																		"type": "typeParameter",
+																		"name": "U"
+																	},
+																	{
+																		"type": "reference",
+																		"name": "Thenable",
+																		"id": 595,
+																		"typeArguments": [
+																			{
+																				"type": "typeParameter",
+																				"name": "U"
+																			}
+																		]
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								},
+								{
+									"id": 604,
+									"name": "onRejected",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "undefined"
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 605,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 606,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"parameters": [
+																{
+																	"id": 607,
+																	"name": "error",
+																	"kind": 32768,
+																	"kindString": "Parameter",
+																	"flags": {
+																		"isOptional": true
+																	},
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "any"
+																	}
+																}
+															],
+															"type": {
+																"type": "union",
+																"types": [
+																	{
+																		"type": "typeParameter",
+																		"name": "U"
+																	},
+																	{
+																		"type": "reference",
+																		"name": "Thenable",
+																		"id": 595,
+																		"typeArguments": [
+																			{
+																				"type": "typeParameter",
+																				"name": "U"
+																			}
+																		]
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Thenable",
+								"id": 595,
+								"typeArguments": [
+									{
+										"type": "typeParameter",
+										"name": "U"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "tests/support/util.ts",
+							"line": 5,
+							"character": 5
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						597
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/util.ts",
+					"line": 4,
+					"character": 25
+				}
+			]
+		},
+		{
+			"id": 523,
+			"name": "VersionArgs",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"indexSignature": [
+				{
+					"id": 527,
+					"name": "__index",
+					"kind": 8192,
+					"kindString": "Index signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 528,
+							"name": "key",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"children": [
+				{
+					"id": 526,
+					"name": "$0",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "typings/modules/yargs/index.d.ts",
+							"line": 7,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Argv.'$0'"
+					}
+				},
+				{
+					"id": 525,
+					"name": "_",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "typings/modules/yargs/index.d.ts",
+							"line": 6,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Argv._"
+					}
+				},
+				{
+					"id": 524,
+					"name": "outdated",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "src/commands/version.ts",
+							"line": 40,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						526,
+						525,
+						524
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/commands/version.ts",
+					"line": 39,
+					"character": 28
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "Argv"
+				}
+			]
+		},
+		{
+			"id": 400,
+			"name": "CommandsMap",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/command.ts",
+					"line": 10,
+					"character": 23
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "Map",
+				"typeArguments": [
+					{
+						"type": "intrinsic",
+						"name": "string"
+					},
+					{
+						"type": "reference",
+						"name": "CommandWrapper",
+						"id": 383
+					}
+				]
+			}
+		},
+		{
+			"id": 581,
+			"name": "GroupDef",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/support/testHelper.ts",
+					"line": 4,
+					"character": 20
+				}
+			],
+			"type": {
+				"type": "tuple",
+				"elements": [
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 582,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "tests/support/testHelper.ts",
+									"line": 4,
+									"character": 24
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 459,
+			"name": "LoadedCommands",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/loadCommands.ts",
+					"line": 9,
+					"character": 26
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 460,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "src/loadCommands.ts",
+							"line": 9,
+							"character": 28
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 378,
+			"name": "OptionsHelper",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/interfaces.ts",
+					"line": 24,
+					"character": 25
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 379,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 380,
+							"name": "__call",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 381,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 382,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Options"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "src/interfaces.ts",
+							"line": 24,
+							"character": 27
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 458,
+			"name": "YargsCommandNames",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/loadCommands.ts",
+					"line": 7,
+					"character": 29
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "Map",
+				"typeArguments": [
+					{
+						"type": "intrinsic",
+						"name": "string"
+					},
+					{
+						"type": "reference",
+						"name": "Set",
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"id": 569,
+			"name": "description",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/support/dash-names-foo-bar-baz.ts",
+					"line": 1,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/test-prefix-foo-bar.ts",
+					"line": 1,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/test-prefix-foo-baz.ts",
+					"line": 1,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/commands/test-prefix-foo-bar.ts",
+					"line": 1,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/eject/command-with-full-eject.ts",
+					"line": 1,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/eject/command-with-hints.ts",
+					"line": 1,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/eject/command-with-nofile-eject.ts",
+					"line": 1,
+					"character": 24
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "eject-description"
+			},
+			"defaultValue": "\"eject-description\""
+		},
+		{
+			"id": 546,
+			"name": "excludeInstrumentation",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 47,
+					"character": 35
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "RegExp"
+			},
+			"defaultValue": " /(?:node_modules|bower_components|tests|templates)[\\/\\\\]|dirname/"
+		},
+		{
+			"id": 615,
+			"name": "group",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/support/commands/test-prefix-foo-bar.ts",
+					"line": 3,
+					"character": 18
+				},
+				{
+					"fileName": "tests/support/eject/command-with-full-eject.ts",
+					"line": 3,
+					"character": 18
+				},
+				{
+					"fileName": "tests/support/eject/command-with-hints.ts",
+					"line": 3,
+					"character": 18
+				},
+				{
+					"fileName": "tests/support/eject/command-with-nofile-eject.ts",
+					"line": 3,
+					"character": 18
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "test-group"
+			},
+			"defaultValue": "\"test-group\""
+		},
+		{
+			"id": 487,
+			"name": "helpEpilog",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/text.ts",
+					"line": 9,
+					"character": 23
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "string"
+			},
+			"defaultValue": " `For more information on any of these commands just run them with '-h'.\n\ne.g. 'dojo build -h' will give you the help for the 'build' group of commands.`"
+		},
+		{
+			"id": 486,
+			"name": "helpUsage",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/text.ts",
+					"line": 3,
+					"character": 22
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "string"
+			},
+			"defaultValue": " `${bold('dojo help')}\n\nUsage: dojo <group> <command> [options]\n\nHey there, here are all the things you can do with @dojo/cli:`"
+		},
+		{
+			"id": 539,
+			"name": "initialBaseUrl",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 19,
+					"character": 27
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "intrinsic",
+						"name": "string"
+					},
+					{
+						"type": "intrinsic",
+						"name": "null"
+					}
+				]
+			},
+			"defaultValue": " (function () {\n\tif (typeof location !== 'undefined' && location.pathname.indexOf('__intern/') > -1) {\n\t\treturn '/';\n\t}\n\treturn null;\n})()"
+		},
+		{
+			"id": 614,
+			"name": "name",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/support/commands/test-prefix-foo-bar.ts",
+					"line": 2,
+					"character": 17
+				},
+				{
+					"fileName": "tests/support/eject/command-with-full-eject.ts",
+					"line": 2,
+					"character": 17
+				},
+				{
+					"fileName": "tests/support/eject/command-with-hints.ts",
+					"line": 2,
+					"character": 17
+				},
+				{
+					"fileName": "tests/support/eject/command-with-nofile-eject.ts",
+					"line": 2,
+					"character": 17
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "test-eject"
+			},
+			"defaultValue": "\"test-eject\""
+		},
+		{
+			"id": 533,
+			"name": "proxyPort",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 1,
+					"character": 22
+				}
+			],
+			"type": {
+				"type": "unknown",
+				"name": "9000"
+			},
+			"defaultValue": "9000"
+		},
+		{
+			"id": 534,
+			"name": "proxyUrl",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 4,
+					"character": 21
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "http://localhost:9000/"
+			},
+			"defaultValue": "\"http://localhost:9000/\""
+		},
+		{
+			"id": 545,
+			"name": "suites",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 44,
+					"character": 19
+				}
+			],
+			"type": {
+				"type": "array",
+				"elementType": {
+					"type": "intrinsic",
+					"name": "string"
+				}
+			},
+			"defaultValue": " [ 'tests/unit/all' ]"
+		},
+		{
+			"id": 547,
+			"name": "tunnel",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "tests/intern-local.ts",
+					"line": 3,
+					"character": 19
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "NullTunnel"
+			},
+			"defaultValue": "\"NullTunnel\""
+		},
+		{
+			"id": 529,
+			"name": "versionCurrentVersion",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/commands/version.ts",
+					"line": 11,
+					"character": 34
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "string"
+			},
+			"defaultValue": " `\nYou are currently running @dojo/cli {version}\n`"
+		},
+		{
+			"id": 530,
+			"name": "versionNoRegisteredCommands",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/commands/version.ts",
+					"line": 14,
+					"character": 40
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "string"
+			},
+			"defaultValue": " `\nThere are no registered commands available.`"
+		},
+		{
+			"id": 531,
+			"name": "versionNoVersion",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/commands/version.ts",
+					"line": 16,
+					"character": 29
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "string"
+			},
+			"defaultValue": " yellow('package.json missing')"
+		},
+		{
+			"id": 532,
+			"name": "versionRegisteredCommands",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "src/commands/version.ts",
+					"line": 17,
+					"character": 38
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "string"
+			},
+			"defaultValue": " `\nThe currently installed groups are:\n`"
+		},
+		{
+			"id": 412,
+			"name": "convertModuleToCommand",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 413,
+					"name": "convertModuleToCommand",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 414,
+							"name": "module",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Command",
+						"id": 359
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/command.ts",
+					"line": 75,
+					"character": 38
+				}
+			]
+		},
+		{
+			"id": 407,
+			"name": "createBuiltInCommandLoader",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 408,
+					"name": "createBuiltInCommandLoader",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Creates a builtIn command loader function."
+					},
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 409,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 410,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 411,
+											"name": "path",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "CommandWrapper",
+										"id": 383
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "src/command.ts",
+									"line": 50,
+									"character": 45
+								}
+							]
+						}
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/command.ts",
+					"line": 50,
+					"character": 42
+				}
+			]
+		},
+		{
+			"id": 488,
+			"name": "default",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 489,
+					"name": "default",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Registers commands and subcommands using yargs. Receives a CommandsMap of commands and\na map of YargsCommandNames which links composite keys to groups.\nSubcommands have to be registered when a group is registered, this is a restriction of\nyargs."
+					},
+					"parameters": [
+						{
+							"id": 490,
+							"name": "yargs",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "Yargs instance"
+							},
+							"type": {
+								"type": "reference",
+								"name": "Yargs"
+							}
+						},
+						{
+							"id": 491,
+							"name": "commandsMap",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "The map of composite keys to commands"
+							},
+							"type": {
+								"type": "reference",
+								"name": "CommandsMap",
+								"id": 400
+							}
+						},
+						{
+							"id": 492,
+							"name": "yargsCommandNames",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "Map of groups and names to composite keys\n"
+							},
+							"type": {
+								"type": "reference",
+								"name": "YargsCommandNames",
+								"id": 458
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/registerCommands.ts",
+					"line": 140,
+					"character": 1
+				}
+			]
+		},
+		{
+			"id": 616,
+			"name": "eject",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 617,
+					"name": "eject",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 618,
+							"name": "helper",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 619,
+							"name": "npm",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 620,
+							"name": "files",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 621,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {}
+						}
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/eject/command-with-full-eject.ts",
+					"line": 10,
+					"character": 21
+				},
+				{
+					"fileName": "tests/support/eject/command-with-hints.ts",
+					"line": 10,
+					"character": 21
+				},
+				{
+					"fileName": "tests/support/eject/command-with-nofile-eject.ts",
+					"line": 10,
+					"character": 21
+				}
+			]
+		},
+		{
+			"id": 464,
+			"name": "enumerateBuiltInCommands",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 465,
+					"name": "enumerateBuiltInCommands",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Enumerate all the builtIn commands and return their absolute paths",
+						"returns": "the paths of all builtIn commands\n"
+					},
+					"parameters": [
+						{
+							"id": 466,
+							"name": "config",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {},
+							"type": {
+								"type": "reference",
+								"name": "Config",
+								"id": 312
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/loadCommands.ts",
+					"line": 42,
+					"character": 46
+				}
+			]
+		},
+		{
+			"id": 461,
+			"name": "enumerateInstalledCommands",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 462,
+					"name": "enumerateInstalledCommands",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Enumerate all the installed commands and return their absolute paths\nN.B. we return globby's promise (its not a native node Promise, but a 'pinky-promise' wrapper) - LOL",
+						"returns": "the paths of all installed commands\n"
+					},
+					"parameters": [
+						{
+							"id": 463,
+							"name": "config",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {},
+							"type": {
+								"type": "reference",
+								"name": "Config",
+								"id": 312
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/loadCommands.ts",
+					"line": 29,
+					"character": 48
+				}
+			]
+		},
+		{
+			"id": 588,
+			"name": "getCommandWrapper",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 589,
+					"name": "getCommandWrapper",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 590,
+							"name": "name",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 591,
+							"name": "runs",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"defaultValue": "true"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "CommandWrapper",
+						"id": 383
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/testHelper.ts",
+					"line": 55,
+					"character": 33
+				}
+			]
+		},
+		{
+			"id": 592,
+			"name": "getCommandWrapperWithConfiguration",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 593,
+					"name": "getCommandWrapperWithConfiguration",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 594,
+							"name": "config",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "CommandWrapperConfig",
+								"id": 574
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "CommandWrapper",
+						"id": 383
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/testHelper.ts",
+					"line": 64,
+					"character": 50
+				}
+			]
+		},
+		{
+			"id": 583,
+			"name": "getCommandsMap",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 584,
+					"name": "getCommandsMap",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 585,
+							"name": "groupDef",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "GroupDef",
+								"id": 581
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/testHelper.ts",
+					"line": 21,
+					"character": 30
+				}
+			]
+		},
+		{
+			"id": 415,
+			"name": "getGroupDescription",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 416,
+					"name": "getGroupDescription",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 417,
+							"name": "commandNames",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Set",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									}
+								]
+							}
+						},
+						{
+							"id": 418,
+							"name": "commands",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "CommandsMap",
+								"id": 400
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/command.ts",
+					"line": 88,
+					"character": 35
+				}
+			]
+		},
+		{
+			"id": 586,
+			"name": "getYargsStub",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 587,
+					"name": "getYargsStub",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/testHelper.ts",
+					"line": 46,
+					"character": 28
+				}
+			]
+		},
+		{
+			"id": 401,
+			"name": "initCommandLoader",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 402,
+					"name": "initCommandLoader",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Function to create a loader instance, this allows the config to be injected",
+						"tags": [
+							{
+								"tag": "param:",
+								"text": "searchPrefix A string that tells the command loader how cli commands will be named, ie.\n\t'@dojo/cli-' is the default meaning commands could be\n\t\t- '@dojo/cli-build-webpack'\n\t\t- '@dojo/cli-serve-dist'\n"
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 403,
+							"name": "searchPrefixes",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 404,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 405,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 406,
+											"name": "path",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "CommandWrapper",
+										"id": 383
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "src/command.ts",
+									"line": 19,
+									"character": 60
+								}
+							]
+						}
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/command.ts",
+					"line": 19,
+					"character": 33
+				}
+			]
+		},
+		{
+			"id": 497,
+			"name": "installDependencies",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 498,
+					"name": "installDependencies",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 499,
+							"name": "__namedParameters",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"originalName": "__0",
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 500,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/npmInstall.ts",
+											"line": 27,
+											"character": 42
+										}
+									]
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "any"
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/npmInstall.ts",
+					"line": 27,
+					"character": 41
+				}
+			]
+		},
+		{
+			"id": 493,
+			"name": "installDevDependencies",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 494,
+					"name": "installDevDependencies",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 495,
+							"name": "__namedParameters",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"originalName": "__0",
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 496,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "src/npmInstall.ts",
+											"line": 23,
+											"character": 45
+										}
+									]
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "any"
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/npmInstall.ts",
+					"line": 23,
+					"character": 44
+				}
+			]
+		},
+		{
+			"id": 608,
+			"name": "isEventuallyRejected",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 609,
+					"name": "isEventuallyRejected",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"typeParameter": [
+						{
+							"id": 610,
+							"name": "T",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {}
+						}
+					],
+					"parameters": [
+						{
+							"id": 611,
+							"name": "promise",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Thenable",
+								"id": 595,
+								"typeArguments": [
+									{
+										"type": "typeParameter",
+										"name": "T"
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Thenable",
+						"id": 595,
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/util.ts",
+					"line": 8,
+					"character": 36
+				}
+			]
+		},
+		{
+			"id": 480,
+			"name": "loadAllCommands",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 481,
+					"name": "loadAllCommands",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "reference",
+								"name": "LoadedCommands",
+								"id": 459
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/allCommands.ts",
+					"line": 38,
+					"character": 45
+				}
+			]
+		},
+		{
+			"id": 478,
+			"name": "loadBuiltInCommands",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 479,
+					"name": "loadBuiltInCommands",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "reference",
+								"name": "LoadedCommands",
+								"id": 459
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/allCommands.ts",
+					"line": 32,
+					"character": 41
+				}
+			]
+		},
+		{
+			"id": 467,
+			"name": "loadCommands",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 468,
+					"name": "loadCommands",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Function to load commands given a search path and a load function. The load\nfunction is injected for the purposes of abstraction and testing.\nThe commands are stored in a CommandsMap which uses a composite key of\ngroup-name to store the Command. Currently the first of each group is\nstored as the default command for that group.",
+						"returns": "Promise This function is async and returns a promise once all\nof the commands have been loaded.\n"
+					},
+					"parameters": [
+						{
+							"id": 469,
+							"name": "paths",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "array of absolute paths to commands"
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						},
+						{
+							"id": 470,
+							"name": "load",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "The load function, this takes a path and loads it using the searchPrefix\n\tthat it was pre-configured to look for."
+							},
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 471,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 472,
+											"name": "__call",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 473,
+													"name": "path",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "CommandWrapper",
+												"id": 383
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "src/loadCommands.ts",
+											"line": 60,
+											"character": 57
+										}
+									]
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "reference",
+								"name": "LoadedCommands",
+								"id": 459
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/loadCommands.ts",
+					"line": 60,
+					"character": 34
+				}
+			]
+		},
+		{
+			"id": 476,
+			"name": "loadExternalCommands",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 477,
+					"name": "loadExternalCommands",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"name": "Promise",
+						"typeArguments": [
+							{
+								"type": "reference",
+								"name": "LoadedCommands",
+								"id": 459
+							}
+						]
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/allCommands.ts",
+					"line": 26,
+					"character": 42
+				}
+			]
+		},
+		{
+			"id": 570,
+			"name": "register",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 571,
+					"name": "register",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/dash-names-foo-bar-baz.ts",
+					"line": 2,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/test-prefix-foo-bar.ts",
+					"line": 2,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/test-prefix-foo-baz.ts",
+					"line": 2,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/commands/test-prefix-foo-bar.ts",
+					"line": 4,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/eject/command-with-full-eject.ts",
+					"line": 4,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/eject/command-with-hints.ts",
+					"line": 4,
+					"character": 24
+				},
+				{
+					"fileName": "tests/support/eject/command-with-nofile-eject.ts",
+					"line": 4,
+					"character": 24
+				}
+			]
+		},
+		{
+			"id": 474,
+			"name": "reset",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 475,
+					"name": "reset",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/allCommands.ts",
+					"line": 20,
+					"character": 21
+				}
+			]
+		},
+		{
+			"id": 572,
+			"name": "run",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 573,
+					"name": "run",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/dash-names-foo-bar-baz.ts",
+					"line": 5,
+					"character": 19
+				},
+				{
+					"fileName": "tests/support/test-prefix-foo-bar.ts",
+					"line": 5,
+					"character": 19
+				},
+				{
+					"fileName": "tests/support/test-prefix-foo-baz.ts",
+					"line": 5,
+					"character": 19
+				},
+				{
+					"fileName": "tests/support/commands/test-prefix-foo-bar.ts",
+					"line": 7,
+					"character": 19
+				},
+				{
+					"fileName": "tests/support/eject/command-with-full-eject.ts",
+					"line": 7,
+					"character": 19
+				},
+				{
+					"fileName": "tests/support/eject/command-with-hints.ts",
+					"line": 7,
+					"character": 19
+				},
+				{
+					"fileName": "tests/support/eject/command-with-nofile-eject.ts",
+					"line": 7,
+					"character": 19
+				}
+			]
+		},
+		{
+			"id": 482,
+			"name": "setupUpdateNotifier",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 483,
+					"name": "setupUpdateNotifier",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 484,
+							"name": "pkg",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 485,
+							"name": "updateCheckInterval",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "0"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "src/updateNotifier.ts",
+					"line": 3,
+					"character": 43
+				}
+			]
+		},
+		{
+			"id": 612,
+			"name": "throwImmediatly",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 613,
+					"name": "throwImmediatly",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/support/util.ts",
+					"line": 16,
+					"character": 31
+				}
+			]
+		},
+		{
+			"id": 535,
+			"name": "capabilities",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 536,
+					"name": "browserstack.debug",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern.ts",
+							"line": 13,
+							"character": 21
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "false"
+				},
+				{
+					"id": 538,
+					"name": "name",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern.ts",
+							"line": 15,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"@dojo/cli\""
+				},
+				{
+					"id": 537,
+					"name": "project",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern.ts",
+							"line": 14,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"Dojo 2\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						536,
+						538,
+						537
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 12,
+					"character": 25
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 542,
+			"name": "loaderOptions",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 543,
+					"name": "packages",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern.ts",
+							"line": 36,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reflection",
+							"declaration": {
+								"id": 544,
+								"name": "__type",
+								"kind": 65536,
+								"kindString": "Type literal",
+								"flags": {}
+							}
+						}
+					},
+					"defaultValue": " [\n\t\t{ name: 'src', location: '_build/src' },\n\t\t{ name: 'tests', location: '_build/tests' },\n\t\t{ name: 'grunt-dojo2', location: 'node_modules/grunt-dojo2' }\n\t]"
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						543
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 34,
+					"character": 26
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 540,
+			"name": "loaders",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 541,
+					"name": "host-node",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern.ts",
+							"line": 29,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"@dojo/loader\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						541
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/intern.ts",
+					"line": 28,
+					"character": 20
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		},
+		{
+			"id": 548,
+			"name": "tunnelOptions",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 549,
+					"name": "hostname",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern-local.ts",
+							"line": 5,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"localhost\""
+				},
+				{
+					"id": 550,
+					"name": "port",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "tests/intern-local.ts",
+							"line": 6,
+							"character": 5
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"4444\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						549,
+						550
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "tests/intern-local.ts",
+					"line": 4,
+					"character": 26
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		}
+	],
+	"groups": [
+		{
+			"title": "Classes",
+			"kind": 128,
+			"children": [
+				419,
+				424,
+				551,
+				439
+			]
+		},
+		{
+			"title": "Interfaces",
+			"kind": 256,
+			"children": [
+				345,
+				349,
+				359,
+				375,
+				321,
+				383,
+				574,
+				312,
+				315,
+				501,
+				355,
+				506,
+				352,
+				331,
+				336,
+				595,
+				523
+			]
+		},
+		{
+			"title": "Type aliases",
+			"kind": 4194304,
+			"children": [
+				400,
+				581,
+				459,
+				378,
+				458
+			]
+		},
+		{
+			"title": "Variables",
+			"kind": 32,
+			"children": [
+				569,
+				546,
+				615,
+				487,
+				486,
+				539,
+				614,
+				533,
+				534,
+				545,
+				547,
+				529,
+				530,
+				531,
+				532
+			]
+		},
+		{
+			"title": "Functions",
+			"kind": 64,
+			"children": [
+				412,
+				407,
+				488,
+				616,
+				464,
+				461,
+				588,
+				592,
+				583,
+				415,
+				586,
+				401,
+				497,
+				493,
+				608,
+				480,
+				478,
+				467,
+				476,
+				570,
+				474,
+				572,
+				482,
+				612
+			]
+		},
+		{
+			"title": "Object literals",
+			"kind": 2097152,
+			"children": [
+				535,
+				542,
+				540,
+				548
+			]
+		}
+	]
+}
