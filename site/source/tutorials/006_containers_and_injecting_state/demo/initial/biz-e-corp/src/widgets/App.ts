@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';

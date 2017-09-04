@@ -1,12 +1,12 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
 import WorkerContainer from './WorkerContainer';
 
-export default class App extends WidgetBase<WidgetProperties> {
+export default class App extends WidgetBase {
 	private _newWorker: Partial<WorkerFormData> = {};
 
 	private _workerData: WorkerProperties[] = [
