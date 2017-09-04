@@ -20,4 +20,3 @@ registerSuite({
 		bannerHarness.expectRender(v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ]));
 	}
 });
-
