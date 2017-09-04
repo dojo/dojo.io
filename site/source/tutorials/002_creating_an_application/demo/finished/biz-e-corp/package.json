@@ -15,6 +15,7 @@
     "@dojo/cli-test-intern": "beta2",
     "@dojo/interfaces": "beta2",
     "@dojo/loader": "beta2",
+    "@dojo/test-extras": "beta2",
     "@types/chai": "~3.4.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
