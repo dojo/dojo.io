@@ -19,6 +19,8 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 			workerData = []
 		} = this.properties;
 
+		console.log('container render');
+
 		const workers: DNode[] = workerData.map((worker, i) => w(Worker, {
 			key: `worker-${i}`,
 			...worker
