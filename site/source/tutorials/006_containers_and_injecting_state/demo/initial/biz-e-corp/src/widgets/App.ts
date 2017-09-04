@@ -6,7 +6,7 @@ import WorkerForm, { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
 import WorkerContainer from './WorkerContainer';
 
-export default class App extends WidgetBase<WidgetProperties> {
+export default class App extends WidgetBase {
 	private _newWorker: Partial<WorkerFormData> = {};
 
 	private _workerData: WorkerProperties[] = [
