@@ -13,7 +13,7 @@ export interface WorkerFormData {
 }
 
 export interface WorkerFormProperties extends ThemeableProperties {
-	formData: WorkerFormData;
+	formData: Partial<WorkerFormData>;
 	onFormInput: (data: Partial<WorkerFormData>) => void;
 	onFormSave: () => void;
 }
@@ -81,7 +81,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				required: true,
 				onInput: this.onEmailInput
 			}),
-			w(Button, { content: 'Save' })
+			w(Button, {}, [ 'Save' ])
 		]);
 	}
 }
