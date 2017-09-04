@@ -44,7 +44,7 @@ export default class App extends WidgetBase {
 	}
 
 	private _onFormInput(data: any) {
-		this._state = { ...data };
+		this._state = { ...this._state, ...data };
 		this.invalidate();
 	}
 
