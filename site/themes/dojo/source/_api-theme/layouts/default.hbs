@@ -47,12 +47,8 @@
 <script src="/js/combined.js"></script>
 
 <!-- build:js /js/api.js -->
-<script src="./assets/js/main.js"></script>
-<script src="./assets/js/search.js"></script>
-<!-- This template is used for multiple levels of directories. This
-results in some ugly 404s but finds the correct scripts in both cases -->
-<script src="../assets/js/main.js"></script>
-<script src="../assets/js/search.js"></script>
+<script src="{{relativeURL "./assets/js/main.js"}}"></script>
+<script src="{{relativeURL "./assets/js/search.js"}}"></script>
 <!-- endbuild -->
 
 {{> analytics}}
