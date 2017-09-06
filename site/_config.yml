@@ -26,7 +26,7 @@ category_dir: categories
 code_dir: tutorials
 i18n_dir: :lang
 skip_render:
-  - "**/*/demo"
+	- "**/*/demo"
 tutorial_dir: tutorials
 
 # Writing
@@ -40,77 +40,34 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: false
-  line_number: false
-  auto_detect: true
-  tab_replace:
+	enable: false
+	line_number: false
+	auto_detect: true
+	tab_replace:
 
 prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'default'
-  line_number: false    # default false
+	mode: 'preprocess'    # realtime/preprocess
+	theme: 'default'
+	line_number: false    # default false
 
 # Authors
 authors:
-  default:
-    name: The Dojo Team
-  dylan:
-    name: Dylan Schiemann
-    email: dylan@sitepen.com
+	default:
+		name: The Dojo Team
+	dylan:
+		name: Dylan Schiemann
+		email: dylan@sitepen.com
 
 # Yet Another Stylus Renderer
 # https://github.com/celsomiranda/hexo-renderer-yasr
 
-yasr:
-  axis: true              # Enables Axis (Recommends Nib) 
-  compress: false         # Disables Compression 
-  jeet: false              # Enables Jeet 
-  nib: true               # Enables Nib 
-  rupture: true           # Enables Rupture 
-  typographic: false       # Enables Typographic 
+node_sass:
+	outputStyle: nested
+	precision: 5
+	sourceComments: false
+	includePaths:
+		- node_modules/bulma
 
-# Hexo Filter Cleanup
-# https://github.com/mamboer/hexo-filter-cleanup
-hfc_useref:
-  enable: true
-  concat: true
-  exclude: 
-
-hfc_css:
-  enable: true
-  exclude: 
-    - '*.min.css'
-
-hfc_js:
-  enable: true
-  mangle: true
-  output:
-  compress:
-  exclude: 
-    - '*.min.js'
-
-hfc_html:
-  enable: true
-  exclude: 
-
-hfc_img:
-  enable: true
-  interlaced: false
-  multipass: false
-  optimizationLevel: 2
-  pngquant: false
-  progressive: false
-  webp: true
-  webpQuality: 75
-  gifslice: true
-  jpegtran: true
-  jpegrecompress: false
-  jpegrecompressQuality: 'medium'
-  optipng: true
-  svgo: true
-
-hfc_favicons:
-  enable: false
 
 # Category & Tag
 default_category: dojo
@@ -137,8 +94,8 @@ theme: dojo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/dojo/dojo.io.git
-  branch: gh-pages
+	type: git
+	repo: https://github.com/dojo/dojo.io.git
+	branch: gh-pages
 
 
