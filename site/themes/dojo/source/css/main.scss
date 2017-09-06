@@ -1,6 +1,9 @@
 @import url('//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i|Roboto+Slab:100,300,400,700|Source+Code+Pro:400,700');
 @import 'bulma';
 @import '_util/variables';
+@import 'typesettings/typesettings';
+@import '_util/typography';
 @import '_global';
 @import '_partials/header';
 @import '_views/home';
+@import '_views/tutorial';
