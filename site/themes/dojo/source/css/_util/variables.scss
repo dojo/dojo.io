@@ -38,4 +38,6 @@ $paragraph-justify: true;
 $load-typesetted: true;
 
 $header-height: 60px;
-$header-offset: ($header-height * 1.25);
+$header-offset: $header-height;
+
+$article-max-width: 780px;
