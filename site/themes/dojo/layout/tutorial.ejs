@@ -1,20 +1,14 @@
 <div class="tutorial-content">
 	<div class="scrollable">
-		<%- page.content %>
+		<div class="container"><%- page.content %></div>
 	</div>
-
-	<%
-		if(!page.nosections) {
-	%>
-		<div id="actionBar" class="action-bar"></div>
-		<style>
-			html, body {
-				height: 100%;
-			}
-		</style>
-		<script src="/js/tutorial-support.js"></script>
-		<script>
-			tutorial.populateActionBar(document.getElementById('actionBar'));
-		</script>
-	<% } %>
 </div>
+<%
+	if(!page.nosections) {
+%>
+	<div id="actionBar" class="action-bar"></div>
+	<script src="/js/tutorial-support.js"></script>
+	<script>
+		tutorial.populateActionBar(document.getElementById('actionBar'));
+	</script>
+<% } %>
