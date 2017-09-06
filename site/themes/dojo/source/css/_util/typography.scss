@@ -1,8 +1,14 @@
 // Typesettings values are in variables file
 // These override Typesettings
 
+html,
+body {
+	font-family: $default-font;
+}
+
 @for $i from 1 through 6 {
 	h#{$i} {
 		font-family: $heading-font;
+		font-weight: 400;
 	}
 }

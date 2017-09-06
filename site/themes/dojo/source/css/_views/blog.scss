@@ -1,9 +1,16 @@
+.body-single-page,
+.body-archive {
+	.page-content .container {
+		max-width: $article-max-width;
+	}
+}
+
 .body-single-page {
 
 	.article-header {
 		text-align: center;
 	}
-	
+
 	.article-meta {
 		margin-top: 0;
 		text-align: center;
@@ -13,7 +20,7 @@
 		font-size: 3.8rem;
 		font-weight: 300;
 	}
-	
+
 	.article-entry {
 		// Excerpt styling
 		&>p:first-of-type {
@@ -39,7 +46,7 @@
 .author-meta {
 	font-size: 0.75rem;
 	margin: 2rem 0 1rem 0;
-	
+
 	.author-name {
 		font-weight: bold;
 		text-transform: uppercase;
