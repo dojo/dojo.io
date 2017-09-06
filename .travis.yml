@@ -6,10 +6,30 @@ cache:
   directories:
   - node_modules
 before_install:
-- npm install grunt-cli typings -g
+- npm install @dojo/cli grunt-cli typings -g
+env:
+  - TUTORIAL=001_static_content
+  - TUTORIAL=002_creating_an_application
+  - TUTORIAL=003_creating_widgets
+  - TUTORIAL=004_user_interactions
+  - TUTORIAL=005_form_widgets
 script:
-- grunt test
-- grunt ci
+  - pushd .
+  - cd site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp
+  - npm install
+  - dojo build
+  - cd ../../finished/biz-e-corp
+  - npm install
+  - dojo test
+  - popd
+jobs:
+  include:
+    stage: Test site
+    env:
+      - TUTORIAL=N/A
+    script:
+      - grunt test
+      - grunt ci
 deploy:
   provider: script
   script: grunt publish
