@@ -4,9 +4,7 @@
 	<div class="page-content">
 		<section class="content-container" id="main"><%- body %></section>
 	</div>
-	<div>
-		<%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
-		<%- partial('_partial/after-footer') %>
-	</div>
+	<%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+	<%- partial('_partial/after-footer') %>
 </body>
 </html>
