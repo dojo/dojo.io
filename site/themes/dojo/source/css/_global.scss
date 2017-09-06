@@ -1,0 +1,14 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.header,
+.page-footer {
+	flex: 0;
+}
+
+.page-content {
+	flex: 1;
+}
