@@ -58,15 +58,15 @@ authors:
 		name: Dylan Schiemann
 		email: dylan@sitepen.com
 
-# Yet Another Stylus Renderer
-# https://github.com/celsomiranda/hexo-renderer-yasr
-
+# Sass
 node_sass:
 	outputStyle: nested
 	precision: 5
 	sourceComments: false
 	includePaths:
 		- node_modules/bulma
+		- node_modules/
+
 
 
 # Category & Tag
