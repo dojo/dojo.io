@@ -44,7 +44,7 @@ This widget will render an empty form with a `submit` handler that prevents the 
 
 Import the `WorkerForm` class and the `WorkerFormData` interface and update the `render` method to draw the `WorkerForm`. It should be included after the `Banner` and before the `WorkerContainer` so the `render` method should look like this:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-53,57-62 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:47-50,54-59 %}
 
 Now, open the application in a browser and inspect it via the browser's developer tools. Notice that the empty form element is being rendered onto the page as expected.
 
@@ -125,9 +125,9 @@ The `render` method starts by decomposing the properties into local constants. W
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:9-19 %}
 
-Most of these properties should be familiar by now, but notice the type signature for the `onFormInput` property. It accepts an object of type `Partial<WorkerFormData>`. The `Partial` type will convert all of the properties of the provided type (`WorkerFormData` in this case) to be optional. This will inform the consumer that it is not guaranteed to receive all of the `WorkerFormData` properties every time - it should be prepared to receive only part of the data and process only those values that it receives.
+Most of these properties should be familiar by now, but notice the type signature for the `formData` property and the argument of the `onFormInput` property. They're both objects of type `Partial<WorkerFormData>`. The `Partial` type will convert all of the properties of the provided type (`WorkerFormData` in this case) to be optional. This will inform the consumer that it is not guaranteed to receive all of the `WorkerFormData` properties every time - it should be prepared to receive only part of the data and process only those values that it receives.
 
-There are two types of properties that we are using in this form. The `firstName`, `lastName` and `email` properties are grouped together in the `WorkerFormData` interface and are going to set the values that are displayed in the form fields. The `onFormInput` and `onFormSave` properties expose the events that the `WorkerForm` widget can emit. To see how these different property types are used, let's examine the properties that are being passed into first `TextInput` widget:
+There are two types of properties that we are using in this form. The `firstName`, `lastName` and `email` properties are grouped together in the `WorkerFormData` interface and are going to set the values that are displayed in the form fields. The `onFormInput` and `onFormSave` properties expose the events that the `WorkerForm` widget can emit. To see how these different property types are used, let's examine the properties that are being passed into the first `TextInput` widget:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-64 %}
 
@@ -151,47 +151,33 @@ The form is now ready to be integrated into the application. We will do that in 
 
 {% task 'Integrate the form into the application.' %}
 
-Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We could add private fields in the class to store those values, but that would be difficult to maintain as the application grows and needs to store more data. Instead, we are going to leverage another mixin that comes with Dojo 2 that is designed to handle state for us - the `StatefulMixin`.
+Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We will add a private property to the `App` to store this state, and a method to update the state and re-render the parts of the application that have changed. As the application grows and needs to store more data, using private properties on a widget class can become difficult to maintain. Dojo 2 uses containers and injectors to help manage the complexities of dealing with state in a large application. For more information, refer to the [Containers and Injecting State](../comingsoon.html) article.
 
-{% aside 'StatefulMixin versus dojo/Stateful' %}
-	The `StatefulMixin` might remind some users of Dojo 1's `dojo/Stateful` module. In Dojo 1, the `Stateful` module allowed properties to be retrieved, set, and observed. All of which are now part of the JavaScript language. In Dojo 2, `StatefulMixin` adds functionality to a class that provides a standard mechanism to store state information and automatically re-render when the state changes.
-{% endaside %}
+{% instruction 'Add `_newWorker` as a private property.' %}
 
-The `StatefulMixin` allows a class to store data in an object that can be updated by calling the `setState` method. The `StatefulMixin` is designed to accept partial updates to the contained state. In this application, the `WorkerForm` is only going to provide data on one property at a time. When the `setState` method is called with a partial state update, it will only update the state of values that have been provided. Additionally, calling the `setState` method will raise an event that will trigger the application to re-render the relevant portions of the user interface to reflect the new state.
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:10 %}
 
-{% instruction 'Import the `StatefulMixin` by adding this line to the top of `App.ts`.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:4 %}
-
-{% instruction 'Add `AppBase` and update the class declaration.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:10,17-18 %}
+Notice that `_newWorker` is a `Partial<WorkerFormData>`, since it may include only some, or none, of the `WorkerFormData` interface properties.
 
 {% instruction 'Update the `render` method to populate the `WorkerForm`'s properties.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-62 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:45-57 %}
 
 The `onFormInput` handler is calling the `App`'s `_onFormInput` method.
 
 {% instruction 'Add the `_onFormInput` method.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:46-48 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:39-45 %}
 
-The `_onFormInput` method calls the `setState` method, passing in the updated partial state.
+The `_onFormInput` method updates the `_newWorker` object with the latest form data and then invalidates the app so that the form field will be re-rendered with the new data.
 
 The `onFormSave` handler calls the `_addWorker` method.
 
 {% instruction 'Add the `_addWorker` method to the `App` class.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:41-44 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:33-37 %}
 
-The `_addWorker` method pushes the stored state (which is the current `WorkerFormData`) to the `_workerData` array and then calls the `setState` method with a `defaultForm`.
-
-{% instruction 'Add the `defaultForm` to `App.ts`' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:12-16 %}
-
-The `defaultForm` object resets all of the state properties to `undefined`. This will serve to clear the `WorkerForm` when the application renders it again, which will happen automatically after the new state has been stored.
+The `_addWorker` method sets `_workerData` to a new array that includes the `_newWorker` object (which is the current `WorkerFormData`), sets `_newWorker` to a new empty object, and then invalidates the `App` widget. The reason that `_workerData` is not updated in place is because Dojo 2 decides whether a new render is needed by comparing the previous value of a property to the current value. If we are modifying the existing value then any comparison performed would report that the previous and current values are identical.
 
 With the `WidgetForm` in place and the `App` configured to handle it, let's try it. For now let's test the [happy path](https://en.wikipedia.org/wiki/Happy_path) by providing the expected values to the form. Provide values for the fields, for example: "Suzette McNamara (smcnamara359@email.com)" and click the `Save` button. As expected, the form is cleared and a new `Worker` widget is added to the page. Clicking on the new `Worker` widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.
 

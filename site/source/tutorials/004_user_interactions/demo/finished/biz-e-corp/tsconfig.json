@@ -6,6 +6,7 @@
 		"lib": [
 			"dom",
 			"es5",
+			"es2015.promise",
 			"es2015.iterable",
 			"es2015.symbol",
 			"es2015.symbol.wellknown"
@@ -14,6 +15,7 @@
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
+		"noUnusedLocals": true,
 		"outDir": "_build/",
 		"removeComments": false,
 		"sourceMap": true,

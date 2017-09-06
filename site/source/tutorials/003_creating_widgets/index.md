@@ -49,7 +49,7 @@ With all of the dependencies in place, let's create the `App` widget itself.
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
-Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode`, which means that our render method has to return a `DNode` (an abstraction for an [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
+Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode`, which means that our render method has to return a `DNode` (an abstraction for a [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
 
 {% instruction 'To start, let\'s use a simple `render` method by adding this to the `App` class:' %}
 
@@ -185,7 +185,7 @@ export default class App extends WidgetBase<WidgetProperties> {
 
 {% instruction 'Run the application with `dojo build --watch` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
-We have succeeded in rendering the widget, but there seems to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface that extends `WidgetProperties` and using that to pass configuration information into the widget.
+We have succeeded in rendering the widget, but there seem to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface that extends `WidgetProperties` and using that to pass configuration information into the widget.
 
 {% section %}
 
@@ -236,7 +236,7 @@ protected render(): DNode {
 
 {% task 'Pass properties to the Worker widget to configure it.' %}
 
-To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
+To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working with stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
 
 {% instruction 'In `App.ts`, update the line that is rendering the `Worker` to contain values for the `firstName` and `lastName` properties:' %}
 
@@ -343,8 +343,8 @@ You may notice that we are calling `this.classes` with the `container` class as 
 		];
 ```
 
-Notice that we have added an `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
-In the code example shown above, we have added an `key` property and set the value to be unique for each child widget.
+Notice that we have added a `key` property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. `div` or widget name, e.g. `Worker`, then you will need to add a property that makes each child unique.
+In the code example shown above, we have added a `key` property and set the value to be unique for each child widget.
 
 We can now pass these workers as children to the container.
 

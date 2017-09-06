@@ -68,11 +68,11 @@ This is very simple, containing a single `<h1>` tag and no behavior, but it demo
 
 ## Tests
 
-The final aspect that our basic application contains is its test suite. Dojo 2 is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application's components work together as expected. Dojo 2 leverages the [Intern](http://theintern.io) testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing.
+The final aspect that our basic application contains is its test suite. Dojo 2 is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application's components work together as expected. Dojo 2 leverages the [Intern](http://theintern.io) testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the [Dojo 2 test-extras library](https://github.com/dojo/test-extras) to verify the output of the widget's render function. The test-extras library is designed to facilitate testing the functionality of Dojo 2 widgets. For more information, refer to the [Testing Dojo 2 Widgets](../comingsoon.html) article.
 
 Our demo application includes some tests to verify that it is working as expected. The tests are found in `tests/unit/widgets/HelloWorld.ts`. Let's examine this part of the test code:
 
-{% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:8-14 %}
+{% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:19-21 %}
 
 This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal command:
 
@@ -83,7 +83,7 @@ dojo test
 {% section %}
 
 ## Summary
-This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are will be present in all of them.
+This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.
 
 If you would like, you can download the completed [demo application](../assets/002_creating_an_application-finished.zip) from this tutorial.
 

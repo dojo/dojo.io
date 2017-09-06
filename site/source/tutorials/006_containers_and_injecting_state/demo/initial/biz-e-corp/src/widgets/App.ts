@@ -1,21 +1,13 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
-import { StatefulMixin } from '@dojo/widget-core/mixins/Stateful';
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
 import WorkerContainer from './WorkerContainer';
 
-export const AppBase = StatefulMixin(WidgetBase);
-
-const defaultForm = {
-	firstName: undefined,
-	lastName: undefined,
-	email: undefined
-};
-
-export default class App extends AppBase<WidgetProperties> {
+export default class App extends WidgetBase {
+	private _newWorker: Partial<WorkerFormData> = {};
 
 	private _workerData: WorkerProperties[] = [
 		{
@@ -39,19 +31,24 @@ export default class App extends AppBase<WidgetProperties> {
 	];
 
 	private _addWorker() {
-		this._workerData.push(this.state);
-		this.setState(defaultForm);
+		this._workerData = this._workerData.concat(this._newWorker);
+		this._newWorker = {};
+		this.invalidate();
 	}
 
-	private _onFormInput(data: any) {
-		this.setState(data);
+	private _onFormInput(data: Partial<WorkerFormData>) {
+		this._newWorker = {
+			...this._newWorker,
+			...data
+		};
+		this.invalidate();
 	}
 
 	protected render(): DNode {
 		return v('div', [
 			w(Banner, {}),
 			w(WorkerForm, {
-				formData: <WorkerFormData> this.state,
+				formData: this._newWorker,
 				onFormInput: this._onFormInput,
 				onFormSave: this._addWorker
 			}),
