@@ -19,7 +19,6 @@ $color-google: #dd4b39;
 $header-background: #222127;
 $footer-background: #fff;
 
-
 /* Your settings for Typesettings :) */
 /* https://github.com/ianrose/typesettings */
 
@@ -27,7 +26,8 @@ $heading-font: 'Roboto Slab', serif;
 $default-font: 'Lato', sans-serif;
 $font-mono: 'Source Code Pro', Monaco, monospace;
 $font-code: $font-mono;
-
+$font-sans: $default-font;
+$font-serif: $heading-font;
 $text-color: $color-default;
 $base-vertical-unit: 8px;
 $base-line-multi: 4;
@@ -36,3 +36,6 @@ $ms-ratio: 1.250;
 $paragraph-indent: false;
 $paragraph-justify: true;
 $load-typesetted: true;
+
+$header-height: 60px;
+$header-offset: ($header-height * 1.25);

@@ -115,12 +115,15 @@ hfc_img:
 
 hfc_favicons:
   enable: false
+# Sass
 node_sass:
 	outputStyle: nested
 	precision: 5
 	sourceComments: false
 	includePaths:
 		- node_modules/bulma
+		- node_modules/
+
 
 
 # Category & Tag
