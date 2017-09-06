@@ -55,6 +55,8 @@
     "webserv": "^0.6.1"
   },
   "dependencies": {
+    "bulma": "^0.5.1",
+    "hexo": "^3.3.9",
     "hexo-renderer-yasr": "^4.0.0",
     "tslib": "^1.6.0"
   }
