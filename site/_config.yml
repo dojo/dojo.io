@@ -50,7 +50,7 @@ highlight:
 
 prism_plugin:
 	mode: 'preprocess'    # realtime/preprocess
-	theme: 'ghcolors'
+	theme: 'default'
 	line_number: false    # default false
 
 # Authors
@@ -115,6 +115,13 @@ hfc_img:
 
 hfc_favicons:
   enable: false
+node_sass:
+	outputStyle: nested
+	precision: 5
+	sourceComments: false
+	includePaths:
+		- node_modules/bulma
+
 
 # Category & Tag
 default_category: dojo

@@ -2,7 +2,7 @@
 	<div class="container">
 		<nav class="navbar">
 			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<a href="/" class="navbar-item"><img src="<%- url_for('images/logos/dojo2-logo-white.svg') %>" class="site-logo" alt="<%= config.title %>"></a>
 				<div class="navbar-burger">
 					<span></span>
 					<span></span>
@@ -12,11 +12,11 @@
 			<div class="navbar-menu">
 				<div class="navbar-start"></div>
 				<div class="navbar-end">
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/docs">Docs</a>
-					<a class="navbar-item" href="/api">API</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+					 <% for (var i in theme.menu){ %>
+						<div class="navbar-item">
+							<a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+						</div>
+					<% } %>
 				</div>
 			</div>
 		</nav>

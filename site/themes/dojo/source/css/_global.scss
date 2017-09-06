@@ -1,39 +1,14 @@
-html,
 body {
-	background: $page-background;
-	height: 100%;
-	margin: 0;
-}
-
-// Fixed header + sticky footer
-.page-wrapper {
-	height: 100%;
 	display: flex;
+	min-height: 100vh;
 	flex-direction: column;
 }
 
-.content-wrapper {
-	display: flex;
-	flex-direction: column;
+.header,
+.page-footer {
+	flex: 0;
+}
+
+.page-content {
 	flex: 1;
-	overflow-y: auto;
-
-	.page-content {
-		flex: 1 0 auto;
-		padding-bottom: 2rem;
-		
-		.footer {
-			flex: none;
-		}
-	}
-}
-
-.container.article {
-	max-width: $article-max-width;
-}
-
-
-// Makes inline flex items full height e.g. cards
-.is-full-height {
-	height: 100%;
 }
