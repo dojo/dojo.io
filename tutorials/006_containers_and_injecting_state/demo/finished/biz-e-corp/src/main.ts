@@ -1,6 +1,6 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { Injector, BaseInjector } from '@dojo/widget-core/Injector';
-import { registry } from '@dojo/widget-core/d';
+import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
 
 import ApplicationContext from './ApplicationContext';
 import App from './widgets/App';
@@ -28,9 +28,11 @@ const applicationContext = new ApplicationContext([
 	}
 ]);
 
+const registry = new WidgetRegistry();
 registry.define('app-state', Injector(BaseInjector, applicationContext));
 
 const Projector = ProjectorMixin(App);
 const projector = new Projector();
+projector.setProperties({ registry });
 
 projector.append(root);

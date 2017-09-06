@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
 import Button from '@dojo/widgets/button/Button';
@@ -81,7 +81,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				required: true,
 				onInput: this.onEmailInput
 			}),
-			w(Button, { content: 'Save' })
+			w(Button, { }, [ 'Save' ])
 		]);
 	}
 }
