@@ -1,16 +1,45 @@
 .body-tutorial {
+
+	.page-wrapper {
+		overflow: hidden;
+	}
 	
 	.footer {
 		display: none;
 	}
 
-	.page-wrapper {
-		overflow: hidden;
-	}
 
 	.tutorial {
-		-webkit-animation: scaleUp .7s ease both;
-		animation: scaleUp .7s ease both;
+		transition: opacity 0.3s;
+		opacity: 1;
+		&.hiding {
+			opacity: 0.05;
+		}
+	}
+
+	.tutorial-title {
+		font-weight: 400;
+		color: $color-grey;
+	}
+
+	.paginator {
+		background: $header-background;
+		border-top: 2px solid $header-background;
+		z-index: 2;
+
+		.paginator-title {
+			color: $light;
+		}
+
+		.pagination-previous,
+		.pagination-next,
+		.pagination-link {
+			@include default-transition();
+			&:hover {
+				border-color: $primary;
+				color: $light;
+			}
+		}
 	}
 
 	.hidden {
@@ -19,13 +48,18 @@
 	}
 
 	.solution-container {
+		max-width: 100%;
+		
+		* {
+			max-width: 100%;
+		}
 
 		pre[class*="language-"] {
 			margin-bottom: 0;
 		}
 
 		[id*='solution'] {
-			transition: height 10s;
+			transition: all 5s ease-in-out;
 			overflow-y: hidden;
 			pre {
 				code {
@@ -59,12 +93,11 @@
 
 
 	.task {
-		font-style: italic;
-		color: #7A7A7A;
+
 		margin-bottom: 1rem;
 
 		&:before {
-			margin-left: -1.5rem;
+			//margin-left: -1.5rem;
 			margin-right: 0.5rem;
 
 			content: '\2605';
@@ -78,7 +111,7 @@
 		margin-bottom: 1rem;
 
 		&:before {
-			margin-left: -1.5rem;
+			//margin-left: -1.5rem;
 			margin-right: 0.5rem;
 			content: '\27e9';
 			color: #67AB26;
@@ -90,15 +123,5 @@
 		color: white;
 		border: 0;
 		@extend .button.is-primary;
-
-		&.blue {
-			background-color: #28A4F7;
-			&:hover {
-			background-color: lighten(#28A4F7, 10%);
-			}
-			&:focus {
-				outline: 2px solid darken(#28A4F7, 10%);
-			}
-		}
 	}
 }
