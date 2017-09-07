@@ -16,8 +16,20 @@ $color-facebook: #3b5998;
 $color-pinterest: #cb2027;
 $color-google: #dd4b39;
 
+$primary: #00d1b2;
+
+
 $header-background: #222127;
 $footer-background: #fff;
+$header-height: 3.25rem;
+$header-offset: $header-height;
+$footer-offset: 3.25rem;
+$article-max-width: 780px;
+
+// Bulma overrides
+$navbar-item-hover-color: #fff;
+$navbar-item-color: $primary;
+$navbar-item-hover-background-color: transparent;
 
 /* Your settings for Typesettings :) */
 /* https://github.com/ianrose/typesettings */
@@ -36,8 +48,3 @@ $ms-ratio: 1.250;
 $paragraph-indent: false;
 $paragraph-justify: true;
 $load-typesetted: true;
-
-$header-height: 60px;
-$header-offset: $header-height;
-
-$article-max-width: 780px;

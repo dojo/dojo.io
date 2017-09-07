@@ -3,9 +3,11 @@
 	height: 100%;
 	overflow: hidden;
 
-	.page-footer {
+	.footer {
 		display: none;
 	}
+
+
 
 	.page-content {
 		.split-content {
@@ -59,7 +61,6 @@
 
 		width: 100%;
 
-
 		&:focus {
 			outline: 0;
 		}
@@ -106,6 +107,7 @@
 	}
 
 	.scrollable {
+		padding-top: 2rem;
 		position: relative;
 		height: calc(100% - 65px);
 		overflow-y: auto;
@@ -231,17 +233,7 @@
 		padding: 0.5rem 2rem;
 		color: white;
 		border: 0;
-
-		&.green {
-			background-color: #33BF6D;
-
-			&:hover {
-			background-color: lighten(#33BF6D, 10%);
-			}
-			&:focus {
-				outline: 2px solid darken(#33BF6D, 10%);
-			}
-		}
+		@extend .button.is-primary;
 
 		&.blue {
 			background-color: #28A4F7;
