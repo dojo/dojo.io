@@ -6,6 +6,7 @@
     "version": "3.3.9"
   },
   "dependencies": {
+    "animate-scss": "^3.2.1",
     "bulma": "^0.5.1",
     "headroom.js": "^0.9.3",
     "hexo": "^3.3.9",
