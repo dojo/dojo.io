@@ -6,8 +6,7 @@ tutorial.populatePaginator = function(container, title) {
 		return;
 	}
 
-	var tutTitle = document.querySelector('.paginator-title');
-	tutTitle.innerHTML = title;
+	var tutTitle = document.querySelector('.tutorial-title');
 
 	var sectionOneContainer = document.querySelector('.section-one');
 
@@ -85,7 +84,6 @@ tutorial.populatePaginator = function(container, title) {
 		}
 
 		sectionSelectors.forEach(function (sectionSelector) {
-			console.log(target, sectionSelector);
 			if (sectionSelector === target) {
 				sectionSelector.classList.add('is-current');
 			} else {
@@ -123,11 +121,11 @@ tutorial.populatePaginator = function(container, title) {
 			if (!sectionToActivateNum) {
 				sectionOneContainer.classList.remove('hidden');
 				otherSectionContainer.classList.add('hidden');
-				breadcrumbs.classList.add('hidden');
+				tutTitle.classList.add('hidden');
 			} else {
 				sectionOneContainer.classList.add('hidden');
 				otherSectionContainer.classList.remove('hidden');
-				breadcrumbs.classList.remove('hidden');
+				tutTitle.classList.remove('hidden');
 			}
 		}, 300, sectionToActivate);
 	}
