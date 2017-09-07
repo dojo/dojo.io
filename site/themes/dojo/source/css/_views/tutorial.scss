@@ -1,34 +1,4 @@
-
 .body-tutorial {
-	height: 100%;
-	overflow: hidden;
-	
-	.footer {
-		display: none;
-	}
-
-	
-
-	.page-content {
-		.split-content {
-			.editor {
-				width: 100vw;
-				position: fixed;
-				bottom: -35px;
-				right: 0;
-				left: 0;
-				z-index: 3;
-				.editor-frame {
-					width: 100%;
-					height: 40vh;
-				}
-
-				iframe {
-					border: 0;
-				}
-			}
-		}
-	}
 
 	.solution-container {
 
@@ -58,7 +28,6 @@
 	}
 
 	.toggle-solution {
-
 		width: 100%;
 
 		&:focus {
@@ -66,137 +35,10 @@
 		}
 	}
 
-	img{
-		max-width: 100%;
-		
-		&.half-width {
-			width: 40%;
-			margin: 0 5%;
-		}
-	}
-	p.center {
-		text-align: center;
-	}
-
-	.aside {
-		max-width: 40%;
-		float: right;
-		background-color: #DAFEFF;
-		border: 1px solid darken(#DAFEFF, 5%);
-		margin: 1em;
-		padding: 0.5em;
-		border-radius: 0.3em;
-
-		p{
-			font-size: 0.8rem;
-			margin: 0;
-			text-align: start;
-		}
-
-		strong {
-			font-size: 1rem;
-		}
-	}
-
 	pre {
 		clear: both;
 	}
 
-	.content-container, .tutorial-content {
-		height: 100%;
-	}
-
-	.scrollable {
-		padding-top: 2rem;
-		position: relative;
-		height: calc(100% - 65px);
-		overflow-y: auto;
-
-		.tutorial {
-			transition: opacity 0.3s;
-			opacity: 1;
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: calc(100% - 10px);
-			padding: 1rem;
-
-			@include desktop {
-				padding: 0;
-			}
-
-			&.hiding {
-				opacity: 0.05;
-			}
-
-		}
-	}
-	.action-bar {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		background-color: #F3F3F3;
-
-		.section-one {
-			height: 65px;
-
-			button.own-editor {
-				position: absolute;
-				top: 7.5px;
-				right: 2rem;
-			}
-		}
-
-		.other-section {
-			height: 65px;
-
-			.section-container {
-				margin-top: 15px;
-				display: inline-block;
-              	@media(min-width: 601px) {
-					position: relative;
-					left: 50%;
-					.center-section-container {
-						position: relative;
-						left: -50%;
-					}
-				}
-
-				.section-selector {
-					width: 0.7rem;
-					height: 0.7rem;
-					border-radius: 0.35rem;
-					background-color: #CFCFCF;
-					display: inline-block;
-					margin-right: 0.1rem;
-					cursor: pointer;
-
-					&:hover {
-						background-color: lighten(#28A4F7, 30%);
-					}
-
-					&.active {
-						background-color: #28A4F7;
-					}
-				}
-			}
-
-			button.next {
-				position: absolute;
-				right: 2rem;
-				top:7.5px;
-			}
-
-			button.back {
-				@media(max-width: 600px) {
-					display: none;
-				}
-                position: absolute;
-				left: 2rem;
-				top: 7.5px;
-			}
-		}
-	}
 
 	.task {
 		font-style: italic;
