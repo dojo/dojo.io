@@ -12,16 +12,16 @@
 				// remove index.html from the path to make relative URLs work consistently
 				var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
 		%>
-			<div class="column is-full-mobile is-half-tablet is-one-third-desktop">
+			<div class="column is-12-mobile is-6-tablet is-4-desktop is-3-widescreen">
 				<div class="card is-full-height">
 					<div class="card-image">
-						<figure class="image is-4by3">
+						<figure class="image is-2by1">
 							<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
 						</figure>
 					</div>
 					<div class="card-content">
-						<h4><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></h4>
-						<div class="content">
+						<h4 class="is-size-6"><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></h4>
+						<div class="content is-size-7">
 							<%- tut.overview %>
 						</div>
 					</div>

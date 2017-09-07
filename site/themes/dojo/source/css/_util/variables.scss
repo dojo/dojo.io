@@ -24,8 +24,6 @@ $paginator-background: $light;
 $header-height: 3.25rem;
 $header-offset: $header-height;
 $footer-offset: 3.25rem;
-$article-max-width: 780px;
-$article-block-max-width: 960px;
 $border-radius: 6px;
 
 // Bulma overrides
@@ -47,6 +45,8 @@ $base-vertical-unit: 8px;
 $base-line-multi: 4;
 $base-font-size: 18px;
 $ms-ratio: 1.250;
+$min-width: 600px;
+$max-width: 1000px;
 $paragraph-indent: false;
 $paragraph-justify: true;
 $load-typesetted: true;
