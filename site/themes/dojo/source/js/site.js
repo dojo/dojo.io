@@ -19,4 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (document.querySelector('button.toggle-solution')) {
 		addShowSolutionsListener();
 	}
+
+	(function () {
+		var navBurger = document.querySelector('.header .navbar-burger');
+		var navMenu = document.querySelector('.header .navbar-menu');
+		navBurger.addEventListener('click', function () {
+			navBurger.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+	})();
 });
