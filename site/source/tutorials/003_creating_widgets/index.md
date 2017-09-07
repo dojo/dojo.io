@@ -2,6 +2,7 @@
 layout: tutorial
 title: Creating widgets
 overview: In this tutorial, you will learn how to create and style custom widgets in Dojo 2.
+paginate: true
 ---
 
 {% section 'first' %}

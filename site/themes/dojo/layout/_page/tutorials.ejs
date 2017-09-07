@@ -1,7 +1,7 @@
 <%- page.content %>
 <section class="section">
 	<div class="container">
-		<div class="index-tutorials">
+		<div class="columns is-mobile is-multiline">
 		<%
 			var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
 			tuts = _.orderBy(tuts, ['path']);
@@ -10,15 +10,24 @@
 				// remove index.html from the path to make relative URLs work consistently
 				var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
 		%>
-			<div class="tutorial-item">
-				<h4><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></h4>
-				<div class="excerpt">
-					<%- tut.overview %>
+			<div class="column is-2-mobile is-3-tablet is-4-desktop">
+				<div class="card is-full-height">
+					<div class="card-image">
+						<figure class="image is-4by3">
+							<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+						</figure>
+					</div>
+					<div class="card-content">
+						<h4><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></h4>
+						<div class="content">
+							<%- tut.overview %>
+						</div>
+					</div>
 				</div>
 			</div>
 		<%
 			});
 		%>
 		</div>
-	</div>
+	</div>	
 </section>
