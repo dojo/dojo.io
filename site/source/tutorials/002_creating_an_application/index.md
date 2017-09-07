@@ -2,6 +2,7 @@
 layout: tutorial
 title: Components of a Dojo 2 application
 overview: In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application.
+paginate: true
 ---
 
 {% section 'first' %}

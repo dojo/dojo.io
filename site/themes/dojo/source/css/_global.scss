@@ -1,19 +1,33 @@
-html {
-	height: 100%;
-}
-
+html,
 body {
+	height: 100%;
+	margin: 0;
+}
+
+// Fixed header + sticky footer
+.page-wrapper {
+	height: 100%;
 	display: flex;
-	min-height: 100vh;
 	flex-direction: column;
-	padding-top: $header-offset;
 }
 
-.header,
-.page-footer {
-	flex: 0;
-}
-
-.page-content {
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
 	flex: 1;
+	overflow-y: auto;
+
+	.page-content {
+		flex: 1 0 auto;
+		
+		.footer {
+			flex: none;
+		}
+	}
+}
+
+
+
+.is-full-height {
+	height: 100%;
 }
