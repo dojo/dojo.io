@@ -6,6 +6,13 @@ body {
 	font-family: $default-font;
 }
 
+code {
+	background: $light;
+	color: $color-inline-code;
+	font-family: $font-code;
+	font-size: 0.8em;
+}
+
 @for $i from 1 through 6 {
 	h#{$i} {
 		font-family: $heading-font;

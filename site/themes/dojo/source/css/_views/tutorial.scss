@@ -8,12 +8,20 @@
 		display: none;
 	}
 
-
 	.tutorial {
 		transition: opacity 0.3s;
 		opacity: 1;
 		&.hiding {
 			opacity: 0.05;
+		}
+	}
+
+	.breadcrumb {
+		* {
+			margin: 0;
+		}
+		ul li:first-child a {
+			padding-left: 0;
 		}
 	}
 
@@ -91,30 +99,28 @@
 		clear: both;
 	}
 
-
-	.task {
-
-		margin-bottom: 1rem;
-
-		&:before {
-			//margin-left: -1.5rem;
-			margin-right: 0.5rem;
-
-			content: '\2605';
-			color: #F49C20;
-			font-style: normal;
+	.tags {
+		margin: 0 0 1rem 0;
+		* {
+			margin: 0;
 		}
 	}
 
 	.instruction {
+		
+		border-top: 2px solid $color-border;
 		font-weight: bold;
+		padding-top: 1rem;
 		margin-bottom: 1rem;
 
 		&:before {
-			//margin-left: -1.5rem;
-			margin-right: 0.5rem;
-			content: '\27e9';
-			color: #67AB26;
+			content: '';
+			border-left: 8px solid $primary;
+			margin-right: 1rem;
+		}
+
+		.icon {
+			display: none;
 		}
 	}
 

@@ -6,7 +6,8 @@ tutorial.populatePaginator = function(container, title) {
 		return;
 	}
 
-	var tutTitle = document.querySelector('.tutorial-title');
+	var breadcrumbs = document.querySelector('.breadcrumb');
+	var currentStepLabel = document.querySelector('.step-current');
 
 	var sectionOneContainer = document.querySelector('.section-one');
 
@@ -86,6 +87,7 @@ tutorial.populatePaginator = function(container, title) {
 		sectionSelectors.forEach(function (sectionSelector) {
 			if (sectionSelector === target) {
 				sectionSelector.classList.add('is-current');
+				currentStepLabel.innerHTML = sectionSelector.title;
 			} else {
 				sectionSelector.classList.remove('is-current');
 			}
@@ -111,6 +113,7 @@ tutorial.populatePaginator = function(container, title) {
 				}
 			}
 			document.querySelector('body').scrollTop = 0;
+			
 
 			var sectionToActivateNum = sectionToActivate && parseInt(sectionToActivate, 10);
 			if (sectionToActivateNum === sections.length - 1) {
@@ -121,11 +124,11 @@ tutorial.populatePaginator = function(container, title) {
 			if (!sectionToActivateNum) {
 				sectionOneContainer.classList.remove('hidden');
 				otherSectionContainer.classList.add('hidden');
-				tutTitle.classList.add('hidden');
+				breadcrumbs.classList.add('hidden');
 			} else {
 				sectionOneContainer.classList.add('hidden');
 				otherSectionContainer.classList.remove('hidden');
-				tutTitle.classList.remove('hidden');
+				breadcrumbs.classList.remove('hidden');
 			}
 		}, 300, sectionToActivate);
 	}
