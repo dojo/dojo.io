@@ -13,9 +13,7 @@
 				<div class="navbar-start"></div>
 				<div class="navbar-end">
 					 <% for (var i in theme.menu){ %>
-						<div class="navbar-item">
-							<a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-						</div>
+						<a class="navbar-item" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
 					<% } %>
 				</div>
 			</div>
