@@ -1,4 +1,22 @@
 .body-tutorial {
+	
+	.footer {
+		display: none;
+	}
+
+	.page-wrapper {
+		overflow: hidden;
+	}
+
+	.tutorial {
+		-webkit-animation: scaleUp .7s ease both;
+		animation: scaleUp .7s ease both;
+	}
+
+	.hidden {
+		opacity: 0;
+		display: none;
+	}
 
 	.solution-container {
 
@@ -65,10 +83,6 @@
 			content: '\27e9';
 			color: #67AB26;
 		}
-	}
-
-	.hidden {
-		display: none;
 	}
 
 	button {
