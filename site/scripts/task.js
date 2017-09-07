@@ -1,5 +1,5 @@
 hexo.extend.tag.register('task', function(args) {
-	return `<div class="tags has-addons tasks"><div class="tag is-dark">Goal</div><div class="tag is-primary">${convertCodeAndLinks(args[0])}</div></div>`;
+	return `<div class="task">${convertCodeAndLinks(args[0])}</div>`;
 });
 
 function convertCodeAndLinks(content) {
