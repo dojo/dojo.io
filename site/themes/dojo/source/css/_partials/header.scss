@@ -19,4 +19,16 @@
 		height: 48px;
 		width: auto;
 	}
+
+	.navbar-burger {
+		span {
+			background: $light;
+		}
+		&:hover {
+			background: $primary;
+			span {
+				background: $dark;
+			}
+		}
+	}
 }
