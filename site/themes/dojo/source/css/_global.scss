@@ -19,7 +19,6 @@ body {
 
 	.page-content {
 		flex: 1 0 auto;
-		padding-top: 2rem;
 		padding-bottom: 2rem;
 		
 		.footer {
@@ -28,23 +27,8 @@ body {
 	}
 }
 
-.article {
-	* {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: $article-max-width;
-	}
 
-	pre[class*="language-"] {
-		max-width: $article-block-max-width;
-		margin-bottom: 2rem;
-		* {
-			max-width: $article-block-max-width;
-		}
-	}
-}
-
-
+// Makes inline flex items full height e.g. cards
 .is-full-height {
 	height: 100%;
 }
