@@ -1,4 +1,6 @@
-<%- page.content %>
+<section class="section">
+	<%- page.content %>
+</section>
 <section class="section">
 	<div class="container">
 		<div class="columns is-mobile is-multiline">
@@ -10,7 +12,7 @@
 				// remove index.html from the path to make relative URLs work consistently
 				var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
 		%>
-			<div class="column is-2-mobile is-3-tablet is-4-desktop">
+			<div class="column is-full-mobile is-half-tablet is-one-third-desktop">
 				<div class="card is-full-height">
 					<div class="card-image">
 						<figure class="image is-4by3">
