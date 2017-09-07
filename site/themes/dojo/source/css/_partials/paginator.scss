@@ -1,5 +1,19 @@
-.pagination {
-	li {
-		list-style-type: none;
+.paginator {
+	background: $paginator-background;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	
+	.hidden {
+		opacity: 0;
+		display: flex !important;
+	}
+	
+	.pagination {
+		ul {
+			margin: 0;
+			li {
+				list-style-type: none;
+			}
+		}
 	}
 }
