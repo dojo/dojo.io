@@ -17,12 +17,24 @@
 	}
 
 	.breadcrumb {
-		* {
+		margin-bottom: 1rem;
+
+		ul {
+			padding: 0;
 			margin: 0;
 		}
 		ul li:first-child a {
 			padding-left: 0;
 		}
+		&.hidden {
+			display: flex !important;
+			position: absolute;
+			left: 300vw;
+		}
+	}
+
+	pre[class*="language-"] {
+		margin-bottom: 2rem;
 	}
 
 	.tutorial-title {
@@ -56,12 +68,10 @@
 	}
 
 	.solution-container {
-		max-width: 100%;
+		background: $light;
+		margin-bottom: 1.5rem;
+		padding: 1rem;
 		
-		* {
-			max-width: 100%;
-		}
-
 		pre[class*="language-"] {
 			margin-bottom: 0;
 		}
@@ -75,6 +85,9 @@
 					opacity: 1;
 				}
 			}
+			pre[class*="language-"] {
+				background: transparent;
+			}
 
 			&.hidden {
 				height: 0;
@@ -84,6 +97,18 @@
 					}
 				}
 			}
+		}
+	}
+
+	.task {
+		font-style: italic;
+		color: #7A7A7A;
+		margin-bottom: 1rem;
+		&:before {
+			margin-right: 0.5rem;
+			content: '\2605';
+			color: #F49C20;
+			font-style: normal;
 		}
 	}
 
@@ -99,28 +124,16 @@
 		clear: both;
 	}
 
-	.tags {
-		margin: 0 0 1rem 0;
-		* {
-			margin: 0;
-		}
-	}
-
+	
 	.instruction {
-		
 		border-top: 2px solid $color-border;
 		font-weight: bold;
-		padding-top: 1rem;
 		margin-bottom: 1rem;
-
+		padding-top: 2rem;
 		&:before {
-			content: '';
-			border-left: 8px solid $primary;
-			margin-right: 1rem;
-		}
-
-		.icon {
-			display: none;
+			margin-right: 0.5rem;
+			content: '\27e9';
+			color: $success;
 		}
 	}
 
@@ -129,5 +142,6 @@
 		color: white;
 		border: 0;
 		@extend .button.is-primary;
+		font-size: 0.85rem;
 	}
 }
