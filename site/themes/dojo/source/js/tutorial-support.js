@@ -1,28 +1,25 @@
 var tutorial = tutorial || {};
 
-tutorial.populatePaginator = function(container, title) {
+tutorial.populatePaginator = function(container) {
 	if (!container || !container.appendChild) {
 		console.error('Invalid container received');
 		return;
 	}
 
-	var breadcrumbs = document.querySelector('.breadcrumb');
-	var currentStepLabel = document.querySelector('.step-current');
-
 	var sectionOneContainer = document.querySelector('.section-one');
 
-	var otherSectionContainer = document.querySelector('.paginator');
+	var otherSectionContainer = document.querySelector('.pagination');
 	otherSectionContainer.classList.add('pagination', 'hidden');
-	
+
 	var ownEditorButton = document.querySelector('.begin-button');
 
 	var sections = document.querySelectorAll('section.tutorial');
 	var sectionContainer = document.querySelector('.pagination');
 	var centerSectionContainer = document.querySelector('.pagination-list');
-	
+
 	var backButton = document.querySelector('.pagination-previous');
 	var nextButton = document.querySelector('.pagination-next');
-	
+
 
 	var sectionSelectors = [];
 
@@ -35,22 +32,19 @@ tutorial.populatePaginator = function(container, title) {
 				sections[i].classList.remove('hidden', 'hiding');
 				continue;
 			}
-			var sectionSelectorWrap = document.createElement('li');
-			sectionSelectorWrap.className = 'pagination-item';
-			
+			var sectionSelectorParent = document.createElement('li');
 			var sectionSelector = document.createElement('a');
 			sectionSelector.setAttribute('data-section-num', i);
 			sectionSelector.className = 'pagination-link';
 			sectionSelector.innerHTML = i;
 			var title = sections[i].querySelector('h2');
-			
+
 			if (title) {
 				sectionSelector.title = title.textContent;
 			}
-
-			sectionSelectorWrap.appendChild(sectionSelector);
-			centerSectionContainer.appendChild(sectionSelector);
-			sectionSelectors.push(sectionSelector);
+			sectionSelectorParent.appendChild(sectionSelector);
+			centerSectionContainer.appendChild(sectionSelectorParent);
+			sectionSelectors.push(sectionSelectorParent);
 		}
 	}
 
@@ -113,7 +107,6 @@ tutorial.populatePaginator = function(container, title) {
 				}
 			}
 			document.querySelector('body').scrollTop = 0;
-			
 
 			var sectionToActivateNum = sectionToActivate && parseInt(sectionToActivate, 10);
 			if (sectionToActivateNum === sections.length - 1) {
@@ -134,7 +127,7 @@ tutorial.populatePaginator = function(container, title) {
 	}
 
 	function navigate(moveBy) {
-		var activeSelector = document.querySelector('.pagination-link.is-current');
+		var activeSelector = document.querySelector('.pagination-link.active');
 		var sectionNumber = 0;
 		if (activeSelector) {
 			sectionNumber = parseInt(activeSelector.getAttribute('data-section-num'), 10) + moveBy;

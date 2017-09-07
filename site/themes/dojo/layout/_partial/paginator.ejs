@@ -1,17 +1,15 @@
 <div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-					
-				</ul>
-		</nav>
-	</div>
-</div>
+	<div class="section-one"><a class="button is-primary begin-button">Begin Tutorial</a></div>
+	<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
+			<a class="pagination-previous">Previous</a>
+			<a class="pagination-next">Next page</a>
+			<ul class="pagination-list">
 
+			</ul>
+	</nav>
+</div>
 
 <script src="/js/tutorial-support.js"></script>
 <script>
-	tutorial.populatePaginator(document.getElementById('paginator'), <%- "'"+page.title+"'" %>);
+	tutorial.populatePaginator(document.getElementById('paginator'));
 </script>

@@ -1,17 +1,5 @@
-.paginator {
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-	transform: scaleY(1);
-	transition: all 0.3s;
-	@include fadeInUp();
-	
-
-	ul {
-		margin: 0;
-		padding: 0;
-		li {
-			list-style-type: none;
-		}
+.pagination {
+	li {
+		list-style-type: none;
 	}
-
 }
