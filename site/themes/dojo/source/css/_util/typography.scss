@@ -13,6 +13,19 @@ code {
 	font-size: 0.8em;
 }
 
+p {
+	max-width: $max-width;
+}
+
+.container {
+	max-width: $max-width;
+}
+
+code[class*="language-"] {
+	padding: 0;
+}
+
+
 @for $i from 1 through 6 {
 	h#{$i} {
 		font-family: $heading-font;
