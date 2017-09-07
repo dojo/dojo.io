@@ -1,14 +1,13 @@
 import { join } from 'path';
-import { exec, promisify } from 'grunt-dojo2-extras/src/util/process';
+import { promiseExec } from 'grunt-dojo2-extras/src/util/process';
 import { readFileSync, writeFileSync } from 'fs';
 import { EOL } from 'os';
-import getApiPackages, { DocumentedApi } from './getApiPackages';
+import getApiPackages, { DocumentedApi, NpmTag } from './getApiPackages';
 import { logger } from '../log';
 
 function generateHexo(siteDirectory: string, configs: string[] = [ '_config.yml' ]) {
 	const hexoBin = join('node_modules', '.bin', 'hexo');
-	const proc = exec(`${ hexoBin } --config=${ configs.join(',') } generate`, { silent: false, cwd: siteDirectory });
-	return promisify(proc);
+	return promiseExec(`${ hexoBin } --config=${ configs.join(',') } generate`, { silent: false, cwd: siteDirectory });
 }
 
 export function buildApiIndex(apis: DocumentedApi[], source: string): string {
@@ -28,12 +27,13 @@ export interface Options {
 	apiTarget: string;
 	apiTemplate: string;
 	configs: string[];
+	npmTags: { [ dir: string ]: NpmTag };
 	siteDirectory: string;
 }
 
 export default async function hexo(options: Options) {
-	const { apiDirectory, apiTemplate, apiTarget, siteDirectory, configs } = options;
-	const apis = getApiPackages(apiDirectory);
+	const { apiDirectory, apiTemplate, apiTarget, siteDirectory, configs, npmTags } = options;
+	const apis = await getApiPackages(apiDirectory, npmTags);
 
 	writeFileSync(apiTarget, buildApiIndex(apis, apiTemplate));
 	await generateHexo(siteDirectory, configs);
