@@ -4,6 +4,16 @@
 
 .navbar {
 	background: transparent;
+
+	.navbar-brand .navbar-item {
+		&:hover {
+			background: transparent;
+		}
+	}
+
+	.navbar-item {
+		@include default-transition();
+	}
 	
 	.site-logo {
 		height: 48px;
