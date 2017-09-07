@@ -2,7 +2,7 @@
 title: Dojo 2 local installation
 layout: tutorial
 overview: Discover the basics of creating a Dojo 2 application.
-nosections: true
+paginate: false
 ---
 
 # Dojo 2 local installation
