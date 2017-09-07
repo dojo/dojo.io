@@ -2,6 +2,7 @@
 layout: tutorial
 title: Responding to events
 overview: In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.
+paginate: true
 ---
 
 {% section 'first' %}

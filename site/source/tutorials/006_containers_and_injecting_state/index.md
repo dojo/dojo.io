@@ -2,6 +2,7 @@
 layout: false
 title: Containers and Injecting State
 overview: In this tutorial, you will learn what a Container and Injector are and how to use them to manage external state and inject this into the parts of the widget tree.
+paginate: true
 ---
 
 # Containers and Injectors, working with State.
