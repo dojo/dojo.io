@@ -1,5 +1,5 @@
 hexo.extend.tag.register('instruction', function(args) {
-	return `<div class="instruction"><span class="icon is-small"><i class="fa fa-cog" aria-hidden="true"></i></span> ${convertCodeAndLinks(args[0])}</div>`;
+	return `<div class="instruction">${convertCodeAndLinks(args[0])}</div>`;
 });
 
 function convertCodeAndLinks(content) {
