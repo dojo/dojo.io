@@ -6,7 +6,7 @@ $color-background-light: #fdfdfd;
 $color-border: #eee;
 $color-link: #258fb8;
 $color-code-background: #fff;
-$color-inline-code: #C94169;
+$color-inline-code: #353535;
 $color-background: #F5F8F9;
 $color-widget-background : #ddd;
 $color-widget-border: #ccc;
@@ -26,6 +26,7 @@ $header-offset: $header-height;
 $footer-offset: 3.25rem;
 $article-max-width: 780px;
 $article-block-max-width: 960px;
+$border-radius: 6px;
 
 // Bulma overrides
 $navbar-item-hover-color: #fff;
