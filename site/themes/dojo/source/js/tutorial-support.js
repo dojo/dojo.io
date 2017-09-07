@@ -1,14 +1,17 @@
 var tutorial = tutorial || {};
 
-tutorial.populatePaginator = function(container) {
+tutorial.populatePaginator = function(container, title) {
 	if (!container || !container.appendChild) {
 		console.error('Invalid container received');
 		return;
 	}
 
+	var tutTitle = document.querySelector('.paginator-title');
+	tutTitle.innerHTML = title;
+
 	var sectionOneContainer = document.querySelector('.section-one');
 
-	var otherSectionContainer = document.querySelector('.pagination');
+	var otherSectionContainer = document.querySelector('.paginator');
 	otherSectionContainer.classList.add('pagination', 'hidden');
 
 	var ownEditorButton = document.querySelector('.begin-button');
@@ -32,7 +35,9 @@ tutorial.populatePaginator = function(container) {
 				sections[i].classList.remove('hidden', 'hiding');
 				continue;
 			}
-			var sectionSelectorParent = document.createElement('li');
+			var sectionSelectorWrap = document.createElement('li');
+			sectionSelectorWrap.className = 'pagination-item';
+
 			var sectionSelector = document.createElement('a');
 			sectionSelector.setAttribute('data-section-num', i);
 			sectionSelector.className = 'pagination-link';
@@ -42,9 +47,10 @@ tutorial.populatePaginator = function(container) {
 			if (title) {
 				sectionSelector.title = title.textContent;
 			}
-			sectionSelectorParent.appendChild(sectionSelector);
-			centerSectionContainer.appendChild(sectionSelectorParent);
-			sectionSelectors.push(sectionSelectorParent);
+
+			sectionSelectorWrap.appendChild(sectionSelector);
+			centerSectionContainer.appendChild(sectionSelector);
+			sectionSelectors.push(sectionSelector);
 		}
 	}
 
@@ -79,9 +85,9 @@ tutorial.populatePaginator = function(container) {
 		}
 
 		sectionSelectors.forEach(function (sectionSelector) {
+			console.log(target, sectionSelector);
 			if (sectionSelector === target) {
 				sectionSelector.classList.add('is-current');
-				currentStepLabel.innerHTML = sectionSelector.title;
 			} else {
 				sectionSelector.classList.remove('is-current');
 			}
@@ -127,7 +133,7 @@ tutorial.populatePaginator = function(container) {
 	}
 
 	function navigate(moveBy) {
-		var activeSelector = document.querySelector('.pagination-link.active');
+		var activeSelector = document.querySelector('.pagination-link.is-current');
 		var sectionNumber = 0;
 		if (activeSelector) {
 			sectionNumber = parseInt(activeSelector.getAttribute('data-section-num'), 10) + moveBy;
