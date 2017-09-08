@@ -20,19 +20,21 @@
 					<div class="container">
 						<div class="tsd-page-title">
 							<div class="content-container">
-								<ul class="tsd-breadcrumb">
-									{{#with model}}{{> breadcrumb}}{{/with}}
-								</ul>
+								<nav class="breadcrumb">
+									<ul class="tsd-breadcrumb">
+										{{#with model}}{{> breadcrumb}}{{/with}}
+									</ul>
+								</nav>
 								<h1>{{#compact}} {{model.kindString}}&nbsp; {{model.name}} {{#if model.typeParameters}} &lt; {{#each model.typeParameters}}
 									{{#if @index}},&nbsp;{{/if}} {{name}} {{/each}} &gt; {{/if}} {{/compact}}
 								</h1>
 							</div>
 						</div>
 						<div class="columns">
-							<div class="column is-8 col-content">
+							<div class="column is-9 col-content">
 								{{{contents}}}
 							</div>
-							<div class="column is-4 col-menu menu-sticky-wrap menu-highlight">
+							<div class="column is-3 col-menu menu-sticky-wrap menu-highlight">
 								<nav class="tsd-navigation primary">
 									<ul>
 										{{#each navigation.children}}
