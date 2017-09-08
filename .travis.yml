@@ -13,6 +13,7 @@ env:
   - TUTORIAL=003_creating_widgets
   - TUTORIAL=004_user_interactions
   - TUTORIAL=005_form_widgets
+  - TUTORIAL=006_deploying_to_production
 script:
   - pushd .
   - cd site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp
