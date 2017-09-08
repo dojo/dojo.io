@@ -14,14 +14,21 @@ env:
   - TUTORIAL=004_user_interactions
   - TUTORIAL=005_form_widgets
   - TUTORIAL=006_deploying_to_production
+  - TUTORIAL=006_containers_and_injecting_state
 script:
   - pushd .
+  - if [ -d site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp ]; then
   - cd site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp
   - npm install
   - dojo build
-  - cd ../../finished/biz-e-corp
+  - fi
+  - popd
+  - pushd .
+  - if [ -d site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp ]; then
+  - cd site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp
   - npm install
   - dojo test
+  - fi
   - popd
 jobs:
   include:
