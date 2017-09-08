@@ -16,23 +16,6 @@
 		}
 	}
 
-	.breadcrumb {
-		margin-bottom: 1rem;
-
-		ul {
-			padding: 0;
-			margin: 0;
-		}
-		ul li:first-child a {
-			padding-left: 0;
-		}
-		&.hidden {
-			display: flex !important;
-			position: absolute;
-			left: 300vw;
-		}
-	}
-
 	pre[class*="language-"] {
 		margin-bottom: 2rem;
 	}
