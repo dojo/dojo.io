@@ -1,7 +1,1 @@
-<% 
-	tpl = "default";
-		if(page.template) {
-			tpl = page.template;
-		}
-%>
-<%- partial('_page/'+tpl, {post: page, index: false}) %>
+<%- page.content %>
