@@ -59,6 +59,12 @@
 				border-color: $primary;
 				color: $light;
 			}
+
+			&.hidden {
+				display: inline-flex;
+				opacity: 0;
+				visibility: hidden;
+			}
 		}
 	}
 
@@ -85,9 +91,7 @@
 					opacity: 1;
 				}
 			}
-			pre[class*="language-"] {
-				background: transparent;
-			}
+			
 
 			&.hidden {
 				height: 0;
