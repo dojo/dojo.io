@@ -49,12 +49,12 @@ With all of the dependencies in place, let's create the `App` widget itself.
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
-Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode`, which means that our render method has to return a `DNode` (an abstraction for a [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
+Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render()`, which means that our render method has to return a `DNode` (an abstraction for a [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
 
 {% instruction 'To start, let\'s use a simple `render` method by adding this to the `App` class:' %}
 
 ```ts
-	protected render(): DNode {
+	protected render() {
 		return v('div');
 	}
 ```
@@ -64,7 +64,7 @@ This method will generate a `div` virtual node with no children. To render the `
 {% instruction 'Update the `render` method to the following:' %}
 
 ```ts
-	protected render(): DNode {
+	protected render() {
 		return v('div', [
 			w(Banner, {})
 		]);
@@ -126,11 +126,10 @@ The first step is to create the worker widget. We will put the implementation in
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 
-export default class Worker extends WidgetBase<WidgetProperties> {
-	protected render(): DNode {
+export default class Worker extends WidgetBase {
+	protected render() {
 		return v('div');
 	}
 }
@@ -146,7 +145,7 @@ If you need help, or want to check your solution, click the button below to see 
 
 {% solution showsolution1 %}
 ```ts
-protected render(): DNode {
+protected render() {
 	return v('div', [
 			v('img', { src: 'images/worker.svg' }),
 			v('div', [
@@ -167,13 +166,12 @@ Before we continue to refine this widget, let's review our progress by adding th
 {% solution showsolution2 %}
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import Banner from './Banner';
 import Worker from './Worker';
 
-export default class App extends WidgetBase<WidgetProperties> {
-	protected render(): DNode {
+export default class App extends WidgetBase {
+	protected render() {
 		return v('div', [
 			w(Banner, {}),
 			w(Worker, {})
@@ -185,7 +183,7 @@ export default class App extends WidgetBase<WidgetProperties> {
 
 {% instruction 'Run the application with `dojo build --watch` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
-We have succeeded in rendering the widget, but there seem to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface that extends `WidgetProperties` and using that to pass configuration information into the widget.
+We have succeeded in rendering the widget, but there seem to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface to pass configuration information into the widget.
 
 {% section %}
 
@@ -214,7 +212,7 @@ This code retrieves the appropriate property and provides a reasonable default i
 {% instruction 'Update the `render` method to look like this:' %}
 
 ```ts
-protected render(): DNode {
+protected render() {
 	const {
 		firstName = 'firstName',
 		lastName = 'lastName'
@@ -301,17 +299,16 @@ The `WorkerContainer` manages the layout of our `Worker` widgets and makes it ea
 
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { w, v } from '@dojo/widget-core/d';
 import Worker from './Worker';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import * as css from '../styles/workerContainer.css';
 
 const WorkerContainerBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class WorkerContainer extends WorkerContainerBase<ThemeableProperties> {
-	protected render(): DNode {
+export default class WorkerContainer extends WorkerContainerBase {
+	protected render() {
 		return v('div', {
 			classes: this.classes(css.container)
 		});
@@ -324,7 +321,7 @@ You may notice that we are calling `this.classes` with the `container` class as 
 {% instruction 'Now update the `render` method to include some workers. Add the following to the top of the `render` method:' %}
 
 ```ts
-		const workers: DNode[] = [
+		const workers[] = [
 			w(Worker, {
 				key: '1',
 				firstName: 'Tim',
@@ -369,7 +366,7 @@ Now it is time to add styling rules for the `WorkerContainer`. Inside  of `style
 ```
 ```ts
 
-	protected render(): DNode {
+	protected render() {
 		return v('div', [
 			w(Banner, {}),
 			w(WorkerContainer, {})
@@ -383,7 +380,7 @@ The application now renders three workers in the `WorkerContainer` widget, allow
 
 ## Summary
 
-In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from `WidgetBase<WidgetProperties>`. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the `render` method, a widget can generate the virtual DOM nodes that control how it is rendered.
+In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from `WidgetBase`. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the `render` method, a widget can generate the virtual DOM nodes that control how it is rendered.
 
 Additionally, we learned how to style widgets by using CSS modules. These modules provide all of the flexibility of CSS with the additional advantages of providing strongly typed and localized class names that allow a widget to be styled without the risk of affecting other aspects of the application.
 

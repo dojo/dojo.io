@@ -64,8 +64,8 @@ The `v` function simply instructs Dojo 2 to create an HTML element, in this case
 
 {% solution showsolution1 %}
 ```typescript
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
-	render(): DNode {
+export default class HelloWorld extends WidgetBase {
+	render() {
 		return v('h1', [ 'Biz-E-Bodies' ]);
 	}
 }
