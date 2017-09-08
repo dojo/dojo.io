@@ -55,6 +55,7 @@
     "webserv": "^0.6.1"
   },
   "dependencies": {
+    "@dojo/has": "^2.0.0-beta2.2",
     "bulma": "^0.5.1",
     "hexo": "^3.3.9",
     "hexo-renderer-yasr": "^4.0.0",
