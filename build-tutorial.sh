@@ -9,7 +9,7 @@ if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
 fi
 popd
 pushd .
-if [ -d "site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp ]; then
+if [ -d "site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp" ]; then
     cd site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp
     npm install
     dojo test
