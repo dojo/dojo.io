@@ -71,7 +71,7 @@ We are importing the `Button` class that will be used to provide the form's subm
 {% instruction 'Use those classes and a few virtual DOM nodes to add the visual elements of the form.' %}
 
 ```ts
-	protected render(): DNode {
+	protected render() {
 		return v('form', {
 			classes: this.classes(css.workerForm),
 			onsubmit: this._onSubmit
