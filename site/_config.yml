@@ -50,7 +50,7 @@ highlight:
 
 prism_plugin:
 	mode: 'preprocess'    # realtime/preprocess
-	theme: 'default'
+	theme: 'ghcolors'
 	line_number: false    # default false
 
 # Authors

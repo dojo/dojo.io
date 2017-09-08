@@ -1,5 +1,5 @@
 .page-api {
-	
+
 	.main-section {
 		padding-top: 1rem;
 	}
@@ -9,22 +9,19 @@
 		transition: all 0.3s;
 		background: #fff;
 	}
-	
+	.tsd-page-toolbar {
+		.title {
+			font-size: 1rem;
+		}
+	}
 	.page-footer {
-		
+		padding-top: pad(2);
+		padding-bottom: pad(2);
 	}
 
 	.toolbar-container {
 		background: #fff;
 		padding: 0;
-		@include shadow(1);
-		z-index: 3;
-
-		.tsd-page-toolbar {
-			.title {
-				font-size: 1rem;
-			}
-		}
 	}
 }
 
@@ -1386,7 +1383,7 @@
 .tsd-typography ol {
     margin: 1em 0;
 }
-
+*/
 
 @media (min-width: 901px) and (max-width: 1024px) {
 	html.default .col-content {
@@ -1512,7 +1509,6 @@
 .tsd-breadcrumb li {
 	display: inline;
 }
-*/
 
 /*html.minimal .container {
     margin: 0;
@@ -1995,10 +1991,7 @@ footer .tsd-legend {
 }
 
 :not(.tsd-panel)>.tsd-panel {
-	margin-bottom: 2rem;
-	padding: 1.5rem;
-	background: #fff;
-	@include shadow(1);
+	//margin-bottom: vr(4);
 }
 
 .tsd-panel {
@@ -2006,8 +1999,8 @@ footer .tsd-legend {
 		border: 1px solid $color-border;
 		box-shadow: none;
 		font-size: 80%;
-		margin-bottom: 1rem;
-		padding: 1.5rem;
+		//margin-bottom: vr(1);
+		//padding: pad(3);
 	}
 }
 
