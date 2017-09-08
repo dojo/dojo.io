@@ -1,34 +1,48 @@
 // Typesettings values are in variables file
-// These override Typesettings
-
+// These override Typesettings, Bulma and Prism
+// Nest everything in html,body so that we don't have to use !important
 html,
 body {
 	font-family: $default-font;
-}
 
-code {
-	background: $light;
-	color: $color-inline-code;
-	font-family: $font-code;
-	font-size: 0.8em;
-}
+	p {
+		max-width: 100%;
+	}
 
-p {
-	max-width: $max-width;
-}
+	// Set padding on outer code block
+	pre[class*="language-"] {
+		padding: 1.25rem;
+	}
 
-.container {
-	max-width: $max-width;
-}
+	// Normalize code font sizes
+	code[class*="language-"],
+	pre[class*="language-"],
+	code {
+		font-size: $code-font-size;
+	}
 
-code[class*="language-"] {
-	padding: 0;
-}
+	// Remove padding for code blocks so that we don't get double padding from the pre
+	code[class*="language-"],
+	pre[class*="language-"] code {
+		border: 0;
+		padding: 0;
+		line-height: 1.35;
+	}
 
+	// Inline code
+	code:not([class*="language-"]) {
+		color: $color-inline-code;
+		background: $color-code-background;
+		border: 1px solid #dddddd;
+		border-radius: 3px;
+		font-family: $font-code;
+		white-space: nowrap;
+	}
 
-@for $i from 1 through 6 {
-	h#{$i} {
-		font-family: $heading-font;
-		font-weight: 400;
+	@for $i from 1 through 6 {
+		h#{$i} {
+			font-family: $heading-font;
+			font-weight: 400;
+		}
 	}
 }
