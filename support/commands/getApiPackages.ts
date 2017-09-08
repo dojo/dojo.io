@@ -21,11 +21,8 @@ export interface NpmTag {
  * @param apiDirectory the directory where packages reside
  * @param npmTags Optional NPM tags to use to determine the appropriate version to display
  */
-export default function getApiPackages(apiDirectory: string, npmTags: { [ dir: string ]: NpmTag } = {}): Promise<DocumentedApi[]> {
-	return Promise.all(readdirSync(apiDirectory).filter(function (file: string) {
-		const stat = lstatSync(join(apiDirectory, file));
-		return stat.isDirectory() && file.charAt(0) !== '_';
-	}).map(function (dir: string) {
+export default async function getApiPackages(apiDirectory: string, npmTags: { [ dir: string ]: NpmTag } = {}): Promise<DocumentedApi[]> {
+	async function getDocumentedApi(dir: string) {
 		const versions = readdirSync(join(apiDirectory, dir))
 			.filter(dir => { return semver.clean(dir); })
 			.sort(semver.compare);
@@ -34,26 +31,24 @@ export default function getApiPackages(apiDirectory: string, npmTags: { [ dir: s
 		if (npmTags[dir]) {
 			const { scope, tag } = npmTags[dir];
 			const proc = exec(`npm view ${scope}/${dir}@${tag} version`, { silent: true });
-			return toString(proc.stdout).then(version => version.trim())
-				.then(tagVersion => {
-					for (let version of versions) {
-						if (semver.eq(version, tagVersion)) {
-							latest = version;
-						}
-					}
-					return {
-						format: 'html',
-						latest,
-						package: dir,
-						versions
-					} as DocumentedApi;
-				});
+			const tagVersion = (await toString(proc.stdout)).trim();
+			for (let version of versions) {
+				if (semver.eq(version, tagVersion)) {
+					latest = version;
+				}
+			}
 		}
-		return <DocumentedApi> {
+
+		return {
 			format: 'html',
 			latest,
 			package: dir,
 			versions
-		};
-	}));
+		} as DocumentedApi;
+	}
+
+	return Promise.all(readdirSync(apiDirectory).filter(function (file: string) {
+		const stat = lstatSync(join(apiDirectory, file));
+		return stat.isDirectory() && file.charAt(0) !== '_';
+	}).map(getDocumentedApi));
 }

@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
-		"importHelpers": true,
+		"importHelpers": false,
 		"lib": [
 			"DOM",
 			"ES5",
