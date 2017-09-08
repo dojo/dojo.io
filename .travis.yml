@@ -15,7 +15,22 @@ env:
   - TUTORIAL=005_form_widgets
   - TUTORIAL=006_deploying_to_production
   - TUTORIAL=006_containers_and_injecting_state
-script: ./build-tutorial.sh
+script:
+  - pushd .
+  - if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
+  -     cd site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp
+  -     npm install
+  -     dojo build || travis_terminate 1;
+  - fi
+  - popd
+  - pushd .
+  - if [ -d "site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp" ]; then
+  -     cd site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp
+  -     npm install
+  -     dojo test || travis_terminate 1;
+  - fi
+  - popd
+
 jobs:
   include:
     stage: Test site
