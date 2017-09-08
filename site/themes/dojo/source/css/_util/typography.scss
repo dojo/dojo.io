@@ -53,4 +53,35 @@ body {
 	h1 {
 		font-weight: 300;
 	}
+
+	// Bulma override
+	.number {
+		align-items: inherit;
+		background-color: inherit;
+		border-radius: inherit;
+		display: inline;
+		font-size: inherit;
+		height: inherit;
+		justify-content: inherit;
+		margin-right: inherit;
+		min-width: inherit;
+		padding: inherit;
+		text-align: inherit;
+		vertical-align: inherit;
+	}
+
+	.tag {
+		align-items: inherit;
+		background-color: inherit;
+		border-radius: inherit;
+		color: inherit;
+		display: inline;
+		font-size: inherit;
+		height: inherit;
+		justify-content: inherit;
+		line-height: inherit;
+		padding-left: inherit;
+		padding-right: inherit;
+		white-space: inherit;
+	}
 }
