@@ -1,0 +1,10 @@
+.breadcrumb {
+	margin-bottom: 1rem;
+	ul {
+		padding: 0;
+		margin: 0;
+	}
+	ul li:first-child a {
+		padding-left: 0;
+	}
+}

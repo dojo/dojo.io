@@ -39,10 +39,18 @@ body {
 		white-space: nowrap;
 	}
 
+	pre code:not([class*="language-"]) {
+		white-space: pre;
+	}
+
 	@for $i from 1 through 6 {
 		h#{$i} {
 			font-family: $heading-font;
 			font-weight: 400;
 		}
+	}
+
+	h1 {
+		font-weight: 300;
 	}
 }
