@@ -15,7 +15,7 @@ env:
   - TUTORIAL=005_form_widgets
   - TUTORIAL=006_deploying_to_production
   - TUTORIAL=006_containers_and_injecting_state
-script: build-tutorial.sh
+script: ./build-tutorial.sh
 jobs:
   include:
     stage: Test site
