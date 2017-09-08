@@ -3,7 +3,6 @@
 		Fundamentals
 	</p>
 	<ul class="menu-list">
-		<% console.log(site.categories) %>
 		<%
 			var docs = _.filter(site.pages.data, ['category', 'fundamentals']);
 			docs = _.orderBy(docs, ['path']);
@@ -18,5 +17,3 @@
 		%>
 	</ul>
 </aside>
-
-
