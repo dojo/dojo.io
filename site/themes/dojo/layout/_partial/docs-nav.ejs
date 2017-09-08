@@ -4,7 +4,7 @@
 	</p>
 	<ul class="menu-list">
 		<%
-			var docs = _.filter(site.pages.data, ['category', 'fundamentals']);
+			var docs = _.filter(site.pages.data, ['layout', 'docs']);
 			docs = _.orderBy(docs, ['path']);
 
 			_.each(docs, function(doc) {

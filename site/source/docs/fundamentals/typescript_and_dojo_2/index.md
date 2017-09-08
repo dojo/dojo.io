@@ -1,6 +1,5 @@
 ---
 layout: docs
-category: fundamentals
 title: TypeScript and Dojo 2
 overview: The TypeScript language provides a strong foundation that Dojo 2 has built upon to meet its goals. This article highlights Dojo 2's objectives and describes how TypeScript has helped those objectives become a reality.
 ---
