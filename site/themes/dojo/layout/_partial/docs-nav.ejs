@@ -3,8 +3,9 @@
 		Fundamentals
 	</p>
 	<ul class="menu-list">
+		<% console.log(site.categories) %>
 		<%
-			var docs = _.filter(site.pages.data, ['layout', 'docs']);
+			var docs = _.filter(site.pages.data, ['category', 'fundamentals']);
 			docs = _.orderBy(docs, ['path']);
 
 			_.each(docs, function(doc) {
@@ -17,3 +18,5 @@
 		%>
 	</ul>
 </aside>
+
+
