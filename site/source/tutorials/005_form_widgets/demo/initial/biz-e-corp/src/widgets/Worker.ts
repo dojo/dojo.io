@@ -1,10 +1,9 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import * as css from '../styles/worker.css';
 
-export interface WorkerProperties extends WidgetProperties {
+export interface WorkerProperties {
 	firstName?: string;
 	lastName?: string;
 	email?: string;
@@ -18,7 +17,7 @@ const WorkerBase = ThemeableMixin(WidgetBase);
 export default class Worker extends WorkerBase<WorkerProperties> {
 	private _isFlipped = false;
 
-	protected render(): DNode {
+	protected render() {
 		return v('div', {
 			classes: this.classes(css.worker, this._isFlipped ? css.reverse : null)
 		}, [
@@ -27,7 +26,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		]);
 	}
 
-	private _renderFront(): DNode {
+	private _renderFront() {
 		const {
 			firstName = 'firstName',
 			lastName = 'lastName'
@@ -47,7 +46,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		);
 	}
 
-	private _renderBack(): DNode {
+	private _renderBack() {
 		const {
 			firstName = 'firstName',
 			lastName = 'lastName',

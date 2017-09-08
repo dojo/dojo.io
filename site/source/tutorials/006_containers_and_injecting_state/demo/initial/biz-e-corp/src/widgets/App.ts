@@ -1,5 +1,4 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';
@@ -44,7 +43,7 @@ export default class App extends WidgetBase {
 		this.invalidate();
 	}
 
-	protected render(): DNode {
+	protected render() {
 		return v('div', [
 			w(Banner, {}),
 			w(WorkerForm, {

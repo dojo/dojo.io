@@ -1,9 +1,8 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 
 export default class Banner extends WidgetBase {
-	protected render(): DNode {
+	protected render() {
 		return v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ]);
 	}
 }
