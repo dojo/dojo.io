@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
-import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import Button from '@dojo/widgets/button/Button';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import * as css from '../styles/workerForm.css';
@@ -12,7 +12,7 @@ export interface WorkerFormData {
 	email: string;
 }
 
-export interface WorkerFormProperties extends ThemeableProperties {
+export interface WorkerFormProperties {
 	formData: WorkerFormData;
 	onFormInput: (data: Partial<WorkerFormData>) => void;
 	onFormSave: () => void;
@@ -40,7 +40,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormInput({ email });
 	}
 
-	protected render(): DNode {
+	protected render() {
 		const {
 			formData: { firstName, lastName, email }
 		} = this.properties;
@@ -81,7 +81,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				required: true,
 				onInput: this.onEmailInput
 			}),
-			w(Button, { content: 'Save' })
+			w(Button, {}, [ 'Save' ])
 		]);
 	}
 }

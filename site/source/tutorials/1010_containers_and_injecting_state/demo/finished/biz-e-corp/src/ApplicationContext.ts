@@ -4,17 +4,11 @@ import { deepAssign } from '@dojo/core/lang';
 import { WorkerProperties } from './widgets/Worker';
 import { WorkerFormData } from './widgets/WorkerForm';
 
-const defaultWorkerForm: WorkerFormData = {
-	firstName: '',
-	lastName: '',
-	email: ''
-};
-
 export default class ApplicationContext extends Evented {
 
 	private _workerData: WorkerProperties[];
 
-	private _formData: WorkerFormData = defaultWorkerForm;
+	private _formData: Partial<WorkerFormData>;
 
 	constructor(workerData: WorkerProperties[] = []) {
 		super({});
@@ -25,7 +19,7 @@ export default class ApplicationContext extends Evented {
 		return this._workerData;
 	}
 
-	get formData(): WorkerFormData {
+	get formData(): Partial<WorkerFormData> {
 		return this._formData;
 	}
 
@@ -36,7 +30,7 @@ export default class ApplicationContext extends Evented {
 
 	public submitForm(): void {
 		this._workerData = [ ...this._workerData, this._formData ];
-		this._formData = defaultWorkerForm;
+		this._formData = {};
 		this.emit({ type: 'invalidate' });
 	}
 }
