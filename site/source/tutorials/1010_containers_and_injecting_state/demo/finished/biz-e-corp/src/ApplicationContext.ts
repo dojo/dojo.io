@@ -8,7 +8,7 @@ export default class ApplicationContext extends Evented {
 
 	private _workerData: WorkerProperties[];
 
-	private _formData: Partial<WorkerFormData>;
+	private _formData: Partial<WorkerFormData> = {};
 
 	constructor(workerData: WorkerProperties[] = []) {
 		super({});
