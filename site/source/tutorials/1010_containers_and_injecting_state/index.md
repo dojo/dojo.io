@@ -28,21 +28,21 @@ To begin our discussion, let's review the initial version of `App`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' %}
 
-Most of this widget is dedicated to holding and managing the `WorkerData` in the application. Notice, however, that it never actually uses that data itself. `App` is only containing the state and passing it to the children as required via properties. Up lifting state to highest common widget in the tree is a valid pattern but as an applications state grows in size and complexity it is often desirable to decouple this from the visual widgets. In larger applications, the `App` class would become complicated and more difficult to maintain due to the additional state information that it would be required track. Since the state information is not a primary concern of the `App` class, let's refactor it out of `App` and into a new `ApplicationContext` class.
+Most of this widget is dedicated to holding and managing the `WorkerData` in the application. Notice, however, that it never actually uses that data itself. `App` is only containing the state and passing it to the children as required via properties. Up lifting state to the highest common widget in the tree is a valid pattern but as an application's state grows in size and complexity it is often desirable to decouple this from widgets. In larger applications, the `App` class would become complicated and more difficult to maintain due to the additional state information that it would be required track. Since the state information is not a primary concern of the `App` class, let's refactor it out of `App` and into a new `ApplicationContext` class.
 
 {% instruction 'Add the following to `ApplicationContext.ts`.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' %}
 
-The code begins by importing some modules, including the `WorkerProperties` and `WorkerFormData` interfaces defined in the `Worker` and `WorkerForm` modules. These two interfaces define the state that the `ApplicationContext` will track.
+The code begins by importing some modules, including the `WorkerProperties` and `WorkerFormData` interfaces defined in the `Worker` and `WorkerForm` modules. These two interfaces define the shape of state that the `ApplicationContext` manages.
 
-The `ApplicationContext` class contains the state information. `ApplicationContext` has two private fields, `_workerData` and `_formData`, which contain the state, and two accessor methods to retrieve these fields Finally, notice the two public methods that `ApplicationContext` exposes:
+The `ApplicationContext` class contains the state information. `ApplicationContext` has two private fields, `_workerData` and `_formData`, which contain the state, and two accessor methods to retrieve these fields. Finally, notice the two public methods that `ApplicationContext` exposes:
 
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:26-35 %}
 
-The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous `_addWorker` from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it needs to emit an `invalidate` event to inform the application to schedule a render cycle.
+The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous to `_addWorker` from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it cannot call `invalidate();` to schedule a re-render, the instance needs to emit an `invalidate` event that instructs associated widgets to `invalidate` themselves.
 
-Notice that the `ApplicationContext` does not contain any code to load state information. Its role is only to manage the application's state. Any application initialization data must be provided to the `ApplicationContext` via its `constructor` while the application is being started.
+Notice that the `ApplicationContext` does not contain any code to load state information. Currently its only role is only to manage the application's state provided on initialization via it's `constructor`. However as the requirements for the application become more advanced the `ApplicationContext` could make requests to fetch and modify data from a remote service or local storage mechanism.
 
 Now that we have moved state management to a dedicated module, we need a way to initialize the state and connect it to sections of our application. We will initialize state by creating and registering an `Injector`.
 
@@ -56,14 +56,14 @@ Currently, the application's `main` module is only responsible for creating the 
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
-Now, we need to update `main` to construct and populate the `ApplicationContext` create a `registry` for the application and use this to define the `ApplicationContext`. Finally in order to make the `registry` available within widget tree we need to pass the `registry` as a property to the `projector`.
+Now, we need to update `main` to construct and populate the an instance of `ApplicationContext`, create a `registry` and then define an `Injector` with the initialized `ApplicationContext`. Lastly, in order to make the `registry` available within widget tree we need to pass the `registry` as a property to the `projector`.
 
 {% instruction 'Import the `ApplicationContext` module and add this code to `main`:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:10-29 %}
 
 {% aside 'Loading data' %}
-In a real-world application, this data would probably be loaded via a call to a web service or a local data store. To learn more, take a look at the [data stores tutorial](../comingsoon.html).
+In a real-world application, this data would probably be loaded via a call to a web service or a local data store. To learn more, take a look at the [stores tutorial](../comingsoon.html).
 {% endaside %}
 
 The state stored in the `ApplicationContext` is the same data used in the `App` module to initialize the `WorkerProperties`, but it is now decoupled into an isolated module that helps to understand and maintain the application. In general, the `main` module of an application should be concerned with initializing application wide state. Also, as we mentioned earlier, the `App` class only needed to manage the `WorkerProperties` state so that it could coordinate this through from and to it's children.
@@ -92,9 +92,9 @@ Now that the `Injector` is defined and registered and the `registry` has been se
 
 {% task 'Create `Containers` that will allow state to be injected into widgets' %}
 
-On their own, `Injectors` are not able to help us very much because widgets expect state to be pushed into them (via their properties), but state must be pulled from an `Injector`. `Containers` are designed to coordinate the injection - they pull state from injectors and push it into widgets.
+On their own, `Injectors` are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an `injector` must be connected to interested widgets in order for their state to be mapped to `properties` that widgets can consume, this is done using a `Container`. `Containers` are designed to coordinate the injection - they connect injectors to widgets and return `properties` from the `injectors` state which gets passed to the connected widgets.
 
-Normally, a separate `Container` is created for each widget that needs to have state injected. In the demo application, we have two widgets that rely on application state - `WorkerContainer` and `WorkerForm`. Let's start with the `WorkerContainer`. `Containers` are given the same name as the widget that they contain with the suffix `Container` appended. To keep things organized, they are also stored in a different sub-package - `containers`.
+Normally, a separate `Container` is created for each widget that needs to have `properties` injected. In the demo application, we have two widgets that rely on application state - `WorkerContainer` and `WorkerForm`. Let's start with the `WorkerContainer`. `Containers` are given the same name as the widget that they contain with the suffix `Container` appended. To keep things organized, they are also stored in a different sub-package - `containers`.
 
 {% instruction 'Add the following imports to the `WorkerContainerContainer` in the `containers` sub-package' %}
 
@@ -112,7 +112,7 @@ Next, we need to address the fact that the container has two places to get prope
 `Injectors` are capable of injecting more than just properties into a widget. A `getChildren` mapping function can also be provided to the `Container`, allowing children to be injected into the widget as well. Just like the `getProperties` function, the `getChildren` function will receive the children from the parent widget and the injector. It then returns the final array of children that will be provided to the contained widget.
 {% endaside %}
 
-The `getProperties` function receives two parameters - an instance of an `Evented` class that holds the state information (`ApplicationContext` in this example) and an object that implements the `WidgetProperties` interface, or one of its descendants (we are using `WorkerContainerProperties`). The first parameter is retrieved from the `Injector` and the second is provided by the widget's parent. The `getProperties` function must then return an object that holds the properties that will be provided to the widget itself. In this example, we are ignoring the properties provided by the parent and returning the `workerData` stored by the `ApplicationContext`. More advanced use cases where both sources are used to generate the properties are also possible..
+The `getProperties` function receives two parameters. The first is the `payload` of the `injector` instance, for the demo application this is the data passed when creating the `ApplicationContext`. The second is the `properties` that have been passed to the container via the normal mechanism, `w(Container, properties)`, the properties will implement the properties interface defined by the wrapped widget (for example `WorkerContainerProperties`). The `getProperties` function must then return an object that holds the properties that will be passed to the widget itself. In this example, we are ignoring the properties provided by the parent and returning the `workerData` stored by the `ApplicationContext`. More advanced use cases where both sources are used to generate the properties are also possible.
 
 {% instruction 'Finish the `WorkerContainerContainer` by adding the following code.' %}
 
