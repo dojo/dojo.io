@@ -158,7 +158,7 @@ The final change to `App` is to update the `render` method to use the containers
 
 With this last change, the `App` class is now only nine lines of code. All of the state management logic is still part of the application, but it has been refactored out of the `App` class to create a more efficient application architecture.
 
-Notice that the `WorkerForm` and `WorkerContainer` widgets were not changed at all! This is an important thing to keep in mind when designing widgets - a widget should never be tightly coupled to the source of its properties. By keeping the containers and widgets separate, we have helped to ensure the each widget or container has a narrowly defined set of responsibilities, creating a cleaner separation of concerns within our widgets and containers.
+Notice that the `WorkerForm` and `WorkerContainer` widgets were not changed at all! This is an important thing to keep in mind when designing widgets - a widget should never be tightly coupled to the source of its properties. By keeping the containers and widgets separate, we have helped to ensure that each widget or container has a narrowly defined set of responsibilities, creating a cleaner separation of concerns within our widgets and containers.
 
 {% section %}
 
