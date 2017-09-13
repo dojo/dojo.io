@@ -1,7 +1,7 @@
 ---
 layout: false
 title: vDOM Abstractions - w and v in the d module
-overview: Abstracting DOM allows us to create presentation components programatically. Dojo 2 provides a layer of abstraction between the DOM and its virtual counterpart as it exists in JavaScript and a layer of abstraction between this virtual DOM and Dojo 2 components - using a common syntax in a common module.
+overview: Abstracting the DOM allows us to create presentation components programatically. Dojo 2 provides a layer of abstraction between the DOM and its virtual counterpart as it exists in JavaScript and a layer of abstraction between this virtual DOM and Dojo 2 components - using a common syntax in a common module.
 ---
 
 ## `@dojo/widget-core/d.ts`
@@ -10,14 +10,14 @@ Creating the DOM structure to support the syntax, style, and structure required 
 
 This module, named for what would be the single-letter shorthand function name for "Dojo 2" contains two single-letter functions each named for their purpose:
 
-- `v`: is used to create an abstract version of a DOM node
-- `w`: is used to create an abstract version of a widget
+- `v`: used to create an abstract version of a DOM node
+- `w`: used to create an abstract version of a widget
 
 ## Common variables
 
 A node can be thought of as an object of a certain type, customized through properties, dispatching events through callbacks, with zero or more children. Condensing this down into a function where each argument can be isolated gives us a type, a set of properties, and a list of children.
 
-Because Dojo 2 is built on TypeScript, splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why `v` and `w` are separate functions, as each function enforces a different set of constraints on its arguments.
+Because Dojo 2 is [built on TypeScript](https://github.com/dojo/dojo.io/blob/master/site/source/tutorials/TypeScript_and_Dojo_2.md), splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why `v` and `w` are separate functions, as each function enforces a different set of constraints on its arguments.
 
 ## `v` for vDOM
 
@@ -25,13 +25,13 @@ Dojo's virtual DOM function expects to receive the tag name, properties, and chi
 
 ```ts
 v('article');
-// represents <article />
+// represents <article></article>
 v('article', { id: 'first' });
-// represents <article id="first" />
+// represents <article id="first"></article>
 v('article', { id: 'first' }, [ v('p') ]);
-// represents <article id="first"><p /></article>
+// represents <article id="first"><p></p></article>
 v('ul', [ v('li') ]);
-// represents <ul><li /></ul>
+// represents <ul><li></li></ul>
 ```
 
 Within the properties argument are common properties a DOM node would have with the `classes` key using a `{ string: boolean }` syntax.
@@ -40,21 +40,10 @@ Within the properties argument are common properties a DOM node would have with 
 v('article', {
   id: 'first',
   classes: {
-    important: true
+    insightful: true
   }
 });
-// represents <article id="first" classes="important" />
-```
-
-Adding style information through the `styles` key uses the intuitive `{ string: string }` syntax.
-
-```ts
-v('label', {
-  styles: {
-    'background-color': 'red'
-  }
-});
-// represents <label styles="background-color: red;" />
+// represents <article id="first" classes="important"></article>
 ```
 
 Event handlers are passed directly within the properties, start with `on` and can use the `bind` property to establish context when executed.
@@ -97,7 +86,7 @@ w(Button, {
 }, [ 'Click me!' ]);
 ```
 
-As an alternative, `w` also accepts a string which will derive the widget type instead through that widget's registry. When this is done, type enforcement can be done through `w`'s generics indicating the property and supported child types.
+As an alternative, `w` also accepts a string which will derive the widget type instead through that widget's [registry](coming soon). When this is done, type enforcement can be done through `w`'s generics indicating the property and supported child types.
 
 ```ts
 w<ButtonProperties, ButtonChildren>('CustomButton', {
