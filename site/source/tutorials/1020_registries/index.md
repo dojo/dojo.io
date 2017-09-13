@@ -49,7 +49,7 @@ At the moment we haven't affected the application, however we now have a handle 
 
 {% instruction 'Add the widget imports to `main.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:6-10 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:6-11 %}
 
 {% instruction 'Then define widgets in the `registry`.' %}
 
@@ -67,6 +67,8 @@ Now that the `registry` has been made available to the application and the widge
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:46-58 %}
 
+Notice that we are passing a generic type to the `w()` function call, this is because when using a `registry` label it is unable to infer the properties interface. As a result falls back to the default, `WidgetProperties` interface. Passing the generic tells `w()` the type of widget the label represents in the `registry` and will correctly enforce the widget's properties interface.
+
 {% instruction 'Use registry labels in `WorkerContainer.ts`\'s render function.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:21-24 %}
@@ -74,8 +76,6 @@ Now that the `registry` has been made available to the application and the widge
 {% instruction 'Use registry labels in `WorkerForm.ts`\'s render function.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:43-86 %}
-
-Notice that we are passing a generic type to the `w()` function call, this is because when using a `registry` label it is unable to infer the properties interface. As a result falls back to the default, `WidgetProperties` interface. Passing the generic tells `w()` the type of widget the label represents in the `registry` and will correctly enforce the widget's properties interface.
 
 Next, we will create a widget that is lazily loaded when needed!
 
@@ -88,6 +88,14 @@ First we need to extract the `_renderBack` function from `Worker.ts` into a new 
 {% task 'Add the following code in `WorkerBack.ts`' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerBack.ts' %}
+
+{% task 'Add `w` import to `Worker.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:2 %}
+
+{% task 'Add `WorkerBack` import to `Worker.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:5 %}
 
 {% task 'Update the `_renderBack` function to use the `WorkerBack` registry items in `Worker.ts`' %}
 
