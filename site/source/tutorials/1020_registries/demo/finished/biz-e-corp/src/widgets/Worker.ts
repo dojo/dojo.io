@@ -1,6 +1,8 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+
+import WorkerBack from './WorkerBack';
 import * as css from '../styles/worker.css';
 
 export interface WorkerProperties {
@@ -58,34 +60,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		return v('div', {
 				classes: this.classes(css.workerBack),
 				onclick: this.flip
-			}, [
-				v('img', {
-					classes: this.classes(css.imageSmall),
-					src: 'images/worker.svg'
-				}),
-				v('div', {
-					classes: this.classes(css.generalInfo)
-				}, [
-					v('div', {
-						classes : this.classes(css.label)
-					}, ['Name']),
-					v('div', [`${lastName}, ${firstName}`]),
-					v('div', {
-						classes: this.classes(css.label)
-					}, ['Email']),
-					v('div', [`${email}`]),
-					v('div', {
-						classes: this.classes(css.label)
-					}, ['Avg. Time per Task']),
-					v('div', [`${timePerTask}`])
-				]),
-				v('div', [
-					v('strong', ['Current Tasks']),
-					v('div', tasks.map(task => {
-						return v('div', { classes: this.classes(css.task) }, [ task ]);
-					}))
-				])
-			]
+			}, [ this._isFlipped ? w<WorkerBack>('worker-back', { firstName, lastName, email, timePerTask, tasks }) : null ]
 		);
 	}
 

@@ -51,7 +51,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		}, [
 			v('fieldset', { classes: this.classes(css.nameField) }, [
 				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
-				w(TextInput, {
+				w<TextInput>('dojo-text-input', {
 					key: 'firstNameInput',
 					label: {
 						content: 'First Name',
@@ -62,7 +62,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 					required: true,
 					onInput: this.onFirstNameInput
 				}),
-				w(TextInput, {
+				w<TextInput>('dojo-text-input', {
 					key: 'lastNameInput',
 					label: {
 						content: 'Last Name',
@@ -74,14 +74,14 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 					onInput: this.onLastNameInput
 				})
 			]),
-			w(TextInput, {
+			w<TextInput>('dojo-text-input', {
 				label: 'Email address',
 				type: 'email',
 				value: email,
 				required: true,
 				onInput: this.onEmailInput
 			}),
-			w(Button, { }, [ 'Save' ])
+			w<Button>('dojo-button', { }, [ 'Save' ])
 		]);
 	}
 }

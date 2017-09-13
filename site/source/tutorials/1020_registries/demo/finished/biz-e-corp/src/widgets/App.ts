@@ -45,13 +45,13 @@ export default class App extends WidgetBase {
 
 	protected render() {
 		return v('div', [
-			w(Banner, {}),
-			w(WorkerForm, {
+			w<Banner>('banner', {}),
+			w<WorkerForm>('worker-form', {
 				formData: this._newWorker,
 				onFormInput: this._onFormInput,
 				onFormSave: this._addWorker
 			}),
-			w(WorkerContainer, {
+			w<WorkerContainer>('worker-container', {
 				workerData: this._workerData
 			})
 		]);

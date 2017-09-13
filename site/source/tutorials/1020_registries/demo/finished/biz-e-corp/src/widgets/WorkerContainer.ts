@@ -18,7 +18,7 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 			workerData = []
 		} = this.properties;
 
-		const workers = workerData.map((worker, i) => w(Worker, {
+		const workers = workerData.map((worker, i) => w<Worker>('worker', {
 			key: `worker-${i}`,
 			...worker
 		}));

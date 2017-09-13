@@ -1,7 +1,7 @@
 ---
-layout: false
+layout: tutorial
 title: Registry
-overview: [ Add overview ]
+overview: [ In this tutorial, you will learn how to use Dojo 2's registry to lazily load widgets when they are needed. ]
 ---
 
 {% section 'first' %}
@@ -9,6 +9,10 @@ overview: [ Add overview ]
 # Working with the Registry
 
 ## Overview
+
+Flexibility to override the default type of a widget's children provides a powerful configuration option when it comes to using and customizing widgets with any web application. Additionally as web applications grow, the physical size of the resources required to load the application becomes more and more critical. Keeping the size of resources required to load a web application as small as possible ensures that the application can provide an optimal performance for all users. To help with these challenges, Dojo 2 provides a concept of a `registry` that can be used to achieve both of these goals in a simple and effective manner without intruding on the existing development experience.
+
+In this tutorial, we will start with an application that is that uses concrete widget classes and loads all required assets when the application initially. First we'll swap all the concrete widget references to load the widgets from a `registry`. Then create a new widget that will be lazily loaded when the worker card is clicked the first time.
 
 ## Prerequisites
 You can [download](../assets/1020_registries-initial.zip) the demo project and run `npm install` to get started.
@@ -23,40 +27,97 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Create a default registry.' %}
 
-Creates a registry instance that will be used by the application.
+The first step is to create a `registry` that will be made available to the application by passing the instance as the `registry` property on the `projector`.
 
-{% instruction 'Add the following to `main.ts`.' %}
+{% instruction 'Add the `Registry` import the `main.ts` module.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts'}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:3 %}
 
-Talk about the default registry and that it is available for all widgets in the projector.
+{% instruction 'Now, create a `Registry` instance.' %}
 
-{% aside 'Registries everywhere!' %}
-The registry doesn't deal exclusively with visual widgets.... state can be side loaded into your application using the registry... see tutorial blah.
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:17 %}
+
+{% instruction 'And finally set the `registry` on the `projector`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:30 %}
+
+{% aside 'Registries Everywhere!' %}
+A `registry` can also be used to define widgets with non visual responsibilities, such as state injection and routing. To learn more, take a look at the [container tutorial](../comingsoon.html) and [routing tutorial](../comingsoon.html) .
 {% endaside %}
 
-Next, we'll add the widgets to the registry
+At the moment we haven't affected the application, however we now have a handle to a `registry` that we can start to define widgets. Once the widgets are defined in the `registry` they will be available through the application and can be used by switching the concrete class in `w()` with the `registry` label.
+
+{% instruction 'Add the widget imports to `main.ts`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:6-10 %}
+
+{% instruction 'Then define widgets in the `registry`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:18-23 %}
+
+In the next section we'll using the registry label in our render functions.
 
 {% section %}
 
-## Add Widgets to the Registry
+## Using Registry Items
 
-{% task 'Define widgets in the Registry.' %}
+Now that the `registry` has been made available to the application and the widgets have been defined, we can use the label instead of the widget classes across the application.
 
-Import the widgets in main.ts, define them in the registry, remove imports from other widgets and use registry label. generic for the typings
+{% instruction 'Use registry labels in `App.ts`\'s render function.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:46-58 %}
+
+{% instruction 'Use registry labels in `WorkerContainer.ts`\'s render function.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:21-24 %}
+
+{% instruction 'Use registry labels in `WorkerForm.ts`\'s render function.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:43-86 %}
+
+Notice that we are passing a generic type to the `w()` function call, this is because when using a `registry` label it is unable to infer the properties interface. As a result falls back to the default, `WidgetProperties` interface. Passing the generic tells `w()` the type of widget the label represents in the `registry` and will correctly enforce the widget's properties interface.
+
+Next, we'll create a widget that is lazily loaded when needed!
 
 {% section %}
 
 ## Lazy Loading Widgets
 
-{% task 'Create a widget that will be lazy loaded when needed.' %}
+First we need to extract the `_renderBack` function from `Worker.ts` into a new widget `WorkerBack.ts` and then add the new widget to the registry.
 
-create a new widget that will be lazy loaded, talk about providing a function
+{% task 'Add the following code in `WorkerBack.ts`' %}
 
-{% aside 'Use before define!' %}
-The registry doesn't deal exclusive
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerBack.ts' %}
 
+{% task 'Update the `_renderBack` function to use the `WorkerBack` registry items in `Worker.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:51-65 %}
+
+{% aside 'Use Before You Define' %}
+The `registry` is designed to mirror the behavior and API of custom elements where ever possible. One neat feature is that a registry item can used before it is defined and, once defined, widgets that use the it will automatically re-render!
 {% endaside %}
+
+Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load when it is required. To do this instead of adding a concrete widget class, we add a function that when called, requires and returns the concrete widget. This function will not be called until the first time the application tries to use the widget label as part of the usual `render` cycle. Initially before the widget has loaded, nothing will be rendered. Once it has loaded any widgets that use the lazy widget will automatically re-render.
+
+{% task 'Import `load` from `@dojo/core/load` in `main.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:1 %}
+
+{% task 'Define a `const` for `require` that is available at runtime' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:13 %}
+
+{% task 'Now define a function that lazily loads `WorkerBack.ts` in the registry' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:24-26 %}
+
+Now that the `WorkerBack` widget is defined to lazily load, running the application with the browser developer tools open should show that the `WorkerBack.js` file is only loaded when a worker card is click on for the first time:
+
+{% aside 'Auto Bundling Support' %}
+To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the [build command tutorial](../comingsoon.html).
+{% endaside %}
+
+![lazy loading gif](./images/lazy-load-widget.gif)
 
 {% section %}
 
