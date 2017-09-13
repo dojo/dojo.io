@@ -15,7 +15,7 @@ This module, named for what would be the single-letter shorthand function name f
 
 ## Common variables
 
-A node can be thought of as an object of a certain type, customized through properties, dispatching events through callbacks, with a single parent and multiple children. Condensing this down into a function where each argument can be isolated gives us a type, a set of properties, and a list of children.
+A node can be thought of as an object of a certain type, customized through properties, dispatching events through callbacks, with zero or more children. Condensing this down into a function where each argument can be isolated gives us a type, a set of properties, and a list of children.
 
 Because Dojo 2 is built on TypeScript, splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why `v` and `w` are separate functions, as each function enforces a different set of constraints on its arguments.
 
