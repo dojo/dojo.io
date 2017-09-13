@@ -10,8 +10,8 @@ Creating the DOM structure to support the syntax, style, and structure required 
 
 This module, named for what would be the single-letter shorthand function name for "Dojo 2" contains two single-letter functions each named for their purpose:
 
-`v`: is used to create an abstract version of a DOM node
-`w`: is used to create an abstract version of a widget
+- `v`: is used to create an abstract version of a DOM node
+- `w`: is used to create an abstract version of a widget
 
 ## Common variables
 
@@ -34,7 +34,7 @@ v('ul', [ v('li') ]);
 // represents <ul><li /></ul>
 ```
 
-Within the properties argument are common properties a DOM node would have with the `classes` key using a `{ string: boolean }` syntax.'
+Within the properties argument are common properties a DOM node would have with the `classes` key using a `{ string: boolean }` syntax.
 
 ```ts
 v('article', {
