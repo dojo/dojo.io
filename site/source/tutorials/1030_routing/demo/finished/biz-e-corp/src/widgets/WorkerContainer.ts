@@ -19,7 +19,7 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 
 	private _createFilterLinks() {
 		const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		const links: DNode[] = [];
+		const links = [];
 		for (let i = 0; i < alphabet.length; i++) {
 			const char = alphabet.charAt(i);
 			links.push(
