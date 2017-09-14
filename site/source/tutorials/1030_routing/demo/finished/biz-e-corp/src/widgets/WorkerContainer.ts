@@ -1,7 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { w, v } from '@dojo/widget-core/d';
 import Worker, { WorkerProperties } from './Worker';
-import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import * as css from '../styles/workerContainer.css';
 
