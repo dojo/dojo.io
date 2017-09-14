@@ -35,11 +35,11 @@ The first step is to create a `registry` that will be made available to the appl
 
 {% instruction 'Now, create a `Registry` instance.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:17 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:19 %}
 
 {% instruction 'And finally set the `registry` on the `projector`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:30 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:32 %}
 
 {% aside 'Registries Everywhere!' %}
 A `registry` can also be used to define widgets with non-visual responsibilities, such as state injection and routing. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [routing tutorial](../comingsoon.html) .
