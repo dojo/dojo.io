@@ -53,10 +53,10 @@ export default class App extends ThemeableMixin(WidgetBase) {
 					onFormInput: this._onFormInput,
 					onFormSave: this._addWorker
 				}),
-				w(WorkerContainerOutlet, {
+				w(FilteredWorkerContainerOutlet, {
 					workerData: this._workerData
 				}),
-				w(FilteredWorkerContainerOutlet, {
+				w(WorkerContainerOutlet, {
 					workerData: this._workerData
 				})
 			])
