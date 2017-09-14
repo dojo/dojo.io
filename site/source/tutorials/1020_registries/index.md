@@ -131,7 +131,7 @@ To fully support lazy loading, the Dojo CLI build command will automatically bun
 
 ## Summary
 
-Put a summary here.
+In summary, the Registry is a powerful tool for decoupling components from their point of usage. Removing the complexity of dealing with when or how a widget is loaded from the end user means they can author widgets in the same familiar way, while also leveraging the benefits of lazy loading and extensibility.
 
 If you would like, you can download the completed [demo application](../assets/1020_registries.zip) from this tutorial.
 
