@@ -1,33 +1,21 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
 import WorkerContainer from './WorkerContainer';
 
-export default class App extends WidgetBase {
+import workerData from './../support/workerData';
+
+import * as css from './../styles/app.m.css';
+
+@theme(css)
+export default class App extends ThemeableMixin(WidgetBase) {
 	private _newWorker: Partial<WorkerFormData> = {};
 
-	private _workerData: WorkerProperties[] = [
-		{
-			firstName: 'Tim',
-			lastName: 'Jones',
-			email: 'tim.jones@bizecorp.org',
-			tasks: [
-				'6267 - Untangle paperclips',
-				'4384 - Shred documents',
-				'9663 - Digitize 1985 archive'
-			]
-		},
-		{
-			firstName: 'Alicia',
-			lastName: 'Fitzgerald'
-		},
-		{
-			firstName: 'Hans',
-			lastName: 'Mueller'
-		}
-	];
+	private _workerData: WorkerProperties[] = workerData;
 
 	private _addWorker() {
 		this._workerData = this._workerData.concat(this._newWorker);
