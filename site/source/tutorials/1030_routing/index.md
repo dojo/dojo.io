@@ -164,7 +164,7 @@ We have added a new property named `filter` to `WorkerContainerProperties` in `W
 
 {% include_codefile 'demo/finished/biz-e-corp/src/outlets/FilteredWorkerContainerOutlet.ts' %}
 
-{% instruction 'Add `FilteredWorkerContainerOutlet.ts` import in `App.ts`' %}
+{% instruction 'Add a `FilteredWorkerContainerOutlet.ts` import in `App.ts`' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:10 %}
 
