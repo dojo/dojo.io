@@ -27,9 +27,15 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Create the routing configuration' %}
 
-Talk about how to and creating the routing configuration.
+All application routes needs to be to configured when creating the router instance otherwise, entering a route will not trigger a transition within the application. The `RouteConfig` a basic object consisting off `path`, `outlet`, `defaultParams`, `defaultRoute` and `children`.
 
-{% instruction 'Add the routing configuration to `main.ts`.' %}
+The routing hierarchy is generated using by adding an array `RouteConfigs` to the children property, which get recursively processed, building up the application routing paths.
+
+{% instruction 'Include the requited imports `main.ts`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2,3 %}
+
+{% instruction 'Define the routing configuration`.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-31 %}
 
@@ -37,9 +43,17 @@ Talk about how to and creating the routing configuration.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:33-34 %}
 
-{% instruction 'Lastly, we need to start the router.' %}
+A helper utility above, is provided by `@dojo/routing`, that can be used to create a routing instance. The util accepts the applications routing configuration, a `registry` to define a `router` injector against and returns the `router` instance.
+
+{% instruction 'Finally, call start on the `router` instance.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:41 %}
+
+{% aside 'Important!' %}
+if the configuration is using a `defaultRoute` in its configuration then it will need be started *after* the projector is appended.
+{% endaside %}
+
+Finally to initialize the routing, the `start` needs to be called on the `router` instance.
 
 Next, we will create `outlets` to control when our widgets are displayed.
 
@@ -101,7 +115,12 @@ Next, we will add a side menu with links for the created outlets.
 
 {% task 'Add a sidebar menu to the application.' %}
 
-In this section we will be using the `Link` component provided by `@dojo/routing`, to create link elements with a `href` for an outlet name.
+In this section we will be using the `Link` component provided by `@dojo/routing`, to create link elements with a `href` for an outlet name. A `label` for the `Link` is can be passed as children and `param` values for the outlet can be passed to `Link` component using the `params` property.
+
+```ts
+w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
+
+```
 
 {% instruction 'Add the `Link` import in `App.ts`.' %}
 
@@ -117,14 +136,47 @@ Now, the links in the side menu can be used to navigate around the application!
 
 ## Dynamic Outlet
 
-{% task 'Add route that filters the workers by last name.' %}
+{% task 'Add filters to the `WorkerContainer.ts` widget and create outlet.' %}
 
-Add the filtered outlet, talk about the mapping function that allows route params/querys/location to be mapped to a visual components properties.
+Finally, we are going to enhance the `WidgetContainer.ts` with a filter on the workers last name. To do this we need to use the `filter` outlet configured in the first section. The key difference for the `filter` outlet is that the path is using a placeholder that indicates a path parameter, `{filter}`.
+
+This means a route with any value will match the `filter` as long as the previous path segments match, so for the `filter` outlet a route of `directory/any-value-here` would be considered a match.
+
+{% instruction 'Add the new property to the `WidgetContainerProperties` interface in `WorkerContainer.ts`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:10-13 %}
+
+{% instruction 'Include the `Link` import' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:8 %}
+
+{% instruction 'Add a private function to generate the filter links' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:20-32 %}
+
+{% instruction 'Re-work the render function to filter using the new property' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:34-55 %}
+
+We have added a new property called `filter` to `WorkerContainerProperties` in `WorkerContainer.ts` that will be used to filter the workers based on their last name. When used a normal widget this would be determined by it's parent and passed in like any normal property, however for this application we need the route param value to be passed as the filter property. To be able to this, we can add a mapping function that receives `MapParamOptions` (`param`, `location`, `router`, `matchType`) and returns an object injected into the wrapped widget properties!
+
+{% instruction 'Add the following code to `FilteredWorkerContainerOutlet.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/outlets/FilteredWorkerContainerOutlet.ts' %}
+
+{% instruction 'Add `FilteredWorkerContainerOutlet.ts` import in `App.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:10 %}
+
+{% instruction 'Include the `outlet` in the render function' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-61 %}
 
 {% section %}
 
 ## Summary
 
+Dojo 2 routing is a declarative, non intrusive, mechanism to add complicated route logic to a web application. Importantly,being utilizing a high order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for its existing view logic.
 
 If you would like, you can download the completed [demo application](../assets/1030_routing.zip) from this tutorial.
 
