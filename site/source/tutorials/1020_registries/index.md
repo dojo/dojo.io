@@ -53,7 +53,7 @@ At the moment we haven't affected the application, however we now have a handle 
 
 {% instruction 'Then define widgets in the `registry`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:18-23 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:20-25 %}
 
 In the next section we will use the registry label in our render functions.
 
@@ -119,7 +119,7 @@ The default type of `require` needed to be overridden, with the type of require 
 
 {% task 'Now define a function that lazily loads `WorkerBack.ts` in the registry' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:24-26 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:26-28 %}
 
 Now that the `WorkerBack` widget is defined to load lazily, running the application with the browser developer tools open should show that the `WorkerBack.js` file is only loaded when a worker card is clicked on for the first time:
 
