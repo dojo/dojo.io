@@ -10,7 +10,9 @@ import WorkerForm from './widgets/WorkerForm';
 import WorkerContainer from './widgets/WorkerContainer';
 import Worker from './widgets/Worker';
 
-declare const require: any;
+import { Require } from '@dojo/interfaces/loader';
+
+declare const require: Require;
 
 const root = document.querySelector('my-app') || undefined;
 

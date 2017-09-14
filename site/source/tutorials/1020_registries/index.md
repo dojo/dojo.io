@@ -111,9 +111,11 @@ Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:1 %}
 
-{% task 'Define a `const` for `require` that is available at runtime' %}
+{% task 'Import the `Require` interface and define the type of `require`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:13 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:13-15 %}
+
+The default type of `require` needed to be overridden, with the type of require that we know will be available at runtime.
 
 {% task 'Now define a function that lazily loads `WorkerBack.ts` in the registry' %}
 
