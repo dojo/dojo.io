@@ -1,15 +1,18 @@
 ---
 layout: tutorial
 title: Routing
-overview: In this tutorial, you will learn how to use Dojo 2's declartive routing within your application.
+overview: In this tutorial, you will learn how to use Dojo 2's declarative routing within your application.
 ---
 
 {% section 'first' %}
 
-# Appliction routing
+# Application routing
 
 ## Overview
-Add routing overview here.
+
+Dojo 2's routing is a powerful set of tools to support declarative routing using a high order component, an `Outlet` and a component that creates links with a `href` generated from an `outlet` name.
+
+In this tutorial, we will start with a basic application with no routing. We will use Dojo 2's declarative routing to configure some routes, create `outlets` from our existing widgets and use the `Link` component to create links for the application outlets.
 
 ## Prerequisites
 You can [download](../assets/1030_routing-initial.zip) the demo project and run `npm install` to get started.
@@ -56,7 +59,7 @@ An `Outlet` is a higher order component that wraps a widget, and controls whethe
 
 {% include_codefile 'demo/finished/biz-e-corp/src/outlets/WorkerFormOutlet.ts' %}
 
-The fist argument for the `Outlet` function determines the widget to display when the configured route is selected. Consider an `outlet` configured for a `path` of `foo`, its wrapped widget will render for a selected route `foo` (described as an `index` match). It will also display for any route that the outlets `path` partially matches too, for example, `foo/bar` or `foo/bar/baz`.
+The fist argument for the `Outlet` function determines the widget to display when the configured route is selected. Consider an `outlet` configured for a `path` of `foo`, its wrapped widget will render for a selected route `foo` (described as an `index` match). It will also display for any route that the outlet's `path` partially matches too, for example, `foo/bar` or `foo/bar/baz`.
 
 Normally this is perfectly acceptable, however there are scenarios, where it is necessary to explicitly define a widget for an `index` match. To support this more advanced configuration, first argument also accepts an object that can be used to specify these components explicitly.
 
@@ -98,7 +101,11 @@ Next, we will add a side menu with links for the created outlets.
 
 {% task 'Add a sidebar menu to the application.' %}
 
-In this section we will be using the `Link` component that can create a link for an outlet name.
+In this section we will be using the `Link` component provided by `@dojo/routing`, to create link elements with a `href` for an outlet name.
+
+{% instruction 'Add the `Link` import in `App.ts`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:4 %}
 
 {% instruction 'Replace the render function in `App.ts`.' %}
 
