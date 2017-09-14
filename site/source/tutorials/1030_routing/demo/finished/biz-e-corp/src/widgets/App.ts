@@ -7,8 +7,8 @@ import { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
 import WorkerFormOutlet from './../outlets/WorkerFormOutlet';
 import WorkerContainerOutlet from './../outlets/WorkerContainerOutlet';
-import FilteredWorkerContainerOutlet from './../outlets/FilteredWorkerContainerOutlet';
 import BannerOutlet from './../outlets/BannerOutlet';
+import FilteredWorkerContainerOutlet from './../outlets/FilteredWorkerContainerOutlet';
 
 import workerData from './../support/workerData';
 
