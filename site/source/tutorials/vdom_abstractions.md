@@ -1,7 +1,7 @@
 ---
 layout: false
 title: vDOM Abstractions - w and v in the d module
-overview: Abstracting the DOM allows us to create presentation components programatically. Dojo 2 provides a layer of abstraction between the DOM and its virtual counterpart as it exists in JavaScript and a layer of abstraction between this virtual DOM and Dojo 2 components - using a common syntax in a common module.
+overview: Abstracting the DOM allows us to create presentation components programmatically. Dojo 2 provides a layer of abstraction between the DOM and its virtual counterpart as it exists in JavaScript as well as a layer of abstraction between this virtual DOM and Dojo 2 components - using a common syntax in a common module.
 ---
 
 ## `@dojo/widget-core/d.ts`
@@ -21,7 +21,7 @@ Because Dojo 2 is [built on TypeScript](https://github.com/dojo/dojo.io/blob/mas
 
 ## `v` for vDOM
 
-Dojo's virtual DOM function expects to receive the tag name, properties, and children as its three arguments. Only the tag name is required and other arguments may be ommitted as long as properties and children are called in that order.
+Dojo 2's virtual DOM function expects to receive the tag name, properties, and children as its three arguments. Only the tag name is required and other arguments may be omitted as long as properties and children are called in that order.
 
 ```ts
 v('article');
@@ -43,10 +43,10 @@ v('article', {
     insightful: true
   }
 });
-// represents <article id="first" classes="important"></article>
+// represents <article id="first" class="important"></article>
 ```
 
-Event handlers are passed directly within the properties, start with `on` and can use the `bind` property to establish context when executed.
+Event handlers are passed directly within the properties, start with `on`, and can use the `bind` property to establish context when executed.
 
 ```ts
 const hello = {
@@ -76,7 +76,7 @@ v('ul', [
 
 ## `w` for widget
 
-Dojo's widget function expects to receive as its type a class conforming to a lightweight interface of which two instance variables are important: `properties` and `children`. A `w` call receiving a class will use the types assigned to these two properties when enforcing what is passed to its other arguments.
+Dojo 2's widget function expects to receive as its type a class conforming to a lightweight interface of which two instance variables are important: `properties` and `children`. A `w` call receiving a class will use the types assigned to these two properties when enforcing what is passed to its other arguments.
 
 Unlike `v`, the second argument must be the properties and is not optional, though the child array is optional.
 
@@ -86,7 +86,7 @@ w(Button, {
 }, [ 'Click me!' ]);
 ```
 
-As an alternative, `w` also accepts a string which will derive the widget type instead through that widget's [registry](coming soon). When this is done, type enforcement can be done through `w`'s generics indicating the property and supported child types.
+As an alternative, `w` also accepts a string which will derive the widget type instead through that widget's [registry](coming soon). When this is done, type enforcement can be done through `w`'s generic which will use that type's `properties` and `children` to enforce what is passed in those arguments.
 
 ```ts
 w<ButtonProperties, ButtonChildren>('CustomButton', {
@@ -94,4 +94,4 @@ w<ButtonProperties, ButtonChildren>('CustomButton', {
 }, [ 'Click me!' ]);
 ```
 
-Like `v`, children passed to this function may be the results of `v` or `w` calls, as well as strings, `null`, or `undefined`. But these children will be added to the resulting virtual DOM tree at the point that widget decides. The widget is free to place these values as it decides, including placing them at different points in its hierarchy or omitting them altogether. Documentation for each widget should be consulted to see how these children are used.
+Like `v`, children passed to this function may be the results of `v` or `w` calls, as well as strings, `null`, or `undefined`. But these children will be added to the resulting virtual DOM tree at the point that the widget decides, including placing them at different points in its hierarchy or omitting them altogether. Documentation for each widget should be consulted to see how these children are used.
