@@ -31,7 +31,7 @@ All application routes needs to be to configured when creating the router instan
 
 The routing hierarchy is generated using by adding an array `RouteConfigs` to the children property, which get recursively processed, building up the application routing paths.
 
-{% instruction 'Include the requited imports `main.ts`.' %}
+{% instruction 'Include the required imports `main.ts`.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2,3 %}
 
@@ -45,12 +45,12 @@ The routing hierarchy is generated using by adding an array `RouteConfigs` to th
 
 A helper utility above, is provided by `@dojo/routing`, that can be used to create a routing instance. The util accepts the applications routing configuration, a `registry` to define a `router` injector against and returns the `router` instance.
 
-{% instruction 'Finally, call start on the `router` instance.' %}
+{% instruction 'Finally, set the registry on the projector and call start on the `router` instance.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:41 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:38-41 %}
 
 {% aside 'Important!' %}
-if the configuration is using a `defaultRoute` in its configuration then it will need be started *after* the projector is appended.
+When using a `defaultRoute` in the routing configuration, then the `router` will need to be started *after* the projector is appended.
 {% endaside %}
 
 Finally to initialize the routing, the `start` needs to be called on the `router` instance.
@@ -67,7 +67,7 @@ Next, we will create `outlets` to control when our widgets are displayed.
 The path that is associated to an outlet name is defined by the routing configuration from the first section.
 {% endaside %}
 
-An `Outlet` is a higher order component that wraps a widget, and controls whether the widget is rendered based on if the navigated route associated to outlets name. To keep out application organized, outlets are usual stored in a separate directory called `outlets`.
+An `Outlet` is a higher order component that wraps a widget, and controls whether the widget is rendered based on if the navigated route associated to the outlets name. To keep out application organized, outlets are usually stored in a separate directory called `outlets`.
 
 {% instruction 'Add the following code to `WorkerFormOutlet.ts`.' %}
 
@@ -75,7 +75,7 @@ An `Outlet` is a higher order component that wraps a widget, and controls whethe
 
 The fist argument for the `Outlet` function determines the widget to display when the configured route is selected. Consider an `outlet` configured for a `path` of `foo`, its wrapped widget will render for a selected route `foo` (described as an `index` match). It will also display for any route that the outlet's `path` partially matches too, for example, `foo/bar` or `foo/bar/baz`.
 
-Normally this is perfectly acceptable, however there are scenarios, where it is necessary to explicitly define a widget for an `index` match. To support this more advanced configuration, first argument also accepts an object that can be used to specify these components explicitly.
+Normally this is perfectly acceptable, however there are scenarios, where it is necessary to explicitly define a widget for an `index` match. To support this more advanced configuration, the first argument also accepts an object that can be used to specify these components explicitly.
 
 ```ts
 const ExampleOutlet = Outlet({
