@@ -46,7 +46,7 @@ With all of the dependencies in place, let's create the `App` widget itself.
 
 {% instruction 'Add the following class definition.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:8,32 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:7,31 %}
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
@@ -194,7 +194,7 @@ We have succeeded in rendering the widget, but there seem to be some styling iss
 
 {% instruction 'Return to `Worker.ts` and add an interface with the custom properties that we need:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:7-10 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:6-9 %}
 
 {% instruction 'Change the generic parameter passed into `WidgetBase` with the new interface:' %}
 
@@ -206,7 +206,7 @@ The `WorkerProperties` interface adds two new optional properties that we'll be 
 
 {% instruction 'Inside of the render method, add the following code to create some local constants for the first and last names:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:17-20 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:16-19 %}
 
 This code retrieves the appropriate property and provides a reasonable default in case the widget doesn't receive a value. This is done via a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment). We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.
 
@@ -267,13 +267,13 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% instruction 'We also need to `import` our CSS:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:5 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:4 %}
 
 `worker.css` contains CSS selectors and rules to be consumed by our widget and its components.
 
-{% instruction 'With the imports in place, add the **@theme** decorator and apply the mixin to the `Worker` class in `Worker.ts`:' %}
+{% instruction 'With the imports in place, add the *@theme* decorator and apply the mixin to the `Worker` class in `Worker.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:12-15 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:11-14 %}
 
 {% instruction 'Add the CSS rules in `src/styles/worker.css` which will allow us to style the `Worker` widget:' %}
 
@@ -283,7 +283,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% instruction 'Return to `Worker.ts` and update the render method:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:16-33 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:15-32 %}
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../comingsoon.html) tutorial in the Cookbook section.
 

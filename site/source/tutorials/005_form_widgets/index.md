@@ -45,7 +45,7 @@ This widget will render an empty form with a `submit` handler that prevents the 
 
 Import the `WorkerForm` class and the `WorkerFormData` interface and update the `render` method to draw the `WorkerForm`. It should be included after the `Banner` and before the `WorkerContainer` so the `render` method should look like this:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:47-50,54-59 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:46-49,53-58 %}
 
 Now, open the application in a browser and inspect it via the browser's developer tools. Notice that the empty form element is being rendered onto the page as expected.
 
@@ -156,19 +156,19 @@ Now that the `WorkerForm` widget is complete, we will update the `App` class to 
 
 {% instruction 'Add `_newWorker` as a private property.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:10 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:9 %}
 
 Notice that `_newWorker` is a `Partial<WorkerFormData>`, since it may include only some, or none, of the `WorkerFormData` interface properties.
 
 {% instruction 'Update the `render` method to populate the `WorkerForm`'s properties.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:45-57 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:44-56 %}
 
 The `onFormInput` handler is calling the `App`'s `_onFormInput` method.
 
 {% instruction 'Add the `_onFormInput` method.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:39-45 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:38-44 %}
 
 The `_onFormInput` method updates the `_newWorker` object with the latest form data and then invalidates the app so that the form field will be re-rendered with the new data.
 
@@ -176,7 +176,7 @@ The `onFormSave` handler calls the `_addWorker` method.
 
 {% instruction 'Add the `_addWorker` method to the `App` class.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:33-37 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:32-36 %}
 
 The `_addWorker` method sets `_workerData` to a new array that includes the `_newWorker` object (which is the current `WorkerFormData`), sets `_newWorker` to a new empty object, and then invalidates the `App` widget. The reason that `_workerData` is not updated in place is because Dojo 2 decides whether a new render is needed by comparing the previous value of a property to the current value. If we are modifying the existing value then any comparison performed would report that the previous and current values are identical.
 

@@ -3,7 +3,7 @@
 	.page-wrapper {
 		overflow: hidden;
 	}
-	
+
 	.footer {
 		display: none;
 	}
@@ -60,7 +60,7 @@
 		background: $light;
 		margin-bottom: 1.5rem;
 		padding: 1rem;
-		
+
 		pre[class*="language-"] {
 			margin-bottom: 0;
 		}
@@ -74,7 +74,7 @@
 					opacity: 1;
 				}
 			}
-			
+
 
 			&.hidden {
 				height: 0;
@@ -111,7 +111,7 @@
 		clear: both;
 	}
 
-	
+
 	.instruction {
 		border-top: 2px solid $color-border;
 		font-weight: bold;
@@ -130,5 +130,33 @@
 		border: 0;
 		@extend .button.is-primary;
 		font-size: 0.85rem;
+	}
+
+	article.aside {
+		max-width: 40%;
+		float: right;
+		background-color: $primary;
+		border: 1px solid $color-border;
+		margin: 1em;
+		padding: 0.5em;
+		border-radius: 0.3em;
+
+		p{
+			font-size: 0.8rem;
+			margin: 0;
+			text-align: start;
+		}
+
+		strong {
+			font-size: 1rem;
+		}
+	}
+
+	.half-width {
+		width: 50%;
+	}
+
+	.center {
+		text-align: center;
 	}
 }
