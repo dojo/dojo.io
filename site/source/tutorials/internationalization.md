@@ -4,9 +4,9 @@ title: Internationalization
 overview: It is increasingly rare that applications reach a single audience that lives in a single region and speaks a single language. This article describes the tools Dojo 2 provides to guarantee an application can be adapted to all users, regardless of their language or address.
 ---
 
-## Philosophy and Approach
+## Philosophy and approach
 
-Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2's core concerns. `@dojo/i18n`, Dojo 2's internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. While `@dojo/i18n` can be used independently from the rest of Dojo 2, most applications will also rely on `@dojo/widget-core` and `@dojo/cli-build-webpack` to simplify internationalization.
+Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2's core concerns. `@dojo/i18n`, Dojo 2's internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. Rather than reinvent the wheel, Dojo 2 delegates to the excellent [Globalize.js](https://github.com/globalizejs/globalize) library wherever possible. In addition to formatters and parsers for working with localized dates, times, numbers, and units, Globalize.js also includes an implementation of the [ICU `MessageFormat`](http://userguide.icu-project.org/formatparse/messages), which makes it possible to format messages based on locale-specific variables like gender and count. While `@dojo/i18n` can be used independently from the rest of Dojo 2, most applications will also rely on `@dojo/widget-core` and `@dojo/cli-build-webpack` to simplify internationalization.
 
 As we will see below, the general process for internationalizing a Dojo 2 application can be outlined as follows:
 
@@ -16,7 +16,7 @@ As we will see below, the general process for internationalizing a Dojo 2 applic
 4. Delegate formatting to the appropriate `@dojo/i18n` methods when rendering any value that may need to be localized.
 5. Update the application's configuration settings to ensure all required data are included in the build.
 
-## Reading and Setting the Application's Locale
+## Reading and setting the application's locale
 
 While any widget can have its own dedicated locale (see below), every Dojo 2 application has a single root locale, which can be changed at any point. By default, this root locale is set to that of the user's environment, but can be set to a particular locale at any time. All functionality related to reading and setting the application locale is provided by `@dojo/i18n/i18n`.
 
@@ -30,7 +30,7 @@ switchLocale('ja');
 console.log(i18n.locale); // 'ja'
 ```
 
-Since Dojo 2 uses a reactive architecture, an `observeLocale` method is provided to observe changes to the application locale. It accepts an [Observable](https://github.com/tc39/proposal-observable) whose `next` method is passed the new locale.
+Since Dojo 2 uses a [reactive architecture](./comingsoon.html), an `observeLocale` method is provided to observe changes to the application locale. It accepts an [Observable](https://github.com/tc39/proposal-observable) whose `next` method is passed the new locale.
 
 ```typescript
 import { observeLocale, switchLocale } from '@dojo/i18n/i18n';
@@ -49,11 +49,11 @@ switchLocale('es');
 subscription.unsubscribe();
 ```
 
-**Note**: As the previous example hints at, changing the application locale with `switchLocale` does not change the `<html lang>` attribute. There are two reasons for this: first, DOM updates are beyond the purview of `@dojo/i18n`; second, the application might consist of only a portion of the total rendered DOM.
+>**Note**: As you may have noticed from the previous example, changing the application locale with `switchLocale` does not change the `<html lang>` attribute. There are two reasons for this: first, DOM updates are beyond the purview of `@dojo/i18n`; second, the application might consist of only a portion of the total rendered DOM.
 
-## Loading CLDR Data
+## Loading CLDR data
 
-<!-- TODO: cli-build-webpack will be updated to read CLDR paths from the .dojorc. Update this section with the appropriate data when that change has been released. -->
+<!-- TODO: This section will require changes once planned updates to cli-build-webpack are released: https://github.com/dojo/dojo.io/issues/179 -->
 
 Most functionality requires [CLDR data](https://github.com/unicode-cldr/), without which errors will be thrown. However, no CLDR data are included by Dojo 2, both due to the size of the complete CLDR data and to prevent tying applications to a specific version of the CLDR. All CLDR data must be registered with the i18n ecosystem via `@dojo/i18n/cldr/load.default` before the corresponding formatters can be used. This function accepts either a JSON object of CLDR data, or an array of paths to JSON files that will be loaded and registered. This same module also exposes an `isLoaded` function that can be used to determine whether specific data have been registered.
 
@@ -75,7 +75,7 @@ loadCldrData([
 });
 ```
 
-## Message Translations
+## Message translations
 
 The task most developers associate with internationalization is providing locale-specific message translations. Dojo 2 applications package translations into one or more bundles, each with a set of default translations and any number of locale-specific translations. Message loading and formatting is provided by `@dojo/i18n/i18n`. The default export accepts a bundle (see below) and an optional locale, and returns a promise to the loaded messages. If a locale is not provided, the root locale is assumed.
 
@@ -88,7 +88,7 @@ i18n(bundle, 'fr').then((messages) => {
 });
 ```
 
-### Bundle Format
+### Bundle format
 
 Translation bundles in Dojo 2 are separated into two components: a required base module containing default values for all possible messages provided by the bundle, and individual modules for each supported locale. While not required, it is a best practice to place all message bundles under the `src/nls` directory. The base module must expose a `default` export, which must be an object, and which must contain the following:
 
@@ -143,9 +143,9 @@ i18n(greetings).then((messages) => {
 });
 ```
 
-### Locale Resolution
+### Locale resolution
 
-Locales are resolved from most-specific to least specific. Continuing with our previous example, if the user's locale is `ar-JO` (Jordanian Arabic), then the `locales` array provided by the default greetings bundle will be inspected for a locale exactly matching `ar-JO`. Since the greetings bundle does not contain translations specific to Jordanian Arabic, those provided for `ar` are used instead. If, however, the locale does not match any supported by the bundle, then the default messages are used.
+Locales are resolved from most to least specific. Continuing with our previous example, if the user's locale is `ar-JO` (Jordanian Arabic), then the `locales` array provided by the default greetings bundle will be inspected for a locale exactly matching `ar-JO`. Since the greetings bundle does not contain translations specific to Jordanian Arabic, those provided for `ar` are used instead. If, however, the locale does not match any supported by the bundle, then the default messages are used.
 
 ```typescript
 // "src/nls/ar-JO/greetings.ts"
@@ -179,7 +179,7 @@ i18n(greetings, 'ar-JO').then((messages) => {
 });
 ```
 
-### Formatting Messages
+### Formatting messages
 
 `@dojo/i18n/i18n` exposes two methods used to format messages: `formatMessage`, which can be used to format a message immediately, and `getMessageFormatter`, which returns a function that can be used to format the same message string multiple times with different options. Dojo 2 supports the [ICU `MessageFormat`](http://userguide.icu-project.org/formatparse/messages) (see below), but that requires CLDR data, and may not be required by every application. Therefore, by default, these two methods use simple variable replacement, but switch to the more robust format once the [`likelySubtags`](https://github.com/unicode-cldr/cldr-core/blob/master/supplemental/likelySubtags.json) and [`plurals-type-cardinal`](https://github.com/unicode-cldr/cldr-core/blob/master/supplemental/plurals.json) CLDR data have been loaded.
 
@@ -251,9 +251,9 @@ loadCldrData([
 });
 ```
 
-## Date, Number, and Unit Formatting and Parsing
+## Date, number, and unit formatting and parsing
 
-Dojo 2 provides several helpers to facilitate formatting and parsing dates, numbers, and units for the user's locale. Rather than reinvent the wheel, Dojo 2 delegates to the excellent [Globalize.js](https://github.com/globalizejs/globalize) library wherever possible. Since the templates for formatting and parsing data are supplied by the CLDR, each formatter and parser requires that specific CLDR data have been loaded. The exact requirements are detailed in the [`@dojo/i18n` README](https://github.com/dojo/i18n#loading-cldr-data).
+Dojo 2 provides several helpers to facilitate formatting and parsing dates, numbers, and units for the user's locale. As mentioned earlier, Dojo 2 relies on [Globalize.js](https://github.com/globalizejs/globalize) wherever possible. Since the templates for formatting and parsing data are supplied by the CLDR, each formatter and parser requires that specific CLDR data have been loaded. The exact requirements are detailed in the [`@dojo/i18n` README](https://github.com/dojo/i18n#loading-cldr-data).
 
 The available formatting and parsing methods fall into two categories: those methods that accept a value and immediately return the formatted or parsed value based on the provided options, and those that return a method that can be reused to format different values based on the same options. With few exceptions noted below, each method has the same signature: a value to format or parse, an optional configuration object, and optional locale. If no locale is provided, then the root locale is assumed.
 
@@ -267,7 +267,7 @@ getFormatter<T, U, V>(options?: U, locale?: string): (value: T) => V;
 getFormatter<T, V>(locale?: string): (value: T) => V;
 ```
 
-### Date and Time Formatting
+### Date and time formatting
 
 The `@dojo/i18n/date` module provides several functions for formatting and parsing dates and times. Each method corresponds directly to a `Globalize.js` method, and uses the same options available to the Globalize.js methods.
 
@@ -336,11 +336,11 @@ switchLocale('fr');
 parseDate('samedi, 1 avril 2017', { date: 'full' }); // Date(2017, 3, 1)
 ```
 
-### Number and Currency Formatting
+### Number and currency formatting
 
 Number and currency formatters and parsers are provided by the `@dojo/i18n/number` module. As with the date and time methods, each method corresponds directly to a `Globalize.js` method, and uses the same options available to those Globalize.js methods.
 
-* `formatCurrency`: formats a number as a currency, delegating to [`Globalize.formatCurrency`](https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md).
+* `formatCurrency`: formats a number as a currency, and delegates to [`Globalize.formatCurrency`](https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md).
 * `formatNumber`: formats a number according to the specified options, and delegates to [`Globalize.formatNumber`](https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-formatter.md).
 * `getCurrencyFormatter`: returns a function that formats a number as a currency, and delegates to [`Globalize.currencyFormatter`](https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md).
 * `getNumberFormatter`: returns a function that formats a number according to specified options, and delegates to [`Globalize.numberFormatter`](https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-formatter.md).
@@ -397,7 +397,7 @@ pluralize(8); // many
 pluralize(11); // other
 ```
 
-### Unit Formatting
+### Unit formatting
 
 `@dojo/i18n/unit` exposes two methods that provide locale-specific unit formatting:
 
@@ -425,7 +425,7 @@ formatUnit(5280, 'foot', { form: 'narrow' }); // '5,280′'
 
 While `@dojo/i18n` is designed to be an independent package, nearly every Dojo 2 application will have a view component. So [`@dojo/widget-core`](https://github.com/widget-core/) provides a custom mixin (`@dojo/widget-core/mixins/I18n`) to make working with `@dojo/i18n` more friendly. Widgets that have incorporated this mixin can localize message bundles by passing them to the `localizeBundle` method during rendering. If messages for the widget's locale have not been loaded yet, then the default messages are returned, and the widget is invalidated once the locale-specific messages have loaded. The object returned by the `localizeBundle` method contains all the messages, as well as a format method that takes a message key as well as any options. If message formatting is not required, then messages can be directly accessed (e.g., `messages.hello`).
 
-In addition to the `localizeBundle` method, `@dojo/widget-core/mixins/I18n` introduces two properties: a boolean `rtl` property and a string `locale` property. The boolean `rtl` property determines whether the text decoration is right-to-left (`true`) or left-to-right(`false`: the default). The `locale` property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no `locale` property is included, widgets assume the root application locale (`i18n.locale`). Note, however, that since Dojo 2 widgets are controlled, child widgets do not automatically inherit the locale from their parent. Parents must pass the correct locale as needed to child widgets; otherwise, a child widget will use the application locale while its parent uses a custom locale.
+In addition to the `localizeBundle` method, `@dojo/widget-core/mixins/I18n` introduces two properties: a boolean `rtl` property and a string `locale` property. The boolean `rtl` property determines whether the text decoration is right-to-left (`true`) or left-to-right(`false`: the default). The `locale` property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no `locale` property is included, widgets assume the root application locale (`i18n.locale`). Note, however, that since [Dojo 2 widgets are controlled](./003_creating_widgets/), child widgets do not automatically inherit the locale from their parent. Parents must pass the correct locale as needed to child widgets; otherwise, a child widget will use the application locale while its parent uses a custom locale.
 
 ```typescript
 import I18nMixin, { I18nProperties } from '@dojo/widget-core/mixins/I18n';
@@ -447,9 +447,9 @@ export default class Greeting extends GreetingBase<GreetingProperties> {
 }
 ```
 
-## The Build Process
+## The build process
 
-Dojo 2 uses [webpack](https://webpack.js.org) to bundle applications. Since Dojo 2's packages are designed to function independently, a few extra steps are required to ensure that CLDR data and locale-specific message translations are included in the build. Dojo 2's build is configured via a `.dojorc` at the project's root directory. `.dojorc` is a JSON file containing settings defined under specific namespaces. All build options are specified under the `build-webpack` namespace, and the following are specific to internationalization:
+Dojo 2 uses [webpack](https://webpack.js.org) to bundle applications. Since Dojo 2's packages are designed to function independently, a few extra steps are required to ensure that CLDR data and locale-specific message translations are included in the build. [Dojo 2's build](./006_deploying_to_production/) is configured via a `.dojorc` at the project's root directory. `.dojorc` is a JSON file containing settings defined under specific namespaces. All build options are specified under the `build-webpack` namespace, and the following are specific to internationalization:
 
 * `locale`: the default locale for the application
 * `supportedLocales`: an optional array of additional locales to include in the build
@@ -482,7 +482,7 @@ const supportedLocales = [ 'en', 'fr', 'es' ];
 const rootLocale = i18n.locale.split('-')[0];
 const isLocaleSupported = supportedLocales.some(locale => locale === rootLocale);
 
-// If the user's environment's locale is not one of the supported locales,
+// If the locale of the user's environment is not one of the supported locales,
 // then switch to the default locale.
 if (!isLocaleSupported) {
 	switchLocale(defaultLocale);
