@@ -1,3 +1,8 @@
+---
+layout: false
+title: Reactive programming
+overview: Dojo 2 embracees reactive programming patterns like top-down property propagation. This article gives a high level overview of the reactive patterns in Dojo 2 and how they are different from more traditional patterns.
+---
 # Reactive programming
 
 Reactive programming is concenered with handling change, specifically, the _propagation of change_. As web applications have become more and more asynchronous, keeping track of application state has become increasingly complex. With traditional programming patterns, we rely on event listeners or try to keep track of application state manually.
