@@ -6,13 +6,13 @@ overview: In this tutorial, you will learn how to use the Dojo 2 theming and sty
 
 {% section 'first' %}
 
-# Working with forms
+# Theming
 
 ## Overview
-This tutorial will extend on [Responding to events](../004_user_interactions/), where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
+This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, write a theme and apply it to our application. This will be done using the powerful theming system that is baked into Dojo 2.
 
 ## Prerequisites
-You can [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.
+You can [download](../assets/007_themeing-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -20,175 +20,117 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% section %}
 
-## Forms
+## Making our widgets themeable
 
-{% task 'Create a form.' %}
+{% task 'Make our widgets themeable' %}
 
-The first step to allowing the user to create new workers is to create a form. This form will contain the input elements that will accept the new worker's initial settings.
+In order to theme our widgets, we must ensure that they each extent `ThemeableMixin` and should change their top level class name to `root`. `ThemeableMixin` provides us with a `this.classes` function that can lookup class names in the provided `theme` file and applies classnames appropaitely. We change the top level classnames to `root` in order to provice a predictable way to target the outernode of a iwgdte.
 
-{% instruction 'Add the following to `WorkerForm.ts`.' %}
+{% instruction 'Add the following to `Banner.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-4,7,14-15,19-27,29,42-43,48-51,85-87 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:3-13 %}
 
 {% aside 'Reminder' %}
 If you cannot see the application, remember to run `dojo build -w` to build the application and start the development server.
 {% endaside %}
 
-This widget will render an empty form with a `submit` handler that prevents the form from being submitted to the server. Before we continue to expand on this starting point though, let's integrate the form into the application so we can observe the form as we add more features.
+This `Banner` widget will now have access to the class files in `banner.m.css` and can receive a `theme`. We use the `root` class here as detailed above to ensure that the theme we create can easily target the correct node.
 
-{% instruction 'Add the following widget CSS rules to `workerForm.css`.' %}
+{% instruction 'Create a new css file for `Banner` named `banner.m.css`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.css' lang:css %}
+We will create an empty `root` class for now as our base theme does not require any styles to be added to the `banner`.
 
-{% instruction 'Now, add the `WorkerForm` to the `App` class.' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/banner.m.css' lang:css %}
 
-Import the `WorkerForm` class and the `WorkerFormData` interface and update the `render` method to draw the `WorkerForm`. It should be included after the `Banner` and before the `WorkerContainer` so the `render` method should look like this:
+{% instruction 'Now, lets look at changing `WorkerForm`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:47-50,54-59 %}
+`WorkerForm` already uses the `ThemeableMixin` and has a `workerForm` class on it's root node. Lets go ahead and change that to a `root` class, but while we're there, we will create a `rootFixed` class too and apply that as a `fixed` class to the root node. This passes a classname to the theming system that cannot be changed or overridden via a theme and ensures that structured or nested styles are not lost when a theme is used.
 
-Now, open the application in a browser and inspect it via the browser's developer tools. Notice that the empty form element is being rendered onto the page as expected.
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:48-51 %}
 
-Next, we'll add the visual elements of the form.
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.m.css' lines:1-17 lang:css %}
+
+If you open the application in a webpage it should still look and work the same as before.
+
+{% instruction 'Why don\'t you go ahead and make the same changes to `Worker` and `WorkerContainer`' %}
+
+Next, we'll start to create a theme.
 
 {% section %}
 
-## Form widgets
+## Creating a Theme
 
-{% task 'Populate the form.' %}
+{% task 'Create a theme directory' %}
 
-Our form will contain fields allowing the user to enter the worker's first name, last name and e-mail address. It will also contain a save button that will use the form's data to create a new worker. We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
+Lets go ahead and create a `theme` directory under your project `src`. This is where we will store our themes. For the purpose of this tutorial, we will create a `dojo` theme. Create a `theme.ts` under `src/themes/dojo/theme.ts`. This is the `theme` file into which we will import our themed css files and export the keyed theme for consumption by our widgets.
 
-{% instruction 'Add the following imports to `WorkerForm.ts`.' %}
+{% instruction 'Theme the worker widget' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:5-6 %}
+In order to theme the `worker` widget, we will need to create a `worker.m.css` file within our theme directory and and use it within our `theme.ts` file. The naming here is important as the object key of the exported theme must match the naming of the widget's css file.
 
-{% aside 'Note' %}
-	If you have been working with the same project throughout this series, you might get some errors when you try to import the widgets. If you do, add a new dependency to the `project.json` file: "@dojo/widgets":"2.0.0-alpha.23" and rerun `npm install` to install Dojo 2's standard widget library.
-{% endaside %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,9,11,16 %}
 
-We are importing the `Button` class that will be used to provide the form's submit button and the `TextInput` class that will provide the data entry fields for the worker data.
+Lets start by creating a red `worker` so that we can see our theme has been applied correctly.
 
-{% instruction 'Use those classes and a few virtual DOM nodes to add the visual elements of the form.' %}
-
-```ts
-	protected render() {
-		return v('form', {
-			classes: this.classes(css.workerForm),
-			onsubmit: this._onSubmit
-		}, [
-			v('fieldset', { classes: this.classes(css.nameField) }, [
-				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
-				w(TextInput, {
-					key: 'firstNameInput',
-					label: {
-						content: 'First Name',
-						hidden: true
-					},
-					placeholder: 'Given name',
-					required: true
-				}),
-				w(TextInput, {
-					key: 'lastNameInput',
-					label: {
-						content: 'Last Name',
-						hidden: true
-					},
-					placeholder: 'Surname name',
-					required: true
-				})
-			]),
-			w(TextInput, {
-				label: 'Email address',
-				type: 'email',
-				required: true
-			}),
-			w(Button, { content: 'Save' })
-		]);
-	}
+```css
+/* worker.m.css */
+.root {
+	background: red;
+}
 ```
 
-At this point, the user interface for the form is available, but it does not do anything since we have not specified any event handlers. In the [last tutorial](../004_user_interactions/), we learned how to add event handlers to custom widgets by assigning a method to an event. When using pre-built widgets, however, we pass the handlers as properties. For example, we are going to need a way to handle each text field's `input` event. To do that, we provide the desired handler function as the `onInput` property that is passed to the widget.
+In order to apply our theme, we will need to use a `themeInjector`. Alternatively we *could* set `theme` on the top level widget and pass it down via properties to every child widget but this approach is not very elegant. We can create a `themeInjector` using the `registerThemeInjector` function exported by `ThemeableMixin`. So let's go ahead and update our `main.ts` file to import our theme and create a `themeInjector`.
 
-{% instruction 'Update the `render` method once again.' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:43-86 %}
+If you open up your web browser now you should see that the `worker` backgrounds are now `red`.
 
-This form of the `render` method now does everything that we need: it creates the user interface and registers event handlers that will update the application as the user enters information. However, we need to add a few more methods to the `WorkerForm` to define the event handlers.
+{% instruction 'Use variables and complete the worker theme' %}
 
-{% instruction 'Add these methods:' %}
+The Dojo 2 build system allows us new `css` features such as `css-custom-properties` by using `postCss` to process our `.m.css` files. We can use these to add variables to `worker.m.css` and to complete it's theme.
+Let go ahead and create `themes/dojo/variables.css` (notice that this file does not have a `.m.css` extension as it is not a `css-module` file).
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:31-41 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/variables.css' lang:css %}
 
-The `render` method starts by decomposing the properties into local constants. We still need to define those properties.
+We can now use these variables in `worker.m.css` to create our fully themed `worker`.
 
-{% instruction 'Update the `WorkerFormProperties` interface to include them.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:9-19 %}
-
-Most of these properties should be familiar by now, but notice the type signature for the `formData` property and the argument of the `onFormInput` property. They're both objects of type `Partial<WorkerFormData>`. The `Partial` type will convert all of the properties of the provided type (`WorkerFormData` in this case) to be optional. This will inform the consumer that it is not guaranteed to receive all of the `WorkerFormData` properties every time - it should be prepared to receive only part of the data and process only those values that it receives.
-
-There are two types of properties that we are using in this form. The `firstName`, `lastName` and `email` properties are grouped together in the `WorkerFormData` interface and are going to set the values that are displayed in the form fields. The `onFormInput` and `onFormSave` properties expose the events that the `WorkerForm` widget can emit. To see how these different property types are used, let's examine the properties that are being passed into the first `TextInput` widget:
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-64 %}
-
-The first thing that we see is a `key` property. As mentioned before, a key is necessary whenever more than one of the same type of widget or virtual DOM element will be rendered by a widget. The `label`, `placeholder`, and `required` fields map to their expected properties.
-
-The `value` property renders the value of the field that is passed into the widget via its properties. Notice that there is no code that manipulates this value within the widget. As parts of a [reactive framework](https://en.wikipedia.org/wiki/Reactive_programming), Dojo 2 widgets do not normally update their own state. Rather, they inform their parent that a change has occurred via events or some other mechanism. The parent will then pass updated properties back into the widget after all of the changes have been processed. This allows Dojo 2 applications to centralize data and keep the entire application synchronized.
-
-The final property assigns the `onFirstNameInput` method to the `onInput` property. The `onFirstNameInput` method, in turn, calls the `onFormInput` property, informing the `WorkerForm`'s parent that a change has occurred. This is another common pattern within Dojo 2 applications - the `WorkerForm` does not expose any of the components that it is using to build the form. Rather, the `WorkerForm` manages its children internally and, if necessary, calls its event properties to inform its parent of any changes. This decouples the consumers of the `WorkerForm` widget and frees them from having to understand the internal structure of the widget. Additionally, it allows the `WorkerForm` to change its implementation without affecting its parent as long as it continues to fulfill the `WorkerFormProperties` interface.
-
-The last change that needs to be made in the `WorkerForm` is to update the `_onSubmit` method to delegate to the `onFormSave` property when it is called.
-
-{% instruction 'Replace the `_onSubmit` method with.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:26-29 %}
-
-The form is now ready to be integrated into the application. We will do that in the next step.
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/worker.m.css' lang:css %}
 
 {% section %}
 
-## Using forms
+## Theming Dojo widgets
 
-{% task 'Integrate the form into the application.' %}
+So far in this tutorial we have themed our custom `worker` widget, but how do we target dojo widgets with our theme. To demonstrate this, we will theme the `workerForm` widget as it contains both domNodes and dojo widgets to be themed.
 
-Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We will add a private property to the `App` to store this state, and a method to update the state and re-render the parts of the application that have changed. As the application grows and needs to store more data, using private properties on a widget class can become difficult to maintain. Dojo 2 uses containers and injectors to help manage the complexities of dealing with state in a large application. For more information, refer to the [Containers and Injecting State](../comingsoon.html) article.
+{% instruction 'Lets create `workerForm.m.css` and include it in our theme.ts' %}
 
-{% instruction 'Add `_newWorker` as a private property.' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/workerForm.m.css' lang:css %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:10 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,9,11,13,16 %}
 
-Notice that `_newWorker` is a `Partial<WorkerFormData>`, since it may include only some, or none, of the `WorkerFormData` interface properties.
+This should be familiar to you by now as we covered theming `worker` in the last section. Now to theme the Dojo 2 `TextInput` that `WorkerForm` uses, we will need to create a `dojoTextInput.m.css` file and export it from `theme.ts` using a special theme key which is prefixed with `dojo-`. This prefix helps to ensure that our own widget theme files do not clash with dojo specific widgets and makes it easy to recognise when we are targeting one of the other.
 
-{% instruction 'Update the `render` method to populate the `WorkerForm`'s properties.' %}
+{% instruction 'Create `dojoTextInput.m.css` and emport it from `theme.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:45-57 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/dojoTextInput.m.css' lang:css %}
 
-The `onFormInput` handler is calling the `App`'s `_onFormInput` method.
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,6,9,11,13,14,16 %}
 
-{% instruction 'Add the `_onFormInput` method.' %}
+In this example we are introducing another powerful part of the Dojo 2 theming system, `composes`. Composes comes from the `css-module` specification and allows you to take styles from one class selector and apply them to another. In this case we are saying that `root` of a `TextInput` (the label text in this case), should look the same as the `nameLabel` class in our `WidgetForm`. This approach can be very useful when creating multiple themes from a baseTheme and avoids re-writing / re-specifying styles in multiple places.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:39-45 %}
+If you open up your web browser now you should see that the Text Inputs at the top of the form have been styled.
 
-The `_onFormInput` method updates the `_newWorker` object with the latest form data and then invalidates the app so that the form field will be re-rendered with the new data.
+{% instruction 'Why dont you go ahead and create a theme file for dojo button' %}
 
-The `onFormSave` handler calls the `_addWorker` method.
-
-{% instruction 'Add the `_addWorker` method to the `App` class.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:33-37 %}
-
-The `_addWorker` method sets `_workerData` to a new array that includes the `_newWorker` object (which is the current `WorkerFormData`), sets `_newWorker` to a new empty object, and then invalidates the `App` widget. The reason that `_workerData` is not updated in place is because Dojo 2 decides whether a new render is needed by comparing the previous value of a property to the current value. If we are modifying the existing value then any comparison performed would report that the previous and current values are identical.
-
-With the `WidgetForm` in place and the `App` configured to handle it, let's try it. For now let's test the [happy path](https://en.wikipedia.org/wiki/Happy_path) by providing the expected values to the form. Provide values for the fields, for example: "Suzette McNamara (smcnamara359@email.com)" and click the `Save` button. As expected, the form is cleared and a new `Worker` widget is added to the page. Clicking on the new `Worker` widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.
+Have a go at creating a theme file for the Dojo button thats used on `WidgetForm`. If you need help you can see the finished `dojoButton.m.css` file [here](demo/finished/biz-e-corp/src/themes/dojo/dojoButton.m.css).
 
 {% section %}
 
 ## Summary
 
-In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2's reactive programming style allows an application's state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2's widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.
+In this tutorial, we learned how to create a theme and apply a theme to both Dojo and custom widgets using the themeInjector. We learnt how to use some of the functionality of the Dojo 2 theming system to apply variables and to use `composes` to share styles between components.
 
-If you would like, you can download the completed [demo application](../assets/005_form_widgets-finished.zip) from this tutorial.
-
-In [Deploying to production](../006_deploying_to_production/), we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.
+If you would like to you can continue to work with the theme we have started here to tweak and change things as you please.
+You can download the completed [demo application](../assets/007_theming-finished.zip) from this tutorial.
 
 {% section 'last' %}

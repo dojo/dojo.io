@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
-import * as css from '../styles/worker.css';
+import * as css from '../styles/worker.m.css';
 
 export interface WorkerProperties {
 	firstName?: string;
@@ -36,9 +36,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 				classes: this.classes(css.workerFront),
 				onclick: this.flip
 			}, [
-				v('img', {
-					classes: this.classes(css.image),
-						src: 'images/worker.svg' }, []),
+				v('div', { classes: this.classes(css.image) }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])
@@ -59,27 +57,26 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 				classes: this.classes(css.workerBack),
 				onclick: this.flip
 			}, [
-				v('img', {
-					classes: this.classes(css.imageSmall),
-					src: 'images/worker.svg'
-				}),
-				v('div', {
-					classes: this.classes(css.generalInfo)
-				}, [
+				v('div', { classes: this.classes(css.heading) }, [
+					v('div', { classes: this.classes(css.imageSmall) }),
 					v('div', {
-						classes : this.classes(css.label)
-					}, ['Name']),
-					v('div', [`${lastName}, ${firstName}`]),
-					v('div', {
-						classes: this.classes(css.label)
-					}, ['Email']),
-					v('div', [`${email}`]),
-					v('div', {
-						classes: this.classes(css.label)
-					}, ['Avg. Time per Task']),
-					v('div', [`${timePerTask}`])
+						classes: this.classes(css.generalInfo)
+					}, [
+						v('div', {
+							classes : this.classes(css.label)
+						}, ['Name']),
+						v('div', [`${lastName}, ${firstName}`]),
+						v('div', {
+							classes: this.classes(css.label)
+						}, ['Email']),
+						v('div', [`${email}`]),
+						v('div', {
+							classes: this.classes(css.label)
+						}, ['Avg. Time per Task']),
+						v('div', [`${timePerTask}`])
+					])
 				]),
-				v('div', [
+				v('div', { classes: this.classes(css.tasks) }, [
 					v('strong', ['Current Tasks']),
 					v('div', tasks.map(task => {
 						return v('div', { classes: this.classes(css.task) }, [ task ]);

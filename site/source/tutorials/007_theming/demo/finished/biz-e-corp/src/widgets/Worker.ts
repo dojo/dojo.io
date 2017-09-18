@@ -36,8 +36,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 				classes: this.classes(css.workerFront).fixed(css.workerFrontFixed),
 				onclick: this.flip
 			}, [
-				v('div', {
-					classes: this.classes(css.image) }, []),
+				v('div', { classes: this.classes(css.image) }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])

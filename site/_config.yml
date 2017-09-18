@@ -62,36 +62,37 @@ authors:
 # https://github.com/celsomiranda/hexo-renderer-yasr
 
 yasr:
-  axis: true              # Enables Axis (Recommends Nib) 
-  compress: false         # Disables Compression 
-  jeet: false              # Enables Jeet 
-  nib: true               # Enables Nib 
-  rupture: true           # Enables Rupture 
-  typographic: false       # Enables Typographic 
+  axis: true              # Enables Axis (Recommends Nib)
+  compress: false         # Disables Compression
+  jeet: false              # Enables Jeet
+  nib: true               # Enables Nib
+  rupture: true           # Enables Rupture
+  typographic: false       # Enables Typographic
 
 # Hexo Filter Cleanup
 # https://github.com/mamboer/hexo-filter-cleanup
 hfc_useref:
   enable: true
   concat: true
-  exclude: 
+  exclude:
 
 hfc_css:
   enable: true
-  exclude: 
+  exclude:
     - '*.min.css'
+    - '**/tutorials/**/*.m.css'
 
 hfc_js:
   enable: true
   mangle: true
   output:
   compress:
-  exclude: 
+  exclude:
     - '*.min.js'
 
 hfc_html:
   enable: true
-  exclude: 
+  exclude:
 
 hfc_img:
   enable: true
