@@ -178,6 +178,6 @@ We have added a new property named `filter` to `WorkerContainerProperties` in `W
 
 Dojo 2 routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a high order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.
 
-If you would like, you can download the completed [demo application](../assets/1030_routing.zip) from this tutorial.
+If you would like, you can download the completed [demo application](../assets/1030_routing-finished.zip) from this tutorial.
 
 {% section 'last' %}

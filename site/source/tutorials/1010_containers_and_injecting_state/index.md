@@ -12,7 +12,7 @@ overview: In this tutorial, you will learn what Containers and Injectors are and
 
 Modern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of state. While Dojo 2's widgets can manage application state, encapsulation and a clean separation of concerns may be lost if widgets manage their own visual representations, listen for interactions from the user, manage their children, and keep track of state information. Additionally, using widgets to pass state through an application often forces the widgets to be aware of state information for the sole purpose of passing that data down to their children. To allow widgets to remain focused on their primary roles of providing a visual representation of themselves and listening for user interactions, Dojo 2 provides two classes, `Container` and `Injector`, that are designed to coordinate an application's external state and connect and map this state to properties.
 
-In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can [download](../assets/1010_form_widgets-initial.zip) the demo project to get started.
+In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can [download](../assets/1010_containers_and_injecting_state-initial.zip) the demo project to get started.
 
 ## Prerequisites
 
@@ -166,6 +166,6 @@ Notice that the `WorkerForm` and `WorkerContainer` widgets were not changed at a
 
 Since Dojo 2 widgets are TypeScript classes, they are capable of filling a large number of roles, including state management. With complex widgets, however, combining the responsibilities to manage the widget's visual representation as well as the state of its children can make them difficult to manage and test. Dojo 2 defines `Injectors` and `Containers` as a way to externalize state management from the app and centralize that management into classes that are designed specifically to fill that role.
 
-If you would like, you can download the finished [demo application](../assets/1010_form_widgets-finished.zip) to review.
+If you would like, you can download the finished [demo application](../assets/1010_containers_and_injecting_state-finished.zip) to review.
 
 {% section 'last' %}
