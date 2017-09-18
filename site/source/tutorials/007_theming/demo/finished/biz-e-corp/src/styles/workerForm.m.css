@@ -1,15 +1,18 @@
-.workerForm {
+.root {
 	margin-bottom: 40px;
+}
+
+.rootFixed {
 	text-align: center;
 }
 
-.workerForm fieldset,
-.workerForm label {
+.rootFixed fieldset,
+.rootFixed label {
 	display: inline-block;
 	text-align: left;
 }
 
-.workerForm label {
+.rootFixed label {
 	margin-right: 10px;
 }
 

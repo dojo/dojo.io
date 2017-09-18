@@ -1,3 +1,17 @@
+.root {
+	margin: 0 10px 40px;
+	max-width: 350px;
+	min-width: 250px;
+	flex: 1 1 calc(33% - 20px);
+	position: relative;
+}
+
+.rootFixed {
+	/* flip transform styles */
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+
 .generalInfo {
 	box-sizing: border-box;
 	display: inline-block;
@@ -11,12 +25,21 @@
 	margin: 0 auto 20px;
 	max-width: 250px;
 	width: 100%;
+	min-height: 250px;
+	background: url('../images/worker.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .imageSmall {
 	margin-bottom: 20px;
 	vertical-align: middle;
 	width: 40%;
+	height: 40%;
+	background: url('../images/worker.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
 }
 
 .label {
@@ -31,16 +54,12 @@
 	text-align: left;
 }
 
-.worker {
-	flex: 1 1 calc(33% - 20px);
-	margin: 0 10px 40px;
-	max-width: 350px;
-	min-width: 250px;
-	position: relative;
+.tasks {
 
-	/* flip transform styles */
-	perspective: 1000px;
-	transform-style: preserve-3d;
+}
+
+.heading {
+
 }
 
 .workerFront, .workerBack {
@@ -48,11 +67,22 @@
 	border-radius: 4px;
 	box-sizing: border-box;
 	padding: 30px;
+}
 
+.workerFrontFixed, .workerBackFixed {
 	/* flip transform styles */
 	backface-visibility: hidden;
 	transition: all 0.6s;
 	transform-style: preserve-3d;
+}
+
+.workerFrontFixed {
+	transform: rotateY(0deg);
+	z-index: 2;
+}
+
+.workerBackFixed {
+	transform: rotateY(-180deg);
 }
 
 .workerBack {
@@ -61,20 +91,17 @@
 	left: 0;
 	position: absolute;
 	top: 0;
-	transform: rotateY(-180deg);
 	width: 100%;
 }
 
 .workerFront {
 	text-align: center;
-	transform: rotateY(0deg);
-	z-index: 2;
 }
 
-.reverse .workerFront {
+.reverse .workerFrontFixed {
 	transform: rotateY(180deg);
 }
 
-.reverse .workerBack {
+.reverse .workerBackFixed {
 	transform: rotateY(0deg);
 }

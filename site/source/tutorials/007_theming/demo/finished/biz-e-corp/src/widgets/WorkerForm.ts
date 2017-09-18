@@ -4,7 +4,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import Button from '@dojo/widgets/button/Button';
 import TextInput from '@dojo/widgets/textinput/TextInput';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormData {
 	firstName: string;
@@ -46,7 +46,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		} = this.properties;
 
 		return v('form', {
-			classes: this.classes(css.workerForm),
+			classes: this.classes(css.root).fixed(css.rootFixed),
 			onsubmit: this._onSubmit
 		}, [
 			v('fieldset', { classes: this.classes(css.nameField) }, [
@@ -81,7 +81,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				required: true,
 				onInput: this.onEmailInput
 			}),
-			w(Button, { }, [ 'Save' ])
+			w(Button, {}, [ 'Save' ])
 		]);
 	}
 }
