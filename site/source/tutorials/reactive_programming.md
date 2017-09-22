@@ -1,7 +1,7 @@
 ---
 layout: false
 title: Reactive programming
-overview: Dojo 2 embraces reactive programming patterns like top-down property propagation. This article gives a high level overview of the reactive patterns in Dojo 2 and how they are different from more traditional patterns.
+overview: Dojo 2 embraces reactive programming patterns like unidirectional property propagation. This article gives a high level overview of the reactive patterns in Dojo 2 and how they are different from more traditional patterns.
 ---
 # Reactive programming
 
@@ -37,19 +37,19 @@ With an event emitter, any interested widget can listen for updates to the accou
 
 ## Reactive approach
 
-Dojo 2 is built around unidirectional, top-down property propagation It is the parent widget's job to pass properties down to its children. In fact, a child widget has no direct reference to a parent widget! When a property changes, widgets are re-rendered (using an efficient virtual DOM) to reflect the updated state. 
+Dojo 2 is built around unidirectional, top-down property propagation where it is the parent widget's job to pass properties down to its children. In fact, a child widget has no direct reference to a parent widget! When a property changes, widgets are re-rendered (using an efficient virtual DOM) to reflect the updated state. 
 
 In our banking example, we simply provide the account balance as a property to the widget - and when the property changes, so does our user interface. The account balance is propagated down to the widgets that need it.
 
 ![Account Balance](resources/dojo2-reactive.png)
 
 ```typescript
-export interface AccountBalanceProperties extends WidgetProperties {
+export interface AccountBalanceProperties {
     balance: number;
 }
 
 class AccountBalance extends WidgetBase<AccountBalanceProperties> {
-    render() {
+    protected render() {
         const { balance } = this.properties;
         return v('span', {}, [ balance ]);
     }
