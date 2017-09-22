@@ -1,0 +1,1402 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/widget-core</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html " class="title">@dojo/widget-core</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+		<div class="tsd-page-title">
+			<div class="content-container">
+				<ul class="tsd-breadcrumb">
+					<li>
+						<a href="globals.html">Globals</a>
+					</li>
+				</ul>
+				<h1>  @dojo/widget-core
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row content-container">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="-dojo-widget-core">@dojo/widget-core</h1>
+				<p><a href="https://travis-ci.org/dojo/widget-core"><img src="https://travis-ci.org/dojo/widget-core.svg?branch=master" alt="Build Status"></a>
+					<a href="https://codecov.io/gh/dojo/widget-core"><img src="https://codecov.io/gh/dojo/widget-core/branch/master/graph/badge.svg" alt="codecov"></a>
+				<a href="https://badge.fury.io/js/%40dojo%2Fwidget-core"><img src="https://badge.fury.io/js/%40dojo%2Fwidget-core.svg" alt="npm version"></a></p>
+				<p>widget-core is a library to create powerful, composable user interface widgets.</p>
+				<ul>
+					<li><strong>Reactive &amp; unidirectional:</strong> widget-core follows core reactive principles to ensure predictable, consistent behavior.</li>
+					<li><strong>Encapsulated Widgets:</strong> Create independent encapsulated widgets that can be wired together to create complex and beautiful user interfaces.</li>
+					<li><strong>DOM Abstractions:</strong> widget-core provides API abstractions to avoid needing to access or manipulate the DOM outside of the reactive render life-cycle.</li>
+					<li><strong>I18n &amp; Themes:</strong> widget-core provides core mixins to enable internationalization and theming support for your widgets.</li>
+				</ul>
+				<hr>
+				<ul>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#features">Features</a><ul>
+							<li><a href="#basic-widgets">Basic Widgets</a><ul>
+									<li><a href="#rendering-a-widget-in-the-dom">Rendering a Widget in the DOM</a></li>
+									<li><a href="#widgets-and-properties">Widgets and Properties</a></li>
+									<li><a href="#composing-widgets">Composing Widgets</a></li>
+									<li><a href="#decomposing-widgets">Decomposing Widgets</a><ul>
+											<li><a href="#mixins">Mixins</a></li>
+											<li><a href="#styling--theming">Styling &amp; Theming</a></li>
+											<li><a href="#internationalization">Internationalization</a></li>
+											<li><a href="#key-principles">Key Principles</a></li>
+											<li><a href="#advanced-concepts">Advanced Concepts</a></li>
+											<li><a href="#advanced-properties">Advanced Properties</a></li>
+											<li><a href="#widget-registry">Widget Registry</a></li>
+											<li><a href="#render-lifecycle-hooks">Render Lifecycle Hooks</a></li>
+											<li><a href="#domwrapper">DOM Wrapper</a></li>
+											<li><a href="#meta-configuration">Meta Configuration</a></li>
+											<li><a href="#jsx-support">JSX Support</a></li>
+											<li><a href="#web-components">Web Components</a></li>
+											<li><a href="#api">API</a></li>
+											<li><a href="#how-do-i-contribute">How Do I Contribute?</a></li>
+											<li><a href="#setup-installation">Setup Installation</a></li>
+											<li><a href="#testing">Testing</a></li>
+											<li><a href="#licensing-information">Licensing Information</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<h2 id="installation">Installation</h2>
+				<p>To use @dojo/widget-core, install the package along with its required peer dependencies:</p>
+				<pre><code class="lang-shell">npm install @dojo/widget-core
+<span class="hljs-meta">
+#</span><span class="bash"> peer dependencies</span>
+npm install @dojo/has
+npm install @dojo/shim
+npm install @dojo/core
+npm install @dojo/i18n
+</code></pre>
+				<p>You can also use the <a href="https://github.com/dojo/cli">dojo cli</a> to create a complete Dojo 2 skeleton application.</p>
+				<h2 id="features">Features</h2>
+				<h3 id="basic-widgets">Basic Widgets</h3>
+				<p>Dojo 2 applications use the Virtual DOM (vdom) paradigm to represent what should be shown on the view. These vdom nodes are plain JavaScript objects that are more efficient to create from a performance perspective than browser DOM elements. Dojo 2 uses these vdom elements to synchronize and update the browser DOM so that the application shows the expected view.</p>
+				<p>There are two types of vdom within Dojo 2, the first are pure representations of DOM elements and are the fundamental building blocks of all Dojo 2 applications. These are called <code>HNode</code>s and are created using the <code>v()</code> function available from the <code>@dojo/widget-core/d</code> module.</p>
+				<p>The following will create a <code>HNode</code> that represents a simple <code>div</code> DOM element, with a text node child: <code>Hello, Dojo 2!</code>:</p>
+				<pre><code class="lang-ts">v(<span class="hljs-string">'div'</span>, [ <span class="hljs-string">'Hello, Dojo 2!'</span> ])
+</code></pre>
+				<p>The second vdom type, <code>WNode</code>, represent widgets. A widget is a class that extends <code>WidgetBase</code> from <code>@dojo/widget-core/WidgetBase</code> and implements a <code>render</code> function that returns one of the Dojo 2 vdom types (known as a <code>DNode</code>). Widgets are used to represent reusable, independent sections of a Dojo 2 application.</p>
+				<p>The following returns the <code>HNode</code> example from above from the <code>render</code> function:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> HelloDojo <span class="hljs-keyword">extends</span> WidgetBase {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, [ <span class="hljs-string">'Hello, Dojo 2!'</span> ]);
+    }
+}
+</code></pre>
+				<h4 id="rendering-a-widget-in-the-dom">Rendering a Widget in the DOM</h4>
+				<p>To display your new component in the view you will need to decorate it with some functionality needed to &quot;project&quot; the widget into the browser. This is done using the <code>ProjectorMixin</code> from <code>@dojo/widget-core/mixins/Projector</code>.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> Projector = ProjectorMixin(HelloDojo);
+<span class="hljs-keyword">const</span> projector = <span class="hljs-keyword">new</span> Projector();
+
+projector.append();
+</code></pre>
+				<p>By default the projector will attach the widget to the <code>document.body</code> in the DOM, but this can be overridden by passing a reference to the preferred parent DOM Element.</p>
+				<p>Consider the following in your HTML file:</p>
+				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"my-app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+				<p>You can target this Element:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'my-app'</span>);
+<span class="hljs-keyword">const</span> Projector = ProjectorMixin(HelloDojo);
+<span class="hljs-keyword">const</span> projector = <span class="hljs-keyword">new</span> Projector();
+
+projector.append(root);
+</code></pre>
+				<h4 id="widgets-and-properties">Widgets and Properties</h4>
+				<p>We have created a widget used to project our <code>HNode</code>s into the DOM, however widgets can be composed of other widgets and <code>properties</code> which are used to determine if a widget needs to be re-rendered.</p>
+				<p>Properties are available on the the widget instance, defined by an interface and passed as a <a href="https://www.typescriptlang.org/docs/handbook/generics.html"><code>generic</code></a> to the <code>WidgetBase</code> class when creating your custom widget. The properties interface should extend the base <code>WidgetProperties</code> provided from <code>@dojo/widget-core/interfaces</code>:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> MyProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    name: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">class</span> Hello <span class="hljs-keyword">extends</span> WidgetBase&lt;MyProperties&gt; {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">const</span> { name } = <span class="hljs-keyword">this</span>.properties;
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, [ <span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>`</span> ]);
+    }
+}
+</code></pre>
+				<p>New properties are compared with the previous properties to determine if a widget requires re-rendering. By default Dojo 2 uses the <code>auto</code> diffing strategy, that performs a shallow comparison for objects and arrays, ignores functions (except classes that extend <code>WidgetBase</code>) and a reference comparison for all other values.</p>
+				<h4 id="composing-widgets">Composing Widgets</h4>
+				<p>As mentioned, often widgets are composed of other widgets in their <code>render</code> output. This promotes widget reuse across an application (or multiple applications) and promotes widget best practices.</p>
+				<p>To compose widgets, we need to create <code>WNode</code>s and we can do this using the <code>w()</code> function from <code>@dojo/widget-core/d</code>.</p>
+				<p>Consider the previous <code>Hello</code> widget that we created:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> App <span class="hljs-keyword">extends</span> WidgetBase {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, [
+            w(Hello, { name: <span class="hljs-string">'Bill'</span> }),
+            w(Hello, { name: <span class="hljs-string">'Bob'</span> }),
+            w(Hello, { name: <span class="hljs-string">'Flower pot men'</span> })
+        ]);
+    }
+}
+</code></pre>
+				<p>We can now use <code>App</code> with the <code>ProjectorMixin</code> to render the <code>Hello</code> widgets.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> Projector = ProjectorMixin(App);
+<span class="hljs-keyword">const</span> projector = <span class="hljs-keyword">new</span> Projector();
+
+projector.append();
+</code></pre>
+				<p><strong>Note:</strong> Widgets must return a single top level <code>DNode</code> from the <code>render</code> method, which is why the <code>Hello</code> widgets were wrapped in a <code>div</code> element.</p>
+				<h4 id="decomposing-widgets">Decomposing Widgets</h4>
+				<p>Splitting widgets into multiple smaller widgets is easy and helps to add extended functionality and promotes reuse.</p>
+				<p>Consider the following <code>List</code> widget, which has a simple property interface of an array of items consisting of <code>content: string</code> and <code>highlighted: boolean</code>.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ListProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    items: {
+        id: <span class="hljs-built_in">string</span>;
+        content: <span class="hljs-built_in">string</span>;
+        highlighted: <span class="hljs-built_in">boolean</span>;
+    };
+}
+
+<span class="hljs-keyword">class</span> List <span class="hljs-keyword">extends</span> WidgetBase&lt;ListProperties&gt; {
+    <span class="hljs-keyword">protected</span> render() {
+        <span class="hljs-keyword">const</span> { items } = <span class="hljs-keyword">this</span>.properties;
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'ul'</span>, { classes: { list: <span class="hljs-literal">true</span> } }, items.map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+            <span class="hljs-keyword">const</span> { id, highlighted, content } = item;
+            <span class="hljs-keyword">const</span> classes = highlighted ? { highlighted: <span class="hljs-literal">true</span> } : { highlighted: <span class="hljs-literal">false</span> };
+
+            <span class="hljs-keyword">return</span> v(<span class="hljs-string">'li'</span>, { key: id, classes }, [ content ]);
+        });
+    }
+}
+</code></pre>
+				<p>The <code>List</code> widget works as expected and displays the list in the browser but is difficult to reuse, modify, and/or extend.</p>
+				<p><strong>Note:</strong> When working with children arrays with the same type of widget or Element, it is important to add a unique <code>key</code> property or attribute so that Dojo 2 can identify the correct node when updates are made.</p>
+				<p>To extend the <code>List</code> API with an event that needs to be called when an item is clicked with the item&#39;s <code>id</code>, we first update the properties interface:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ListProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    items: {
+        id: <span class="hljs-built_in">string</span>;
+        content: <span class="hljs-built_in">string</span>;
+        highlighted: <span class="hljs-built_in">boolean</span>;
+    };
+    onItemClick: <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+}
+</code></pre>
+				<p>If we try to use the <code>onItemClick</code> function in the current <code>List</code> widget, we would need to wrap it in another function in order to pass the item&#39;s <code>id</code>.</p>
+				<p>This would mean a new function would be created every render but Dojo 2 does not support changing listener functions after the first render and this would <strong>error</strong>.</p>
+				<p>To resolve this, the list item can be extracted into a separate widget:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ListItemProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    id: <span class="hljs-built_in">string</span>;
+    content: <span class="hljs-built_in">string</span>;
+    highlighted: <span class="hljs-built_in">boolean</span>;
+    onItemClick: <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-keyword">class</span> ListItem <span class="hljs-keyword">extends</span> WidgetBase&lt;ListItemProperties&gt; {
+
+    <span class="hljs-keyword">protected</span> onClick(event: MouseEvent) {
+        <span class="hljs-keyword">const</span> { id } = <span class="hljs-keyword">this</span>.properties;
+
+        <span class="hljs-keyword">this</span>.properties.onItemClick(id);
+    }
+
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">const</span> { id, content, highlighted } = <span class="hljs-keyword">this</span>.properties;
+        <span class="hljs-keyword">const</span> classes = highlighted ? { highlighted: <span class="hljs-literal">true</span> } : { highlighted: <span class="hljs-literal">false</span> };
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'li'</span>, { key: id, classes, onclick: <span class="hljs-keyword">this</span>.onClick }, [ content ]);
+    }
+}
+</code></pre>
+				<p>Using the <code>ListItem</code> we can simplify the <code>List</code> slightly and also add the <code>onclick</code> functionality that we required:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ListProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    items: {
+        id: <span class="hljs-built_in">string</span>;
+        content: <span class="hljs-built_in">string</span>;
+        highlighted: <span class="hljs-built_in">boolean</span>;
+    };
+    onItemClick: <span class="hljs-function">(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-keyword">class</span> List <span class="hljs-keyword">extends</span> WidgetBase&lt;ListProperties&gt; {
+    <span class="hljs-keyword">protected</span> render() {
+        <span class="hljs-keyword">const</span> { onItemClick, items } = <span class="hljs-keyword">this</span>.properties;
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'ul'</span>, { classes: { list: <span class="hljs-literal">true</span> } }, items.map(<span class="hljs-function">(<span class="hljs-params">{ id, content, highlighted }</span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> w(ListItem, { key:id, content, highlighted, onItemClick });
+        });
+    }
+}
+</code></pre>
+				<p>Additionally the <code>ListItem</code> is now reusable in other areas of our application(s).</p>
+				<h3 id="mixins">Mixins</h3>
+				<p>Dojo 2 makes use of mixins to decorate additional functionality and properties to existing widgets. Mixins provide a mechanism that allows loosely coupled design and composition of behaviors into existing widgets without having to change the base widget.</p>
+				<p>TypeScript supports mixins using a constructor type of <code>new (...args: any[]) =&gt; any;</code> that enables a class to be passed as a function argument and extended to add new functionality.</p>
+				<p>Example mixin that adds method <code>setState</code> and <code>readonly</code> <code>state</code> property:</p>
+				<pre><code class="lang-ts">// interface for the extended API
+interface StateMixin {
+    readonly state: Readonly&lt;any&gt;;
+    setState(state: any): void;
+}
+
+// function that accepts a class that extends `WidgetBase` and returns the extended class with the `StateMixin`
+// behavior
+function StateMixin&lt;T extends new(...args: any[]) =&gt; WidgetBase&gt;(Base: T): T &amp; (new(...args: any[]) =&gt; StateMixin) {
+    return class extends Base {
+        private _state: any;
+
+        public setState(state: any): void {
+            // shallow copy of the state
+            this._state = { ...this._state, ...state };
+            // invalidate the widget
+            this.invalidate();
+        }
+
+        public get state(): any {
+            return this._state;
+        }
+    };
+}
+</code></pre>
+				<p>Examples of Dojo 2 mixins can be seen with <code>ThemeableMixin</code> and <code>I18nMixin</code> that are described in <a href="#classes--theming">Classes &amp; theming</a> and <a href="#internationalization">Internationalization</a> sections.</p>
+				<h3 id="styling-theming">Styling &amp; Theming</h3>
+				<h4 id="overview">Overview</h4>
+				<p>Dojo 2 widget-core provides <code>ThemeableMixin</code> to decorate a widget with theming functionality and a <code>@theme</code> decorator to specify the classes available to the widget. Both <code>ThemeableMixin</code> and <code>@theme</code> are provided by <code>@dojo/widget-core/mixins/Themeable</code>.</p>
+				<p>To specify the classes for a widget, an interface needs to be imported with named exports for each class and passed to the <code>@theme</code> decorator. Importing the interface provides IntelliSense / auto-complete for the class names and passing this via the <code>@theme</code> decorator informs the <code>ThemeableMixin</code> which classes can be themed.</p>
+				<details><summary>Example css classes interface</summary>
+					<code>typescript
+export const classNameOne: string;
+export const classNameTwo: string;</code>
+				</details>
+				<p><strong>Important:</strong> at runtime a JavaScript file is required to provide the processed CSS class names.</p>
+				<p>The <code>ThemeableMixin</code> provides a method available on the instance <code>this.classes()</code> that consumes string class names and converts them into the expected class object when a widget is rendered. Classes that are passed to <code>this.classes()</code> are made available to be themed, as described in the <a href="#applying-a-theme">applying a theme</a> section.</p>
+				<p>However, it is not always desirable to allow consumers to override styling that may be required for a widget to function correctly. These classes which should not be overridden are known as &quot;fixed&quot;. Fixed classes are passed by using a chained function <code>this.classes().fixed()</code>.</p>
+				<p>The following example passes <code>css.root</code> that will be themeable and <code>css.rootFixed</code> that cannot be overridden.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> css <span class="hljs-keyword">from</span> <span class="hljs-string">'./styles/myWidget.m.css'</span>;
+<span class="hljs-keyword">import</span> { ThemeableMixin, theme } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/mixins/Themeable'</span>;
+
+<span class="hljs-meta">@theme</span>(css)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> ThemeableMixin(WidgetBase) {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, { classes: <span class="hljs-keyword">this</span>.classes(css.root).fixed(css.rootFixed) });
+    }
+}
+</code></pre>
+				<h4 id="writing-a-theme">Writing a theme</h4>
+				<p>Themes are TypeScript modules that export an object that contains css-modules files keyed by a widgets CSS file name.</p>
+				<pre><code class="lang-css"><span class="hljs-comment">/* myTheme/styles/myWidget.m.css */</span>
+<span class="hljs-selector-class">.root</span> {
+    <span class="hljs-attribute">color</span>: blue;
+}
+</code></pre>
+				<pre><code class="lang-typescript"><span class="hljs-comment">// myTheme/theme.ts</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> myWidget <span class="hljs-keyword">from</span> <span class="hljs-string">'./styles/myWidget.m.css'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-string">'myWidget'</span>: myWidget
+}
+</code></pre>
+				<p>In the above example, the new <code>root</code> class provided by the theme for <code>myWidget</code> will replace the <code>root</code> class that was provided by the original <code>myWidget.m.css</code>. This means the <code>myWidget</code> will now have its color set to blue, but will no longer receive the styles from the <code>root</code> class in the original CSS.</p>
+				<h4 id="applying-a-theme">Applying a theme</h4>
+				<p>To apply a theme to a widget, simply require it as a module and pass it to a widget via its properties. It is important to ensure that any child widgets created within your widget&#39;s render function are passed the <code>theme</code> or they will not be themed.</p>
+				<pre><code class="lang-typescript"><span class="hljs-comment">// app.ts</span>
+<span class="hljs-keyword">import</span> myTheme <span class="hljs-keyword">from</span> <span class="hljs-string">'./myTheme/theme'</span>;
+
+<span class="hljs-comment">// ...</span>
+render() {
+    <span class="hljs-keyword">return</span> w(TabPanel, { theme: myTheme } });
+}
+</code></pre>
+				<h4 id="passing-extra-classes">Passing extra classes</h4>
+				<p>Sometimes you may need to apply positioning or layout styles to a child widget. As it is not possible to pass <code>classes</code> directly to virtualized widget nodes. <code>WNodes</code> thus provide an <code>extraClasses</code> property to target themeable classes within its <code>render</code> function. In most cases this should only target the <code>root</code> class and apply positioning adjustments. The classes passed via <code>extraClasses</code> are outside of the theming mechanism and thus will not be effected by a change in <code>theme</code>.</p>
+				<pre><code class="lang-css"><span class="hljs-comment">/* app.m.css */</span>
+<span class="hljs-selector-class">.tabPanel</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">50px</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">50px</span>;
+}
+</code></pre>
+				<pre><code class="lang-typescript"><span class="hljs-comment">// app.ts</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> appCss <span class="hljs-keyword">from</span> <span class="hljs-string">'./styles/app.m.css'</span>;
+
+<span class="hljs-comment">// ...</span>
+render() {
+    <span class="hljs-keyword">return</span> w(TabPanel, { extraClasses: { <span class="hljs-string">'root'</span>: appCss.tabPanel } });
+}
+</code></pre>
+				<p>In the above example, the tabPanel will receive its original <code>root</code> class in addition to the <code>appCss.tabPanel</code> class.</p>
+				<h3 id="internationalization">Internationalization</h3>
+				<p>Widgets can be internationalized by adding the <code>I18nMixin</code> mixin from <code>@dojo/widget-core/mixins/I18n</code>. <a href="https://github.com/dojo/i18n">Message bundles</a> are localized by passing them to <code>localizeBundle</code>.</p>
+				<p>If the bundle supports the widget&#39;s current locale, but those locale-specific messages have not yet been loaded, then the default messages are returned.
+				The widget will be invalidated once the locale-specific messages have been loaded, triggering a re-render with the localized message content.</p>
+				<p>Each widget can have its own locale by passing a property - <code>properties.locale</code>.
+				If no locale is set, then the default locale, as set by <a href="https://github.com/dojo/i18n"><code>@dojo/i18n</code></a>, is assumed.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> MyWidgetBase = I18nMixin(WidgetBase);
+
+<span class="hljs-keyword">class</span> I18nWidget <span class="hljs-keyword">extends</span> MyWidgetBase&lt;I18nWidgetProperties&gt; {
+    render: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// Load the "greetings" messages for the current locale. If the locale-specific</span>
+        <span class="hljs-comment">// messages have not been loaded yet, then the default messages are returned,</span>
+        <span class="hljs-comment">// and the widget will be invalidated once the locale-specific messages have</span>
+        <span class="hljs-comment">// loaded.</span>
+        <span class="hljs-keyword">const</span> messages = <span class="hljs-keyword">this</span>.localizeBundle(greetingsBundle);
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, { title: messages.hello }, [
+            w(Label, {
+                <span class="hljs-comment">// Passing a message string to a child widget.</span>
+                label: messages.purchaseItems
+            }),
+            w(Button, {
+                <span class="hljs-comment">// Passing a formatted message string to a child widget.</span>
+                label: messages.format(<span class="hljs-string">'itemCount'</span>, { count: <span class="hljs-number">2</span> })
+            })
+        ]);
+    }
+}
+</code></pre>
+				<h2 id="key-principles">Key Principles</h2>
+				<p>These are some of the <strong>important</strong> principles to keep in mind when creating and using widgets:</p>
+				<ol>
+					<li>The widget&#39;s <em><code>__render__</code></em>, <em><code>__setProperties__</code></em>, <em><code>__setChildren__</code></em> functions should <strong>never</strong> be called or overridden.<ul>
+							<li>These are the internal methods of the widget APIs and their behavior can change in the future, causing regressions in your application.</li>
+						</ul>
+					</li>
+					<li>Except for projectors, you should <strong>never</strong> need to deal directly with widget instances<ul>
+							<li>The Dojo 2 widget system manages all instances required including caching and destruction, trying to create and manage other widgets will cause issues and will not work as expected.</li>
+						</ul>
+					</li>
+					<li><strong>Never</strong> update <code>properties</code> within a widget instance, they should be considered pure.<ul>
+							<li>Properties are considered read-only and should not be updated within a widget instance, updating properties could cause unexpected behavior and introduce bugs in your application.</li>
+						</ul>
+					</li>
+					<li>Hyperscript should <strong>always</strong> be written using the <code>@dojo/widget-core/d#v()</code> function.<ul>
+							<li>The widget-core abstraction for Hyperscript is the only type of vdom that widget-core can process for standard DOM elements, any other mechanism will not work properly or at all.</li>
+						</ul>
+					</li>
+				</ol>
+				<h2 id="advanced-concepts">Advanced Concepts</h2>
+				<p>This section provides some details on more advanced Dojo 2 functionality and configuration that may be required to build more complex widgets and applications.</p>
+				<h3 id="advanced-properties">Advanced Properties</h3>
+				<p>Controlling the diffing strategy can be done at an individual property level using the <code>diffProperty</code> decorator on a widget class.</p>
+				<p><code>widget-core</code> provides a set of diffing strategy functions from <code>@dojo/widget-core/diff.ts</code> that can be used. When these functions do not provide the required functionality a custom diffing function can be provided. Properties that have been configured with a specific diffing type will be excluded from the automatic diffing.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Diff Function</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>always</code></td>
+							<td>Always report a property as changed.</td>
+						</tr>
+						<tr>
+							<td><code>auto</code></td>
+							<td>Ignore functions (except classes that extend <code>WidgetBase</code>), shallow compare objects, and reference compare all other values.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>ignore</code></td>
+							<td>Never report a property as changed.</td>
+						</tr>
+						<tr>
+							<td><code>reference</code></td>
+							<td>Compare values by reference (<code>old === new</code>)</td>
+						</tr>
+						<tr>
+							<td><code>shallow</code></td>
+							<td>Treat the values as objects and compare their immediate values by reference.</td>
+						</tr>
+					</tbody>
+				</table>
+				<p><strong>Important:</strong> All diffing functions should be pure functions and are called <em>WITHOUT</em> any scope.</p>
+				<pre><code class="lang-ts"><span class="hljs-comment">// using a diff function provided by widget-core#diff</span>
+<span class="hljs-meta">@diffProperty</span>(<span class="hljs-string">'title'</span>, reference)
+<span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;MyProperties&gt; { }
+
+<span class="hljs-comment">//custom diff function; A pure function with no side effects.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customDiff</span>(<span class="hljs-params">previousProperty: <span class="hljs-built_in">string</span>, newProperty: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">PropertyChangeRecord</span> </span>{
+    <span class="hljs-keyword">return</span> {
+        changed: previousProperty !== newProperty,
+        value: newProperty
+    };
+}
+
+<span class="hljs-comment">// using a custom diff function</span>
+<span class="hljs-meta">@diffProperty</span>(<span class="hljs-string">'title'</span>, customDiff)
+<span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;MyProperties&gt; { }
+</code></pre>
+				<h5 id="property-diffing-reactions">Property Diffing Reactions</h5>
+				<p>It can be necessary to perform some internal logic when one or more properties change, this can be done by registering a reaction callback.</p>
+				<p>A reaction function is registered using the <code>diffProperty</code> decorator on a widget class method. This method will be called when the specified property has been detected as changed and receives both the old and new property values.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;MyProperties&gt; {
+
+    <span class="hljs-meta">@diffProperty</span>(<span class="hljs-string">'title'</span>, auto)
+    <span class="hljs-keyword">protected</span> onTitleChange(previousProperties: <span class="hljs-built_in">any</span>, newProperties: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">this</span>._previousTitle = previousProperties.title;
+    }
+}
+</code></pre>
+				<p><code>diffProperty</code> decorators can be stacked on a single class method and will be called if any of the specified properties are considered changed.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;MyProperties&gt; {
+
+    <span class="hljs-meta">@diffProperty</span>(<span class="hljs-string">'title'</span>, auto)
+    <span class="hljs-meta">@diffProperty</span>(<span class="hljs-string">'subtitle'</span>, auto)
+    <span class="hljs-keyword">protected</span> onTitleOrSubtitleChange(previousProperties: <span class="hljs-built_in">any</span>, newProperties: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">this</span>._titlesUpdated = <span class="hljs-literal">true</span>;
+    }
+}
+</code></pre>
+				<p>For non-decorator environments (Either JavaScript/ES6 or a TypeScript project that does not have the experimental decorators configuration set to true in the <code>tsconfig</code>), the functions need to be registered in the constructor using the <code>addDecorator</code> API with <code>diffProperty</code> as the key.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">super</span>();
+        diffProperty(<span class="hljs-string">'foo'</span>, auto, <span class="hljs-keyword">this</span>.diffFooReaction)(<span class="hljs-keyword">this</span>);
+    }
+
+    diffFooReaction(previousProperty: <span class="hljs-built_in">any</span>, newProperty: <span class="hljs-built_in">any</span>) {
+        <span class="hljs-comment">// do something to reaction to a diff of foo</span>
+    }
+}
+</code></pre>
+				<h3 id="widget-registry">Widget Registry</h3>
+				<p>TODO: Section</p>
+				<h3 id="render-lifecycle-hooks">Render Lifecycle Hooks</h3>
+				<p>Occasionally, in a mixin or base widget class, it my be required to provide logic that needs to be executed before or after a widget&#39;s <code>render</code> call. These lifecycle hooks are supported in <code>WidgetBase</code> and operate as before and after aspects.</p>
+				<p>The functionality is provided by the <code>beforeRender</code> and <code>afterRender</code> decorators.</p>
+				<p><strong><em>Note:</em></strong> Both the <code>beforeRender</code> and <code>afterRender</code> functions are executed in the order that they are specified from the super class up to the final class.</p>
+				<h5 id="beforerender">BeforeRender</h5>
+				<p>The <code>beforeRender</code> call receives the widget&#39;s <code>render</code> function, <code>properties</code> and <code>children</code> and is expected to return a function that satisfies the <code>render</code> API. The <code>properties</code> and <code>children</code> are passed to enable them to be manipulated or decorated prior to the <code>render</code> being called.</p>
+				<p>This is the only time in the widget lifecycle that exposes either of these attributes to be manipulated outside of the property system.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyBaseClass <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    <span class="hljs-meta">@beforeRender</span>()
+    myBeforeRender(renderFunc: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> DNode, properties: <span class="hljs-built_in">any</span>, children: DNode[]): <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> DNode {
+        <span class="hljs-comment">// decorate/manipulate properties or children.</span>
+        properties.extraAttribute = <span class="hljs-string">'foo'</span>;
+        <span class="hljs-comment">// Return or replace the `render` function</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">return</span> v(<span class="hljs-string">'my-replaced-attribute'</span>);
+        };
+    }
+}
+</code></pre>
+				<p>And using the <code>beforeRender</code> function for non decorator environments:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyBaseClass <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">super</span>();
+        beforeRender(<span class="hljs-keyword">this</span>.myOtherBeforeRender)(<span class="hljs-keyword">this</span>);
+    }
+
+    myOtherBeforeRender(renderFunc: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> DNode, properties: <span class="hljs-built_in">any</span>, children: DNode[]): <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> DNode {
+        <span class="hljs-comment">// do something with the result</span>
+        <span class="hljs-keyword">return</span> renderFunc;
+    }
+}
+</code></pre>
+				<h5 id="afterrender">AfterRender</h5>
+				<p>The <code>afterRender</code> call receives the returned <code>DNode</code>s from a widget&#39;s <code>render</code> call, so that the nodes can decorated, manipulated or even swapped.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyBaseClass <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    <span class="hljs-meta">@afterRender</span>()
+    myAfterRender(result: DNode): DNode {
+        <span class="hljs-comment">// do something with the result</span>
+        <span class="hljs-keyword">return</span> result;
+    }
+}
+</code></pre>
+				<p>And using the <code>afterRender</code> function for non decorator environments:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyBaseClass <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">super</span>();
+        afterRender(<span class="hljs-keyword">this</span>.myOtherAfterRender)(<span class="hljs-keyword">this</span>);
+    }
+
+    myOtherAfterRender(result: DNode): DNode {
+        <span class="hljs-comment">// do something with the result</span>
+        <span class="hljs-keyword">return</span> result;
+    }
+}
+</code></pre>
+				<h3 id="-domwrapper-"><code>DOMWrapper</code></h3>
+				<p><code>DomWrapper</code> is used to wrap DOM that is created <em>outside</em> of the virtual DOM system.  This is the main mechanism to integrate <em>foreign</em> components or widgets into the virtual DOM system.</p>
+				<p>The <code>DomWrapper</code> generates a class/constructor function that is then used as a widget class in the virtual DOM.  <code>DomWrapper</code> takes up to two arguments.  The first argument is the DOM node that it is wrapping.  The second is an optional set of options.</p>
+				<p>The currently supported options:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>onAttached</code></td>
+							<td>A callback that is called when the wrapped DOM is flowed into the virtual DOM</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>For example, if we want to integrate a 3rd party library where we need to pass the component factory a <em>root</em> element and then flow that into our virtual DOM.  In this situation we don&#39;t want to create the component until the widget is being flowed into the DOM, so <code>onAttached</code> is used to perform the creation of the component:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { w } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/d'</span>;
+<span class="hljs-keyword">import</span> DomWrapper <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/util/DomWrapper'</span>;
+<span class="hljs-keyword">import</span> WidgetBase <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/WidgetBase'</span>;
+<span class="hljs-keyword">import</span> createComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'third/party/library/createComponent'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> WrappedComponent <span class="hljs-keyword">extends</span> WidgetBase {
+    <span class="hljs-keyword">private</span> _component: <span class="hljs-built_in">any</span>;
+    <span class="hljs-keyword">private</span> _onAttach = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>._component = createComponent(<span class="hljs-keyword">this</span>._root);
+    }
+    <span class="hljs-keyword">private</span> _root: HTMLDivElement;
+    <span class="hljs-keyword">private</span> _WrappedDom: DomWrapper;
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">super</span>();
+        <span class="hljs-keyword">const</span> root = <span class="hljs-keyword">this</span>._root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+        <span class="hljs-keyword">this</span>._WrappedDom = DomWrapper(root, { onAttached: <span class="hljs-keyword">this</span>._onAttached });
+    }
+
+    <span class="hljs-keyword">public</span> render() {
+        <span class="hljs-keyword">return</span> w(<span class="hljs-keyword">this</span>._WrappedDom, { key: <span class="hljs-string">'wrapped'</span> });
+    }
+}
+</code></pre>
+				<p>The properties which can be set on <code>DomWrapper</code> are the combination of the <code>WidgetBaseProperties</code> and the <code>VirtualDomProperties</code>, which means effectively you can use any of the properties passed to a <code>v()</code> node and they will be applied to the wrapped DOM node.  For example the following would set the <code>classes</code> on the wrapped DOM node:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> div = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+<span class="hljs-keyword">const</span> WrappedDiv = DomWrapper(div);
+<span class="hljs-keyword">const</span> wNode = w(WrappedDiv, {
+    classes: {
+        <span class="hljs-string">'foo'</span>: <span class="hljs-literal">true</span>
+    }
+});
+</code></pre>
+				<h3 id="meta-configuration">Meta Configuration</h3>
+				<p>Widget meta is used to access additional information about the widget, usually information only available through the rendered DOM element - for example, the dimensions of an HTML node. You can access and respond to meta data during a widget&#39;s render operation.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> TestWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    render() {
+        <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">this</span>.meta(Dimensions).get(<span class="hljs-string">'root'</span>);
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, {
+            key: <span class="hljs-string">'root'</span>,
+            innerHTML: <span class="hljs-string">`Width: <span class="hljs-subst">${dimensions.width}</span>`</span>
+        });
+    }
+}
+</code></pre>
+				<p>If an HTML node is required to calculate the meta information, a sensible default will be returned and your widget will be automatically re-rendered to provide more accurate information.</p>
+				<h4 id="dimensions">Dimensions</h4>
+				<p>The <code>Dimensions</code> meta provides size/position information about a node.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">this</span>.meta(Dimensions).get(<span class="hljs-string">'root'</span>);
+</code></pre>
+				<p>In this simple snippet, <code>dimensions</code> would be an object containing <code>offset</code>, <code>position</code>, <code>scroll</code>, and <code>size</code> objects.</p>
+				<p>The following fields are provided:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Property</th>
+							<th>Source</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>position.bottom</code></td>
+							<td><code>node.getBoundingClientRect().bottom</code></td>
+						</tr>
+						<tr>
+							<td><code>position.left</code></td>
+							<td><code>node.getBoundingClientRect().left</code></td>
+						</tr>
+						<tr>
+							<td><code>position.right</code></td>
+							<td><code>node.getBoundingClientRect().right</code></td>
+						</tr>
+						<tr>
+							<td><code>position.top</code></td>
+							<td><code>node.getBoundingClientRect().top</code></td>
+						</tr>
+						<tr>
+							<td><code>size.width</code></td>
+							<td><code>node.getBoundingClientRect().width</code></td>
+						</tr>
+						<tr>
+							<td><code>size.height</code></td>
+							<td><code>node.getBoundingClientRect().height</code></td>
+						</tr>
+						<tr>
+							<td><code>scroll.left</code></td>
+							<td><code>node.scrollLeft</code></td>
+						</tr>
+						<tr>
+							<td><code>scroll.top</code></td>
+							<td><code>node.scrollTop</code></td>
+						</tr>
+						<tr>
+							<td><code>scroll.height</code></td>
+							<td><code>node.scrollHeight</code></td>
+						</tr>
+						<tr>
+							<td><code>scroll.width</code></td>
+							<td><code>node.scrollWidth</code></td>
+						</tr>
+						<tr>
+							<td><code>offset.left</code></td>
+							<td><code>node.offsetLeft</code></td>
+						</tr>
+						<tr>
+							<td><code>offset.top</code></td>
+							<td><code>node.offsetTop</code></td>
+						</tr>
+						<tr>
+							<td><code>offset.width</code></td>
+							<td><code>node.offsetWidth</code></td>
+						</tr>
+						<tr>
+							<td><code>offset.height</code></td>
+							<td><code>node.offsetHeight</code></td>
+						</tr>
+					</tbody>
+				</table>
+				<p>If the node has not yet been rendered, all values will contain <code>0</code>. If you need more information about whether or not the node has been rendered you can use the <code>has</code> method:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> hasRootBeenRendered = <span class="hljs-keyword">this</span>.meta(Dimensions).has(<span class="hljs-string">'root'</span>);
+</code></pre>
+				<h4 id="matches">Matches</h4>
+				<p>The <code>Matches</code> meta determines if the target of a DOM event matches a particular virtual DOM key.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> matches = <span class="hljs-keyword">this</span>.meta(Matches).get(<span class="hljs-string">'root'</span>, evt);
+</code></pre>
+				<p>This allows a widget to not have to <em>know</em> anything about the real DOM when dealing with events that may have bubbled
+					up from child DOM.  For example to determine if the containing node in the widget was clicked on, versus the child node,
+				you would do something like this:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> TestWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    <span class="hljs-keyword">private</span> _onclick(evt: MouseEvent) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.meta(Matches).get(<span class="hljs-string">'root'</span>, evt)) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'The root node was clicked on.'</span>);
+        }
+    }
+
+    render() {
+        <span class="hljs-keyword">const</span> dimensions = <span class="hljs-keyword">this</span>.meta(Matches).get(<span class="hljs-string">'root'</span>);
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, {
+            key: <span class="hljs-string">'root'</span>
+            onclick: <span class="hljs-keyword">this</span>._onclick
+        }, [
+            v(<span class="hljs-string">'div'</span>, {
+                innerHTML: <span class="hljs-string">'Hello World'</span>
+            })
+        ]);
+    }
+}
+</code></pre>
+				<h5 id="implementing-custom-meta">Implementing Custom Meta</h5>
+				<p>You can create your own meta if you need access to DOM nodes.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> MetaBase <span class="hljs-keyword">from</span> <span class="hljs-string">"@dojo/widget-core/meta/Base"</span>;
+
+<span class="hljs-keyword">class</span> HtmlMeta <span class="hljs-keyword">extends</span> MetaBase {
+    <span class="hljs-keyword">get</span>(key: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">this</span>.requireNode(key);
+        <span class="hljs-keyword">const</span> node = <span class="hljs-keyword">this</span>.nodes.get(key);
+        <span class="hljs-keyword">return</span> node ? node.innerHTML : <span class="hljs-string">''</span>;
+    }
+}
+</code></pre>
+				<p>And you can use it like:</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> MyWidget <span class="hljs-keyword">extends</span> WidgetBase&lt;WidgetProperties&gt; {
+    <span class="hljs-comment">// ...</span>
+    render() {
+        <span class="hljs-comment">// run your meta</span>
+        <span class="hljs-keyword">const</span> html = <span class="hljs-keyword">this</span>.meta(HtmlMeta).get(<span class="hljs-string">'comment'</span>);
+
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, { key: <span class="hljs-string">'root'</span>, innerHTML: html });
+    }
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+				<p>Meta classes are provided with a few hooks into the widget, passed to the constructor:</p>
+				<ul>
+					<li><code>nodes</code> - A map of <code>key</code> strings to DOM elements. Only <code>v</code> nodes rendered with <code>key</code> properties are stored.</li>
+					<li><code>requireNode</code> - A method that accepts a <code>key</code> string to inform the widget it needs a rendered DOM element corresponding to that key. If one is available, it will be returned immediately. If not, the widget will be re-rendered and if the node does not exist on the next render, an <strong>error</strong> will be thrown.</li>
+					<li><code>invalidate</code> - A method that will invalidate the widget.</li>
+				</ul>
+				<p>Extending the base class found in <code>meta/Base</code> will automatically add these hooks to the class instance as well as providing a <code>has</code> method:</p>
+				<ul>
+					<li><code>has(key: string)</code> - A method that returns <code>true</code> if the DOM element with the passed <code>key</code> exists in the rendered DOM.</li>
+				</ul>
+				<p>Meta classes that require extra options should accept them in their methods.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> MetaBase <span class="hljs-keyword">from</span> <span class="hljs-string">"@dojo/widget-core/meta/Base"</span>;
+
+<span class="hljs-keyword">interface</span> IsTallMetaOptions {
+    minHeight: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">class</span> IsTallMeta <span class="hljs-keyword">extends</span> MetaBase {
+    isTall(key: <span class="hljs-built_in">string</span>, { minHeight }: IsTallMetaOptions = { minHeight: <span class="hljs-number">300</span> }): <span class="hljs-built_in">boolean</span> {
+        <span class="hljs-keyword">this</span>.requireNode(key);
+        <span class="hljs-keyword">const</span> node = <span class="hljs-keyword">this</span>.nodes.get(key);
+        <span class="hljs-keyword">if</span> (node) {
+            <span class="hljs-keyword">return</span> node.offsetHeight &gt;= minHeight;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+</code></pre>
+				<h3 id="jsx-support">JSX Support</h3>
+				<p>In addition to creating widgets functionally using the <code>v()</code> and <code>w()</code> functions from <code>@dojo/widget-core/d</code>, Dojo 2 optionally supports the use of the <code>jsx</code> syntax known as <a href="https://www.typescriptlang.org/docs/handbook/jsx.html"><code>tsx</code></a> in TypeScript.</p>
+				<p>To start to use <code>jsx</code> in your project, widgets need to be named with a <code>.tsx</code> extension and some configuration is required in the project&#39;s <code>tsconfig.json</code>:</p>
+				<p>Add the configuration options for <code>jsx</code>:</p>
+				<pre><code class="lang-js"><span class="hljs-string">"jsx"</span>: <span class="hljs-string">"react"</span>,
+<span class="hljs-string">"jsxFactory"</span>: <span class="hljs-string">"tsx"</span>,
+</code></pre>
+				<p>Include <code>.tsx</code> files in the project:</p>
+				<pre><code class="lang-js"> <span class="hljs-string">"include"</span>: [
+     <span class="hljs-string">"./src/**/*.ts"</span>,
+     <span class="hljs-string">"./src/**/*.tsx"</span>
+ ]
+</code></pre>
+				<p>Once the project is configured, <code>tsx</code> can be used in a widget&#39;s <code>render</code> function simply by importing the <code>tsx</code> function as:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { tsx } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/tsx'</span>;
+</code></pre>
+				<pre><code class="lang-tsx">class MyWidgetWithTsx extends WidgetBase&lt;MyProperties&gt; {
+    protected render(): DNode {
+        const { clear, properties: { completed, count, activeCount, activeFilter } } = this;
+
+        return (
+            &lt;footer classes={this.classes(css.footer)}&gt;
+                &lt;span classes={this.classes(css.count)}&gt;
+                    &lt;strong&gt;{`${activeCount}`}&lt;/strong&gt;
+                    &lt;span&gt;{`${count}`}&lt;/span&gt;
+                &lt;/span&gt;
+                &lt;TodoFilter activeFilter={activeFilter} /&gt;
+                { completed ? ( &lt;button onclick={clear} /&gt; ) : ( null ) }
+            &lt;/footer&gt;
+        );
+    }
+}
+</code></pre>
+				<p><strong>Note:</strong> Unfortunately <code>tsx</code> is not directly used within the module so the tsx module will report as an unused import, and will need to be ignored by linters..</p>
+				<h3 id="web-components">Web Components</h3>
+				<p>Widgets can be turned into <a href="https://www.w3.org/TR/2016/WD-custom-elements-20161013/">Custom Elements</a> with
+				minimal extra effort.</p>
+				<p>Just create a <code>CustomElementDescriptor</code> factory and use the <code>@dojo/cli</code> build tooling to do the rest of the work,</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { CustomElementDescriptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/customElements'</span>;
+<span class="hljs-keyword">import</span> MyWidget <span class="hljs-keyword">from</span> <span class="hljs-string">'./path/to/MyWidget'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createCustomElement</span>(<span class="hljs-params"></span>): <span class="hljs-title">CustomElementDescriptor</span> </span>{
+    <span class="hljs-keyword">return</span> {
+        tagName: <span class="hljs-string">'my-widget'</span>,
+        widgetConstructor: MyWidget,
+           attributes: [
+               {
+                   attributeName: <span class="hljs-string">'label'</span>
+               }
+           ],
+           events: [
+               {
+                   propertyName: <span class="hljs-string">'onChange'</span>,
+                   name: <span class="hljs-string">'change'</span>
+               }
+           ]
+   };
+};
+</code></pre>
+				<p>By convention, this file should be named <code>createMyWidgetElement.ts</code>.</p>
+				<p>To build your custom element, use <a href="https://github.com/dojo/cli">@dojo/cli</a>,</p>
+				<pre><code class="lang-bash">$ dojo build --element=/path/to/createMyWidget.ts
+</code></pre>
+				<p>This will generate the following files:</p>
+				<ul>
+					<li><code>dist/my-widget/my-widget.html</code> - HTML import file that includes all widget dependencies. This is the only file you need to import into your HTML page to use your widget.</li>
+					<li><code>dist/my-widget/my-widget.js</code> - A compiled version of your widget.</li>
+					<li><code>dist/my-widget/my-widget.css</code> - The CSS for your widget</li>
+					<li><code>dist/my-widget/widget-core.js</code> - A shared base widget library. Keeping this separate means that you can include HTML imports for multiple Dojo widgets and the applicartion environment will not re-request this shared file for each widget.</li>
+				</ul>
+				<p>Using your widget would be a simple matter of importing the HTML import:</p>
+				<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- this will include all JS and CSS used by your widget --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"import"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/path/to/my-widget.html"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- this will actually create your widget --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">my-widget</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-widget</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+				<h5 id="tag-name">Tag Name</h5>
+				<p>Your widget will be registered with the browser using the provided tag name. The tag name <strong>must</strong> have a <code>-</code> in it.</p>
+				<h5 id="widget-constructor">Widget Constructor</h5>
+				<p>A widget class that you want wrapped as a custom element.</p>
+				<h5 id="attributes">Attributes</h5>
+				<p>You can explicitly map widget properties to DOM node attributes with the <code>attributes</code> array.</p>
+				<pre><code class="lang-ts">{
+    attributes: [
+        {
+            attributeName: <span class="hljs-string">'label'</span>
+        },
+        {
+            attributeName: <span class="hljs-string">'placeholder'</span>,
+            propertyName: <span class="hljs-string">'placeHolder'</span>
+        },
+        {
+            attributeName: <span class="hljs-string">'delete-on-focus'</span>,
+            propertyName: <span class="hljs-string">'deleteOnFocus'</span>,
+            value: <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> <span class="hljs-built_in">Boolean</span>(value || <span class="hljs-number">0</span>)
+        }
+    ]
+}
+</code></pre>
+				<ul>
+					<li><code>attributeName</code> - the attribute that will set on the DOM element, e.g. <code>&lt;text-widget label=&quot;test&quot; /&gt;</code>.</li>
+					<li><code>propertyName</code> - the property on the widget to set; if not set, it defaults to the <code>attributeName</code>.</li>
+					<li><code>value</code> - specify a transformation function on the attribute value. This function should return the value that
+					will be set on the widget&#39;s property.</li>
+				</ul>
+				<p>Adding an attribute to the element will also automatically add a corresponding property to the element.</p>
+				<pre><code class="lang-ts"><span class="hljs-comment">// as an attribute</span>
+textWidget.setAttribute(<span class="hljs-string">'label'</span>, <span class="hljs-string">'First Name'</span>);
+
+<span class="hljs-comment">// as a property</span>
+textWidget.label = <span class="hljs-string">'First Name'</span>;
+</code></pre>
+				<h5 id="properties">Properties</h5>
+				<p>You can map DOM element properties to widget properties,</p>
+				<pre><code class="lang-ts">{
+    properties: [
+        {
+            propertyName: <span class="hljs-string">'placeholder'</span>,
+            widgetPropertyName: <span class="hljs-string">'placeHolder'</span>
+        }
+    ]
+}
+
+<span class="hljs-comment">// ...</span>
+
+textWidget.placeholder = <span class="hljs-string">'Enter first name'</span>;
+</code></pre>
+				<ul>
+					<li><code>propertyName</code> - name of the property on the DOM element</li>
+					<li><code>widgetPropertyName</code> - name of the property on the widget; if unspecified, <code>propertyName</code> is used instead</li>
+					<li><code>getValue</code> - if specified, will be called with the widget&#39;s property value as an argument. The returned value is returned as the DOM element property value.</li>
+					<li><code>setValue</code> - if specified, is called with the DOM elements property value. The returned value is used for the widget property&#39;s value.</li>
+				</ul>
+				<h5 id="events">Events</h5>
+				<p>Some widgets have function properties, like events, that need to be exposed to your element. You can use the
+				<code>events</code> array to map widget properties to DOM events.</p>
+				<pre><code class="lang-ts">{
+    events: [
+        {
+            propertyName: <span class="hljs-string">'onChange'</span>,
+            eventName: <span class="hljs-string">'change'</span>
+        }
+    ]
+}
+</code></pre>
+				<p>This will add a property to <code>onChange</code> that will emit the <code>change</code> custom event. You can listen like any other
+				DOM event,</p>
+				<pre><code class="lang-ts">textWidget.addEventListener(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
+    <span class="hljs-comment">// do something</span>
+});
+</code></pre>
+				<h5 id="initialization">Initialization</h5>
+				<p>Custom logic can be performed after properties/attributes have been defined but before the projector is created. This
+					allows you full control over your widget, allowing you to add custom properties, event handlers, work with child nodes, etc.
+				The initialization function is run from the context of the HTML element.</p>
+				<pre><code class="lang-ts">{
+    initialization(properties) {
+        <span class="hljs-keyword">const</span> footer = <span class="hljs-keyword">this</span>.getElementsByTagName(<span class="hljs-string">'footer'</span>);
+        <span class="hljs-keyword">if</span> (footer) {
+            properties.footer = footer;
+        }
+
+        <span class="hljs-keyword">const</span> header = <span class="hljs-keyword">this</span>.getElementsByTagName(<span class="hljs-string">'header'</span>);
+        <span class="hljs-keyword">if</span> (header) {
+            properties.header = header;
+        }
+    }
+}
+</code></pre>
+				<p>It should be noted that children nodes are removed from the DOM when widget instantiation occurs, and added as children to the widget instance.</p>
+				<h2 id="api">API</h2>
+				<p><a href="https://dojo.io/api/widget-core/v2.0.0-beta1.6/">API Documentation</a></p>
+				<h2 id="how-do-i-contribute-">How Do I Contribute?</h2>
+				<p>We appreciate your interest!  Please see the <a href="https://github.com/dojo/meta#readme">Dojo Meta Repository</a> for the
+				Contributing Guidelines and Style Guide.</p>
+				<h3 id="setup-installation">Setup Installation</h3>
+				<p>To start working with this package, clone the repository and run <code>npm install</code>.</p>
+				<p>In order to build the project, run <code>grunt dev</code> or <code>grunt dist</code>.</p>
+				<h3 id="testing">Testing</h3>
+				<p>Test cases MUST be written using <a href="https://theintern.github.io">Intern</a> using the Object test interface and Assert assertion interface.</p>
+				<p>90% branch coverage MUST be provided for all code submitted to this repository, as reported by Istanbul’s combined coverage results for all supported platforms.</p>
+				<p>To test locally in node run:</p>
+				<p><code>grunt test</code></p>
+				<p>To test against browsers with a local selenium server run:</p>
+				<p><code>grunt test:local</code></p>
+				<p>To test against BrowserStack or Sauce Labs run:</p>
+				<p><code>grunt test:browserstack</code></p>
+				<p>or</p>
+				<p><code>grunt test:saucelabs</code></p>
+				<h2 id="licensing-information">Licensing Information</h2>
+				<p>© 2017 <a href="https://js.foundation/">JS Foundation</a>. <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a> license.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/attachtype.html" class="tsd-kind-icon">Attach<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/nodeeventtype.html" class="tsd-kind-icon">Node<wbr>Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/projectorattachstate.html" class="tsd-kind-icon">Projector<wbr>Attach<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/base.html" class="tsd-kind-icon">Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/dimensions.html" class="tsd-kind-icon">Dimensions</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/fromregistry.html" class="tsd-kind-icon">From<wbr>Registry</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/injector.html" class="tsd-kind-icon">Injector</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/intersection.html" class="tsd-kind-icon">Intersection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/matches.html" class="tsd-kind-icon">Matches</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/nodehandler.html" class="tsd-kind-icon">Node<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/registry.html" class="tsd-kind-icon">Registry</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/registryhandler.html" class="tsd-kind-icon">Registry<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/widgetbase.html" class="tsd-kind-icon">Widget<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/attachoptions.html" class="tsd-kind-icon">Attach<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/bottomright.html" class="tsd-kind-icon">Bottom<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/classesfunctionchain.html" class="tsd-kind-icon">Classes<wbr>Function<wbr>Chain</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelement.html" class="tsd-kind-icon">Custom<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelementattributedescriptor.html" class="tsd-kind-icon">Custom<wbr>Element<wbr>Attribute<wbr>Descriptor</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelementdescriptor.html" class="tsd-kind-icon">Custom<wbr>Element<wbr>Descriptor</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelementdescriptorfactory.html" class="tsd-kind-icon">Custom<wbr>Element<wbr>Descriptor<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelementeventdescriptor.html" class="tsd-kind-icon">Custom<wbr>Element<wbr>Event<wbr>Descriptor</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelementinitializer.html" class="tsd-kind-icon">Custom<wbr>Element<wbr>Initializer</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/customelementpropertydescriptor.html" class="tsd-kind-icon">Custom<wbr>Element<wbr>Property<wbr>Descriptor</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/dimensionresults.html" class="tsd-kind-icon">Dimension<wbr>Results</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/domwrapperoptions.html" class="tsd-kind-icon">Dom<wbr>Wrapper<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/eventinitializer.html" class="tsd-kind-icon">Event<wbr>Initializer</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/getproperties.html" class="tsd-kind-icon">Get<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/i18nmixin.html" class="tsd-kind-icon">I18n<wbr>Mixin</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/i18nproperties.html" class="tsd-kind-icon">I18n<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/injectconfig.html" class="tsd-kind-icon">Inject<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/intersectiongetoptions.html" class="tsd-kind-icon">Intersection<wbr>Get<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/intersectionresult.html" class="tsd-kind-icon">Intersection<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/projectormixin.html" class="tsd-kind-icon">Projector<wbr>Mixin</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/projectorproperties.html" class="tsd-kind-icon">Projector<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/registryeventobject.html" class="tsd-kind-icon">Registry<wbr>Event<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/registryevents.html" class="tsd-kind-icon">Registry<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/registryinterface.html" class="tsd-kind-icon">Registry<wbr>Interface</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/registrylistener.html" class="tsd-kind-icon">Registry<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/sendeventoptions.html" class="tsd-kind-icon">Send<wbr>Event<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/size.html" class="tsd-kind-icon">Size</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/theme.html" class="tsd-kind-icon">Theme</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/themeablemixin.html" class="tsd-kind-icon">Themeable<wbr>Mixin</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/themeableproperties.html" class="tsd-kind-icon">Themeable<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/topleft.html" class="tsd-kind-icon">Top<wbr>Left</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/vnodeproperties.html" class="tsd-kind-icon">VNode<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#boundfunctiondata" class="tsd-kind-icon">Bound<wbr>Function<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#classnameflags" class="tsd-kind-icon">Class<wbr>Name<wbr>Flags</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#classnames" class="tsd-kind-icon">Class<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#container" class="tsd-kind-icon">Container</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#domwrapper" class="tsd-kind-icon">Dom<wbr>Wrapper</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#domwrapperproperties" class="tsd-kind-icon">Dom<wbr>Wrapper<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#eventclass" class="tsd-kind-icon">Event<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#localizedmessages" class="tsd-kind-icon">Localized<wbr>Messages</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#registryitem" class="tsd-kind-icon">Registry<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#widgetbaseconstructorfunction" class="tsd-kind-icon">Widget<wbr>Base<wbr>Constructor<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#hnode" class="tsd-kind-icon">HNODE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#injected_theme_key" class="tsd-kind-icon">INJECTED_<wbr>THEME_<wbr>KEY</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#registry_item" class="tsd-kind-icon">REGISTRY_<wbr>ITEM</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#widget_base_type" class="tsd-kind-icon">WIDGET_<wbr>BASE_<wbr>TYPE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#wnode" class="tsd-kind-icon">WNODE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#class1" class="tsd-kind-icon">class1</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#class2" class="tsd-kind-icon">class2</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#class3" class="tsd-kind-icon">class3</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#class4" class="tsd-kind-icon">class4</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#eventhandlers" class="tsd-kind-icon">event<wbr>Handlers</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#afterrender" class="tsd-kind-icon">after<wbr>Render</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#always" class="tsd-kind-icon">always</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#auto" class="tsd-kind-icon">auto</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#beforeproperties" class="tsd-kind-icon">before<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#beforerender" class="tsd-kind-icon">before<wbr>Render</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#decorate" class="tsd-kind-icon">decorate</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#diffproperty" class="tsd-kind-icon">diff<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#eventhandlerinterceptor" class="tsd-kind-icon">event<wbr>Handler<wbr>Interceptor</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchcldrdata" class="tsd-kind-icon">fetch<wbr>Cldr<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#fromregistry" class="tsd-kind-icon">from<wbr>Registry</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#handleattributechanged" class="tsd-kind-icon">handle<wbr>Attribute<wbr>Changed</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#handledecorator" class="tsd-kind-icon">handle<wbr>Decorator</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ignore" class="tsd-kind-icon">ignore</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#initializeelement" class="tsd-kind-icon">initialize<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#inject" class="tsd-kind-icon">inject</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ishnode" class="tsd-kind-icon">isHNode</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#iswnode" class="tsd-kind-icon">isWNode</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#iswidgetbaseconstructor" class="tsd-kind-icon">is<wbr>Widget<wbr>Base<wbr>Constructor</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#reference" class="tsd-kind-icon">reference</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#registercustomelement" class="tsd-kind-icon">register<wbr>Custom<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#registerthemeinjector" class="tsd-kind-icon">register<wbr>Theme<wbr>Injector</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#sendevent" class="tsd-kind-icon">send<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#shallow" class="tsd-kind-icon">shallow</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#theme" class="tsd-kind-icon">theme</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#tsx" class="tsd-kind-icon">tsx</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#v" class="tsd-kind-icon">v</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#w" class="tsd-kind-icon">w</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#waitfor" class="tsd-kind-icon">wait<wbr>For</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
