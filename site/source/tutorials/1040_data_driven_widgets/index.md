@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Data-driven widgets
-overview: In this tutorial, you will learn how to create reactive data-driven widgets in Dojo 2.
+overview: In this tutorial, you will learn how to create reactive, data-driven widgets in Dojo 2.
 ---
 
 {% section 'first' %}   
@@ -9,9 +9,9 @@ overview: In this tutorial, you will learn how to create reactive data-driven wi
 # Data-driven widgets
 
 ## Overview
-The Dojo 2 widget system provides a functional API that attempts to strictly enforce a unidirectional data flow: the only way to interact with a widget is through the `properties` it exposes, and dealing directly with widget instances is both uncommon and bad practice. It can be confusing to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks like Dojo 1 were so tightly coupled to store implementations.
+The Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the `properties` it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.
 
-In this tutorial, a filterable data-driven list widget will be built to demonstrate how Dojo 2 widgets should be decoupled from data providers.
+In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.
 
 ## Prerequisites
 You can [download](../assets/006_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
@@ -26,13 +26,13 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Create a widget that uses a Dojo 2 `TextInput`.' %}
 
-Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. For now, the widget will only render a Dojo 2 `TextInput`, but functionality will be added throughout the tutorial. The implementation will be put in `List.ts`, and just like with other widgets created during previous tutorials, initial dependencies and a class declaration are needed to get started.
+Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo 2 `TextInput`, with additional functionality to be added. `List.ts` will contain our implementation, and similarly to widgets created during previous Dojo 2 tutorials, initial dependencies and a class declaration are needed to get started.
 
 {% instruction 'Add the following skeleton to `List.ts`:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-3,7-9,13-18,28-29,36-39 %}
 
-This code lays the base foundation for a themeable Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemeableMixin`, and it defines a `render` method that returns virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
+This code lays the base foundation for a themeable Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemeableMixin`, and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
 
 {% instruction 'Import `TextInput` into `List.ts`:' %}
 
@@ -44,9 +44,9 @@ This code lays the base foundation for a themeable Dojo 2 widget: it extends the
 
 The next step in creating an initial filterable list widget is to update its `render` method to define a `TextInput` using the `w` module.
 
-{% instruction 'Try and update the `List` to render a `TextInput` that uses the `value` and `onInput` properties.' %}
+{% instruction 'Update the `List` to render a `TextInput` using the `value` and `onInput` properties.' %}
 
-Click the button below if you need help or want to check your solution.
+Click the button below to view the solution.
 
 {% solution showsolution1 %}
 ```ts
