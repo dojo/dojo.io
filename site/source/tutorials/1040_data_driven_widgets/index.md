@@ -22,7 +22,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% section %}
 
-## Creating a dropdown widget
+## Creating a dropdown UI
 
 {% task 'Create a widget that uses a Dojo 2 `TextInput`.' %}
 
@@ -32,9 +32,7 @@ Before digging into the specifics of wiring a widget to a data source, a basic d
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Dropdown.ts' lines:1-3,7-9,13-18,28-29,36-39 %}
 
-This code lays the base foundation for a themeable Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemeableMixin`, and it defines a `render` method that returns virtual DOM.
-
-The next step is to import a Dojo 2 `TextInput` and use it inside the `Dropdown`.
+This code lays the base foundation for a themeable Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemeableMixin`, and it defines a `render` method that returns virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `Dropdown`.
 
 {% instruction 'Import `TextInput` into `Dropdown.ts`:' %}
 
@@ -43,12 +41,6 @@ The next step is to import a Dojo 2 `TextInput` and use it inside the `Dropdown`
 {% instruction 'Update the `DropdownProperties` interface so that a `value` and an `onInput` callback can be passed into the `Dropdown`:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Dropdown.ts' lines:9,11-13 %}
-
-{% aside 'Diving deeper' %}
-The [Form widgets](../005_form_widgets/) tutorial provides a more thorough explanation of fully-controlled form widgets in Dojo 2.
-{% endaside %}
-
-The `DropdownProperties` interface now defines two new properties that must be passed into the `Dropdown`: `value` and `onInput`. Dojo 2 form widgets don't normally update their own state; instead, widgets inform their parent of changes using callback properties, like `onInput`, and parents will pass updated properties back down to children, like a `value`.
 
 The next step in creating an initial dropdown widget is to update its `render` method to define a `TextInput` using the `w` module.
 
@@ -76,6 +68,10 @@ protected render() {
 
 Before continuing with the `Dropdown` implementation, let’s review and verify the progress so far by adding the current widget to the Biz-E-Bodies application.
 
+{% section %}
+
+## Adding a Dropdown widget to the application
+
 {% task 'Add the `Dropdown` widget to the application.' %}
 
 We'll add the `Dropdown` widget to the existing `Banner` widget so users can filter a list of workers by name when first visiting the application. The end result should look something like this:
@@ -84,7 +80,7 @@ We'll add the `Dropdown` widget to the existing `Banner` widget so users can fil
 
 {% instruction 'Import `Dropdown` into `Banner.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:3 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:4 %}
 
 {% instruction 'Try and update `Banner` to render an array of virtual nodes that includes the existing `<h1>` element as well as a `Dropdown`.' %}
 
@@ -113,9 +109,9 @@ A solid foundation for a basic dropdown widget using a Dojo 2 `TextInput` widget
 
 {% task 'Connect the `Dropdown` to data using its `properties`.' %}
 
-Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to have knowledge of a store implementation in order to query it.
+Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to have knowledge of a store implementation in order to leverage it.
 
-Data-driven widgets in Dojo 2 don't need to know any details about an underlying data source to interact with it. Instead of calling methods on a store directly, widgets should request data from their parent widget using callback properties, and the parent should pass properties containing relevant data back down to children. Dojo 2 widgets can use this parent-driven data approach to enable compatability with virtually any provider by strictly decoupling widgets from the stores that power them.
+Data-driven widgets in Dojo 2 don't need to know any details about an underlying data source to interact with it. Instead of calling methods on a store directly, widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data back down to children. Dojo 2 widgets can use this parent-driven data approach to enable compatability with virtually any provider by strictly decoupling widgets from the stores that power them.
 
 The first step to connecting the `Dropdown` to worker data is to update its `properties` interface so it can accept a `data` array.
 
@@ -151,17 +147,17 @@ protected render() {
 ```
 {% endsolution %}
 
-The `Dropdown` widget now renders both a `TextInput` that a user can type into and a list of result items based on the its `data` property. The next step to update the `Banner` widget to pass the correct `data` into the `Dropdown`.
+The `Dropdown` widget now renders both a `TextInput` that a user can type into and a list of result items based on its `data` property. The next step to update the `Banner` widget to pass the correct `data` into the `Dropdown`.
 
 {% task 'Pass worker data down through the `Banner` to the `Dropdown`' %}
 
-Currently, the application keeps all worker data as a private variable within the `App` widget. In order to use this data to also power the `Dropdown`, the `Banner` widget must be updated to accept a `data` property so it can in turn pass it down to the `Dropdown` it renders.
+Currently, the application keeps all worker data as a private variable within the `App` widget. In order to use this data to also power the `Dropdown`, the `Banner` widget must also be updated to accept a `data` property so it can in turn pass it down to the `Dropdown` it renders.
 
-{% instruction 'Export a `BannerProperties` interface from the `Banner` widget with `data` array property can be passed in:' %}
+{% instruction 'Export a `BannerProperties` interface from the `Banner` widget so a `data` array property can be passed in:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:3,5-8 %}
 
-{% instruction 'Update the generic parameter passed into `WidgetBase` to be the new interface:' %}
+{% instruction 'Update the generic parameter passed into `WidgetBase` to use the new interface:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Dropdown.ts' lines:9 %}
 
@@ -185,9 +181,9 @@ A helper method was added that filters worker data items by name based on a quer
 
 ## Summary
 
-A basic dropdown list with incremental lookup was built throughout this tutorial to demonstrate how Dojo 2 widgets have no coupling to a specific store implementation. Despite the simplicity of this example widget, it demonstrates an key departure from Dojo 1 and other widget frameworks that aren't reactive: data-driven widgets request data from their parent and parents pass data back down to their children.
+A basic dropdown list with incremental lookup was built throughout this tutorial to demonstrate how Dojo 2 widgets have no coupling to a specific store implementation. Despite the simplicity of this example widget, it demonstrates an key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.
 
-It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `Dropdown` widget, but the data could've come from anywhere, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the reactivity of the widgeting system makes it so the `Dropdown` doesn't care _where_ its data comes from. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
+It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `Dropdown` widget, but the data could've come from anywhere, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widgeting system makes it so the `Dropdown` doesn't care _where_ its data comes from. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
 
 If you would like, you can download the completed [demo application](../assets/1040_data_driven	_widgets-finished.zip). 
 
