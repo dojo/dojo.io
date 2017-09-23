@@ -4,12 +4,12 @@ title: Data-driven widgets
 overview: In this tutorial, you will learn how to create reactive data-driven widgets in Dojo 2.
 ---
 
-{% section 'first' %}	
+{% section 'first' %}   
 
 # Data-driven widgets
 
 ## Overview
-The Dojo 2 widget system provides a functional API that attempts to strictly enforce a undirectional data flow: the only way to interact with a widget is through the `properties` it exposes, and dealing directly with widget instances is both uncommon and bad practice. It can be confusing to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks like Dojo 1 were so tightly coupled to store implementations.
+The Dojo 2 widget system provides a functional API that attempts to strictly enforce a unidirectional data flow: the only way to interact with a widget is through the `properties` it exposes, and dealing directly with widget instances is both uncommon and bad practice. It can be confusing to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks like Dojo 1 were so tightly coupled to store implementations.
 
 In this tutorial, a filterable data-driven list widget will be built to demonstrate how Dojo 2 widgets should be decoupled from data providers.
 
@@ -51,17 +51,17 @@ Click the button below if you need help or want to check your solution.
 {% solution showsolution1 %}
 ```ts
 protected onInput({ target: { value } }: any) {
-	this.properties.onInput(value);
+    this.properties.onInput(value);
 }
 
 protected render() {
-	return v('div', [
-		w(TextInput, {
-			value: this.properties.value,
-			onInput: this.onInput,
-			placeholder: 'Filter workers...'
-		})
-	]);
+    return v('div', [
+        w(TextInput, {
+            value: this.properties.value,
+            onInput: this.onInput,
+            placeholder: 'Filter workers...'
+        })
+    ]);
 }
 ```
 {% endsolution %}
@@ -87,14 +87,14 @@ We'll add the `List` widget to the existing `Banner` widget so users can filter 
 {% solution showsolution2 %}
 ```ts
 protected render() {
-	return [
-		v('h1', { title: 'I am a title!' }, [ 'Welcome To Biz-E-Bodies' ]),
-		v('label', ['Find a worker:']),
-		w(List, {
-			onInput: (value: string) => null,
-			value: ''
-		})
-	];
+    return [
+        v('h1', { title: 'I am a title!' }, [ 'Welcome To Biz-E-Bodies' ]),
+        v('label', ['Find a worker:']),
+        w(List, {
+            onInput: (value: string) => null,
+            value: ''
+        })
+    ];
 }
 ```
 {% endsolution %}
@@ -111,7 +111,7 @@ A solid foundation for a filterable list widget using a Dojo 2 `TextInput` widge
 
 Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to have knowledge of a store implementation.
 
-Data-driven widgets in Dojo 2 don't need to know any details about underlying data sources. Instead of calling methods on a store directly, widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data back down to children. **Dojo 2 widgets can use this parent-driven data approach to enable compatability with virtually any provider by strictly decoupling widgets from the stores that power them.**
+Data-driven widgets in Dojo 2 don't need to know any details about underlying data sources. Instead of calling methods on a store directly, widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data back down to children. **Dojo 2 widgets can use this parent-driven data approach to enable compatibility with virtually any provider by strictly decoupling widgets from the stores that power them.**
 
 The first step to connecting the `List` to worker data is to update its `properties` interface so it can accept a `data` array.
 
@@ -130,19 +130,19 @@ The `ListProperties` interface now defines an optional `data` property that can 
 {% solution showsolution3 %}
 ```ts
 protected renderItems() {
-	const { data = [] } = this.properties;
-	return data.map((item: any) => v('div', [ `${item.firstName} ${item.lastName}` ]));
+    const { data = [] } = this.properties;
+    return data.map((item: any) => v('div', [ `${item.firstName} ${item.lastName}` ]));
 }
 
 protected render() {
-	return v('div', [
-		w(TextInput, {
-			value: this.properties.value,
-			onInput: this.onInput,
-			placeholder: 'Filter workers...'
-		}),
-		v('div', this.renderItems())
-	]);
+    return v('div', [
+        w(TextInput, {
+            value: this.properties.value,
+            onInput: this.onInput,
+            placeholder: 'Filter workers...'
+        }),
+        v('div', this.renderItems())
+    ]);
 }
 ```
 {% endsolution %}
@@ -167,7 +167,7 @@ Currently, the application keeps all worker data as a private variable within th
 
 ```ts
 w(BannerOutlet, {
-	data: this._workerData
+    data: this._workerData
 })
 ```
 
@@ -185,8 +185,9 @@ A helper method was added that filters worker data items by name based on a quer
 
 A filterable list widget was built throughout this tutorial to demonstrate how Dojo 2 widgets have no coupling to a specific store implementation. Despite the simplicity of this example widget, it demonstrates an key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.
 
-It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could've come from anywhere, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widgeting system makes it so the `List` doesn't care _where_ its data comes from. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
+It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could've come from anywhere, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the `List` doesn't care _where_ its data comes from. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
 
-If you would like, you can download the completed [demo application](../assets/1040_data_driven	_widgets-finished.zip). 
+If you would like, you can download the completed [demo application](../assets/1040_data_driven _widgets-finished.zip). 
 
 {% section 'last' %}
+
