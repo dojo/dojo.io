@@ -1,21 +1,20 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
-import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import { WorkerProperties } from './Worker';
-import * as css from '../styles/dropdown.m.css';
+import * as css from '../styles/list.m.css';
 
-export interface DropdownProperties {
+export interface ListProperties {
 	data?: WorkerProperties[];
 	onInput: (value: string) => void;
 	value: string;
 }
 
-const DropdownBase = ThemeableMixin(WidgetBase);
+const ListBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class Dropdown extends DropdownBase<DropdownProperties> {
+export default class List extends ListBase<ListProperties> {
 	protected onInput({ target: { value } }: any) {
 		this.properties.onInput(value);
 	}
@@ -30,7 +29,7 @@ export default class Dropdown extends DropdownBase<DropdownProperties> {
 			w(TextInput, {
 				value: this.properties.value,
 				onInput: this.onInput,
-				placeholder: 'Search workers...'
+				placeholder: 'Filter workers...'
 			}),
 			v('div', this.renderItems())
 		]);

@@ -1,14 +1,14 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
+import List from './List';
 import { WorkerProperties } from './Worker';
-import Dropdown from './Dropdown';
 
 export interface BannerProperties {
 	data?: WorkerProperties[];
 }
 
 export default class Banner extends WidgetBase<BannerProperties> {
-	private _data: any[] = [];
+	private _data: any[];
 
 	protected filterData(value: string) {
 		const { data = [] } = this.properties;
@@ -26,10 +26,10 @@ export default class Banner extends WidgetBase<BannerProperties> {
 		return [
 			v('h1', { title: 'I am a title!' }, [ 'Welcome To Biz-E-Bodies' ]),
 			v('label', ['Find a worker:']),
-			w(Dropdown, {
+			w(List, {
 				onInput: this.filterData,
 				value: '',
-				data: this._data
+				data: this._data || this.properties.data
 			})
 		];
 	}
