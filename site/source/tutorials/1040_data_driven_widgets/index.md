@@ -51,17 +51,17 @@ Click the button below if you need help or want to check your solution.
 {% solution showsolution1 %}
 ```ts
 protected onInput({ target: { value } }: any) {
-  this.properties.onInput(value);
+	this.properties.onInput(value);
 }
 
 protected render() {
-  return v('div', [
-    w(TextInput, {
-      value: this.properties.value,
-      onInput: this.onInput,
-      placeholder: 'Search workers...'
-    })
-  ]);
+	return v('div', [
+		w(TextInput, {
+			value: this.properties.value,
+			onInput: this.onInput,
+			placeholder: 'Search workers...'
+		})
+	]);
 }
 ```
 {% endsolution %}
@@ -78,9 +78,9 @@ We'll add the `Dropdown` widget to the existing `Banner` widget so users can fil
 
 <p class="center">![dropdown_widget](../resources/dropdown.png)</p>
 
-{% instruction 'Import `Dropdown` into `Banner.ts`:' %}
+{% instruction 'Import `Dropdown` and the `w` module into `Banner.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:2,4 %}
 
 {% instruction 'Try and update `Banner` to render an array of virtual nodes that includes the existing `<h1>` element as well as a `Dropdown`.' %}
 
@@ -94,7 +94,7 @@ protected render() {
 			onInput: (value: string) => null,
 			value: ''
 		})
-	]
+	];
 }
 ```
 {% endsolution %}
@@ -109,9 +109,9 @@ A solid foundation for a basic dropdown widget using a Dojo 2 `TextInput` widget
 
 {% task 'Connect the `Dropdown` to data using its `properties`.' %}
 
-Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to have knowledge of a store implementation in order to leverage it.
+Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to have knowledge of a store implementation.
 
-Data-driven widgets in Dojo 2 don't need to know any details about an underlying data source to interact with it. Instead of calling methods on a store directly, widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data back down to children. Dojo 2 widgets can use this parent-driven data approach to enable compatability with virtually any provider by strictly decoupling widgets from the stores that power them.
+Data-driven widgets in Dojo 2 don't need to know any details about underlying data sources. Instead of calling methods on a store directly, widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data back down to children. **Dojo 2 widgets can use this parent-driven data approach to enable compatability with virtually any provider by strictly decoupling widgets from the stores that power them.**
 
 The first step to connecting the `Dropdown` to worker data is to update its `properties` interface so it can accept a `data` array.
 
@@ -120,7 +120,7 @@ The first step to connecting the `Dropdown` to worker data is to update its `pro
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Dropdown.ts' lines:6,8,9-13 %}
 
 {% aside 'Playing it safe' %}
-The `WorkerProperties` interface is imported from the `Worker` widget so that the typings of the `data` array can be as strict as possible.
+The `WorkerProperties` interface is imported from the `Worker` widget so that the TypeScript typings for the `data` array can be as strict as possible.
 {% endaside %}
 
 The `DropdownProperties` interface now defines an optional `data` property that can be passed into a `Dropdown` widget. This property could've been called by any name other than `data`; the important takeaway is that data items can now be passed into the `Dropdown` widget using `properties`. The next step is to update the `Dropdown` to render a list of items based on its new `data` property.
@@ -147,7 +147,9 @@ protected render() {
 ```
 {% endsolution %}
 
-The `Dropdown` widget now renders both a `TextInput` that a user can type into and a list of result items based on its `data` property. The next step to update the `Banner` widget to pass the correct `data` into the `Dropdown`.
+The `Dropdown` widget now renders both a `TextInput` that a user can type into and a list of result items based on its `data` property. Item rendering is offloaded into a helper method (`renderItems`) so widgets that extend `Dropdown` that desire to modify how items are rendered only have to override a small helper method instead of the main `render` method.
+
+The next step to update the `Banner` widget to pass the correct `data` into the `Dropdown`.
 
 {% task 'Pass worker data down through the `Banner` to the `Dropdown`' %}
 
@@ -159,9 +161,9 @@ Currently, the application keeps all worker data as a private variable within th
 
 {% instruction 'Update the generic parameter passed into `WidgetBase` to use the new interface:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Dropdown.ts' lines:9 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:10 %}
 
-{% instruction 'Pass worker data to the `Banner` in `App.ts`:' %}
+{% instruction 'Pass worker data to the routing outlet for the `Banner` widget in `App.ts`:' %}
 
 ```ts
 w(BannerOutlet, {
@@ -173,7 +175,7 @@ Now that the `Banner` widget has worker data, it can pass a subset of this data 
 
 {% instruction 'Pass a subset of worker data into the `Dropdown` based on its `value` in `Banner.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:13-35 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:11-35 %}
 
 A helper method was added that filters worker data items by name based on a query value. These filtered items are passed to the `Dropdown` as its `data`, causing it to render result items if any exist based on user input.
 

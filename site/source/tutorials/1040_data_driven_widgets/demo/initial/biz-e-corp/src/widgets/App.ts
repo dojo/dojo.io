@@ -1,11 +1,14 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { Link } from '@dojo/routing/Link';
 
-import Banner from './Banner';
-import WorkerForm, { WorkerFormData } from './WorkerForm';
+import { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
-import WorkerContainer from './WorkerContainer';
+import WorkerFormOutlet from './../outlets/WorkerFormOutlet';
+import WorkerContainerOutlet from './../outlets/WorkerContainerOutlet';
+import BannerOutlet from './../outlets/BannerOutlet';
+import FilteredWorkerContainerOutlet from './../outlets/FilteredWorkerContainerOutlet';
 
 import workerData from './../support/workerData';
 
@@ -33,15 +36,30 @@ export default class App extends ThemeableMixin(WidgetBase) {
 
 	protected render() {
 		return v('div', [
-			w(Banner, {}),
-			w(WorkerForm, {
-				formData: this._newWorker,
-				onFormInput: this._onFormInput,
-				onFormSave: this._addWorker
-			}),
-			w(WorkerContainer, {
-				workerData: this._workerData
-			})
+			v('div', { classes: this.classes(css.root) },  [
+				v('div', { classes: this.classes(css.container) },  [
+					v('h1', { classes: this.classes(css.title) }, [ 'Biz-E-Bodies' ]),
+					v('div', { classes: this.classes(css.links) }, [
+						w(Link, { key: 'home', to: 'home', classes: this.classes(css.link) }, [ 'Home' ]),
+						w(Link, { key: 'directory', to: 'directory', classes: this.classes(css.link) }, [ 'Worker Directory' ]),
+						w(Link, { key: 'newWorker', to: 'new-worker', classes: this.classes(css.link) }, [ 'New Worker' ])
+					])
+				])
+			]),
+			v('div', { classes: this.classes(css.main) },  [
+				w(BannerOutlet, {}),
+				w(WorkerFormOutlet, {
+					formData: this._newWorker,
+					onFormInput: this._onFormInput,
+					onFormSave: this._addWorker
+				}),
+				w(FilteredWorkerContainerOutlet, {
+					workerData: this._workerData
+				}),
+				w(WorkerContainerOutlet, {
+					workerData: this._workerData
+				})
+			])
 		]);
 	}
 }

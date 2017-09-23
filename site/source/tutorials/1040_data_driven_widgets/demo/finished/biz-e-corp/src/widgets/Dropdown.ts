@@ -4,7 +4,7 @@ import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import { WorkerProperties } from './Worker';
-import * as css from '../styles/dropdown.css';
+import * as css from '../styles/dropdown.m.css';
 
 export interface DropdownProperties {
 	data?: WorkerProperties[];

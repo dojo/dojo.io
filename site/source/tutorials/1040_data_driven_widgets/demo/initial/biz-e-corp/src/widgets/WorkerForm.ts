@@ -45,43 +45,45 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 			formData: { firstName, lastName, email }
 		} = this.properties;
 
-		return v('form', {
-			classes: this.classes(css.workerForm),
-			onsubmit: this._onSubmit
-		}, [
-			v('fieldset', { classes: this.classes(css.nameField) }, [
-				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
+		return v('div', { classes: this.classes(css.workerForm) }, [
+			v('h1', {}, [ 'Add New Worker' ]),
+			v('form', {
+				onsubmit: this._onSubmit
+			}, [
+				v('fieldset', { classes: this.classes(css.nameField) }, [
+					v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
+					w(TextInput, {
+						key: 'firstNameInput',
+						label: {
+							content: 'First Name',
+							hidden: true
+						},
+						placeholder: 'First name',
+						value: firstName,
+						required: true,
+						onInput: this.onFirstNameInput
+					}),
+					w(TextInput, {
+						key: 'lastNameInput',
+						label: {
+							content: 'Last Name',
+							hidden: true
+						},
+						placeholder: 'Last name',
+						value: lastName,
+						required: true,
+						onInput: this.onLastNameInput
+					})
+				]),
 				w(TextInput, {
-					key: 'firstNameInput',
-					label: {
-						content: 'First Name',
-						hidden: true
-					},
-					placeholder: 'First name',
-					value: firstName,
+					label: 'Email address',
+					type: 'email',
+					value: email,
 					required: true,
-					onInput: this.onFirstNameInput
+					onInput: this.onEmailInput
 				}),
-				w(TextInput, {
-					key: 'lastNameInput',
-					label: {
-						content: 'Last Name',
-						hidden: true
-					},
-					placeholder: 'Last name',
-					value: lastName,
-					required: true,
-					onInput: this.onLastNameInput
-				})
-			]),
-			w(TextInput, {
-				label: 'Email address',
-				type: 'email',
-				value: email,
-				required: true,
-				onInput: this.onEmailInput
-			}),
-			w(Button, { }, [ 'Save' ])
+				w(Button, { }, [ 'Save' ])
+			])
 		]);
 	}
 }
