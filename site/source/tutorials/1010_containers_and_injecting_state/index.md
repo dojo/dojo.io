@@ -68,7 +68,7 @@ In a real-world application, this data would probably be loaded via a call to a 
 
 The state stored in the `ApplicationContext` is the same data that was used in the previous version of the `App` module to initialize the `WorkerProperties`, but it is now decoupled into an isolated module that helps to understand and maintain the application. In general, the `main` module of an application should be concerned with initializing application-wide state. Also, as previously mentioned, the `App` class only needed to manage the `WorkerProperties` state so that it could coordinate change to its children.
 
-Now that we have the `ApplicationContext`, let's use it within our widgets. This is done by creating an `Injector` and making it available to the to widgets via a `registry`. `Injectors` are created using the `Injector` factory function from `@dojo/widget-core`.
+Now that we have the `ApplicationContext`, let's use it within our widgets. This is done by creating an `Injector` and making it available to the widgets via a `registry`. `Injectors` are created using the `Injector` factory function from `@dojo/widget-core`.
 
 {% instruction 'Add the following imports to the `main` module.' %}
 
