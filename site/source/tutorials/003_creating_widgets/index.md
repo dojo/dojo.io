@@ -262,11 +262,11 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% instruction 'Add the following import to the top of `Worker.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:3 %}
 
 {% instruction 'We also need to `import` our CSS:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:5 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:4 %}
 
 `worker.css` contains CSS selectors and rules to be consumed by our widget and its components.
 
