@@ -8,7 +8,7 @@
     "@dojo/shim": "next",
     "@dojo/widget-core": "next",
     "@dojo/i18n": "next",
-    "@dojo/widgets": "next"
+    "@dojo/widgets": "beta2"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "beta2",
