@@ -1,24 +1,38 @@
 ## Philosophy & Approach
 
-Dojo 2 is grounded in the belief that accessibility is as important online as it is in our built environments, and architects of both share a similar responsibility to provide access to all. Accessibility failures abound in each setting, and they can be very obvious once one starts looking:
+Dojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provide access to all. Accessibility failures abound in each setting, and they can be very obvious once one starts looking:
 
 | ![Bad wheelchair ramp example](./resources/ramp-bad.jpg)  | ![Good ramp example](./resources/ramp-good.jpg) |
 |:---:|:---:|
 | Afterthought Accessibility | Designed Accessibility |
 
-Web developers have an additional hurdle to jump over, since accessibility failures online are often invisible and silent. Without proper testing, it is all too easy to add a `title` attribute to a link or a `<label>` without a `for` and think requirements have been met.
+Web developers have an additional hurdle to jump over, since accessibility failures online are often invisible and silent. Without proper testing, it is all too easy to add a redundant `title` attribute to a link or create a `<label>` while forgetting the `for` attribute.
 
-The advances in spec and support for ARIA attributes are fantastic, but they can feed into the false impression that accessibility is achieved by slapping an `aria-labelledby` or `role` onto a finished widget and calling it a day. The only approach that has the potential to deliver truly equal access is to begin thinking about accessibility in design and continue through to development and testing. For that reason, Dojo 2 has no separate accessibility mixin; all our widgets have been designed to be accessible by default, and any tools needed to meet WCAG standards have been integrated into `widget-core` and `widgets`.
+The increasingly fleshed-out spec and support for ARIA attributes is fantastic, but can feed into the false impression that accessibility is achieved by slapping an `aria-labelledby` or `role` onto a finished widget and calling it a day. The only approach that has the potential to deliver truly equal access is to begin thinking about accessibility in design and continue through to development and testing. For that reason, Dojo 2 has no separate accessibility mixin; all Dojo 2 widgets have been designed to be accessible by default, and any tools needed to meet [WCAG](https://www.w3.org/TR/WCAG20/) standards have been integrated into `@dojo/widget-core` and `@dojo/widgets`.
 
 ## Using Dojo 2 Widgets
-All widgets provided through `@dojo/widgets` have been created with a range of assistive tech and perceptual differences in mind. However, as with all code, they are not foolproof. There are a number of instances where additional information is required of the widget user before peak accessibility can be achieved. A framework can only go so far before it becomes the user’s responsibility to provide label text or correctly set various attributes. Each widget’s example page models best practices, and scanning through available properties is a good way to check for any missing accessibility enhancements.
+All widgets provided through `@dojo/widgets` have been created with a range of assistive tech and perceptual differences in mind. Wherever possible, Dojo 2 takes advantage of built-in accessibility by using native elements; if it looks like a button and acts like a button, it should be a `<button>`. Widgets than go beyond the functionality provided by native elements use internal logic to provide proper semantics and non-mouse interaction.
+
+As with all code however, Dojo widgets are not foolproof. There are a number of instances where additional information is required of the widget author before peak accessibility can be achieved. A framework can only go so far before it becomes the developer's responsibility to provide label text or correctly set attributes such as `type` or `role`. Each widget’s example page models best practices, and scanning through available widget properties is a good way to check for any missing accessibility enhancements.
 
 Below is a list of widgets in `@dojo/widgets`, along with a description of the keyboard interaction (if applicable) and any properties included primarily for accessibility (shortened to a11y):
 
 ### Label
-All form widgets apart from `Button` contain a `label` property that allows users to easily associate a text label with the control. `Label` is also available as a separate widget for use with custom form controls. The `Label` widget included with dojo form widgets is associated with the form input by wrapping it as a child element. When used separately, it is also possible to explicitly set the `forId` property to the id of an input.
+All form widgets apart from the Button contain a `label` property that allows widget authors to easily associate a text label with the control. Label is also available as a separate widget for use with custom form controls. The Label widget included with Dojo form widgets is associated with the form input by wrapping it as a child element. When used separately, it is also possible to explicitly set the `forId` property to the id of an input.
 
-The `label` property on both form widgets and `Label` accepts either a string or an options object that allows customization of where the label is placed (before or after the input), and whether it is visually hidden. The latter makes use of screen reader-accessible CSS styles to hide text content, and is recommended for use with form controls that have no visible label.
+##### Separate Label + Input example
+```typescript
+w(Label, {
+	forId: 'foo',
+	label: 'Foo Label Text'
+}),
+w(TextInput, {
+	id: 'foo',
+	type: 'text'
+})
+```
+
+The `label` property on both form field widgets and the Label widget accepts either a string or an options object that allows customization of where the label is placed (before or after the input) and whether it is visually hidden. The latter makes use of screen reader-accessible CSS styles to hide text content and is recommended for use with form controls that have no visible label.
 
 A `<label>` element with hidden text was chosen over the `aria-label` attribute for invisible labels due to [still-inconsistent](https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/) screen reader support for the latter. Should this change, we will update our hidden label implementation to `aria-label` without changing the public-facing properties.
 
@@ -27,16 +41,16 @@ ___
 As with all basic form controls included in `@dojo/widgets`, TextInput and Textarea use native `<input>`/`<textarea>` elements, which allows them to take advantage of built-in accessibility.
 
 ##### A11y properties
-- `controls`: Text inputs can sometimes control the visibility of other elements, for example in the case of a combobox or autocomplete dropdown. In this case, `controls` can be used to set `aria-controls` to the ID of the controlled element.
+- `controls`: Text inputs can sometimes be used to control an interactive dropdown. In this case, `controls` can be used to set `aria-controls` to the ID of the controlled element.
 - `describedBy`: Sets the `aria-describedby` property to point to the ID of an element containing additional descriptive text. Screen readers usually read this text after the label text, followed by a short pause.
-- `label`: Controls the wrapping `<label>` element, and takes a string or options object
+- `label`: Controls the wrapping `<label>` element.
 - `type`: Specifying text input type to `email`, `search`, etc. when applicable provides more information to screen reader users in addition to other benefits like showing the most helpful mobile keyboard.
 
 ___
 
 ### Button
 
-This widget returns a simple `<button>` element.
+This widget returns a simple `<button>` element with native support for use with keyboards and assistive tech.
 
 ##### A11y properties
 - `describedBy`: Sets the `aria-describedby` property to point to the ID of an element containing additional descriptive text. Screen readers usually read this text after the label text, followed by a short pause.
@@ -47,18 +61,21 @@ ___
 ### Checkbox
 The Checkbox widget wraps a native `<input type="checkbox">`, which provides native accessibility and keyboard interaction.
 
-Checkbox can also be used as a toggle switch with optional `onLabel` and `offLabel` properties. When no text is provided to the on- and off-labels, the change is purely cosmetic. Otherwise, the text provided to `onLabel` will be read at the end of the label text when the checkbox is checked, and `offLabel` will be read when the checkbox is not checked.
+Checkbox can also be used as a toggle switch with optional `onLabel` and `offLabel` properties. When a string is passed to `onLabel`, it will be read at the end of the label text when the checkbox is checked. A string passed to `offLabel` will be read when the checkbox is not checked.
+
+A group of related checkboxes should ideally be wrapped in a `<fieldset>` element containing a `<legend>` with descriptive text.
 
 ##### A11y properties
 - `describedBy`: Sets the `aria-describedby` property to point to the ID of an element containing additional descriptive text. Screen readers usually read this text after the label text, followed by a short pause.
-- `label`: Controls the wrapping `<label>` element, and takes a string or options object
+- `label`: Controls the wrapping `<label>` element.
 ___
 
 ### Radio
-Radio creates a single wrapped `<input type="radio">` input. It is best practice to wrap a group of radio buttons in a `<fieldset>` element that contains a `<legend>` with descriptive text.
+Radio creates a single wrapped `<input type="radio">` input, providing built-in accessibility and keyboard interaction. It is best practice to wrap a group of radio buttons in a `<fieldset>` element that contains a `<legend>` with descriptive text.
+
 ##### A11y properties
 - `describedBy`: Sets the `aria-describedby` property to point to the ID of an element containing additional descriptive text. Screen readers usually read this text after the label text, followed by a short pause.
-- `label`: Controls the wrapping `<label>` element, and takes a string or options object
+- `label`: Controls the wrapping `<label>` element.
 ___
 
 ### Slider
@@ -68,13 +85,13 @@ The current value is wrapped in an `<output>` element that points to the ID of t
 
 ##### A11y properties
 - `describedBy`: Sets the `aria-describedby` property to point to the ID of an element containing additional descriptive text. Screen readers usually read this text after the label text, followed by a short pause.
-- `label`: Controls the wrapping `<label>` element, and takes a string or options object
+- `label`: Controls the wrapping `<label>` element.
 ___
 
 ### Select
-Select is the only Dojo form widget that makes use of a fully custom solution. Since it is impossible to fully customize `<option>` elements, we chose to re-create select functionality within our component. The end result is a popup button that controls a dropdown listbox of options.
+Select is the only Dojo form widget that makes use of a fully custom solution. Since it is impossible to customize `<option>` elements, the component instead re-creates select functionality from scratch. The end result is a popup button that controls a dropdown menu (with `role="listbox"`) of options.
 
-ARIA attributes are used to associate the button with the listbox and focused option. They are also used to provide semantics for read-only and disabled options, as well as setting the entire select field to be read-only, invalid, or required.
+ARIA attributes are used to associate the button with the menu and focused option. They are also used to provide semantics for read-only and disabled options, as well as setting the entire select field to be read-only, invalid, or required.
 
 It is also possible to use Select to create a widget using the native `<select>` element by passing `useNativeElement: true` to the properties object.
 
@@ -83,33 +100,33 @@ It is also possible to use Select to create a widget using the native `<select>`
 - **Up arrow**: Focuses the previous option, wrapping from first to last
 - **Home**: Focuses the first option
 - **End**: Focuses the last option
-- **Enter & Space**: Selects the focused option and closes the listbox, unless the option is disabled
-- **Escape**: Closes the listbox without selecting an option
+- **Enter & Space**: Selects the focused option and closes the menu, unless the option is disabled
+- **Escape**: Closes the menu without selecting an option
 
-Disabled options are focusable but not selectable within the listbox, per [WAI-ARIA recommendations](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls).
+Disabled options are focusable but not selectable within the menu, per [WAI-ARIA recommendations](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls).
 
 ##### A11y properties
 - `describedBy`: Sets the `aria-describedby` property to point to the ID of an element containing additional descriptive text. Screen readers usually read this text after the label text, followed by a short pause.
-- `label`: Controls the wrapping `<label>` element, and takes a string or options object
+- `label`: Controls the wrapping `<label>` element.
 - `useNativeElement`: Switches to using the native `<select>` element, with some trade-offs to customizability.
 
 ___
 
 ### ComboBox
 
-ComboBox is similar to select, but provides a text input that filters available options in addition to a button that opens the option menu. The markup is similar in that the menu comprises of a listbox of options with `role="option"` controlled by both a text input and button.
+ComboBox is similar to Select, but provides a text input that filters available options in addition to a button that opens the option menu. The markup is similar in that the menu comprises of a listbox of options with `role="option"` controlled by both a text input and button.
 
 Since both the button that opens the options menu and the button that clears the textbox value rely on icons, hidden screen reader-accessible text is also provided. Focus is programatically returned to the text input when the clear text button is pressed or when the dropdown is opened.
 
 ##### Keyboard Interaction
 - **Down arrow**: Focuses the next option, wrapping from last to first, or opens the menu if closed
 - **Up arrow**: Focuses the previous option, wrapping from first to last
-- **Enter**: Selects the focused option and closes the listbox, unless the option is disabled
-- **Escape**: Closes the listbox without selecting an option
+- **Enter**: Selects the focused option and closes the menu, unless the option is disabled
+- **Escape**: Closes the menu without selecting an option
 
 ##### A11y properties
 - `inputProperties`: Can be used to set any properties, including `describedBy`, directly on the inner TextInput widget
-- `label`: Controls the wrapping `<label>` element, and takes a string or options object
+- `label`: Controls the wrapping `<label>` element.
 ___
 
 ### TimePicker
@@ -161,33 +178,33 @@ ___
 
 ### TabController
 
-TabController creates a set of tabs that control the content of a container. The tabs use `role="tab"` and are associated with the content through `aria-controls` and `aria-labelledby`. Only one tab is in the tab order, and arrow keys are used to switch between tabs.
+TabController creates a set of tab buttons that control the content of a container. The tab buttons use `role="tab"` and are associated with their content through `aria-controls` and `aria-labelledby`. Only one tab button is in the tab order at a time, and arrow keys are used to switch between tab buttons. This approach both directly follows the [ARIA Authoring Practice Guidelines](https://www.w3.org/TR/wai-aria-practices-1.1/) and avoids polluting the tab order with a large number of tab stops in the case of a single TabController with many tabs.
 
 ##### Keyboard Interaction
-- **Left arrow**: Moves to previous tab, wrapping from first to last
-- **Right arrow**: Moves to next tab, wrapping from last to first
-- **Down arrow**: Moves to next tab on vertically oriented tabs
-- **Up arrow**: Moves to previous tab on vertically oriented tabs
-- **Page Up**: Moves to first tab
-- **Page Down**: Moves to last tab
-- **Escape**: Closes focused tab if it is closeable
+- **Left arrow**: Moves to previous tab button, wrapping from first to last
+- **Right arrow**: Moves to next tab button, wrapping from last to first
+- **Down arrow**: Moves to next tab button only on vertically oriented tabs
+- **Up arrow**: Moves to previous tab button only on vertically oriented tabs
+- **Page Up**: Moves to first tab button
+- **Page Down**: Moves to last tab button
+- **Escape**: Closes focused tab button if it is closeable
 
 ___
 
 ### TitlePane
 
-TitlePane creates an accordion widget, functionally a button that expands a content container. Collapsed content is obscured with `aria-hidden`, and the button and content container are associated with `aria-controls` and `aria-labelledby`.
+TitlePane creates an accordion widget, which is functionally a button that expands a content container. Collapsed content is obscured with `aria-hidden`, and the button and content container are associated with `aria-controls` and `aria-labelledby`.
 
 ##### A11y properties
 - `headingLevel`: Optionally customize the heading level of the button controlling the accordion.
 ___
 
-This overview only touched on properties that primarily exist for accessibility-related reasons, but any design decision or property change will end up affecting accessibility in some way. For some of those, such as `invalid`, `disabled`, and `readOnly`, we handle setting ARIA attributes in the background in addition to toggling classes without any extra attention needed from the user. In other cases, such as `getResultLabel` in ComboBox or `renderMonthLabel` in Calendar, it is entirely up to the widget user to ensure the returned result includes clear, screen-reader-accessible text content.
+This overview only touched on properties that primarily exist for accessibility-related reasons, but any design decision or property change will end up affecting accessibility in some way. For some of those, such as `invalid`, `disabled`, and `readOnly`, we handle setting ARIA attributes in the background in addition to toggling classes without any extra attention needed from the widget author. In other cases, such as `getResultLabel` in ComboBox or `renderMonthLabel` in Calendar, it is entirely up to the author to ensure the returned result includes clear, screen-reader-accessible text content.
 
 ## Styling
-The base Dojo 2 theme meets WCAG AA color contrast guidelines, but it is up to the user to double check the final styles as changes to font size or background could affect readability. Widget css packaged with Dojo2 also includes `:focus` styles for all focusable nodes.
+The base Dojo 2 theme meets WCAG AA color contrast guidelines, but it is up to the widget author to double check the final styles as changes to font size or background could affect readability. Widget CSS packaged with Dojo2 also includes `:focus` styles for all focusable nodes.
 
-There is a set of base styles provided by `@dojo/widgets` separate from themes, containing basic utility classes like the screen reader-accessible visually hidden style. To use it, import `baseCss` separately like so:
+There is a set of base styles provided by `@dojo/widgets` separate from themes, containing basic utility classes like `.visuallyHidden`, which will make content invisible to sighted users but still allow it to be read by screen readers. To use it, import `baseCss` separately like so:
 
 ```js
 import * as css from ‘path/to/your/css’;
@@ -204,7 +221,7 @@ class MyWidget extends WidgetBase {
 ```
 
 ## Focus Management
-Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since directly touching the DOM within widgets is discouraged. This feature is currently in development.
+Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since the [virtual DOM approach](./working_with_virtual_dom) means directly touching the DOM within widgets is discouraged. This feature is currently in development.
 
 ## Writing Custom Widgets
 All DOM attributes can be set with `VirtualDomProperties` so, apart from managing focus, no extra tools should be required to create strongly accessible widgets. For example, the following code would create an accessible popup button:
@@ -218,7 +235,7 @@ v('button', {
 	onclick: this._togglePopup
 }, [ 'Click to open popup' ])
 ```
-Since this example uses a `<button>` element, it requires neither an explicit `tabindex` nor an `onkeydown` event to work properly with a keyboard. Wherever possible, Dojo 2 takes advantage of built-in accessibility by using native elements; if it looks like a button and acts like a button, it should be a `<button>`. However, while native functionality is the easiest and most straightforward path to good accessibility, there are times when it’s just not possible or no such element exists.
+Since this example uses a `<button>` element, it requires neither an explicit `tabindex` nor an `onkeydown` event to work properly with a keyboard. However, while native functionality is the easiest and most straightforward path to good accessibility, there are times when it’s just not possible or no such element exists.
 
 For those times when native functionality is insufficient, this handy checklist is a good starting point for planning a soon-to-be accessible widget:
 
