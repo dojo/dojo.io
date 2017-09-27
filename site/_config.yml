@@ -81,7 +81,6 @@ hfc_css:
   exclude:
     - '*.min.css'
     - '**/tutorials/**/*.m.css'
-    - '**/tutorials/**/node_modules/'
 
 hfc_js:
   enable: true
