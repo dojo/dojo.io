@@ -36,7 +36,7 @@ If you cannot see the application, remember to run `dojo build -w` to build the 
 
 This `Banner` widget will now have access to the classes in `banner.m.css` and can receive a `theme`. We use the `root` class to ensure that the theme we create can easily target the correct node.
 
-{% instruction 'Create a new css file for `Banner` named `banner.m.css`.' %}
+{% instruction 'Create a new CSS file for `Banner` named `banner.m.css`.' %}
 
 We will create an empty `root` class for now as our base theme does not require any styles to be added to the `Banner` widget.
 
@@ -70,7 +70,7 @@ Let's create a `theme` directory under your project `src` to store our theme res
 
 {% instruction 'Theme the worker widget' %}
 
-In order to theme the `worker` widget, we need to create `worker.m.css` within our theme directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's css file.
+In order to theme the `worker` widget, we need to create `worker.m.css` within our theme directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's CSS file.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,9,11,16 %}
 
@@ -99,7 +99,7 @@ Open the application in your web browser and see that the `worker` backgrounds a
 
 {% instruction 'Use variables and complete the worker theme' %}
 
-The [Dojo 2 build system](../006_deploying_to_production/) supports new css features such as `css-custom-properties` by using PostCSS to process our `.m.css` files. We can use these new css features to add variables to `worker.m.css` and complete its theme.
+The [Dojo 2 build system](../006_deploying_to_production/) supports new CSS features such as `css-custom-properties` by using PostCSS to process our `.m.css` files. We can use these new CSS features to add variables to `worker.m.css` and complete its theme.
 Let's create `themes/dojo/variables.css` (notice that this file does not have a `.m.css` extension as it is not a `css-module` file).
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/variables.css' lang:css %}
