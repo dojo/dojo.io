@@ -1,11 +1,11 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import App from './widgets/App';
 import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
-import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { Registry } from '@dojo/widget-core/Registry';
 import theme from './themes/dojo/theme';
 
 const root = document.querySelector('my-app') || undefined;
-const registry = new WidgetRegistry();
+const registry = new Registry();
 registerThemeInjector(theme, registry);
 
 const Projector = ProjectorMixin(App);

@@ -45,7 +45,7 @@ We will create an empty `root` class for now as our base theme does not require 
 {% instruction 'Now, let's look at changing `WorkerForm`' %}
 
 {% aside 'Fixed Classes' %}
-Fixed classes apply styles that _cannot_ be overridden by a theme, using a suffix is a convention that helps differentiate the intention of these classes easily.
+Fixed classes apply styles that _cannot_ be overridden by a theme, using a suffix is a convention that helps easily differentiate the intention of these classes.
 {% endaside %}
 
 `WorkerForm` already uses the `ThemeableMixin` and has a `workerForm` class on its root node. Let's change the workerForm class to a `root` class, and while we are there, we will create a `rootFixed` class too, and apply that as a `fixed` class to the root node. This passes a class name to the theming system that cannot be changed or overridden via a theme and ensures that structured or nested styles are not lost when a theme is used.
@@ -112,7 +112,7 @@ We can now use these variables in `worker.m.css` to create our fully themed `wor
 
 ## Theming Dojo widgets
 
-Thus far in this tutorial, we have themed our custom `worker` widget, but how do we theme Dojo's existing widgets that are contained within our application? To demonstrate the styling of existing Dojo widgets, we will theme the `workerForm` widget as it contains both dom nodes and Dojo widgets.
+Thus far in this tutorial, we have themed our custom `worker` widget, but how do we theme Dojo's existing widgets that are contained within our application? To demonstrate the styling of existing Dojo widgets, we will theme the `workerForm` widget as it contains both DOM nodes and Dojo widgets.
 
 {% instruction 'Let\'s create `workerForm.m.css` and include it in theme.ts' %}
 
@@ -120,7 +120,7 @@ Thus far in this tutorial, we have themed our custom `worker` widget, but how do
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,9,11,13,16 %}
 
-This should be familiar from theming the `worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `dojoTextInput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the dojo widget theme keys don't clash with application widget theme keys.
+This should be familiar from theming the `worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `dojoTextInput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.
 
 {% instruction 'Create `dojoTextInput.m.css` and export it from `theme.ts`' %}
 
@@ -130,7 +130,7 @@ This should be familiar from theming the `worker` in the previous section. To th
 
 In this example we are introducing another powerful part of the Dojo 2 theming system, `composes`. Composes originates in the `css-module` specification, allowing you to apply styles from one class selector to another. Here we are specifying that `root` of a `TextInput` (the label text in this case), should appear the same as the `nameLabel` class in our `WidgetForm`. This approach can be very useful when creating multiple themes from a `baseTheme` and avoids repetitive redefinition of style rules.
 
-In your web browser you will see the `TextInputs` at the top of the form have been styled.
+In your web browser you will see the `TextInput` widgets at the top of the form have been styled.
 
 {% instruction 'Create a theme resource for the Dojo Button' %}
 
