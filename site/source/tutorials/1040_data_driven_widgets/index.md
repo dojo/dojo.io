@@ -109,7 +109,7 @@ A solid foundation for a filterable list widget using a Dojo 2 `TextInput` widge
 
 {% task 'Connect the `List` to data using its `properties`.' %}
 
-Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to have knowledge of a store implementation.
+Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to call specific methods on stores.
 
 Data-driven widgets in Dojo 2 do not call methods on a store directly (and are not connected directly to a data store at all). Instead widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data down to its children. The parent can in turn request data from _its_ parent in the same manner, or it can fetch data directly, such as by dispatching an action to an app store like Redux or making an XHR request directly. **Dojo 2 widgets can use this parent-driven data approach to enable compatibility with virtually any data provider by strictly decoupling widgets from the stores that power them.**
 
@@ -147,11 +147,11 @@ protected render() {
 ```
 {% endsolution %}
 
-The `List` widget now renders both a `TextInput` to accept user input and a list of result items based on its `data` property. Item rendering is offloaded into a helper method (`renderItems`) so widgets extending `List` that need to modify the rendering of items only need to override a small helper method instead of the main `render` method.
-
 {% aside 'Injecting state' %}
 The [State management](../1010_containers_and_injecting_state/) tutorial details how to use Dojo 2 `Containers` and `Injectors` to inject external state as properties of widgets.
 {% endaside %}
+
+The `List` widget now renders both a `TextInput` to accept user input and a list of result items based on its `data` property. Item rendering is offloaded into a helper method (`renderItems`) so widgets extending `List` that need to modify the rendering of items only need to override a small helper method instead of the main `render` method.
 
 The next step updates the `Banner` widget to pass the correct `data` into the `List`
 
