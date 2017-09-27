@@ -140,7 +140,7 @@ As mentioned in the previous section, `Container` is a higher order component th
 
 {% instruction 'Replace the imports in the `App` module with the following.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-6 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-5 %}
 
 There are two major changes to the `App` module's imports. First, the widgets (`WorkerForm` and `WorkerContainer`) have been replaced by their container equivalents (`WorkerFormContainer` and `WorkerContainerContainer`). Second, all of the interfaces, `WorkerFormData`, and `WorkerProperties` have been removed. These are no longer needed since the `App` class no longer needs to manage state.
 
@@ -148,7 +148,7 @@ Also, the property and methods within `App` that are setting and managing state 
 
 {% instruction 'Remove the following code from the `App` class.' %}
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' lines:9-45 %}
+{% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' lines:9-44 %}
 
 The final change to `App` is to update the `render` method to use the containers. Since the containers already know how to manage their state and respond to events, no properties need to be passed directly to the `Container` by the `App` widget.
 

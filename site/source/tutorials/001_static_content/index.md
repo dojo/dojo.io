@@ -54,7 +54,7 @@ You should see something like this:
 
 Some of this code may not make sense now, but over the next few tutorials, you will find out what all of it means. For now, let's focus on this line:
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:7 %}
+{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
 
 The `v` function simply instructs Dojo 2 to create an HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. We will build a view that allows the user to view Biz-E Corp's workers, so let's update the tag and message to something more appropriate.
 
@@ -90,7 +90,7 @@ Now we will add some additional attributes to the `<h1>` element we created earl
 
 {% instruction 'Update the `v` function call, with a `title` attribute like this.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' line:7 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
 
 Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
