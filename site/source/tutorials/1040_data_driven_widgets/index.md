@@ -74,7 +74,7 @@ Before continuing with the `List` implementation, let’s review and verify the 
 
 {% task 'Add the `List` widget to the application.' %}
 
-We'll add the `List` widget to the existing `Banner` widget so users can filter a list of workers by name when first visiting the application. The end result should look something like this:
+We will add the `List` widget to the existing `Banner` widget so users can filter a list of workers by name when first visiting the application. The end result should look something like this:
 
 <p class="center">![list_widget](../resources/list.png)</p>
 
@@ -191,7 +191,7 @@ A filterable list widget was created throughout this tutorial to demonstrate how
 
 It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could be provided from any data source, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the `List` is not concerned with the data origin. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
 
-If you would like, you can download the completed [demo application](../assets/1040_data_driven _widgets-finished.zip). 
+If you would like, you can download the completed [demo application](../assets/1040_data_driven _widgets-finished.zip).
 
 {% section 'last' %}
 
