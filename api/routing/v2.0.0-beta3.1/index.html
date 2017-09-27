@@ -1,0 +1,1385 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@dojo/routing</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/images/favicons/favicon.ico">
+	<link rel="stylesheet" href="../../../../../css/main.css">
+</head>
+<body class="page-api">
+<header class="site-header">
+	<div class="content-container">
+		<div class="row">
+			<nav class="site-nav">
+				<a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a>
+				<a class="main-nav-link" href="/tutorials">Tutorials</a>
+				<a class="main-nav-link" href="/api">API</a>
+				<a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a>
+				<a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a>
+			</nav>
+		</div>
+	</div>
+</header>
+<div class="page-content">
+	<div class="tsd-page-top">
+		<div class="tsd-page-toolbar">
+			<div class="table-wrap content-container">
+				<div class="table-cell" id="tsd-search" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html " class="title">@dojo/routing</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+		<div class="tsd-page-title">
+			<div class="content-container">
+				<ul class="tsd-breadcrumb">
+					<li>
+						<a href="globals.html">Globals</a>
+					</li>
+				</ul>
+				<h1>  @dojo/routing
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row content-container">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="-dojo-routing">@dojo/routing</h1>
+				<p><a href="https://travis-ci.org/dojo/routing"><img src="https://travis-ci.org/dojo/routing.svg?branch=master" alt="Build Status"></a>
+					<a href="https://codecov.io/github/dojo/routing?branch=master"><img src="https://codecov.io/github/dojo/routing/coverage.svg?branch=master" alt="codecov.io"></a>
+				<a href="https://badge.fury.io/js/%40dojo%2Frouting"><img src="https://badge.fury.io/js/%40dojo%2Frouting.svg" alt="npm version"></a></p>
+				<p>A routing library for Dojo 2 applications.</p>
+				<p><strong>WARNING</strong> This is <em>beta</em> software. While we do not anticipate significant changes to the API at this stage, we may feel the need to do so. This is not yet production ready, so you should use at your own risk.</p>
+				<p>This routing library lets you construct route hierarchies that are matched against URLs. Each selected route can tell the application to materialize a different set of widgets and influence the state of those widgets.</p>
+				<p>History managers are included. The recommended manager uses <code>pushState()</code> and <code>replaceState()</code> to <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries">add or modify history entries</a>. This requires server-side support to work well. The hash-based manager uses the fragment identifier, so can work for static HTML pages. A memory-backed manager is provided for debugging purposes.</p>
+				<ul>
+					<li><a href="#features">Features</a><ul>
+							<li><a href="#outlet-routing">Outlet Routing</a><ul>
+									<li><a href="#outlets">Outlets</a></li>
+									<li><a href="#outlet-component-types">Outlet Component Types</a></li>
+									<li><a href="#maps-params">Map Params</a></li>
+									<li><a href="#global-error-outlet">Global Error Outlet</a></li>
+									<li><a href="#route-registration">Route Registration</a></li>
+									<li><a href="#router-context-injection">Router Context Injection</a></li>
+									<li><a href="#link-component">Link Component</a></li>
+									<li><a href="#sample-routing-application">Sample Routing Application</a></li>
+								</ul>
+							</li>
+							<li><a href="#creating-a-router">Creating a router</a></li>
+							<li><a href="#appending-routes">Appending routes</a></li>
+							<li><a href="#dispatching-paths">Dispatching paths</a></li>
+							<li><a href="#creating-routes">Creating routes</a></li>
+							<li><a href="#route-hierarchies">Route hierarchies</a><ul>
+									<li><a href="#index-routes">Index routes</a></li>
+								</ul>
+							</li>
+							<li><a href="#named-parameters">Named parameters</a><ul>
+									<li><a href="#extract-pathname-segments">Extract pathname segments</a></li>
+									<li><a href="#extract-query-parameters">Extract query parameters</a></li>
+								</ul>
+							</li>
+							<li><a href="#preventing-routes-from-being-selected">Preventing routes from being selected</a></li>
+							<li><a href="#fallback-routes">Fallback routes</a></li>
+							<li><a href="#preventing-dispatches-altogether">Preventing dispatches altogether</a></li>
+							<li><a href="#selecting-routes-even-if-trailing-slashes-dont-match">Selecting routes even if trailing slashes don&#39;t match</a></li>
+							<li><a href="#repeated-slashes">Repeated slashes</a></li>
+							<li><a href="#link-generation">Link generation</a></li>
+							<li><a href="#history-management">History management</a><ul>
+									<li><a href="#using-pushstate-and-friends">Using <code>pushState()</code> and friends</a><ul>
+											<li><a href="#specifying-a-base-pathname">Specifying a base pathname</a></li>
+										</ul>
+									</li>
+									<li><a href="#fragment-identifiers">Fragment identifiers</a></li>
+									<li><a href="#memory-only">Memory-only</a></li>
+								</ul>
+							</li>
+							<li><a href="#making-the-router-aware-of-the-history-manager">Making the router aware of the history manager</a><ul>
+									<li><a href="#automatic-routing-and-clever-linking-through-start">Automatic routing and clever linking through <code>start()</code></a></li>
+								</ul>
+							</li>
+							<li><a href="#capturing-errors">Capturing errors</a></li>
+						</ul>
+					</li>
+				</ul>
+				<h2 id="usage">Usage</h2>
+				<p>To use <code>@dojo/routing</code>, install the package along with its required peer dependencies:</p>
+				<pre><code class="lang-bash">npm install @dojo/routing
+
+<span class="hljs-comment"># peer dependencies</span>
+npm install @dojo/core
+npm install @dojo/has
+npm install @dojo/shim
+</code></pre>
+				<h2 id="features">Features</h2>
+				<p>The examples below are provided in TypeScript syntax. The package does work under JavaScript, but for clarity, the examples will only include one syntax.</p>
+				<h3 id="widget-routing">Widget Routing</h3>
+				<p>Widgets are a fundamental concept for any Dojo 2 application and as such Dojo 2 Routing provides a collection of components that integrate directly with existing widgets within an application.</p>
+				<p>These components enable widgets to be registered against a route <em>without</em> requiring any knowledge of the <code>Router</code> or <code>Routes</code>.</p>
+				<h4 id="outlets">Outlets</h4>
+				<p>The primary concept for the routing integration is an <code>outlet</code>, a unique identifier associated with the registered application route. Dojo 2 Widgets can then be configured with these outlet identifiers using the <code>Outlet</code> higher order component. <code>Outlet</code> returns a &quot;new&quot; Widget that can be used like any other widget within a <code>render</code> method, e.g. <code>w(MyFooOutlet, { })</code>.</p>
+				<p>Properties can be passed to an <code>Outlet</code> widget in the same way as if the original widget was being used. However, all properties are made optional to allow the properties to be injected using the <a href="#mapParams">mapParams</a> function described below.</p>
+				<p>The number of widgets that can be mapped to a single outlet identifier is not restricted. All configured widgets for a single outlet will be rendered when the route associated to the outlet is matched by the <code>router</code> and the <code>outlet</code>s are part of the current widget hierarchy.</p>
+				<p>The following example configures a stateless widget with an outlet called <code>foo</code>. The resulting <code>FooOutlet</code> can be used in a widgets <code>render</code> in the same way as any other Dojo 2 Widget.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Outlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Outlet'</span>;
+<span class="hljs-keyword">import</span> { MyViewWidget } <span class="hljs-keyword">from</span> <span class="hljs-string">'./MyViewWidget'</span>;
+
+<span class="hljs-keyword">const</span> FooOutlet = Outlet(MyViewWidget, <span class="hljs-string">'foo'</span>);
+</code></pre>
+				<p>Example usage of <code>FooOutlet</code>, where the widget will only be rendered when the route registered against outlet <code>foo</code> is matched.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">class</span> App <span class="hljs-keyword">extends</span> WidgetBase {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, [
+            w(FooOutlet, {})
+        ]);
+    }
+}
+</code></pre>
+				<h4 id="outlet-component-types">Outlet Component Types</h4>
+				<p>When registering an outlet a different widget can be configure for each <code>MatchType</code> of a route:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>MatchType.INDEX</code></td>
+							<td>This is an exact match for the registered route. E.g. Navigating to <code>foo/bar</code> with a registered route <code>foo/bar</code>.</td>
+						</tr>
+						<tr>
+							<td><code>MatchType.PARTIAL</code></td>
+							<td>Any match other than an exact match, for example <code>foo/bar</code> would partially match <code>foo/bar/qux</code> but only if <code>foo/bar/qux</code> was also a registered route. Otherwise it would be an <code>ERROR</code> match.</td>
+						</tr>
+						<tr>
+							<td><code>MatchType.ERROR</code></td>
+							<td>When a partial match occurs but there is no match for the next section of the route.</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>To register a different widget for a specific <code>MatchType</code> use a <code>OutletComponents</code> object can be passed in place of the widget that specifies each of the components to be used per <code>MatchType</code>.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { MyViewWidget, MyErrorWidget } <span class="hljs-keyword">from</span> <span class="hljs-string">'./MyWidgets'</span>;
+
+<span class="hljs-keyword">const</span> fooWidgets: OutletComponents = {
+    main: MyViewWidget,
+    error: MyErrorWidget
+};
+
+<span class="hljs-keyword">const</span> FooOutlet = Outlet(fooWidgets, <span class="hljs-string">'foo'</span>);
+</code></pre>
+				<p>It is important to note that a widget registered against <code>MatchType.ERROR</code> will not be used if the outlet also has a widget registered for <code>MatchType.INDEX</code></p>
+				<h4 id="map-params">Map Params</h4>
+				<p>When a widget is configured for an outlet it is possible to provide a callback function that is used to inject properties that will be available during render lifecycle of the widget.</p>
+				<pre><code><span class="hljs-selector-tag">mapParams</span>(<span class="hljs-attribute">type</span>: MatchType, <span class="hljs-attribute">location</span>: string, <span class="hljs-attribute">params</span>: {<span class="hljs-selector-attr">[key: string]</span>: <span class="hljs-selector-tag">any</span>}, <span class="hljs-attribute">router</span>: Router&lt;any&gt;)
+</code></pre><table>
+					<thead>
+						<tr>
+							<th>Argument</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>type</td>
+							<td>The <code>MatchType</code> that caused the outlet to render</td>
+						</tr>
+						<tr>
+							<td>location</td>
+							<td>The location of the route that was matched</td>
+						</tr>
+						<tr>
+							<td>params</td>
+							<td>Key/Value object of the params that were parsed from the matched route</td>
+						</tr>
+						<tr>
+							<td>router</td>
+							<td>The router instance that can be used to provide functions that go to other routes/outlets</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>The following example uses <code>mapParams</code> to inject an <code>onClose</code> function that will go to the route registered against the <code>other-outlet</code> route and <code>id</code> property extracted from <code>params</code> in the <code>MyViewWidget</code> properties:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> FooOutlet = Outlet(MyViewWidget, <span class="hljs-string">'foo'</span>, (options: MapParamsOptions) {
+    <span class="hljs-keyword">const</span> { <span class="hljs-keyword">type</span>, location, params, router } = options;
+
+    <span class="hljs-keyword">return</span> {
+        onClose() {
+            <span class="hljs-comment">// This creates a link for another outlet and sets the path</span>
+            router.setPath(route.link(<span class="hljs-string">'other-outlet'</span>));
+        },
+        id: params.id
+    }
+});
+</code></pre>
+				<h5 id="global-error-outlet">Global Error Outlet</h5>
+				<p>Whenever a <code>MatchType.ERROR</code> occurs a global outlet is automatically added to the matched outlets called <code>errorOutlet</code>. This outlet can be used to render a widget for any unknown routes.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> ErrorOutlet = Outlet(ErrorWidget, <span class="hljs-string">'errorOutlet'</span>);
+</code></pre>
+				<h4 id="route-registration">Route Registration</h4>
+				<p>Routes are registered using <code>RouteConfig</code>, which defines a route&#39;s <code>path</code>, the associated <code>outlet</code> and nested child <code>RouteConfig</code>s. The full routes are recursively constructed from the nested route structure.</p>
+				<p>Example routing configuration:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> config: RouteConfig[] = [
+    {
+        path: <span class="hljs-string">'foo'</span>,
+        outlet: <span class="hljs-string">'root'</span>,
+        children: [
+            {
+                path: <span class="hljs-string">'bar'</span>,
+                outlet: <span class="hljs-string">'bar'</span>
+            },
+            {
+                path: <span class="hljs-string">'baz'</span>,
+                children: [
+                    {
+                        path: <span class="hljs-string">'qux'</span>
+                    }
+                ]
+            }
+        ]
+    }
+]
+</code></pre>
+				<p>That would register the following routes and outlets:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Route</th>
+							<th>Outlet</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>/foo</code></td>
+							<td><code>root</code></td>
+						</tr>
+						<tr>
+							<td><code>/foo/bar</code></td>
+							<td><code>bar</code></td>
+						</tr>
+						<tr>
+							<td><code>/foo/baz</code></td>
+							<td><code>baz</code></td>
+						</tr>
+						<tr>
+							<td><code>/foo/baz/qux</code></td>
+							<td><code>qux</code></td>
+						</tr>
+					</tbody>
+				</table>
+				<p><strong>Note:</strong> If an <code>outlet</code> is not explicitly specified the <code>path</code> will be used.</p>
+				<p>To actually register the configuration with a Dojo 2 router, simply pass the <code>config</code> object in the <code>constructor</code> options:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router({ config });
+</code></pre>
+				<p>For routes that have either path parameters or query parameters, it is possible to specify default parameters. These parameters are used as a fallback when generating a link from an outlet without specifying parameters, or when parameters do not exist in the current route.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> config = [
+    {
+        path: <span class="hljs-string">'foo/{foo}'</span>,
+        outlet: <span class="hljs-string">'foo'</span>,
+        defaultParams: {
+            foo: <span class="hljs-string">'bar'</span>
+        }
+    }
+];
+
+<span class="hljs-comment">// Using router.link to generate a link for an outlet 'foo'; will use the default 'bar' value</span>
+router.link(<span class="hljs-string">'foo'</span>)
+</code></pre>
+				<p>A default route can be specified using the optional configuration property <code>defaultRoute</code>, which will be used if the current route does not match a registered route. Note there can only be one default route configured otherwise an error will be thrown.</p>
+				<h4 id="registering-additional-routes">Registering Additional Routes</h4>
+				<p>Additional routing configuration can be registered with a router instance, either from the root or by specifying an existing outlet name.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> additionalRouteConfig = [
+    {
+        path: <span class="hljs-string">'extra'</span>,
+        outlet: <span class="hljs-string">'extra'</span>
+    }
+];
+
+<span class="hljs-comment">// Will register the extra routes from the route</span>
+router.register(additionalRouteConfig);
+
+<span class="hljs-comment">// Will register the extra routes from `foo` outlet</span>
+router.register(additionalRouteConfig, <span class="hljs-string">'foo'</span>);
+</code></pre>
+				<p>If the outlet is not found then an error is thrown.</p>
+				<h4 id="router-context-injection">Router Context Injection</h4>
+				<p>To make the <code>router</code> instance available to the created outlets and other routing components (such as <a href="#link"><code>Link</code></a>), Routing leverages a Dojo 2 widget-core concept of <a href="https://github.com/dojo/widget-core/blob/master/README.md#injecting-state">Injecting State</a>. The custom injector <code>RouterInjector</code> needs to be defined in a <code>registry</code> available to the components for an known <code>key</code>.</p>
+				<p>All routing components by default use the exported <code>RouterInjector#routerKey</code> as the key for the injected <code>router</code> context.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { registry } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/d'</span>
+<span class="hljs-keyword">import</span> { RouterInjector, routerKey } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/RouterInjector'</span>;
+
+registry.define(routerKey, Injector(RouterInjector, router));
+</code></pre>
+				<p>The <code>RouterInjector</code> module exports a helper function, <code>registerRouterInjector</code>,  that combines the instantiation of a <code>Router</code> instance, registering route configuration and defining the <code>RouterInjector</code>. The <code>router</code> instance is returned.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { registerRouterInjector } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/RoutingInjector'</span>;
+
+<span class="hljs-keyword">const</span> router = registerRouterInjector(config);
+</code></pre>
+				<p>The defaults can be overridden using the <code>registry</code>, <code>history</code> and <code>key</code> arguments:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { WidgetRegistry } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core'</span>;
+<span class="hljs-keyword">import</span> { registerRouterInjector } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/RoutingInjector'</span>;
+<span class="hljs-keyword">import</span> MemoryHistory <span class="hljs-keyword">from</span> <span class="hljs-string">'./history/MemoryHistory'</span>;
+
+<span class="hljs-keyword">const</span> customRegistry = <span class="hljs-keyword">new</span> WidgetRegistry();
+<span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> MemoryHistory();
+
+<span class="hljs-keyword">const</span> router = registerRouterInjector(config, customRegistry, history, <span class="hljs-string">'custom-router-key'</span>);
+</code></pre>
+				<p>The final thing to do is call <code>router.start()</code> to start the <code>router</code> instance.</p>
+				<h4 id="link-component">Link Component</h4>
+				<p>The <code>Link</code> component is a wrapper around an <code>a</code> DOM element that enables consumers to specify an <code>outlet</code> to create a link to. It is also possible to use a static route by setting the <code>isOutlet</code> property to <code>false</code>.</p>
+				<p>If the generated link requires specific path or query parameters that are not in the route then they can be passed via the <code>params</code> property.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Link } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Link'</span>;
+
+render() {
+    <span class="hljs-keyword">return</span> v(<span class="hljs-string">'div'</span>, [
+        w(Link, { to: <span class="hljs-string">'foo'</span>, params: { foo: <span class="hljs-string">'bar'</span> }}, [ <span class="hljs-string">'Link Text'</span> ]),
+        w(Link, { to: <span class="hljs-string">'#/static-route'</span>, isOutlet: <span class="hljs-literal">false</span>, [ <span class="hljs-string">'Other Link Text'</span> ])
+    ]);
+}
+</code></pre>
+				<p>All the standard <code>VirtualDomProperties</code> are available for the <code>Link</code> component as they would be creating an <code>a</code> DOM Element using <code>v()</code> with <code>@dojo/widget-core</code>.</p>
+				<h4 id="sample-routing-application">Sample Routing Application</h4>
+				<pre><code class="lang-ts"><span class="hljs-comment">// main.ts</span>
+<span class="hljs-keyword">import</span> { registerRouterInjector } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/RouterInjector'</span>;
+<span class="hljs-keyword">import</span> { RouteConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/interfaces'</span>;
+<span class="hljs-keyword">import</span> { ProjectorMixin } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/mixins/Projector'</span>;
+
+<span class="hljs-keyword">import</span> { App } <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>;
+
+<span class="hljs-keyword">const</span> config = [
+    {
+        path: <span class="hljs-string">'/'</span>,
+        outlet: <span class="hljs-string">'home'</span>
+    },
+    {
+        path: <span class="hljs-string">'profiles'</span>,
+        outlet: <span class="hljs-string">'profiles'</span>,
+        children: [
+            {
+                path: <span class="hljs-string">'{profile}'</span>,
+                outlet: <span class="hljs-string">'profile'</span>
+            }
+        ]
+    }
+];
+
+<span class="hljs-keyword">const</span> router = registerRouterInjector(config);
+<span class="hljs-keyword">const</span> AppProjector = ProjectorMixin(App);
+<span class="hljs-keyword">const</span> projector = <span class="hljs-keyword">new</span> AppProjector();
+
+projector.append();
+router.start();
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-comment">// Home.ts</span>
+<span class="hljs-keyword">import</span> { WidgetBase } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/WidgetBase'</span>;
+<span class="hljs-keyword">import</span> { DNode } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/interfaces'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Home <span class="hljs-keyword">extends</span> WidgetBase {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Home'</span>;
+    }
+}
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { WidgetBase } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/WidgetBase'</span>;
+<span class="hljs-keyword">import</span> { w, v } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/d'</span>;
+<span class="hljs-keyword">import</span> { DNode, WidgetProperties } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/interfaces'</span>;
+<span class="hljs-keyword">import</span> { Link } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Link'</span>;
+
+<span class="hljs-keyword">import</span> { ProfileOutlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ProfileOutlet'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ProfilesProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    showHeader: <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Profiles <span class="hljs-keyword">extends</span> WidgetBase&lt;ProfilesProperties&gt; {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> [
+            v(<span class="hljs-string">'div'</span>, [
+                w(Link, { to: <span class="hljs-string">'profile'</span>, params: { profile: <span class="hljs-string">'Tess'</span> } }, [ <span class="hljs-string">'Tess '</span>]),
+                w(Link, { to: <span class="hljs-string">'profile'</span>, params: { profile: <span class="hljs-string">'Jess'</span> } }, [ <span class="hljs-string">'Jess '</span>]),
+                w(Link, { to: <span class="hljs-string">'profile'</span>, params: { profile: <span class="hljs-string">'Bess'</span> } }, [ <span class="hljs-string">'Bess '</span>])
+            ]),
+            v(<span class="hljs-string">'div'</span>, [
+                <span class="hljs-keyword">this</span>.properties.showHeader ? <span class="hljs-string">'Please select a profile'</span> : <span class="hljs-literal">null</span>,
+                w(ProfileOutlet, {})
+            ])
+        ];
+    }
+}
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-comment">// Profile.ts</span>
+<span class="hljs-keyword">import</span> { WidgetBase } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/WidgetBase'</span>;
+<span class="hljs-keyword">import</span> { DNode, WidgetProperties } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/interfaces'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ProfileProperties <span class="hljs-keyword">extends</span> WidgetProperties {
+    name: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Profile <span class="hljs-keyword">extends</span> WidgetBase&lt;ProfileProperties&gt; {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello, <span class="hljs-subst">${this.properties.name}</span>`</span>;
+    }
+}
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-comment">// HomeOutlet.ts</span>
+<span class="hljs-keyword">import</span> { Outlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Outlet'</span>;
+
+<span class="hljs-keyword">import</span> { Home } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Home'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> HomeOutlet = Outlet(Home, <span class="hljs-string">'home'</span>);
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-comment">// ProfilesOutlet.ts</span>
+<span class="hljs-keyword">import</span> { Outlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Outlet'</span>;
+<span class="hljs-keyword">import</span> { MatchType } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+
+<span class="hljs-keyword">import</span> { Profiles } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Profiles'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ProfilesOutlet = Outlet(Profiles, <span class="hljs-string">'profiles'</span>, <span class="hljs-function">(<span class="hljs-params">{ <span class="hljs-keyword">type</span> }: MapParamsOptions</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> { showHeader: <span class="hljs-keyword">type</span> === MatchType.INDEX };
+});
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-comment">// ProfileOutlet.ts</span>
+<span class="hljs-keyword">import</span> { Outlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Outlet'</span>;
+
+<span class="hljs-keyword">import</span> { Profile } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Profile'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ProfileOutlet = Outlet(Profile, <span class="hljs-string">'profile'</span>, <span class="hljs-function">(<span class="hljs-params">{ params }: MapParamsOptions</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> { name: params.profile };
+});
+</code></pre>
+				<pre><code class="lang-ts"><span class="hljs-comment">// App.ts</span>
+<span class="hljs-keyword">import</span> { WidgetBase } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/WidgetBase'</span>;
+<span class="hljs-keyword">import</span> { w, v } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/d'</span>;
+<span class="hljs-keyword">import</span> { DNode } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/widget-core/interfaces'</span>;
+<span class="hljs-keyword">import</span> { Link } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Link'</span>;
+
+<span class="hljs-keyword">import</span> { ProfileOutlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ProfileOutlet'</span>;
+<span class="hljs-keyword">import</span> { HomeOutlet } <span class="hljs-keyword">from</span> <span class="hljs-string">'./HomeOutlet'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> App <span class="hljs-keyword">extends</span> WidgetBase {
+    <span class="hljs-keyword">protected</span> render(): DNode {
+        <span class="hljs-keyword">return</span> [
+            v(<span class="hljs-string">'div'</span>, [
+                v(<span class="hljs-string">'ul'</span>, [
+                    v(<span class="hljs-string">'li'</span>, [
+                        w(Link, { to: <span class="hljs-string">'home'</span> }, [ <span class="hljs-string">'Home'</span>])
+                    ]),
+                    v(<span class="hljs-string">'li'</span>, [
+                        w(Link, { to: <span class="hljs-string">'profiles'</span> }, [ <span class="hljs-string">'Profiles'</span>])
+                    ])
+                ])
+            ]),
+            w(HomeOutlet, {}),
+            w(ProfilesOutlet, {})
+        ];
+    }
+}
+</code></pre>
+				<p><strong>More examples are located in the examples directory.</strong></p>
+				<h3 id="creating-a-router">Creating a router</h3>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Router'</span>;
+
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+</code></pre>
+				<h3 id="appending-routes">Appending routes</h3>
+				<p>With the <code>router</code> from the previous example:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+
+router.append(<span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/'</span> }));
+router.append(<span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/about'</span> }));
+</code></pre>
+				<p>These routes won&#39;t (yet) do anything.</p>
+				<p>You can append multiple routes at once:</p>
+				<pre><code class="lang-ts">router.append([
+    <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/'</span> }),
+    <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/about'</span> })
+]);
+</code></pre>
+				<p>Routes can only be appended to a router once.</p>
+				<h3 id="dispatching-paths">Dispatching paths</h3>
+				<p>The router doesn&#39;t track navigation events by itself. Changed paths need to be dispatched by application code. Context must be provided, this is made available to the matched routes.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Context } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/interfaces'</span>;
+
+<span class="hljs-keyword">interface</span> AppContext <span class="hljs-keyword">extends</span> Context {
+    someKey: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">const</span> context: AppContext = {
+    someKey: <span class="hljs-string">'someValue'</span>
+};
+
+router.dispatch(context, <span class="hljs-string">'/about'</span>);
+</code></pre>
+				<p>Route selection starts in a future turn. An async Task is returned (see <a href="https://github.com/dojo/core"><code>@dojo/core</code></a>) which is resolved with a result object. The object has a <code>success</code> property which is <code>false</code> if no route was selected, or dispatch was canceled. It&#39;s <code>true</code> otherwise.</p>
+				<p>An optional <code>redirect</code> property may be present, in case one of the matched routes requested a redirect. The value of the <code>redirect</code> property is the new path. It may be an empty string. No routes are executed when a redirect is returned, instead you&#39;re expected to change the path and call <code>dispatch()</code> again.</p>
+				<p>You can cancel the task in case a new navigation event occurs.</p>
+				<h3 id="creating-routes">Creating routes</h3>
+				<p>The following creates a simple route. The <code>exec()</code> function is called when the route is executed.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+
+<span class="hljs-keyword">const</span> route = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/'</span>,
+    exec (request) {
+        <span class="hljs-comment">// Do stuff</span>
+    }
+});
+</code></pre>
+				<p>Note that <code>path</code> defaults to <code>/</code>, so the above is equivalent to:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> route = <span class="hljs-keyword">new</span> Route({
+    exec (request) {
+        <span class="hljs-comment">// Do stuff</span>
+    }
+});
+</code></pre>
+				<p>The context provided in the <code>router.dispatch()</code> call is available as <code>request.context</code>:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> route = <span class="hljs-keyword">new</span> Route({
+    exec (request) {
+        <span class="hljs-keyword">const</span> context: AppContext = request.context;
+        <span class="hljs-comment">// Do stuff</span>
+    }
+});
+</code></pre>
+				<p>You may return a thenable in order to <a href="#capturing-errors">capture errors</a>. Route dispatch does not wait for the thenable to resolve.</p>
+				<h3 id="route-hierarchies">Route hierarchies</h3>
+				<p>Routes can be appended to other routes:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+
+<span class="hljs-keyword">const</span> posts = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts'</span>,
+    exec (request) {
+        <span class="hljs-comment">// Do stuff</span>
+    }
+});
+
+<span class="hljs-keyword">const</span> create = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'new'</span>,
+    exec (request) {
+        <span class="hljs-comment">// Do stuff</span>
+    }
+});
+
+posts.append(create);
+
+router.append(posts);
+</code></pre>
+				<p>In this example the <code>posts</code> route is executed for both <code>/posts</code> and <code>/posts/new</code> paths. The <code>create</code> route is only executed for the <code>/posts/new</code> path.</p>
+				<p>Like <code>Router#append()</code> you can append multiple routes at once by passing an array:</p>
+				<pre><code class="lang-ts">posts.append([
+    create,
+    <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'other'</span> })
+]);
+</code></pre>
+				<p>Routes can only be appended to another route, or a router, once.</p>
+				<p>Starting the path of a nested route with a leading slash will not make it absolute. The nested route&#39;s path will still be relative to that of the route it&#39;s appended to.</p>
+				<h4 id="index-routes">Index routes</h4>
+				<p>The <code>posts</code> route in the above example is executed for both <code>/posts</code> and <code>/posts/new</code> paths. You can handle <code>/posts</code> paths specifically by specifying an <code>index</code> method:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> posts = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts'</span>,
+    exec (request) {
+        <span class="hljs-comment">// Do stuff for /posts/new</span>
+    },
+    index (request) {
+        <span class="hljs-comment">// Do stuff for /posts</span>
+    }
+});
+</code></pre>
+				<p>You may return a thenable in order to <a href="#capturing-errors">capture errors</a>. Route dispatch does not wait for the thenable to resolve.</p>
+				<h3 id="named-parameters">Named parameters</h3>
+				<h4 id="extract-pathname-segments">Extract pathname segments</h4>
+				<p>You can extract pathname segments. These will be added to the <code>params</code> object of the <code>request</code>:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> <span class="hljs-keyword">new</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+<span class="hljs-keyword">import</span> { DefaultParameters } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/interfaces'</span>;
+
+<span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts/{id}'</span>,
+    exec (request) {
+        <span class="hljs-keyword">const</span> params: DefaultParameters = request.params;
+        <span class="hljs-keyword">const</span> id = params[<span class="hljs-string">'id'</span>];
+        <span class="hljs-comment">// Do stuff with the id</span>
+    }
+});
+</code></pre>
+				<p>Parameter names must not be repeated in the route&#39;s path. They can&#39;t contain <code>{</code>, <code>&amp;</code> or <code>:</code> characters. Only entire segments can be matched.</p>
+				<p>You can customize the <code>params</code> object:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+<span class="hljs-keyword">import</span> { Parameters } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/interfaces'</span>;
+
+<span class="hljs-keyword">interface</span> MyParams <span class="hljs-keyword">extends</span> Parameters {
+    id: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">const</span> route = <span class="hljs-keyword">new</span> Route&lt;MyParams&gt;({
+    path: <span class="hljs-string">'/posts/{id}'</span>,
+    params ([id]) {
+        <span class="hljs-keyword">return</span> {
+            id: <span class="hljs-built_in">parseInt</span>(id)
+        };
+    },
+    exec (request) {
+        <span class="hljs-keyword">const</span> { id } = request.params;
+        <span class="hljs-comment">// Do stuff with the id</span>
+    }
+});
+</code></pre>
+				<p>The <code>params()</code> function receives an array with string values for the extracted parameters, in declaration order.</p>
+				<p>You can prevent the route from being selected by returning <code>null</code> from the <code>params()</code> function:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> route = <span class="hljs-keyword">new</span> Route&lt;MyParams&gt;({
+    path: <span class="hljs-string">'/posts/{id}'</span>,
+    params ([id]) {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/^\d+$/</span>.test(id)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        }
+
+        <span class="hljs-keyword">return</span> {
+            id: <span class="hljs-built_in">parseInt</span>(id)
+        };
+    },
+    exec (request) {
+        <span class="hljs-keyword">const</span> { id } = request.params;
+        <span class="hljs-comment">// Do stuff with the id</span>
+    }
+});
+</code></pre>
+				<p>This also prevents any nested routes from being selected.</p>
+				<h4 id="extract-query-parameters">Extract query parameters</h4>
+				<p>Each route&#39;s path may include a search component. Name parameters to extract them into the <code>params</code> object:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+<span class="hljs-keyword">import</span> { DefaultParameters } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/interfaces'</span>;
+
+<span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts/{id}?{comment}'</span>,
+    exec (request) {
+        <span class="hljs-keyword">const</span> params: DefaultParameters = request.params;
+        <span class="hljs-keyword">const</span> comment = params[<span class="hljs-string">'comment'</span>];
+        <span class="hljs-comment">// Do stuff with the comment</span>
+    }
+});
+</code></pre>
+				<p>Again, parameter names must not be repeated in the route&#39;s path, and can&#39;t contain <code>{</code>, <code>&amp;</code> or <code>:</code> characters.</p>
+				<p>Named query parameters do not have to be present in a path for the route to be selected. Only the specified parameters are available in the <code>params</code> object. Each route in a hierarchy can extract parameters.</p>
+				<p>You cannot specify expected values or other non-named parameters:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts/{id}?{comment}=yes'</span> <span class="hljs-comment">// Illegal!</span>
+});
+
+<span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts/{id}?{comment}&amp;foo=bar'</span> <span class="hljs-comment">// Illegal!</span>
+});
+</code></pre>
+				<p>You can extract multiple parameters though:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts/{id}?{comment}&amp;{foo}'</span>
+});
+</code></pre>
+				<p>By default the <code>params</code> object will contain the <em>first</em> occurrence of each query parameter. However if you specify a <code>params()</code> function you&#39;ll get access to <em>all</em> values:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> Route <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/Route'</span>;
+<span class="hljs-keyword">import</span> { Parameters } <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/interfaces'</span>;
+
+<span class="hljs-keyword">interface</span> MyParams <span class="hljs-keyword">extends</span> Parameters {
+    id: <span class="hljs-built_in">number</span>;
+    comments: <span class="hljs-built_in">number</span>[];
+}
+
+<span class="hljs-keyword">const</span> route = <span class="hljs-keyword">new</span> Route&lt;MyParams&gt;({
+    path: <span class="hljs-string">'/posts/{id}?{comments}'</span>,
+    params ([id], searchParams) {
+        <span class="hljs-keyword">let</span> comments: <span class="hljs-built_in">number</span>[] = [];
+        <span class="hljs-keyword">if</span> (searchParams.has(<span class="hljs-string">'comments'</span>)) {
+            comments = searchParams.getAll(<span class="hljs-string">'comments'</span>).map(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> <span class="hljs-built_in">parseInt</span>(c));
+        }
+
+        <span class="hljs-keyword">return</span> {
+            id: <span class="hljs-built_in">parseInt</span>(id),
+            comments
+        };
+    },
+    exec (request) {
+        <span class="hljs-keyword">const</span> { comments } = request.params;
+        <span class="hljs-comment">// Do stuff with the comments</span>
+    }
+});
+</code></pre>
+				<p><code>searchParams</code> is a <code>UrlSearchParams</code> instance from <a href="https://github.com/dojo/core"><code>@dojo/core</code></a>.</p>
+				<h3 id="preventing-routes-from-being-selected">Preventing routes from being selected</h3>
+				<p>You already know you can return <code>null</code> from a <code>params()</code> function to stop that route (and any nested routes) from being selected.</p>
+				<p>You can use a <code>guard()</code> function to decide whether a particular route (and any nested routes) should be selected. It receives the same <code>request</code> object as <code>exec()</code> functions:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts'</span>,
+    guard (request) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// Don't select this route</span>
+    }
+});
+</code></pre>
+				<p><code>guard()</code> functions must return a boolean. Use them if you can synchronously determine whether a route should be selected.</p>
+				<h3 id="fallback-routes">Fallback routes</h3>
+				<p>Sometimes paths are dispatched that don&#39;t match any routes. You can specify a <code>fallback()</code> function at the router level:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Route({
+    fallback (request) {
+        <span class="hljs-comment">// Trigger a "not found" UI state here</span>
+    }
+});
+</code></pre>
+				<p>The <code>request</code> object will have a context, but no extracted parameters.</p>
+				<p>You can also use <code>fallback()</code> functions in a route hierarchy. The <code>fallback()</code> of the deepest route that matched the path will be called:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> posts = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts'</span>,
+    exec () {
+        <span class="hljs-comment">// Do something</span>
+    }
+});
+
+<span class="hljs-keyword">const</span> byId = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'{id}'</span>,
+    exec () {
+        <span class="hljs-comment">// Do something</span>
+    },
+    fallback () {
+        <span class="hljs-comment">// Do something else</span>
+    }
+});
+
+<span class="hljs-keyword">const</span> edit = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'edit'</span>,
+    exec () {
+        <span class="hljs-comment">// Do something</span>
+    }
+});
+
+byId.append(edit);
+posts.append(byId);
+</code></pre>
+				<p>No route will match <code>/posts/5/stats</code>, however there is a fallback for the <code>byId</code> route. The router will call <code>exec()</code> on the <code>posts</code> route and <code>fallback()</code> on the <code>byId</code> route.</p>
+				<p>You may return a thenable in order to <a href="#capturing-errors">capture errors</a>. Route dispatch does not wait for the thenable to resolve.</p>
+				<h3 id="preventing-dispatches-altogether">Preventing dispatches altogether</h3>
+				<p>You may want to prevent new routes from executing until the user has completed a certain task. You can listen to the <code>navstart</code> event emitted by the router to cancel or defer dispatches:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+
+router.on(<span class="hljs-string">'navstart'</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+    <span class="hljs-comment">// Determine whether to cancel the dispatch</span>
+});
+</code></pre>
+				<p>Use <code>event.path</code> to inspect the dispatched path. This is a regular string, so without any extracted parameters.</p>
+				<p>Use <code>event.cancel()</code> to cancel the dispatch outright. You need to invoke this method synchronously when the event listener is called.</p>
+				<p>Use <code>event.defer()</code> to defer the dispatch. This returns an object with <code>resume()</code> and <code>cancel()</code> functions. Dispatching will halt until you resume it using <code>resume()</code>, or cancel it using <code>cancel()</code>. This may be done asynchronously.</p>
+				<p>A dispatch may be deferred multiple times. All deferrers need to call <code>resume()</code> for the dispatch to continue.</p>
+				<p>Note that if you cancel the dispatch the URL displayed in the browser will still be for the new path!</p>
+				<h3 id="selecting-routes-even-if-trailing-slashes-don-t-match">Selecting routes even if trailing slashes don&#39;t match</h3>
+				<p>If the dispatched path ends with a <code>/</code>, a  route hierarchy can only be selected if its deepest route&#39;s path also ends with a <code>/</code>. Similarly, if the dispatched path does <em>not</em> end with a <code>/</code>, the deepest route&#39;s path also must not end with a <code>/</code>.</p>
+				<p>This behavior can be disabled on a per-route basis by setting the <code>trailingSlashMustMatch</code> option to <code>false</code>:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> posts = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/posts'</span>
+});
+consts byId = <span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'{id}'</span>,
+    trailingSlashMustMatch: <span class="hljs-literal">false</span>
+});
+
+posts.append(byId);
+
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+router.append(posts);
+</code></pre>
+				<p>Now the <code>posts</code> and <code>byId</code> routes will be selected both for <code>/posts/5</code> and <code>/posts/5/</code>.</p>
+				<p>Note that it&#39;s irrelevant whether any intermediate routes&#39; paths end with a <code>/</code>.</p>
+				<h3 id="repeated-slashes">Repeated slashes</h3>
+				<p>You cannot create routes with repeated slashes:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/foo//bar'</span>
+}); <span class="hljs-comment">// Throws!</span>
+</code></pre>
+				<p>However repeated slashes are ignored when dispatching:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+router.append(<span class="hljs-keyword">new</span> Route({
+    path: <span class="hljs-string">'/foo/bar'</span>
+}));
+
+router.dispatch(context, <span class="hljs-string">'//foo///bar'</span>); <span class="hljs-comment">// Selects the /foo/bar route</span>
+</code></pre>
+				<h3 id="link-generation">Link generation</h3>
+				<p>The router can generate links for a given route:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+<span class="hljs-keyword">const</span> blog = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/blog'</span> });
+router.append(blog);
+
+router.link(blog) === <span class="hljs-string">'/blog'</span>;
+</code></pre>
+				<p>This also works with parameters:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> show = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/{id}'</span> });
+blog.append(show);
+
+router.link(show, { id: <span class="hljs-string">'5'</span> }) === <span class="hljs-string">'/blog/5'</span>;
+</code></pre>
+				<p>And query parameters:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> show = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/{id}?{highlight}'</span> });
+blog.append(show);
+
+router.link(show, { id: <span class="hljs-string">'5'</span>, highlight: <span class="hljs-string">'40'</span> }) === <span class="hljs-string">'/blog/5?highlight=40'</span>;
+router.link(show, { id: <span class="hljs-string">'5'</span>, highlight: [ <span class="hljs-string">'40'</span> ] }) === <span class="hljs-string">'/blog/5?highlight=40'</span>;
+router.link(show, { id: <span class="hljs-string">'5'</span>, highlight: [ <span class="hljs-string">'40'</span>, <span class="hljs-string">'55'</span> ] }) === <span class="hljs-string">'/blog/5?highlight=40&amp;highlight=55'</span>;
+</code></pre>
+				<p>Note that if routes share the same parameter name they&#39;ll receive the same value:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> category = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/categories/{id}'</span> });
+<span class="hljs-keyword">const</span> post = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/posts/{id}'</span> });
+blog.append(category);
+category.append(post);
+
+router.link(post, { id: <span class="hljs-string">'5'</span> }) === <span class="hljs-string">'/blog/categories/5/posts/5'</span>;
+</code></pre>
+				<p>You can also generate links without having a reference to the router:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+<span class="hljs-keyword">const</span> blog = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/blog'</span> });
+<span class="hljs-keyword">const</span> show = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/{id}'</span> });
+blog.append(show);
+
+show.link({ id: <span class="hljs-string">'5'</span> }) === <span class="hljs-string">'/blog/5'</span>;
+</code></pre>
+				<h3 id="history-management">History management</h3>
+				<p>This library ships with three history managers. They share the same interface but have different ways of monitoring and changing the navigation state.</p>
+				<h4 id="using-pushstate-and-friends">Using <code>pushState()</code> and friends</h4>
+				<p>The recommended manager uses <code>pushState()</code> and <code>replaceState()</code> to <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries">add or modify history entries</a>. This requires server-side support to work well:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> StateHistory <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/history/StateHistory'</span>;
+
+<span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> StateHistory();
+</code></pre>
+				<p>This assumes the global object is a browser <code>window</code> object. It&#39;ll access <code>window.location</code> and <code>window.history</code>, as well as add an event listener for the <code>popstate</code> event.</p>
+				<p>You can provide an explicit <code>window</code> object:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> StateHistory({ <span class="hljs-built_in">window</span>: myWindowObject });
+</code></pre>
+				<p>This is mostly useful for testing purposes.</p>
+				<p>Use <code>history.current</code> to get the current path. It&#39;s initialized to the browser&#39;s location when the history object was created. It always starts with a <code>/</code>, regardless of the path string passed to the <code>history.set()</code> and <code>history.replace()</code> methods.</p>
+				<p>Call <code>history.set()</code> with a path string to set a new path. This will use <code>window.history.pushState()</code> to change the URL shown in the browser.</p>
+				<p><code>history.replace()</code> works like <code>history.set()</code>, but uses <code>window.history.replaceState()</code> instead.</p>
+				<p>The <code>change</code> event is emitted when history is set or replaced, or when <code>popstate</code> is emitted on the <code>window</code> object. The <code>value</code> property of the event object contains the new path:</p>
+				<pre><code class="lang-ts">history.on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(event.value);
+});
+</code></pre>
+				<p>Applications should call <code>Router#dispatch()</code> with this value as the path.</p>
+				<h5 id="specifying-a-base-pathname">Specifying a base pathname</h5>
+				<p>A base pathname can be provided when creating the history manager:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> StateHistory({ base: <span class="hljs-string">'/myapp'</span> });
+</code></pre>
+				<p>In this example, if the browser&#39;s location is <code>/myapp/index</code>, the path available at <code>history.current</code> and the <code>change</code> event value will be <code>/index</code>. When calling <code>history.set()</code> and <code>history.replace()</code> with say <code>/settings</code>, the browser&#39;s location will be changed to <code>/myapp/settings</code>.</p>
+				<p>You may specify the base with or without a trailing slash.</p>
+				<h4 id="fragment-identifiers">Fragment identifiers</h4>
+				<p>The hash-based manager uses the fragment identifier to store navigation state. This makes it a better fit for applications that are served as a static HTML file:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> HashHistory <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/history/HashHistory'</span>;
+
+<span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> HashHistory();
+</code></pre>
+				<p>The <code>history</code> object has the same <code>current</code> getter and <code>set()</code> and <code>replace()</code> methods. The <code>HashHistory</code> class assumes the global object is a browser <code>window</code> object, but an explicit object can be provided. It&#39;ll access <code>window.history</code> and add an event listener for the <code>hashchange</code> event.</p>
+				<p>Path strings are stored in the fragment identifier. <code>history.current</code> returns the current path, without a <code>#</code> prefix. The same goes for the <code>value</code> property of the <code>change</code> event object.</p>
+				<h4 id="memory-only">Memory-only</h4>
+				<p>Finally there is a memory-backed manager. This isn&#39;t very useful in browsers but can be helpful when writing tests.:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> MemoryHistory <span class="hljs-keyword">from</span> <span class="hljs-string">'@dojo/routing/history/MemoryHistory'</span>;
+
+<span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> MemoryHistory();
+</code></pre>
+				<p>The <code>MemoryHistory</code> class accepts a <code>path</code> option. It defaults to the empty string.</p>
+				<h3 id="making-the-router-aware-of-the-history-manager">Making the router aware of the history manager</h3>
+				<p>In browser-based applications it is desirable for the router to be aware of the history manager. This is why you can provide the history manager when creating the router:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> StateHistory();
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router({ history });
+</code></pre>
+				<p>Now instead of using <code>history.set()</code> and <code>history.replace()</code> you can use <code>router.setPath()</code> and <code>router.replacePath()</code>.</p>
+				<h4 id="automatic-routing-and-clever-linking-through-start-">Automatic routing and clever linking through <code>start()</code></h4>
+				<p>You could manually wire a history manager&#39;s <code>change</code> event to a <code>Router#dispatch()</code>, but that&#39;s a bit cumbersome. Instead if you provided the history manager when creating the router, you can use the <code>start()</code> method to make the router observe the history manager:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router({ history: <span class="hljs-keyword">new</span> StateHistory() });
+router.start();
+</code></pre>
+				<p>By default <code>start()</code> dispatches for the current history value. You can disable this:</p>
+				<pre><code class="lang-ts">router.start({ dispatchCurrent: <span class="hljs-literal">false</span> });
+</code></pre>
+				<p>As an added benefit, when you use <code>start()</code> it ensures the previous dispatch is canceled when the history changes and it dispatches a new request.</p>
+				<p><code>start()</code> also ensures history is replaced with the new path when routes request a redirect.</p>
+				<p>The context for these dispatches defaults to an empty object. A new object is used for every dispatch. You can configure the context when creating the router:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router({
+    context: { someKey: <span class="hljs-string">'someValue'</span> },
+    history: <span class="hljs-keyword">new</span> StateHistory()
+});
+</code></pre>
+				<p>Provide a function if you want a new context for every dispatch:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router({
+    context() {
+        <span class="hljs-keyword">return</span> { someKey: <span class="hljs-string">'someValue'</span> };
+    },
+    history: <span class="hljs-keyword">new</span> StateHistory()
+});
+</code></pre>
+				<p><code>link()</code> can use the currently selected routes when generating a new link. For instance given this router:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">const</span> history = <span class="hljs-keyword">new</span> StateHistory();
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router({ history });
+
+<span class="hljs-keyword">const</span> blog = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/blog'</span> });
+<span class="hljs-keyword">const</span> show = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/{id}'</span> });
+<span class="hljs-keyword">const</span> edit = <span class="hljs-keyword">new</span> Route({ path: <span class="hljs-string">'/edit'</span> });
+
+router.append(blog);
+blog.append(show);
+show.append(edit);
+</code></pre>
+				<p>If the current URL is <code>/blog/5</code>, then you can generate a link for the <code>edit</code> route without having to provide any parameters:</p>
+				<pre><code class="lang-ts">router.link(edit) === <span class="hljs-string">'/blog/5/edit'</span>;
+</code></pre>
+				<p>Calling <code>dispatch()</code> directly will prevent the router from tracking selected routes. They&#39;ll also be unavailable after a redirect has been requested, before new routes have been selected.</p>
+				<h3 id="capturing-errors">Capturing errors</h3>
+				<p>Errors that occur during dispatch are emitted under the <code>error</code> event. The event object contains the error as well as the context and path used for the dispatch.</p>
+				<h2 id="how-do-i-contribute-">How do I contribute?</h2>
+				<p>We appreciate your interest!  Please see the <a href="https://github.com/dojo/meta#readme">Dojo 2 Meta Repository</a> for the
+				Contributing Guidelines and Style Guide.</p>
+				<h3 id="installation">Installation</h3>
+				<p>To start working with this package, clone the repository and run <code>npm install</code>.</p>
+				<p>In order to build the project run <code>grunt dev</code> or <code>grunt dist</code>.</p>
+				<h3 id="testing">Testing</h3>
+				<p>Test cases MUST be written using <a href="https://theintern.github.io">Intern</a> using the Object test interface and Assert assertion interface.</p>
+				<p>90% branch coverage MUST be provided for all code submitted to this repository, as reported by istanbul’s combined coverage results for all supported platforms.</p>
+				<p>To test locally in node run:</p>
+				<p><code>grunt test</code></p>
+				<p>To test against browsers with a local selenium server run:</p>
+				<p><code>grunt test:local</code></p>
+				<p>To test against BrowserStack or Sauce Labs run:</p>
+				<p><code>grunt test:browserstack</code></p>
+				<p>or</p>
+				<p><code>grunt test:saucelabs</code></p>
+				<h2 id="licensing-information">Licensing information</h2>
+				<p>© 2004–2017 <a href="https://js.foundation/">JS Foundation</a> &amp; contributors. <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD</a> license.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/matchtype.html" class="tsd-kind-icon">Match<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/about.html" class="tsd-kind-icon">About</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/app.html" class="tsd-kind-icon">App</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/baselink.html" class="tsd-kind-icon">Base<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/child.html" class="tsd-kind-icon">Child</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/company.html" class="tsd-kind-icon">Company</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/hashhistory.html" class="tsd-kind-icon">Hash<wbr>History</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/historybase.html" class="tsd-kind-icon">History<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/home.html" class="tsd-kind-icon">Home</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/memoryhistory.html" class="tsd-kind-icon">Memory<wbr>History</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/route.html" class="tsd-kind-icon">Route</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/router.html" class="tsd-kind-icon">Router</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/statehistory.html" class="tsd-kind-icon">State<wbr>History</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/topic.html" class="tsd-kind-icon">Topic</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/topics.html" class="tsd-kind-icon">Topics</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/user.html" class="tsd-kind-icon">User</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/childproperties.html" class="tsd-kind-icon">Child<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/context.html" class="tsd-kind-icon">Context</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/deconstructedpath.html" class="tsd-kind-icon">Deconstructed<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/defaultparameters.html" class="tsd-kind-icon">Default<wbr>Parameters</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/dispatchdeferral.html" class="tsd-kind-icon">Dispatch<wbr>Deferral</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/dispatchresult.html" class="tsd-kind-icon">Dispatch<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/errorevent.html" class="tsd-kind-icon">Error<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/hashhistoryoptions.html" class="tsd-kind-icon">Hash<wbr>History<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/history.html" class="tsd-kind-icon">History</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/historychangeevent.html" class="tsd-kind-icon">History<wbr>Change<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/historyevents.html" class="tsd-kind-icon">History<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/historyoptions.html" class="tsd-kind-icon">History<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/linkproperties.html" class="tsd-kind-icon">Link<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/literalsegment.html" class="tsd-kind-icon">Literal<wbr>Segment</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mapparams.html" class="tsd-kind-icon">Map<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/mapparamsoptions.html" class="tsd-kind-icon">Map<wbr>Params<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/matchresult.html" class="tsd-kind-icon">Match<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/memoryhistoryoptions.html" class="tsd-kind-icon">Memory<wbr>History<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/namedsegment.html" class="tsd-kind-icon">Named<wbr>Segment</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/navigationstartevent.html" class="tsd-kind-icon">Navigation<wbr>Start<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/outletcomponents.html" class="tsd-kind-icon">Outlet<wbr>Components</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/outletcontext.html" class="tsd-kind-icon">Outlet<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/outletproperties.html" class="tsd-kind-icon">Outlet<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/parameters.html" class="tsd-kind-icon">Parameters</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/parsedpath.html" class="tsd-kind-icon">Parsed<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/request.html" class="tsd-kind-icon">Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/routeconfig.html" class="tsd-kind-icon">Route<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/routeinterface.html" class="tsd-kind-icon">Route<wbr>Interface</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/routeoptions.html" class="tsd-kind-icon">Route<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/routerevents.html" class="tsd-kind-icon">Router<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/routerinjectoroptions.html" class="tsd-kind-icon">Router<wbr>Injector<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/routerinterface.html" class="tsd-kind-icon">Router<wbr>Interface</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/routeroptions.html" class="tsd-kind-icon">Router<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/selection.html" class="tsd-kind-icon">Selection</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/startoptions.html" class="tsd-kind-icon">Start<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/statehistoryoptions.html" class="tsd-kind-icon">State<wbr>History<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/thenable.html" class="tsd-kind-icon">Thenable</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/topicproperties.html" class="tsd-kind-icon">Topic<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/topicsproperties.html" class="tsd-kind-icon">Topics<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/userproperties.html" class="tsd-kind-icon">User<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#browserhistory" class="tsd-kind-icon">Browser<wbr>History</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#component" class="tsd-kind-icon">Component</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#handler" class="tsd-kind-icon">Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#linkparams" class="tsd-kind-icon">Link<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#outlet" class="tsd-kind-icon">Outlet</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#searchparams" class="tsd-kind-icon">Search<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#segment" class="tsd-kind-icon">Segment</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#aboutoutlet" class="tsd-kind-icon">About<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#ambiguousmatchesoutlet" class="tsd-kind-icon">Ambiguous<wbr>Matches<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#basicappoutlet" class="tsd-kind-icon">Basic<wbr>App<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#childoutlet" class="tsd-kind-icon">Child<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#companyoutlet" class="tsd-kind-icon">Company<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#homeoutlet" class="tsd-kind-icon">Home<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#link" class="tsd-kind-icon">Link</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#topicoutlet" class="tsd-kind-icon">Topic<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#topicsoutlet" class="tsd-kind-icon">Topics<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#urlparametersappoutlet" class="tsd-kind-icon">Url<wbr>Parameters<wbr>App<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#useroutlet" class="tsd-kind-icon">User<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#environments" class="tsd-kind-icon">environments</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#erroroutlet" class="tsd-kind-icon">error<wbr>Outlet</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#excludeinstrumentation" class="tsd-kind-icon">exclude<wbr>Instrumentation</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#functionalsuites" class="tsd-kind-icon">functional<wbr>Suites</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#initialbaseurl" class="tsd-kind-icon">initial<wbr>Base<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#maxconcurrency" class="tsd-kind-icon">max<wbr>Concurrency</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#parentmap" class="tsd-kind-icon">parent<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#proxyport" class="tsd-kind-icon">proxy<wbr>Port</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#removethis" class="tsd-kind-icon">remove<wbr>This</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#routerkey" class="tsd-kind-icon">router<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#suites" class="tsd-kind-icon">suites</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#tunnel" class="tsd-kind-icon">tunnel</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createlink" class="tsd-kind-icon">create<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#deconstruct" class="tsd-kind-icon">deconstruct</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#findrouter" class="tsd-kind-icon">find<wbr>Router</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#hasbeenappended" class="tsd-kind-icon">has<wbr>Been<wbr>Appended</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#iscomponent" class="tsd-kind-icon">is<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#iseventuallyrejected" class="tsd-kind-icon">is<wbr>Eventually<wbr>Rejected</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isnamedsegment" class="tsd-kind-icon">is<wbr>Named<wbr>Segment</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#match" class="tsd-kind-icon">match</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#parse" class="tsd-kind-icon">parse</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#registerrouterinjector" class="tsd-kind-icon">register<wbr>Router<wbr>Injector</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#throwimmediatly" class="tsd-kind-icon">throw<wbr>Immediatly</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#ambiguousmatchesrouteconfig" class="tsd-kind-icon">Ambiguous<wbr>Matches<wbr>Route<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#basicapprouteconfig" class="tsd-kind-icon">Basic<wbr>App<wbr>Route<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#urlparametersrouteconfig" class="tsd-kind-icon">Url<wbr>Parameters<wbr>Route<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#capabilities" class="tsd-kind-icon">capabilities</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#history" class="tsd-kind-icon">history</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#loaderoptions" class="tsd-kind-icon">loader<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#loaders" class="tsd-kind-icon">loaders</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#tunneloptions" class="tsd-kind-icon">tunnel<wbr>Options</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="page-footer container with-border-bottom">
+	<div class="content-container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="/js/combined.js"></script>
+<!-- build:js /js/api.js -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
+<!-- endbuild -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-3242977-15', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
