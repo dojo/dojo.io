@@ -24,6 +24,8 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Make our widgets themeable' %}
 
+In Dojo, we differentiate between structural styles which are the minimum necessary for widget function and visual styles, which are themeable. The current CSS in the example app provides the structural styles, and we will now go over how to create and manage themes.
+
 In order to theme our widgets, we must ensure that they each extend `ThemeableMixin` and should change their top level class name to `root`. `ThemeableMixin` provides a `this.classes` function for looking up class names in the provided `theme` file and applies the processed class names. We change the top level class names to `root` in order to provide a predictable way to target the outer-node of a widget.
 
 {% instruction 'Add the following to `Banner.ts`.' %}
@@ -68,13 +70,13 @@ Next, we will start to create a theme.
 
 Let's create a `theme` directory under your project `src` to store our theme resources, and create a `dojo` theme with `theme.ts` under `src/themes/dojo/theme.ts`. This is the `theme` resource where we will import our themed CSS files and export the keyed theme for consumption by our widgets.
 
-{% instruction 'Theme the worker widget' %}
+{% instruction 'Theme the Worker widget' %}
 
-In order to theme the `worker` widget, we need to create `worker.m.css` within our theme directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's CSS file.
+In order to theme the `Worker` widget, we need to create `worker.m.css` within our theme directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's CSS file.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,9,11,16 %}
 
-Let's start by creating a red `worker` and observe our theme being applied correctly.
+Let's start by creating a red `Worker` and observe our theme being applied correctly.
 
 ```css
 /* worker.m.css */
@@ -95,16 +97,16 @@ However an application can automatically inject a `theme` from the `registry` to
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' %}
 
-Open the application in your web browser and see that the `worker` backgrounds are now `red`.
+Open the application in your web browser and see that the `Worker` backgrounds are now `red`.
 
-{% instruction 'Use variables and complete the worker theme' %}
+{% instruction 'Use variables and complete the Worker theme' %}
 
 The [Dojo 2 build system](../006_deploying_to_production/) supports new CSS features such as `css-custom-properties` by using PostCSS to process our `.m.css` files. We can use these new CSS features to add variables to `worker.m.css` and complete its theme.
 Let's create `themes/dojo/variables.css` (notice that this file does not have a `.m.css` extension as it is not a `css-module` file).
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/variables.css' lang:css %}
 
-We can now use these variables in `worker.m.css` to create our fully themed `worker`.
+We can now use these variables in `worker.m.css` to create our fully themed `Worker`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/worker.m.css' lang:css %}
 
@@ -112,7 +114,7 @@ We can now use these variables in `worker.m.css` to create our fully themed `wor
 
 ## Theming Dojo widgets
 
-Thus far in this tutorial, we have themed our custom `worker` widget, but how do we theme Dojo's existing widgets that are contained within our application? To demonstrate the styling of existing Dojo widgets, we will theme the `workerForm` widget as it contains both DOM nodes and Dojo widgets.
+Thus far in this tutorial, we have themed our custom `Worker` widget, but we have not targeted Dojo widgets that are contained within our application? To demonstrate the styling of Dojo widgets, we will theme the `workerForm` widget as it contains both DOM nodes and Dojo widgets.
 
 {% instruction 'Let\'s create `workerForm.m.css` and include it in theme.ts' %}
 
@@ -120,7 +122,7 @@ Thus far in this tutorial, we have themed our custom `worker` widget, but how do
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,9,11,13,16 %}
 
-This should be familiar from theming the `worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `dojoTextInput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.
+This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `dojoTextInput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.
 
 {% instruction 'Create `dojoTextInput.m.css` and export it from `theme.ts`' %}
 
