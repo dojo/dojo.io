@@ -1,5 +1,5 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { Registry } from '@dojo/widget-core/Registry';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 
 import App from './widgets/App';
@@ -30,7 +30,7 @@ const routingConfig = [
 	}
 ];
 
-const registry = new WidgetRegistry();
+const registry = new Registry();
 const router = registerRouterInjector(routingConfig, registry);
 
 const Projector = ProjectorMixin(App);
