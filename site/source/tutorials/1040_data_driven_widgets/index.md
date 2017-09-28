@@ -30,17 +30,17 @@ Before digging into the specifics of wiring a widget to a data source, a basic l
 
 {% instruction 'Add the following skeleton to `List.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-3,7-9,13-18,28-29,36-39 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-3,6,7-8,12-17,27-28,35-37 %}
 
 This code lays the base foundation for a themeable Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemeableMixin`, and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
 
 {% instruction 'Import `TextInput` into `List.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:5 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:4 %}
 
 {% instruction 'Update the `ListProperties` interface so that a `value` and an `onInput` callback can be passed into the `List`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:9,11-13 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:8,10-12 %}
 
 The next step in creating an initial filterable list widget is to update its `render` method to define a `TextInput` using the `w` module.
 
@@ -117,7 +117,7 @@ The first step to connecting the `List` to worker data is to update its `propert
 
 {% instruction 'Update the `ListProperties` to support passing a `data` array property into the `List`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:6,8,9-13 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:5,7-12 %}
 
 {% aside 'Playing it safe' %}
 The `WorkerProperties` interface is imported from the `Worker` widget so that the TypeScript typings for the `data` array can be as strict as possible.
