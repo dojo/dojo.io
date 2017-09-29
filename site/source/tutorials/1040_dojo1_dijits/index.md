@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Using Dojo 1 Dijits
-overview: In this tutorial, you will learn how to use Dojo 1 Dijits in a Dojo 2 application.
+overview: Find out how to use Dojo 1 Dijits in a Dojo 2 application.
 ---
 
 {% section 'first' %}

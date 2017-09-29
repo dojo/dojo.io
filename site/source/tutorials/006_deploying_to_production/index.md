@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Deploying to production
-overview: This tutorial shows how to prepare a Dojo 2 application for production deployment.
+overview: Prepare a Dojo 2 application for production deployment.
 ---
 
 {% section 'first' %}

@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Registry
-overview: In this tutorial, you will learn how to use Dojo 2's registry to lazily load widgets when they are needed.
+overview: Discover how to use Dojo 2's registry to lazily load widgets when they are needed.
 ---
 
 {% section 'first' %}

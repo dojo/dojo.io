@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Form widgets
-overview: In this tutorial, you will learn how to use some of Dojo 2's built-in form widgets to create a simple form and use it to update the application.
+overview: Use some of Dojo 2's out-of-the-box form widgets to create a simple form and use it to update the application.
 ---
 
 {% section 'first' %}
