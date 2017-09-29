@@ -26,15 +26,15 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement> & DocumentEvent) {
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement> & DocumentEvent) {
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement> & DocumentEvent) {
 		this.properties.onFormInput({ email });
 	}
 

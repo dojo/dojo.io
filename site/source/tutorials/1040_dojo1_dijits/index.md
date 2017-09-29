@@ -28,19 +28,19 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 The first step will be to install our dependencies using npm:
 
-{% instruction 'Install the initial dependencies via npm.' %}
+{% instruction 'Install the initial dependencies via npm:' %}
 
 ```
 $ npm install
 ```
 
-{% instruction 'Install additional development dependency.' %}
+{% instruction 'Install additional development dependency:' %}
 
 ```
 $ npm install dojo-typings --save-dev
 ```
 
-{% instruction 'Install additional run-time dependencies.' %}
+{% instruction 'Install additional run-time dependencies:' %}
 
 ```
 $ npm install dojo dijit dojo-themes @dojo/interop --save
@@ -52,7 +52,7 @@ The `dojo`, `dijit`, and `dojo-themes` packages are the Dojo 1 dependencies we w
 
 ## Updating project configuration
 
-{% task 'Update the `dojo build` configuration.' %}
+{% task 'Updating the `dojo build` configuration.' %}
 
 Dojo 1 and Dijits at run-time are considered _external_ dependencies for the Dojo 2 build system.  We need to supply information to the `dojo build` CLI command to include our external dependencies as part of our build.  We provide additional configuration information to the Dojo 2 CLI via `.dojorc` in the root of our project.  `.dojorc` is formatted as a JSON file and configuration can be provided to each CLI command.
 
@@ -62,7 +62,7 @@ Dojo 1 and Dijits at run-time are considered _external_ dependencies for the Doj
 
  To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build.  Additionally, some of those dependencies will be injected (loaded) into our bundle.  The first dependency provides configuration for the Dojo 1 loader (which we will create later).  The second dependency includes the `dojo` package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested.  The third dependency is `dijit`, which are our Dojo 1 Dijits.  The final dependency is a modern flat theme for Dojo 1 Dijits.  We are injecting the _root_ CSS into our application bundle as well, which will ensure the CSS is loaded an available at run time.
 
-{% task 'Update the `tsconfig.json` configuration.' %}
+{% task 'Updating the `tsconfig.json` configuration.' %}
 
 In order for us to integrate the TypeScript typings, we need to adjust two sections of our `tsconfig.json`.
 
@@ -86,7 +86,7 @@ By adding the modules to the scope of the TypeScript transpiler, we should have 
 
 ## Configuring Dojo 1
 
-{% task 'Create loader configuration.' %}
+{% task 'Creating loader configuration.' %}
 
 {% aside 'Information' %}
 The Dojo 1 loader configuration can be complex.  There is this Dojo 1 tutorial <em>[Configuring Dojo with dojoConfig](https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html)</em> that explains how to configure Dojo 1.
@@ -98,15 +98,15 @@ In the previous step, we needed to include a configuration for our Dojo 1 loader
 
 {% include_codefile 'demo/finished/biz-e-corp/src/dojo1.cfg.js' %}
 
-{% task 'Ensure the application builds.' %}
+{% task 'Ensuring the application builds.' %}
 
 At this point, you should be able to build your application.
-
-{% instruction 'Run `dojo build` in the project root.' %}
 
 {% aside 'Reminder' %}
 You can now use `dojo build -w` to continue to develop, with live rebuilding of your project.
 {% endaside %}
+
+{% instruction 'Run `dojo build` in the project root.' %}
 
 You should see a rather long output indicating many dependencies have been output.
 
@@ -118,11 +118,11 @@ To integrate Dijits within into a Dojo 2 application, they need to _wrapped_ for
 
 The `DijitWrapper` function accepts two arguments.  The first is the Dojo 1 `declare` class.  The second is an optional string, which represents the tag name that should be used when the Dojo 2 widgeting system needs to create a _DOM stub_ to attach the Dijit instance to.  It defaults to `div` if not supplied.
 
-{% task 'Wrap Dijits.' %}
-
 {% aside 'Information' %}
 All Dojo 1 modules are AMD modules without default exports.  As such, you need to import Dojo 1 modules using the `import * as Dijit from 'module/id';` syntax.
 {% endaside %}
+
+{% task 'Wrapping Dijits.' %}
 
 We recommend any wrapped Dijits be created as individual modules in `/src/dijit` in the same path structure they are located in the source `dijit` package.
 
@@ -138,7 +138,7 @@ We recommend any wrapped Dijits be created as individual modules in `/src/dijit`
 
 {% include_codefile 'demo/finished/biz-e-corp/src/dijit/form/TextBox.ts' %}
 
-{% task 'Import Dijits.' %}
+{% task 'Importing Dijits.' %}
 
 Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 or modules.
 
@@ -150,13 +150,17 @@ Now that you have wrapped Dijits for use, we need to import them into their cont
 
 ## Placing Dijits
 
-{% task 'Add Dijits to a widget\'s render function.' %}
+{% aside 'Reminder' %}
+We will be using `w()` function from `@dojo-widget/core/d`.  Don't forget to `import` it...
+{% endaside %}
+
+{% task 'Adding Dijits to a widget\'s render function.' %}
 
 Now that we have imported our wrapped Dijits into the module they will be used, we need to add them to the render function.
 
 {% instruction 'Add imported Dijits to the `WorkerForm` widget\'s render function:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:44-74 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:44-75 %}
 
 {% aside 'Information' %}
 The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the [Dojo 1 API documentation](https://dojotoolkit.org/api/).
@@ -166,9 +170,11 @@ Once Dijits are wrapped, they behave very similar to Dojo 2 widgets.  Coupled wi
 
 One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit's as their children. Dojo 2 widgets represent their [DOM virtually](../comingsoon.html), while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.
 
-{% task 'Set a Dojo 1 theme.' %}
+{% task 'Setting a Dojo 1 theme.' %}
 
-When we configured the _externals_ for our project, we included the main CSS for our theme.  Most Dijits will not render properly without a theme being applied to them.  There are many different ways to apply a Dojo 1 theme, but the most straightforward is to set the theme class name on the `<body>` of the application document.
+When we configured the _externals_ for our project, we included the main CSS for our theme, via the `"inject"` property.  The build system will automatically load any CSS or JavaScript files we inject when the page is loaded, meaning we don't have to add the stylesheet directly to our HTML.
+
+Most Dijits will not render properly without a theme being applied to them.  There are many different ways to apply a Dojo 1 theme, but the most straightforward is to set the theme class name on the `<body>` of the application document.
 
 {% instruction 'Add theme class name to `src/index.html`:' %}
 
