@@ -1,12 +1,17 @@
 <%- partial('_partial/head') %>
-<body class="<%- partial('_partial/body')%>">
-	<%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-	<div class="page-content">
-		<section class="content-container" id="main"><%- body %></section>
-	</div>
-	<div>
-		<%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+	<body class="<%- partial('_partial/body')%>">
+		<div class="page-wrapper">
+			<%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+			<div class="content-wrapper">
+				<div class="page-content">
+					<%- body %>
+				</div>
+				<%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+			</div>
+			<% if(page.paginate) {%>
+				<%- partial('_partial/paginator') %>
+			<% } %>
+		</div>
 		<%- partial('_partial/after-footer') %>
-	</div>
-</body>
+	</body>
 </html>

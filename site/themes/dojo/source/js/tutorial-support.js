@@ -1,47 +1,34 @@
 var tutorial = tutorial || {};
 
-tutorial.populateActionBar = function(container) {
+tutorial.populatePaginator = function(container, title) {
 	if (!container || !container.appendChild) {
 		console.error('Invalid container received');
 		return;
 	}
 
-	var sectionOneContainer = document.createElement('div');
-	sectionOneContainer.classList.add('section-one');
+	var breadcrumbs = document.querySelector('.breadcrumb');
+	var currentStepLabel = document.querySelector('.step-current');
 
-	var otherSectionContainer = document.createElement('div');
-	otherSectionContainer.classList.add('other-section', 'hidden');
+	var sectionOneContainer = document.querySelector('.section-one');
 
-	container.appendChild(sectionOneContainer);
-	container.appendChild(otherSectionContainer);
+	var otherSectionContainer = document.querySelector('.paginator');
+	otherSectionContainer.classList.add('pagination', 'hidden');
 
-	var ownEditorButton = document.createElement('button');
-	ownEditorButton.classList.add('own-editor', 'blue');
-	ownEditorButton.innerHTML = 'Begin tutorial';
-	sectionOneContainer.appendChild(ownEditorButton);
-
-	var backButton = document.createElement('button');
-	backButton.classList.add('back', 'green');
-	backButton.innerHTML = 'Back';
-	otherSectionContainer.appendChild(backButton);
+	var ownEditorButton = document.querySelector('.begin-button');
 
 	var sections = document.querySelectorAll('section.tutorial');
-	var sectionContainer = document.createElement('div');
-	var centerSectionContainer = document.createElement('div');
-	centerSectionContainer.className = 'center-section-container';
-	sectionContainer.className = 'section-container';
+	var sectionContainer = document.querySelector('.pagination');
+	var centerSectionContainer = document.querySelector('.pagination-list');
 
-	sectionContainer.appendChild(centerSectionContainer);
-	otherSectionContainer.appendChild(sectionContainer);
+	var backButton = document.querySelector('.pagination-previous');
+	var nextButton = document.querySelector('.pagination-next');
 
-	var nextButton = document.createElement('button');
-	nextButton.classList.add('next', 'green');
-	nextButton.innerHTML = 'Next';
-	otherSectionContainer.appendChild(nextButton);
+	var timeoutHandle;
 
 	var sectionSelectors = [];
 
 	// create each section selector and link it to its section via data-section-num
+
 	if (sections.length > 0) {
 		for (var i = 0; i < sections.length; i++) {
 			sections[i].setAttribute('data-section-num', i);
@@ -49,27 +36,33 @@ tutorial.populateActionBar = function(container) {
 				sections[i].classList.remove('hidden', 'hiding');
 				continue;
 			}
-			var sectionSelector = document.createElement('div');
+			var sectionSelectorWrap = document.createElement('li');
+			sectionSelectorWrap.className = 'pagination-item';
+
+			var sectionSelector = document.createElement('a');
 			sectionSelector.setAttribute('data-section-num', i);
-			sectionSelector.className = 'section-selector';
+			sectionSelector.className = 'pagination-link';
+			sectionSelector.innerHTML = i;
 			var title = sections[i].querySelector('h2');
+
 			if (title) {
 				sectionSelector.title = title.textContent;
 			}
 
+			sectionSelectorWrap.appendChild(sectionSelector);
 			centerSectionContainer.appendChild(sectionSelector);
 			sectionSelectors.push(sectionSelector);
 		}
 	}
 
 	ownEditorButton.addEventListener('click', function () {
-		activateSelector(document.querySelector('.section-selector[data-section-num="1"]'));
+		activateSelector(document.querySelector('.pagination-link[data-section-num="1"]'));
 	});
 
 	centerSectionContainer.addEventListener('click', function (e) {
 		var target = e.target;
 		// short-circuit if clicked section is already active
-		if (target.classList.contains('active')) {
+		if (target.classList.contains('is-current')) {
 			return;
 		}
 		activateSelector(target);
@@ -94,9 +87,10 @@ tutorial.populateActionBar = function(container) {
 
 		sectionSelectors.forEach(function (sectionSelector) {
 			if (sectionSelector === target) {
-				sectionSelector.classList.add('active');
+				sectionSelector.classList.add('is-current');
+				currentStepLabel.innerHTML = sectionSelector.title;
 			} else {
-				sectionSelector.classList.remove('active');
+				sectionSelector.classList.remove('is-current');
 			}
 		});
 
@@ -110,6 +104,11 @@ tutorial.populateActionBar = function(container) {
 			}
 		}
 
+		if (timeoutHandle) {
+			clearTimeout(timeoutHandle);
+			timeoutHandle = null;
+		}
+
 		setTimeout(function (sectionToActivate) {
 			for (var i = 0; i < sections.length; i++) {
 				var section = sections[i];
@@ -119,7 +118,7 @@ tutorial.populateActionBar = function(container) {
 					section.classList.add('hidden');
 				}
 			}
-			document.querySelector('.scrollable').scrollTop = 0;
+			document.querySelector('.content-wrapper').scrollTop = 0;
 
 			var sectionToActivateNum = sectionToActivate && parseInt(sectionToActivate, 10);
 			if (sectionToActivateNum === sections.length - 1) {
@@ -130,22 +129,24 @@ tutorial.populateActionBar = function(container) {
 			if (!sectionToActivateNum) {
 				sectionOneContainer.classList.remove('hidden');
 				otherSectionContainer.classList.add('hidden');
+				breadcrumbs.classList.add('hidden');
 			} else {
 				sectionOneContainer.classList.add('hidden');
 				otherSectionContainer.classList.remove('hidden');
+				breadcrumbs.classList.remove('hidden');
 			}
 		}, 300, sectionToActivate);
 	}
 
 	function navigate(moveBy) {
-		var activeSelector = document.querySelector('.section-selector.active');
+		var activeSelector = document.querySelector('.pagination-link.is-current');
 		var sectionNumber = 0;
 		if (activeSelector) {
 			sectionNumber = parseInt(activeSelector.getAttribute('data-section-num'), 10) + moveBy;
 		} else {
 			sectionNumber = 1;
 		}
-		var newSelector = document.querySelector('.section-selector[data-section-num="' + sectionNumber + '"]');
+		var newSelector = document.querySelector('.pagination-link[data-section-num="' + sectionNumber + '"]');
 		activateSelector(newSelector || '0');
 	}
 
@@ -154,7 +155,7 @@ tutorial.populateActionBar = function(container) {
 		var includesSection = urlSectionSegment && urlSectionSegment[0] === '#';
 		var pageSection = (includesSection && urlSectionSegment.slice(1)) || '0';
 			activateSelector(
-				document.querySelector('.section-selector[data-section-num="' + pageSection + '"]') || pageSection,
+				document.querySelector('.pagination-link[data-section-num="' + pageSection + '"]') || pageSection,
 				!includesSection
 			);
 

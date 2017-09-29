@@ -1,0 +1,19 @@
+<aside class="menu">
+	<p class="menu-label">
+		Fundamentals
+	</p>
+	<ul class="menu-list">
+		<%
+			var docs = _.filter(site.pages.data, ['category', 'fundamentals']);
+			docs = _.orderBy(docs, ['path']);
+
+			_.each(docs, function(doc) {
+				// remove index.html from the path to make relative URLs work consistently
+				var urlRaw = doc.path.substr(0, doc.path.length - 10 /* length of 'index.html' */);
+		%>
+			<li><a href="<%- url_for(doc.path) %>"><%- doc.title %></a></li>
+		<%
+			});
+		%>
+	</ul>
+</aside>

@@ -37,19 +37,20 @@ hexo.extend.tag.register('include_codefile', function(args) {
 	var rawContent = fs.readFileSync(cf.getFilePath(this.path, filename));
 
 	if(lines !== false) {
-	   content = cf.extractContent(rawContent, lines);
+		content = cf.extractContent(rawContent, lines);
 	} else {
 		content = rawContent;
 	}
 
-   var highlighted = Prism.highlight(content, Prism.languages[lang]);
-   var codeString = `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
+	var highlighted = Prism.highlight(content, Prism.languages[lang]);
 
-   if(solution) {
+	var codeString = `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
+
+	if(solution) {
 		return `<div class="solution-container"><button class="toggle-solution" data-target="${solution}">Toggle Solution</button><section id="${solution}" class="hidden">${codeString}</section></div>`;
-   } else {
-	   return codeString;
-   }
+	} else {
+		return codeString;
+	}
 
 }, { async: true });
 

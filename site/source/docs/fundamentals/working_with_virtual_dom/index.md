@@ -1,5 +1,6 @@
 ---
-layout: false
+layout: docs
+category: fundamentals
 title: Working with a Virtual DOM
 overview: Dojo 2 applications use a Virtual DOM to efficiently manage updating the page. This article describes what a Virtual DOM is and the advantages that it brings.
 ---
