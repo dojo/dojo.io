@@ -156,13 +156,13 @@ Now that the `WorkerForm` widget is complete, we will update the `App` class to 
 
 {% instruction 'Add `_newWorker` as a private property.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:9 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:9 %}
 
 Notice that `_newWorker` is a `Partial<WorkerFormData>`, since it may include only some, or none, of the `WorkerFormData` interface properties.
 
-{% instruction 'Update the `render` method to populate the `WorkerForm`'s properties.' %}
+{% instruction 'Update the `render` method to populate the `WorkerForm`\'s properties.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:44-56 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:46-58 %}
 
 The `onFormInput` handler is calling the `App`'s `_onFormInput` method.
 

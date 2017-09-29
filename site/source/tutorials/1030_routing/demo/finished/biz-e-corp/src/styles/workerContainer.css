@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.title {
+	text-align: center;
+}
+
+.filters {
+	display: flex;
+	flex-flow: row wrap;
+	padding-bottom: 20px;
+}
+
+.links {
+	flex: 1;
+}

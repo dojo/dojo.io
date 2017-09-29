@@ -13,7 +13,7 @@ paginate: true
 
 Modern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of state. While Dojo 2's widgets can manage application state, encapsulation and a clean separation of concerns may be lost if widgets manage their own visual representations, listen for interactions from the user, manage their children, and keep track of state information. Additionally, using widgets to pass state through an application often forces the widgets to be aware of state information for the sole purpose of passing that data down to their children. To allow widgets to remain focused on their primary roles of providing a visual representation of themselves and listening for user interactions, Dojo 2 provides two classes, `Container` and `Injector`, that are designed to coordinate an application's external state and connect and map this state to properties.
 
-In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can [download](../assets/1010_form_widgets-initial.zip) the demo project to get started.
+In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can [download](../assets/1010_containers_and_injecting_state-initial.zip) the demo project to get started.
 
 ## Prerequisites
 
@@ -69,7 +69,7 @@ In a real-world application, this data would probably be loaded via a call to a 
 
 The state stored in the `ApplicationContext` is the same data that was used in the previous version of the `App` module to initialize the `WorkerProperties`, but it is now decoupled into an isolated module that helps to understand and maintain the application. In general, the `main` module of an application should be concerned with initializing application-wide state. Also, as previously mentioned, the `App` class only needed to manage the `WorkerProperties` state so that it could coordinate change to its children.
 
-Now that we have the `ApplicationContext`, let's use it within our widgets. This is done by creating an `Injector` and making it available to the to widgets via a `registry`. `Injectors` are created using the `Injector` factory function from `@dojo/widget-core`.
+Now that we have the `ApplicationContext`, let's use it within our widgets. This is done by creating an `Injector` and making it available to the widgets via a `registry`. `Injectors` are created using the `Injector` factory function from `@dojo/widget-core`.
 
 {% instruction 'Add the following imports to the `main` module.' %}
 
@@ -141,7 +141,7 @@ As mentioned in the previous section, `Container` is a higher order component th
 
 {% instruction 'Replace the imports in the `App` module with the following.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-6 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-5 %}
 
 There are two major changes to the `App` module's imports. First, the widgets (`WorkerForm` and `WorkerContainer`) have been replaced by their container equivalents (`WorkerFormContainer` and `WorkerContainerContainer`). Second, all of the interfaces, `WorkerFormData`, and `WorkerProperties` have been removed. These are no longer needed since the `App` class no longer needs to manage state.
 
@@ -149,7 +149,7 @@ Also, the property and methods within `App` that are setting and managing state 
 
 {% instruction 'Remove the following code from the `App` class.' %}
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' lines:9-45 %}
+{% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' lines:9-44 %}
 
 The final change to `App` is to update the `render` method to use the containers. Since the containers already know how to manage their state and respond to events, no properties need to be passed directly to the `Container` by the `App` widget.
 
@@ -167,6 +167,6 @@ Notice that the `WorkerForm` and `WorkerContainer` widgets were not changed at a
 
 Since Dojo 2 widgets are TypeScript classes, they are capable of filling a large number of roles, including state management. With complex widgets, however, combining the responsibilities to manage the widget's visual representation as well as the state of its children can make them difficult to manage and test. Dojo 2 defines `Injectors` and `Containers` as a way to externalize state management from the app and centralize that management into classes that are designed specifically to fill that role.
 
-If you would like, you can download the finished [demo application](../assets/1010_form_widgets-finished.zip) to review.
+If you would like, you can download the finished [demo application](../assets/1010_containers_and_injecting_state-finished.zip) to review.
 
 {% section 'last' %}
