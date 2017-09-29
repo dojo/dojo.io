@@ -1,0 +1,28 @@
+{
+  "name": "biz-e-corp",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dojo/core": "beta2",
+    "@dojo/has": "beta2",
+    "@dojo/i18n": "beta2",
+    "@dojo/routing": "beta2",
+    "@dojo/shim": "beta2",
+    "@dojo/widget-core": "beta2",
+    "@dojo/widgets": "beta2"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-webpack": "beta2",
+    "@dojo/cli-test-intern": "beta2",
+    "@dojo/interfaces": "beta2",
+    "@dojo/loader": "beta2",
+    "@types/chai": "~3.4.0",
+    "@types/glob": "~5.0.0",
+    "@types/grunt": "~0.4.0",
+    "@types/node": "^6.0.46",
+    "@types/sinon": "^1.16.35",
+    "chai": "^3.5.0",
+    "intern": "~3.4.6",
+    "sinon": "^2.0.0",
+    "typescript": "~2.4.2"
+  }
+}
