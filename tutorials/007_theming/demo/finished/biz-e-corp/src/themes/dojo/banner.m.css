@@ -1,0 +1,6 @@
+@import './variables';
+
+.root {
+	font-family: var(--font);
+	text-align: center;
+}
