@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Routing
-overview: In this tutorial, you will learn how to use Dojo 2's declarative routing within your application.
+overview: Use Dojo 2's declarative routing within your application.
 ---
 
 {% section 'first' %}

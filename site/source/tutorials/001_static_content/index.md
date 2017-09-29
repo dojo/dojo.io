@@ -1,7 +1,7 @@
 ---
 title: Your first Dojo 2 application
 layout: tutorial
-overview: In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.
+overview: Create your first Dojo 2 application and use it to print a simple message in the browser.
 ---
 
 {% section 'first' %}
