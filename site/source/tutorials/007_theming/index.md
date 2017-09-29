@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Theming
-overview: In this tutorial, you will learn how to use the Dojo 2 theming and styling system to add a theme to the sample application.
+overview: Use the Dojo 2 theming and styling system to add a theme to an application.
 ---
 
 {% section 'first' %}
