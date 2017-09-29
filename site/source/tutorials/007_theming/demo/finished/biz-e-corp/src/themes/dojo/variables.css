@@ -1,0 +1,12 @@
+:root {
+	--font: 'arial';
+	--container: #f9f9f9;
+	--body: #000;
+	--card: #fff;
+	--accent: #0071f2;
+	--secondary-accent: #075cbe;
+	--component-accent: #f4f4f4;
+	--input-border: #d6dde3;
+	--padding: 32px;
+	--spacing: 16px;
+}

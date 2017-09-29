@@ -1,0 +1,12 @@
+@import './variables';
+
+.root {
+	font-family: var(--font);
+	padding: 30px;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+.nameLabel {
+	font-size: 14px;
+}

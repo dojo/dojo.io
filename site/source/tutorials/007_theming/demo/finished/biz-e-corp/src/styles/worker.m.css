@@ -1,0 +1,107 @@
+.root {
+	margin: 0 10px 40px;
+	max-width: 350px;
+	min-width: 250px;
+	flex: 1 1 calc(33% - 20px);
+	position: relative;
+}
+
+.rootFixed {
+	/* flip transform styles */
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+
+.generalInfo {
+	box-sizing: border-box;
+	display: inline-block;
+	margin-bottom: 20px;
+	padding-left: 10px;
+	vertical-align: middle;
+	width: 60%;
+}
+
+.image {
+	margin: 0 auto 20px;
+	max-width: 250px;
+	width: 100%;
+	min-height: 250px;
+	background: url('../images/worker.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.imageSmall {
+	margin-bottom: 20px;
+	vertical-align: middle;
+	width: 40%;
+	height: 40%;
+	background: url('../images/worker.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.label {
+	font-weight: bold;
+}
+
+.task {
+	border: solid 1px #333;
+	border-radius: 0.3em;
+	margin-top: 3px;
+	padding: 3px;
+	text-align: left;
+}
+
+.tasks {
+
+}
+
+.heading {
+
+}
+
+.workerFront, .workerBack {
+	border: 1px solid #333;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding: 30px;
+}
+
+.workerFrontFixed, .workerBackFixed {
+	/* flip transform styles */
+	backface-visibility: hidden;
+	transition: all 0.6s;
+	transform-style: preserve-3d;
+}
+
+.workerFrontFixed {
+	transform: rotateY(0deg);
+	z-index: 2;
+}
+
+.workerBackFixed {
+	transform: rotateY(-180deg);
+}
+
+.workerBack {
+	font-size: 0.75em;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.workerFront {
+	text-align: center;
+}
+
+.reverse .workerFrontFixed {
+	transform: rotateY(180deg);
+}
+
+.reverse .workerBackFixed {
+	transform: rotateY(0deg);
+}

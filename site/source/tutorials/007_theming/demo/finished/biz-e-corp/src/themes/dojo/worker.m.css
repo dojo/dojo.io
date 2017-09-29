@@ -1,0 +1,78 @@
+@import './variables';
+
+.root {
+	width: 320px;
+	height: 370px;
+	box-sizing: border-box;
+	margin: var(--spacing);
+	position: relative;
+}
+
+.image {
+	background: var(--component-accent);
+	border-radius: 50%;
+	width: 250px;
+	height: 250px;
+	margin-bottom: var(--padding);
+}
+
+.imageSmall {
+	background: var(--component-accent);
+	border-radius: 50%;
+	width: 72px;
+	height: 72px;
+	display: inline-block;
+	margin-right: 24px;
+}
+
+.workerFront, .workerBack {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border: 1px solid var(--component-accent);
+}
+
+.workerFront {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+	padding: var(--padding);
+	text-align: center;
+}
+
+.workerBack {
+	box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.15);
+	background: var(--card);
+	color: var(--body);
+}
+
+.heading {
+	background: var(--accent);
+	color: var(--card);
+	padding: 24px;
+}
+
+.generalInfo {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 24px;
+}
+
+.generalInfo .label {
+	display: none;
+}
+
+.tasks strong {
+	background: var(--secondary-accent);
+	color: var(--card);
+	display: block;
+	font-size: 14px;
+	padding: 14px 24px;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+.task {
+	padding: 12px 24px;
+	border-bottom: 1px solid var(--component-accent);
+}
