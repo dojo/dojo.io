@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: State management
-overview: Learn what Containers and Injectors are.  Use them to manage external state and inject that state to widget properties.
+overview: Learn what Containers and Injectors are.  Use them to manage external state and inject that state into widget properties.
 ---
 
 {% section 'first' %}
