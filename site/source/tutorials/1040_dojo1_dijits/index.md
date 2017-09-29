@@ -16,7 +16,7 @@ To achieve maximum performance and efficiency, developers should eventually auth
 
 ## Prerequisites
 
-You can [download](../assets/9001_dojo1_dijits-initial.zip) the demo project to get started.
+You can [download](../assets/1040_dojo1_dijits-initial.zip) the demo project to get started.
 
 You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
 
@@ -188,7 +188,7 @@ You should now have an application that will provide you with a form that accept
 
 In this tutorial, we learned how to setup the build system to include Dojo 1 as an external dependency.  We learned how to import Dojo 1 based Dijits into a Dojo 2 project and wrap them so they can be integrated into the Dojo 2 widgeting system.  We also learned how to apply a Dojo 1 theme so our Dijits have a proper look and feel.
 
-If you would like, you can download the completed [demo application](../assets/9001_dojo1_dijits-finished.zip) from this tutorial.
+If you would like, you can download the completed [demo application](../assets/1040_dojo1_dijits-finished.zip) from this tutorial.
 
 This tutorial is far from exhaustive on the subject, but is intended to provide the basics of using Dojo 1 Dijits in a Dojo 2 application.  It is ideally better to use or create Dojo 2 widgets than to leverage Dojo 1 Dijits.  We think the main use case is when you want to incrementally migrate an existing application to Dojo 2, being able to _wrap_ custom Dijits can be really useful.
 
