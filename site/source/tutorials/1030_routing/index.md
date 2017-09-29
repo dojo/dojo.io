@@ -180,6 +180,4 @@ Dojo 2 routing is a declarative, non-intrusive, mechanism to add complicated rou
 
 If you would like, you can download the completed [demo application](../assets/1030_routing-finished.zip) from this tutorial.
 
-In [Data-driven widgets](../1060_data_driven_widgets/), we will explore how to create data-driven widgets using Dojo 2's reactive architecture.
-
 {% section 'last' %}
