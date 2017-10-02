@@ -5,7 +5,7 @@ overview: Dojo 2 embraces reactive programming patterns like unidirectional prop
 ---
 # Reactive programming
 
-Reactive programming is concernedwith handling change - specifically, the _propagation of change_. As web applications have become more and more asynchronous, keeping track of application state has become increasingly complex. With traditional programming patterns, we rely on event listeners or try to keep track of application state manually.
+Reactive programming is concerned with handling change - specifically, the _propagation of change_. As web applications have become more and more asynchronous, keeping track of application state has become increasingly complex. With traditional programming patterns, we rely on event listeners or try to keep track of application state manually.
 
 Consider a banking application where the user's account balance might appear in several different places on the screen. After the user makes a withdrawal, we want the account balance to update.
 
