@@ -48,7 +48,7 @@ The `formInput` method provides the same functionality as the `_onFormInput` met
 
 Notice that the `ApplicationContext` does not contain any code to load state information. Currently its only role is only to manage the application's state provided on initialization via its `constructor`. However as the requirements for the application become more advanced the `ApplicationContext` could make requests to fetch and modify data from a remote service or local storage mechanism.
 
-Now that we have moved state management to a dedicated module, we need a way to initialize the state and connect it to sections of our application. We will initialize state by creating and registering an `Injector`.
+Now that we have moved state management to a dedicated module, we need a way to register the state and connect it to sections of our application. We will do this by creating a registry and registering the `ApplicationContext` injector.
 
 {% section %}
 
