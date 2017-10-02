@@ -27,6 +27,8 @@ code_dir: tutorials
 i18n_dir: :lang
 skip_render:
   - "**/*/demo"
+exclude:
+  - "**/node_modules/**"
 tutorial_dir: tutorials
 
 # Writing
