@@ -134,12 +134,18 @@ To demonstrate the source mapping between compiled JavaScript code and the sourc
 
 {% task 'Install an accessibility inspector' %}
 
-Dojo 2 widgets are designed to be accessible by default, but a complete application is much more than the sum of its parts. A good in-browser accessibility inspector helps integrate accessibility into the development process. Chrome provides the [Accessibility Developer Tools](ttps://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb), which can be used when inspecting the DOM:
+Dojo 2 widgets are designed to be accessible by default, but a complete application is much more than the sum of its parts. A good in-browser accessibility inspector helps integrate accessibility into the development process. Chrome provides the [Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb), which can be used when inspecting the DOM:
 
 <p class="center">![chrome accessibility inspector](./resources/a11y_inspection.png)</p>
 
 The inspector exposes text and semantics visible to a screen reader, providing a page model referred to as the [Accessibility Tree](https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/the-accessibility-tree).
 
 Chrome Accessibility Developer Tools does not run an audit against your code, or validate it in any way. For easy in-browser a11y validation, aXe has free open-source extensions for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/).
+
+{% section %}
+
+## Summary
+
+Dojo 2 can be used out of the box with any code editor, but good TypeScript support will provide integrated code help and intellisense. Together with robust in-browser debugging, this should set you up with a streamlined process for editing, troubleshooting, and committing code.
 
 {% section 'last' %}
