@@ -1,0 +1,45 @@
+.root {
+	font-size: 13px;
+	background: #eee;
+	overflow: auto;
+	position: fixed;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 250px;
+	display: block;
+}
+
+.container {
+	line-height: 1.8;
+	padding: 10px;
+	display: block;
+}
+
+.title {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: hsl(0, 0%, 32%);
+	margin-top: 20px;
+	display: block;
+}
+
+.links {
+	padding-left: 10px;
+	display: block;
+}
+
+.link {
+	text-decoration: none;
+	position: relative;
+	display: block;
+	line-height: 1.8;
+	cursor: auto;
+	color: inherit;
+}
+
+.main {
+	margin-left: 250px;
+	display: block;
+}
