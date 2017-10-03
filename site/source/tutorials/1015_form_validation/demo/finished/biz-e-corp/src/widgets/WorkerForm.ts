@@ -21,7 +21,7 @@ export interface WorkerFormErrors {
 
 export interface WorkerFormProperties {
 	formData: WorkerFormData;
-	formErrors?: WorkerFormErrors;
+	formErrors: WorkerFormErrors;
 	onFormInput: (data: Partial<WorkerFormData>) => void;
 	onFormValidate: (data: Partial<WorkerFormData>) => void;
 	onFormSave: () => void;
@@ -41,20 +41,20 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onFirstNameValidate({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
-		this.properties.onFormValidate({ firstName });
-	}
-
 	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onLastNameValidate({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
-		this.properties.onFormValidate({ lastName });
-	}
-
 	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
 		this.properties.onFormInput({ email });
+	}
+
+	protected onFirstNameValidate({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+		this.properties.onFormValidate({ firstName });
+	}
+
+	protected onLastNameValidate({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+		this.properties.onFormValidate({ lastName });
 	}
 
 	protected onEmailValidate({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
@@ -64,7 +64,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 	protected render() {
 		const {
 			formData: { firstName, lastName, email },
-			formErrors = {}
+			formErrors
 		} = this.properties;
 
 		return v('form', {

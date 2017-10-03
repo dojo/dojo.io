@@ -1,171 +1,366 @@
 ---
 layout: tutorial
-title: State management
-overview: In this tutorial, you will learn what Containers and Injectors are and how to use them to coordinate external state and inject as properties into the sections of the widget tree.
+title: Form Validation
+overview: This tutorial covers patterns for form validation, building on both the form widget tutorial and the state management tutorial.
 ---
 
 {% section 'first' %}
 
-# State management
+# Form Validation
 
 ## Overview
 
-Modern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of state. While Dojo 2's widgets can manage application state, encapsulation and a clean separation of concerns may be lost if widgets manage their own visual representations, listen for interactions from the user, manage their children, and keep track of state information. Additionally, using widgets to pass state through an application often forces the widgets to be aware of state information for the sole purpose of passing that data down to their children. To allow widgets to remain focused on their primary roles of providing a visual representation of themselves and listening for user interactions, Dojo 2 provides two classes, `Container` and `Injector`, that are designed to coordinate an application's external state and connect and map this state to properties.
-
-In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can [download](../assets/1010_containers_and_injecting_state-initial.zip) the demo project to get started.
+This tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on [injecting state](../1010_containers_and_injecting_state); here we will build on those concepts to add a validation state and errors to the existing form. Over the course of the tutorial we will build an example pattern for creating both dynamic client-side validation and mock server-side validation.
 
 ## Prerequisites
 
-This tutorial assumes that you have gone through the [beginner tutorial](../001_static_content) series.
+Start by downloading the [demo project](../assets/1015_form_validation-initial.zip) and running `npm install` to get started.
+
+This tutorial assumes that you have gone through the [form widgets tutorial](../005_form_widgets) as well as the [state management tutorial](../1010_containers_and_injecting_state).
 
 {% section %}
 
-## Creating an application context
+## Create a place to store form errors
 
-{% task 'Create a class to manage application state.' %}
+{% task 'Add form errors to the application context.' %}
 
-To begin our discussion, let's review the initial version of `App`:
+Right now the error object should mirror `WorkerFormData` in both `WorkerForm.ts` and `ApplicationContext.ts`. In the wild this error configuration could be handled in a number of ways; one might be to provide an option for multiple validation steps with individual error messages for a single input. Here we will go for the simplest solution with a boolean valid/invalid state for each input.
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' %}
+{% instruction 'Create an interface for `WorkerFormErrors` in `WorkerForm.ts`' %}
 
-Most of this widget is dedicated to holding and managing the `WorkerData` in the application. Notice, however, that it never actually uses that data itself. `App` is only containing the state and passing it to the children as required via properties. Lifting up state to the highest common widget in the tree is a valid pattern, but as an application's state grows in size and complexity, it is often desirable to decouple this from widgets. In larger applications, the `App` class would become complicated and more difficult to maintain due to the additional state information that it would be required to track. Since the state information is not a primary concern of the `App` class, let's refactor it out of `App` and into a new `ApplicationContext` class.
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:16-20 %}
 
-{% instruction 'Add the following to `ApplicationContext.ts`.' %}
+Defining the properties in `WorkerFormErrors` as optional allows us to effectively create three possible states for form fields: unvalidated, valid, and invalid.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' %}
+{% instruction 'Next add `formErrors` to `ApplicationContext`' %}
 
-The code begins by importing some modules, including the `WorkerProperties` and `WorkerFormData` interfaces defined in the `Worker` and `WorkerForm` modules. These two interfaces define the shape of state that the `ApplicationContext` manages.
+As with `formData`, we need to create a private field for `_formErrors` in the application context, as well as a public getter. We will also need to update `getProperties` in `WorkerFormContainer.ts` to pass through the new error object.
 
-The `ApplicationContext` class contains the state information. `ApplicationContext` has two private fields, `_workerData` and `_formData`, which contain the state, and two accessor methods to retrieve these fields. Finally, notice the two public methods that `ApplicationContext` exposes:
+Make sure the following lines are present somewhere in `ApplicationContext.ts`:
+{% solution showsolution1 %}
+```typescript
+// modify import to include WorkerFormErrors
+import { WorkerFormData, WorkerFormErrors } from './widgets/WorkerForm';
 
-{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:26-35 %}
+// private field
+private _formErrors: WorkerFormErrors = {};
 
-The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous to `_addWorker` from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it cannot call `invalidate();` to schedule a re-render. Instead the instance needs to emit an `invalidate` event that instructs associated widgets to `invalidate` themselves.
+// public getter
+get formErrors(): WorkerFormErrors {
+	return this._formErrors;
+}
+```
+{% endsolution %}
 
-Notice that the `ApplicationContext` does not contain any code to load state information. Currently its only role is only to manage the application's state provided on initialization via its `constructor`. However as the requirements for the application become more advanced the `ApplicationContext` could make requests to fetch and modify data from a remote service or local storage mechanism.
+The modified `getProperties` function in `WorkerFormContainer.ts`:
+{% solution showsolution2 %}
+```typescript
+function getProperties(inject: ApplicationContext, properties: any) {
+	const { formData, formErrors, formInput: onFormInput, submitForm: onFormSave } = inject;
 
-Now that we have moved state management to a dedicated module, we need a way to initialize the state and connect it to sections of our application. We will initialize state by creating and registering an `Injector`.
+	return { formData, formErrors, onFormInput: onFormInput.bind(inject), onFormSave: onFormSave.bind(inject) };
+}
+```
+{% endsolution %}
 
-{% section %}
+{% instruction 'Finally, modify `WorkerFormProperties` in `WorkerForm.ts` to accept the `formErrors` object passed in by the application context:' %}
 
-## Injectors
-
-{% task 'Register an `Injector` that will allow state to be injected into widgets.' %}
-
-Currently, the application's `main` module is only responsible for creating the `Projector`, which provides the bridge between the application code and the DOM.
-
-{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
-
-Now, we need to update `main` to construct and populate an instance of `ApplicationContext`, create a `registry` and then define an `Injector` with the initialized `ApplicationContext`. Lastly, in order to make the `registry` available within the widget tree, we need to pass the `registry` as a property to the `projector`.
-
-{% instruction 'Import the `ApplicationContext` module and add this code to `main`:' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:10-29 %}
-
-{% aside 'Loading data' %}
-In a real-world application, this data would probably be loaded via a call to a web service or a local data store. To learn more, take a look at the [stores tutorial](../comingsoon.html).
-{% endaside %}
-
-The state stored in the `ApplicationContext` is the same data that was used in the previous version of the `App` module to initialize the `WorkerProperties`, but it is now decoupled into an isolated module that helps to understand and maintain the application. In general, the `main` module of an application should be concerned with initializing application-wide state. Also, as previously mentioned, the `App` class only needed to manage the `WorkerProperties` state so that it could coordinate change to its children.
-
-Now that we have the `ApplicationContext`, let's use it within our widgets. This is done by creating an `Injector` and making it available to the widgets via a `registry`. `Injectors` are created using the `Injector` factory function from `@dojo/widget-core`.
-
-{% instruction 'Add the following imports to the `main` module.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2-5 %}
-
-{% instruction 'Now, add the following after the `applicationContext` declaration.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:31-32 %}
-
-The first statement creates a `registry` where the application context can be registered. The second statement does two things. First, it uses the `Injector` factory function to wrap the `applicationContext` with the `BaseInjector`, a lightweight component that allows any object that extends `Evented` to be injected via a `Container`, which we will discuss in the next section. This statement also registers the `Injector` with the application's central registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../comingsoon.html).
-
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
-
-We need to pass the `registry` to the `projector` via the `setProperties` method to ensure that it is available for all widget and container instances.
-
-Now that the `Injector` is defined and registered and the `registry` has been set in the `projector`, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a `Container` that will allow state to be injected into the `WorkerForm` and `WorkerContainer` widgets.
+```ts
+export interface WorkerFormProperties {
+	formData: WorkerFormData;
+	formErrors: WorkerFormErrors;
+	onFormInput: (data: Partial<WorkerFormData>) => void;
+	onFormSave: () => void;
+}
+```
 
 {% section %}
 
-## Creating state containers
+## Tie validation to form inputs
 
-{% task 'Create `Containers` that will allow state to be injected into widgets' %}
+{% task 'Perform validation on `onInput`' %}
 
-On their own, `Injectors` are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an `injector` must be connected to interested widgets in order for their state to be mapped to `properties` that widgets can consume by using a `Container`. `Containers` are designed to coordinate the injection - they connect `injectors` to widgets and return `properties` from the `injector`'s state which is passed to the connected widgets.
+We now have a place to store form errors in the application state, and those errors are passed into the form widget. The form still lacks any actual validation of the user input; for that, we need to dust off the regexes and write a basic validation function.
 
-Normally, a separate `Container` is created for each widget that needs to have `properties` injected. In the demo application, we have two widgets that rely on application state - `WorkerContainer` and `WorkerForm`. Let's start with the `WorkerContainer`. `Containers` are given the same name as the widget that they contain with the suffix `Container` appended. To keep things organized, they are also stored in a different sub-package - `containers`.
+{% instruction 'Create a private `_validateInput` method in `ApplicationContext.ts`' %}
 
-{% instruction 'Add the following imports to the `WorkerContainerContainer` in the `containers` sub-package' %}
+Like the existing `formInput` function, `_validateInput` should take a partial `WorkerFormData` input object. The validation function should return a `WorkerFormErrors` object. The example app shows only the most basic validation checks -- the email regex pattern for example is concise but somewhat lax. You are free to substitute a more robust email test, or add other modifications like a minimum character count for the first and last names.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerContainerContainer.ts' lines:1-4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:32-50 %}
 
-The first `import` gives the module access to the `Container` factory function which will be used to construct the container. The other `import` allow the module to use the `ApplicationContext` to extract state, use the `WorkerContainerProperties` to receive properties from its parent, and wrap the `WorkerContainer` class with the `container`.
+For now, we will test our validation by calling it directly in every `onInput` event. Add the following line to `formInput` in `ApplicationContext.ts`:
 
-Next, we need to address the fact that the container has two places to get properties from - its parent widget and the `ApplicationContext`. To tell the container how to manage this, we will create a function called `getProperties`.
+```ts
+this._formErrors = deepAssign({}, this._formErrors, this._validateInput(input));
+```
 
-{% instruction 'Add the `getProperties` function to the `WorkerContainerContainer` module.' %}
+{% instruction 'Update the `WorkerForm` render to display validation state' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerContainerContainer.ts' lines:6-8 %}
+At this point in our progress, the `WorkerForm` widget holds the validation state of each form field in its `formErrors` property, updated every time an `onInput` handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo 2 `TextInput` widget contains an `invalid` property that sets `aria-invalid` and toggles classes used for visual styling.
 
-{% aside 'Additional injection options' %}
-`Injectors` are capable of injecting more than just properties into a widget. A `getChildren` mapping function can also be provided to the `Container`, allowing children to be injected into the widget as well. Just like the `getProperties` function, the `getChildren` function will receive the children from the parent widget and the injector. It then returns the final array of children that will be provided to the contained widget.
-{% endaside %}
+The updated render function in `WorkerForm.ts` should set the `invalid` property on all form field widgets to reflect `formErrors`. We also add a `novalidate` attribute to the form element to prevent native browser validation.
 
-The `getProperties` function receives two parameters. The first is the `payload` of the `injector` instance. For the demo application this is the data passed when creating the `ApplicationContext`. The second is the `properties` that have been passed to the container via the normal mechanism, `w(Container, properties)`. The properties will implement the properties interface defined by the wrapped widget (for example `WorkerContainerProperties`). The `getProperties` function must then return an object that holds the properties that will be passed to the widget itself. In this example, we are ignoring the properties provided by the parent and returning the `workerData` stored by the `ApplicationContext`. More advanced use cases where both sources are used to generate the properties are also possible.
+{% solution showsolution3 %}
+```ts
+protected render() {
+	const {
+		formData: { firstName, lastName, email },
+		formErrors
+	} = this.properties;
 
-{% instruction 'Finish the `WorkerContainerContainer` by adding the following code.' %}
+	return v('form', {
+		classes: this.classes(css.workerForm),
+		novalidate: 'true',
+		onsubmit: this._onSubmit
+	}, [
+		v('fieldset', { classes: this.classes(css.nameField) }, [
+			v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
+			w(TextInput, {
+				key: 'firstNameInput',
+				label: {
+					content: 'First Name',
+					hidden: true
+				},
+				placeholder: 'Given name',
+				value: firstName,
+				required: true,
+				invalid: formErrors.firstName,
+				onInput: this.onFirstNameInput
+			}),
+			w(TextInput, {
+				key: 'lastNameInput',
+				label: {
+					content: 'Last Name',
+					hidden: true
+				},
+				placeholder: 'Surname name',
+				value: lastName,
+				required: true,
+				invalid: formErrors.lastName,
+				onInput: this.onLastNameInput
+			})
+		]),
+		w(TextInput, {
+			label: 'Email address',
+			type: 'email',
+			value: email,
+			required: true,
+			invalid: formErrors.email,
+			onInput: this.onEmailInput
+		}),
+		w(Button, {}, [ 'Save' ])
+	]);
+}
+```
+{% endsolution %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerContainerContainer.ts' lines:10-12 %}
-
-These final lines define the actual `WorkerContainerContainer` class and export it. The `Container` function creates the class by accepting three parameters - the widget's class definition (alternatively, a widget's registry key can be used), the registry key for the `Injector`, and an object literal that provides the mapping functions used to reconcile the two sets of properties and children that the container can receive (one from the `Injector` and one from the parent widget). The returned class is, in fact, a widget (i.e. it descends from `WidgetBase`) and, therefore may be used just like any other widget.
-
-The other container that we need is the `WorkerFormContainer`.
-
-{% instruction 'Add the following code to the `WorkerFormContainer` module in the `containers` sub-package.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerFormContainer.ts' %}
-
-This module is almost identical to the `WorkerContainerContainer` except for additional properties that are required by the `WorkerForm` to allow it to respond to user interactions with the form. The `ApplicationContext` contains two methods for managing these events - `onFormInput` and `onFormSave`. These methods need to be passed into the `WorkerForm` to handle the events, but they need to execute in the context of the `ApplicationContext`. To handle this, `bind` is called on each of the methods to explicitly set their execution contexts.
-
-At this point, we have created the `ApplicationContext` to manage state, an `Injector` to inject state into the application's widgets, and `Containers` to manage how properties and children from the injector and parent widgets are combined. In the next section, we will integrate these components into our application.
+Now when you view the app in the browser, the border color of each form field changes as you type. Next we'll add error messages and update `onInput` validation to only occur after the first blur event.
 
 {% section %}
 
-## Using state containers
+## Extending TextInput
 
-{% task 'Integrate containers into an application.' %}
+{% task 'Create an error message' %}
 
-As mentioned in the previous section, `Container` is a higher order component that extends `WidgetBase` and returns the wrapped widget and injected `properties` from the `render`. As such, they can be used just like any other widget. In our demo application, we can take advantage of their extension of `WidgetBase` by simply replacing the `WorkerForm` and `WorkerContainer` with their container equivalents.
+Simply changing the border color of form fields to be red or green doesn't impart much information to the user -- we need to add some error message text along with invalid state. On a basic level, our error text must be associated with a form input, styleable, and accessible. A single form field with an error message might look something like this:
 
-{% instruction 'Replace the imports in the `App` module with the following.' %}
+```ts
+v('div', { classes: this.classes(css.inputWrapper) }, [
+	w(TextInput, {
+		...
+		describedBy: this._errorId,
+		onInput: this._onInput
+	}),
+	invalid === true ? v('span', {
+		id: this._errorId,
+		classes: this.classes(css.error),
+		'aria-live': 'polite'
+	}, [ 'Please enter valid text for this field' ]) : null
+])
+```
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-5 %}
+The error message is associated with the text input through `aria-describedby`, and the `aria-live` attribute ensures it will be read if it is added to the DOM or changed. Wrapping both the input and the error message in a containing `<div>` allows us to position the error message relative to the input if desired.
 
-There are two major changes to the `App` module's imports. First, the widgets (`WorkerForm` and `WorkerContainer`) have been replaced by their container equivalents (`WorkerFormContainer` and `WorkerContainerContainer`). Second, all of the interfaces, `WorkerFormData`, and `WorkerProperties` have been removed. These are no longer needed since the `App` class no longer needs to manage state.
+{% instruction 'Extend `TextInput` to create a `ValidatedTextInput` widget with an error message and `onValidate` method' %}
 
-Also, the property and methods within `App` that are setting and managing state can be removed.
+Re-creating the same error message boilerplate for multiple text inputs seems overly repetitive, so we're going to extend `TextInput` instead. This will also allow us to have better control over when validation occurs, e.g. by adding it to blur events as well. For now, just create a `ValidatedTextInput` widget that accepts the same properties interface as `TextInput` but with an `errorMessage` string and `onValidate` method. It should return the same node structure modeled above.
 
-{% instruction 'Remove the following code from the `App` class.' %}
+{% solution showsolution4 %}
+```ts
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { v, w } from '@dojo/widget-core/d';
+import uuid from '@dojo/core/uuid';
+import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
+import * as css from '../styles/workerForm.css';
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' lines:9-44 %}
+export interface ValidatedTextInputProperties extends TextInputProperties {
+	errorMessage?: string;
+	onValidate?: (event: Event) => void;
+}
 
-The final change to `App` is to update the `render` method to use the containers. Since the containers already know how to manage their state and respond to events, no properties need to be passed directly to the `Container` by the `App` widget.
+export const ValidatedTextInputBase = ThemeableMixin(WidgetBase);
 
-{% instruction 'Replace the `render` method with the following code.' %}
+@theme(css)
+export default class ValidatedTextInput extends ValidatedTextInputBase<ValidatedTextInputProperties> {
+	private _errorId = uuid();
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:9-15 %}
+	protected render() {
+		const {
+			disabled,
+			label,
+			maxLength,
+			minLength,
+			name,
+			placeholder,
+			readOnly,
+			required,
+			type = 'text',
+			value,
+			invalid,
+			errorMessage,
+			onBlur,
+			onInput
+		} = this.properties;
 
-With this last change, the `App` class is now only nine lines of code. All of the state management logic is still part of the application, but it has been refactored out of the `App` class to create a more efficient application architecture.
+		return v('div', { classes: this.classes(css.inputWrapper) }, [
+			w(TextInput, {
+				describedBy: this._errorId,
+				disabled,
+				invalid,
+				label,
+				maxLength,
+				minLength,
+				name,
+				placeholder,
+				readOnly,
+				required,
+				type,
+				value,
+				onBlur,
+				onInput
+			}),
+			invalid === true ? v('span', {
+				id: this._errorId,
+				classes: this.classes(css.error),
+				'aria-live': 'polite'
+			}, [ errorMessage ]) : null
+		]);
+	}
+}
+```
+{% endsolution %}
 
-Notice that the `WorkerForm` and `WorkerContainer` widgets were not changed at all! This is an important thing to keep in mind when designing widgets - a widget should never be tightly coupled to the source of its properties. By keeping the containers and widgets separate, we have helped to ensure that each widget or container has a narrowly defined set of responsibilities, creating a cleaner separation of concerns within our widgets and containers.
+{% instruction 'Use `ValidatedTextInput` within `WorkerForm`' %}
+
+Now that `ValidatedTextInput` exists, let's swap it with `TextInput` in `WorkerForm`, and write some error message text while we're at it:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:75-115 %}
+
+{% task 'Create `onFormValidate` method separate from `onFormInput`' %}
+
+{% instruction 'Update the context to pass in an `onFormValidate` method' %}
+
+Currently the validation logic is unceremoniously dumped in `formInput` within `ApplicationContext.ts`. Now let's break that out into its own `formValidate` function, and borrow the `onFormInput` pattern to pass `onFormValidate` to `WorkerForm`. There are three steps to this:
+
+1. Add a `formValidate` method to `ApplicationContext.ts` and update `_formErrors` there instead of in `formInput`:
+	{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:71-79 %}
+2. Update `WorkerFormContainer` to pass `formValidate` as `onFormValidate`:
+	{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerFormContainer.ts' lines:6-10 %}
+3. Within `WorkerForm`, create internal methods for each form field's validation using `onFormValidate`, and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:52-62 %}
+
+{% instruction 'Handle calling `onValidate` within `ValidatedTextInput`' %}
+
+You might have noticed that the form no longer validates on user input events. This is because we no longer handle validation within `formInput` in `ApplicationContext.ts`, but we also haven't added it anywhere else. To do that, add the following private method to `ValidatedTextInput`, and pass `onInput: this._onInput` to `TextInput`:
+
+```ts
+private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
+	const { onInput, onValidate } = this.properties;
+	onInput && onInput(event);
+	onValidate && onValidate(event);
+}
+```
+
+Form errors should be back now, along with error messages for invalid fields.
+
+{% section %}
+
+## Making use of the blur event
+
+{% task 'Only begin validation after the first blur event' %}
+
+Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing "invalid email address" errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events. Now that calling `onValidate` is handled within the `ValidatedTextInput` widget, this is possible.
+
+{% instruction 'Create a private `_onBlur` function that calls `onValidate`' %}
+
+In `ValidatedTextInput.ts`:
+```ts
+private _onBlur(event: FocusEvent) {
+	const { onBlur, onValidate } = this.properties;
+	onValidate && onValidate(event);
+	onBlur && onBlur(event);
+}
+```
+
+We only need to use this function on the first blur event, since subsequent validation can be handled by `onInput`. The following code will use either `this._onBlur` or `this.properties.onBlur` depending on whether the input has been previously validated:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:52-67 %}
+
+Now all that remains is to modify `_onInput` to only call `onValidate` if the field already has a validation state:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:26-33 %}
+
+Try inputting an email address with these changes; it should only show an error message (or green border) after leaving the form field, while subsequent edits immediately trigger changes in validation.
+
+{% section %}
+
+## Validating on submit
+
+{% task 'Create mock server-side validation when the form is submitted' %}
+
+Thus far our code provides nice hints to the user, but does nothing to prevent bad data being submitted to our worker array. We need to add two separate checks to the `submitForm` action:
+
+1. Immediately fail to submit if the existing validation function catches any errors.
+2. Perform some additional checks (in this case we'll look for email uniqueness). This is where we would insert server-side validation in a real app.
+
+{% instruction 'Create a private `_validateOnSubmit` method in `ApplicationContext.ts`' %}
+
+The new `_validateOnSubmit` should start by running the existing input validation against all `_formData`, and returning false if there are any errors:
+
+```ts
+private _validateOnSubmit(): boolean {
+	const errors = this._validateInput(this._formData);
+	this._formErrors = deepAssign({ firstName: true, lastName: true, email: true }, errors);
+
+	if (this._formErrors.firstName || this._formErrors.lastName || this._formErrors.email) {
+		console.error('Form contains errors');
+		return false;
+	}
+
+	return true;
+}
+```
+
+Next let's add an extra check: let's say each worker's email must be unique, so we'll test the input email value against the `_workerData` array. Realistically this check would be performed server-side for security:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:52-69 %}
+
+After modifying the `submitForm` function in `ApplicationContext.ts`, only valid worker entries should successfully submit. We also need to clear `_formErrors` along with `_formData` on a successful submission:
+
+{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:81-91 %}
 
 {% section %}
 
 ## Summary
 
-Since Dojo 2 widgets are TypeScript classes, they are capable of filling a large number of roles, including state management. With complex widgets, however, combining the responsibilities to manage the widget's visual representation as well as the state of its children can make them difficult to manage and test. Dojo 2 defines `Injectors` and `Containers` as a way to externalize state management from the app and centralize that management into classes that are designed specifically to fill that role.
+There is no way this tutorial could cover all possible use cases, but the basic patterns for storing, injecting, and displaying validation state provide a strong base for creating more complex form validation. Some possible next steps include:
 
-If you would like, you can download the finished [demo application](../assets/1010_containers_and_injecting_state-finished.zip) to review.
+- Configuring error messages in an object passed to `WorkerForm`
+- Creating a toast to display submission-time errors
+- Add multiple validation steps for a single form field
+
+The finished [demo application](../assets/1015_form_validation-finished.zip) is available to review and play with.
 
 {% section 'last' %}

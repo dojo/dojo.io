@@ -52,6 +52,7 @@ export default class ApplicationContext extends Evented {
 	private _validateOnSubmit(): boolean {
 		const errors = this._validateInput(this._formData);
 		this._formErrors = deepAssign({ firstName: true, lastName: true, email: true }, errors);
+
 		if (this._formErrors.firstName || this._formErrors.lastName || this._formErrors.email) {
 			console.error('Form contains errors');
 			return false;

@@ -48,7 +48,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 			errorMessage,
 			onBlur
 		} = this.properties;
-		return [
+		return v('div', { classes: this.classes(css.inputWrapper) }, [
 			w(TextInput, {
 				describedBy: this._errorId,
 				disabled,
@@ -70,6 +70,6 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 				classes: this.classes(css.error),
 				'aria-live': 'polite'
 			}, [ errorMessage ]) : null
-		];
+		]);
 	}
 }
