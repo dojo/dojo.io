@@ -101,7 +101,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 					onValidate: this.onLastNameValidate,
 					invalid: formErrors.lastName,
 					errorMessage: 'Last name is required'
-				}),
+				})
 			]),
 			w(ValidatedTextInput, {
 				label: 'Email address',

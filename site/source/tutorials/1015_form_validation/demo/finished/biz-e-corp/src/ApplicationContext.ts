@@ -34,7 +34,7 @@ export default class ApplicationContext extends Evented {
 
 		// validate input
 		for (let key in input) {
-			switch(key) {
+			switch (key) {
 				case 'firstName':
 					errors.firstName = !input.firstName;
 					break;
