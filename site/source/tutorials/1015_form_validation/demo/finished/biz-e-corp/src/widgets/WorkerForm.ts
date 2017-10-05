@@ -3,7 +3,6 @@ import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import Button from '@dojo/widgets/button/Button';
-import TextInput from '@dojo/widgets/textinput/TextInput';
 import ValidatedTextInput from './ValidatedTextInput';
 import * as css from '../styles/workerForm.css';
 

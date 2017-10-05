@@ -28,7 +28,7 @@ Right now the error object should mirror `WorkerFormData` in both `WorkerForm.ts
 
 {% instruction 'Create an interface for `WorkerFormErrors` in `WorkerForm.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:16-20 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:15-19 %}
 
 Defining the properties in `WorkerFormErrors` as optional allows us to effectively create three possible states for form fields: unvalidated, valid, and invalid.
 
@@ -185,6 +185,14 @@ The error message is associated with the text input through `aria-describedby`, 
 
 Re-creating the same error message boilerplate for multiple text inputs seems overly repetitive, so we're going to extend `TextInput` instead. This will also allow us to have better control over when validation occurs, e.g. by adding it to blur events as well. For now, just create a `ValidatedTextInput` widget that accepts the same properties interface as `TextInput` but with an `errorMessage` string and `onValidate` method. It should return the same node structure modeled above.
 
+You will also need to modify `workerForm.css` to include the `error` and `inputWrapper` classes, although we will forgo adding specific styles in this tutorial:
+
+```css
+.inputWrapper {}
+
+.error {}
+```
+
 {% solution showsolution4 %}
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -252,11 +260,19 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 ```
 {% endsolution %}
 
+{% aside 'onValidate' %}
+You may have noticed that we created `ValidatedTextInput` with an `onValidate` property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.
+{% endaside %}
+
 {% instruction 'Use `ValidatedTextInput` within `WorkerForm`' %}
 
-Now that `ValidatedTextInput` exists, let's swap it with `TextInput` in `WorkerForm`, and write some error message text while we're at it:
+Now that `ValidatedTextInput` exists, let's import it and swap it with `TextInput` in `WorkerForm`, and write some error message text while we're at it:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:75-115 %}
+**Import block**
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-7 %}
+
+**Inside render()**
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:74-114 %}
 
 {% task 'Create `onFormValidate` method separate from `onFormInput`' %}
 
@@ -268,12 +284,14 @@ Currently the validation logic is unceremoniously dumped in `formInput` within `
 	{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:71-79 %}
 2. Update `WorkerFormContainer` to pass `formValidate` as `onFormValidate`:
 	{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerFormContainer.ts' lines:6-10 %}
-3. Within `WorkerForm`, create internal methods for each form field's validation using `onFormValidate`, and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:52-62 %}
+3. Within `WorkerForm` first add `onFormValidate` to the `WorkerFormProperties` interface:
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:21-27 %}
+	Then create internal methods for each form field's validation and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:51-61 %}
 
 {% instruction 'Handle calling `onValidate` within `ValidatedTextInput`' %}
 
-You might have noticed that the form no longer validates on user input events. This is because we no longer handle validation within `formInput` in `ApplicationContext.ts`, but we also haven't added it anywhere else. To do that, add the following private method to `ValidatedTextInput`, and pass `onInput: this._onInput` to `TextInput`:
+You might have noticed that the form no longer validates on user input events. This is because we no longer handle validation within `formInput` in `ApplicationContext.ts`, but we also haven't added it anywhere else. To do that, add the following private method to `ValidatedTextInput`:
 
 ```ts
 private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
@@ -281,6 +299,26 @@ private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
 	onInput && onInput(event);
 	onValidate && onValidate(event);
 }
+```
+
+Now pass it to `TextInput` in place of `this.properties.onInput`:
+```ts
+w(TextInput, {
+	describedBy: this._errorId,
+	disabled,
+	invalid,
+	label,
+	maxLength,
+	minLength,
+	name,
+	placeholder,
+	readOnly,
+	required,
+	type,
+	value,
+	onBlur,
+	onInput: this._onInput
+})
 ```
 
 Form errors should be back now, along with error messages for invalid fields.
