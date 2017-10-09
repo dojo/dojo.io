@@ -36,7 +36,7 @@ Most of this widget is dedicated to holding and managing the `WorkerData` in the
 
 The code begins by importing some modules, including the `WorkerProperties` and `WorkerFormData` interfaces defined in the `Worker` and `WorkerForm` modules. These two interfaces define the shape of state that the `ApplicationContext` manages.
 
-The `ApplicationContext` contains the application state information. The base `Injector` class exposes a public method `get` that is used to determine what will be injected, by default the `get` method returns the value that is passed on `Injector` construction, i.e. `new Injector(myValueToInject);`. However, as the `ApplicationContext`, is itself the value the needs to be injected, the `get` method can be overridden to return the instance of `ApplicationContext`.
+The `ApplicationContext` contains the application state information. The base `Injector` class exposes a public method `get` that is used to determine what will be injected, by default the `get` method returns the value that is passed on `Injector` construction, i.e. `new Injector(myValueToInject);`. However, as the `ApplicationContext` is itself the value the needs to be injected, the `get` method can be overridden to return the instance of `ApplicationContext`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:37-39 %}
 
@@ -112,7 +112,7 @@ Next, we need to address the fact that the container has two places to get prope
 
 {% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerContainerContainer.ts' lines:6-8 %}
 
-The `getProperties` function receives two parameters. The first is the `payload` of the `injector` instance returned by the `injector`s `get()` method. For the demo application this is the instance of the `ApplicationContext` returned when we override the base `Injector` classes default `get()` method to return itself. The second is the `properties` that have been passed to the container via the normal mechanism, `w(Container, properties)`. The properties will implement the properties interface defined by the wrapped widget (for example `WorkerContainerProperties`). The `getProperties` function must then return an object that holds the properties that will be passed to the widget itself. In this example, we are ignoring the properties provided by the parent and returning the `workerData` stored by the `ApplicationContext`. More advanced use cases where both sources are used to generate the properties are also possible.
+The `getProperties` function receives two parameters. The first is the `payload` of the `injector` instance returned by the `injector`s `get()` method. For the demo application, this is the instance of the `ApplicationContext` returned when we override the base `Injector` class' default `get()` method to return itself. The second is the `properties` that have been passed to the container via the normal mechanism, `w(Container, properties)`. The properties will implement the properties interface defined by the wrapped widget (for example `WorkerContainerProperties`). The `getProperties` function must then return an object that holds the properties that will be passed to the widget itself. In this example, we are ignoring the properties provided by the parent and returning the `workerData` stored by the `ApplicationContext`. More advanced use cases where both sources are used to generate the properties are also possible.
 
 {% instruction 'Finish the `WorkerContainerContainer` by adding the following code.' %}
 

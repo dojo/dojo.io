@@ -42,7 +42,7 @@ The first step is to create a `registry` that will be made available to the appl
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:32 %}
 
 {% aside 'Registries Everywhere!' %}
-A `registry` can also be used to define injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [routing tutorial](../comingsoon.html) .
+A `registry` can also be used to define an injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [routing tutorial](../comingsoon.html) .
 {% endaside %}
 
 At the moment we haven't affected the application, however we now have a handle to a `registry` where we can start to define widgets. Once the widgets are defined in the `registry`, they will be available through the application and can be used by switching the concrete class in `w()` with the `registry` label.
