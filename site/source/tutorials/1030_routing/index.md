@@ -119,7 +119,6 @@ In this section we will be using the `Link` component, provided by `@dojo/routin
 
 ```ts
 w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
-
 ```
 
 {% instruction 'Add the `Link` import in `App.ts`.' %}

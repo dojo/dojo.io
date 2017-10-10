@@ -1,10 +1,10 @@
-import { Evented } from '@dojo/core/Evented';
 import { deepAssign } from '@dojo/core/lang';
+import { Injector } from '@dojo/widget-core/Injector';
 
 import { WorkerProperties } from './widgets/Worker';
 import { WorkerFormData, WorkerFormErrors } from './widgets/WorkerForm';
 
-export default class ApplicationContext extends Evented {
+export default class ApplicationContext extends Injector {
 
 	private _workerData: WorkerProperties[];
 
@@ -88,5 +88,9 @@ export default class ApplicationContext extends Evented {
 		this._formData = {};
 		this._formErrors = {};
 		this.emit({ type: 'invalidate' });
+	}
+
+	get(): ApplicationContext {
+		return this;
 	}
 }
