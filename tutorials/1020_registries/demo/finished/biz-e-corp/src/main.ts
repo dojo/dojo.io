@@ -1,6 +1,6 @@
 import load from '@dojo/core/load';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { Registry } from '@dojo/widget-core/Registry';
 import App from './widgets/App';
 
 import Button from '@dojo/widgets/button/Button';
@@ -16,7 +16,7 @@ declare const require: Require;
 
 const root = document.querySelector('my-app') || undefined;
 
-const registry = new WidgetRegistry();
+const registry = new Registry();
 registry.define('dojo-button', Button);
 registry.define('dojo-text-input', TextInput);
 registry.define('banner', Banner);
