@@ -28,7 +28,7 @@ In Dojo, we differentiate between structural styles which are the minimum necess
 
 In order to theme our widgets, we must ensure that they each extend `ThemeableMixin` and should change their top level class name to `root`. `ThemeableMixin` provides a `this.classes` function for looking up class names in the provided `theme` file and applies the processed class names. We change the top level class names to `root` in order to provide a predictable way to target the outer-node of a widget.
 
-{% instruction 'Replace the contents of `Banner.ts` with the following %}
+{% instruction 'Replace the contents of `Banner.ts` with the following' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-13 %}
 
