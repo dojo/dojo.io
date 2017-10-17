@@ -95,7 +95,7 @@ Consider the following:
 {
   "build-webpack": {
     "locale": "en",
-    "messageBundles: [ "src/nls/main" ]
+    "messageBundles": [ "src/nls/main" ]
   }
 }
 ```
