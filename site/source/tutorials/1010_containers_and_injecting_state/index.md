@@ -80,13 +80,13 @@ Now that we have the `ApplicationContext`, let's use it within our widgets. This
 
 {% instruction 'Now, add the following after the `applicationContext` declaration.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:31 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:30,31 %}
 
 The first statement creates a `registry` where the application context can be registered. The second statement registers the `ApplicationContext` instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../comingsoon.html).
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
-
 We need to pass the `registry` to the `projector` via the `setProperties` method to ensure that it is available for all widget and container instances.
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:35 %}
 
 Now that the `Injector` is defined and registered and the `registry` has been set in the `projector`, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a `Container` that will allow state to be injected into the `WorkerForm` and `WorkerContainer` widgets.
 
