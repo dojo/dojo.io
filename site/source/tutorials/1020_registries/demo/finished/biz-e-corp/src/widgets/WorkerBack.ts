@@ -29,7 +29,7 @@ export default class WorkerBack extends WorkerBackBase<WorkerBackProperties> {
 		return [
 			v('img', {
 				classes: this.classes(css.imageSmall),
-				src: 'images/worker.svg'
+				src: 'https://dojo.io/tutorials/resources/worker.svg'
 			}),
 			v('div', {
 				classes: this.classes(css.generalInfo)
