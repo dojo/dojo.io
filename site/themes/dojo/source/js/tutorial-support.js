@@ -23,6 +23,7 @@ tutorial.populatePaginator = function(container, title) {
 	var backButton = document.querySelector('.pagination-previous');
 	var nextButton = document.querySelector('.pagination-next');
 
+	var timeoutHandle;
 
 	var sectionSelectors = [];
 
@@ -90,6 +91,7 @@ tutorial.populatePaginator = function(container, title) {
 				currentStepLabel.innerHTML = sectionSelector.title;
 			} else {
 				sectionSelector.classList.remove('is-current');
+
 			}
 		});
 
@@ -103,6 +105,11 @@ tutorial.populatePaginator = function(container, title) {
 			}
 		}
 
+		if (timeoutHandle) {
+			clearTimeout(timeoutHandle);
+			timeoutHandle = null;
+		}
+
 		setTimeout(function (sectionToActivate) {
 			for (var i = 0; i < sections.length; i++) {
 				var section = sections[i];
@@ -112,8 +119,7 @@ tutorial.populatePaginator = function(container, title) {
 					section.classList.add('hidden');
 				}
 			}
-			document.querySelector('body').scrollTop = 0;
-			
+			document.querySelector('.content-wrapper').scrollTop = 0;
 
 			var sectionToActivateNum = sectionToActivate && parseInt(sectionToActivate, 10);
 			if (sectionToActivateNum === sections.length - 1) {
