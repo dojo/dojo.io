@@ -104,11 +104,11 @@ We could add the additional rendering logic in the current `render` method, but 
 
 {% instruction 'Create a new private method called `_renderFront` and move the existing render code inside it.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:30-48 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:29-47 %}
 
 {% instruction 'Create another private method called `_renderBack` to render the back view.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:50-91 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:49-90 %}
 
 This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
 
