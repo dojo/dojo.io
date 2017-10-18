@@ -143,19 +143,19 @@ This means a route with any value will match the `filter` as long as the previou
 
 {% instruction 'Add the new property to the `WidgetContainerProperties` interface in `WorkerContainer.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:10-13 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:9-12 %}
 
 {% instruction 'Include the `Link` import' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:8 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' line:7 %}
 
 {% instruction 'Add a private function to generate the filter links' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:20-32 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:19-31 %}
 
 {% instruction 'Re-work the render function to filter using the new property' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:34-55 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:33-54 %}
 
 We have added a new property named `filter` to `WorkerContainerProperties` in `WorkerContainer.ts`, which will be used to filter the workers based on their last name. When by used a normal widget this would be determined by its parent and passed in like any normal property. However for this application we need the route param value to be passed as the filter property. To achieve this, we can add a mapping function that receives `MapParamOptions` (`param`, `location`, `router`, `matchType`) and returns an object injected into the wrapped widget properties!
 
