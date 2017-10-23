@@ -34,7 +34,7 @@ The first step will be to install our dependencies using npm:
 $ npm install
 ```
 
-{% instruction 'Install additional development dependencies:' %}
+{% instruction 'Install this additional development dependency:' %}
 
 ```
 $ npm install dojo-typings --save-dev
