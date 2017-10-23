@@ -42,7 +42,7 @@ The first step is to create a `registry` that will be made available to the appl
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:32 %}
 
 {% aside 'Registries Everywhere!' %}
-A `registry` can also be used to define an injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [routing tutorial](../comingsoon.html) .
+A `registry` can also be used to define an injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [routing tutorial](../1030_routing/) .
 {% endaside %}
 
 At the moment we haven't affected the application, however we now have a handle to a `registry` where we can start to define widgets. Once the widgets are defined in the `registry`, they will be available through the application and can be used by switching the concrete class in `w()` with the `registry` label.
@@ -102,7 +102,7 @@ First we need to extract the `_renderBack` function from `Worker.ts` into a new 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:51-65 %}
 
 {% aside 'Use Before You Define' %}
-The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and, once defined, an used before it is defined and, once defined, widgets that use the `registry` will automatically re-render!
+The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and, once defined, and used before it is defined and, once defined, widgets that use the `registry` will automatically re-render!
 {% endaside %}
 
 Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, requires and returns the concrete widget. This function will not be called until the first time the application tries to use the widget label as part of the usual `render` cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.

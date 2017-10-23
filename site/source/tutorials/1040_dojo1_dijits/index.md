@@ -34,7 +34,7 @@ The first step will be to install our dependencies using npm:
 $ npm install
 ```
 
-{% instruction 'Install additional development dependency:' %}
+{% instruction 'Install this additional development dependency:' %}
 
 ```
 $ npm install dojo-typings --save-dev
@@ -114,7 +114,7 @@ You should see a rather long output indicating many dependencies have been outpu
 
 ## Working with Dijits
 
-To integrate Dijits within into a Dojo 2 application, they need to _wrapped_ for management by the Dojo 2 widgeting system.  As discussed in previous steps, the `DijitWrapper` function will _convert_ a Dojo 1 Dijit constructor function into something that behaves like a Dojo 2 widget class.  When used with the Dojo 1 typings, you will also get code intellisense when configuring your Dijits.
+To integrate Dijits within a Dojo 2 application, they need to _wrapped_ for management by the Dojo 2 widgeting system.  As discussed in previous steps, the `DijitWrapper` function will _convert_ a Dojo 1 Dijit constructor function into something that behaves like a Dojo 2 widget class.  When used with the Dojo 1 typings, you will also get code intellisense when configuring your Dijits.
 
 The `DijitWrapper` function accepts two arguments.  The first is the Dojo 1 `declare` class.  The second is an optional string, which represents the tag name that should be used when the Dojo 2 widgeting system needs to create a _DOM stub_ to attach the Dijit instance to.  It defaults to `div` if not supplied.
 
@@ -151,7 +151,7 @@ Now that you have wrapped Dijits for use, we need to import them into their cont
 ## Placing Dijits
 
 {% aside 'Reminder' %}
-We will be using `w()` function from `@dojo-widget/core/d`.  Don't forget to `import` it...
+We will be using the `w()` function from `@dojo-widget/core/d`.  Don't forget to `import` it...
 {% endaside %}
 
 {% task 'Adding Dijits to a widget\'s render function.' %}
@@ -166,7 +166,7 @@ Now that we have imported our wrapped Dijits into the module they will be used, 
 The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the [Dojo 1 API documentation](https://dojotoolkit.org/api/).
 {% endaside %}
 
-Once Dijits are wrapped, they behave very similar to Dojo 2 widgets.  Coupled with the `dojo-typings` TypeScript typings, you get code completion as well when specifying the _properties_ and TypeScript should help ensure the validity of property values.
+Once Dijits are wrapped, they behave similarly to Dojo 2 widgets.  Coupled with the `dojo-typings` TypeScript typings, you get code completion as well when specifying the _properties_ and TypeScript should help ensure the validity of property values.
 
 One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit's as their children. Dojo 2 widgets represent their [DOM virtually](../comingsoon.html), while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.
 

@@ -24,13 +24,13 @@ This tutorial assumes that you have gone through the [beginner tutorial](../001_
 
 {% task 'Create a class to manage application state.' %}
 
-To begin our discussion, let's review the initial version of `App`:
+To begin our tutorial, let's review the initial version of `App`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/App.ts' %}
 
 Most of this widget is dedicated to holding and managing the `WorkerData` in the application. Notice, however, that it never actually uses that data itself. `App` is only containing the state and passing it to the children as required via properties. Lifting up state to the highest common widget in the tree is a valid pattern, but as an application's state grows in size and complexity, it is often desirable to decouple this from widgets. In larger applications, the `App` class would become complicated and more difficult to maintain due to the additional state information that it would be required to track. Since the state information is not a primary concern of the `App` class, let's refactor it out of `App` and into a new `ApplicationContext` class that extends the base `Injector`.
 
-{% instruction 'Add the following to `ApplicationContext.ts`.' %}
+{% instruction 'Add the following to the existing `ApplicationContext.ts` file in the `src` directory' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' %}
 
@@ -44,9 +44,9 @@ The `ApplicationContext` contains the application state information. The base `I
 
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:26-35 %}
 
-The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous to `_addWorker` from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it cannot call `invalidate();` to schedule a re-render. Instead the instance needs to emit an `invalidate` event that instructs associated widgets to `invalidate` themselves.
+The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous to the `_addWorker` method from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it cannot call `invalidate();` to schedule a re-render. Instead the instance needs to emit an `invalidate` event that instructs associated widgets to `invalidate` themselves.
 
-Notice that the `ApplicationContext` does not contain any code to load state information. Currently its only role is only to manage the application's state provided on initialization via its `constructor`. However as the requirements for the application become more advanced the `ApplicationContext` could make requests to fetch and modify data from a remote service or local storage mechanism.
+Notice that the `ApplicationContext` does not contain any code to load state information. Currently its only role is only to manage the application's state provided on initialization via its `constructor`. However as the requirements for the application become more advanced, the `ApplicationContext` could make requests to fetch and modify data from a remote service or local storage mechanism.
 
 Now that we have moved state management to a dedicated module, we need a way to register the state and connect it to sections of our application. We will do this by creating a registry and registering the `ApplicationContext` injector.
 
@@ -60,9 +60,9 @@ Currently, the application's `main` module is only responsible for creating the 
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
-Now, we need to update `main` to construct and populate an instance of `ApplicationContext`, create a `registry` and then define the `ApplicationContext` as an injector in the registry. Lastly, in order to make the `registry` available within the widget tree, we need to pass the `registry` as a property to the `projector`.
+Now, we need to update the `main` module to construct and populate an instance of `ApplicationContext`, create a `registry` and then define the `ApplicationContext` as an injector in the registry. Lastly, in order to make the `registry` available within the widget tree, we need to pass the `registry` as a property to the `projector`.
 
-{% instruction 'Import the `ApplicationContext` module and add this code to `main`:' %}
+{% instruction 'Import the `ApplicationContext` module and add this code to the `main` module:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:4,9-28 %}
 
@@ -104,7 +104,7 @@ Normally, a separate `Container` is created for each widget that needs to have `
 
 {% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerContainerContainer.ts' lines:1-4 %}
 
-The first `import` gives the module access to the `Container` factory function which will be used to construct the container. The other `import` allow the module to use the `ApplicationContext` to extract state, use the `WorkerContainerProperties` to receive properties from its parent, and wrap the `WorkerContainer` class with the `container`.
+The first `import` gives the module access to the `Container` factory function which will be used to construct the container. The other `import` allows the module to use the `ApplicationContext` to extract state, use the `WorkerContainerProperties` to receive properties from its parent, and wrap the `WorkerContainer` class with the `container`.
 
 Next, we need to address the fact that the container has two places to get properties from - its parent widget and the `ApplicationContext`. To tell the container how to manage this, we will create a function called `getProperties`.
 

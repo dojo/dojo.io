@@ -14,7 +14,7 @@ The Dojo 2 widget system provides a functional API that strives to strictly enfo
 In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.
 
 ## Prerequisites
-You can [download](../assets/006_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
+You can [download](../assets/1006_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -26,7 +26,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Create a widget that uses a Dojo 2 `TextInput`.' %}
 
-Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo 2 `TextInput`, with additional functionality to be added. `List.ts` will contain our implementation, and similarly to widgets created during previous Dojo 2 tutorials, initial dependencies and a class declaration are needed to get started.
+Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo 2 `TextInput` widget, with additional functionality to be added later within this tutorial. `List.ts` will contain our implementation, and similarly to widgets created during previous Dojo 2 tutorials, initial dependencies and a class declaration are needed to get started.
 
 {% instruction 'Add the following skeleton to `List.ts`:' %}
 
@@ -191,7 +191,7 @@ A filterable list widget was created throughout this tutorial to demonstrate how
 
 It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could be provided from any data source, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the `List` is not concerned with the data origin. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
 
-If you would like, you can download the completed [demo application](../assets/1060_data_driven _widgets-finished.zip).
+If you would like, you can download the completed [demo application](../assets/1060_data_driven_widgets-finished.zip).
 
 {% section 'last' %}
 

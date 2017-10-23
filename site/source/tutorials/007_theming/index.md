@@ -9,10 +9,10 @@ overview: Use the Dojo 2 theming and styling system to add a theme to an applica
 # Theming
 
 ## Overview
-This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme and apply it to our application. This will be done using the powerful theming system that is included in Dojo 2 widget system.
+This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme and apply it to our application. This will be done using the powerful theming system that is included in the Dojo 2 widget system.
 
 ## Prerequisites
-You can [download](../assets/007_themeing-initial.zip) the demo project and run `npm install` to get started.
+You can [download](../assets/007_theming-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -106,7 +106,7 @@ Let's start by creating a red `Worker` and observe our theme being applied corre
 }
 ```
 
-To apply a theme to a widget, simply pass the `theme` as a property to widgets have the `ThemeableMixin` applied. To ensure that the entire application applies the `theme` it needs to be passed to all the themeable widgets in our application. This can become problematic when an application using a mixture of themeable and non-themeable widgets or uses a widget from a third party, meaning that there is no guarantee that the `theme` will be propagated as required.
+To apply a theme to a widget, simply pass the `theme` as a property to widgets to have the `ThemeableMixin` applied. To ensure that the entire application applies the `theme` it needs to be passed to all the themeable widgets in our application. This can become problematic when an application uses a mixture of themeable and non-themeable widgets, or uses a widget from a third party, meaning that there is no guarantee that the `theme` will be propagated as required.
 
 {% aside 'What is a registry?' %}
 A registry provides a mechanism to inject external payloads into widgets throughout the application tree. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [registry tutorial](../1020_registries/).
