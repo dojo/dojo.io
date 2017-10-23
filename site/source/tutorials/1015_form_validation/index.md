@@ -30,7 +30,7 @@ Right now the error object should mirror `WorkerFormData` in both `WorkerForm.ts
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:15-19 %}
 
-Defining the properties in `WorkerFormErrors` as optional allows us to effectively create three possible states for form fields: unvalidated, valid, and invalid.
+Defining the properties in the `WorkerFormErrors` interface as optional allows us to effectively create three possible states for form fields: unvalidated, valid, and invalid.
 
 {% instruction 'Next add `formErrors` to `ApplicationContext`' %}
 
@@ -94,9 +94,9 @@ For now, we will test our validation by calling it directly in every `onInput` e
 this._formErrors = deepAssign({}, this._formErrors, this._validateInput(input));
 ```
 
-{% instruction 'Update the `WorkerForm` render to display validation state' %}
+{% instruction 'Update the render method of the `WorkerForm` class to display validation state' %}
 
-At this point in our progress, the `WorkerForm` widget holds the validation state of each form field in its `formErrors` property, updated every time an `onInput` handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo 2 `TextInput` widget contains an `invalid` property that sets `aria-invalid` and toggles classes used for visual styling.
+At this point in our progress, the `WorkerForm` widget holds the validation state of each form field in its `formErrors` property, updated every time an `onInput` handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo 2 `TextInput` widget contains an `invalid` property that sets the `aria-invalid` attribute on a DOM node, and toggles classes used for visual styling.
 
 The updated render function in `WorkerForm.ts` should set the `invalid` property on all form field widgets to reflect `formErrors`. We also add a `novalidate` attribute to the form element to prevent native browser validation.
 

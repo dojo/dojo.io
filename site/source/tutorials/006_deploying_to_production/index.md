@@ -116,7 +116,7 @@ The build tool is designed to cover the most common use cases for developing and
 
 To eject a project, use the `dojo eject` command. You will be prompted to ensure that you understand that this is a non-reversible action. Entering **'y'** will begin to export process. The export process generates a new directory - `config` that contains all of the exported configuration information for each of the `dojo-cli` tools that the project had been using. The process will also install some additional dependencies that the project now requires.
 
-The project is now configured to be managed as a webpack project. Changes can be made to the build configuration by altering `config/build-webpack/webpack.config.js`. A build can then be triggered by running `webpack`'s build command and providing the configuration. That command is: `./node_modules/.bin/webapack --config ./config/build-webpack/webpack.config.js`.
+The project is now configured to be managed as a webpack project. Changes can be made to the build configuration by altering `config/build-webpack/webpack.config.js`. A build can then be triggered by running `webpack`'s build command and providing the configuration. That command is: `./node_modules/.bin/webpack --config ./config/build-webpack/webpack.config.js`.
 
 {% section %}
 
@@ -124,7 +124,7 @@ The project is now configured to be managed as a webpack project. Changes can be
 
 For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo 2, on the other hand, provides a single command, `dojo build` that is used both during development as well as for production deployments.
 
-While the `dojo build` command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios. The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configuration the applications internationalization support. The `--debug` argument allows the results of the build to be examined in more depth. Finally, the `--disableLazyWidgetDetection` argument can be used to optimize how an application loads widgets.
+While the `dojo build` command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios. The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configurate the applications internationalization support. The `--debug` argument allows the results of the build to be examined in more depth. Finally, the `--disableLazyWidgetDetection` argument can be used to optimize how an application loads widgets.
 
 To ensure repeatable builds, all of the configuration options for the `dojo` CLI commands can be stored in `.dojorc`, an ideal choice when it is necessary to ensure that consecutive builds are executed with the same parameters.
 

@@ -13,7 +13,7 @@ overview: This tutorial shows how to set up and use a development environment to
 This tutorial explores setting up your tools and environment for the best possible Dojo 2 development experience. You may use demo code from any of the Dojo 2 tutorials, but this tutorial will reference finished code from the [Forms tutorial](../005_form_widgets/).
 
 ## Prerequisites
-You can [download](../assets/10xx_development_environment-initial.zip) a fresh install of the demo code to get started.
+You can [download](../assets/1050_development_environment-initial.zip) a fresh install of the demo code to get started.
 
 You should be familiar with the developer tools in your browser of choice. This tutorial will reference the Chrome developer tools, but the instructions should generally apply to any browser.
 
@@ -41,7 +41,7 @@ Use `git add` to begin tracking files, and `git commit` to create a commit. For 
 
 {% task 'Get an editor that supports TypeScript.' %}
 
-Any code editor will allow you to work on a Dojo 2 project, but an editor that supports TypeScript will give you a richer development experience, as Dojo 2 is built with TypeScript and specifically designed to take advantage of its features. A [list of editors with plugins that enable TypeScript support](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) is available to help you find an appropriate editor..
+Any code editor will allow you to work on a Dojo 2 project, but an editor that supports TypeScript will give you a richer development experience, as Dojo 2 is built with TypeScript and specifically designed to take advantage of its features. A [list of editors with plugins that enable TypeScript support](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) is available to help you find an appropriate editor.
 
 {% instruction 'Install TypeScript support' %}
 
@@ -49,7 +49,7 @@ In Atom, for example, this means installing [atom-typescript](https://atom.io/pa
 
 {% instruction 'Test error highlighting' %}
 
-Within the demo app, open `src/widgets/WorkerContainer.ts`. In `WorkerContainer`, there should be code to create an instance of the `Worker` widget within the `render` function. Modify it to add a fake property, e.g.:
+Within the demo app, open `src/widgets/WorkerContainer.ts`. In `WorkerContainer`, there is code to create an instance of the `Worker` widget within the `render` function. Modify it to add a fake property, e.g.:
 
 ```typescript
 const workers = workerData.map((worker, i) => w(Worker, {
@@ -120,7 +120,9 @@ Other tasks to consider adding could be `test` or `watch`. Once configured, thos
 
 ## Debugging
 
-If you are developing a Dojo 2 application in TypeScript, your application code is transpiled from TypeScript to JavaScript. If you are also using `dojo build`, then your code is also being bundled and minimized. Bundling and minimizing could make it challenging to debug your application in the browser, but we have made efforts to integrate Dojo 2 into modern debugging tools.
+If you are developing a Dojo 2 application in TypeScript, your application code must be transpiled from TypeScript into JavaScript. This transpilation can happen through the Dojo CLI tool, or through your own configured build system.
+
+If you are also using `dojo build`, then your code is also being bundled and minimized. Bundling and minimizing could make it challenging to debug your application in the browser, but we have made efforts to integrate Dojo 2 into modern debugging tools.
 
  Source maps describe a way to map from transformed source code back to its original source. The `dojo build` command maps the code throughout the process so that both the original TypeScript code and CSS code is available when debugging. This integrated workflow should allow you to set breakpoints and watches on the original code as well as see the original code when there is a run-time error.
 
