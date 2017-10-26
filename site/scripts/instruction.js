@@ -6,6 +6,11 @@ function convertCodeAndLinks(content) {
 	// replace < with &lt; and > with &gt;
 	content = content && content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+	// replace single asterisks with <em> tag
+	content = content && content.replace(/\*(.*?)\*/g, function (match, content) {
+		return `<em>${content}</em>`;
+	});
+
 	// replace backticks with <code> tags
 	content = content && content.replace(/`(.*?)`/g, function (match, param) {
 		return `<code>${param}</code>`;

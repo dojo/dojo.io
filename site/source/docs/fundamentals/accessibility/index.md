@@ -1,3 +1,10 @@
+---
+layout: docs
+category: fundamentals
+title: Accessibility
+overview: Accessibility is a core concern of Dojo 2. This article demonstrates how to ensure that applications can accessed by all users.
+---
+
 ## Philosophy and Approach
 
 Dojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provide access to all. Accessibility failures abound in each setting, and they can be very obvious once one starts looking:

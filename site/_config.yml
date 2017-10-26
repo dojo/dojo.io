@@ -29,6 +29,7 @@ skip_render:
   - "**/*/demo"
 exclude:
   - "**/node_modules/**"
+	- "**/*/demo"
 tutorial_dir: tutorials
 
 # Writing
@@ -42,23 +43,23 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: false
-  line_number: false
-  auto_detect: true
-  tab_replace:
+	enable: false
+	line_number: false
+	auto_detect: true
+	tab_replace:
 
 prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'default'
-  line_number: false    # default false
+	mode: 'preprocess'    # realtime/preprocess
+	theme: 'ghcolors'
+	line_number: false    # default false
 
 # Authors
 authors:
-  default:
-    name: The Dojo Team
-  dylan:
-    name: Dylan Schiemann
-    email: dylan@sitepen.com
+	default:
+		name: The Dojo Team
+	dylan:
+		name: Dylan Schiemann
+		email: dylan@sitepen.com
 
 # Yet Another Stylus Renderer
 # https://github.com/celsomiranda/hexo-renderer-yasr
@@ -114,6 +115,16 @@ hfc_img:
 
 hfc_favicons:
   enable: false
+# Sass
+node_sass:
+	outputStyle: nested
+	precision: 5
+	sourceComments: false
+	includePaths:
+		- node_modules/bulma
+		- node_modules/
+
+
 
 # Category & Tag
 default_category: dojo
@@ -140,8 +151,8 @@ theme: dojo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/dojo/dojo.io.git
-  branch: gh-pages
+	type: git
+	repo: https://github.com/dojo/dojo.io.git
+	branch: gh-pages
 
 

@@ -1,0 +1,7 @@
+// Modify the Bulma variables before importing Bulma
+
+$primary: #00d1b2;
+$link: darken($primary, 5%);
+$link-hover: $primary;
+$navbar-item-color: $primary;
+$navbar-item-hover-background-color: $primary;

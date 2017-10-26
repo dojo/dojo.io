@@ -1,5 +1,6 @@
 ---
-layout: false
+layout: docs
+category: fundamentals
 title: vDOM Abstractions - w and v in the d module
 overview: Abstracting the DOM allows us to create presentation components programmatically. Dojo 2 provides a layer of abstraction between the DOM and its virtual counterpart as it exists in JavaScript as well as a layer of abstraction between this virtual DOM and Dojo 2 components - using a common syntax in a common module.
 ---

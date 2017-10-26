@@ -1,5 +1,6 @@
 ---
-layout: false
+layout: docs
+category: fundamentals
 title: Internationalization
 overview: It is increasingly rare that applications reach a single audience that lives in a single region and speaks a single language. This article describes the tools Dojo 2 provides to guarantee an application can be adapted to all users, regardless of their language or address.
 ---

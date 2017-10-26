@@ -1,0 +1,9 @@
+.card {
+	border-radius: $border-radius;
+	@include shadow(1);
+	@include default-transition();
+
+	&:hover {
+		@include shadow(3);
+	}
+}

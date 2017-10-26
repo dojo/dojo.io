@@ -2,6 +2,7 @@
 layout: tutorial
 title: Routing
 overview: Use Dojo 2's declarative routing within your application.
+paginate: true
 ---
 
 {% section 'first' %}

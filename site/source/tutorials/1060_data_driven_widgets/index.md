@@ -2,9 +2,10 @@
 layout: tutorial
 title: Data-driven widgets
 overview: In this tutorial, you will learn how to create reactive, data-driven widgets in Dojo 2.
+paginate: true
 ---
 
-{% section 'first' %}   
+{% section 'first' %}
 
 # Data-driven widgets
 
@@ -194,4 +195,3 @@ It's also important to note that in this tutorial, hardcoded worker data is pass
 If you would like, you can download the completed [demo application](../assets/1060_data_driven_widgets-finished.zip).
 
 {% section 'last' %}
-
