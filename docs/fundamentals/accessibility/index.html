@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: fundamentals | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Philosophy and ApproachDojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provid">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Accessibility">
+<meta property="og:url" content="https://dojo.github.io/docs/fundamentals/accessibility/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Philosophy and ApproachDojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provid">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.github.io/docs/fundamentals/accessibility/resources/ramp-bad.jpg">
+<meta property="og:image" content="https://dojo.github.io/docs/fundamentals/accessibility/resources/ramp-good.jpg">
+<meta property="og:updated_time" content="2017-10-26T21:58:23.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Accessibility">
+<meta name="twitter:description" content="Philosophy and ApproachDojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provid">
+<meta name="twitter:image" content="https://dojo.github.io/docs/fundamentals/accessibility/resources/ramp-bad.jpg">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/api">API</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-3">
+				<aside class="menu">
+	<p class="menu-label">
+		Fundamentals
+	</p>
+	<ul class="menu-list">
+		
+			<li><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
+		
+			<li><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
+		
+			<li><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
+		
+			<li><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
+		
+			<li><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
+		
+			<li><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
+		
+	</ul>
+</aside>
+			</div>
+			<div class="column is-9">
+				<h2 id="Philosophy-and-Approach"><a href="#Philosophy-and-Approach" class="headerlink" title="Philosophy and Approach"></a>Philosophy and Approach</h2><p>Dojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provide access to all. Accessibility failures abound in each setting, and they can be very obvious once one starts looking:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="./resources/ramp-bad.jpg" alt="Bad wheelchair ramp example"></th>
+<th style="text-align:center"><img src="./resources/ramp-good.jpg" alt="Good ramp example"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Afterthought Accessibility</td>
+<td style="text-align:center">Designed Accessibility</td>
+</tr>
+</tbody>
+</table>
+<p>Web developers have an additional hurdle to jump over, since accessibility failures online are often invisible and silent. Without proper testing, it is all too easy to add a redundant <code>title</code> attribute to a link or create a <code>&lt;label&gt;</code> while forgetting the <code>for</code> attribute.</p>
+<p>The increasingly fleshed-out specification and support for ARIA attributes is fantastic, but can feed into the false impression that accessibility is achieved by slapping an <code>aria-labelledby</code> or <code>role</code> onto a finished widget and calling it done. The only approach that has the potential to deliver truly equal access is to begin thinking about accessibility in design and continue through to development and testing. For that reason, Dojo 2 has no separate accessibility mixin; all Dojo 2 widgets have been designed to be accessible by default, and any tools needed to meet <a href="https://www.w3.org/TR/WCAG20/" target="_blank" rel="external">WCAG</a> standards have been integrated into <code>@dojo/widget-core</code> and <code>@dojo/widgets</code>.</p>
+<h2 id="Using-Dojo-2-widgets"><a href="#Using-Dojo-2-widgets" class="headerlink" title="Using Dojo 2 widgets"></a>Using Dojo 2 widgets</h2><p>All widgets provided through <code>@dojo/widgets</code> have been created with a range of assistive technologies and perceptual differences in mind. Wherever possible, Dojo 2 takes advantage of built-in accessibility by using native elements; if it looks like a button and acts like a button, it should be a <code>&lt;button&gt;</code>. Widgets that go beyond the functionality provided by native elements use internal logic to provide proper semantics and non-mouse interaction.</p>
+<p>As with all code however, Dojo widgets are not foolproof. There are a number of instances where additional information is required of the widget author before peak accessibility can be achieved. A framework can only go so far before it becomes the developer’s responsibility to provide label text or correctly set attributes such as <code>type</code> or <code>role</code>. Each widget’s example page models best practices, and scanning through available widget properties is a good way to check for any missing accessibility enhancements.</p>
+<p>Below is a list of widgets in <code>@dojo/widgets</code>, along with a description of the keyboard interaction (if applicable) and any properties included primarily for accessibility (shortened to a11y):</p>
+<h3 id="Label"><a href="#Label" class="headerlink" title="Label"></a>Label</h3><p>All form widgets apart from the <code>Button</code> contain a <code>label</code> property that allows widget authors to easily associate a text label with the control. <code>Label</code> is also available as a separate widget for use with custom form controls. The <code>Label</code> widget included with Dojo form widgets is associated with the form input by wrapping the input as a child element. When used separately, it is also possible to explicitly set the <code>forId</code> property to the <code>id</code> of an input.</p>
+<h5 id="Separate-Label-Input-example"><a href="#Separate-Label-Input-example" class="headerlink" title="Separate Label + Input example"></a>Separate Label + Input example</h5><pre class=" language-typescript"><code class="language-typescript"><span class="token function">w</span><span class="token punctuation">(</span>Label<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    forId<span class="token punctuation">:</span> <span class="token string">'foo'</span><span class="token punctuation">,</span>
+    label<span class="token punctuation">:</span> <span class="token string">'Foo Label Text'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token string">'foo'</span><span class="token punctuation">,</span>
+    type<span class="token punctuation">:</span> <span class="token string">'text'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>The <code>label</code> property on both form field widgets and the <code>Label</code> widget accepts either a string or an options object that allows customization of where the label is placed (before or after the input) and whether it is visually hidden. The latter makes use of screen reader-accessible CSS styles to hide text content and is recommended for use with form controls that have no visible label.</p>
+<p>A <code>&lt;label&gt;</code> element with hidden text was chosen over the <code>aria-label</code> attribute for invisible labels due to <a href="https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/" target="_blank" rel="external">still-inconsistent</a> screen reader support for the latter. Should this change, we will update our hidden label implementation to <code>aria-label</code> without changing the public-facing properties.</p>
+<hr>
+<h3 id="TextInput-and-Textarea"><a href="#TextInput-and-Textarea" class="headerlink" title="TextInput and Textarea"></a>TextInput and Textarea</h3><p>As with all basic form controls included in <code>@dojo/widgets</code>, <code>TextInput</code> and <code>Textarea</code> use native <code>&lt;input&gt;</code>/<code>&lt;textarea&gt;</code> elements, which allows them to take advantage of built-in accessibility.</p>
+<h5 id="A11y-properties"><a href="#A11y-properties" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>controls</code>: Text inputs can sometimes be used to control an interactive dropdown. In this case, <code>controls</code> can be used to set <code>aria-controls</code> to the <code>id</code> of the controlled element.</li>
+<li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
+<li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
+<li><code>type</code>: Specifying text input type to <code>email</code>, <code>search</code>, etc. when applicable provides more information to screen reader users in addition to other benefits like showing the most helpful mobile keyboard.</li>
+</ul>
+<hr>
+<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><p>The <code>Button</code> widget returns a simple <code>&lt;button&gt;</code> element with native support for use with keyboards and assistive technology.</p>
+<h5 id="A11y-properties-1"><a href="#A11y-properties-1" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
+<li><code>popup</code>: This can either be set to <code>true</code> to simply set the <code>aria-haspopup</code> property, or it can be passed an object with <code>expanded: true/false</code> and <code>id: string</code> properties to control <code>aria-expanded</code> and <code>aria-controls</code>. This is recommended for any button that opens a dialog, dropdown, or menu.</li>
+<li><code>pressed</code>: For use with buttons that toggle on/off. Sets the <code>aria-pressed</code> property.</li>
+</ul>
+<hr>
+<h3 id="Checkbox"><a href="#Checkbox" class="headerlink" title="Checkbox"></a>Checkbox</h3><p>The <code>Checkbox</code> widget wraps a native <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, which provides native accessibility and keyboard interaction.</p>
+<p><code>Checkbox</code> can also be used as a toggle switch with optional <code>onLabel</code> and <code>offLabel</code> properties. When a string is passed to <code>onLabel</code>, it will be read at the end of the label text when the checkbox is checked. A string passed to <code>offLabel</code> will be read when the checkbox is not checked.</p>
+<p>A group of related checkboxes should ideally be wrapped in a <code>&lt;fieldset&gt;</code> element containing a <code>&lt;legend&gt;</code> with descriptive text.</p>
+<h5 id="A11y-properties-2"><a href="#A11y-properties-2" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
+<li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
+</ul>
+<hr>
+<h3 id="Radio"><a href="#Radio" class="headerlink" title="Radio"></a>Radio</h3><p><code>Radio</code> creates a single wrapped <code>&lt;input type=&quot;radio&quot;&gt;</code> input, providing built-in accessibility and keyboard interaction. It is best practice to wrap a group of radio buttons in a <code>&lt;fieldset&gt;</code> element that contains a <code>&lt;legend&gt;</code> with descriptive text.</p>
+<h5 id="A11y-properties-3"><a href="#A11y-properties-3" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
+<li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
+</ul>
+<hr>
+<h3 id="Slider"><a href="#Slider" class="headerlink" title="Slider"></a>Slider</h3><p>A native range slider offers limited visual customization, so the Dojo <code>Slider</code> widget creates an invisible native <code>&lt;input type=&quot;range&quot;&gt;</code> input that controls a custom track, thumb, and fill. This allows the widget to take advantage of native accessibility and keyboard interaction without sacrificing styling.</p>
+<p>The current value is wrapped in an <code>&lt;output&gt;</code> element that points to the <code>id</code> of the native input.</p>
+<h5 id="A11y-properties-4"><a href="#A11y-properties-4" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
+<li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
+</ul>
+<hr>
+<h3 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h3><p><code>Select</code> is currently the only Dojo form widget that makes use of a fully custom solution. Since it is impossible to customize <code>&lt;option&gt;</code> elements, the component instead re-creates select functionality from scratch. The end result is a popup button that controls a dropdown menu (with <code>role=&quot;listbox&quot;</code>) of options.</p>
+<p>ARIA attributes are used to associate the button with the menu and focused option. They are also used to provide semantics for read-only and disabled options, as well as setting the entire select field to be read-only, invalid, or required.</p>
+<p>It is also possible to use <code>Select</code> to create a widget using the native <code>&lt;select&gt;</code> element by passing <code>useNativeElement: true</code> to the properties object.</p>
+<h5 id="Keyboard-interaction"><a href="#Keyboard-interaction" class="headerlink" title="Keyboard interaction"></a>Keyboard interaction</h5><ul>
+<li><strong>Down arrow</strong>: Focuses the next option, wrapping from last to first, or opens the menu if closed</li>
+<li><strong>Up arrow</strong>: Focuses the previous option, wrapping from first to last</li>
+<li><strong>Home</strong>: Focuses the first option</li>
+<li><strong>End</strong>: Focuses the last option</li>
+<li><strong>Enter &amp; Space</strong>: Selects the focused option and closes the menu, unless the option is disabled</li>
+<li><strong>Escape</strong>: Closes the menu without selecting an option</li>
+</ul>
+<p>Disabled options are focusable but not selectable within the menu, per <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls" target="_blank" rel="external">WAI-ARIA recommendations</a>.</p>
+<h5 id="A11y-properties-5"><a href="#A11y-properties-5" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
+<li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
+<li><code>useNativeElement</code>: Switches to using the native <code>&lt;select&gt;</code> element, with some trade-offs to customizability.</li>
+</ul>
+<hr>
+<h3 id="ComboBox"><a href="#ComboBox" class="headerlink" title="ComboBox"></a>ComboBox</h3><p><code>ComboBox</code> is similar to <code>Select</code>, but provides a text input that filters available options in addition to a button that opens the option menu. The markup is similar in that the menu comprises of a listbox of options with <code>role=&quot;option&quot;</code> controlled by both a text input and button.</p>
+<p>Since both the button that opens the options menu and the button that clears the textbox value rely on icons, hidden screen reader-accessible text is also provided. Focus is programmatically returned to the text input when the clear text button is pressed or when the dropdown is opened.</p>
+<h5 id="Keyboard-interaction-1"><a href="#Keyboard-interaction-1" class="headerlink" title="Keyboard interaction"></a>Keyboard interaction</h5><ul>
+<li><strong>Down arrow</strong>: Focuses the next option, wrapping from last to first, or opens the menu if closed</li>
+<li><strong>Up arrow</strong>: Focuses the previous option, wrapping from first to last</li>
+<li><strong>Enter</strong>: Selects the focused option and closes the menu, unless the option is disabled</li>
+<li><strong>Escape</strong>: Closes the menu without selecting an option</li>
+</ul>
+<h5 id="A11y-properties-6"><a href="#A11y-properties-6" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>inputProperties</code>: Can be used to set any properties, including <code>describedBy</code>, directly on the inner <code>TextInput</code> widget</li>
+<li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
+</ul>
+<hr>
+<h3 id="TimePicker"><a href="#TimePicker" class="headerlink" title="TimePicker"></a>TimePicker</h3><p><code>TimePicker</code> wraps the <code>ComboBox</code> widget, so all keyboard interactions and accessibility properties are the same across both widgets. The only difference is <code>TimePicker</code> also provides a native <code>&lt;input type=&quot;time&quot;&gt;</code> option controlled through <code>useNativeElement</code>.</p>
+<hr>
+<h3 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h3><p>The <code>Calendar</code> widget renders a date grid with dropdown month and year pickers. Both the month and year dropdowns use a popup button, and control focus between the button and popup when opened and closed. Focusable items in hidden popups are removed from the focus order.</p>
+<p>The date grid itself uses a <code>&lt;table&gt;</code> element with weekdays as the column headers. Hidden accessible text is provided for the previous/next pagination arrows that only visibly display an icon. The date table is labelled by a hidden <code>&lt;label&gt;</code> element showing the current month and year. It has <code>aria-live=&quot;polite&quot;</code> so screen readers will be notified when the displayed month changes, e.g. when a user navigates to the next month via arrow keys.</p>
+<h5 id="Keyboard-interaction-2"><a href="#Keyboard-interaction-2" class="headerlink" title="Keyboard interaction"></a>Keyboard interaction</h5><p>Items in the focus order for this widget in its initial state are the buttons for the month and year pickers, the currently focused date, and the previous and next month buttons. The following keyboard interactions are available when focus is within the date grid:</p>
+<ul>
+<li><strong>Left arrow</strong>: Moves focused date to the previous date</li>
+<li><strong>Right arrow</strong>: Moves focused date to the next date</li>
+<li><strong>Down arrow</strong>: Moves focused date to the same day of the next week</li>
+<li><strong>Up arrow</strong>: Moves focused date to the same day of the previous week</li>
+<li><strong>Enter &amp; Space</strong>: Selects the focused date</li>
+<li><strong>Page Up</strong>: Moves focused date to the first day of the month</li>
+<li><strong>Page Down</strong>: Moves focused date to the last day of the month</li>
+</ul>
+<p>When the focused date moves to a day in the next or previous month, the date grid will refresh.</p>
+<h5 id="A11y-properties-7"><a href="#A11y-properties-7" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>labels</code>: The Calendar widget has a number of internal descriptive labels, and this property allows their text to be customized</li>
+</ul>
+<hr>
+<h3 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h3><p>The <code>Dialog</code> widget creates a controlled dialog element. Controlled focus is not yet implemented, but will be added along with the focus manager in a future Dojo release.</p>
+<h5 id="A11y-properties-8"><a href="#A11y-properties-8" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>closeText</code>: Provides hidden, accessible text for the icon close button. Defaults to “close dialog.”</li>
+<li><code>role</code>: The default role for the dialog container is <code>dialog</code>, but it can be changed to <code>alertdialog</code> through this property.</li>
+</ul>
+<hr>
+<h3 id="SlidePane"><a href="#SlidePane" class="headerlink" title="SlidePane"></a>SlidePane</h3><p><code>SlidePane</code> is similar to dialog in that it creates a modal that overlays page content. It will need similar programmatic focus control, pending completion of the focus manager.</p>
+<h5 id="A11y-properties-9"><a href="#A11y-properties-9" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>closeText</code>: Provides hidden, accessible text for the icon close button. Defaults to “close pane.”</li>
+</ul>
+<hr>
+<h3 id="TabController"><a href="#TabController" class="headerlink" title="TabController"></a>TabController</h3><p><code>TabController</code> creates a set of tab buttons that control the content of a container. The tab buttons use <code>role=&quot;tab&quot;</code> and are associated with their content through <code>aria-controls</code> and <code>aria-labelledby</code>. Only one tab button is in the tab order at a time, and arrow keys are used to switch between tab buttons. This approach both directly follows the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/" target="_blank" rel="external">ARIA Authoring Practice Guidelines</a> and avoids polluting the tab order with a large number of tab stops in the case of a single <code>TabController</code> with many tabs.</p>
+<h5 id="Keyboard-interaction-3"><a href="#Keyboard-interaction-3" class="headerlink" title="Keyboard interaction"></a>Keyboard interaction</h5><ul>
+<li><strong>Left arrow</strong>: Moves to previous tab button, wrapping from first to last</li>
+<li><strong>Right arrow</strong>: Moves to next tab button, wrapping from last to first</li>
+<li><strong>Down arrow</strong>: Moves to next tab button only on vertically oriented tabs</li>
+<li><strong>Up arrow</strong>: Moves to previous tab button only on vertically oriented tabs</li>
+<li><strong>Page Up</strong>: Moves to first tab button</li>
+<li><strong>Page Down</strong>: Moves to last tab button</li>
+<li><strong>Escape</strong>: Closes focused tab button if it is closeable</li>
+</ul>
+<hr>
+<h3 id="TitlePane"><a href="#TitlePane" class="headerlink" title="TitlePane"></a>TitlePane</h3><p><code>TitlePane</code> creates an accordion widget, which is functionally a button that expands a content container. Collapsed content is obscured with <code>aria-hidden</code>, and the button and content container are associated with <code>aria-controls</code> and <code>aria-labelledby</code>.</p>
+<h5 id="A11y-properties-10"><a href="#A11y-properties-10" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
+<li><code>headingLevel</code>: Optionally customize the heading level of the button controlling the accordion.</li>
+</ul>
+<hr>
+<p>This overview only touched on properties that primarily exist for accessibility-related reasons, but any design decision or property change will end up affecting accessibility in some way. For some of those, such as <code>invalid</code>, <code>disabled</code>, and <code>readOnly</code>, widgets included in <code>@dojo/widgets</code> handle setting ARIA attributes in the background in addition to toggling classes without any extra attention needed from the author. In other cases, such as <code>getResultLabel</code> in <code>ComboBox</code> or <code>renderMonthLabel</code> in <code>Calendar</code>, it is entirely up to the author to ensure the returned result includes clear, screen reader-accessible text content.</p>
+<h2 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h2><p>The base Dojo 2 theme meets WCAG AA color contrast guidelines, but it is up to the widget author to double check the final styles as changes to font size or background could affect readability. Widget CSS packaged with Dojo 2 also includes <code>:focus</code> styles for all focusable nodes.</p>
+<p>There is a set of base styles provided by <code>@dojo/widgets</code> separate from themes, containing basic utility classes like <code>.visuallyHidden</code>, which will make content invisible to sighted users but still allow it to be read by screen readers. To use it, import <code>baseCss</code> separately like so:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> ‘path<span class="token operator">/</span>to<span class="token operator">/</span>your<span class="token operator">/</span>css’<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> baseCss <span class="token keyword">from</span> ‘@dojo<span class="token operator">/</span>widgets<span class="token operator">/</span>common<span class="token operator">/</span>styles<span class="token operator">/</span>base<span class="token punctuation">.</span>m<span class="token punctuation">.</span>css’<span class="token punctuation">;</span>
+
+@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">MyWidget</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span>‘div’<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fixed</span><span class="token punctuation">(</span>baseCss<span class="token punctuation">.</span>visuallyHidden<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> ‘Screen reader instructions’ <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>A more in-depth introduction to classes and theming is available in the <a href="./comingsoon.html">Theming tutorial</a>.</p>
+<h2 id="Focus-management"><a href="#Focus-management" class="headerlink" title="Focus management"></a>Focus management</h2><p>Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since the <a href="./working_with_virtual_dom">virtual DOM approach</a> means directly touching the DOM within widgets is discouraged. This feature is currently in development.</p>
+<h2 id="Writing-custom-widgets"><a href="#Writing-custom-widgets" class="headerlink" title="Writing custom widgets"></a>Writing custom widgets</h2><p>All DOM attributes can be set with <code>VirtualDomProperties</code> so, apart from managing focus, no extra tools should be required to create strongly accessible widgets. The <a href="./003_creating_widgets">widgets tutorial</a> goes over widget creation in more technical detail, but the following example shows how to create proper ARIA attributes for an accessible popup button:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    key<span class="token punctuation">:</span> <span class="token string">'buttonKey'</span><span class="token punctuation">,</span>
+    <span class="token string">'aria-controls'</span><span class="token punctuation">:</span> <span class="token string">'popupId'</span><span class="token punctuation">,</span>
+    <span class="token string">'aria-expanded'</span><span class="token punctuation">:</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>expanded<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'aria-haspopup'</span><span class="token punctuation">:</span> <span class="token string">'true'</span><span class="token punctuation">,</span>
+    id<span class="token punctuation">:</span> <span class="token string">'buttonId'</span><span class="token punctuation">,</span>
+    onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_togglePopup
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Click to open popup'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Since this example uses a <code>&lt;button&gt;</code> element, it requires neither an explicit <code>tabindex</code> nor an <code>onkeydown</code> event to work properly with a keyboard. However, while native functionality is the easiest and most straightforward path to good accessibility, there are times when it’s just not possible or no such element exists.</p>
+<p>For those times when native functionality is insufficient, this handy checklist is a good starting point for planning a soon-to-be accessible widget:</p>
+<ul>
+<li>Ensure nodes that support any sort of user interaction are both focusable and have accessible descriptive text.</li>
+<li>Leave native focus styles intact, or provide a sufficiently visible alternative.</li>
+<li>Check the <a href="https://www.w3.org/TR/wai-aria-practices-1.1" target="_blank" rel="external">WAI-ARIA Authoring Practices 1.1</a> for information on node attributes and keyboard interaction for many common widget patterns. Even for more complex widgets, these serve as good building blocks.</li>
+<li>Make a quick proof of concept and try <a href="http://khan.github.io/tota11y/" target="_blank" rel="external">inspecting its accessibility attributes</a> in the browser and running through one of the <a href="https://medium.com/@addyosmani/accessible-ui-components-for-the-web-39e727101a67" target="_blank" rel="external">many</a> <a href="http://www-03.ibm.com/able/guidelines/ci162/accessibility_checklist.html" target="_blank" rel="external">excellent</a> <a href="https://www.wuhcag.com/wcag-checklist/" target="_blank" rel="external">a11y</a> <a href="https://ebay.gitbooks.io/oatmeal/content/" target="_blank" rel="external">checklists</a>.</li>
+<li>Try operating the widget with only a keyboard and, if possible, a screen reader.</li>
+<li>If applicable, try turning off your sound.</li>
+<li>Look at your widget with high contrast mode enabled.</li>
+</ul>
+<p>Designing web applications to be accessible is often perceived to be a difficult problem. While some work is required to ensure that all users are served as well as possible, Dojo 2 has simplified the work as much as possible. By providing the correct properties and considering things like color-contrast, a web application can reach entire new groups of users.</p>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+				</div>
+				<footer class="footer">
+  <div class="container">
+    <div class="info">
+      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+			</div>
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>

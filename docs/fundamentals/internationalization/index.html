@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: fundamentals | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Philosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Internationalization">
+<meta property="og:url" content="https://dojo.github.io/docs/fundamentals/internationalization/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Philosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-26T21:58:23.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Internationalization">
+<meta name="twitter:description" content="Philosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/api">API</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-3">
+				<aside class="menu">
+	<p class="menu-label">
+		Fundamentals
+	</p>
+	<ul class="menu-list">
+		
+			<li><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
+		
+			<li><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
+		
+			<li><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
+		
+			<li><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
+		
+			<li><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
+		
+			<li><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
+		
+	</ul>
+</aside>
+			</div>
+			<div class="column is-9">
+				<h2 id="Philosophy-and-approach"><a href="#Philosophy-and-approach" class="headerlink" title="Philosophy and approach"></a>Philosophy and approach</h2><p>Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2’s core concerns. <code>@dojo/i18n</code>, Dojo 2’s internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. Rather than reinvent the wheel, Dojo 2 delegates to the excellent <a href="https://github.com/globalizejs/globalize" target="_blank" rel="external">Globalize.js</a> library wherever possible. In addition to formatters and parsers for working with localized dates, times, numbers, and units, Globalize.js also includes an implementation of the <a href="http://userguide.icu-project.org/formatparse/messages" target="_blank" rel="external">ICU <code>MessageFormat</code></a>, which makes it possible to format messages based on locale-specific variables like gender and count. While <code>@dojo/i18n</code> can be used independently from the rest of Dojo 2, most applications will also rely on <code>@dojo/widget-core</code> and <code>@dojo/cli-build-webpack</code> to simplify internationalization.</p>
+<p>As we will see below, the general process for internationalizing a Dojo 2 application can be outlined as follows:</p>
+<ol>
+<li>Set the application locale.</li>
+<li>Load any <a href="https://github.com/unicode-cldr/" target="_blank" rel="external">CLDR data</a> required to correctly format values.</li>
+<li>Create message translations for all supported locales.</li>
+<li>Delegate formatting to the appropriate <code>@dojo/i18n</code> methods when rendering any value that may need to be localized.</li>
+<li>Update the application’s configuration settings to ensure all required data are included in the build.</li>
+</ol>
+<h2 id="Reading-and-setting-the-application’s-locale"><a href="#Reading-and-setting-the-application’s-locale" class="headerlink" title="Reading and setting the application’s locale"></a>Reading and setting the application’s locale</h2><p>While any widget can have its own dedicated locale (see below), every Dojo 2 application has a single root locale, which can be changed at any point. By default, this root locale is set to that of the user’s environment, but can be set to a particular locale at any time. All functionality related to reading and setting the application locale is provided by <code>@dojo/i18n/i18n</code>.</p>
+<p>The <code>systemLocale</code> property represents the environment locale, which is normalized to a valid <a href="https://tools.ietf.org/html/rfc5646" target="_blank" rel="external">BCP-47 language tag</a>. Note that this differs from the format Node.js uses for <code>process.env.LANG</code>, from which this property is derived. <code>i18n.locale</code> represents the current application locale. This defaults to the environment locale, but can be changed with the <code>switchLocale</code> method.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> i18n<span class="token punctuation">,</span> <span class="token punctuation">{</span> switchLocale<span class="token punctuation">,</span> systemLocale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i18n<span class="token punctuation">.</span>locale <span class="token operator">===</span> systemLocale<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token function">switchLocale</span><span class="token punctuation">(</span><span class="token string">'ja'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i18n<span class="token punctuation">.</span>locale<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'ja'</span>
+</code></pre>
+<p>Since Dojo 2 uses a <a href="./comingsoon.html">reactive architecture</a>, an <code>observeLocale</code> method is provided to observe changes to the application locale. It accepts an <a href="https://github.com/tc39/proposal-observable" target="_blank" rel="external">Observable</a> whose <code>next</code> method is passed the new locale.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> observeLocale<span class="token punctuation">,</span> switchLocale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Create a subscription that updates the &lt;html> tag's "lang" attribute when</span>
+<span class="token comment" spellcheck="true">// the locale is changed.</span>
+<span class="token keyword">const</span> subscription <span class="token operator">=</span> <span class="token function">observeLocale</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    next<span class="token punctuation">:</span> <span class="token punctuation">(</span>locale<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'lang'</span><span class="token punctuation">,</span> locale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">switchLocale</span><span class="token punctuation">(</span><span class="token string">'es'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// destroy the observer when we no longer need to observe locale changes</span>
+subscription<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: As you may have noticed from the previous example, changing the application locale with <code>switchLocale</code> does not change the <code>&lt;html lang&gt;</code> attribute. There are two reasons for this: first, DOM updates are beyond the purview of <code>@dojo/i18n</code>; second, the application might consist of only a portion of the total rendered DOM.</p>
+</blockquote>
+<h2 id="Loading-CLDR-data"><a href="#Loading-CLDR-data" class="headerlink" title="Loading CLDR data"></a>Loading CLDR data</h2><!-- TODO: This section will require changes once planned updates to cli-build-webpack are released: https://github.com/dojo/dojo.io/issues/179 -->
+<p>Most functionality requires <a href="https://github.com/unicode-cldr/" target="_blank" rel="external">CLDR data</a>, without which errors will be thrown. However, no CLDR data are included by Dojo 2, both due to the size of the complete CLDR data and to prevent tying applications to a specific version of the CLDR. All CLDR data must be registered with the i18n ecosystem via <code>@dojo/i18n/cldr/load.default</code> before the corresponding formatters can be used. This function accepts either a JSON object of CLDR data, or an array of paths to JSON files that will be loaded and registered. This same module also exposes an <code>isLoaded</code> function that can be used to determine whether specific data have been registered.</p>
+<p>The easiest way to obtain the complete CLDR is with the <a href="https://www.npmjs.com/package/cldr-data" target="_blank" rel="external"><code>cldr-data</code></a> npm package, which maps the data from the Unicode repository to <code>main</code> and <code>supplemental</code> directories. The <code>main</code> directory houses a directory for each locale, which in turn contains all CLDR data specific to that locale. The <code>supplemental</code> directory contains generic data that makes more sense in standalone files, such as pluralization formats or telephone country codes.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> loadCldrData<span class="token punctuation">,</span> <span class="token punctuation">{</span> isLoaded <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/cldr/load'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">isLoaded</span><span class="token punctuation">(</span><span class="token string">'supplemental'</span><span class="token punctuation">,</span> <span class="token string">'likelySubtags'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">isLoaded</span><span class="token punctuation">(</span><span class="token string">'supplemental'</span><span class="token punctuation">,</span> <span class="token string">'plurals-type-cardinal'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+
+<span class="token function">loadCldrData</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token string">'./path/to/cldr/supplemental/likelySubtags.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'./path/to/cldr/supplemental/plurals.json'</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">isLoaded</span><span class="token punctuation">(</span><span class="token string">'supplemental'</span><span class="token punctuation">,</span> <span class="token string">'likelySubtags'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+    <span class="token comment" spellcheck="true">// Notice that the check is for the property on the JSON object, not the JSON filename.</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">isLoaded</span><span class="token punctuation">(</span><span class="token string">'supplemental'</span><span class="token punctuation">,</span> <span class="token string">'plurals-type-cardinal'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Message-translations"><a href="#Message-translations" class="headerlink" title="Message translations"></a>Message translations</h2><p>The task most developers associate with internationalization is providing locale-specific message translations. Dojo 2 applications package translations into one or more bundles, each with a set of default translations and any number of locale-specific translations. Message loading and formatting is provided by <code>@dojo/i18n/i18n</code>. The default export accepts a bundle (see below) and an optional locale, and returns a promise to the loaded messages. If a locale is not provided, the root locale is assumed.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> i18n <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> greetings <span class="token keyword">from</span> <span class="token string">'./nls/greetings/main'</span><span class="token punctuation">;</span>
+
+<span class="token function">i18n</span><span class="token punctuation">(</span>bundle<span class="token punctuation">,</span> <span class="token string">'fr'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Bundle-format"><a href="#Bundle-format" class="headerlink" title="Bundle format"></a>Bundle format</h3><p>Translation bundles in Dojo 2 are separated into two components: a required base module containing default values for all possible messages provided by the bundle, and individual modules for each supported locale. While not required, it is a best practice to place all message bundles under the <code>src/nls</code> directory. The base module must expose a <code>default</code> export, which must be an object, and which must contain the following:</p>
+<ul>
+<li>A string <code>bundlePath</code> representing the location of the default bundle. For example, if the default bundle is located at <code>src/nls/main.ts</code>, then the bundle path would be <code>src/nls/main</code>. This is used to resolve the location of locale-specific messages (see below).</li>
+<li>An optional <code>locales</code> array containing all locales supported by the bundle.</li>
+<li>A <code>messages</code> object containing key-value pairs of default messages.</li>
+</ul>
+<p>Locale-specific translations must be located under directories within the same directory as their default bundle. For example, if the <code>locales</code> array exposed by a bundle located at <code>src/nls/main</code> is specified as <code>[ &#39;fr&#39;, &#39;fr-CA&#39; ]</code>, then the messages for those two locales must be located at <code>src/nls/fr/main</code> and <code>src/nls/fr-CA/main</code>, respectively. The <code>default</code> export from the locale-specific bundle modules must be an object containing the locale-specific messages as key-value pairs. Note that locale-specific bundles need not contain all possible messages; any missing messages will be filled in by the default bundle. For example, if the default bundle contains the messages <code>{ foo: &#39;bar&#39;, baz: &#39;bat&#39; }</code>, but a locale-specific bundle contains only <code>{ baz: &#39;xyzzy&#39; }</code>, then the default value for <code>foo</code> (“bar”) will be used.</p>
+<p>For example, suppose we have a <code>greetings</code> bundle with default messages in English, but that also provides Arabic translations. First, we define our default bundle with a list of supported locales (in this case, just Arabic):</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// Default bundle: "src/nls/greetings.ts"</span>
+<span class="token keyword">const</span> bundlePath <span class="token operator">=</span> <span class="token string">'src/nls/greetings'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> locales <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token string">'ar'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    hello<span class="token punctuation">:</span> <span class="token string">'Hello'</span><span class="token punctuation">,</span>
+    helloReply<span class="token punctuation">:</span> <span class="token string">'Hello'</span><span class="token punctuation">,</span>
+    goodbye<span class="token punctuation">:</span> <span class="token string">'Goodbye'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span> bundlePath<span class="token punctuation">,</span> locales<span class="token punctuation">,</span> messages <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Second, we add the Arabic translations:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// "src/nls/ar/greetings.ts"</span>
+<span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    hello<span class="token punctuation">:</span> <span class="token string">'السلام عليكم'</span><span class="token punctuation">,</span>
+    helloReply<span class="token punctuation">:</span> <span class="token string">'و عليكم السام'</span><span class="token punctuation">,</span>
+    goodbye<span class="token punctuation">:</span> <span class="token string">'مع السلامة'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> messages<span class="token punctuation">;</span>
+</code></pre>
+<p>Finally, we use the <code>i18n</code> function to load the messages:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> i18n <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> greetings <span class="token keyword">from</span> <span class="token string">'./nls/greetings'</span><span class="token punctuation">;</span>
+
+<span class="token function">i18n</span><span class="token punctuation">(</span>greetings<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Hello</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>helloReply<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Hello</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>goodbye<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Goodbye</span>
+
+    <span class="token keyword">return</span> <span class="token function">i18n</span><span class="token punctuation">(</span>greetings<span class="token punctuation">,</span> <span class="token string">'ar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'السلام عليكم'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>helloReply<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'و عليكم السام'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>goodbye<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'مع السلامة'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Locale-resolution"><a href="#Locale-resolution" class="headerlink" title="Locale resolution"></a>Locale resolution</h3><p>Locales are resolved from most to least specific. Continuing with our previous example, if the user’s locale is <code>ar-JO</code> (Jordanian Arabic), then the <code>locales</code> array provided by the default greetings bundle will be inspected for a locale exactly matching <code>ar-JO</code>. Since the greetings bundle does not contain translations specific to Jordanian Arabic, those provided for <code>ar</code> are used instead. If, however, the locale does not match any supported by the bundle, then the default messages are used.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// "src/nls/ar-JO/greetings.ts"</span>
+<span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    hello<span class="token punctuation">:</span> <span class="token string">'مرحبا'</span><span class="token punctuation">,</span>
+    helloReply<span class="token punctuation">:</span> <span class="token string">'مرحبتين'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> messages<span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> i18n<span class="token punctuation">,</span> <span class="token punctuation">{</span> Messages <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> greetings <span class="token keyword">from</span> <span class="token string">'./nls/greetings'</span><span class="token punctuation">;</span>
+
+<span class="token function">i18n</span><span class="token punctuation">(</span>greetings<span class="token punctuation">,</span> <span class="token string">'ar-JO'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'مرحبا'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>helloReply<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'مرحبتين'</span>
+
+    <span class="token comment" spellcheck="true">// Since src/nls/ar-JO/greetings.ts does not specify a "goodbye" message,</span>
+    <span class="token comment" spellcheck="true">// the next best-supported value is used. In this case, the value from</span>
+    <span class="token comment" spellcheck="true">// src/nls/ar/greetings.ts is used.</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>goodbye<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'مع السلامة'</span>
+
+    <span class="token keyword">return</span> <span class="token function">i18n</span><span class="token punctuation">(</span>greetings<span class="token punctuation">,</span> <span class="token string">'cz'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>messages<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Since Czech is not supported by the greetings bundle, fallback to the</span>
+    <span class="token comment" spellcheck="true">// default messages.</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'Hello'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>helloReply<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'Hello'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>messages<span class="token punctuation">.</span>goodbye<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'Goodbye'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Formatting-messages"><a href="#Formatting-messages" class="headerlink" title="Formatting messages"></a>Formatting messages</h3><p><code>@dojo/i18n/i18n</code> exposes two methods used to format messages: <code>formatMessage</code>, which can be used to format a message immediately, and <code>getMessageFormatter</code>, which returns a function that can be used to format the same message string multiple times with different options. Dojo 2 supports the <a href="http://userguide.icu-project.org/formatparse/messages" target="_blank" rel="external">ICU <code>MessageFormat</code></a> (see below), but that requires CLDR data, and may not be required by every application. Therefore, by default, these two methods use simple variable replacement, but switch to the more robust format once the <a href="https://github.com/unicode-cldr/cldr-core/blob/master/supplemental/likelySubtags.json" target="_blank" rel="external"><code>likelySubtags</code></a> and <a href="https://github.com/unicode-cldr/cldr-core/blob/master/supplemental/plurals.json" target="_blank" rel="external"><code>plurals-type-cardinal</code></a> CLDR data have been loaded.</p>
+<p>For example, given the message <code>&quot;Hello, {name}!&quot;</code>, the formatter would be passed an object with a <code>name</code> string property and replace the <code>{name}</code> token in the message template with that passed value:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// src/nls/greetings.ts</span>
+<span class="token keyword">const</span> bundlePath <span class="token operator">=</span> <span class="token string">'src/nls/greetings'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    hello<span class="token punctuation">:</span> <span class="token string">'Hello, {name}!'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span> bundlePath<span class="token punctuation">,</span> messages <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> i18n<span class="token punctuation">,</span> <span class="token punctuation">{</span> getMessageFormatter<span class="token punctuation">,</span> formatMessage <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> greetings <span class="token keyword">from</span> <span class="token string">'./nls/greetings'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// First, register the bundle with `@dojo/i18n`</span>
+<span class="token function">i18n</span><span class="token punctuation">(</span>greetings<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> formatted <span class="token operator">=</span> <span class="token function">formatMessage</span><span class="token punctuation">(</span>greetings<span class="token punctuation">,</span> <span class="token string">'hello'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'Margaret Mead'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>formatted<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "Hello, Margaret Mead!"</span>
+
+    <span class="token keyword">const</span> formatter <span class="token operator">=</span> <span class="token function">getMessageFormatter</span><span class="token punctuation">(</span>greetings<span class="token punctuation">,</span> <span class="token string">'hello'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">formatter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'Marshall Sahlins'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "Hello, Marshall Sahlins!"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>However, if the message needs to adapt to other variables like the number of people being addressed, then the ICU <code>MessageFormat</code> can be triggered by loading the <code>likelySubtags</code> and <code>plurals-type-cardinal</code> CLDR data:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// src/nls/greetings.ts</span>
+<span class="token keyword">const</span> bundlePath <span class="token operator">=</span> <span class="token string">'src/nls/greetings'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    hello<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`{personCount, plural, offset:1
+        =0: {Hello, nobody!},
+        =1: {Hello, {name}!},
+        other {Hello, everyone!}}`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span> bundlePath<span class="token punctuation">,</span> messages <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> loadCldrData <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/cldr'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> i18n<span class="token punctuation">,</span> <span class="token punctuation">{</span> getMessageFormatter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> greetings <span class="token keyword">from</span> <span class="token string">'./nls/greetings'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// First, ensure the appropriate CLDR data have been loaded</span>
+<span class="token function">loadCldrData</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token string">'./nls/cldr/supplemental/likelySubtags.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'./nls/cldr/supplemental/plurals.json'</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Next, register the bundle with `@dojo/i18n`</span>
+    <span class="token keyword">return</span> <span class="token function">i18n</span><span class="token punctuation">(</span>greetings<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> formatter <span class="token operator">=</span> <span class="token function">getMessageFormatter</span><span class="token punctuation">(</span>greetings<span class="token punctuation">,</span> <span class="token string">'hello'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// "Hello, nobody!"</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">formatter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> personCount<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// "Hello, Bill Evans!"</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">formatter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> <span class="token string">'Bill Evans'</span><span class="token punctuation">,</span>
+        personCount<span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// "Hello, everyone!"</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">formatter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> personCount<span class="token punctuation">:</span> <span class="token number">Infinity</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Date-number-and-unit-formatting-and-parsing"><a href="#Date-number-and-unit-formatting-and-parsing" class="headerlink" title="Date, number, and unit formatting and parsing"></a>Date, number, and unit formatting and parsing</h2><p>Dojo 2 provides several helpers to facilitate formatting and parsing dates, numbers, and units for the user’s locale. As mentioned earlier, Dojo 2 relies on <a href="https://github.com/globalizejs/globalize" target="_blank" rel="external">Globalize.js</a> wherever possible. Since the templates for formatting and parsing data are supplied by the CLDR, each formatter and parser requires that specific CLDR data have been loaded. The exact requirements are detailed in the <a href="https://github.com/dojo/i18n#loading-cldr-data" target="_blank" rel="external"><code>@dojo/i18n</code> README</a>.</p>
+<p>The available formatting and parsing methods fall into two categories: those methods that accept a value and immediately return the formatted or parsed value based on the provided options, and those that return a method that can be reused to format different values based on the same options. With few exceptions noted below, each method has the same signature: a value to format or parse, an optional configuration object, and optional locale. If no locale is provided, then the root locale is assumed.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// In-place formatters:</span>
+format<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> U<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> T<span class="token punctuation">,</span> options<span class="token operator">?</span><span class="token punctuation">:</span> U<span class="token punctuation">,</span> locale<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> V<span class="token punctuation">;</span>
+format<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> T<span class="token punctuation">,</span> locale<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> V<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Formatter factories:</span>
+getFormatter<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> U<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token punctuation">(</span>options<span class="token operator">?</span><span class="token punctuation">:</span> U<span class="token punctuation">,</span> locale<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> T<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> V<span class="token punctuation">;</span>
+getFormatter<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> V<span class="token operator">></span><span class="token punctuation">(</span>locale<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> T<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> V<span class="token punctuation">;</span>
+</code></pre>
+<h3 id="Date-and-time-formatting"><a href="#Date-and-time-formatting" class="headerlink" title="Date and time formatting"></a>Date and time formatting</h3><p>The <code>@dojo/i18n/date</code> module provides several functions for formatting and parsing dates and times. Each method corresponds directly to a <code>Globalize.js</code> method, and uses the same options available to the Globalize.js methods.</p>
+<ul>
+<li><code>formatDate</code>: converts a <code>Date</code> object to a formatted string, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-formatter.md" target="_blank" rel="external"><code>Globalize.formatDate</code></a>.</li>
+<li><code>formatRelativeTime</code>: returns a formatted string representing a relative time value, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/relative-time/relative-time-formatter.md" target="_blank" rel="external"><code>Globalize.formatRelativeTime</code></a>.</li>
+<li><code>getDateFormatter</code>: returns a function that converts a <code>Date</code> object to a formatted string, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-formatter.md" target="_blank" rel="external"><code>Globalize.dateFormatter</code></a>.</li>
+<li><code>getDateParser</code>: returns a function that parses a string into a <code>Date</code> object, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-parser.md" target="_blank" rel="external"><code>Globalize.dateParser</code></a>.</li>
+<li><code>getRelativeTimeFormatter</code>: returns a function that formats a relative time, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/relative-time/relative-time-formatter.md" target="_blank" rel="external"><code>Globalize.relativeTimeFormatter</code></a>.</li>
+<li><code>parseDate</code>: parses a date string into a <code>Date</code> object, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/date/date-parser.md" target="_blank" rel="external"><code>Globalize.parseDate</code></a>.</li>
+</ul>
+<p>Dates are formatted and parsed according to locale-specific patterns described by the CLDR, but a variety of options are provided to control which formatting template is applied. For example, dates can be formatted solely as numerical representations, or with expanded day and month names:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> formatDate<span class="token punctuation">,</span> formatRelativeTime <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/date'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2017</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// April 1, 2017</span>
+
+<span class="token comment" spellcheck="true">// Format just the date portion</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> date<span class="token punctuation">:</span> <span class="token string">'short'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 4/1/2017</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> date<span class="token punctuation">:</span> <span class="token string">'medium'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Apr 1, 2017</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> date<span class="token punctuation">:</span> <span class="token string">'long'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// April 1, 2017</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> date<span class="token punctuation">:</span> <span class="token string">'full'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Saturday, April 1, 2017</span>
+
+<span class="token comment" spellcheck="true">// Format just the time portion</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> time<span class="token punctuation">:</span> <span class="token string">'short'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '3:56 AM'</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> time<span class="token punctuation">:</span> <span class="token string">'medium'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '3:56:42 AM'</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> time<span class="token punctuation">:</span> <span class="token string">'long'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '3:56:42 AM GMT-5'</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> time<span class="token punctuation">:</span> <span class="token string">'full'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '3:56:42 AM GMT-05:00'</span>
+
+<span class="token comment" spellcheck="true">// Format both the date and time portions</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> datetime<span class="token punctuation">:</span> <span class="token string">'full'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'Saturday, April 1, 2017 at 3:56:42 AM GMT-05:00'</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> datetime<span class="token punctuation">:</span> <span class="token string">'long'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'April 1, 2017 at 3:56:42 AM GMT-5'</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> datetime<span class="token punctuation">:</span> <span class="token string">'medium'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'Apr 1, 2017, 3:56:42 AM'</span>
+<span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token punctuation">{</span> datetime<span class="token punctuation">:</span> <span class="token string">'short'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '4/1/17, 3:56 AM'</span>
+
+<span class="token comment" spellcheck="true">// Format as relative time</span>
+<span class="token function">formatRelativeTime</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'day'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'yesterday'</span>
+<span class="token function">formatRelativeTime</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'week'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'last week'</span>
+<span class="token function">formatRelativeTime</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'week'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'short'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'last wk.'</span>
+</code></pre>
+<p>Sometimes it is desirable to format multiple dates using the same options. Instead of using in-place formatters, a factory can be used, saving both energy and computational time. For example, suppose a data grid displays a list of purchases, each with their date and time. Rather than generating the correct format with each entry, the formatter can be created just once and then used as many times as needed:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> getDateFormatter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/date'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> formatPurchaseDate <span class="token operator">=</span> <span class="token function">getDateFormatter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> datetime<span class="token punctuation">:</span> <span class="token string">'medium'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'en'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">PurchaseGrid</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token function">renderPurchaseDate</span><span class="token punctuation">(</span>date<span class="token punctuation">:</span> Date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">formatPurchaseDate</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Finally, often a date will be represented as a formatted string, but is needed as a date object. For such occasions, <code>parseDate</code> and <code>getDateParser</code> can be used to read locale-specific date strings:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// Assuming all appropriate CLDR data have been loaded for French date formatting...</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> switchLocale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> parseDate <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/date'</span><span class="token punctuation">;</span>
+
+<span class="token function">switchLocale</span><span class="token punctuation">(</span><span class="token string">'fr'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">parseDate</span><span class="token punctuation">(</span><span class="token string">'samedi, 1 avril 2017'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> date<span class="token punctuation">:</span> <span class="token string">'full'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Date(2017, 3, 1)</span>
+</code></pre>
+<h3 id="Number-and-currency-formatting"><a href="#Number-and-currency-formatting" class="headerlink" title="Number and currency formatting"></a>Number and currency formatting</h3><p>Number and currency formatters and parsers are provided by the <code>@dojo/i18n/number</code> module. As with the date and time methods, each method corresponds directly to a <code>Globalize.js</code> method, and uses the same options available to those Globalize.js methods.</p>
+<ul>
+<li><code>formatCurrency</code>: formats a number as a currency, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md" target="_blank" rel="external"><code>Globalize.formatCurrency</code></a>.</li>
+<li><code>formatNumber</code>: formats a number according to the specified options, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-formatter.md" target="_blank" rel="external"><code>Globalize.formatNumber</code></a>.</li>
+<li><code>getCurrencyFormatter</code>: returns a function that formats a number as a currency, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md" target="_blank" rel="external"><code>Globalize.currencyFormatter</code></a>.</li>
+<li><code>getNumberFormatter</code>: returns a function that formats a number according to specified options, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-formatter.md" target="_blank" rel="external"><code>Globalize.numberFormatter</code></a>.</li>
+<li><code>getNumberParser</code>: returns a function that parses a number from a locale string, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-parser.md" target="_blank" rel="external"><code>Globalize.numberParser</code></a>.</li>
+<li><code>getPluralGenerator</code>: returns a function that returns the plural group for a specified number: “zero”, “one”, “two”, “few”, “many”, or “other”, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/plural/plural-generator.md" target="_blank" rel="external"><code>Globalize.pluralGenerator</code></a>.</li>
+<li><code>parseNumber</code>: parses a number from a locale string, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/number/number-parser.md" target="_blank" rel="external"><code>Globalize.parseNumber</code></a>.</li>
+<li><code>pluralize</code>: returns the plural group for a specified number: “zero”, “one”, “two”, “few”, “many”, or “other”, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/plural/plural-generator.md" target="_blank" rel="external"><code>Globalize.plural</code></a>.</li>
+</ul>
+<p>Numbers can be formatted as currencies, percentages, or plain decimal strings, can be normalized to a specific number of significant digits, and can be rendered with or without group separators:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// Assuming all relevant CLDR data have been loaded, and that the root locale is English.</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> formatNumber<span class="token punctuation">,</span> parseNumber <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/number'</span><span class="token punctuation">;</span>
+
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">1234567.89</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1,234,567.89'</span>
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">1234567.89</span><span class="token punctuation">,</span> <span class="token string">'hi-IN'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '12,34,567.89'</span>
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">1234567.89</span><span class="token punctuation">,</span> <span class="token string">'de'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1.234.567,89'</span>
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">1234567.89</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> useGrouping<span class="token punctuation">:</span> <span class="token keyword">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1234567.89'</span>
+
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">12.34</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> style<span class="token punctuation">:</span> <span class="token string">'percent'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '12.34%'</span>
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">0.56</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> style<span class="token punctuation">:</span> <span class="token string">'percent'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'tr-TR'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '%56'</span>
+
+<span class="token comment" spellcheck="true">// "12.3"</span>
+<span class="token function">formatNumber</span><span class="token punctuation">(</span><span class="token number">12.33</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    maximumFractionDigits<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    round<span class="token punctuation">:</span> <span class="token string">'floor'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">parseNumber</span><span class="token punctuation">(</span><span class="token string">'25 %'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> style<span class="token punctuation">:</span> <span class="token string">'percent'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0.25</span>
+</code></pre>
+<p>Finally, every language has its own rules for how words are pluralized. Some languages, such as Makonde, Igbo, and Lakota, have exactly one format regardless of count, while others have several. For example, English has exactly two formats (“1 thing”, “all the things”), while Irish Gaelic uses different forms depending on whether one item, two items, three to six items, seven to ten items, or either zero or greater than ten items are being discussed. To allow the correct form to be determined programmatically, the Unicode CLDR Project has created six different categories to describe how languages handle pluralization: “zero”, “one”, “two”, “few”, “many”, and “other”. Dojo 2 provides the <code>pluralize</code> method and its corresponding factory method, <code>getPluralGenerator</code>, to determine which category a particular number belongs to for a given locale:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// Assuming all relevant CLDR data have been loaded, and that the root locale is English.</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> switchLocale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> pluralize <span class="token punctuation">}</span> form <span class="token string">'@dojo/i18n/pluralize'</span><span class="token punctuation">;</span>
+
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// one</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+
+<span class="token comment" spellcheck="true">// Change the locale to Irish</span>
+<span class="token function">switchLocale</span><span class="token punctuation">(</span><span class="token string">'ga'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// one</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// two</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// few</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// many</span>
+<span class="token function">pluralize</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// other</span>
+</code></pre>
+<h3 id="Unit-formatting"><a href="#Unit-formatting" class="headerlink" title="Unit formatting"></a>Unit formatting</h3><p><code>@dojo/i18n/unit</code> exposes two methods that provide locale-specific unit formatting:</p>
+<ul>
+<li><code>formatUnit</code>: formats a number for a specific unit, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/unit/unit-formatter.md" target="_blank" rel="external"><code>Globalize.formatUnit</code></a>.</li>
+<li><code>getUnitFormatter</code>: creates a factory that formats a number for a specific unit, and delegates to <a href="https://github.com/globalizejs/globalize/blob/master/doc/api/unit/unit-formatter.md" target="_blank" rel="external"><code>Globalize.unitFormatter</code></a>.</li>
+</ul>
+<p>The list of possible units can be found in the <a href="https://github.com/unicode-cldr/cldr-units-full/blob/master/main/en/units.json" target="_blank" rel="external">CLDR</a>.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// Assuming all relevant CLDR data have been loaded</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> formatUnit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/unit'</span><span class="token punctuation">;</span>
+
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'speed-mile-per-hour'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1 mile per hour'</span>
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">65</span><span class="token punctuation">,</span> <span class="token string">'speed-mile-per-hour'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '65 miles per hour'</span>
+
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'foot'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'long'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1 foot'</span>
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">5280</span><span class="token punctuation">,</span> <span class="token string">'foot'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'long'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '5,280 feet'</span>
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'foot'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'short'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1 ft'</span>
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">5280</span><span class="token punctuation">,</span> <span class="token string">'foot'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'short'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '5,280 ft'</span>
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'foot'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'narrow'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '1′'</span>
+<span class="token function">formatUnit</span><span class="token punctuation">(</span><span class="token number">5280</span><span class="token punctuation">,</span> <span class="token string">'foot'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> form<span class="token punctuation">:</span> <span class="token string">'narrow'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '5,280′'</span>
+</code></pre>
+<h2 id="Internationalization-with-dojo-widget-core"><a href="#Internationalization-with-dojo-widget-core" class="headerlink" title="Internationalization with @dojo/widget-core"></a>Internationalization with <code>@dojo/widget-core</code></h2><p>While <code>@dojo/i18n</code> is designed to be an independent package, nearly every Dojo 2 application will have a view component. So <a href="https://github.com/widget-core/" target="_blank" rel="external"><code>@dojo/widget-core</code></a> provides a custom mixin (<code>@dojo/widget-core/mixins/I18n</code>) to make working with <code>@dojo/i18n</code> more friendly. Widgets that have incorporated this mixin can localize message bundles by passing them to the <code>localizeBundle</code> method during rendering. If messages for the widget’s locale have not been loaded yet, then the default messages are returned, and the widget is invalidated once the locale-specific messages have loaded. The object returned by the <code>localizeBundle</code> method contains all the messages, as well as a format method that takes a message key as well as any options. If message formatting is not required, then messages can be directly accessed (e.g., <code>messages.hello</code>).</p>
+<p>In addition to the <code>localizeBundle</code> method, <code>@dojo/widget-core/mixins/I18n</code> introduces two properties: a boolean <code>rtl</code> property and a string <code>locale</code> property. The boolean <code>rtl</code> property determines whether the text decoration is right-to-left (<code>true</code>) or left-to-right(<code>false</code>: the default). The <code>locale</code> property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no <code>locale</code> property is included, widgets assume the root application locale (<code>i18n.locale</code>). Note, however, that since <a href="./003_creating_widgets/">Dojo 2 widgets are controlled</a>, child widgets do not automatically inherit the locale from their parent. Parents must pass the correct locale as needed to child widgets; otherwise, a child widget will use the application locale while its parent uses a custom locale.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> I18nMixin<span class="token punctuation">,</span> <span class="token punctuation">{</span> I18nProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/I18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> greetings <span class="token keyword">from</span> <span class="token string">'./nls/greetings'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">GreetingProperties</span> <span class="token keyword">extends</span> <span class="token class-name">I18nProperties</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> GreetingBase <span class="token operator">=</span> <span class="token function">I18nMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Greeting</span> <span class="token keyword">extends</span> <span class="token class-name">GreetingBase</span><span class="token operator">&lt;</span>GreetingProperties<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">localizeBundle</span><span class="token punctuation">(</span>greetings<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> name <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+        <span class="token keyword">const</span> hello <span class="token operator">=</span> messages<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> name <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> hello <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="The-build-process"><a href="#The-build-process" class="headerlink" title="The build process"></a>The build process</h2><p>Dojo 2 uses <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a> to bundle applications. Since Dojo 2’s packages are designed to function independently, a few extra steps are required to ensure that CLDR data and locale-specific message translations are included in the build. <a href="./006_deploying_to_production/">Dojo 2’s build</a> is configured via a <code>.dojorc</code> at the project’s root directory. <code>.dojorc</code> is a JSON file containing settings defined under specific namespaces. All build options are specified under the <code>build-webpack</code> namespace, and the following are specific to internationalization:</p>
+<ul>
+<li><code>locale</code>: the default locale for the application</li>
+<li><code>supportedLocales</code>: an optional array of additional locales to include in the build</li>
+<li><code>messageBundles</code>: an optional array of any message bundles to include in the build</li>
+</ul>
+<p>Currently, the build does not ensure the <code>locale</code> specified in the <code>.dojorc</code> is set as the application’s root locale; it is only used for bundling CLDR data and locale-specific message translations. This will change in a future release, but in the meantime, the initial locale must be set manually in the application with <code>@dojo/i18n/i18n.switchLocale</code>. Further, CLDR data are currently parsed from calls to <code>@dojo/i18n/cldr/load</code>, but this too will change in a future release to instead inject CLDR data from a <code>.dojorc</code> setting.</p>
+<p>To demonstrate the steps required to set the root locale and bundle all CLDR data and supported message bundles, suppose for our application that the default locale is English, but Spanish and French are also supported. Further, suppose that the application utilizes a single message bundle, located at <code>src/nls/main.ts</code>.</p>
+<pre><code>// .dojorc
+{
+    &quot;build-webpack&quot;: {
+        &quot;locale&quot;: &quot;en&quot;,
+        &quot;supportedLocales&quot;: [ &quot;es&quot;, &quot;fr&quot; ],
+        &quot;messageBundles&quot;: [ &quot;src/nls/main&quot; ]
+    }
+}
+</code></pre><p>With this configuration, the translations located at <code>src/nls/main.ts</code>, <code>src/nls/es/main.ts</code>, and <code>src/nls/fr/main.ts</code> will be included in the build. As mentioned above, applying the default locale is still a manual process:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> loadCldrData <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/cldr/load'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> i18n<span class="token punctuation">,</span> <span class="token punctuation">{</span> switchLocale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Eventually this will be handled automatically, but for now this is required</span>
+<span class="token keyword">const</span> defaultLocale <span class="token operator">=</span> <span class="token string">'en'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> supportedLocales <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token string">'en'</span><span class="token punctuation">,</span> <span class="token string">'fr'</span><span class="token punctuation">,</span> <span class="token string">'es'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> rootLocale <span class="token operator">=</span> i18n<span class="token punctuation">.</span>locale<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> isLocaleSupported <span class="token operator">=</span> supportedLocales<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span>locale <span class="token operator">=</span><span class="token operator">></span> locale <span class="token operator">===</span> rootLocale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// If the locale of the user's environment is not one of the supported locales,</span>
+<span class="token comment" spellcheck="true">// then switch to the default locale.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isLocaleSupported<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">switchLocale</span><span class="token punctuation">(</span>defaultLocale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// The build will parse these URLs, load the data for each supported locale,</span>
+<span class="token comment" spellcheck="true">// include the data in the build, and ensure they are registered via</span>
+<span class="token comment" spellcheck="true">// `@dojo/i18n/cldr/load`.</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">loadCldrData</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token string">'./cldr/main/{locale}/numbers.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'./cldr/main/{locale}/currencies.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'./cldr/supplemental/likelySubtags.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'./cldr/supplemental/plurals.json'</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Internationalizing an application is not a simple task, and requires knowledge that not every developer has. While application developers must take the first step, Dojo 2 removes many of the barriers to creating a properly internationalized application, and therefore the uncertainty that an application may fail some of its users.</p>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+				</div>
+				<footer class="footer">
+  <div class="container">
+    <div class="info">
+      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+			</div>
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>

@@ -1,11 +1,110 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Responding to events | Dojo</title><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende"><meta property="og:type" content="website"><meta property="og:title" content="Responding to events"><meta property="og:url" content="https://dojo.github.io/tutorials/004_user_interactions/index.html"><meta property="og:site_name" content="Dojo"><meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende"><meta property="og:updated_time" content="2017-10-26T20:24:23.883Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Responding to events"><meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende"><meta name="twitter:creator" content="@https://twitter.com/dojo"><link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml"><link rel="icon" href="/images/favicons/favicon.ico"><link rel="stylesheet" href="/css/main.css"><script type="text/javascript">!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(o,s)}(window,document,"script",0,"ga"),ga("create","UA-3242977-15","auto"),ga("send","pageview")</script><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body class="body-tutorial"><header class="container site-header"><div class="content-container"><div class="row"><nav class="site-nav"><a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a><a class="main-nav-link" href="/tutorials">Tutorials</a> <a class="main-nav-link" href="/api">API</a> <a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a> <a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a></nav></div></div></header><div class="page-content"><section class="content-container" id="main"><div class="tutorial-content"><div class="scrollable"><section class="tutorial hidden hiding"><h1 id="Responding-to-events"><a href="#Responding-to-events" class="headerlink" title="Responding to events"></a>Responding to events</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.</p><p>We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, “Biz-E Corp”. In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.</p><h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/004_user_interactions-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p><p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p><p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p></section><section class="tutorial hidden hiding"><h2 id="Event-listeners"><a href="#Event-listeners" class="headerlink" title="Event listeners"></a>Event listeners</h2><div class="task">Create an event listener.</div><p>In <a href="../003_creating_widgets/">Creating widgets</a>, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.</p><p>The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, <code>v</code>. Look at the <code>Worker</code> widget that is in <code>src/widgets</code>. Currently, the top level <code>DNode</code> has one property assigned: <code>classes</code>.</p><div class="instruction">Update the object containing that property as follows.</div><pre class="language-ts"><code class="language-ts"><span class="token punctuation">{</span>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Responding to events | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Responding to events">
+<meta property="og:url" content="https://dojo.github.io/tutorials/004_user_interactions/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-26T21:58:23.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Responding to events">
+<meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="body-tutorial
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/api">API</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="section">
+	<div class="container article">	
+		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
+			<ul>
+				<li><a href="/tutorials">Tutorials</a></li>
+				<li><a href="#">Responding to events</a></li>
+				<li class="is-active"><a class="step-current"></a></li>
+			</ul>
+		</nav>
+		<section class="tutorial hidden hiding">
+<h1 id="Responding-to-events"><a href="#Responding-to-events" class="headerlink" title="Responding to events"></a>Responding to events</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.</p>
+<p>We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, “Biz-E Corp”. In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/004_user_interactions-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="Event-listeners"><a href="#Event-listeners" class="headerlink" title="Event listeners"></a>Event listeners</h2><div class="task">Create an event listener.</div>
+<p>In <a href="../003_creating_widgets/">Creating widgets</a>, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when the widget is clicked.</p>
+<p>The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, <code>v</code>. Look at the <code>Worker</code> widget that is in <code>src/widgets</code>. Currently, the top level <code>DNode</code> has one property assigned: <code>classes</code>.</p>
+<div class="instruction">Update the object containing that property as follows.</div>
+<pre class=" language-ts"><code class="language-ts"><span class="token punctuation">{</span>
     classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
     onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
 <span class="token punctuation">}</span>
-</code></pre><p>The <code>onclick</code> property registers a function that will be called when the node that it is attached to is clicked. In this case, the registered function is a method called <code>flip</code>.</p><div class="instruction">Add a basic implementation for that method.</div><pre class="language-ts"><code class="language-ts"><span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>The <code>onclick</code> property registers a function that will be called when the node that it is attached to is clicked. In this case, the registered function is a method called <code>flip</code>.</p>
+<div class="instruction">Add a basic implementation for that method.</div>
+<pre class=" language-ts"><code class="language-ts"><span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the flip method has been fired!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Now, run the app (using <code>dojo build --watch</code> or <code>dojo build -w</code>) and navigate to <a href="http://localhost:9999" target="_blank" rel="external">localhost:9999</a>. Once there,</p><div class="instruction">Open the console window and click on any of the worker widgets to confirm that the <code>flip</code> method is being called as expected.</div><p>For short event handlers you might be tempted to use an anonymous function like this:</p><pre class="language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>Now, run the app (using <code>dojo build --watch</code> or <code>dojo build -w</code>) and navigate to <a href="http://localhost:9999" target="_blank" rel="external">localhost:9999</a>. Once there,</p>
+<div class="instruction">Open the console window and click on any of the worker widgets to confirm that the <code>flip</code> method is being called as expected.</div>
+<p>For short event handlers you might be tempted to use an anonymous function like this:</p>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
     classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
     onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// Note: DO NOT DO THIS, this is an</span>
@@ -13,7 +112,10 @@
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the handler has been called'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token operator">...</span>
-</code></pre><p>While this appears to work, Maquette doesn’t allow an event handler to be updated. To see what happens, let’s have the <code>onclick</code> handler invalidate the widget, forcing Maquette to re-render it.</p><div class="instruction">Update the <code>render</code> method.</div><pre class="language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>While this appears to work, Maquette doesn’t allow an event handler to be updated. To see what happens, let’s have the <code>onclick</code> handler invalidate the widget, forcing Maquette to re-render it.</p>
+<div class="instruction">Update the <code>render</code> method.</div>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
     classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
     onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// Note: DO NOT DO THIS, this is an</span>
@@ -22,11 +124,20 @@
         <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token operator">...</span>
-</code></pre><p>Open up your browser’s development tools and display the console tab then click on a widget. Notice that an error is written to the console: <code>Error: Functions may not be updated on subsequent renders</code>. To avoid an error, all event handlers must be defined once, normally via a method.</p><div class="instruction">Restore the <code>onclick</code> property to its previous value.</div><pre class="language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>Open up your browser’s development tools and display the console tab then click on a widget. Notice that an error is written to the console: <code>Error: Functions may not be updated on subsequent renders</code>. To avoid an error, all event handlers must be defined once, normally via a method.</p>
+<div class="instruction">Restore the <code>onclick</code> property to its previous value.</div>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
     classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
     onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
 <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token operator">...</span>
-</code></pre></section><section class="tutorial hidden hiding"><h2 id="Using-event-handlers"><a href="#Using-event-handlers" class="headerlink" title="Using event handlers"></a>Using event handlers</h2><div class="task">Add a second visual state.</div><p>Now that we have an event handler, it is time to extend the <code>render</code> method to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.</p><p>We could add the additional rendering logic in the current <code>render</code> method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the <code>render</code> method.</p><div class="instruction">Create a new private method called <code>_renderFront</code> and move the existing render code inside it.</div><pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_renderFront</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre>
+</section><section class="tutorial hidden hiding">
+<h2 id="Using-event-handlers"><a href="#Using-event-handlers" class="headerlink" title="Using event handlers"></a>Using event handlers</h2><div class="task">Add a second visual state.</div>
+<p>Now that we have an event handler, it is time to extend the <code>render</code> method to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.</p>
+<p>We could add the additional rendering logic in the current <code>render</code> method, but that method could become difficult to maintain as it would have to contain all of the rendering code for both the front and back of the card. Instead, we will generate the two views using two private methods and then call them from the <code>render</code> method.</p>
+<div class="instruction">Create a new private method called <code>_renderFront</code> and move the existing render code inside it.</div>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_renderFront</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">const</span> <span class="token punctuation">{</span>
 			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
 			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
@@ -45,7 +156,9 @@
 			<span class="token punctuation">]</span>
 		<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-</code></pre><div class="instruction">Create another private method called <code>_renderBack</code> to render the back view.</div><pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_renderBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre>
+<div class="instruction">Create another private method called <code>_renderBack</code> to render the back view.</div>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_renderBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">const</span> <span class="token punctuation">{</span>
 			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
 			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span><span class="token punctuation">,</span>
@@ -87,14 +200,21 @@
 			<span class="token punctuation">]</span>
 		<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-</code></pre><p>This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.</p><p>Three new properties need to be added to the <code>WorkerProperties</code> interface. These properties are the email address of the worker, the average number of hours they take to complete a task, and the active tasks for the worker.</p><div class="instruction">Update the <code>WorkerProperties</code> interface.</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerProperties</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.</p>
+<p>Three new properties need to be added to the <code>WorkerProperties</code> interface. These properties are the email address of the worker, the average number of hours they take to complete a task, and the active tasks for the worker.</p>
+<div class="instruction">Update the <code>WorkerProperties</code> interface.</div>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerProperties</span> <span class="token punctuation">{</span>
 	firstName<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
 	lastName<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
 	email<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
 	timePerTask<span class="token operator">?</span><span class="token punctuation">:</span> number<span class="token punctuation">;</span>
 	tasks<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Now, we need to add the CSS selectors that will provide the rules for rendering this view’s elements.</p><div class="instruction">Open up the <code>worker.css</code> file and update it as follows.</div><pre class="language-css"><code class="language-css"><span class="token selector">.generalInfo</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>Now, we need to add the CSS selectors that will provide the rules for rendering this view’s elements.</p>
+<div class="instruction">Open up the <code>worker.css</code> file and update it as follows.</div>
+<pre class="language-css"><code class="language-css"><span class="token selector">.generalInfo</span> <span class="token punctuation">{</span>
 	<span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
 	<span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
 	<span class="token property">margin-bottom</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
@@ -174,8 +294,15 @@
 <span class="token selector">.reverse .workerBack</span> <span class="token punctuation">{</span>
 	<span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotateY</span><span class="token punctuation">(</span>0deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>We also need to update the CSS selector for the front view by changing the selector from <code>css.worker</code> to <code>css.workerFront</code>.</p><p>Finally, we need to update the <code>render</code> method to choose between the two rendering methods.</p><div class="instruction">Add a private field to the class.</div><pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> _isFlipped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-</code></pre><p>In general, the use of private state should be minimized. Dojo 2 encourages the use of a form of the <a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="external">inversion of control</a> pattern, where the behavior of an individual component is controlled by the properties passed to it from its parent. This helps make components more modular and reusable, since the parent component is in complete control of the child component’s behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget’s published state, and private fields are used to allow widgets to encapsulate state information that should not be exposed publicly.</p><div class="instruction">Use that field's value to determine which side to show.</div><pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>We also need to update the CSS selector for the front view by changing the selector from <code>css.worker</code> to <code>css.workerFront</code>.</p>
+<p>Finally, we need to update the <code>render</code> method to choose between the two rendering methods.</p>
+<div class="instruction">Add a private field to the class.</div>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> _isFlipped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In general, the use of private state should be minimized. Dojo 2 encourages the use of a form of the <a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="external">inversion of control</a> pattern, where the behavior of an individual component is controlled by the properties passed to it from its parent. This helps make components more modular and reusable, since the parent component is in complete control of the child component’s behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget’s published state, and private fields are used to allow widgets to encapsulate state information that should not be exposed publicly.</p>
+<div class="instruction">Use that field's value to determine which side to show.</div>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
 		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
@@ -183,11 +310,20 @@
 			<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_renderBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-</code></pre><p>Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the <code>_isFlipped</code> field to <code>true</code> and, after the application recompiles, all three widgets should be showing their back faces.</p><p>In order to re-render our widget, we need to update the <code>flip</code> method to toggle the <code>_isFlipped</code> field and invalidate the widget</p><div class="instruction">Replace the <code>flip</code> method with this one.</div><pre class="language-javascript"><code class="language-javascript">	<span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the <code>_isFlipped</code> field to <code>true</code> and, after the application recompiles, all three widgets should be showing their back faces.</p>
+<p>In order to re-render our widget, we need to update the <code>flip</code> method to toggle the <code>_isFlipped</code> field and invalidate the widget</p>
+<div class="instruction">Replace the <code>flip</code> method with this one.</div>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped<span class="token punctuation">;</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-</code></pre><p>Now, the widget can be flipped between its front and back sides by clicking on it.</p></section><section class="tutorial hidden hiding"><h2 id="Final-steps"><a href="#Final-steps" class="headerlink" title="Final steps"></a>Final steps</h2><div class="task">Provide additional properties.</div><p>Currently, several of the properties are missing for the widgets. As an exercise, try to update the first widget to contain the following properties:</p><pre class="language-ts"><code class="language-ts">firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span>
+</code></pre>
+<p>Now, the widget can be flipped between its front and back sides by clicking on it.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="Final-steps"><a href="#Final-steps" class="headerlink" title="Final steps"></a>Final steps</h2><div class="task">Provide additional properties.</div>
+<p>Currently, several of the properties are missing for the widgets. As an exercise, try to update the first widget to contain the following properties:</p>
+<pre class=" language-ts"><code class="language-ts">firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span>
 lastName<span class="token punctuation">:</span> <span class="token string">'Jones'</span><span class="token punctuation">,</span>
 email<span class="token punctuation">:</span> <span class="token string">'tim.jones@bizecorp.org'</span><span class="token punctuation">,</span>
 tasks<span class="token punctuation">:</span> <span class="token punctuation">[</span>
@@ -195,7 +331,9 @@ tasks<span class="token punctuation">:</span> <span class="token punctuation">[<
     <span class="token string">'4384 - Shred documents'</span><span class="token punctuation">,</span>
     <span class="token string">'9663 - Digitize 1985 archive'</span>
 <span class="token punctuation">]</span>
-</code></pre><p>When you are ready, click the button below to see our solution.</p><div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>The widget's parent is responsible <span class="token keyword">for</span> passing properties to the widget<span class="token punctuation">.</span>
+</code></pre>
+<p>When you are ready, click the button below to see our solution.</p>
+<div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>The widget's parent is responsible <span class="token keyword">for</span> passing properties to the widget<span class="token punctuation">.</span>
 In <span class="token keyword">this</span> application<span class="token punctuation">,</span> <span class="token template-string"><span class="token string">`Worker`</span></span> widgets are receiving data <span class="token keyword">from</span> the <span class="token template-string"><span class="token string">`App`</span></span> <span class="token keyword">class</span> <span class="token class-name">via</span> the <span class="token template-string"><span class="token string">`WorkerContainer`</span></span><span class="token punctuation">.</span>
 
 To pass the specified properties to the first worker<span class="token punctuation">,</span> the first element <span class="token keyword">in</span>
@@ -212,4 +350,50 @@ To pass the specified properties to the first worker<span class="token punctuati
 		<span class="token string">'9663 - Digitize 1985 archive'</span>
 	<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div></section><section class="tutorial hidden hiding"><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that once a widget has been rendered for the first time the values of its event handler properties cannot change. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.</p><p>If you would like, you can download the <a href="../assets/004_user_interactions-finished.zip">demo application</a>.</p><p>In <a href="../005_form_widgets/">Form widgets</a>, we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.</p></section></div><div id="actionBar" class="action-bar"></div><style>body,html{height:100%}</style><script src="/js/tutorial-support.js"></script><script>tutorial.populateActionBar(document.getElementById("actionBar"))</script></div></section></div><div><footer class="page-footer"><div class="content-container"><div class="footer-logo"><img src="/images/logos/dojo-logo-black.svg"></div><div class="info">&copy; JS Foundation, All Rights Reserved.</div></div></footer><script src="/js/combined.js"></script></div></body></html>
+</code></pre></section></div>
+</section><section class="tutorial hidden hiding">
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that once a widget has been rendered for the first time the values of its event handler properties cannot change. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.</p>
+<p>If you would like, you can download the <a href="../assets/004_user_interactions-finished.zip">demo application</a>.</p>
+<p>In <a href="../005_form_widgets/">Form widgets</a>, we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.</p>
+</section>
+
+		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
+	</div>
+</div>
+				</div>
+				<footer class="footer">
+  <div class="container">
+    <div class="info">
+      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+			</div>
+			
+				<div class="paginator">
+	<div class="container paginator-controls">
+		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
+				<a class="pagination-previous">Previous</a>
+				<a class="pagination-next">Next page</a>
+				<ul class="pagination-list">
+
+				</ul>
+		</nav>
+	</div>
+</div>
+
+
+<script src="/js/tutorial-support.js"></script>
+<script>
+	tutorial.populatePaginator(document.getElementById('paginator'), 'Responding to events');
+</script>
+
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>

@@ -1,1 +1,3 @@
-var dojoConfig={async:true};
+var dojoConfig = {
+	async: true
+};

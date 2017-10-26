@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: fundamentals | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Reactive programmingReactive programming is concerned with handling change - specifically, the propagation of change. As web applications have become more and more asynchronous, keeping track of appli">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reactive programming">
+<meta property="og:url" content="https://dojo.github.io/docs/fundamentals/reactive_programming/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Reactive programmingReactive programming is concerned with handling change - specifically, the propagation of change. As web applications have become more and more asynchronous, keeping track of appli">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.github.io/docs/fundamentals/reactive_programming/resources/imperative.png">
+<meta property="og:image" content="https://dojo.github.io/docs/fundamentals/reactive_programming/resources/dojo2-reactive.png">
+<meta property="og:updated_time" content="2017-10-26T21:58:23.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reactive programming">
+<meta name="twitter:description" content="Reactive programmingReactive programming is concerned with handling change - specifically, the propagation of change. As web applications have become more and more asynchronous, keeping track of appli">
+<meta name="twitter:image" content="https://dojo.github.io/docs/fundamentals/reactive_programming/resources/imperative.png">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/api">API</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-3">
+				<aside class="menu">
+	<p class="menu-label">
+		Fundamentals
+	</p>
+	<ul class="menu-list">
+		
+			<li><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
+		
+			<li><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
+		
+			<li><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
+		
+			<li><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
+		
+			<li><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
+		
+			<li><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
+		
+	</ul>
+</aside>
+			</div>
+			<div class="column is-9">
+				<h1 id="Reactive-programming"><a href="#Reactive-programming" class="headerlink" title="Reactive programming"></a>Reactive programming</h1><p>Reactive programming is concerned with handling change - specifically, the <em>propagation of change</em>. As web applications have become more and more asynchronous, keeping track of application state has become increasingly complex. With traditional programming patterns, we rely on event listeners or try to keep track of application state manually.</p>
+<p>Consider a banking application where the user’s account balance might appear in several different places on the screen. After the user makes a withdrawal, we want the account balance to update.</p>
+<h2 id="Imperative-approach"><a href="#Imperative-approach" class="headerlink" title="Imperative approach"></a>Imperative approach</h2><p>Traditionally, we might use an event emitter. Each time the balance is updated we emit an event, and any interested parties can listen for these events.</p>
+<p><img src="resources/imperative.png" alt="Banking"></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// assume some sort of application wide messageBus</span>
+
+<span class="token keyword">function</span> <span class="token function">makeWithdrawal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// make the withdrawal</span>
+    messageBus<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'account-balance-updated'</span><span class="token punctuation">,</span> newBalance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// at different points in the UI</span>
+messageBus<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'account-balance-updated'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>newBalance<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    accountDomElement<span class="token punctuation">.</span>innerText <span class="token operator">=</span> newBalance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>With an event emitter, any interested widget can listen for updates to the account balance.  This pattern has served well in the past, but there are a few problems with this approach:</p>
+<ul>
+<li>We need to remember to emit <code>account-balance-updated</code> every time the account balance is changed.</li>
+<li>We need to remember to listen for balance updates.</li>
+<li>We need to have a facility to <strong>remove</strong> the event listeners when they are no longer needed.</li>
+</ul>
+<h2 id="Reactive-approach"><a href="#Reactive-approach" class="headerlink" title="Reactive approach"></a>Reactive approach</h2><p>Dojo 2 is built around unidirectional, top-down property propagation where it is the parent widget’s job to pass properties down to its children. In fact, a child widget has no direct reference to a parent widget! When a property changes, widgets are re-rendered (using an efficient virtual DOM) to reflect the updated state.</p>
+<p>In our banking example, we simply provide the account balance as a property to the widget - and when the property changes, so does our user interface. The account balance is propagated down to the widgets that need it.</p>
+<p><img src="resources/dojo2-reactive.png" alt="Account Balance"></p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">AccountBalanceProperties</span> <span class="token punctuation">{</span>
+    balance<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">AccountBalance</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span><span class="token operator">&lt;</span>AccountBalanceProperties<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> balance <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> balance <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Our <code>AccountBalance</code> widget is only concerned with its <code>balance</code> property, which is provided by the parent widget.  Setting the balance property at the application level will cause the balance to be updated across the entire application.</p>
+<h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><p>Reactive programming patterns are being used in Dojo 2 to make widgets consistent and easy to author.  In fact, to further embrace reactive patterns - with beta 3, Dojo 2 will have a reactive application store. Want to learn more about reactive programming? There are a number of additional reactive patterns that can be used to manage your application state (like <a href="http://redux.js.org/" target="_blank" rel="external">Redux</a>, or <a href="http://reactivex.io/documentation/observable.html" target="_blank" rel="external">Observables</a>).</p>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+				</div>
+				<footer class="footer">
+  <div class="container">
+    <div class="info">
+      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+			</div>
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>
