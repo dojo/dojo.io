@@ -1,95 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Creating widgets | Dojo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Creating widgets">
-<meta property="og:url" content="https://dojo.github.io/tutorials/003_creating_widgets/index.html">
-<meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
-<meta property="og:updated_time" content="2017-10-26T21:58:23.745Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Creating widgets">
-<meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
-<meta name="twitter:image" content="https://dojo.github.io/tutorials/resources/worker.png">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
-  
-    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/images/favicons/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/main.css">
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-3242977-15', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
-
-	<body class="body-tutorial
-">
-		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/api">API</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
-			</div>
-		</nav>
-	</div>
-</header>
-
-			<div class="content-wrapper">
-				<div class="page-content">
-					<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#">Creating widgets</a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<section class="tutorial hidden hiding">
-<h1 id="Creating-widgets"><a href="#Creating-widgets" class="headerlink" title="Creating widgets"></a>Creating widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to create and style custom widgets in Dojo 2.</p>
-<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/003_creating_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Creating-the-application-widget"><a href="#Creating-the-application-widget" class="headerlink" title="Creating the application widget"></a>Creating the application widget</h2><div class="task">Create a new root node for the application.</div>
-<p>In <a href="../001_static_content/">Your first Dojo 2 application</a>, the first tutorial in this series, we created an application with a single widget, which we modified to show the title of our Biz-E-Bodies view. In this tutorial, we are going to expand our application to show the names and portraits of our Biz-E-Bodies, the workers in the fictional Biz-E-Corp. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate <code>Banner</code> in this tutorial. This can be found in <code>main.ts</code>:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Creating widgets | Dojo</title><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo"><meta property="og:type" content="website"><meta property="og:title" content="Creating widgets"><meta property="og:url" content="https://dojo.github.io/tutorials/003_creating_widgets/index.html"><meta property="og:site_name" content="Dojo"><meta property="og:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo"><meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png"><meta property="og:updated_time" content="2017-10-27T00:22:36.554Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Creating widgets"><meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo"><meta name="twitter:image" content="https://dojo.github.io/tutorials/resources/worker.png"><meta name="twitter:creator" content="@https://twitter.com/dojo"><link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml"><link rel="icon" href="/images/favicons/favicon.ico"><link rel="stylesheet" href="/css/main.css"><script type="text/javascript">!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(o,s)}(window,document,"script",0,"ga"),ga("create","UA-3242977-15","auto"),ga("send","pageview")</script><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body class="body-tutorial"><header class="container site-header"><div class="content-container"><div class="row"><nav class="site-nav"><a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a><a class="main-nav-link" href="/tutorials">Tutorials</a> <a class="main-nav-link" href="/api">API</a> <a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a> <a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a></nav></div></div></header><div class="page-content"><section class="content-container" id="main"><div class="tutorial-content"><div class="scrollable"><section class="tutorial hidden hiding"><h1 id="Creating-widgets"><a href="#Creating-widgets" class="headerlink" title="Creating widgets"></a>Creating widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to create and style custom widgets in Dojo 2.</p><h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/003_creating_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p><p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p><p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p></section><section class="tutorial hidden hiding"><h2 id="Creating-the-application-widget"><a href="#Creating-the-application-widget" class="headerlink" title="Creating the application widget"></a>Creating the application widget</h2><div class="task">Create a new root node for the application.</div><p>In <a href="../001_static_content/">Your first Dojo 2 application</a>, the first tutorial in this series, we created an application with a single widget, which we modified to show the title of our Biz-E-Bodies view. In this tutorial, we are going to expand our application to show the names and portraits of our Biz-E-Bodies, the workers in the fictional Biz-E-Corp. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate <code>Banner</code> in this tutorial. This can be found in <code>main.ts</code>:</p><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./widgets/Banner'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
@@ -98,68 +7,28 @@ ga('send', 'pageview');
 <span class="token keyword">const</span> projector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Projector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>This line: <code>const Projector = ProjectorMixin(Banner);</code> tells the application to use the <code>Banner</code> widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called <code>App</code> that represents the entire application that we are building. To start that process, go into the empty <code>App.ts</code> file located in the <code>src/widgets</code> directory. First, we need to add the required dependencies to create the <code>App</code> widget.</p>
-<div class="instruction">Add these lines at the top of the file.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+</code></pre><p>This line: <code>const Projector = ProjectorMixin(Banner);</code> tells the application to use the <code>Banner</code> widget as the source of the virtual DOM elements for rendering the application. To add a second widget, we are going to create a new widget called <code>App</code> that represents the entire application that we are building. To start that process, go into the empty <code>App.ts</code> file located in the <code>src/widgets</code> directory. First, we need to add the required dependencies to create the <code>App</code> widget.</p><div class="instruction">Add these lines at the top of the file.</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./Banner'</span><span class="token punctuation">;</span>
-</code></pre>
-<p>The <code>WidgetBase</code> class will be used as the base class for our <code>App</code> widget. <code>WidgetBase</code> (and its descendants) work with the <code>WidgetProperties</code> interface to define the publicly accessible properties of the widget. Finally, the <code>v</code> and <code>w</code> functions are used to render virtual DOM nodes (with the <code>v</code> function) or widgets (via <code>w</code>). Both virtual DOM nodes and widgets ultimately generate <code>DNode</code>s, the base type of all virtual DOM nodes in Dojo 2.</p>
-<p>Our next dependency to load is the Banner widget that we created in the first tutorial.</p>
-<div class="instruction">To import it, add the following statement to <code>App.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./WorkerContainer'</span><span class="token punctuation">;</span>
-</code></pre>
-<p>With all of the dependencies in place, let’s create the <code>App</code> widget itself.</p>
-<div class="instruction">Add the following class definition.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+</code></pre><p>The <code>WidgetBase</code> class will be used as the base class for our <code>App</code> widget. <code>WidgetBase</code> (and its descendants) work with the <code>WidgetProperties</code> interface to define the publicly accessible properties of the widget. Finally, the <code>v</code> and <code>w</code> functions are used to render virtual DOM nodes (with the <code>v</code> function) or widgets (via <code>w</code>). Both virtual DOM nodes and widgets ultimately generate <code>DNode</code>s, the base type of all virtual DOM nodes in Dojo 2.</p><p>Our next dependency to load is the Banner widget that we created in the first tutorial.</p><div class="instruction">To import it, add the following statement to <code>App.ts</code></div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./WorkerContainer'</span><span class="token punctuation">;</span>
+</code></pre><p>With all of the dependencies in place, let’s create the <code>App</code> widget itself.</p><div class="instruction">Add the following class definition.</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p>Notice that the <code>App</code> class is extending <code>WidgetBase</code>, a <a href="https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes" target="_blank" rel="external">generic class</a> that accepts the <code>WidgetProperties</code> interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the <code>export</code> and <code>default</code> keywords before the <code>class</code> keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.</p>
-<p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render()</code>, which means that our render method has to return a <code>DNode</code> (an abstraction for a <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="external">HyperScript</a> node) so that the application’s projector knows what to render. The normal way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p>
-<div class="instruction">To start, let's use a simple <code>render</code> method by adding this to the <code>App</code> class:</div>
-<pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre><p>Notice that the <code>App</code> class is extending <code>WidgetBase</code>, a <a href="https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes" target="_blank" rel="external">generic class</a> that accepts the <code>WidgetProperties</code> interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the <code>export</code> and <code>default</code> keywords before the <code>class</code> keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.</p><p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render()</code>, which means that our render method has to return a <code>DNode</code> (an abstraction for a <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="external">HyperScript</a> node) so that the application’s projector knows what to render. The normal way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p><div class="instruction">To start, let's use a simple <code>render</code> method by adding this to the <code>App</code> class:</div><pre class="language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-</code></pre>
-<p>This method will generate a <code>div</code> virtual node with no children. To render the <code>Banner</code> as a child of the div, we’ll use the <code>w</code> function that is designed to render widgets.</p>
-<div class="instruction">Update the <code>render</code> method to the following:</div>
-<pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre><p>This method will generate a <code>div</code> virtual node with no children. To render the <code>Banner</code> as a child of the div, we’ll use the <code>w</code> function that is designed to render widgets.</p><div class="instruction">Update the <code>render</code> method to the following:</div><pre class="language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
             <span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-</code></pre>
-<p>Notice that the <code>w</code> function takes two parameters - a widget class and an object literal. That literal must implement the interface that was passed to <code>WidgetBase</code> via TypeScript generics. In this case, the <code>Banner</code> class uses <code>WidgetProperties</code> which has the following definition:</p>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WidgetProperties</span> <span class="token punctuation">{</span>
+</code></pre><p>Notice that the <code>w</code> function takes two parameters - a widget class and an object literal. That literal must implement the interface that was passed to <code>WidgetBase</code> via TypeScript generics. In this case, the <code>Banner</code> class uses <code>WidgetProperties</code> which has the following definition:</p><pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WidgetProperties</span> <span class="token punctuation">{</span>
     key<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
     bind<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">any</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p>Both of these properties are optional, so we can pass an empty object for now. Next, we will replace the <code>Banner</code> class with the <code>App</code> as the root of our application.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Make-the-App-widget-the-root-of-the-application"><a href="#Make-the-App-widget-the-root-of-the-application" class="headerlink" title="Make the App widget the root of the application"></a>Make the App widget the root of the application</h2><div class="task">Replace the <code>Banner</code> class with the <code>App</code> widget.</div>
-<p>Our <code>App</code> class is now complete and ready to replace the <code>Banner</code> class as the root of the application. To do that, we will edit <code>main.ts</code>.</p>
-<div class="instruction">The first update will replace the <code>import</code> statement from the <code>Banner</code> class to the new <code>App</code> class:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
-</code></pre>
-<div class="instruction">The only other change we need to make is to pass the <code>App</code> class into the <code>ProjectorMixin</code> function call on line 6:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>With that change, the <code>App</code> widget is ready to serve as the root of our application. Let’s test everything by building and running the project.</p>
-<div class="instruction">If you are working locally, run the following command:</div>
-<pre class=" language-bash"><code class="language-bash">dojo build --watch
-</code></pre>
-<p>then open up a web browser and navigate to <a href="http://localhost:9999" target="_blank" rel="external"><code>http://localhost:9999</code></a>. You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner’s <code>&lt;h1&gt;</code> tag has been wrapped by the App’s <code>&lt;div&gt;</code>, so everything appears to be working.</p>
-<p>In the next section, we’ll create the <code>Worker</code> widget that will show the portrait and name of our Biz-E-Bodies.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Creating-the-Worker-widget"><a href="#Creating-the-Worker-widget" class="headerlink" title="Creating the Worker widget"></a>Creating the Worker widget</h2><div class="task">Create the <code>Worker</code> widget and use it to display some information about a worker.</div>
-<p>Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:</p>
-<p class="center"><img src="../resources/worker.png" alt="worker_widget"></p>
-
-<p>The first step is to create the worker widget. We will put the implementation in <code>Worker.ts</code>. As with the <code>App</code> widget that we created earlier, we need to add some initial dependencies and the class declaration to <code>Worker.ts</code>.</p>
-<div class="instruction">Add this code:</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+</code></pre><p>Both of these properties are optional, so we can pass an empty object for now. Next, we will replace the <code>Banner</code> class with the <code>App</code> as the root of our application.</p></section><section class="tutorial hidden hiding"><h2 id="Make-the-App-widget-the-root-of-the-application"><a href="#Make-the-App-widget-the-root-of-the-application" class="headerlink" title="Make the App widget the root of the application"></a>Make the App widget the root of the application</h2><div class="task">Replace the <code>Banner</code> class with the <code>App</code> widget.</div><p>Our <code>App</code> class is now complete and ready to replace the <code>Banner</code> class as the root of the application. To do that, we will edit <code>main.ts</code>.</p><div class="instruction">The first update will replace the <code>import</code> statement from the <code>Banner</code> class to the new <code>App</code> class:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
+</code></pre><div class="instruction">The only other change we need to make is to pass the <code>App</code> class into the <code>ProjectorMixin</code> function call on line 6:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>With that change, the <code>App</code> widget is ready to serve as the root of our application. Let’s test everything by building and running the project.</p><div class="instruction">If you are working locally, run the following command:</div><pre class="language-bash"><code class="language-bash">dojo build --watch
+</code></pre><p>then open up a web browser and navigate to <a href="http://localhost:9999" target="_blank" rel="external"><code>http://localhost:9999</code></a>. You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner’s <code>&lt;h1&gt;</code> tag has been wrapped by the App’s <code>&lt;div&gt;</code>, so everything appears to be working.</p><p>In the next section, we’ll create the <code>Worker</code> widget that will show the portrait and name of our Biz-E-Bodies.</p></section><section class="tutorial hidden hiding"><h2 id="Creating-the-Worker-widget"><a href="#Creating-the-Worker-widget" class="headerlink" title="Creating the Worker widget"></a>Creating the Worker widget</h2><div class="task">Create the <code>Worker</code> widget and use it to display some information about a worker.</div><p>Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:</p><p class="center"><img src="../resources/worker.png" alt="worker_widget"></p><p>The first step is to create the worker widget. We will put the implementation in <code>Worker.ts</code>. As with the <code>App</code> widget that we created earlier, we need to add some initial dependencies and the class declaration to <code>Worker.ts</code>.</p><div class="instruction">Add this code:</div><pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Worker</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
@@ -167,12 +36,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p>This is nearly identical to the <code>App</code> widget with one exception: we are not importing the <code>w</code> function as the <code>Worker</code> widget will not contain any child widgets.</p>
-<p>Our next step is to extend the <code>render()</code> method to customize the widget’s appearance. To accomplish this, we are going to need two children. One <code>&lt;img&gt;</code> tag to show the worker’s portrait and a <code>&lt;strong&gt;</code> tag to display the worker’s name.</p>
-<div class="instruction">Try and implement that using the URL <code>images/worker.svg</code> and <code>"lastName, firstName"</code> as the worker's name.</div>
-<p>If you need help, or want to check your solution, click the button below to see our solution.</p>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
+</code></pre><p>This is nearly identical to the <code>App</code> widget with one exception: we are not importing the <code>w</code> function as the <code>Worker</code> widget will not contain any child widgets.</p><p>Our next step is to extend the <code>render()</code> method to customize the widget’s appearance. To accomplish this, we are going to need two children. One <code>&lt;img&gt;</code> tag to show the worker’s portrait and a <code>&lt;strong&gt;</code> tag to display the worker’s name.</p><div class="instruction">Try and implement that using the URL <code>images/worker.svg</code> and <code>"lastName, firstName"</code> as the worker's name.</div><p>If you need help, or want to check your solution, click the button below to see our solution.</p><div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
 <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 			<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> src<span class="token punctuation">:</span> <span class="token string">'images/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -182,11 +46,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 		<span class="token punctuation">]</span>
 	<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
-<p>Before we continue to refine this widget, let’s review our progress by adding the <code>Worker</code> widget to the app.</p>
-<div class="task">Add a <code>Worker</code> widget to the <code>App</code>.</div>
-<div class="instruction">Within <code>App.ts</code>, import the <code>Worker</code> widget and then update the <code>App</code>'s render method to render it. The <code>Worker</code> will be another child of the <code>App</code>, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.</div>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution2">Toggle Solution</button><section id="showsolution2" class="hidden"><pre class="language-javascript"><code>
+</code></pre></section></div><p>Before we continue to refine this widget, let’s review our progress by adding the <code>Worker</code> widget to the app.</p><div class="task">Add a <code>Worker</code> widget to the <code>App</code>.</div><div class="instruction">Within <code>App.ts</code>, import the <code>Worker</code> widget and then update the <code>App</code>'s render method to render it. The <code>Worker</code> will be another child of the <code>App</code>, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.</div><div class="solution-container"><button class="toggle-solution" data-target="showsolution2">Toggle Solution</button><section id="showsolution2" class="hidden"><pre class="language-javascript"><code>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./Banner'</span><span class="token punctuation">;</span>
@@ -200,30 +60,16 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
-<div class="instruction">Run the application with <code>dojo build --watch</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="external"><code>http://localhost:9999</code></a>.</div>
-<p>We have succeeded in rendering the widget, but there seem to be some styling issues. We’ll come back to that in a bit. For now, let’s continue refining the <code>Worker</code> widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface to pass configuration information into the widget.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Making-a-configurable-widget"><a href="#Making-a-configurable-widget" class="headerlink" title="Making a configurable widget"></a>Making a configurable widget</h2><div class="task">Add properties to the <code>Worker</code> and use those to configure it.</div>
-<div class="instruction">Return to <code>Worker.ts</code> and add an interface with the custom properties that we need:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerProperties</span> <span class="token punctuation">{</span>
+</code></pre></section></div><div class="instruction">Run the application with <code>dojo build --watch</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="external"><code>http://localhost:9999</code></a>.</div><p>We have succeeded in rendering the widget, but there seem to be some styling issues. We’ll come back to that in a bit. For now, let’s continue refining the <code>Worker</code> widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface to pass configuration information into the widget.</p></section><section class="tutorial hidden hiding"><h2 id="Making-a-configurable-widget"><a href="#Making-a-configurable-widget" class="headerlink" title="Making a configurable widget"></a>Making a configurable widget</h2><div class="task">Add properties to the <code>Worker</code> and use those to configure it.</div><div class="instruction">Return to <code>Worker.ts</code> and add an interface with the custom properties that we need:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerProperties</span> <span class="token punctuation">{</span>
 	firstName<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
 	lastName<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<div class="instruction">Change the generic parameter passed into <code>WidgetBase</code> with the new interface:</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Worker</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span><span class="token operator">&lt;</span>WorkerProperties<span class="token operator">></span>
-</code></pre>
-<p>The <code>WorkerProperties</code> interface adds two new optional properties that we’ll be able to use. Now that these are available, let’s use them to make the name of the worker dynamic.</p>
-<div class="instruction">Inside of the render method, add the following code to create some local constants for the first and last names:</div>
-<pre class="language-javascript"><code class="language-javascript">		<span class="token keyword">const</span> <span class="token punctuation">{</span>
+</code></pre><div class="instruction">Change the generic parameter passed into <code>WidgetBase</code> with the new interface:</div><pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Worker</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span><span class="token operator">&lt;</span>WorkerProperties<span class="token operator">></span>
+</code></pre><p>The <code>WorkerProperties</code> interface adds two new optional properties that we’ll be able to use. Now that these are available, let’s use them to make the name of the worker dynamic.</p><div class="instruction">Inside of the render method, add the following code to create some local constants for the first and last names:</div><pre class="language-javascript"><code class="language-javascript">		<span class="token keyword">const</span> <span class="token punctuation">{</span>
 			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
 			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
 		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
-</code></pre>
-<p>This code retrieves the appropriate property and provides a reasonable default in case the widget doesn’t receive a value. This is done via a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="external">destructuring assignment</a>. We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.</p>
-<div class="instruction">Update the <code>render</code> method to look like this:</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre><p>This code retrieves the appropriate property and provides a reasonable default in case the widget doesn’t receive a value. This is done via a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="external">destructuring assignment</a>. We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.</p><div class="instruction">Update the <code>render</code> method to look like this:</div><pre class="language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> <span class="token punctuation">{</span>
         firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
         lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
@@ -237,35 +83,14 @@ projector<span class="token punctuation">.</span><span class="token function">ap
         <span class="token punctuation">]</span>
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-</section><section class="tutorial hidden hiding">
-<h2 id="Configuring-a-widget"><a href="#Configuring-a-widget" class="headerlink" title="Configuring a widget"></a>Configuring a widget</h2><div class="task">Pass properties to the Worker widget to configure it.</div>
-<p>To use the functionality of the new <code>Worker</code> widget we will update the <code>render</code> method in the <code>App</code> class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we’ll just use static properties. To learn more about working with stores in Dojo 2, take a look at the <a href="../comingsoon.html">dojo/stores</a> tutorial in the advanced section.</p>
-<div class="instruction">In <code>App.ts</code>, update the line that is rendering the <code>Worker</code> to contain values for the <code>firstName</code> and <code>lastName</code> properties:</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token string">'Jones'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-</code></pre>
-<article class="aside"><strong>Remember</strong><p>You should already see the new values. However, if you shut down the build command, you can start it up again by running <code>dojo build --watch</code> and navigating to <code>http://localhost:9999</code>.</p></article>
-<p>At this point, we have a good start to our widget, but it still doesn’t look very good. In the next section we’ll address that by learning how to use CSS to style our widgets.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Styling-widgets-with-CSS-modules"><a href="#Styling-widgets-with-CSS-modules" class="headerlink" title="Styling widgets with CSS modules"></a>Styling widgets with CSS modules</h2><div class="task">Use Cascading Style Sheets to change a widget's appearance.</div>
-<p>We can use CSS files to establish the look and feel of a widget or application.</p>
-<p>Dojo leverages <a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">CSS Modules</a> to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of <a href="https://github.com/Quramy/typed-css-modules" target="_blank" rel="external">typed CSS modules</a>, so that we can provide CSS typing files, enabling you to target CSS files in your import statements.</p>
-<p>To allow our <code>Worker</code> widget to be styled, we need to modify the class. First, apply a <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank" rel="external">decorator</a> to the class to modify the widget’s constructor and prepare its instances to work with CSS modules. Also, we will apply a theme <em>mixin</em> to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.</p>
-<div class="instruction">Add the following import to the top of <code>Worker.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
-</code></pre>
-<div class="instruction">We also need to <code>import</code> our CSS:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/worker.css'</span><span class="token punctuation">;</span>
-</code></pre>
-<p><code>worker.css</code> contains CSS selectors and rules to be consumed by our widget and its components.</p>
-<div class="instruction">With the imports in place, add the <em></em>@theme<em></em> decorator and apply the mixin to the <code>Worker</code> class in <code>Worker.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></section><section class="tutorial hidden hiding"><h2 id="Configuring-a-widget"><a href="#Configuring-a-widget" class="headerlink" title="Configuring a widget"></a>Configuring a widget</h2><div class="task">Pass properties to the Worker widget to configure it.</div><p>To use the functionality of the new <code>Worker</code> widget we will update the <code>render</code> method in the <code>App</code> class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we’ll just use static properties. To learn more about working with stores in Dojo 2, take a look at the <a href="../comingsoon.html">dojo/stores</a> tutorial in the advanced section.</p><div class="instruction">In <code>App.ts</code>, update the line that is rendering the <code>Worker</code> to contain values for the <code>firstName</code> and <code>lastName</code> properties:</div><pre class="language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token string">'Jones'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre><article class="aside"><strong>Remember</strong><p>You should already see the new values. However, if you shut down the build command, you can start it up again by running <code>dojo build --watch</code> and navigating to <code>http://localhost:9999</code>.</p></article><p>At this point, we have a good start to our widget, but it still doesn’t look very good. In the next section we’ll address that by learning how to use CSS to style our widgets.</p></section><section class="tutorial hidden hiding"><h2 id="Styling-widgets-with-CSS-modules"><a href="#Styling-widgets-with-CSS-modules" class="headerlink" title="Styling widgets with CSS modules"></a>Styling widgets with CSS modules</h2><div class="task">Use Cascading Style Sheets to change a widget's appearance.</div><p>We can use CSS files to establish the look and feel of a widget or application.</p><p>Dojo leverages <a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">CSS Modules</a> to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of <a href="https://github.com/Quramy/typed-css-modules" target="_blank" rel="external">typed CSS modules</a>, so that we can provide CSS typing files, enabling you to target CSS files in your import statements.</p><p>To allow our <code>Worker</code> widget to be styled, we need to modify the class. First, apply a <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank" rel="external">decorator</a> to the class to modify the widget’s constructor and prepare its instances to work with CSS modules. Also, we will apply a theme <em>mixin</em> to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.</p><div class="instruction">Add the following import to the top of <code>Worker.ts</code>:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+</code></pre><div class="instruction">We also need to <code>import</code> our CSS:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/worker.css'</span><span class="token punctuation">;</span>
+</code></pre><p><code>worker.css</code> contains CSS selectors and rules to be consumed by our widget and its components.</p><div class="instruction">With the imports in place, add the **@theme** decorator and apply the mixin to the <code>Worker</code> class in <code>Worker.ts</code>:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Worker</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerBase</span><span class="token operator">&lt;</span>WorkerProperties<span class="token operator">></span> <span class="token punctuation">{</span>
-</code></pre>
-<div class="instruction">Add the CSS rules in <code>src/styles/worker.css</code> which will allow us to style the <code>Worker</code> widget:</div>
-<pre class="language-css"><code class="language-css"><span class="token selector">.worker</span> <span class="token punctuation">{</span>
+</code></pre><div class="instruction">Add the CSS rules in <code>src/styles/worker.css</code> which will allow us to style the <code>Worker</code> widget:</div><pre class="language-css"><code class="language-css"><span class="token selector">.worker</span> <span class="token punctuation">{</span>
 	<span class="token property">flex</span><span class="token punctuation">:</span> 1 1 <span class="token function">calc</span><span class="token punctuation">(</span>33% - 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token property">margin</span><span class="token punctuation">:</span> 0 10px 40px<span class="token punctuation">;</span>
 	<span class="token property">max-width</span><span class="token punctuation">:</span> 350px<span class="token punctuation">;</span>
@@ -284,10 +109,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">max-width</span><span class="token punctuation">:</span> 250px<span class="token punctuation">;</span>
 	<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p><code>dojo build --watch</code> will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the <code>Worker</code> widget.</p>
-<div class="instruction">Return to <code>Worker.ts</code> and update the render method:</div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre><p><code>dojo build --watch</code> will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the <code>Worker</code> widget.</p><div class="instruction">Return to <code>Worker.ts</code> and update the render method:</div><pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">const</span> <span class="token punctuation">{</span>
 			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
 			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
@@ -305,14 +127,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 			<span class="token punctuation">]</span>
 		<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-</code></pre>
-<p>If you return to the browser, you’ll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget’s components. Notice that we don’t have class names such as <code>.worker</code> or <code>.image</code> like we used in the CSS file, rather we have something like <code>.worker__image__3aIJl</code>. The <code>dojo build</code> command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called “themes”). To learn more about those, take a look at the <a href="../007_theming/">Theming an Application</a> tutorial in the Cookbook section.</p>
-<p>We’ve now updated our application to display a single Biz-E-Body, but our goal is to display a collection of Biz-E-Body items. We could certainly add additional <code>Worker</code> widgets to our application, but they would all be siblings of the <code>Banner</code> widget and could be difficult to style properly. In the next section, we’ll create a simple container widget that will manage the layout of the <code>Worker</code> widgets.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Moving-the-Worker-into-a-container"><a href="#Moving-the-Worker-into-a-container" class="headerlink" title="Moving the Worker into a container"></a>Moving the Worker into a container</h2><div class="task">Create a container to handle the layout of Worker widgets.</div>
-<p>The <code>WorkerContainer</code> manages the layout of our <code>Worker</code> widgets and makes it easier to style these widgets. The <code>WorkerContainer</code> has many of the same responsibilities as the <code>App</code> widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the <code>Worker</code> widget, we will apply some styling to it.</p>
-<div class="instruction">Putting this all together, add the following to <code>WorkerContainer.ts</code>:</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+</code></pre><p>If you return to the browser, you’ll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget’s components. Notice that we don’t have class names such as <code>.worker</code> or <code>.image</code> like we used in the CSS file, rather we have something like <code>.worker__image__3aIJl</code>. The <code>dojo build</code> command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called “themes”). To learn more about those, take a look at the <a href="../007_theming/">Theming an Application</a> tutorial in the Cookbook section.</p><p>We’ve now updated our application to display a single Biz-E-Body, but our goal is to display a collection of Biz-E-Body items. We could certainly add additional <code>Worker</code> widgets to our application, but they would all be siblings of the <code>Banner</code> widget and could be difficult to style properly. In the next section, we’ll create a simple container widget that will manage the layout of the <code>Worker</code> widgets.</p></section><section class="tutorial hidden hiding"><h2 id="Moving-the-Worker-into-a-container"><a href="#Moving-the-Worker-into-a-container" class="headerlink" title="Moving the Worker into a container"></a>Moving the Worker into a container</h2><div class="task">Create a container to handle the layout of Worker widgets.</div><p>The <code>WorkerContainer</code> manages the layout of our <code>Worker</code> widgets and makes it easier to style these widgets. The <code>WorkerContainer</code> has many of the same responsibilities as the <code>App</code> widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the <code>Worker</code> widget, we will apply some styling to it.</p><div class="instruction">Putting this all together, add the following to <code>WorkerContainer.ts</code>:</div><pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> w<span class="token punctuation">,</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Worker <span class="token keyword">from</span> <span class="token string">'./Worker'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
@@ -328,10 +143,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p>You may notice that we are calling <code>this.classes</code> with the <code>container</code> class as an argument. <code>classes</code> is a method provided by the <code>ThemeableMixin</code> which adds the specified class or classes to the widget, and verifies that they exist as part of the widget’s theme.</p>
-<div class="instruction">Now update the <code>render</code> method to include some workers. Add the following to the top of the <code>render</code> method:</div>
-<pre class=" language-ts"><code class="language-ts">        <span class="token keyword">const</span> workers<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+</code></pre><p>You may notice that we are calling <code>this.classes</code> with the <code>container</code> class as an argument. <code>classes</code> is a method provided by the <code>ThemeableMixin</code> which adds the specified class or classes to the widget, and verifies that they exist as part of the widget’s theme.</p><div class="instruction">Now update the <code>render</code> method to include some workers. Add the following to the top of the <code>render</code> method:</div><pre class="language-ts"><code class="language-ts">        <span class="token keyword">const</span> workers<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
             <span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span>
                 key<span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
                 firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span>
@@ -348,17 +160,10 @@ projector<span class="token punctuation">.</span><span class="token function">ap
                 lastName<span class="token punctuation">:</span> <span class="token string">'Mueller'</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">]</span><span class="token punctuation">;</span>
-</code></pre>
-<p>Notice that we have added a <code>key</code> property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. <code>div</code> or widget name, e.g. <code>Worker</code>, then you will need to add a property that makes each child unique.<br>In the code example shown above, we have added a <code>key</code> property and set the value to be unique for each child widget.</p>
-<p>We can now pass these workers as children to the container.</p>
-<div class="instruction">Add this array as the third argument to the <code>v</code> function.</div>
-<pre class=" language-ts"><code class="language-ts">        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+</code></pre><p>Notice that we have added a <code>key</code> property to each child. This is needed so that we can differentiate between the children. If you add multiple children that have the same tag name, e.g. <code>div</code> or widget name, e.g. <code>Worker</code>, then you will need to add a property that makes each child unique.<br>In the code example shown above, we have added a <code>key</code> property and set the value to be unique for each child widget.</p><p>We can now pass these workers as children to the container.</p><div class="instruction">Add this array as the third argument to the <code>v</code> function.</div><pre class="language-ts"><code class="language-ts">        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
             classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>container<span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span> workers<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>Now it is time to add styling rules for the <code>WorkerContainer</code>. Inside  of <code>styles/workerContainer.css</code>.</p>
-<div class="instruction">Add the following rule.</div>
-<pre class="language-css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">{</span>
+</code></pre><p>Now it is time to add styling rules for the <code>WorkerContainer</code>. Inside of <code>styles/workerContainer.css</code>.</p><div class="instruction">Add the following rule.</div><pre class="language-css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">{</span>
 	<span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
 	<span class="token property">flex-flow</span><span class="token punctuation">:</span> row wrap<span class="token punctuation">;</span>
 	<span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
@@ -366,63 +171,12 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
 	<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<div class="instruction">Finally, update the <code>App</code> class to replace the <code>Worker</code> widget with the new <code>WorkerContainer</code>.</div>
-<pre class=" language-ts"><code class="language-ts">    <span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./WorkerContainer'</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-ts"><code class="language-ts">
+</code></pre><div class="instruction">Finally, update the <code>App</code> class to replace the <code>Worker</code> widget with the new <code>WorkerContainer</code>.</div><pre class="language-ts"><code class="language-ts">    <span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./WorkerContainer'</span><span class="token punctuation">;</span>
+</code></pre><pre class="language-ts"><code class="language-ts">
     <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
             <span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token function">w</span><span class="token punctuation">(</span>WorkerContainer<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-</code></pre>
-<p>The application now renders three workers in the <code>WorkerContainer</code> widget, allowing us to control how they are laid out without impacting the overall application.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from <code>WidgetBase</code>. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the <code>render</code> method, a widget can generate the virtual DOM nodes that control how it is rendered.</p>
-<p>Additionally, we learned how to style widgets by using CSS modules. These modules provide all of the flexibility of CSS with the additional advantages of providing strongly typed and localized class names that allow a widget to be styled without the risk of affecting other aspects of the application.</p>
-<p>If you would like, you can download the completed <a href="../assets/003_creating_widgets-finished.zip">demo application</a>.</p>
-<p>In <a href="../004_user_interactions/">Responding to events</a>, we will explore the how to add event handlers to allow our application to respond to user interactions.</p>
-</section>
-
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
-	</div>
-</div>
-				</div>
-				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
-</footer>
-
-			</div>
-			
-				<div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-
-				</ul>
-		</nav>
-	</div>
-</div>
-
-
-<script src="/js/tutorial-support.js"></script>
-<script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'Creating widgets');
-</script>
-
-			
-		</div>
-		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
-	</body>
-</html>
+</code></pre><p>The application now renders three workers in the <code>WorkerContainer</code> widget, allowing us to control how they are laid out without impacting the overall application.</p></section><section class="tutorial hidden hiding"><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we have created and styled widgets within Dojo 2. Widgets are classes that derive from <code>WidgetBase</code>. This base class provides the basic functionality for generating visual components in a Dojo 2 application. By overriding the <code>render</code> method, a widget can generate the virtual DOM nodes that control how it is rendered.</p><p>Additionally, we learned how to style widgets by using CSS modules. These modules provide all of the flexibility of CSS with the additional advantages of providing strongly typed and localized class names that allow a widget to be styled without the risk of affecting other aspects of the application.</p><p>If you would like, you can download the completed <a href="../assets/003_creating_widgets-finished.zip">demo application</a>.</p><p>In <a href="../004_user_interactions/">Responding to events</a>, we will explore the how to add event handlers to allow our application to respond to user interactions.</p></section></div><div id="actionBar" class="action-bar"></div><style>body,html{height:100%}</style><script src="/js/tutorial-support.js"></script><script>tutorial.populateActionBar(document.getElementById("actionBar"))</script></div></section></div><div><footer class="page-footer"><div class="content-container"><div class="footer-logo"><img src="/images/logos/dojo-logo-black.svg"></div><div class="info">&copy; JS Foundation, All Rights Reserved.</div></div></footer><script src="/js/combined.js"></script></div></body></html>

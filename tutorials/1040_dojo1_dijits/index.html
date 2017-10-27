@@ -1,104 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Using Dojo 1 Dijits | Dojo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Using Dojo 1 Dijits">
-<meta property="og:url" content="https://dojo.github.io/tutorials/1040_dojo1_dijits/index.html">
-<meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-26T21:58:23.809Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Using Dojo 1 Dijits">
-<meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
-  
-    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/images/favicons/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/main.css">
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-3242977-15', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
-
-	<body class="body-tutorial
-">
-		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/api">API</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
-			</div>
-		</nav>
-	</div>
-</header>
-
-			<div class="content-wrapper">
-				<div class="page-content">
-					<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#">Using Dojo 1 Dijits</a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<section class="tutorial hidden hiding">
-<h1 id="Using-Dojo-1-Dijits"><a href="#Using-Dojo-1-Dijits" class="headerlink" title="Using Dojo 1 Dijits"></a>Using Dojo 1 Dijits</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will extend the the <a href="../005_form_widgets/">Form widgets</a> tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits.</p>
-<p>To achieve maximum performance and efficiency, developers should eventually author their Dojo 2 application with Dojo 2 widgets. This approach is provided as a migration strategy, to leverage custom Dojo 1 Dijits within a Dojo 2 application, to help make it easier to migrate an application in phases over time.</p>
-<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1040_dojo1_dijits-initial.zip">download</a> the demo project to get started.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Adding-dependencies"><a href="#Adding-dependencies" class="headerlink" title="Adding dependencies"></a>Adding dependencies</h2><div class="task">Installing dependencies.</div>
-<p>The first step will be to install our dependencies using npm:</p>
-<div class="instruction">Install the initial dependencies via npm:</div>
-<pre><code>$ npm install
-</code></pre><div class="instruction">Install this additional development dependency:</div>
-<pre><code>$ npm install dojo-typings --save-dev
-</code></pre><div class="instruction">Install additional run-time dependencies:</div>
-<pre><code>$ npm install dojo dijit dojo-themes @dojo/interop --save
-</code></pre><p>The <code>dojo</code>, <code>dijit</code>, and <code>dojo-themes</code> packages are the Dojo 1 dependencies we will be using at run-time.  The <code>@dojo/interop</code> package contains several tools that allow easy integration with other projects, like Dojo 1 and Redux.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Updating-project-configuration"><a href="#Updating-project-configuration" class="headerlink" title="Updating project configuration"></a>Updating project configuration</h2><div class="task">Updating the <code>dojo build</code> configuration.</div>
-<p>Dojo 1 and Dijits at run-time are considered <em>external</em> dependencies for the Dojo 2 build system.  We need to supply information to the <code>dojo build</code> CLI command to include our external dependencies as part of our build.  We provide additional configuration information to the Dojo 2 CLI via <code>.dojorc</code> in the root of our project.  <code>.dojorc</code> is formatted as a JSON file and configuration can be provided to each CLI command.</p>
-<div class="instruction">Create a <code>.dojorc</code> with the following content:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Using Dojo 1 Dijits | Dojo</title><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe"><meta property="og:type" content="website"><meta property="og:title" content="Using Dojo 1 Dijits"><meta property="og:url" content="https://dojo.github.io/tutorials/1040_dojo1_dijits/index.html"><meta property="og:site_name" content="Dojo"><meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe"><meta property="og:updated_time" content="2017-10-27T00:22:36.594Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Using Dojo 1 Dijits"><meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe"><meta name="twitter:creator" content="@https://twitter.com/dojo"><link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml"><link rel="icon" href="/images/favicons/favicon.ico"><link rel="stylesheet" href="/css/main.css"><script type="text/javascript">!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src="//www.google-analytics.com/analytics.js",s.parentNode.insertBefore(o,s)}(window,document,"script",0,"ga"),ga("create","UA-3242977-15","auto"),ga("send","pageview")</script><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body class="body-tutorial"><header class="container site-header"><div class="content-container"><div class="row"><nav class="site-nav"><a href="/" class="header-logo"><img src="/images/dojo2-logo-white.svg" alt="Dojo"></a><a class="main-nav-link" href="/tutorials">Tutorials</a> <a class="main-nav-link" href="/api">API</a> <a class="main-nav-link" href="/blog/2017/03/27/Dojo-2-is-coming">Blog</a> <a class="main-nav-link main-nav-icon-link" href="https://github.com/dojo/meta"><img src="/images/logos/github-white.svg" alt="Dojo on Github" class="nav-icon github"></a></nav></div></div></header><div class="page-content"><section class="content-container" id="main"><div class="tutorial-content"><div class="scrollable"><section class="tutorial hidden hiding"><h1 id="Using-Dojo-1-Dijits"><a href="#Using-Dojo-1-Dijits" class="headerlink" title="Using Dojo 1 Dijits"></a>Using Dojo 1 Dijits</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will extend the the <a href="../005_form_widgets/">Form widgets</a> tutorial. In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits.</p><p>To achieve maximum performance and efficiency, developers should eventually author their Dojo 2 application with Dojo 2 widgets. This approach is provided as a migration strategy, to leverage custom Dojo 1 Dijits within a Dojo 2 application, to help make it easier to migrate an application in phases over time.</p><h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1040_dojo1_dijits-initial.zip">download</a> the demo project to get started.</p><p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p></section><section class="tutorial hidden hiding"><h2 id="Adding-dependencies"><a href="#Adding-dependencies" class="headerlink" title="Adding dependencies"></a>Adding dependencies</h2><div class="task">Installing dependencies.</div><p>The first step will be to install our dependencies using npm:</p><div class="instruction">Install the initial dependencies via npm:</div><pre><code>$ npm install
+</code></pre><div class="instruction">Install this additional development dependency:</div><pre><code>$ npm install dojo-typings --save-dev
+</code></pre><div class="instruction">Install additional run-time dependencies:</div><pre><code>$ npm install dojo dijit dojo-themes @dojo/interop --save
+</code></pre><p>The <code>dojo</code>, <code>dijit</code>, and <code>dojo-themes</code> packages are the Dojo 1 dependencies we will be using at run-time. The <code>@dojo/interop</code> package contains several tools that allow easy integration with other projects, like Dojo 1 and Redux.</p></section><section class="tutorial hidden hiding"><h2 id="Updating-project-configuration"><a href="#Updating-project-configuration" class="headerlink" title="Updating project configuration"></a>Updating project configuration</h2><div class="task">Updating the <code>dojo build</code> configuration.</div><p>Dojo 1 and Dijits at run-time are considered <em>external</em> dependencies for the Dojo 2 build system. We need to supply information to the <code>dojo build</code> CLI command to include our external dependencies as part of our build. We provide additional configuration information to the Dojo 2 CLI via <code>.dojorc</code> in the root of our project. <code>.dojorc</code> is formatted as a JSON file and configuration can be provided to each CLI command.</p><div class="instruction">Create a <code>.dojorc</code> with the following content:</div><pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
 	<span class="token string">"build-webpack"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
 		<span class="token string">"externals"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
 			<span class="token string">"dependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
@@ -110,12 +13,7 @@ ga('send', 'pageview');
 		<span class="token punctuation">}</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p> To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build.  Additionally, some of those dependencies will be injected (loaded) into our bundle.  The first dependency provides configuration for the Dojo 1 loader (which we will create later).  The second dependency includes the <code>dojo</code> package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested.  The third dependency is <code>dijit</code>, which are our Dojo 1 Dijits.  The final dependency is a modern flat theme for Dojo 1 Dijits.  We are injecting the <em>root</em> CSS into our application bundle as well, which will ensure the CSS is loaded an available at run time.</p>
-<div class="task">Updating the <code>tsconfig.json</code> configuration.</div>
-<p>In order for us to integrate the TypeScript typings, we need to adjust two sections of our <code>tsconfig.json</code>.</p>
-<div class="instruction">Add <code>scripthost</code> to the <code>lib</code> section of <code>tsconfig.json</code>:</div>
-<pre class="language-javascript"><code class="language-javascript">		<span class="token string">"lib"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+</code></pre><p>To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build. Additionally, some of those dependencies will be injected (loaded) into our bundle. The first dependency provides configuration for the Dojo 1 loader (which we will create later). The second dependency includes the <code>dojo</code> package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested. The third dependency is <code>dijit</code>, which are our Dojo 1 Dijits. The final dependency is a modern flat theme for Dojo 1 Dijits. We are injecting the <em>root</em> CSS into our application bundle as well, which will ensure the CSS is loaded an available at run time.</p><div class="task">Updating the <code>tsconfig.json</code> configuration.</div><p>In order for us to integrate the TypeScript typings, we need to adjust two sections of our <code>tsconfig.json</code>.</p><div class="instruction">Add <code>scripthost</code> to the <code>lib</code> section of <code>tsconfig.json</code>:</div><pre class="language-javascript"><code class="language-javascript">		<span class="token string">"lib"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
 			<span class="token string">"dom"</span><span class="token punctuation">,</span>
 			<span class="token string">"es5"</span><span class="token punctuation">,</span>
 			<span class="token string">"es2015.promise"</span><span class="token punctuation">,</span>
@@ -124,68 +22,30 @@ ga('send', 'pageview');
 			<span class="token string">"es2015.symbol.wellknown"</span><span class="token punctuation">,</span>
 			<span class="token string">"scripthost"</span>
 		<span class="token punctuation">]</span><span class="token punctuation">,</span>
-</code></pre>
-<p>Some of the Dojo 1 typings reference typings from this library.</p>
-<div class="instruction">Add the Dijit module typings to the <code>include</code> section of <code>tsconfig.json</code>:</div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token string">"include"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+</code></pre><p>Some of the Dojo 1 typings reference typings from this library.</p><div class="instruction">Add the Dijit module typings to the <code>include</code> section of <code>tsconfig.json</code>:</div><pre class="language-javascript"><code class="language-javascript">	<span class="token string">"include"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
 		<span class="token string">"./src/**/*.ts"</span><span class="token punctuation">,</span>
 		<span class="token string">"./tests/**/*.ts"</span><span class="token punctuation">,</span>
 		<span class="token string">"./node_modules/dojo-typings/dijit/1.11/modules.d.ts"</span>
 	<span class="token punctuation">]</span>
-</code></pre>
-<article class="aside"><strong>Information</strong><p>If you are using your own custom Dijits, you should add your own TypeScript typings to the project.  The <a href="https://github.com/dojo/typings/" target="_blank" rel="external"><code>dojo/typings</code></a> can provide you examples of how you might want to accomplish this.</p></article>
-<p>By adding the modules to the scope of the TypeScript transpiler, we should have typing information available when attempting to import various Dijit modules.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Configuring-Dojo-1"><a href="#Configuring-Dojo-1" class="headerlink" title="Configuring Dojo 1"></a>Configuring Dojo 1</h2><div class="task">Creating loader configuration.</div>
-<article class="aside"><strong>Information</strong><p>The Dojo 1 loader configuration can be complex.  There is this Dojo 1 tutorial <em><a href="https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html" target="_blank" rel="external">Configuring Dojo with dojoConfig</a></em> that explains how to configure Dojo 1.</p></article>
-<p>In the previous step, we needed to include a configuration for our Dojo 1 loader.  For this tutorial, we only need to ensure that the Dojo 1 loader works asynchronously, because the Dojo 1 loader will default to synchronous operation, which would inhibit performance and cause issues with our Dojo 2 application.  The configuration could have any name.  Here we specify it as <code>/src/dojo1.cfg.js</code>.</p>
-<div class="instruction">Create a <code>/src/dojo1.cfg.js</code> with the following content:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> dojoConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+</code></pre><article class="aside"><strong>Information</strong><p>If you are using your own custom Dijits, you should add your own TypeScript typings to the project. The <a href="https://github.com/dojo/typings/" target="_blank" rel="external"><code>dojo/typings</code></a> can provide you examples of how you might want to accomplish this.</p></article><p>By adding the modules to the scope of the TypeScript transpiler, we should have typing information available when attempting to import various Dijit modules.</p></section><section class="tutorial hidden hiding"><h2 id="Configuring-Dojo-1"><a href="#Configuring-Dojo-1" class="headerlink" title="Configuring Dojo 1"></a>Configuring Dojo 1</h2><div class="task">Creating loader configuration.</div><article class="aside"><strong>Information</strong><p>The Dojo 1 loader configuration can be complex. There is this Dojo 1 tutorial <em><a href="https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html" target="_blank" rel="external">Configuring Dojo with dojoConfig</a></em> that explains how to configure Dojo 1.</p></article><p>In the previous step, we needed to include a configuration for our Dojo 1 loader. For this tutorial, we only need to ensure that the Dojo 1 loader works asynchronously, because the Dojo 1 loader will default to synchronous operation, which would inhibit performance and cause issues with our Dojo 2 application. The configuration could have any name. Here we specify it as <code>/src/dojo1.cfg.js</code>.</p><div class="instruction">Create a <code>/src/dojo1.cfg.js</code> with the following content:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> dojoConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
 	<span class="token keyword">async</span><span class="token punctuation">:</span> <span class="token boolean">true</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<div class="task">Ensuring the application builds.</div>
-<p>At this point, you should be able to build your application.</p>
-<article class="aside"><strong>Reminder</strong><p>You can now use <code>dojo build -w</code> to continue to develop, with live rebuilding of your project.</p></article>
-<div class="instruction">Run <code>dojo build</code> in the project root.</div>
-<p>You should see a rather long output indicating many dependencies have been output.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Working-with-Dijits"><a href="#Working-with-Dijits" class="headerlink" title="Working with Dijits"></a>Working with Dijits</h2><p>To integrate Dijits within a Dojo 2 application, they need to <em>wrapped</em> for management by the Dojo 2 widgeting system.  As discussed in previous steps, the <code>DijitWrapper</code> function will <em>convert</em> a Dojo 1 Dijit constructor function into something that behaves like a Dojo 2 widget class.  When used with the Dojo 1 typings, you will also get code intellisense when configuring your Dijits.</p>
-<p>The <code>DijitWrapper</code> function accepts two arguments.  The first is the Dojo 1 <code>declare</code> class.  The second is an optional string, which represents the tag name that should be used when the Dojo 2 widgeting system needs to create a <em>DOM stub</em> to attach the Dijit instance to.  It defaults to <code>div</code> if not supplied.</p>
-<article class="aside"><strong>Information</strong><p>All Dojo 1 modules are AMD modules without default exports.  As such, you need to import Dojo 1 modules using the <code>import * as Dijit from 'module/id';</code> syntax.</p></article>
-<div class="task">Wrapping Dijits.</div>
-<p>We recommend any wrapped Dijits be created as individual modules in <code>/src/dijit</code> in the same path structure they are located in the source <code>dijit</code> package.</p>
-<div class="instruction">Create <code>/src/dijit/Fieldset.ts</code> with the following content:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
+</code></pre><div class="task">Ensuring the application builds.</div><p>At this point, you should be able to build your application.</p><article class="aside"><strong>Reminder</strong><p>You can now use <code>dojo build -w</code> to continue to develop, with live rebuilding of your project.</p></article><div class="instruction">Run <code>dojo build</code> in the project root.</div><p>You should see a rather long output indicating many dependencies have been output.</p></section><section class="tutorial hidden hiding"><h2 id="Working-with-Dijits"><a href="#Working-with-Dijits" class="headerlink" title="Working with Dijits"></a>Working with Dijits</h2><p>To integrate Dijits within a Dojo 2 application, they need to <em>wrapped</em> for management by the Dojo 2 widgeting system. As discussed in previous steps, the <code>DijitWrapper</code> function will <em>convert</em> a Dojo 1 Dijit constructor function into something that behaves like a Dojo 2 widget class. When used with the Dojo 1 typings, you will also get code intellisense when configuring your Dijits.</p><p>The <code>DijitWrapper</code> function accepts two arguments. The first is the Dojo 1 <code>declare</code> class. The second is an optional string, which represents the tag name that should be used when the Dojo 2 widgeting system needs to create a <em>DOM stub</em> to attach the Dijit instance to. It defaults to <code>div</code> if not supplied.</p><article class="aside"><strong>Information</strong><p>All Dojo 1 modules are AMD modules without default exports. As such, you need to import Dojo 1 modules using the <code>import * as Dijit from 'module/id';</code> syntax.</p></article><div class="task">Wrapping Dijits.</div><p>We recommend any wrapped Dijits be created as individual modules in <code>/src/dijit</code> in the same path structure they are located in the source <code>dijit</code> package.</p><div class="instruction">Create <code>/src/dijit/Fieldset.ts</code> with the following content:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Fieldset <span class="token keyword">from</span> <span class="token string">'dijit/Fieldset'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">DijitWrapper</span><span class="token punctuation">(</span>Fieldset<span class="token punctuation">,</span> <span class="token string">'fieldset'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<div class="instruction">Create <code>/src/dijit/form/Button.ts</code> with the following content:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
+</code></pre><div class="instruction">Create <code>/src/dijit/form/Button.ts</code> with the following content:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Button <span class="token keyword">from</span> <span class="token string">'dijit/form/Button'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">DijitWrapper</span><span class="token punctuation">(</span>Button<span class="token punctuation">,</span> <span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<div class="instruction">Create <code>/src/dijit/form/TextBox.ts</code> with the following content:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
+</code></pre><div class="instruction">Create <code>/src/dijit/form/TextBox.ts</code> with the following content:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> TextBox <span class="token keyword">from</span> <span class="token string">'dijit/form/TextBox'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">DijitWrapper</span><span class="token punctuation">(</span>TextBox<span class="token punctuation">,</span> <span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<div class="task">Importing Dijits.</div>
-<p>Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 or modules.</p>
-<div class="instruction">Import Dijits into <code>/src/widgets/WorkerForm.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Fieldset <span class="token keyword">from</span> <span class="token string">'../dijit/Fieldset'</span><span class="token punctuation">;</span>
+</code></pre><div class="task">Importing Dijits.</div><p>Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 or modules.</p><div class="instruction">Import Dijits into <code>/src/widgets/WorkerForm.ts</code>:</div><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Fieldset <span class="token keyword">from</span> <span class="token string">'../dijit/Fieldset'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'../dijit/form/Button'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TextBox <span class="token keyword">from</span> <span class="token string">'../dijit/form/TextBox'</span><span class="token punctuation">;</span>
-</code></pre>
-</section><section class="tutorial hidden hiding">
-<h2 id="Placing-Dijits"><a href="#Placing-Dijits" class="headerlink" title="Placing Dijits"></a>Placing Dijits</h2><article class="aside"><strong>Reminder</strong><p>We will be using the <code>w()</code> function from <code>@dojo-widget/core/d</code>.  Don't forget to <code>import</code> it...</p></article>
-<div class="task">Adding Dijits to a widget's render function.</div>
-<p>Now that we have imported our wrapped Dijits into the module they will be used, we need to add them to the render function.</p>
-<div class="instruction">Add imported Dijits to the <code>WorkerForm</code> widget's render function:</div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre></section><section class="tutorial hidden hiding"><h2 id="Placing-Dijits"><a href="#Placing-Dijits" class="headerlink" title="Placing Dijits"></a>Placing Dijits</h2><article class="aside"><strong>Reminder</strong><p>We will be using the <code>w()</code> function from <code>@dojo-widget/core/d</code>. Don't forget to <code>import</code> it...</p></article><div class="task">Adding Dijits to a widget's render function.</div><p>Now that we have imported our wrapped Dijits into the module they will be used, we need to add them to the render function.</p><div class="instruction">Add imported Dijits to the <code>WorkerForm</code> widget's render function:</div><pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
 			onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
@@ -217,63 +77,7 @@ ga('send', 'pageview');
 			<span class="token punctuation">}</span><span class="token punctuation">)</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-</code></pre>
-<article class="aside"><strong>Information</strong><p>The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the <a href="https://dojotoolkit.org/api/" target="_blank" rel="external">Dojo 1 API documentation</a>.</p></article>
-<p>Once Dijits are wrapped, they behave similarly to Dojo 2 widgets.  Coupled with the <code>dojo-typings</code> TypeScript typings, you get code completion as well when specifying the <em>properties</em> and TypeScript should help ensure the validity of property values.</p>
-<p>One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit’s as their children. Dojo 2 widgets represent their <a href="../comingsoon.html">DOM virtually</a>, while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.</p>
-<div class="task">Setting a Dojo 1 theme.</div>
-<p>When we configured the <em>externals</em> for our project, we included the main CSS for our theme, via the <code>&quot;inject&quot;</code> property.  The build system will automatically load any CSS or JavaScript files we inject when the page is loaded, meaning we don’t have to add the stylesheet directly to our HTML.</p>
-<p>Most Dijits will not render properly without a theme being applied to them.  There are many different ways to apply a Dojo 1 theme, but the most straightforward is to set the theme class name on the <code>&lt;body&gt;</code> of the application document.</p>
-<div class="instruction">Add theme class name to <code>src/index.html</code>:</div>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flat<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre><article class="aside"><strong>Information</strong><p>The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit. For more information on what parameters are possible on Dijits, you can refer to the <a href="https://dojotoolkit.org/api/" target="_blank" rel="external">Dojo 1 API documentation</a>.</p></article><p>Once Dijits are wrapped, they behave similarly to Dojo 2 widgets. Coupled with the <code>dojo-typings</code> TypeScript typings, you get code completion as well when specifying the <em>properties</em> and TypeScript should help ensure the validity of property values.</p><p>One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit’s as their children. Dojo 2 widgets represent their <a href="../comingsoon.html">DOM virtually</a>, while Dojo 2 Dijits directly manage their own DOM. Because of this, Dijits cannot properly manage virtual DOM based children.</p><div class="task">Setting a Dojo 1 theme.</div><p>When we configured the <em>externals</em> for our project, we included the main CSS for our theme, via the <code>&quot;inject&quot;</code> property. The build system will automatically load any CSS or JavaScript files we inject when the page is loaded, meaning we don’t have to add the stylesheet directly to our HTML.</p><p>Most Dijits will not render properly without a theme being applied to them. There are many different ways to apply a Dojo 1 theme, but the most straightforward is to set the theme class name on the <code>&lt;body&gt;</code> of the application document.</p><div class="instruction">Add theme class name to <code>src/index.html</code>:</div><pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flat<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-app</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-app</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-</code></pre>
-<p>You should now have an application that will provide you with a form that accepts a first name, last name, and e-mail address in order to add another <em>card</em> to the application.</p>
-</section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to setup the build system to include Dojo 1 as an external dependency.  We learned how to import Dojo 1 based Dijits into a Dojo 2 project and wrap them so they can be integrated into the Dojo 2 widgeting system.  We also learned how to apply a Dojo 1 theme so our Dijits have a proper look and feel.</p>
-<p>If you would like, you can download the completed <a href="../assets/1040_dojo1_dijits-finished.zip">demo application</a> from this tutorial.</p>
-<p>This tutorial is far from exhaustive on the subject, but is intended to provide the basics of using Dojo 1 Dijits in a Dojo 2 application.  It is ideally better to use or create Dojo 2 widgets than to leverage Dojo 1 Dijits.  We think the main use case is when you want to incrementally migrate an existing application to Dojo 2, being able to <em>wrap</em> custom Dijits can be really useful.</p>
-<p>The way we integrated Dojo 1 in this example is not suitable for a production application.  Ideally you would create a built layer of your Dojo 1 dependencies.  You can <em>inject</em> that built layer in the same way as earlier in the tutorial.  For more on creating builds of Dojo 1, you should refer to the Dojo 1 <a href="https://dojotoolkit.org/documentation/tutorials/1.10/build/index.html" target="_blank" rel="external">Creating Builds</a> tutorial.</p>
-</section>
-
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
-	</div>
-</div>
-				</div>
-				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
-</footer>
-
-			</div>
-			
-				<div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-
-				</ul>
-		</nav>
-	</div>
-</div>
-
-
-<script src="/js/tutorial-support.js"></script>
-<script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'Using Dojo 1 Dijits');
-</script>
-
-			
-		</div>
-		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
-	</body>
-</html>
+</code></pre><p>You should now have an application that will provide you with a form that accepts a first name, last name, and e-mail address in order to add another <em>card</em> to the application.</p></section><section class="tutorial hidden hiding"><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to setup the build system to include Dojo 1 as an external dependency. We learned how to import Dojo 1 based Dijits into a Dojo 2 project and wrap them so they can be integrated into the Dojo 2 widgeting system. We also learned how to apply a Dojo 1 theme so our Dijits have a proper look and feel.</p><p>If you would like, you can download the completed <a href="../assets/1040_dojo1_dijits-finished.zip">demo application</a> from this tutorial.</p><p>This tutorial is far from exhaustive on the subject, but is intended to provide the basics of using Dojo 1 Dijits in a Dojo 2 application. It is ideally better to use or create Dojo 2 widgets than to leverage Dojo 1 Dijits. We think the main use case is when you want to incrementally migrate an existing application to Dojo 2, being able to <em>wrap</em> custom Dijits can be really useful.</p><p>The way we integrated Dojo 1 in this example is not suitable for a production application. Ideally you would create a built layer of your Dojo 1 dependencies. You can <em>inject</em> that built layer in the same way as earlier in the tutorial. For more on creating builds of Dojo 1, you should refer to the Dojo 1 <a href="https://dojotoolkit.org/documentation/tutorials/1.10/build/index.html" target="_blank" rel="external">Creating Builds</a> tutorial.</p></section></div><div id="actionBar" class="action-bar"></div><style>body,html{height:100%}</style><script src="/js/tutorial-support.js"></script><script>tutorial.populateActionBar(document.getElementById("actionBar"))</script></div></section></div><div><footer class="page-footer"><div class="content-container"><div class="footer-logo"><img src="/images/logos/dojo-logo-black.svg"></div><div class="info">&copy; JS Foundation, All Rights Reserved.</div></div></footer><script src="/js/combined.js"></script></div></body></html>
