@@ -1,7 +1,6 @@
 # Header
 menu:
   Tutorials: /tutorials
-  API: /api
   #Community: /community
   Blog: /blog
 rss: /atom.xml

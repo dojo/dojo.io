@@ -1,9 +1,5 @@
 import { join } from 'path';
 import { exec, promisify } from 'grunt-dojo2-extras/src/util/process';
-import { readFileSync, writeFileSync } from 'fs';
-import { EOL } from 'os';
-import getApiPackages, { DocumentedApi } from './getApiPackages';
-import { logger } from '../log';
 
 function generateHexo(siteDirectory: string, configs: string[] = [ '_config.yml' ]) {
 	const hexoBin = join('node_modules', '.bin', 'hexo');
@@ -11,30 +7,18 @@ function generateHexo(siteDirectory: string, configs: string[] = [ '_config.yml'
 	return promisify(proc);
 }
 
-export function buildApiIndex(apis: DocumentedApi[], source: string): string {
-	const template = readFileSync(source);
-	const links: string[] = [];
-
-	for (let api of apis) {
-		links.push(`[${ api.package }](/api/${ api.package }/${ api.latest })`);
-	}
-	logger.info(`Generated API index for ${ links.length } APIs`);
-
-	return template + links.join(EOL);
-}
-
 export interface Options {
-	apiDirectory: string;
-	apiTarget: string;
-	apiTemplate: string;
 	configs: string[];
 	siteDirectory: string;
 }
 
-export default async function hexo(options: Options) {
-	const { apiDirectory, apiTemplate, apiTarget, siteDirectory, configs } = options;
-	const apis = getApiPackages(apiDirectory);
-
-	writeFileSync(apiTarget, buildApiIndex(apis, apiTemplate));
+export async function hexo(options: Options) {
+	const { siteDirectory, configs } = options;
 	await generateHexo(siteDirectory, configs);
+}
+
+export async function hexoClean(targetDirectory: string) {
+	const hexoBin = join('node_modules', '.bin', 'hexo');
+	const proc = exec(`${ hexoBin } clean`, { silent: false, cwd: targetDirectory });
+	await promisify(proc);
 }

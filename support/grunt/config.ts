@@ -22,13 +22,7 @@ export const distDirectory = '_dist';
 
 export const siteDirectory = 'site';
 
-export const apiDirectory = join(distDirectory, 'api');
-
-export const apiThemeDirectory = join(siteDirectory, 'themes/dojo/source/_api-theme');
-
 export const syncDirectory = '.sync';
-
-export const tempDirectory = '.apitemp';
 
 export const publishDirectory = '.ghpublish';
 
@@ -38,112 +32,7 @@ export const masterBranch = 'master';
 // ---------------------------------------------------------------------------------------------------------------------
 // Task Configuration
 // ---------------------------------------------------------------------------------------------------------------------
-export const api = {
-	options: {
-		dest: '<%= apiDirectory %>',
-		filter: 'latest',
-		format: 'html',
-		typedoc: {
-			mode: 'file',
-			externalPattern: '**/+(example|examples|node_modules|tests|typings)/**/*.ts',
-			excludeExternals: true,
-			excludeNotExported: true,
-			ignoreCompilerErrors: true,
-			theme: '<%= apiThemeDirectory %>'
-		}
-	},
-
-	cli: {
-		options: {
-			cloneDirectory: '<%= syncDirectory %>/cli',
-			repo: 'dojo/cli'
-		}
-	},
-
-	'cli-json': {
-		options: {
-			cloneDirectory: '<%= syncDirectory %>/cli',
-			dest: '<%= apiDirectory %>/_json/cli.json',
-			repo: 'dojo/cli',
-			format: 'json'
-		}
-	},
-
-	compose: {
-		options: {
-			repo: 'dojo/compose'
-		}
-	},
-
-	core: {
-		options: {
-			repo: 'dojo/core'
-		}
-	},
-
-	has: {
-		options: {
-			repo: 'dojo/has'
-		}
-	},
-
-	interfaces: {
-		options: {
-			repo: 'dojo/interfaces'
-		}
-	},
-
-	i18n: {
-		options: {
-			repo: 'dojo/i18n'
-		}
-	},
-
-	loader: {
-		options: {
-			repo: 'dojo/loader'
-		}
-	},
-
-	routing: {
-		options: {
-			repo: 'dojo/routing'
-		}
-	},
-
-	shim: {
-		options: {
-			repo: 'dojo/shim'
-		}
-	},
-
-	stores: {
-		options: {
-			repo: 'dojo/stores'
-		}
-	},
-
-	streams: {
-		options: {
-			repo: 'dojo/streams'
-		}
-	},
-
-	'widget-core': {
-		options: {
-			repo: 'dojo/widget-core'
-		}
-	},
-
-	widgets: {
-		options: {
-			repo: 'dojo/widgets'
-		}
-	}
-};
-
 export const clean = {
-	api: [ '<%= tempDirectory %>' ],
 	dist: [ '<%= distDirectory %>' ],
 	publish: [ '<%= publishDirectory %>' ],
 	sync: [ '<%= syncDirectory %>' ],
