@@ -1,0 +1,61 @@
+// Colors
+$page-background: #fafafa;
+
+$color-default: rgba(0,0,0,0.8);
+$color-meta: $color-default;
+$color-grey: #999;
+$color-background-light: #fdfdfd;
+$color-border: #eee;
+$color-link: #258fb8;
+$color-background: #F5F8F9;
+$color-widget-background : #ddd;
+$color-widget-border: #ccc;
+$color-mobile-nav-background: #191919;
+$color-twitter: #00aced;
+$color-facebook: #3b5998;
+$color-pinterest: #cb2027;
+$color-google: #dd4b39;
+
+// Code variables
+$color-code-background: #fff;
+$color-inline-code: #353535;
+$code-font-size: 0.85rem;
+
+// Component style variables
+$header-background: #222127;
+$footer-background: #fff;
+$paginator-background: $light;
+
+$header-height: 3.25rem;
+$header-offset: $header-height;
+$footer-offset: 3.25rem;
+$border-radius: 6px;
+
+// Bulma overrides
+$navbar-item-hover-color: #fff;
+$navbar-item-color: $primary;
+$navbar-item-hover-background-color: transparent;
+
+// Misc
+$article-max-width: 900px;
+
+
+
+/* Your settings for Typesettings :) */
+/* https://github.com/ianrose/typesettings */
+
+$heading-font: 'Roboto Slab', serif;
+$default-font: 'Lato', sans-serif;
+$font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+$font-code: $font-mono;
+$font-sans: $default-font;
+$font-serif: $heading-font;
+$text-color: $color-default;
+$base-vertical-unit: 8px;
+$base-line-multi: 4;
+$base-font-size: 18px;
+$ms-ratio: 1.250;
+$min-width: 600px;
+$paragraph-indent: false;
+$paragraph-justify: true;
+$load-typesetted: true;

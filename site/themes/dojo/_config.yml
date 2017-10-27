@@ -1,9 +1,8 @@
 # Header
 menu:
   Tutorials: /tutorials
-  API: /api
   #Community: /community
-  Blog: /blog/2017/03/27/Dojo-2-is-coming
+  Blog: /blog
 rss: /atom.xml
 
 

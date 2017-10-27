@@ -2,6 +2,7 @@
 layout: tutorial
 title: Form validation
 overview: This tutorial covers patterns for form validation, building on both the form widget tutorial and the state management tutorial.
+paginate: true
 ---
 
 {% section 'first' %}

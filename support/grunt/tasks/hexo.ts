@@ -3,20 +3,16 @@ import wrapAsyncTask from 'grunt-dojo2-extras/tasks/util/wrapAsyncTask';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
 import * as env from 'grunt-dojo2-extras/src/util/environment';
-import hexo from '../../commands/hexo';
+import { hexo, hexoClean } from '../../commands/hexo';
 
 /**
  * Builds the hexo site
  */
 export = function (grunt: IGrunt) {
 	async function buildTask(this: IMultiTask<any>) {
-		const { src: [ siteDirectory ], dest: distDirectory } = this.files[0];
-		const apiDirectory = join(distDirectory, 'api');
+		const { src: [ siteDirectory ] } = this.files[0];
 		const configs = [ '_config.yml' ];
-		const options = this.options<any>({
-			apiSource: join(siteDirectory, 'source/api/_apiTemplate.md'),
-			apiTarget: join(siteDirectory, 'source/api/index.md')
-		});
+		const options = this.options<any>({});
 		const overrideRoot = env.hexoRootOverride();
 
 		if (options.overrides || overrideRoot) {
@@ -31,13 +27,14 @@ export = function (grunt: IGrunt) {
 		}
 
 		await hexo({
-			apiDirectory,
-			apiTemplate: options.apiSource,
-			apiTarget: options.apiTarget,
 			configs,
 			siteDirectory
 		});
 	}
 
 	grunt.registerMultiTask('hexo', wrapAsyncTask(buildTask));
+	grunt.registerTask('hexoClean', function () {
+		const done = this.async();
+		hexoClean(this.options<any>({ target: 'site' }).target).then(done);
+	});
 };

@@ -1,18 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () { 
-	var headroom = new Headroom(document.querySelector('.site-header'), {
-		offset: 150,
-		tolerance: {
-			up: 15,
-			down: 0
-		},
-		classes: {
-			initial: 'animated',
-			pinned: 'slideDown',
-			unpinned: 'slideUp'
-		}
-	});
-
-	headroom.init();
 
 	function addShowSolutionsListener() {
 		var matches = document.body.matches || document.body.webkitMatchesSelector || document.body.mozMatchesSelector
@@ -33,4 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (document.querySelector('button.toggle-solution')) {
 		addShowSolutionsListener();
 	}
+
+	(function () {
+		var navBurger = document.querySelector('.header .navbar-burger');
+		var navMenu = document.querySelector('.header .navbar-menu');
+		navBurger.addEventListener('click', function () {
+			navBurger.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+	})();
 });
