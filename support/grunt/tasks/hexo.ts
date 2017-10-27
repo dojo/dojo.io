@@ -15,7 +15,45 @@ export = function (grunt: IGrunt) {
 		const configs = [ '_config.yml' ];
 		const options = this.options<any>({
 			apiSource: join(siteDirectory, 'source/api/_apiTemplate.md'),
-			apiTarget: join(siteDirectory, 'source/api/index.md')
+			apiTarget: join(siteDirectory, 'source/api/index.md'),
+			npmTags: {
+				cli: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				core: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				has: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				i18n: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				interfaces: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				routing: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				shim: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				widgets: {
+					scope: '@dojo',
+					tag: 'beta2'
+				},
+				'widget-core': {
+					scope: '@dojo',
+					tag: 'beta2'
+				}
+			}
 		});
 		const overrideRoot = env.hexoRootOverride();
 
@@ -34,6 +72,7 @@ export = function (grunt: IGrunt) {
 			apiDirectory,
 			apiTemplate: options.apiSource,
 			apiTarget: options.apiTarget,
+			npmTags: options.npmTags,
 			configs,
 			siteDirectory
 		});
