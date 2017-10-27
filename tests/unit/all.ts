@@ -1,1 +1,1 @@
-import './commands/getApiPackages';
+// nothing for now

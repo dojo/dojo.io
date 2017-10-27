@@ -8,7 +8,7 @@ export const loaderOptions = {
 	]
 };
 
-export const suites = [ 'tests/unit/all' ];
+//export const suites = [ 'tests/unit/all' ];
 
 export const excludeInstrumentation = /^(?:tests|node_modules)\//;
 
