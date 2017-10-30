@@ -5,6 +5,8 @@ title: Internationalization
 overview: It is increasingly rare that applications reach a single audience that lives in a single region and speaks a single language. This article describes the tools Dojo 2 provides to guarantee an application can be adapted to all users, regardless of their language or address.
 ---
 
+# Internationalization
+
 ## Philosophy and approach
 
 Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2's core concerns. `@dojo/i18n`, Dojo 2's internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. Rather than reinvent the wheel, Dojo 2 delegates to the excellent [Globalize.js](https://github.com/globalizejs/globalize) library wherever possible. In addition to formatters and parsers for working with localized dates, times, numbers, and units, Globalize.js also includes an implementation of the [ICU `MessageFormat`](http://userguide.icu-project.org/formatparse/messages), which makes it possible to format messages based on locale-specific variables like gender and count. While `@dojo/i18n` can be used independently from the rest of Dojo 2, most applications will also rely on `@dojo/widget-core` and `@dojo/cli-build-webpack` to simplify internationalization.
