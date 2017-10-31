@@ -36,7 +36,8 @@ body {
 		border: 1px solid #dddddd;
 		border-radius: 3px;
 		font-family: $font-code;
-		white-space: nowrap;
+		white-space: pre-wrap;
+		padding:.1em .3em;
 	}
 
 	pre code:not([class*="language-"]) {
@@ -83,5 +84,11 @@ body {
 		padding-left: inherit;
 		padding-right: inherit;
 		white-space: inherit;
+	}
+	hr {
+		border-top-color:#EAEAEA;
+		background:transparent;
+		padding-top:2.7222em;
+		margin-top:2.7222em;
 	}
 }
