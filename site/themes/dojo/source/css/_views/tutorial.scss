@@ -117,10 +117,13 @@
 		font-weight: bold;
 		margin-bottom: 1rem;
 		padding-top: 2rem;
+		clear:both;
 		&:before {
 			margin-right: 0.5rem;
 			content: '\27e9';
 			color: $success;
+			font-size:1.4em;
+			margin-left:-.6em;
 		}
 	}
 
@@ -130,6 +133,11 @@
 		border: 0;
 		@extend .button.is-primary;
 		font-size: 0.85rem;
+		max-width:250px;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		border-radius:3px;
 	}
 
 	article.aside {
@@ -141,10 +149,20 @@
 		padding: 0.5em;
 		border-radius: 0.3em;
 
+		@media screen and (max-width: 550px) {
+			float:none;
+			max-width:unset;
+			margin:1em 0;
+		}
 		p{
 			font-size: 0.8rem;
 			margin: 0;
 			text-align: start;
+		}
+		a {
+			color: #FFF;
+    		font-weight: 600;
+    		border-bottom: 1px dashed #FFF;
 		}
 
 		strong {

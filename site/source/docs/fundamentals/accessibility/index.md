@@ -5,11 +5,13 @@ title: Accessibility
 overview: Accessibility is a core concern of Dojo 2. This article demonstrates how to ensure that applications can accessed by all users.
 ---
 
+# Accessibility
+
 ## Philosophy and Approach
 
 Dojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provide access to all. Accessibility failures abound in each setting, and they can be very obvious once one starts looking:
 
-| ![Bad wheelchair ramp example](./resources/ramp-bad.jpg)  | ![Good ramp example](./resources/ramp-good.jpg) |
+| ![Bad wheelchair ramp example](../../../tutorials/resources/ramp-bad.jpg)  | ![Good ramp example](../../../tutorials/resources/ramp-good.jpg) |
 |:---:|:---:|
 | Afterthought Accessibility | Designed Accessibility |
 
@@ -227,13 +229,13 @@ class MyWidget extends WidgetBase {
 }
 ```
 
-A more in-depth introduction to classes and theming is available in the [Theming tutorial](./comingsoon.html).
+A more in-depth introduction to classes and theming is available in the [Theming tutorial](../../../tutorials/007_theming/).
 
 ## Focus management
-Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since the [virtual DOM approach](./working_with_virtual_dom) means directly touching the DOM within widgets is discouraged. This feature is currently in development.
+Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since the [virtual DOM approach](../working_with_virtual_dom/) means directly touching the DOM within widgets is discouraged. This feature is currently in development.
 
 ## Writing custom widgets
-All DOM attributes can be set with `VirtualDomProperties` so, apart from managing focus, no extra tools should be required to create strongly accessible widgets. The [widgets tutorial](./003_creating_widgets) goes over widget creation in more technical detail, but the following example shows how to create proper ARIA attributes for an accessible popup button:
+All DOM attributes can be set with `VirtualDomProperties` so, apart from managing focus, no extra tools should be required to create strongly accessible widgets. The [widgets tutorial](../../../tutorials/003_creating_widgets) goes over widget creation in more technical detail, but the following example shows how to create proper ARIA attributes for an accessible popup button:
 
 ```typescript
 v('button', {

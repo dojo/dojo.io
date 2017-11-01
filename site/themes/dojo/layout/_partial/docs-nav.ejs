@@ -2,6 +2,7 @@
 	<p class="menu-label">
 		Fundamentals
 	</p>
+
 	<ul class="menu-list">
 		<%
 			var docs = _.filter(site.pages.data, ['category', 'fundamentals']);
@@ -11,7 +12,7 @@
 				// remove index.html from the path to make relative URLs work consistently
 				var urlRaw = doc.path.substr(0, doc.path.length - 10 /* length of 'index.html' */);
 		%>
-			<li><a href="<%- url_for(doc.path) %>"><%- doc.title %></a></li>
+			<li <% if (url_for(doc.path) == url_for(path)) { %>class="active" <% } %>><a href="<%- url_for(doc.path) %>"><%- doc.title %></a></li>
 		<%
 			});
 		%>

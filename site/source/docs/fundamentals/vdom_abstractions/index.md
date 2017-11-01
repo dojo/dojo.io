@@ -5,6 +5,8 @@ title: vDOM Abstractions - w and v in the d module
 overview: Abstracting the DOM allows us to create presentation components programmatically. Dojo 2 provides a layer of abstraction between the DOM and its virtual counterpart as it exists in JavaScript as well as a layer of abstraction between this virtual DOM and Dojo 2 components - using a common syntax in a common module.
 ---
 
+# vDOM Abstractions
+
 ## `@dojo/widget-core/d.ts`
 
 Creating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because of this, many virtual DOM implementations have chosen single-letter function names to reduce typing and add clarity when reading code.
@@ -18,7 +20,7 @@ This module, named for what would be the single-letter shorthand function name f
 
 A node can be thought of as an object of a certain type, customized through properties, dispatching events through callbacks, with zero or more children. Condensing this down into a function where each argument can be isolated gives us a type, a set of properties, and a list of children.
 
-Because Dojo 2 is [built on TypeScript](https://github.com/dojo/dojo.io/blob/master/site/source/tutorials/TypeScript_and_Dojo_2.md), splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why `v` and `w` are separate functions, as each function enforces a different set of constraints on its arguments.
+Because Dojo 2 is [built on TypeScript](../typescript_and_dojo_2/), splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why `v` and `w` are separate functions, as each function enforces a different set of constraints on its arguments.
 
 ## `v` for vDOM
 
@@ -87,7 +89,7 @@ w(Button, {
 }, [ 'Click me!' ]);
 ```
 
-As an alternative, `w` also accepts a string which will derive the widget type instead through that widget's [registry](coming soon). When this is done, type enforcement can be done through `w`'s generic which will use that type's `properties` and `children` to enforce what is passed in those arguments.
+As an alternative, `w` also accepts a string which will derive the widget type instead through that widget's [registry](../../../tutorials/1020_registries/). When this is done, type enforcement can be done through `w`'s generic which will use that type's `properties` and `children` to enforce what is passed in those arguments.
 
 ```ts
 w<ButtonProperties, ButtonChildren>('CustomButton', {
