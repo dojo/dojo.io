@@ -5,17 +5,17 @@
   
   <title>Category: fundamentals | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@dojo/widget-core/d.tsCreating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because of this, many vir">
+  <meta name="description" content="vDOM Abstractions@dojo/widget-core/d.tsCreating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because">
 <meta property="og:type" content="website">
 <meta property="og:title" content="vDOM Abstractions - w and v in the d module">
 <meta property="og:url" content="https://dojo.github.io/docs/fundamentals/vdom_abstractions/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="@dojo/widget-core/d.tsCreating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because of this, many vir">
+<meta property="og:description" content="vDOM Abstractions@dojo/widget-core/d.tsCreating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-31T20:12:28.374Z">
+<meta property="og:updated_time" content="2017-11-01T19:14:06.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vDOM Abstractions - w and v in the d module">
-<meta name="twitter:description" content="@dojo/widget-core/d.tsCreating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because of this, many vir">
+<meta name="twitter:description" content="vDOM Abstractions@dojo/widget-core/d.tsCreating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -58,6 +58,7 @@ ga('send', 'pageview');
 			<div class="navbar-menu">
 				<div class="navbar-start"></div>
 				<div class="navbar-end">
+					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
 					<a class="navbar-item" href="/tutorials">Tutorials</a>
 					<a class="navbar-item" href="/blog">Blog</a>
 					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
@@ -77,32 +78,33 @@ ga('send', 'pageview');
 	<p class="menu-label">
 		Fundamentals
 	</p>
+
 	<ul class="menu-list">
 		
-			<li><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
+			<li ><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
 		
-			<li><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
+			<li ><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
 		
-			<li><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
+			<li ><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
 		
-			<li><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
+			<li ><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
 		
-			<li><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
+			<li class="active" ><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
 		
-			<li><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
+			<li ><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
 		
 	</ul>
 </aside>
 			</div>
 			<div class="column is-9">
-				<h2 id="dojo-widget-core-d-ts"><a href="#dojo-widget-core-d-ts" class="headerlink" title="@dojo/widget-core/d.ts"></a><code>@dojo/widget-core/d.ts</code></h2><p>Creating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because of this, many virtual DOM implementations have chosen single-letter function names to reduce typing and add clarity when reading code.</p>
+				<h1 id="vDOM-Abstractions"><a href="#vDOM-Abstractions" class="headerlink" title="vDOM Abstractions"></a>vDOM Abstractions</h1><h2 id="dojo-widget-core-d-ts"><a href="#dojo-widget-core-d-ts" class="headerlink" title="@dojo/widget-core/d.ts"></a><code>@dojo/widget-core/d.ts</code></h2><p>Creating the DOM structure to support the syntax, style, and structure required to display a custom component may require a significant number of nodes. Because of this, many virtual DOM implementations have chosen single-letter function names to reduce typing and add clarity when reading code.</p>
 <p>This module, named for what would be the single-letter shorthand function name for “Dojo 2” contains two single-letter functions each named for their purpose:</p>
 <ul>
 <li><code>v</code>: used to create an abstract version of a DOM node</li>
 <li><code>w</code>: used to create an abstract version of a widget</li>
 </ul>
 <h2 id="Common-variables"><a href="#Common-variables" class="headerlink" title="Common variables"></a>Common variables</h2><p>A node can be thought of as an object of a certain type, customized through properties, dispatching events through callbacks, with zero or more children. Condensing this down into a function where each argument can be isolated gives us a type, a set of properties, and a list of children.</p>
-<p>Because Dojo 2 is <a href="https://github.com/dojo/dojo.io/blob/master/site/source/tutorials/TypeScript_and_Dojo_2.md" target="_blank" rel="external">built on TypeScript</a>, splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why <code>v</code> and <code>w</code> are separate functions, as each function enforces a different set of constraints on its arguments.</p>
+<p>Because Dojo 2 is <a href="../typescript_and_dojo_2/">built on TypeScript</a>, splitting arguments into these parts allows static type enforcement that can be based on the type of node being created. It also helps explain why <code>v</code> and <code>w</code> are separate functions, as each function enforces a different set of constraints on its arguments.</p>
 <h2 id="v-for-vDOM"><a href="#v-for-vDOM" class="headerlink" title="v for vDOM"></a><code>v</code> for vDOM</h2><p>Dojo 2’s virtual DOM function expects to receive the tag name, properties, and children as its three arguments. Only the tag name is required and other arguments may be omitted as long as properties and children are called in that order.</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'article'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// represents &lt;article>&lt;/article></span>
@@ -149,7 +151,7 @@ ga('send', 'pageview');
   disabled<span class="token punctuation">:</span> <span class="token keyword">true</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Click me!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>As an alternative, <code>w</code> also accepts a string which will derive the widget type instead through that widget’s <a href="coming soon">registry</a>. When this is done, type enforcement can be done through <code>w</code>‘s generic which will use that type’s <code>properties</code> and <code>children</code> to enforce what is passed in those arguments.</p>
+<p>As an alternative, <code>w</code> also accepts a string which will derive the widget type instead through that widget’s <a href="../../../tutorials/1020_registries/">registry</a>. When this is done, type enforcement can be done through <code>w</code>‘s generic which will use that type’s <code>properties</code> and <code>children</code> to enforce what is passed in those arguments.</p>
 <pre class=" language-ts"><code class="language-ts">w<span class="token operator">&lt;</span>ButtonProperties<span class="token punctuation">,</span> ButtonChildren<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'CustomButton'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
   disabled<span class="token punctuation">:</span> <span class="token keyword">true</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Click me!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

@@ -14508,7 +14508,8 @@ body {
     border: 1px solid #dddddd;
     border-radius: 3px;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    white-space: nowrap; }
+    white-space: pre-wrap;
+    padding: .1em .3em; }
   html pre code:not([class*="language-"]),
   body pre code:not([class*="language-"]) {
     white-space: pre; }
@@ -14567,6 +14568,12 @@ body {
     padding-left: inherit;
     padding-right: inherit;
     white-space: inherit; }
+  html hr,
+  body hr {
+    border-top-color: #EAEAEA;
+    background: transparent;
+    padding-top: 2.7222em;
+    margin-top: 2.7222em; }
 
 html,
 body {
@@ -14681,8 +14688,13 @@ body {
 
 .menu-list {
   margin: 0; }
+  .menu-list .active {
+    border-left: 3px solid #00d1b2;
+    text-indent: -3px;
+    background: whitesmoke; }
   .menu-list li {
-    list-style-type: none; }
+    list-style-type: none;
+    margin-left: -.75em; }
 
 .body-front-page {
   background: #000000 url("images/bg.jpg") 50% 50% no-repeat;
@@ -14803,17 +14815,25 @@ body {
   border-top: 2px solid #eee;
   font-weight: bold;
   margin-bottom: 1rem;
-  padding-top: 2rem; }
+  padding-top: 2rem;
+  clear: both; }
   .body-tutorial .instruction:before {
     margin-right: 0.5rem;
     content: '\27e9';
-    color: #23d160; }
+    color: #23d160;
+    font-size: 1.4em;
+    margin-left: -.6em; }
 
 .body-tutorial button {
   padding: 0.5rem 2rem;
   color: white;
   border: 0;
-  font-size: 0.85rem; }
+  font-size: 0.85rem;
+  max-width: 250px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px; }
 
 .body-tutorial article.aside {
   max-width: 40%;
@@ -14823,10 +14843,19 @@ body {
   margin: 1em;
   padding: 0.5em;
   border-radius: 0.3em; }
+  @media screen and (max-width: 550px) {
+    .body-tutorial article.aside {
+      float: none;
+      max-width: unset;
+      margin: 1em 0; } }
   .body-tutorial article.aside p {
     font-size: 0.8rem;
     margin: 0;
     text-align: start; }
+  .body-tutorial article.aside a {
+    color: #FFF;
+    font-weight: 600;
+    border-bottom: 1px dashed #FFF; }
   .body-tutorial article.aside strong {
     font-size: 1rem; }
 
