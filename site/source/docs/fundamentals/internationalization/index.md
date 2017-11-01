@@ -33,7 +33,7 @@ switchLocale('ja');
 console.log(i18n.locale); // 'ja'
 ```
 
-Since Dojo 2 uses a [reactive architecture](./comingsoon.html), an `observeLocale` method is provided to observe changes to the application locale. It accepts an [Observable](https://github.com/tc39/proposal-observable) whose `next` method is passed the new locale.
+Since Dojo 2 uses a [reactive architecture](../reactive_programming/), an `observeLocale` method is provided to observe changes to the application locale. It accepts an [Observable](https://github.com/tc39/proposal-observable) whose `next` method is passed the new locale.
 
 ```typescript
 import { observeLocale, switchLocale } from '@dojo/i18n/i18n';
@@ -428,7 +428,7 @@ formatUnit(5280, 'foot', { form: 'narrow' }); // '5,280′'
 
 While `@dojo/i18n` is designed to be an independent package, nearly every Dojo 2 application will have a view component. So [`@dojo/widget-core`](https://github.com/widget-core/) provides a custom mixin (`@dojo/widget-core/mixins/I18n`) to make working with `@dojo/i18n` more friendly. Widgets that have incorporated this mixin can localize message bundles by passing them to the `localizeBundle` method during rendering. If messages for the widget's locale have not been loaded yet, then the default messages are returned, and the widget is invalidated once the locale-specific messages have loaded. The object returned by the `localizeBundle` method contains all the messages, as well as a format method that takes a message key as well as any options. If message formatting is not required, then messages can be directly accessed (e.g., `messages.hello`).
 
-In addition to the `localizeBundle` method, `@dojo/widget-core/mixins/I18n` introduces two properties: a boolean `rtl` property and a string `locale` property. The boolean `rtl` property determines whether the text decoration is right-to-left (`true`) or left-to-right(`false`: the default). The `locale` property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no `locale` property is included, widgets assume the root application locale (`i18n.locale`). Note, however, that since [Dojo 2 widgets are controlled](./003_creating_widgets/), child widgets do not automatically inherit the locale from their parent. Parents must pass the correct locale as needed to child widgets; otherwise, a child widget will use the application locale while its parent uses a custom locale.
+In addition to the `localizeBundle` method, `@dojo/widget-core/mixins/I18n` introduces two properties: a boolean `rtl` property and a string `locale` property. The boolean `rtl` property determines whether the text decoration is right-to-left (`true`) or left-to-right(`false`: the default). The `locale` property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no `locale` property is included, widgets assume the root application locale (`i18n.locale`). Note, however, that since [Dojo 2 widgets are controlled](../../../tutorials/003_creating_widgets/), child widgets do not automatically inherit the locale from their parent. Parents must pass the correct locale as needed to child widgets; otherwise, a child widget will use the application locale while its parent uses a custom locale.
 
 ```typescript
 import I18nMixin, { I18nProperties } from '@dojo/widget-core/mixins/I18n';
@@ -452,7 +452,7 @@ export default class Greeting extends GreetingBase<GreetingProperties> {
 
 ## The build process
 
-Dojo 2 uses [webpack](https://webpack.js.org) to bundle applications. Since Dojo 2's packages are designed to function independently, a few extra steps are required to ensure that CLDR data and locale-specific message translations are included in the build. [Dojo 2's build](./006_deploying_to_production/) is configured via a `.dojorc` at the project's root directory. `.dojorc` is a JSON file containing settings defined under specific namespaces. All build options are specified under the `build-webpack` namespace, and the following are specific to internationalization:
+Dojo 2 uses [webpack](https://webpack.js.org) to bundle applications. Since Dojo 2's packages are designed to function independently, a few extra steps are required to ensure that CLDR data and locale-specific message translations are included in the build. [Dojo 2's build](../../../tutorials/006_deploying_to_production/) is configured via a `.dojorc` at the project's root directory. `.dojorc` is a JSON file containing settings defined under specific namespaces. All build options are specified under the `build-webpack` namespace, and the following are specific to internationalization:
 
 * `locale`: the default locale for the application
 * `supportedLocales`: an optional array of additional locales to include in the build
