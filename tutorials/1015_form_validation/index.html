@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-04T19:59:14.383Z">
+<meta property="og:updated_time" content="2017-11-05T20:02:40.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -97,13 +97,13 @@ ga('send', 'pageview');
 <div class="instruction">Next add <code>formErrors</code> to <code>ApplicationContext</code></div>
 <p>As with <code>formData</code>, we need to create a private field for <code>_formErrors</code> in the application context, as well as a public getter. We will also need to update <code>getProperties</code> in <code>WorkerFormContainer.ts</code> to pass through the new error object.</p>
 <p>Make sure the following lines are present somewhere in <code>ApplicationContext.ts</code>:<br><div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
-<span class="token comment" spellcheck="true">// modify import to include WorkerFormErrors</span>
+<span class="token comment">// modify import to include WorkerFormErrors</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerFormData<span class="token punctuation">,</span> WorkerFormErrors <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerForm'</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true">// private field</span>
+<span class="token comment">// private field</span>
 <span class="token keyword">private</span> _formErrors<span class="token punctuation">:</span> WorkerFormErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true">// public getter</span>
+<span class="token comment">// public getter</span>
 <span class="token keyword">get</span> <span class="token function">formErrors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> WorkerFormErrors <span class="token punctuation">{</span>
 	<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -131,7 +131,7 @@ ga('send', 'pageview');
 <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> WorkerFormErrors <span class="token punctuation">{</span>
 		<span class="token keyword">const</span> errors<span class="token punctuation">:</span> WorkerFormErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-		<span class="token comment" spellcheck="true">// validate input</span>
+		<span class="token comment">// validate input</span>
 		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 			<span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 				<span class="token keyword">case</span> <span class="token string">'firstName'</span><span class="token punctuation">:</span>
