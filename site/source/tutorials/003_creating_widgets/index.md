@@ -83,6 +83,10 @@ export interface WidgetProperties {
 
 Both of these properties are optional, so we can pass an empty object for now. Next, we will replace the `Banner` class with the `App` as the root of our application.
 
+{% aside 'Mandatory object for properties' %}
+The 2nd argument of the `w()` function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.
+{% endaside %}
+
 {% section %}
 
 ## Make the App widget the root of the application
@@ -287,7 +291,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../007_theming/) tutorial in the Cookbook section.
 
-We've now updated our application to display a single Biz-E-Body, but our goal is to display a collection of Biz-E-Body items. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
+We've now updated our application to display a single employee, but our goal is to display a collection of employees. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
 
 {% section %}
 
@@ -322,7 +326,7 @@ You may notice that we are calling `this.classes` with the `container` class as 
 {% instruction 'Now update the `render` method to include some workers. Add the following to the top of the `render` method:' %}
 
 ```ts
-		const workers[] = [
+		const workers = [
 			w(Worker, {
 				key: '1',
 				firstName: 'Tim',

@@ -66,7 +66,13 @@ The `--help` argument displays the help information for the `dojo build` command
 Dojo 2 has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo 2, refer to the [Internationalization in Dojo 2 tutorial](../comingsoon.html).
 {% endaside %}
 
-The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configure the build's support for internationalization. The `--locale` argument is used to specify which language should be considered the *default*. Whenever a different locale is used that does not have a specific translation, the default locale's translation will be used. The `--supportedLocales` argument is used to specify all of the provided locales for the application. Each locale that is added here will have its rules for date formatting, currency, etc. added to the build. Finally, the `--messageBundles` argument specifies all of the message bundles (translations) that should be included in the build. For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
+The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configure the build's support for internationalization.
+
+* The `--locale` argument is used to specify which language should be considered the *default*. Whenever a different locale is used that does not have a specific translation, the default locale's translation will be used.
+* The `--supportedLocales` argument is used to specify all of the provided locales for the application. Each locale that is added here will have its rules for date formatting, currency, etc. added to the build.
+* The `--messageBundles` argument specifies all of the message bundles (translations) that should be included in the build.
+
+For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
 
 The next two arguments that are listed when the `dojo build help` command is run are the `--element` and `--elementPrefix`. These two fields are primarily used when exporting Dojo 2 widgets as [web components](https://en.wikipedia.org/wiki/Web_Components) rather than for building stand alone Dojo 2 applications. For more information, refer to the [Exporting Dojo 2 widgets as web components](../comingsoon.html) article.
 
