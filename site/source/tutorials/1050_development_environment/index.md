@@ -50,7 +50,9 @@ In Atom, for example, this means installing [atom-typescript](https://atom.io/pa
 
 {% instruction 'Test error highlighting' %}
 
-Within the demo app, open `src/widgets/WorkerContainer.ts`. In `WorkerContainer`, there is code to create an instance of the `Worker` widget within the `render` function. Modify it to add a fake property, e.g.:
+This tutorial uses VS Code, however you can use any TypeScript compatible editor you wish.
+
+Within the demo app, open `src/widgets/WorkerContainer.ts` in your code editor of choice. In `WorkerContainer`, there is code to create an instance of the `Worker` widget within the `render` function. Modify it to add a fake property, e.g.:
 
 ```typescript
 const workers = workerData.map((worker, i) => w(Worker, {
@@ -72,12 +74,14 @@ VS Code supports TypeScript by default, is written is TypeScript, and allows you
 
 To configure tasks:
 
-* Press <kbd>⌘⇧P</kbd>/<kbd>Ctrl⇧P</kbd> to open the command list.
-* Start typing <kbd>tasks</kbd> and select the command `Tasks: Configure Task Runner`
+1. Press <kbd>⌘ + ⇧ + P</kbd> / <kbd>Ctrl + ⇧ + P</kbd> to open the command list.
+2. Type in <kbd>tasks</kbd>
+3. Select the command `Tasks: Configure Task`
+4. Select 'Open `tasks.json` file'
 
 <p class="center">![gif of opening tasks.json](./resources/task_setup.gif)</p>
 
-The [first tutorial](../000_local_installation/) had you run `dojo build` as the first Dojo CLI command after creating your app, so consider the following code to configure it within `tasks.json`:
+The [first tutorial](../000_local_installation/) had you run `dojo build` as the first Dojo CLI command after creating your app, Replace your current `tasks.json` file with the code below:
 
 ```json
 {
@@ -116,6 +120,12 @@ The [first tutorial](../000_local_installation/) had you run `dojo build` as the
 Other tasks to consider adding could be `test` or `watch`. Once configured, those tasks will be available in the IDE along with `build`:
 
 <p class="center">![dropdown of vs code tasks](./resources/run_task.png)</p>
+
+To access your tasks:
+
+1. Open the command palette
+2. Type in `run task`
+3. Observe the configured tasks display in the command palette
 
 {% section %}
 

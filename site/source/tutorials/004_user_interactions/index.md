@@ -42,7 +42,7 @@ The first step is to add the listener itself. In Dojo 2, an event listener is as
 
 The `onclick` property registers a function that will be called when the node that it is attached to is clicked. In this case, the registered function is a method called `flip`.
 
-{% instruction 'Add a basic implementation for that method.' %}
+{% instruction 'Add a basic implementation for that method within the Worker class.' %}
 
 ```ts
 flip(): void {

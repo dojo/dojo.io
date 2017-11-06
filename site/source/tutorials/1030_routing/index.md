@@ -76,7 +76,7 @@ An `Outlet` is a higher order component that wraps a widget, and controls whethe
 
 The first argument for the `Outlet` function determines the widget to display when the configured route is selected. Consider an `outlet` configured for a `path` of `foo`, its wrapped widget will render for a selected route `foo` (described as an `index` match). The application will also display for any route that the outlet's `path` partially matches, for example, `foo/bar` or `foo/bar/baz`.
 
-Normally using a component for as the first argument of `Outlet` is perfectly acceptable, however there are scenarios where it is necessary to explicitly define a widget for an `index` match. To support this more advanced configuration, the first argument also accepts an object that can be used to specify these components explicitly.
+Normally using a component as the first argument of `Outlet` is perfectly acceptable, however there are scenarios where it is necessary to explicitly define a widget for an `index` match. To support this more advanced configuration, the first argument also accepts an object that can be used to specify these components explicitly.
 
 ```ts
 const ExampleOutlet = Outlet({
