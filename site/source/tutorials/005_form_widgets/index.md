@@ -103,7 +103,7 @@ We are importing the `Button` class that will be used to provide the form's subm
 				type: 'email',
 				required: true
 			}),
-			w(Button, {}, ['Save!'])
+			w(Button, {}, [ 'Save!' ])
 		]);
 	}
 ```
