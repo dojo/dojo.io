@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/html_js.svg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/widget.svg">
-<meta property="og:updated_time" content="2017-11-05T20:02:40.131Z">
+<meta property="og:updated_time" content="2017-11-06T19:27:18.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Components of a Dojo 2 application">
 <meta name="twitter:description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
@@ -91,7 +91,12 @@ ga('send', 'pageview');
 <h2 id="The-main-HTML-document"><a href="#The-main-HTML-document" class="headerlink" title="The main HTML document"></a>The main HTML document</h2><p>HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the <code>index.html</code> file serves this role. Notice that the <code>&lt;body&gt;</code> tag contains a single element: <code>&lt;my-app&gt;</code>. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in <code>main.ts</code>:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
 </code></pre>
-<p>Notice that we are searching for the <code>my-app</code> element and assigning it to the constant <code>root</code>. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach. First, a Dojo 2 application can easily coexist on a page with other content. That content can consist of static assets, a legacy application or even another Dojo 2 application. The next advantage is that Dojo 2 can leverage third-party libraries with ease. For example, if you would like to use the <a href="https://momentjs.com/" target="_blank" rel="external">moment.js</a> library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.</p>
+<p>Notice that we are searching for the <code>my-app</code> element and assigning it to the constant <code>root</code>. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach:</p>
+<ul>
+<li>A Dojo 2 application can easily coexist on a page with other content.</li>
+<li>That content can consist of static assets, a legacy application or even another Dojo 2 application.</li>
+<li>Dojo 2 can leverage third-party libraries with ease. For example, if you would like to use the <a href="https://momentjs.com/" target="_blank" rel="external">moment.js</a> library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.</li>
+</ul>
 </section><section class="tutorial hidden hiding">
 <h2 id="The-projector"><a href="#The-projector" class="headerlink" title="The projector"></a>The projector</h2><p>In <a href="../001_static_content/">Your first Dojo 2 application</a>, we reviewed Dojo 2’s use of a virtual DOM (Document Object Model) to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in <code>main.ts</code>:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>HelloWorld<span class="token punctuation">)</span><span class="token punctuation">;</span>

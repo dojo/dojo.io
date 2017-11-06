@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://dojo.github.io/tutorials/1050_development_environment/resources/run_task.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1050_development_environment/resources/breakpoint.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1050_development_environment/resources/a11y_inspection.png">
-<meta property="og:updated_time" content="2017-11-05T20:02:40.211Z">
+<meta property="og:updated_time" content="2017-11-06T19:27:18.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up a development environment">
 <meta name="twitter:description" content="Development EnvironmentOverviewThis tutorial explores setting up your tools and environment for the best possible Dojo 2 development experience. You may use demo code from any of the Dojo 2 tutorials">
@@ -103,7 +103,8 @@ ga('send', 'pageview');
 <div class="instruction">Install TypeScript support</div>
 <p>In Atom, for example, this means installing <a href="https://atom.io/packages/atom-typescript" target="_blank" rel="external">atom-typescript</a>. Visual Studio Code includes TypeScript support out of the box, and for Vim try installing a combination of plugins for <a href="https://github.com/Quramy/tsuquyomi" target="_blank" rel="external">language features</a> and <a href="https://github.com/leafgarland/typescript-vim" target="_blank" rel="external">syntax highlighting</a>.</p>
 <div class="instruction">Test error highlighting</div>
-<p>Within the demo app, open <code>src/widgets/WorkerContainer.ts</code>. In <code>WorkerContainer</code>, there is code to create an instance of the <code>Worker</code> widget within the <code>render</code> function. Modify it to add a fake property, e.g.:</p>
+<p>This tutorial uses VS Code, however you can use any TypeScript compatible editor you wish.</p>
+<p>Within the demo app, open <code>src/widgets/WorkerContainer.ts</code> in your code editor of choice. In <code>WorkerContainer</code>, there is code to create an instance of the <code>Worker</code> widget within the <code>render</code> function. Modify it to add a fake property, e.g.:</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">const</span> workers <span class="token operator">=</span> workerData<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>worker<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span>
   key<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`worker-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
   fakeProp<span class="token punctuation">:</span> <span class="token string">'foo'</span><span class="token punctuation">,</span>
@@ -117,13 +118,15 @@ ga('send', 'pageview');
 <p>You may skip to the next step if you are not interested in the VS Code editor.</p>
 <p>VS Code supports TypeScript by default, is written is TypeScript, and allows you to <a href="https://code.visualstudio.com/docs/editor/tasks" target="_blank" rel="external">configure tasks</a> which are then integrated into the IDE.</p>
 <p>To configure tasks:</p>
-<ul>
-<li>Press <kbd>⌘⇧P</kbd>/<kbd>Ctrl⇧P</kbd> to open the command list.</li>
-<li>Start typing <kbd>tasks</kbd> and select the command <code>Tasks: Configure Task Runner</code></li>
-</ul>
+<ol>
+<li>Press <kbd>⌘ + ⇧ + P</kbd> / <kbd>Ctrl + ⇧ + P</kbd> to open the command list.</li>
+<li>Type in <kbd>tasks</kbd></li>
+<li>Select the command <code>Tasks: Configure Task</code></li>
+<li>Select ‘Open <code>tasks.json</code> file’</li>
+</ol>
 <p class="center"><img src="./resources/task_setup.gif" alt="gif of opening tasks.json"></p>
 
-<p>The <a href="../000_local_installation/">first tutorial</a> had you run <code>dojo build</code> as the first Dojo CLI command after creating your app, so consider the following code to configure it within <code>tasks.json</code>:</p>
+<p>The <a href="../000_local_installation/">first tutorial</a> had you run <code>dojo build</code> as the first Dojo CLI command after creating your app, Replace your current <code>tasks.json</code> file with the code below:</p>
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.1.0"</span><span class="token punctuation">,</span>
   <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"dojo"</span><span class="token punctuation">,</span>
@@ -159,6 +162,12 @@ ga('send', 'pageview');
 <p>Other tasks to consider adding could be <code>test</code> or <code>watch</code>. Once configured, those tasks will be available in the IDE along with <code>build</code>:</p>
 <p class="center"><img src="./resources/run_task.png" alt="dropdown of vs code tasks"></p>
 
+<p>To access your tasks:</p>
+<ol>
+<li>Open the command palette</li>
+<li>Type in <code>run task</code></li>
+<li>Observe the configured tasks display in the command palette</li>
+</ol>
 </section><section class="tutorial hidden hiding">
 <h2 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h2><p>If you are developing a Dojo 2 application in TypeScript, your application code must be transpiled from TypeScript into JavaScript. This transpilation can happen through the Dojo CLI tool, or through your own configured build system.</p>
 <p>If you are also using <code>dojo build</code>, then your code is also being bundled and minimized. Bundling and minimizing could make it challenging to debug your application in the browser, but we have made efforts to integrate Dojo 2 into modern debugging tools.</p>

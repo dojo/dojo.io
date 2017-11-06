@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a high order component, an Outlet and a component that creates links with a href generated fro">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-05T20:02:40.199Z">
+<meta property="og:updated_time" content="2017-11-06T19:27:18.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a high order component, an Outlet and a component that creates links with a href generated fro">
@@ -146,7 +146,7 @@ router<span class="token punctuation">.</span><span class="token function">start
 <span class="token keyword">export</span> <span class="token keyword">default</span> WorkerFormOutlet<span class="token punctuation">;</span>
 </code></pre>
 <p>The first argument for the <code>Outlet</code> function determines the widget to display when the configured route is selected. Consider an <code>outlet</code> configured for a <code>path</code> of <code>foo</code>, its wrapped widget will render for a selected route <code>foo</code> (described as an <code>index</code> match). The application will also display for any route that the outlet’s <code>path</code> partially matches, for example, <code>foo/bar</code> or <code>foo/bar/baz</code>.</p>
-<p>Normally using a component for as the first argument of <code>Outlet</code> is perfectly acceptable, however there are scenarios where it is necessary to explicitly define a widget for an <code>index</code> match. To support this more advanced configuration, the first argument also accepts an object that can be used to specify these components explicitly.</p>
+<p>Normally using a component as the first argument of <code>Outlet</code> is perfectly acceptable, however there are scenarios where it is necessary to explicitly define a widget for an <code>index</code> match. To support this more advanced configuration, the first argument also accepts an object that can be used to specify these components explicitly.</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> ExampleOutlet <span class="token operator">=</span> <span class="token function">Outlet</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     index<span class="token punctuation">:</span> MyIndexComponent<span class="token punctuation">,</span>
     component<span class="token punctuation">:</span> MyComponent<span class="token punctuation">,</span>

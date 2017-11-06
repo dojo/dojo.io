@@ -13,7 +13,7 @@
 <meta property="og:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
-<meta property="og:updated_time" content="2017-11-05T20:02:40.139Z">
+<meta property="og:updated_time" content="2017-11-06T19:27:18.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -137,6 +137,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Both of these properties are optional, so we can pass an empty object for now. Next, we will replace the <code>Banner</code> class with the <code>App</code> as the root of our application.</p>
+<article class="aside"><strong>Mandatory object for properties</strong><p>The 2nd argument of the <code>w()</code> function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.</p></article>
 </section><section class="tutorial hidden hiding">
 <h2 id="Make-the-App-widget-the-root-of-the-application"><a href="#Make-the-App-widget-the-root-of-the-application" class="headerlink" title="Make the App widget the root of the application"></a>Make the App widget the root of the application</h2><div class="task">Replace the <code>Banner</code> class with the <code>App</code> widget.</div>
 <p>Our <code>App</code> class is now complete and ready to replace the <code>Banner</code> class as the root of the application. To do that, we will edit <code>main.ts</code>.</p>
@@ -307,7 +308,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token punctuation">}</span>
 </code></pre>
 <p>If you return to the browser, you’ll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget’s components. Notice that we don’t have class names such as <code>.worker</code> or <code>.image</code> like we used in the CSS file, rather we have something like <code>.worker__image__3aIJl</code>. The <code>dojo build</code> command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called “themes”). To learn more about those, take a look at the <a href="../007_theming/">Theming an Application</a> tutorial in the Cookbook section.</p>
-<p>We’ve now updated our application to display a single Biz-E-Body, but our goal is to display a collection of Biz-E-Body items. We could certainly add additional <code>Worker</code> widgets to our application, but they would all be siblings of the <code>Banner</code> widget and could be difficult to style properly. In the next section, we’ll create a simple container widget that will manage the layout of the <code>Worker</code> widgets.</p>
+<p>We’ve now updated our application to display a single employee, but our goal is to display a collection of employees. We could certainly add additional <code>Worker</code> widgets to our application, but they would all be siblings of the <code>Banner</code> widget and could be difficult to style properly. In the next section, we’ll create a simple container widget that will manage the layout of the <code>Worker</code> widgets.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Moving-the-Worker-into-a-container"><a href="#Moving-the-Worker-into-a-container" class="headerlink" title="Moving the Worker into a container"></a>Moving the Worker into a container</h2><div class="task">Create a container to handle the layout of Worker widgets.</div>
 <p>The <code>WorkerContainer</code> manages the layout of our <code>Worker</code> widgets and makes it easier to style these widgets. The <code>WorkerContainer</code> has many of the same responsibilities as the <code>App</code> widget. It will be responsible for generating both virtual DOM nodes directly as well as rendering widgets. Similar to the <code>Worker</code> widget, we will apply some styling to it.</p>
@@ -331,7 +332,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 <p>You may notice that we are calling <code>this.classes</code> with the <code>container</code> class as an argument. <code>classes</code> is a method provided by the <code>ThemeableMixin</code> which adds the specified class or classes to the widget, and verifies that they exist as part of the widget’s theme.</p>
 <div class="instruction">Now update the <code>render</code> method to include some workers. Add the following to the top of the <code>render</code> method:</div>
-<pre class=" language-ts"><code class="language-ts">        <span class="token keyword">const</span> workers<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+<pre class=" language-ts"><code class="language-ts">        <span class="token keyword">const</span> workers <span class="token operator">=</span> <span class="token punctuation">[</span>
             <span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span>
                 key<span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
                 firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span>
