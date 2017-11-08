@@ -33,9 +33,15 @@ Right now the error object should mirror `WorkerFormData` in both `WorkerForm.ts
 
 Defining the properties in the `WorkerFormErrors` interface as optional allows us to effectively create three possible states for form fields: unvalidated, valid, and invalid.
 
-{% instruction 'Next add `formErrors` to `ApplicationContext`' %}
+{% instruction 'Next add a `formErrors` method to the `ApplicationContext` class' %}
 
-As with `formData`, we need to create a private field for `_formErrors` in the application context, as well as a public getter. We will also need to update `getProperties` in `WorkerFormContainer.ts` to pass through the new error object.
+As an exercise, complete the following three steps:
+
+1. Create a private field for `_formErrors` in the ApplicationContext class
+2. Define a public getter for the `_formErrors` field within the `ApplicationContext`
+3. Update the `getProperties` function in the `WorkerFormContainer.ts` file to pass through the new error object
+
+Hint: Follow the existing `_formData` private field in the `ApplicationContext` class to see how it's used. The `_formErrors` variable you need to add can follow the same flow.
 
 Make sure the following lines are present somewhere in `ApplicationContext.ts`:
 {% solution showsolution1 %}
@@ -330,7 +336,13 @@ Form errors should be back now, along with error messages for invalid fields.
 
 {% task 'Only begin validation after the first blur event' %}
 
-Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing "invalid email address" errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events. Now that calling `onValidate` is handled within the `ValidatedTextInput` widget, this is possible.
+Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing "invalid email address" types of errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events.
+
+{% aside 'Blur events' %}
+The [blur](https://developer.mozilla.org/en-US/docs/Web/Events/blur) event fires when an element loses focus.
+{% endaside %}
+
+Now that calling `onValidate` is handled within the `ValidatedTextInput` widget, this is possible.
 
 {% instruction 'Create a private `_onBlur` function that calls `onValidate`' %}
 
