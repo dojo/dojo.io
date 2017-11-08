@@ -29,7 +29,33 @@ The first step to allowing the user to create new workers is to create a form. T
 
 {% instruction 'Add the following to `WorkerForm.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-4,7,14-15,19-27,29,42-43,48-51,85-87 %}
+```typescript
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v } from '@dojo/widget-core/d';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import * as css from '../styles/workerForm.css';
+
+export interface WorkerFormProperties {
+}
+
+export const WorkerFormBase = ThemedMixin(WidgetBase);
+
+@theme(css)
+export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
+
+	private _onSubmit(event: Event) {
+		event.preventDefault();
+	}
+
+	protected render() {
+		return v('form', {
+			classes: this.theme(css.workerForm),
+			onsubmit: this._onSubmit
+		}, [
+		]);
+	}
+}
+```
 
 {% aside 'Reminder' %}
 If you cannot see the application, remember to run `dojo build -w` to build the application and start the development server.
@@ -66,28 +92,24 @@ Our form will contain fields allowing the user to create a new worker:
 
 We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
 
-{% instruction 'Add the following imports to `WorkerForm.ts`.' %}
+{% instruction 'Add `w` to the imports from `@dojo/widget-core/d` and add imports for the `Button` and `TextInput` classes to `WorkerForm.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:5-6 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:4-6 %}
 
 These imports are for [built-in Dojo 2 Widgets](https://github.com/dojo/widgets). You can explore other widgets in the [Dojo 2 Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
-{% aside 'Note' %}
-	If you have been working with the same project throughout this series, you might get some errors when you try to import the widgets. If you do, add a new dependency to the `project.json` file: "@dojo/widgets":"2.0.0-alpha.23" and rerun `npm install` to install Dojo 2's standard widget library.
-{% endaside %}
-
-We are importing the `Button` class that will be used to provide the form's submit button and the `TextInput` class that will provide the data entry fields for the worker data.
+The `Button` class will be used to provide the form's submit button and the `TextInput` class will provide the data entry fields for the worker data.
 
 {% instruction 'Replace your `render()` method with the definition below. The code below adds the necessary visual elements to the form' %}
 
 ```ts
 	protected render() {
 		return v('form', {
-			classes: this.classes(css.workerForm),
+			classes: this.theme(css.workerForm),
 			onsubmit: this._onSubmit
 		}, [
-			v('fieldset', { classes: this.classes(css.nameField) }, [
-				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
+			v('fieldset', { classes: this.theme(css.nameField) }, [
+				v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 				w(TextInput, {
 					key: 'firstNameInput',
 					label: {
@@ -125,13 +147,17 @@ At this point, the user interface for the form is available, but it does not do 
 
 This form of the `render` method now does everything that we need: it creates the user interface and registers event handlers that will update the application as the user enters information. However, we need to add a few more methods to the `WorkerForm` to define the event handlers.
 
+{% instruction 'Add an import for `TypedTargetEvent`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' line:2 %}
+
 {% instruction 'Add these methods:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:31-41 %}
 
 The `render` method starts by decomposing the properties into local constants. We still need to define those properties.
 
-{% instruction 'Update the `WorkerFormProperties` interface to include them.' %}
+{% instruction 'Update the `WorkerFormProperties` interface to include them, and add a `WorkerFormData` interface.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:9-19 %}
 

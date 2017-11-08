@@ -35,7 +35,7 @@ The first step is to add the listener itself. In Dojo 2, an event listener is as
 
 ```ts
 {
-	classes: this.classes(css.worker),
+	classes: this.theme(css.worker),
 	onclick: this.flip
 }
 ```
@@ -53,45 +53,6 @@ flip(): void {
 Now, run the app (using `dojo build --watch` or `dojo build -w`) and navigate to [localhost:9999](http://localhost:9999). Once there,
 
 {% instruction 'Open the console window and click on any of the worker widgets to confirm that the `flip` method is being called as expected.' %}
-
-For short event handlers you might be tempted to use an anonymous function like this:
-```ts
-return v('div', {
-	classes: this.classes(css.worker),
-	onclick: () => {
-		// Note: DO NOT DO THIS, this is an
-		// example of an anti-pattern
-		console.log('the handler has been called');
-	}
-}, ...
-```
-
-While this appears to work, Maquette doesn't allow an event handler to be updated. To see what happens, let's have the `onclick` handler invalidate the widget, forcing Maquette to re-render it.
-
-{% instruction 'Update the `render` method.' %}
-
-```ts
-return v('div', {
-	classes: this.classes(css.worker),
-	onclick: () => {
-		// Note: DO NOT DO THIS, this is an
-		// example of an anti-pattern
-		console.log('the handler has been called');
-		this.invalidate();
-	}
-}, ...
-```
-
-Open up your browser's development tools and display the console tab then click on a widget. Notice that an error is written to the console: `Error: Functions may not be updated on subsequent renders`. To avoid an error, all event handlers must be defined once, normally via a method.
-
-{% instruction 'Restore the `onclick` property to its previous value.' %}
-
-```ts
-return v('div', {
-	classes: this.classes(css.worker),
-	onclick: this.flip
-},...
-```
 
 {% section %}
 
@@ -194,7 +155,7 @@ To pass the specified properties to the first worker, the first element in
 
 ## Summary
 
-In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that once a widget has been rendered for the first time the values of its event handler properties cannot change. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.
+In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property.
 
 If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
 

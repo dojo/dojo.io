@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import Button from '@dojo/widgets/button/Button';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import * as css from '../styles/workerForm.m.css';
@@ -18,7 +18,7 @@ export interface WorkerFormProperties {
 	onFormSave: () => void;
 }
 
-export const WorkerFormBase = ThemeableMixin(WidgetBase);
+export const WorkerFormBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
@@ -46,11 +46,11 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		} = this.properties;
 
 		return v('form', {
-			classes: this.classes(css.root).fixed(css.rootFixed),
+			classes: [ this.theme(css.root), css.rootFixed ],
 			onsubmit: this._onSubmit
 		}, [
-			v('fieldset', { classes: this.classes(css.nameField) }, [
-				v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
+			v('fieldset', { classes: this.theme(css.nameField) }, [
+				v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 				w(TextInput, {
 					key: 'firstNameInput',
 					label: {

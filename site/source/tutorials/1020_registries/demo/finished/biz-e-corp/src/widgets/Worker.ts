@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
 import WorkerBack from './WorkerBack';
 import * as css from '../styles/worker.css';
@@ -13,7 +13,7 @@ export interface WorkerProperties {
 	tasks?: string[];
 }
 
-const WorkerBase = ThemeableMixin(WidgetBase);
+const WorkerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class Worker extends WorkerBase<WorkerProperties> {
@@ -21,7 +21,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 
 	protected render() {
 		return v('div', {
-			classes: this.classes(css.worker, this._isFlipped ? css.reverse : null)
+			classes: this.theme([ css.worker, this._isFlipped ? css.reverse : null ])
 		}, [
 			this._renderFront(),
 			this._renderBack()
@@ -35,11 +35,11 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-				classes: this.classes(css.workerFront),
+				classes: this.theme(css.workerFront),
 				onclick: this.flip
 			}, [
 				v('img', {
-					classes: this.classes(css.image),
+					classes: this.theme(css.image),
 						src: 'https://dojo.io/tutorials/resources/worker.svg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
@@ -58,7 +58,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-				classes: this.classes(css.workerBack),
+				classes: this.theme(css.workerBack),
 				onclick: this.flip
 			}, [ this._isFlipped ? w<WorkerBack>('worker-back', { firstName, lastName, email, timePerTask, tasks }) : null ]
 		);

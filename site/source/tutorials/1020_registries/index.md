@@ -68,7 +68,7 @@ Now that the `registry` has been made available to the application and the widge
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:46-58 %}
 
-Notice that we are passing a generic type to the `w()` function call, this is because when using a `registry` label it is unable to infer the properties interface. As a result falls back to the default, `WidgetProperties` interface. Passing the generic tells `w()` the type of widget the label represents in the `registry` and will correctly enforce the widget's properties interface.
+Notice that we are passing a generic type to the `w()` function call, this is because when using a `registry` label it is unable to infer the properties interface. As a result the type falls back to the default, `WidgetProperties` interface. Passing the generic tells `w()` the type of widget the label represents in the `registry` and will correctly enforce the widget's properties interface.
 
 {% instruction 'Use registry labels in `WorkerContainer.ts`\'s render function.' %}
 

@@ -29,6 +29,9 @@ Tutorials are located in `site/source/tutorials` and are similar to static pages
  (`layout: tutorial`) and have code content provided in the `demo` subdirectory that is archived during the tutorials
  build process (`grunt tutorials`).
 
+ If the `finished` directory of the tutorial should be built and tested as part of the CI build, it needs
+ to be added to the list of `TUTORIAL` values in [.travis.yml](./.travis.yml)
+
 ## APIs
 
 APIs are built using the `grunt api` command to the `_dist/api/<project name>/<version>` directory. We currently use

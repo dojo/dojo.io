@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
 import * as css from '../styles/workerBack.css';
 
@@ -12,7 +12,7 @@ export interface WorkerBackProperties {
 	tasks?: string[];
 }
 
-const WorkerBackBase = ThemeableMixin(WidgetBase);
+const WorkerBackBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class WorkerBack extends WorkerBackBase<WorkerBackProperties> {
@@ -28,29 +28,29 @@ export default class WorkerBack extends WorkerBackBase<WorkerBackProperties> {
 
 		return [
 			v('img', {
-				classes: this.classes(css.imageSmall),
+				classes: this.theme(css.imageSmall),
 				src: 'https://dojo.io/tutorials/resources/worker.svg'
 			}),
 			v('div', {
-				classes: this.classes(css.generalInfo)
+				classes: this.theme(css.generalInfo)
 			}, [
 				v('div', {
-					classes : this.classes(css.label)
+					classes : this.theme(css.label)
 				}, ['Name']),
 				v('div', [`${lastName}, ${firstName}`]),
 				v('div', {
-					classes: this.classes(css.label)
+					classes: this.theme(css.label)
 				}, ['Email']),
 				v('div', [`${email}`]),
 				v('div', {
-					classes: this.classes(css.label)
+					classes: this.theme(css.label)
 				}, ['Avg. Time per Task']),
 				v('div', [`${timePerTask}`])
 			]),
 			v('div', [
 				v('strong', ['Current Tasks']),
 				v('div', tasks.map(task => {
-					return v('div', { classes: this.classes(css.task) }, [ task ]);
+					return v('div', { classes: this.theme(css.task) }, [ task ]);
 				}))
 			])
 		];

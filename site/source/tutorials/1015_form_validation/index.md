@@ -116,12 +116,12 @@ protected render() {
 	} = this.properties;
 
 	return v('form', {
-		classes: this.classes(css.workerForm),
+		classes: this.theme(css.workerForm),
 		novalidate: 'true',
 		onsubmit: this._onSubmit
 	}, [
-		v('fieldset', { classes: this.classes(css.nameField) }, [
-			v('legend', { classes: this.classes(css.nameLabel) }, [ 'Name' ]),
+		v('fieldset', { classes: this.theme(css.nameField) }, [
+			v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 			w(TextInput, {
 				key: 'firstNameInput',
 				label: {
@@ -172,7 +172,7 @@ Now when you view the app in the browser, the border color of each form field ch
 Simply changing the border color of form fields to be red or green doesn't impart much information to the user -- we need to add some error message text along with invalid state. On a basic level, our error text must be associated with a form input, styleable, and accessible. A single form field with an error message might look something like this:
 
 ```ts
-v('div', { classes: this.classes(css.inputWrapper) }, [
+v('div', { classes: this.theme(css.inputWrapper) }, [
 	w(TextInput, {
 		...
 		describedBy: this._errorId,
@@ -180,7 +180,7 @@ v('div', { classes: this.classes(css.inputWrapper) }, [
 	}),
 	invalid === true ? v('span', {
 		id: this._errorId,
-		classes: this.classes(css.error),
+		classes: this.theme(css.error),
 		'aria-live': 'polite'
 	}, [ 'Please enter valid text for this field' ]) : null
 ])
@@ -206,7 +206,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import uuid from '@dojo/core/uuid';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
 import * as css from '../styles/workerForm.css';
 
@@ -215,7 +215,7 @@ export interface ValidatedTextInputProperties extends TextInputProperties {
 	onValidate?: (event: Event) => void;
 }
 
-export const ValidatedTextInputBase = ThemeableMixin(WidgetBase);
+export const ValidatedTextInputBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class ValidatedTextInput extends ValidatedTextInputBase<ValidatedTextInputProperties> {
@@ -239,7 +239,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 			onInput
 		} = this.properties;
 
-		return v('div', { classes: this.classes(css.inputWrapper) }, [
+		return v('div', { classes: this.theme(css.inputWrapper) }, [
 			w(TextInput, {
 				describedBy: this._errorId,
 				disabled,
@@ -258,7 +258,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 			}),
 			invalid === true ? v('span', {
 				id: this._errorId,
-				classes: this.classes(css.error),
+				classes: this.theme(css.error),
 				'aria-live': 'polite'
 			}, [ errorMessage ]) : null
 		]);

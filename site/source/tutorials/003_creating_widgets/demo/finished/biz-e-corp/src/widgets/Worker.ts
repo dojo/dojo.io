@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from '../styles/worker.css';
 
 export interface WorkerProperties {
@@ -8,7 +8,7 @@ export interface WorkerProperties {
 	lastName?: string;
 }
 
-const WorkerBase = ThemeableMixin(WidgetBase);
+const WorkerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class Worker extends WorkerBase<WorkerProperties> {
@@ -19,10 +19,10 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-				classes: this.classes(css.worker)
+				classes: this.theme(css.worker)
 			}, [
 				v('img', {
-					classes: this.classes(css.image),
+					classes: this.theme(css.image),
 					src: 'https://dojo.io/tutorials/resources/worker.svg' }),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])

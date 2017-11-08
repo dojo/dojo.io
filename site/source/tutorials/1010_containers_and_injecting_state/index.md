@@ -91,7 +91,7 @@ Now that we have the `ApplicationContext` instance, let's use it within our widg
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:30,31 %}
 
-The first statement creates a `registry` where the application context can be registered. The second statement registers the `ApplicationContext` instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../1020_registries/).
+The first statement creates a `registry` where the application context can be registered. The second statement registers the `ApplicationContext` instance with the newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../1020_registries/).
 
 {% instruction 'Add the registry to the projector' %}
 
@@ -107,7 +107,7 @@ Now that the `Injector` is defined and registered and the `registry` has been se
 
 {% task 'Create `Containers` that will allow state to be injected into widgets' %}
 
-On their own, `Injectors` are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an `injector` must be connected to interested widgets in order for their state to be mapped to `properties` that widgets can consume by using a `Container`. `Containers` are designed to coordinate the injection - they connect `injectors` to widgets and return `properties` from the `injector`'s state which is passed to the connected widgets.
+On their own, `Injectors` are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an `injector` must be connected to interested widgets in order for their state to be mapped to `properties` that widgets can consume by using a `Container`. `Containers` are designed to coordinate the injection - they connect `injectors` to widgets and return `properties` from the `injector`'s state which are passed to the connected widgets.
 
 Normally, a separate `Container` is created for each widget that needs to have `properties` injected. In the demo application, we have two widgets that rely on application state - `WorkerContainer` and `WorkerForm`.
 
@@ -158,7 +158,7 @@ At this point, we have created the `ApplicationContext` to manage state, an `Inj
 
 {% task 'Integrate containers into an application.' %}
 
-As mentioned in the previous section, `Container` is a higher order component that extends `WidgetBase` and returns the wrapped widget and injected `properties` from the `render`. As such, they can be used just like any other widget. In our demo application, we can take advantage of their extension of `WidgetBase` by simply replacing the `WorkerForm` and `WorkerContainer` with their container equivalents.
+As mentioned in the previous section, `Container` is a higher order component that extends `WidgetBase` and returns the wrapped widget and injected `properties` from the `render`. As such, it can be used just like any other widget. In our demo application, we can take advantage of its extension of `WidgetBase` by simply replacing the `WorkerForm` and `WorkerContainer` with their container equivalents.
 
 {% instruction 'Replace the imports in the `App` module with the following.' %}
 

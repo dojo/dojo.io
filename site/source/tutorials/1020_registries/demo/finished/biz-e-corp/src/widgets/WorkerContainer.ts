@@ -1,14 +1,14 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { w, v } from '@dojo/widget-core/d';
 import Worker, { WorkerProperties } from './Worker';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from '../styles/workerContainer.css';
 
 export interface WorkerContainerProperties {
 	workerData?: WorkerProperties[];
 }
 
-const WorkerContainerBase = ThemeableMixin(WidgetBase);
+const WorkerContainerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class WorkerContainer extends WorkerContainerBase<WorkerContainerProperties> {
@@ -24,7 +24,7 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 		}));
 
 		return v('div', {
-			classes: this.classes(css.container)
+			classes: this.theme(css.container)
 		}, workers);
 	}
 }
