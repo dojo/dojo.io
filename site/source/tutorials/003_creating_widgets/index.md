@@ -289,7 +289,11 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:15-32 %}
 
-If you return to the browser, you'll see that the widget now has the classes applied and looks a little better. While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../007_theming/) tutorial in the Cookbook section.
+If you return to the browser, you'll see that the widget now has the classes applied and looks a little better.
+
+<p class="center">![worker_page](../resources/worker_page.png)</p>
+
+While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../007_theming/) tutorial in the Cookbook section.
 
 We've now updated our application to display a single employee, but our goal is to display a collection of employees. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
 

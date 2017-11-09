@@ -57,11 +57,20 @@ Next, we'll add the visual elements of the form.
 
 {% task 'Populate the form.' %}
 
-Our form will contain fields allowing the user to enter the worker's first name, last name and e-mail address. It will also contain a save button that will use the form's data to create a new worker. We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
+Our form will contain fields allowing the user to create a new worker:
+
+* A first name field for the worker
+* A last name field for the worker
+* An e-mail address field
+* A save button that will use the form's data to create a new worker
+
+We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
 
 {% instruction 'Add the following imports to `WorkerForm.ts`.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:5-6 %}
+
+These imports are for [built-in Dojo 2 Widgets](https://github.com/dojo/widgets). You can explore other widgets in the [Dojo 2 Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
 {% aside 'Note' %}
 	If you have been working with the same project throughout this series, you might get some errors when you try to import the widgets. If you do, add a new dependency to the `project.json` file: "@dojo/widgets":"2.0.0-alpha.23" and rerun `npm install` to install Dojo 2's standard widget library.
@@ -69,7 +78,7 @@ Our form will contain fields allowing the user to enter the worker's first name,
 
 We are importing the `Button` class that will be used to provide the form's submit button and the `TextInput` class that will provide the data entry fields for the worker data.
 
-{% instruction 'Use those classes and a few virtual DOM nodes to add the visual elements of the form.' %}
+{% instruction 'Replace your `render()` method with the definition below. The code below adds the necessary visual elements to the form' %}
 
 ```ts
 	protected render() {
@@ -154,6 +163,10 @@ The form is now ready to be integrated into the application. We will do that in 
 
 Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We will add a private property to the `App` to store this state, and a method to update the state and re-render the parts of the application that have changed. As the application grows and needs to store more data, using private properties on a widget class can become difficult to maintain. Dojo 2 uses containers and injectors to help manage the complexities of dealing with state in a large application. For more information, refer to the [Containers and Injecting State](../1010_containers_and_injecting_state/) article.
 
+{% instruction 'Import the `WorkerFormData` interface into `App.ts`.' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:4 %}
+
 {% instruction 'Add `_newWorker` as a private property.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:9 %}
@@ -187,6 +200,8 @@ With the `WidgetForm` in place and the `App` configured to handle it, let's try 
 ## Summary
 
 In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2's reactive programming style allows an application's state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2's widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.
+
+Dojo 2 widgets are provided in the [@dojo/widgets](https://github.com/dojo/widgets) GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the [Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
 If you would like, you can download the completed [demo application](../assets/005_form_widgets-finished.zip) from this tutorial.
 
