@@ -36,7 +36,7 @@ All application routes needs to be to configured when creating the router instan
 * `defaultRoute` - a default route to be used if there is no other matching route
 * `children` - nested route configurations which can represent a nested path within a parent route
 
-Application routing paths are built up into a hierarchy bsaed on the routing configuration. The `children` property of a parent route accepts an array of more route configurations.
+Application routing paths are assembled into a hierarchy bsaed on the routing configuration. The `children` property of a parent route accepts an array of more route configurations.
 
 {% instruction 'Include the required imports in the file `main.ts`.' %}
 
@@ -46,7 +46,7 @@ Application routing paths are built up into a hierarchy bsaed on the routing con
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-31 %}
 
-Explanations for the route configuration in the above code blocked are explained earlier on in this step.
+Explanations for the route configuration in the above code block are explained earlier in this step.
 
 {% instruction 'Now, register the router in a `registry`.' %}
 
@@ -141,7 +141,7 @@ w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:37-55,59-64 %}
 
-The updated block of code continues to render the Banner, Worker Form and Worker Container widgets, and additionally renders three `Link` widgets:
+The updated block of code continues to render the banner, worker form and worker container widgets, and additionally renders three `Link` widgets:
 
 1. A link to the home
 2. A link to the worker directory
@@ -204,7 +204,7 @@ This code defines an `Outlet`. The third argument passed into the `Outlet` is a 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-61 %}
 
-Previously, the raw Dojo 2 widgets were rendered. Now, Ouetlets (which are also widgets) are rendered instead. These outlets 'wrap' the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.
+Previously, the raw Dojo 2 widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets 'wrap' the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.
 
 {% section %}
 

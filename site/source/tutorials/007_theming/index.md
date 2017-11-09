@@ -27,10 +27,10 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 In Dojo, we differentiate between two types of styles:
 
-* Structural styles: these are the minimum necessary for widget function
-* Visual styles these are are themeable
+* Structural styles: these are the minimum necessary for a widget to function
+* Visual styles these are themeable
 
-The current CSS in the example app provides the structural styles, we will now go over how to create and manage themes.
+The current CSS in the example app provides the structural styles, we will now review how to create and manage themes.
 
 In order to theme our widgets, we must ensure that they each extend `ThemeableMixin` and should change their top level class name to `root`. `ThemeableMixin` provides a `this.classes` function for looking up class names in the provided `theme` file and applies the processed class names. We change the top level class names to `root` in order to provide a predictable way to target the outer-node of a widget.
 
@@ -49,7 +49,7 @@ Notice that this file and other `css` files now have a `.m.css` file extension. 
 [CSS Modules](https://github.com/css-modules/css-modules) is a technique to use scoped CSS classnames by default.
 {% endaside %}
 
-{% instruction 'Create a new CSS file for the `Banner` widget named `banner.m.css`.' %}
+{% instruction 'Create a new style sheet for the `Banner` widget named `banner.m.css`.' %}
 
 We will create an empty `root` class for now as our base theme does not require any styles to be added to the `Banner` widget.
 
@@ -98,7 +98,7 @@ Let's create a `themes` directory under your project `src` to store our theme re
 
 {% instruction 'Theme the Worker widget' %}
 
-In order to theme the `Worker` widget, we need to create `worker.m.css` within our `theme/dojo` directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's CSS file.
+In order to theme the `Worker` widget, we need to create `worker.m.css` within our `theme/dojo` directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's style sheet.
 
 Add the following code to `theme.ts`:
 

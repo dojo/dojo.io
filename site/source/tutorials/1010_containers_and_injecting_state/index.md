@@ -114,9 +114,9 @@ Normally, a separate `Container` is created for each widget that needs to have `
 Let's start with the `WorkerContainer`. You must give your containers the same name as their respective widgets, with a `Container` suffix.
 
 E.g. Widget name: `Foo`
-container name ‘FooContainer’. To keep things organized, they are also stored in a different folder - `containers`.
+container name ‘FooContainer’. To keep things organized, they are also stored in a different directory - `containers`.
 
-{% instruction 'Add the following imports to the `WorkerContainerContainer` in the `containers` folder' %}
+{% instruction 'Add the following imports to the `WorkerContainerContainer` in the `containers` directory' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerContainerContainer.ts' lines:1-4 %}
 

@@ -78,7 +78,7 @@ These imports are for [built-in Dojo 2 Widgets](https://github.com/dojo/widgets)
 
 We are importing the `Button` class that will be used to provide the form's submit button and the `TextInput` class that will provide the data entry fields for the worker data.
 
-{% instruction 'replace your `render()` method with the definition below. The code below adds the necessary visual elements to the form' %}
+{% instruction 'Replace your `render()` method with the definition below. The code below adds the necessary visual elements to the form' %}
 
 ```ts
 	protected render() {
@@ -201,7 +201,7 @@ With the `WidgetForm` in place and the `App` configured to handle it, let's try 
 
 In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2's reactive programming style allows an application's state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2's widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.
 
-Dojo 2 widgets are provided in the [@dojo/widgets](https://github.com/dojo/widgets) GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs etc. You can view these widgets in the [Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
+Dojo 2 widgets are provided in the [@dojo/widgets](https://github.com/dojo/widgets) GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the [Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
 If you would like, you can download the completed [demo application](../assets/005_form_widgets-finished.zip) from this tutorial.
 
