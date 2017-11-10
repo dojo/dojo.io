@@ -37,3 +37,8 @@ body {
 .is-full-height {
 	height: 100%;
 }
+
+li ul,
+li ol {
+    padding: 0.5em 1.5em;
+}
