@@ -1,11 +1,11 @@
 ---
 layout: docs
 category: command-line
-title: Creating a New Dojo 2 Application
+title: Creating a new Dojo 2 application
 overview: Create a new Dojo 2 application from scratch
 ---
 
-# Creating a New Dojo 2 Application
+# Creating a new Dojo 2 application
 
 ## Objective
 
