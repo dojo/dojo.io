@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-09T20:06:04.315Z">
+<meta property="og:updated_time" content="2017-11-10T00:14:59.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
 <meta name="twitter:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
@@ -189,6 +189,7 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<article class="aside"><strong>Invalidations</strong><p>Dojo 2 Widgets can invoke <code>invalidate()</code> directly, however a non-widget can only emit an event with: <code>this.emit({ type: 'invalidate' })</code></p></article>
 <p>The code begins by importing some modules, including the <code>WorkerProperties</code> and <code>WorkerFormData</code> interfaces defined in the <code>Worker</code> and <code>WorkerForm</code> modules. These two interfaces define the shape of state that the <code>ApplicationContext</code> manages.</p>
 <p>The <code>ApplicationContext</code> contains the application state information. The base <code>Injector</code> class exposes a public method <code>get</code> that is used to determine what will be injected, by default the <code>get</code> method returns the value that is passed on <code>Injector</code> construction, i.e. <code>new Injector(myValueToInject);</code>. However, as the <code>ApplicationContext</code> is itself the value the needs to be injected, the <code>get</code> method can be overridden to return the instance of <code>ApplicationContext</code>.</p>
 <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> ApplicationContext <span class="token punctuation">{</span>
@@ -223,7 +224,12 @@ ga('send', 'pageview');
 
 projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Now, we need to update the <code>main</code> module to construct and populate an instance of <code>ApplicationContext</code>, create a <code>registry</code> and then define the <code>ApplicationContext</code> as an injector in the registry. Lastly, in order to make the <code>registry</code> available within the widget tree, we need to pass the <code>registry</code> as a property to the <code>projector</code>.</p>
+<p>Now, we need to:</p>
+<ol>
+<li>Update the <code>main</code> module to construct and populate an instance of <code>ApplicationContext</code></li>
+<li>Create a <code>registry</code> and then define the <code>ApplicationContext</code> as an injector in the registry</li>
+<li>To make the <code>registry</code> available within the widget tree, we need to pass the <code>registry</code> as a property to the <code>projector</code></li>
+</ol>
 <div class="instruction">Import the <code>ApplicationContext</code> module and add this code to the <code>main</code> module:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> ApplicationContext <span class="token keyword">from</span> <span class="token string">'./ApplicationContext'</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> applicationContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
@@ -249,7 +255,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 <article class="aside"><strong>Loading data</strong><p>In a real-world application, this data would probably be loaded via a call to a web service or a local data store. To learn more, take a look at the <a href="../comingsoon.html">stores tutorial</a>.</p></article>
 <p>The state stored in the <code>ApplicationContext</code> is the same data that was used in the previous version of the <code>App</code> module to initialize the <code>WorkerProperties</code>, but it is now decoupled into an isolated module that helps to understand and maintain the application. In general, the <code>main</code> module of an application should be concerned with initializing application-wide state. Also, as previously mentioned, the <code>App</code> class only needed to manage the <code>WorkerProperties</code> state so that it could coordinate change to its children.</p>
-<p>Now that we have the <code>ApplicationContext</code>, let’s use it within our widgets. This is done by making the <code>ApplicationContext</code> available to the widgets via a <code>registry</code>.</p>
+<p>Now that we have the <code>ApplicationContext</code> instance, let’s use it within our widgets. This is done by making the <code>ApplicationContext</code> available to the widgets via a <code>registry</code>.</p>
 <div class="instruction">Add the <code>Registry</code> import to the <code>main</code> module.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
 </code></pre>
@@ -258,6 +264,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 registry<span class="token punctuation">.</span><span class="token function">defineInjector</span><span class="token punctuation">(</span><span class="token string">'app-state'</span><span class="token punctuation">,</span> applicationContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>The first statement creates a <code>registry</code> where the application context can be registered. The second statement registers the <code>ApplicationContext</code> instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the <a href="../comingsoon.html">registry tutorial</a>.</p>
+<div class="instruction">Add the registry to the projector</div>
 <p>We need to pass the <code>registry</code> to the <code>projector</code> via the <code>setProperties</code> method to ensure that it is available for all widget and container instances.</p>
 <pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
@@ -265,14 +272,20 @@ registry<span class="token punctuation">.</span><span class="token function">def
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-state-containers"><a href="#Creating-state-containers" class="headerlink" title="Creating state containers"></a>Creating state containers</h2><div class="task">Create <code>Containers</code> that will allow state to be injected into widgets</div>
 <p>On their own, <code>Injectors</code> are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an <code>injector</code> must be connected to interested widgets in order for their state to be mapped to <code>properties</code> that widgets can consume by using a <code>Container</code>. <code>Containers</code> are designed to coordinate the injection - they connect <code>injectors</code> to widgets and return <code>properties</code> from the <code>injector</code>‘s state which is passed to the connected widgets.</p>
-<p>Normally, a separate <code>Container</code> is created for each widget that needs to have <code>properties</code> injected. In the demo application, we have two widgets that rely on application state - <code>WorkerContainer</code> and <code>WorkerForm</code>. Let’s start with the <code>WorkerContainer</code>. <code>Containers</code> are given the same name as the widget that they contain with the suffix <code>Container</code> appended. To keep things organized, they are also stored in a different sub-package - <code>containers</code>.</p>
-<div class="instruction">Add the following imports to the <code>WorkerContainerContainer</code> in the <code>containers</code> sub-package</div>
+<p>Normally, a separate <code>Container</code> is created for each widget that needs to have <code>properties</code> injected. In the demo application, we have two widgets that rely on application state - <code>WorkerContainer</code> and <code>WorkerForm</code>.</p>
+<p>Let’s start with the <code>WorkerContainer</code>. You must give your containers the same name as their respective widgets, with a <code>Container</code> suffix.</p>
+<p>E.g. Widget name: <code>Foo</code><br>container name ‘FooContainer’. To keep things organized, they are also stored in a different directory - <code>containers</code>.</p>
+<div class="instruction">Add the following imports to the <code>WorkerContainerContainer</code> in the <code>containers</code> directory</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Container <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Container'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> ApplicationContext <span class="token keyword">from</span> <span class="token string">'./../ApplicationContext'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> WorkerContainer<span class="token punctuation">,</span> <span class="token punctuation">{</span> WorkerContainerProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./../widgets/WorkerContainer'</span><span class="token punctuation">;</span>
 </code></pre>
-<p>The first <code>import</code> gives the module access to the <code>Container</code> factory function which will be used to construct the container. The other <code>import</code> allows the module to use the <code>ApplicationContext</code> to extract state, use the <code>WorkerContainerProperties</code> to receive properties from its parent, and wrap the <code>WorkerContainer</code> class with the <code>container</code>.</p>
+<ul>
+<li>The first <code>import</code> gives the module access to the <code>Container</code> factory function which will be used to construct the container.</li>
+<li>The second <code>import</code> allows the module to use the <code>ApplicationContext</code> to extract state</li>
+<li>The third import enables the <code>WorkerContainerProperties</code> to receive properties from its parent, and wrap the <code>WorkerContainer</code> class with the <code>container</code>.</li>
+</ul>
 <p>Next, we need to address the fact that the container has two places to get properties from - its parent widget and the <code>ApplicationContext</code>. To tell the container how to manage this, we will create a function called <code>getProperties</code>.</p>
 <div class="instruction">Add the <code>getProperties</code> function to the <code>WorkerContainerContainer</code> module.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getProperties</span><span class="token punctuation">(</span>inject<span class="token punctuation">:</span> ApplicationContext<span class="token punctuation">,</span> properties<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -285,7 +298,12 @@ registry<span class="token punctuation">.</span><span class="token function">def
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> WorkerContainerContainer<span class="token punctuation">;</span>
 </code></pre>
-<p>These final lines define the actual <code>WorkerContainerContainer</code> class and export it. The <code>Container</code> function creates the class by accepting three parameters - the widget’s class definition (alternatively, a widget’s registry key can be used), the registry key for the <code>Injector</code>, and an object literal that provides the mapping functions used to reconcile the two sets of properties and children that the container can receive (one from the <code>Injector</code> and one from the parent widget). The returned class is, in fact, a widget (i.e. it descends from <code>WidgetBase</code>) and, therefore may be used just like any other widget.</p>
+<p>These final lines define the actual <code>WorkerContainerContainer</code> class and exports it. The <code>Container</code> function creates the class by accepting three parameters:</p>
+<ul>
+<li>The widget’s class definition (alternatively, a widget’s registry key can be used)</li>
+<li>The registry key for the <code>Injector</code></li>
+<li>An object literal that provides the mapping functions used to reconcile the two sets of properties and children that the container can receive (one from the <code>Injector</code> and one from the parent widget). The returned class is also a widget as it descends from <code>WidgetBase</code> and therefore may be used just like any other widget.</li>
+</ul>
 <p>The other container that we need is the <code>WorkerFormContainer</code>.</p>
 <div class="instruction">Add the following code to the <code>WorkerFormContainer</code> module in the <code>containers</code> sub-package.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Container <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Container'</span><span class="token punctuation">;</span>
@@ -367,6 +385,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 </code></pre>
 <p>With this last change, the <code>App</code> class is now only nine lines of code. All of the state management logic is still part of the application, but it has been refactored out of the <code>App</code> class to create a more efficient application architecture.</p>
 <p>Notice that the <code>WorkerForm</code> and <code>WorkerContainer</code> widgets were not changed at all! This is an important thing to keep in mind when designing widgets - a widget should never be tightly coupled to the source of its properties. By keeping the containers and widgets separate, we have helped to ensure that each widget or container has a narrowly defined set of responsibilities, creating a cleaner separation of concerns within our widgets and containers.</p>
+<p>At this point, you should reload your page and verify the application is working.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Since Dojo 2 widgets are TypeScript classes, they are capable of filling a large number of roles, including state management. With complex widgets, however, combining the responsibilities to manage the widget’s visual representation as well as the state of its children can make them difficult to manage and test. Dojo 2 defines <code>Injectors</code> and <code>Containers</code> as a way to externalize state management from the app and centralize that management into classes that are designed specifically to fill that role.</p>
 <p>If you would like, you can download the finished <a href="../assets/1010_containers_and_injecting_state-finished.zip">demo application</a> to review.</p>

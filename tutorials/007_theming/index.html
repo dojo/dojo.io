@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-09T20:06:04.311Z">
+<meta property="og:updated_time" content="2017-11-10T00:14:59.540Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -86,7 +86,12 @@ ga('send', 'pageview');
 <p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Making-our-widgets-themeable"><a href="#Making-our-widgets-themeable" class="headerlink" title="Making our widgets themeable"></a>Making our widgets themeable</h2><div class="task">Make our widgets themeable</div>
-<p>In Dojo, we differentiate between structural styles which are the minimum necessary for widget function and visual styles, which are themeable. The current CSS in the example app provides the structural styles, and we will now go over how to create and manage themes.</p>
+<p>In Dojo, we differentiate between two types of styles:</p>
+<ul>
+<li>Structural styles: these are the minimum necessary for a widget to function</li>
+<li>Visual styles these are themeable</li>
+</ul>
+<p>The current CSS in the example app provides the structural styles, we will now review how to create and manage themes.</p>
 <p>In order to theme our widgets, we must ensure that they each extend <code>ThemeableMixin</code> and should change their top level class name to <code>root</code>. <code>ThemeableMixin</code> provides a <code>this.classes</code> function for looking up class names in the provided <code>theme</code> file and applies the processed class names. We change the top level class names to <code>root</code> in order to provide a predictable way to target the outer-node of a widget.</p>
 <div class="instruction">Replace the contents of <code>Banner.ts</code> with the following</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
@@ -105,14 +110,15 @@ ga('send', 'pageview');
 </code></pre>
 <article class="aside"><strong>Reminder</strong><p>If you cannot see the application, remember to run <code>dojo build -w</code> to build the application and start the development server.</p></article>
 <p>This <code>Banner</code> widget will now have access to the classes in <code>banner.m.css</code> and can receive a <code>theme</code>. We use the <code>root</code> class to ensure that the theme we create can easily target the correct node.<br>Notice that this file and other <code>css</code> files now have a <code>.m.css</code> file extension. This is to indicate to the <a href="../006_deploying_to_production/">Dojo 2 build system</a> that this file is a <code>css-module</code> and should be processed as such.</p>
-<div class="instruction">Create a new CSS file for <code>Banner</code> named <code>banner.m.css</code>.</div>
+<article class="aside"><strong>CSS Modules</strong><p><a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">CSS Modules</a> is a technique to use scoped CSS classnames by default.</p></article>
+<div class="instruction">Create a new style sheet for the <code>Banner</code> widget named <code>banner.m.css</code>.</div>
 <p>We will create an empty <code>root</code> class for now as our base theme does not require any styles to be added to the <code>Banner</code> widget.</p>
 <pre class="language-css"><code class="language-css"><span class="token selector">.root</span> <span class="token punctuation">{</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
-<div class="instruction">Now, let's look at changing <code>WorkerForm</code></div>
-<article class="aside"><strong>Fixed Classes</strong><p>Fixed classes apply styles that _cannot_ be overridden by a theme, using a suffix is a convention that helps easily differentiate the intention of these classes.</p></article>
+<div class="instruction">Now, let's look at changing the <code>WorkerForm</code> widget</div>
+<article class="aside"><strong>Fixed Classes</strong><p>Fixed classes apply styles that cannot be overridden by a theme, using a suffix is a convention that helps easily differentiate the intention of these classes.</p></article>
 <p><code>WorkerForm</code> already uses the <code>ThemeableMixin</code> and has a <code>workerForm</code> class on its root node. Let’s change the workerForm class to a <code>root</code> class, and while we are there, we will create a <code>rootFixed</code> class too, and apply that as a <code>fixed</code> class to the root node. This passes a class name to the theming system that cannot be changed or overridden via a theme and ensures that structured or nested styles are not lost when a theme is used.</p>
 <pre class="language-javascript"><code class="language-javascript">		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fixed</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>rootFixed<span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -154,7 +160,8 @@ ga('send', 'pageview');
 <h2 id="Creating-a-Theme"><a href="#Creating-a-Theme" class="headerlink" title="Creating a Theme"></a>Creating a Theme</h2><div class="task">Create a theme directory</div>
 <p>Let’s create a <code>themes</code> directory under your project <code>src</code> to store our theme resources, and create a <code>dojo</code> theme with <code>theme.ts</code> under <code>src/themes/dojo/theme.ts</code>. This is the <code>theme</code> resource where we will import our themed CSS files and export the keyed theme for consumption by our widgets.</p>
 <div class="instruction">Theme the Worker widget</div>
-<p>In order to theme the <code>Worker</code> widget, we need to create <code>worker.m.css</code> within our theme directory and use it within <code>theme.ts</code>. The naming here is important as the object key of the exported theme must match the naming of the widget’s CSS file.</p>
+<p>In order to theme the <code>Worker</code> widget, we need to create <code>worker.m.css</code> within our <code>theme/dojo</code> directory and use it within <code>theme.ts</code>. The naming here is important as the object key of the exported theme must match the naming of the widget’s style sheet.</p>
+<p>Add the following code to <code>theme.ts</code>:</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
     worker
@@ -168,7 +175,7 @@ ga('send', 'pageview');
 </code></pre>
 <p>To apply a theme to a widget, simply pass the <code>theme</code> as a property to widgets to have the <code>ThemeableMixin</code> applied. To ensure that the entire application applies the <code>theme</code> it needs to be passed to all the themeable widgets in our application. This can become problematic when an application uses a mixture of themeable and non-themeable widgets, or uses a widget from a third party, meaning that there is no guarantee that the <code>theme</code> will be propagated as required.</p>
 <article class="aside"><strong>What is a registry?</strong><p>A registry provides a mechanism to inject external payloads into widgets throughout the application tree. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1020_registries/">registry tutorial</a>.</p></article>
-<p>However an application can automatically inject a <code>theme</code> from the <code>registry</code> to every themeable widget in an application tree. First, create a <code>themeInjector</code> using the <code>registerThemeInjector</code> function by passing a <code>registry</code> instance and <code>theme</code>. This will returns a handle to the <code>themeInjector</code> that can be used to change the theme using <code>themeInjector.set()</code>, which will invalidate all themeable widgets in the application tree and re-render using the new theme!</p>
+<p>However an application can automatically inject a <code>theme</code> from the <code>registry</code> to every themeable widget in an application tree. First, create a <code>themeInjector</code> using the <code>registerThemeInjector</code> function by passing a <code>registry</code> instance and <code>theme</code>. This will return a handle to the <code>themeInjector</code> that can be used to change the theme using <code>themeInjector.set()</code>, which will invalidate all themeable widgets in the application tree and re-render using the new theme!</p>
 <div class="instruction">Update our <code>main.ts</code> file to import our theme and create a <code>themeInjector</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
@@ -205,7 +212,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">--spacing</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>In the above code you can see that we have created a number of <code>css-custom-properties</code> to be used within our theme and wrapped them in a <code>:root</code> selector which makes them available on the global scope within our <code>css-modules</code>.<br>To use them, we can <code>@import</code> the <code>variables.css</code> file and use the <code>var</code> keyword to assign a <code>css-custom-property</code> to a css rule.</p>
+<p>In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a <code>:root</code> selector which makes them available on the global scope within our <code>css-modules</code>.<br>To use them, we can <code>@import</code> the <code>variables.css</code> file and use the <code>var</code> keyword to assign a <code>css-custom-property</code> to a css rule.</p>
 <p>Now we will use these variables in <code>worker.m.css</code> to create our fully themed <code>Worker</code>.</p>
 <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
 
@@ -288,7 +295,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Theming-Dojo-widgets"><a href="#Theming-Dojo-widgets" class="headerlink" title="Theming Dojo widgets"></a>Theming Dojo widgets</h2><p>Thus far in this tutorial, we have themed our custom <code>Worker</code> widget, but we have not targeted Dojo widgets that are contained within our application. To demonstrate the styling of Dojo widgets, we will theme the <code>workerForm</code> widget as it contains both DOM nodes and Dojo widgets.</p>
-<div class="instruction">Let's create <code>workerForm.m.css</code> and include it in theme.ts</div>
+<div class="instruction">Let's create <code>workerForm.m.css</code></div>
 <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
@@ -302,6 +309,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">font-size</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<div class="instruction">And include it in <code>theme.ts</code></div>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
@@ -310,7 +318,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo 2 <code>TextInput</code> within our <code>WorkerForm</code>, we need to create <code>dojoTextInput.m.css</code> and export it from <code>theme.ts</code> using a theme key prefixed with <code>dojo-</code>. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.</p>
-<div class="instruction">Create <code>dojoTextInput.m.css</code> and export it from <code>theme.ts</code></div>
+<div class="instruction">Create <code>dojoTextInput.m.css</code></div>
 <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
@@ -326,6 +334,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">min-width</span><span class="token punctuation">:</span> 230px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<div class="instruction">And export it from <code>theme.ts</code></div>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as dojoTextInput <span class="token keyword">from</span> <span class="token string">'./dojoTextInput.m.css'</span><span class="token punctuation">;</span>
@@ -356,7 +365,13 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 </code></pre></section></div>
 </section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to create a theme and apply a theme to both Dojo and custom widgets using the <code>themeInjector</code>. We leveraged functionality from the Dojo 2 theming system to apply variables and to use <code>composes</code> to share styles between components.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned:</p>
+<ul>
+<li>How to create a theme</li>
+<li>How to apply a theme to both Dojo and custom widgets using the <code>themeInjector</code>.</li>
+<li>How to leverage functionality from the Dojo 2 theming system to apply variables</li>
+<li>How to use <code>composes</code> to share styles between components</li>
+</ul>
 <p>You can download the completed <a href="../assets/007_theming-finished.zip">demo application</a> from this tutorial.</p>
 </section>
 

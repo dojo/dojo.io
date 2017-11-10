@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-09T20:06:04.319Z">
+<meta property="og:updated_time" content="2017-11-10T00:14:59.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -94,8 +94,14 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Defining the properties in the <code>WorkerFormErrors</code> interface as optional allows us to effectively create three possible states for form fields: unvalidated, valid, and invalid.</p>
-<div class="instruction">Next add <code>formErrors</code> to <code>ApplicationContext</code></div>
-<p>As with <code>formData</code>, we need to create a private field for <code>_formErrors</code> in the application context, as well as a public getter. We will also need to update <code>getProperties</code> in <code>WorkerFormContainer.ts</code> to pass through the new error object.</p>
+<div class="instruction">Next add a <code>formErrors</code> method to the <code>ApplicationContext</code> class</div>
+<p>As an exercise, complete the following three steps:</p>
+<ol>
+<li>Create a private field for <code>_formErrors</code> in the ApplicationContext class</li>
+<li>Define a public getter for the <code>_formErrors</code> field within the <code>ApplicationContext</code></li>
+<li>Update the <code>getProperties</code> function in the <code>WorkerFormContainer.ts</code> file to pass through the new error object</li>
+</ol>
+<p>Hint: Follow the existing <code>_formData</code> private field in the <code>ApplicationContext</code> class to see how it’s used. The <code>_formErrors</code> variable you need to add can follow the same flow.</p>
 <p>Make sure the following lines are present somewhere in <code>ApplicationContext.ts</code>:<br><div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
 <span class="token comment">// modify import to include WorkerFormErrors</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerFormData<span class="token punctuation">,</span> WorkerFormErrors <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerForm'</span><span class="token punctuation">;</span>
@@ -418,7 +424,9 @@ ga('send', 'pageview');
 <p>Form errors should be back now, along with error messages for invalid fields.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Making-use-of-the-blur-event"><a href="#Making-use-of-the-blur-event" class="headerlink" title="Making use of the blur event"></a>Making use of the blur event</h2><div class="task">Only begin validation after the first blur event</div>
-<p>Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing “invalid email address” errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events. Now that calling <code>onValidate</code> is handled within the <code>ValidatedTextInput</code> widget, this is possible.</p>
+<p>Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing “invalid email address” types of errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events.</p>
+<article class="aside"><strong>Blur events</strong><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur" target="_blank" rel="external">blur</a> event fires when an element loses focus.</p></article>
+<p>Now that calling <code>onValidate</code> is handled within the <code>ValidatedTextInput</code> widget, this is possible.</p>
 <div class="instruction">Create a private <code>_onBlur</code> function that calls <code>onValidate</code></div>
 <p>In <code>ValidatedTextInput.ts</code>:</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">private</span> <span class="token function">_onBlur</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> FocusEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>

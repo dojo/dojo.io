@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://dojo.github.io/tutorials/1050_development_environment/resources/run_task.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1050_development_environment/resources/breakpoint.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1050_development_environment/resources/a11y_inspection.png">
-<meta property="og:updated_time" content="2017-11-09T20:06:04.339Z">
+<meta property="og:updated_time" content="2017-11-10T00:14:59.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up a development environment">
 <meta name="twitter:description" content="Development EnvironmentOverviewThis tutorial explores setting up your tools and environment for the best possible Dojo 2 development experience. You may use demo code from any of the Dojo 2 tutorials">
@@ -171,20 +171,34 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h2><p>If you are developing a Dojo 2 application in TypeScript, your application code must be transpiled from TypeScript into JavaScript. This transpilation can happen through the Dojo CLI tool, or through your own configured build system.</p>
 <p>If you are also using <code>dojo build</code>, then your code is also being bundled and minimized. Bundling and minimizing could make it challenging to debug your application in the browser, but we have made efforts to integrate Dojo 2 into modern debugging tools.</p>
-<p> Source maps describe a way to map from transformed source code back to its original source. The <code>dojo build</code> command maps the code throughout the process so that both the original TypeScript code and CSS code is available when debugging. This integrated workflow should allow you to set breakpoints and watches on the original code as well as see the original code when there is a run-time error.</p>
-<div class="task">Debug test app in Chrome DevTools</div>
+<p> Source maps describe a way to map from transformed source code back to its original source. The <code>dojo build</code> command maps the code throughout the process so that both the original TypeScript code and CSS code is available when debugging. This integrated workflow should allow you to set breakpoints and watch expressions on the original code as well as see the original code when there is a run-time error.</p>
+<div class="task">Debug the tutorial demo application in Chrome DevTools</div>
 <div class="instruction">Create a breakpoint in <code>WorkerContainer</code></div>
-<p>To demonstrate the source mapping between compiled JavaScript code and the source TypeScript, you can open the <code>Sources</code> tab in Chrome DevTools, and browse to <code>WorkerContainer.ts</code>. Insert a breakpoint where desired, and upon reloading the application, you should see the browser pause script execution at the breakpoint:</p>
+<p>To demonstrate the source mapping between compiled JavaScript code and the source TypeScript:</p>
+<ol>
+<li>Open the <code>Sources</code> tab in Chrome DevTools</li>
+<li>Browse to <code>WorkerContainer.ts</code></li>
+<li>Insert a breakpoint on line 21</li>
+<li>Reload the webpage, you should see the browser pause script execution at the breakpoint</li>
+</ol>
 <p class="center"><img src="./resources/breakpoint.png" alt="breakpoint set in Chrome DevTools"></p>
 
+<p>Using breakpoints enables the JavaScript engine to pause execution at a line of code and enables inspection of in-scope variables. You can use this to discover the value of a variable at a particular point in time.</p>
 <div class="task">Install an accessibility inspector</div>
-<p>Dojo 2 widgets are designed to be accessible by default, but a complete application is much more than the sum of its parts. A good in-browser accessibility inspector helps integrate accessibility into the development process. Chrome provides the <a href="https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb" target="_blank" rel="external">Accessibility Developer Tools</a>, which can be used when inspecting the DOM:</p>
+<p>Dojo 2 widgets are designed to be accessible by default. A good in-browser accessibility inspector helps integrate accessibility into the development process. The Google Accessibility team provides a <a href="https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb" target="_blank" rel="external">Accessibility Developer Tools</a> browser extension on the Chrome Web Store, which can be used when inspecting the DOM:</p>
 <p class="center"><img src="./resources/a11y_inspection.png" alt="chrome accessibility inspector"></p>
 
 <p>The inspector exposes text and semantics visible to a screen reader, providing a page model referred to as the <a href="https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/the-accessibility-tree" target="_blank" rel="external">Accessibility Tree</a>.</p>
 <p>Chrome Accessibility Developer Tools does not run an audit against your code, or validate it in any way. For easy in-browser a11y validation, aXe has free open-source extensions for <a href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd" target="_blank" rel="external">Chrome</a> and <a href="https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/" target="_blank" rel="external">Firefox</a>.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Dojo 2 can be used out of the box with any code editor, but good TypeScript support will provide integrated code help and intellisense. Together with robust in-browser debugging, this should set you up with a streamlined process for editing, troubleshooting, and committing code.</p>
+<p>Moving forward, you can:</p>
+<ul>
+<li>Explore other <a href="https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support" target="_blank" rel="external">TypeScript compatible editors</a></li>
+<li>Use <em>code editor snippets</em> to quickly generate code snippets from simple shortcuts (see docs for <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets" target="_blank" rel="external">VS Code</a>, <a href="http://docs.sublimetext.info/en/latest/extensibility/snippets.html" target="_blank" rel="external">Sublime Text</a> &amp; <a href="http://flight-manual.atom.io/using-atom/sections/snippets/" target="_blank" rel="external">Atom</a>)</li>
+<li>Familiarize yourself with browser developer tooling such as the <a href="https://developers.google.com/web/tools/chrome-devtools/" target="_blank" rel="external">Chrome DevTools</a>, <a href="https://developer.mozilla.org/son/docs/Tools" target="_blank" rel="external">Firefox Developer Tools</a>, <a href="https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/Web_Inspector_Tutorial/EnableWebInspector/EnableWebInspector.html" target="_blank" rel="external">Safari Web Inspector</a> or the <a href="https://docs.microsoft.com/en-us/microsoft-edge/f12-devtools-guide" target="_blank" rel="external">Edge F12 Developer Tools</a>. Understanding developer tooling will help you effectively edit and debug Dojo 2 web applications</li>
+<li>Use <a href="https://docs.npmjs.com/misc/scripts" target="_blank" rel="external">npm scripts</a> to configure commands such as <code>npm start</code> to execute <code>dojo build -w</code> making it easier for you and your team to get started</li>
+</ul>
 </section>
 
 		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>

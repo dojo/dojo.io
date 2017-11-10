@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-09T20:06:04.303Z">
+<meta property="og:updated_time" content="2017-11-10T00:14:59.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form widgets">
 <meta name="twitter:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
@@ -165,14 +165,22 @@ ga('send', 'pageview');
 <p>Next, we’ll add the visual elements of the form.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Form-widgets"><a href="#Form-widgets" class="headerlink" title="Form widgets"></a>Form widgets</h2><div class="task">Populate the form.</div>
-<p>Our form will contain fields allowing the user to enter the worker’s first name, last name and e-mail address. It will also contain a save button that will use the form’s data to create a new worker. We could create these fields and buttons using the <code>v</code> function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization (<a href="https://en.wikipedia.org/wiki/Internationalization_and_localization" target="_blank" rel="external">i18n</a>) and accessibility (<a href="https://en.wikipedia.org/wiki/Accessibility" target="_blank" rel="external">a11y</a>) ourselves. Instead, we are going to leverage some of Dojo 2’s built-in widgets that have been designed with these considerations in mind.</p>
+<p>Our form will contain fields allowing the user to create a new worker:</p>
+<ul>
+<li>A first name field for the worker</li>
+<li>A last name field for the worker</li>
+<li>An e-mail address field</li>
+<li>A save button that will use the form’s data to create a new worker</li>
+</ul>
+<p>We could create these fields and buttons using the <code>v</code> function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization (<a href="https://en.wikipedia.org/wiki/Internationalization_and_localization" target="_blank" rel="external">i18n</a>) and accessibility (<a href="https://en.wikipedia.org/wiki/Accessibility" target="_blank" rel="external">a11y</a>) ourselves. Instead, we are going to leverage some of Dojo 2’s built-in widgets that have been designed with these considerations in mind.</p>
 <div class="instruction">Add the following imports to <code>WorkerForm.ts</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/button/Button'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
 </code></pre>
+<p>These imports are for <a href="https://github.com/dojo/widgets" target="_blank" rel="external">built-in Dojo 2 Widgets</a>. You can explore other widgets in the <a href="https://dojo.github.io/examples/widget-showcase/">Dojo 2 Widget Showcase</a>.</p>
 <article class="aside"><strong>Note</strong><p>If you have been working with the same project throughout this series, you might get some errors when you try to import the widgets. If you do, add a new dependency to the <code>project.json</code> file: "@dojo/widgets":"2.0.0-alpha.23" and rerun <code>npm install</code> to install Dojo 2's standard widget library.</p></article>
 <p>We are importing the <code>Button</code> class that will be used to provide the form’s submit button and the <code>TextInput</code> class that will provide the data entry fields for the worker data.</p>
-<div class="instruction">Use those classes and a few virtual DOM nodes to add the visual elements of the form.</div>
+<div class="instruction">Replace your <code>render()</code> method with the definition below. The code below adds the necessary visual elements to the form</div>
 <pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
             classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -311,6 +319,9 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Using-forms"><a href="#Using-forms" class="headerlink" title="Using forms"></a>Using forms</h2><div class="task">Integrate the form into the application.</div>
 <p>Now that the <code>WorkerForm</code> widget is complete, we will update the <code>App</code> class to use it. First, we need to address how to store the user-completed form data. Recall that the <code>WorkerForm</code> will accept an <code>onFormInput</code> property that will allow the <code>App</code> class to be informed when a field value changes. However, the <code>App</code> class does not currently have a place to store those changes. We will add a private property to the <code>App</code> to store this state, and a method to update the state and re-render the parts of the application that have changed. As the application grows and needs to store more data, using private properties on a widget class can become difficult to maintain. Dojo 2 uses containers and injectors to help manage the complexities of dealing with state in a large application. For more information, refer to the <a href="../1010_containers_and_injecting_state/">Containers and Injecting State</a> article.</p>
+<div class="instruction">Import the <code>WorkerFormData</code> interface into <code>App.ts</code>.</div>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerForm<span class="token punctuation">,</span> <span class="token punctuation">{</span> WorkerFormData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./WorkerForm'</span><span class="token punctuation">;</span>
+</code></pre>
 <div class="instruction">Add <code>_newWorker</code> as a private property.</div>
 <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> _newWorker<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
@@ -353,6 +364,7 @@ ga('send', 'pageview');
 <p>With the <code>WidgetForm</code> in place and the <code>App</code> configured to handle it, let’s try it. For now let’s test the <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank" rel="external">happy path</a> by providing the expected values to the form. Provide values for the fields, for example: “Suzette McNamara (smcnamara359@email.com)” and click the <code>Save</code> button. As expected, the form is cleared and a new <code>Worker</code> widget is added to the page. Clicking on the new <code>Worker</code> widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2’s reactive programming style allows an application’s state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2’s widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.</p>
+<p>Dojo 2 widgets are provided in the <a href="https://github.com/dojo/widgets" target="_blank" rel="external">@dojo/widgets</a> GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the <a href="https://dojo.github.io/examples/widget-showcase/">Widget Showcase</a>.</p>
 <p>If you would like, you can download the completed <a href="../assets/005_form_widgets-finished.zip">demo application</a> from this tutorial.</p>
 <p>In <a href="../006_deploying_to_production/">Deploying to production</a>, we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.</p>
 </section>
