@@ -19,7 +19,7 @@ To achieve maximum performance and efficiency, developers should eventually auth
 
 You can [download](../assets/1040_dojo1_dijits-initial.zip) the demo project to get started.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
 
 {% section %}
 
@@ -169,7 +169,7 @@ The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em
 
 Once Dijits are wrapped, they behave similarly to Dojo 2 widgets.  Coupled with the `dojo-typings` TypeScript typings, you get code completion as well when specifying the _properties_ and TypeScript should help ensure the validity of property values.
 
-One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit's as their children. Dojo 2 widgets represent their [DOM virtually](../comingsoon.html), while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.
+One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit's as their children. Dojo 2 widgets represent their [DOM virtually](../../docs/fundamentals/working_with_virtual_dom/), while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.
 
 {% task 'Setting a Dojo 1 theme.' %}
 

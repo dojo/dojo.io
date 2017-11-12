@@ -15,7 +15,7 @@ You can [download](../assets/005_form_widgets-initial.zip) the demo project and 
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
 
 ## Creating our Application Context
 The first step for creating our application context is to identify the state that we need to extract to be managed outside of the widget hierarchy. This should be simple enough thanks to lifting up the state in the previous tutorial.
@@ -28,7 +28,7 @@ Now we can take the state that we lifted up in our previous example and use it t
 
 ## Registering an Injector
 
-Now that we have out application context we need use this to create an `Injector` and register this with the registry (for more details check out our [registry tutorial](../comingsoon.html).
+Now that we have out application context we need use this to create an `Injector` and register this with the registry (for more details check out our [registry tutorial](../1020_registries/).
 
 To do this we need to import the `BaseInjector` and the `Injector` mixin that can be used to create the injector class to define against a known label with the registry.
 
