@@ -28,5 +28,5 @@ This recipe demonstrates the process of creating a new Dojo 2 application.
 
 ## Additional resources
 
-* Dojo 2 requires Node.JS version 6 or above. To install the latest versions of Node, visit their [website](https://nodejs.org).
+* Dojo 2 requires Node.js version 6 or above. To install the latest versions of Node, visit the [Node.js website](https://nodejs.org).
 * To learn more about the Dojo CLI, refer to the [Dojo 2 local installation](/tutorials/000_local_installation) tutorial.
