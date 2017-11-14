@@ -7,7 +7,7 @@ overview: Use the invalidate method to force a widget to re-render itself
 
 ## Objective
 
-This recipe demonstrates how a widget can force itself to re-render.
+This recipe demonstrates how a widget can force itself to re-render when it is clicked on.
 
 ## Code example
 
@@ -32,4 +32,4 @@ When a widget is invalidated, its `render()` method is invoked.
 
 ## Additional resources
 
-* The [Responding to events] tutorial demonstrates this technique with a partical use case
+* The [Responding to events](https://dojo.io/tutorials/004_user_interactions/) tutorial demonstrates this technique with a partical use case

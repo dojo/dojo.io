@@ -23,7 +23,7 @@ import Button from '@dojo/widgets/button/Button';
 import { w } from '@dojo/widget-core/d';
 ```
 
-3. Render the widget within the `render()` method of user-defined widget:
+3. Render the widget within an existing user-defined widget:
 
 ```js
 render() {

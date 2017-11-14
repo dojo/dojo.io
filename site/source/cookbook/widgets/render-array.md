@@ -11,12 +11,6 @@ This recipe demonstrates how to render one or many items part of an array.
 
 ## Code example
 
-This code example does the following:
-
-1. Defines a `_people` array containing two objects
-2. The `render` method maps over the array to create a `people` array containing two virtual DOM nodes
-3. The `people` array of virtual DOM nodes is passed as a child property to the `ul` node
-
 ```ts
 export class HelloWorld extends WidgetBase {
     private _people = [{
@@ -26,11 +20,19 @@ export class HelloWorld extends WidgetBase {
     }];
 
     render() {
-        const people = this._people.map((person, i) => v('li', [person.name]));
+        const people = this._people.map((person) => v('li', [person.name]));
         return v('ul', people);
     }
 }
 ```
+
+This code example above does the following:
+
+1. Defines a `_people` array containing two objects
+2. The `render` method maps over the array to create a `people` array containing two virtual DOM nodes
+3. The `people` array of virtual DOM nodes is passed as a child property to the `ul` node
+
+
 
 
 
