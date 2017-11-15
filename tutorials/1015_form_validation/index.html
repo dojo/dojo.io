@@ -5,14 +5,14 @@
   
   <title>Form validation | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
+  <meta name="description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been cove">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Form validation">
 <meta property="og:url" content="https://dojo.github.io/tutorials/1015_form_validation/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.071Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -425,7 +425,7 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Making-use-of-the-blur-event"><a href="#Making-use-of-the-blur-event" class="headerlink" title="Making use of the blur event"></a>Making use of the blur event</h2><div class="task">Only begin validation after the first blur event</div>
 <p>Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing “invalid email address” types of errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events.</p>
-<article class="aside"><strong>Blur events</strong><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur" target="_blank" rel="external">blur</a> event fires when an element loses focus.</p></article>
+<article class="aside"><strong>Blur events</strong><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur" target="_blank" rel="noopener">blur</a> event fires when an element loses focus.</p></article>
 <p>Now that calling <code>onValidate</code> is handled within the <code>ValidatedTextInput</code> widget, this is possible.</p>
 <div class="instruction">Create a private <code>_onBlur</code> function that calls <code>onValidate</code></div>
 <p>In <code>ValidatedTextInput.ts</code>:</p>

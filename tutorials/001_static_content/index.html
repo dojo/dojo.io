@@ -5,14 +5,14 @@
   
   <title>Your first Dojo 2 application | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can downloa">
+  <meta name="description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in th">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Your first Dojo 2 application">
 <meta property="og:url" content="https://dojo.github.io/tutorials/001_static_content/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can downloa">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.035Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Your first Dojo 2 application">
 <meta name="twitter:description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can downloa">
@@ -88,7 +88,7 @@ ga('send', 'pageview');
 <h2 id="Starting-the-development-server"><a href="#Starting-the-development-server" class="headerlink" title="Starting the development server"></a>Starting the development server</h2><div class="task">Build and run the application.</div>
 <p>Before we start making changes, let’s start the application with the development server so that we can observe the impact of our changes. Run the following command in the application’s root directory:</p>
 <p><code>dojo build -w</code></p>
-<p>Now, open up a web browser to <a href="http://localhost:9999" target="_blank" rel="external">http://localhost:9999</a> to view the current application.</p>
+<p>Now, open up a web browser to <a href="http://localhost:9999" target="_blank" rel="noopener">http://localhost:9999</a> to view the current application.</p>
 <p>In the next step, we will start to customize the application.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Page-content"><a href="#Page-content" class="headerlink" title="Page content"></a>Page content</h2><div class="task">Change what is rendered to the page.</div>
@@ -120,9 +120,9 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></section></div>
-<p>Now, let’s look at the <code>v</code> function again. We are intentionally avoiding something like <code>document.createElement</code> to create DOM (<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank" rel="external">Document Object Model</a>) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a <em>virtual</em> DOM.</p>
+<p>Now, let’s look at the <code>v</code> function again. We are intentionally avoiding something like <code>document.createElement</code> to create DOM (<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank" rel="noopener">Document Object Model</a>) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a <em>virtual</em> DOM.</p>
 <p>In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.</p>
-<p>Dojo 2 leverages the <a href="http://maquettejs.org/" target="_blank" rel="external">Maquette</a> virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the <a href="../comingsoon.html">Working with a Virtual DOM</a> and <a href="../comingsoon.html">Reactive Programming</a> articles in the reference section. For now, let’s get back to our application and make some more changes.</p>
+<p>Dojo 2 leverages the <a href="http://maquettejs.org/" target="_blank" rel="noopener">Maquette</a> virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the <a href="../comingsoon.html">Working with a Virtual DOM</a> and <a href="../comingsoon.html">Reactive Programming</a> articles in the reference section. For now, let’s get back to our application and make some more changes.</p>
 <p>In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Virtual-DOM-properties"><a href="#Virtual-DOM-properties" class="headerlink" title="Virtual DOM properties"></a>Virtual DOM properties</h2><div class="task">Set properties on virtual DOM nodes.</div>
@@ -130,7 +130,7 @@ ga('send', 'pageview');
 <div class="instruction">Update the <code>v</code> function call, with a <code>title</code> attribute like this.</div>
 <pre class="language-javascript"><code class="language-javascript">		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="external">HyperScript</a> and is shared by many virtual DOM implementations.</p>
+<p>Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="noopener">HyperScript</a> and is shared by many virtual DOM implementations.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Congratulations! You are off to a good start on your journey to master Dojo 2. In <a href="../002_creating_an_application/">Components of a Dojo 2 application</a>, we will start to get familiar with the major components of a Dojo 2 application.</p>
 <p>If you would like, you can download the completed <a href="../assets/001_static_content-finished.zip">demo application</a> from this tutorial.</p>

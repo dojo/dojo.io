@@ -5,14 +5,14 @@
   
   <title>Routing | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
+  <meta name="description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component tha">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Routing">
 <meta property="og:url" content="https://dojo.github.io/tutorials/1030_routing/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.087Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
@@ -249,7 +249,7 @@ router<span class="token punctuation">.</span><span class="token function">start
 <h2 id="Dynamic-Outlet"><a href="#Dynamic-Outlet" class="headerlink" title="Dynamic Outlet"></a>Dynamic <code>Outlet</code></h2><div class="task">Add filters to the <code>WorkerContainer.ts</code> widget and create an outlet.</div>
 <p>Finally, we are going to enhance the <code>WorkerContainer.ts</code> with a filter on the workers’ last name. To do this we need to use the <code>filter</code> outlet configured in the first section. The key difference for the <code>filter</code> outlet is that the path is using a placeholder that indicates a path parameter, <code>{filter}</code>.</p>
 <p>This means a route with any value will match the <code>filter</code> as long as the previous path segments match, so for the <code>filter</code> outlet a route of <code>directory/any-value-here</code> would be considered a match.</p>
-<article class="aside"><strong>URL matching in routes</strong><p>The <a href="https://github.com/dojo/routing/#route-registration" target="_blank" rel="external">Dojo 2 Routing documentation</a> on GitHub further explains how outlets map to URLs.</p></article>
+<article class="aside"><strong>URL matching in routes</strong><p>The <a href="https://github.com/dojo/routing/#route-registration" target="_blank" rel="noopener">Dojo 2 Routing documentation</a> on GitHub further explains how outlets map to URLs.</p></article>
 <div class="instruction">Add the new property to the <code>WidgetContainerProperties</code> interface in <code>WorkerContainer.ts</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerContainerProperties</span> <span class="token punctuation">{</span>
 	workerData<span class="token punctuation">:</span> WorkerProperties<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -305,7 +305,7 @@ router<span class="token punctuation">.</span><span class="token function">start
 <li><code>router</code>,</li>
 <li><code>matchType</code></li>
 </ul>
-<p>Each of these four properties are documented in the <a href="https://github.com/dojo/routing/#map-params" target="_blank" rel="external">Dojo 2 Routing documentation</a> on GitHub.</p>
+<p>Each of these four properties are documented in the <a href="https://github.com/dojo/routing/#map-params" target="_blank" rel="noopener">Dojo 2 Routing documentation</a> on GitHub.</p>
 <p>The mapping function callback can return an object which is then injected into the wrapped widget properties.</p>
 <div class="instruction">Add the following code to <code>FilteredWorkerContainerOutlet.ts</code></div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Outlet'</span><span class="token punctuation">;</span>

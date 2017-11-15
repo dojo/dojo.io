@@ -5,14 +5,14 @@
   
   <title>Using Dojo 1 Dijits | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
+  <meta name="description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and wi">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Using Dojo 1 Dijits">
 <meta property="og:url" content="https://dojo.github.io/tutorials/1040_dojo1_dijits/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.091Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using Dojo 1 Dijits">
 <meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
@@ -133,11 +133,11 @@ ga('send', 'pageview');
 		<span class="token string">"./node_modules/dojo-typings/dijit/1.11/modules.d.ts"</span>
 	<span class="token punctuation">]</span>
 </code></pre>
-<article class="aside"><strong>Information</strong><p>If you are using your own custom Dijits, you should add your own TypeScript typings to the project.  The <a href="https://github.com/dojo/typings/" target="_blank" rel="external"><code>dojo/typings</code></a> can provide you examples of how you might want to accomplish this.</p></article>
+<article class="aside"><strong>Information</strong><p>If you are using your own custom Dijits, you should add your own TypeScript typings to the project.  The <a href="https://github.com/dojo/typings/" target="_blank" rel="noopener"><code>dojo/typings</code></a> can provide you examples of how you might want to accomplish this.</p></article>
 <p>By adding the modules to the scope of the TypeScript transpiler, we should have typing information available when attempting to import various Dijit modules.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Configuring-Dojo-1"><a href="#Configuring-Dojo-1" class="headerlink" title="Configuring Dojo 1"></a>Configuring Dojo 1</h2><div class="task">Creating loader configuration.</div>
-<article class="aside"><strong>Information</strong><p>The Dojo 1 loader configuration can be complex.  There is this Dojo 1 tutorial <em><a href="https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html" target="_blank" rel="external">Configuring Dojo with dojoConfig</a></em> that explains how to configure Dojo 1.</p></article>
+<article class="aside"><strong>Information</strong><p>The Dojo 1 loader configuration can be complex.  There is this Dojo 1 tutorial <em><a href="https://dojotoolkit.org/documentation/tutorials/1.10/dojo_config/index.html" target="_blank" rel="noopener">Configuring Dojo with dojoConfig</a></em> that explains how to configure Dojo 1.</p></article>
 <p>In the previous step, we needed to include a configuration for our Dojo 1 loader.  For this tutorial, we only need to ensure that the Dojo 1 loader works asynchronously, because the Dojo 1 loader will default to synchronous operation, which would inhibit performance and cause issues with our Dojo 2 application.  The configuration could have any name.  Here we specify it as <code>/src/dojo1.cfg.js</code>.</p>
 <div class="instruction">Create a <code>/src/dojo1.cfg.js</code> with the following content:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> dojoConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -218,7 +218,7 @@ ga('send', 'pageview');
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 </code></pre>
-<article class="aside"><strong>Information</strong><p>The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the <a href="https://dojotoolkit.org/api/" target="_blank" rel="external">Dojo 1 API documentation</a>.</p></article>
+<article class="aside"><strong>Information</strong><p>The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the <a href="https://dojotoolkit.org/api/" target="_blank" rel="noopener">Dojo 1 API documentation</a>.</p></article>
 <p>Once Dijits are wrapped, they behave similarly to Dojo 2 widgets.  Coupled with the <code>dojo-typings</code> TypeScript typings, you get code completion as well when specifying the <em>properties</em> and TypeScript should help ensure the validity of property values.</p>
 <p>One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit’s as their children. Dojo 2 widgets represent their <a href="../comingsoon.html">DOM virtually</a>, while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.</p>
 <div class="task">Setting a Dojo 1 theme.</div>
@@ -234,7 +234,7 @@ ga('send', 'pageview');
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to setup the build system to include Dojo 1 as an external dependency.  We learned how to import Dojo 1 based Dijits into a Dojo 2 project and wrap them so they can be integrated into the Dojo 2 widgeting system.  We also learned how to apply a Dojo 1 theme so our Dijits have a proper look and feel.</p>
 <p>If you would like, you can download the completed <a href="../assets/1040_dojo1_dijits-finished.zip">demo application</a> from this tutorial.</p>
 <p>This tutorial is far from exhaustive on the subject, but is intended to provide the basics of using Dojo 1 Dijits in a Dojo 2 application.  It is ideally better to use or create Dojo 2 widgets than to leverage Dojo 1 Dijits.  We think the main use case is when you want to incrementally migrate an existing application to Dojo 2, being able to <em>wrap</em> custom Dijits can be really useful.</p>
-<p>The way we integrated Dojo 1 in this example is not suitable for a production application.  Ideally you would create a built layer of your Dojo 1 dependencies.  You can <em>inject</em> that built layer in the same way as earlier in the tutorial.  For more on creating builds of Dojo 1, you should refer to the Dojo 1 <a href="https://dojotoolkit.org/documentation/tutorials/1.10/build/index.html" target="_blank" rel="external">Creating Builds</a> tutorial.</p>
+<p>The way we integrated Dojo 1 in this example is not suitable for a production application.  Ideally you would create a built layer of your Dojo 1 dependencies.  You can <em>inject</em> that built layer in the same way as earlier in the tutorial.  For more on creating builds of Dojo 1, you should refer to the Dojo 1 <a href="https://dojotoolkit.org/documentation/tutorials/1.10/build/index.html" target="_blank" rel="noopener">Creating Builds</a> tutorial.</p>
 </section>
 
 		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>

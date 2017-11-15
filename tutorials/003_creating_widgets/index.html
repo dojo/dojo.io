@@ -5,7 +5,7 @@
   
   <title>Creating widgets | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
+  <meta name="description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and ru">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creating widgets">
 <meta property="og:url" content="https://dojo.github.io/tutorials/003_creating_widgets/index.html">
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker_page.png">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.043Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -116,8 +116,8 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Notice that the <code>App</code> class is extending <code>WidgetBase</code>, a <a href="https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes" target="_blank" rel="external">generic class</a> that accepts the <code>WidgetProperties</code> interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the <code>export</code> and <code>default</code> keywords before the <code>class</code> keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.</p>
-<p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render()</code>, which means that our render method has to return a <code>DNode</code> (an abstraction for a <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="external">HyperScript</a> node) so that the application’s projector knows what to render. The normal way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p>
+<p>Notice that the <code>App</code> class is extending <code>WidgetBase</code>, a <a href="https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes" target="_blank" rel="noopener">generic class</a> that accepts the <code>WidgetProperties</code> interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the <code>export</code> and <code>default</code> keywords before the <code>class</code> keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.</p>
+<p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render()</code>, which means that our render method has to return a <code>DNode</code> (an abstraction for a <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="noopener">HyperScript</a> node) so that the application’s projector knows what to render. The normal way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p>
 <div class="instruction">To start, let's use a simple <code>render</code> method by adding this to the <code>App</code> class:</div>
 <pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -152,7 +152,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <div class="instruction">If you are working locally, run the following command:</div>
 <pre class=" language-bash"><code class="language-bash">dojo build --watch
 </code></pre>
-<p>then open up a web browser and navigate to <a href="http://localhost:9999" target="_blank" rel="external"><code>http://localhost:9999</code></a>. You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner’s <code>&lt;h1&gt;</code> tag has been wrapped by the App’s <code>&lt;div&gt;</code>, so everything appears to be working.</p>
+<p>then open up a web browser and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>. You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner’s <code>&lt;h1&gt;</code> tag has been wrapped by the App’s <code>&lt;div&gt;</code>, so everything appears to be working.</p>
 <p>In the next section, we’ll create the <code>Worker</code> widget that will show the portrait and name of our Biz-E-Bodies.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-the-Worker-widget"><a href="#Creating-the-Worker-widget" class="headerlink" title="Creating the Worker widget"></a>Creating the Worker widget</h2><div class="task">Create the <code>Worker</code> widget and use it to display some information about a worker.</div>
@@ -203,7 +203,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></section></div>
-<div class="instruction">Run the application with <code>dojo build --watch</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="external"><code>http://localhost:9999</code></a>.</div>
+<div class="instruction">Run the application with <code>dojo build --watch</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>.</div>
 <p>We have succeeded in rendering the widget, but there seem to be some styling issues. We’ll come back to that in a bit. For now, let’s continue refining the <code>Worker</code> widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface to pass configuration information into the widget.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Making-a-configurable-widget"><a href="#Making-a-configurable-widget" class="headerlink" title="Making a configurable widget"></a>Making a configurable widget</h2><div class="task">Add properties to the <code>Worker</code> and use those to configure it.</div>
@@ -223,7 +223,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
 		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 </code></pre>
-<p>This code retrieves the appropriate property and provides a reasonable default in case the widget doesn’t receive a value. This is done via a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="external">destructuring assignment</a>. We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.</p>
+<p>This code retrieves the appropriate property and provides a reasonable default in case the widget doesn’t receive a value. This is done via a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener">destructuring assignment</a>. We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.</p>
 <div class="instruction">Update the <code>render</code> method to look like this:</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> <span class="token punctuation">{</span>
@@ -251,8 +251,8 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </section><section class="tutorial hidden hiding">
 <h2 id="Styling-widgets-with-CSS-modules"><a href="#Styling-widgets-with-CSS-modules" class="headerlink" title="Styling widgets with CSS modules"></a>Styling widgets with CSS modules</h2><div class="task">Use Cascading Style Sheets to change a widget's appearance.</div>
 <p>We can use CSS files to establish the look and feel of a widget or application.</p>
-<p>Dojo leverages <a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">CSS Modules</a> to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of <a href="https://github.com/Quramy/typed-css-modules" target="_blank" rel="external">typed CSS modules</a>, so that we can provide CSS typing files, enabling you to target CSS files in your import statements.</p>
-<p>To allow our <code>Worker</code> widget to be styled, we need to modify the class. First, apply a <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank" rel="external">decorator</a> to the class to modify the widget’s constructor and prepare its instances to work with CSS modules. Also, we will apply a theme <em>mixin</em> to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.</p>
+<p>Dojo leverages <a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a> to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of <a href="https://github.com/Quramy/typed-css-modules" target="_blank" rel="noopener">typed CSS modules</a>, so that we can provide CSS typing files, enabling you to target CSS files in your import statements.</p>
+<p>To allow our <code>Worker</code> widget to be styled, we need to modify the class. First, apply a <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank" rel="noopener">decorator</a> to the class to modify the widget’s constructor and prepare its instances to work with CSS modules. Also, we will apply a theme <em>mixin</em> to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.</p>
 <div class="instruction">Add the following import to the top of <code>Worker.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
 </code></pre>

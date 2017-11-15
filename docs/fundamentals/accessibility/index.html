@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Catégorie: fundamentals | Dojo</title>
+  <title>Category: fundamentals | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AccessibilityPhilosophy and ApproachDojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibil">
+  <meta name="description" content="AccessibilityPhilosophy and ApproachDojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and archit">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Accessibility">
 <meta property="og:url" content="https://dojo.github.io/docs/fundamentals/accessibility/index.html">
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/ramp-bad.jpg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/ramp-good.jpg">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.031Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Accessibility">
 <meta name="twitter:description" content="AccessibilityPhilosophy and ApproachDojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibil">
@@ -116,7 +116,7 @@ ga('send', 'pageview');
 </tbody>
 </table>
 <p>Web developers have an additional hurdle to jump over, since accessibility failures online are often invisible and silent. Without proper testing, it is all too easy to add a redundant <code>title</code> attribute to a link or create a <code>&lt;label&gt;</code> while forgetting the <code>for</code> attribute.</p>
-<p>The increasingly fleshed-out specification and support for ARIA attributes is fantastic, but can feed into the false impression that accessibility is achieved by slapping an <code>aria-labelledby</code> or <code>role</code> onto a finished widget and calling it done. The only approach that has the potential to deliver truly equal access is to begin thinking about accessibility in design and continue through to development and testing. For that reason, Dojo 2 has no separate accessibility mixin; all Dojo 2 widgets have been designed to be accessible by default, and any tools needed to meet <a href="https://www.w3.org/TR/WCAG20/" target="_blank" rel="external">WCAG</a> standards have been integrated into <code>@dojo/widget-core</code> and <code>@dojo/widgets</code>.</p>
+<p>The increasingly fleshed-out specification and support for ARIA attributes is fantastic, but can feed into the false impression that accessibility is achieved by slapping an <code>aria-labelledby</code> or <code>role</code> onto a finished widget and calling it done. The only approach that has the potential to deliver truly equal access is to begin thinking about accessibility in design and continue through to development and testing. For that reason, Dojo 2 has no separate accessibility mixin; all Dojo 2 widgets have been designed to be accessible by default, and any tools needed to meet <a href="https://www.w3.org/TR/WCAG20/" target="_blank" rel="noopener">WCAG</a> standards have been integrated into <code>@dojo/widget-core</code> and <code>@dojo/widgets</code>.</p>
 <h2 id="Using-Dojo-2-widgets"><a href="#Using-Dojo-2-widgets" class="headerlink" title="Using Dojo 2 widgets"></a>Using Dojo 2 widgets</h2><p>All widgets provided through <code>@dojo/widgets</code> have been created with a range of assistive technologies and perceptual differences in mind. Wherever possible, Dojo 2 takes advantage of built-in accessibility by using native elements; if it looks like a button and acts like a button, it should be a <code>&lt;button&gt;</code>. Widgets that go beyond the functionality provided by native elements use internal logic to provide proper semantics and non-mouse interaction.</p>
 <p>As with all code however, Dojo widgets are not foolproof. There are a number of instances where additional information is required of the widget author before peak accessibility can be achieved. A framework can only go so far before it becomes the developer’s responsibility to provide label text or correctly set attributes such as <code>type</code> or <code>role</code>. Each widget’s example page models best practices, and scanning through available widget properties is a good way to check for any missing accessibility enhancements.</p>
 <p>Below is a list of widgets in <code>@dojo/widgets</code>, along with a description of the keyboard interaction (if applicable) and any properties included primarily for accessibility (shortened to a11y):</p>
@@ -131,7 +131,7 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
 <p>The <code>label</code> property on both form field widgets and the <code>Label</code> widget accepts either a string or an options object that allows customization of where the label is placed (before or after the input) and whether it is visually hidden. The latter makes use of screen reader-accessible CSS styles to hide text content and is recommended for use with form controls that have no visible label.</p>
-<p>A <code>&lt;label&gt;</code> element with hidden text was chosen over the <code>aria-label</code> attribute for invisible labels due to <a href="https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/" target="_blank" rel="external">still-inconsistent</a> screen reader support for the latter. Should this change, we will update our hidden label implementation to <code>aria-label</code> without changing the public-facing properties.</p>
+<p>A <code>&lt;label&gt;</code> element with hidden text was chosen over the <code>aria-label</code> attribute for invisible labels due to <a href="https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/" target="_blank" rel="noopener">still-inconsistent</a> screen reader support for the latter. Should this change, we will update our hidden label implementation to <code>aria-label</code> without changing the public-facing properties.</p>
 <hr>
 <h3 id="TextInput-and-Textarea"><a href="#TextInput-and-Textarea" class="headerlink" title="TextInput and Textarea"></a>TextInput and Textarea</h3><p>As with all basic form controls included in <code>@dojo/widgets</code>, <code>TextInput</code> and <code>Textarea</code> use native <code>&lt;input&gt;</code>/<code>&lt;textarea&gt;</code> elements, which allows them to take advantage of built-in accessibility.</p>
 <h5 id="A11y-properties"><a href="#A11y-properties" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
 <li><strong>Enter &amp; Space</strong>: Selects the focused option and closes the menu, unless the option is disabled</li>
 <li><strong>Escape</strong>: Closes the menu without selecting an option</li>
 </ul>
-<p>Disabled options are focusable but not selectable within the menu, per <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls" target="_blank" rel="external">WAI-ARIA recommendations</a>.</p>
+<p>Disabled options are focusable but not selectable within the menu, per <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls" target="_blank" rel="noopener">WAI-ARIA recommendations</a>.</p>
 <h5 id="A11y-properties-5"><a href="#A11y-properties-5" class="headerlink" title="A11y properties"></a>A11y properties</h5><ul>
 <li><code>describedBy</code>: Sets the <code>aria-describedby</code> property to point to the <code>id</code> of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.</li>
 <li><code>label</code>: Controls the wrapping <code>&lt;label&gt;</code> element.</li>
@@ -230,7 +230,7 @@ ga('send', 'pageview');
 <li><code>closeText</code>: Provides hidden, accessible text for the icon close button. Defaults to “close pane.”</li>
 </ul>
 <hr>
-<h3 id="TabController"><a href="#TabController" class="headerlink" title="TabController"></a>TabController</h3><p><code>TabController</code> creates a set of tab buttons that control the content of a container. The tab buttons use <code>role=&quot;tab&quot;</code> and are associated with their content through <code>aria-controls</code> and <code>aria-labelledby</code>. Only one tab button is in the tab order at a time, and arrow keys are used to switch between tab buttons. This approach both directly follows the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/" target="_blank" rel="external">ARIA Authoring Practice Guidelines</a> and avoids polluting the tab order with a large number of tab stops in the case of a single <code>TabController</code> with many tabs.</p>
+<h3 id="TabController"><a href="#TabController" class="headerlink" title="TabController"></a>TabController</h3><p><code>TabController</code> creates a set of tab buttons that control the content of a container. The tab buttons use <code>role=&quot;tab&quot;</code> and are associated with their content through <code>aria-controls</code> and <code>aria-labelledby</code>. Only one tab button is in the tab order at a time, and arrow keys are used to switch between tab buttons. This approach both directly follows the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/" target="_blank" rel="noopener">ARIA Authoring Practice Guidelines</a> and avoids polluting the tab order with a large number of tab stops in the case of a single <code>TabController</code> with many tabs.</p>
 <h5 id="Keyboard-interaction-3"><a href="#Keyboard-interaction-3" class="headerlink" title="Keyboard interaction"></a>Keyboard interaction</h5><ul>
 <li><strong>Left arrow</strong>: Moves to previous tab button, wrapping from first to last</li>
 <li><strong>Right arrow</strong>: Moves to next tab button, wrapping from last to first</li>
@@ -278,8 +278,8 @@ ga('send', 'pageview');
 <ul>
 <li>Ensure nodes that support any sort of user interaction are both focusable and have accessible descriptive text.</li>
 <li>Leave native focus styles intact, or provide a sufficiently visible alternative.</li>
-<li>Check the <a href="https://www.w3.org/TR/wai-aria-practices-1.1" target="_blank" rel="external">WAI-ARIA Authoring Practices 1.1</a> for information on node attributes and keyboard interaction for many common widget patterns. Even for more complex widgets, these serve as good building blocks.</li>
-<li>Make a quick proof of concept and try <a href="http://khan.github.io/tota11y/" target="_blank" rel="external">inspecting its accessibility attributes</a> in the browser and running through one of the <a href="https://medium.com/@addyosmani/accessible-ui-components-for-the-web-39e727101a67" target="_blank" rel="external">many</a> <a href="http://www-03.ibm.com/able/guidelines/ci162/accessibility_checklist.html" target="_blank" rel="external">excellent</a> <a href="https://www.wuhcag.com/wcag-checklist/" target="_blank" rel="external">a11y</a> <a href="https://ebay.gitbooks.io/oatmeal/content/" target="_blank" rel="external">checklists</a>.</li>
+<li>Check the <a href="https://www.w3.org/TR/wai-aria-practices-1.1" target="_blank" rel="noopener">WAI-ARIA Authoring Practices 1.1</a> for information on node attributes and keyboard interaction for many common widget patterns. Even for more complex widgets, these serve as good building blocks.</li>
+<li>Make a quick proof of concept and try <a href="http://khan.github.io/tota11y/" target="_blank" rel="noopener">inspecting its accessibility attributes</a> in the browser and running through one of the <a href="https://medium.com/@addyosmani/accessible-ui-components-for-the-web-39e727101a67" target="_blank" rel="noopener">many</a> <a href="http://www-03.ibm.com/able/guidelines/ci162/accessibility_checklist.html" target="_blank" rel="noopener">excellent</a> <a href="https://www.wuhcag.com/wcag-checklist/" target="_blank" rel="noopener">a11y</a> <a href="https://ebay.gitbooks.io/oatmeal/content/" target="_blank" rel="noopener">checklists</a>.</li>
 <li>Try operating the widget with only a keyboard and, if possible, a screen reader.</li>
 <li>If applicable, try turning off your sound.</li>
 <li>Look at your widget with high contrast mode enabled.</li>

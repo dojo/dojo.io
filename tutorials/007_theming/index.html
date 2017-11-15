@@ -5,14 +5,14 @@
   
   <title>Theming | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
+  <meta name="description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to all">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Theming">
 <meta property="og:url" content="https://dojo.github.io/tutorials/007_theming/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-14T20:05:07.063Z">
+<meta property="og:updated_time" content="2017-11-15T20:14:19.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -110,7 +110,7 @@ ga('send', 'pageview');
 </code></pre>
 <article class="aside"><strong>Reminder</strong><p>If you cannot see the application, remember to run <code>dojo build -w</code> to build the application and start the development server.</p></article>
 <p>This <code>Banner</code> widget will now have access to the classes in <code>banner.m.css</code> and can receive a <code>theme</code>. We use the <code>root</code> class to ensure that the theme we create can easily target the correct node.<br>Notice that this file and other <code>css</code> files now have a <code>.m.css</code> file extension. This is to indicate to the <a href="../006_deploying_to_production/">Dojo 2 build system</a> that this file is a <code>css-module</code> and should be processed as such.</p>
-<article class="aside"><strong>CSS Modules</strong><p><a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">CSS Modules</a> is a technique to use scoped CSS classnames by default.</p></article>
+<article class="aside"><strong>CSS Modules</strong><p><a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a> is a technique to use scoped CSS classnames by default.</p></article>
 <div class="instruction">Create a new style sheet for the <code>Banner</code> widget named <code>banner.m.css</code>.</div>
 <p>We will create an empty <code>root</code> class for now as our base theme does not require any styles to be added to the <code>Banner</code> widget.</p>
 <pre class="language-css"><code class="language-css"><span class="token selector">.root</span> <span class="token punctuation">{</span>
@@ -344,7 +344,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
     <span class="token string">'dojo-textinput'</span><span class="token punctuation">:</span> dojoTextInput
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Notice the styling rule for the <code>.root</code> selector? Here we are introducing another powerful part of the Dojo 2 theming system, <code>composes</code>. Composes originates in the <a href="https://github.com/css-modules/css-modules#composition" target="_blank" rel="external"><code>css-module</code> specification</a>, allowing you to apply styles from one class selector to another. Here we are specifying that the <code>root</code> of a <code>TextInput</code> (the label text in this case), should appear the same as the <code>nameLabel</code> class in our <code>WidgetForm</code>. This approach can be very useful when creating multiple themes from a <code>baseTheme</code> and avoids repetitive redefinition of style rules.</p>
+<p>Notice the styling rule for the <code>.root</code> selector? Here we are introducing another powerful part of the Dojo 2 theming system, <code>composes</code>. Composes originates in the <a href="https://github.com/css-modules/css-modules#composition" target="_blank" rel="noopener"><code>css-module</code> specification</a>, allowing you to apply styles from one class selector to another. Here we are specifying that the <code>root</code> of a <code>TextInput</code> (the label text in this case), should appear the same as the <code>nameLabel</code> class in our <code>WidgetForm</code>. This approach can be very useful when creating multiple themes from a <code>baseTheme</code> and avoids repetitive redefinition of style rules.</p>
 <p>In your web browser you will see the <code>TextInput</code> widgets at the top of the form have been styled.</p>
 <div class="instruction">Create a theme resource for the Dojo Button</div>
 <p>Create a theme resource for the Dojo <code>Button</code> within <code>WidgetForm</code> following the same pattern within this tutorial.</p>
