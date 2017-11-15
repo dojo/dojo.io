@@ -32,4 +32,4 @@ When a widget is invalidated, its `render()` method is invoked.
 
 ## Additional resources
 
-* The [Responding to events](https://dojo.io/tutorials/004_user_interactions/) tutorial demonstrates this technique with a partical use case
+* The [Responding to events](https://dojo.io/tutorials/004_user_interactions/) tutorial demonstrates this technique with a practical use case
