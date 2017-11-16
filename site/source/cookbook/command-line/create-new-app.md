@@ -13,18 +13,11 @@ This recipe demonstrates the process of creating a new Dojo 2 application.
 
 ## Procedure
 
-* **Ensure that the latest version of the Dojo Command Line utility (CLI) is installed.**
-	* Run the command `dojo version` from the terminal or command-line.
-	* If the command is not found, or the utility is out of date, run the command `npm install @dojo/cli -g` to install the latest version.
-* **Create the application.**
-	* Within the terminal, navigate to the directory that will host the new application.
-	* Run the command `dojo create --name {app-name}` where `{app-name}` is replaced by the new application's name.
-	* For example, to create an application called `hello-dojo`, the command would be `dojo create --name hello-dojo`.
-* **Confirm the application was successfully installed.**
-	* Navigate into the application's directory.
-	* Run `dojo test` to run the initial test suite.
-	* Run `dojo build --watch` to build the application and start the development server.
-	* Open a browser to `http://localhost:9999` to confirm that the application is working.
+1. Install the Dojo CLI if you have not already with the command: `npm install @dojo/cli -g`
+1. Create a new app with the command: `dojo create --name your-application-name`
+1. Navigate to your newly created Dojo 2 application directory
+1. Build the application with the command `dojo build --watch`
+1. View your application in the browser at `http://localhost:9999`
 
 ## Additional resources
 
