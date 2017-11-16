@@ -4,8 +4,6 @@
 		background: transparent;
 	}
 
-	background: #000000 url("images/bg.jpg") 50% 50% no-repeat;
-	background-size: cover;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -39,5 +37,15 @@
 			margin: 0 auto;
 			padding: 0 0 1rem 0;
 		}
+
+		> section {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		@import '../_partials/landingPage/hero';
+		@import '../_partials/landingPage/upAndRunning';
 	}
 }
