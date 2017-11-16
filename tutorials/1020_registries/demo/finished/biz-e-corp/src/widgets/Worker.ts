@@ -40,7 +40,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 			}, [
 				v('img', {
 					classes: this.classes(css.image),
-						src: 'images/worker.svg' }, []),
+						src: 'https://dojo.io/tutorials/resources/worker.svg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])

@@ -39,7 +39,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 			}, [
 				v('img', {
 					classes: this.classes(css.image),
-					src: 'images/worker.svg'
+					src: 'https://dojo.io/tutorials/resources/worker.svg'
 				}),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
@@ -63,7 +63,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 			}, [
 				v('img', {
 					classes: this.classes(css.imageSmall),
-					src: 'images/worker.svg'
+					src: 'https://dojo.io/tutorials/resources/worker.svg'
 				}),
 				v('div', {
 					classes: this.classes(css.generalInfo)
