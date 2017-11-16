@@ -144,7 +144,7 @@ This is nearly identical to the `App` widget with one exception: we are not impo
 
 Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the worker's portrait and a `<strong>` tag to display the worker's name.
 
-{% instruction 'Try and implement that using the URL `https://dojo.io/images/worker.svg` and `"lastName, firstName"` as the worker\'s name.' %}
+{% instruction 'Try and implement that using the URL `https://dojo.io/tutorials/resources/worker.svg` and `"lastName, firstName"` as the worker\'s name.' %}
 
 If you need help, or want to check your solution, click the button below to see our solution.
 
