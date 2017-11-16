@@ -12,6 +12,14 @@ env:
   - TUTORIAL=005_form_widgets
   - TUTORIAL=006_deploying_to_production
   - TUTORIAL=006_containers_and_injecting_state
+  - TUTORIAL=007_theming
+  - TUTORIAL=1010_containers_and_injecting_state
+  - TUTORIAL=1015_form_validation
+  - TUTORIAL=1020_registries
+  - TUTORIAL=1030_routing
+  - TUTORIAL=1040_dojo1_dijits
+  - TUTORIAL=1050_development_environment
+  - TUTORIAL=1060_data_driven_widgets
 script:
   - pushd .
   - 'if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
