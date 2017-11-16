@@ -41,7 +41,7 @@ This section should contain a brief (one or two sentence) description about what
 
 ### Properly formatted Procedure section
 
-The Procedure section should consist of a bulleted list of steps for the consumer to follow. These steps should be provided in the order that they should be executed with larger steps being broken down into sub lists when necessary. Each step should be concisely presented with complete sentences that focus on what the consumer needs to do, not why they need to do it. Whenever possible, commands and code snippets should be provided that can easily be copied and pasted into the consumer's application.
+The Procedure section should consist of a ordered list of steps for the consumer to follow. These steps should be provided in the order that they should be executed with larger steps being broken down into sub lists when necessary. Each step should be concisely presented with complete sentences that focus on what the consumer needs to do, not why they need to do it. Whenever possible, commands and code snippets should be provided that can easily be copied and pasted into the consumer's application.
 
 ### Contains list of additional resources
 
