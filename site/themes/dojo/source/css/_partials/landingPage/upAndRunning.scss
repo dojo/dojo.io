@@ -167,11 +167,46 @@ section.up-and-running {
 			margin: auto;
 			opacity: 0;
 			animation: fadein-1 $animation-duration linear infinite;
-			border-radius: 5px;
+			position: relative;
+
+			&:before {
+				content: " ";
+				display: block;
+				position: absolute;
+				left: 0; right: 0; top: 0; bottom: 0;
+				animation: shadow-2-1 $animation-duration linear infinite;
+			}
+			&:after {
+				content: " ";
+				display: block;
+				position: absolute;
+				left: 0; right: 0; top: 0; bottom: 0;
+				animation: shadow-2-2 $animation-duration linear infinite;
+			}
+
+			img {
+				margin-bottom: -8px;
+			}
 		}
 		@keyframes fadein-1 {
 			from, 50% { opacity: 0; }
 			52.5%, to { opacity: 1; }
+		}
+		@keyframes shadow-2-1 {
+			from, 50% {
+				box-shadow: -5px -5px 30px transparent;
+			}
+			52.5%, to {
+				box-shadow: -5px -5px 30px #ffceef;
+			}
+		}
+		@keyframes shadow-2-2 {
+			from, 50% {
+				box-shadow: 5px 5px 30px transparent;
+			}
+			52.5%, to {
+				box-shadow: 5px 5px 30px #d1fbd9;
+			}
 		}
 		.result {
 			z-index: 1;
@@ -179,12 +214,25 @@ section.up-and-running {
 			bottom: 10%;
 			left: 10%;
 			opacity: 0;
-			animation: fadein-2 $animation-duration linear infinite;
-			border-radius: 5px;
+			animation:
+				fadein-2 $animation-duration linear infinite,
+				shadow-3 $animation-duration linear infinite;
+
+			img {
+				margin-bottom: -10px;
+			}
 		}
 		@keyframes fadein-2 {
 			from, 57.5% { opacity: 0; }
 			60%, to { opacity: 1; }
+		}
+		@keyframes shadow-3 {
+			from, 57.5% {
+				box-shadow: 0 20px 40px transparent;
+			}
+			60%, to {
+				box-shadow: 0 20px 40px #cccccc;
+			}
 		}
 	}
 }
