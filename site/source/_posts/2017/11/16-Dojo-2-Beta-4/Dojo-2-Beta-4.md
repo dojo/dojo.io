@@ -129,13 +129,54 @@ export default class AnimatedWidget extends WidgetBase {
 }
 ```
 
+## Custom Elements/Web Components
+
+One of the main objectives for Dojo 2 was that there was a high level of interoperability with Web Components, both using Web Components in Dojo 2 applications but also being able to Dojo 2 widgets easily as Custom Elements.  We made several changes to the widgeting system to better support Dojo 2 widgets used as Custom Elements, specifically making it efficient to use children Custom Elements of a Dojo 2 widget Custom Element.
+
+So what you would write in TypeScript:
+
+```typescript
+class Example extends WidgetBase {
+
+  private _onSelected(data: any) {
+    console.log(data);
+  }
+
+  protected render() {
+    return w(Menu, { onSelected: this._onSelected }, [
+      w(MenuItem, { key: 'a', title: 'Menu Item A' }),
+      w(MenuItem, { key: 'b', title: 'Menu Item B', selected: true }),
+      w(MenuItem, { key: 'c', title: 'Menu Item C' })
+    ]);
+  }
+}
+```
+
+Can be written as this using when using Custom Elements:
+
+```html
+<demo-menu id="menu">
+  <demo-menu-item id="a" title="Menu Item A"></demo-menu-item>
+  <demo-menu-item id="b" title="Menu Item B"></demo-menu-item>
+  <demo-menu-item id="c" title="Menu Item C" selected></demo-menu-item>
+</demo-menu>
+<script>
+  a.data = { foo: 'bar' };
+  menu.addEventListener('selected', function(event) {
+    const detail = event.detail;
+    console.log(detail);
+  });
+</script>
+```
+
+We have an [live example](https://dojo.github.io/examples/custom-element-menu/) of this, along with the [source code on GitHub](https://github.com/dojo/examples/tree/master/custom-element-menu).
+
 ## Other widget system improvements
 
 There were other changes to the widgeting system which enable some features and capabilities we think can make widgets more robust:
 
 * The way event listeners on virtual DOM nodes has changed, and we now allow the listeners to change between renders.  Previously this would have errored.
 * There is a lot more flexibility about what the _root_ of a `Projector` can be, which includes being able to return a widget node, or an array of nodes.  Also, previously there were challenges with changing the root of the projector after the first render, which is now allowed.
-* Better support for custom elements in the widgeting system including emitting the connected event and better working with children of custom elements.
 * Several internal performance and memory improvements to the virtual DOM and widgeting system.
 
 ## New widgets
