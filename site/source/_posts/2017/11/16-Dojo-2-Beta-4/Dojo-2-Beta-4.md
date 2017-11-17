@@ -176,7 +176,7 @@ Of course if you are building an application that is targetting only certain pla
 
 ## Iterators
 
-Previously we had provided a functional replacement for `for...of` constructs so that developers could author code that worked in older browsers as well as we provided shims for `Symbol` and the built in ES6 iterators.  In TypeScript 2.3 though, a down level emit for iterators was introduced.  We have restructured our packages to use
+Previously we had provided a functional replacement for `for...of` constructs so that developers could author code that worked in older browsers as well as we provided shims for `Symbol` and the built in ES6 iterators.  In TypeScript 2.3 though, a down level emit for iterators was introduced.  We have restructured our packages to use `for...of` instead of the `@dojo/shim/iterator.forOf()` function and will likely remove `forOf()` in the future.  We recommend users of Dojo 2 also migrate to this syntax.
 
 ## TypeScript helpers
 
