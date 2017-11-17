@@ -60,6 +60,9 @@ authors:
 	dylan:
 		name: Dylan Schiemann
 		email: dylan@sitepen.com
+  kitsonk:
+    name: Kitson Kelly
+    email: kkelly@sitepen.com
 
 # Yet Another Stylus Renderer
 # https://github.com/celsomiranda/hexo-renderer-yasr
