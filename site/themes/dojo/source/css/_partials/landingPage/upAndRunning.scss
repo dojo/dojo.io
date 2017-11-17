@@ -1,12 +1,151 @@
 section.up-and-running {
-	background-color: red;
 	height: 625px;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
 
-	> div {
+	& > div {
+		flex: 1 1 50%;
+	}
 
+	.commands {
+		padding: 0 4em;
+		height: 300px;
+		margin: auto;
+	}
+
+	h3 {
+		text-align: left;
+	}
+
+	.code-line {
+		margin-bottom: 1em;
+		width: 240px;
+
+		span {
+			font-family: "Source Code Pro";
+			display: inline-block;
+
+			&.line-number {
+				font-size: 24px;
+				padding-right: 1em;
+				color: #bec7cc;
+			}
+			&.typed-text {
+				padding: 0 0.5em;
+				margin-bottom: 4px;
+				line-height: 26px;
+				font-size: 13px;
+				overflow: hidden;
+				white-space: unquote("nowrap");
+				letter-spacing: 0.15em;
+				vertical-align: bottom;
+				background-color: #e8f9f6;
+				border: 1px solid #00b89c;
+				border-radius: 3px;
+				color: #00b89c;
+			}
+		}
+	}
+
+	#upAndRunning-typing-1 {
+		.typed-text {
+			animation:
+				typing 1.5s steps(40, end),
+				fadein-background 1.7s linear;
+		}
+	}
+
+	#upAndRunning-typing-2 {
+		.line-number {
+			animation: delayed-show 2.0s linear;
+		}
+		.typed-text {
+			animation:
+				typing 1.5s steps(40, end) 2.0s,
+				fadein-background 1.7s linear 2.0s,
+				delayed-show 2.1s linear;
+		}
+	}
+
+	#upAndRunning-typing-3 {
+		border-radius: 3px;
+		animation: shadow 0.5s linear 7.5s forwards;
+
+		.line-number {
+			animation: delayed-show 6.0s linear;
+		}
+		.typed-text {
+			color: 00b89c;
+			background-color: transparent;
+			border-color: transparent;
+			animation:
+				typing 1.5s steps(40, end) 6.0s,
+				delayed-show 6.1s linear
+		}
+	}
+
+	.results {
+		position: relative;
+		display: flex;
+
+		.code {
+			margin: auto;
+			opacity: 0;
+			animation: fadein 0.5s linear 4.0s forwards;
+			border-radius: 5px;
+		}
+		.result {
+			z-index: 1;
+			position: absolute;
+			bottom: 10%;
+			left: 10%;
+			opacity: 0;
+			animation: fadein 0.5s linear 5.0s forwards;
+			border-radius: 5px;
+		}
+	}
+}
+
+@keyframes typing {
+	from { width: 0 }
+	to { width: unquote("calc(100% - 40px)") }
+}
+
+@keyframes fadein-background {
+	from {
+		background-color: transparent;
+		border-color: transparent;
+	}
+	to {
+		background-color: transparent;
+		border-color: transparent;
+	}
+}
+
+@keyframes delayed-show {
+	from {
+		opacity: 0;
+	}
+	99% {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes shadow {
+	from {
+		box-shadow: 0 10px 5px transparent;
+	}
+	to {
+		box-shadow: 0 10px 5px #cccccc;
 	}
 }
