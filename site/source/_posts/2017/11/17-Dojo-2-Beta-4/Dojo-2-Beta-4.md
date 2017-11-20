@@ -1,6 +1,6 @@
 ---
 title: Dojo 2 Beta 4
-date: 2017-11-16 16:56:19
+date: 2017-11-17 18:00:00
 authorId: kitsonk
 featured_image: featured.png
 ---
@@ -93,7 +93,7 @@ export default class MyWidget extends WidgetBase {
     }
 
     protected onDetach() {
-        // perform actins when detached
+        // perform actions when detached
     }
 
     protected render() {
