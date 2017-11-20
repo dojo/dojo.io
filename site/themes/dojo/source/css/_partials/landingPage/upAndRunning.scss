@@ -15,146 +15,145 @@ section.up-and-running {
 		padding: 0 4em;
 		height: 300px;
 		margin: auto;
-	}
+		h3 {
+			text-align: left;
+		}
 
-	h3 {
-		text-align: left;
-	}
+		.codeline {
+			margin-bottom: 1em;
+			width: 240px;
 
-	.code-line {
-		margin-bottom: 1em;
-		width: 240px;
+			span {
+				font-family: "Source Code Pro";
+				display: inline-block;
 
-		span {
-			font-family: "Source Code Pro";
-			display: inline-block;
-
-			&.line-number {
-				font-size: 24px;
-				padding-right: 1em;
-				color: #bec7cc;
+				&.line-number {
+					font-size: 24px;
+					padding-right: 1em;
+					color: #bec7cc;
+				}
+				&.typed-text {
+					padding: 0 0.5em;
+					margin-bottom: 4px;
+					line-height: 26px;
+					font-size: 13px;
+					overflow: hidden;
+					white-space: unquote("nowrap");
+					letter-spacing: 0.15em;
+					vertical-align: bottom;
+					border-radius: 3px;
+					border: 1px solid transparent;
+					color: #00b89c;
+				}
 			}
-			&.typed-text {
-				padding: 0 0.5em;
-				margin-bottom: 4px;
-				line-height: 26px;
-				font-size: 13px;
-				overflow: hidden;
-				white-space: unquote("nowrap");
-				letter-spacing: 0.15em;
-				vertical-align: bottom;
-				border-radius: 3px;
-				border: 1px solid transparent;
-				color: #00b89c;
+		}
+
+		#upAndRunning-typing-1 {
+			.typed-text {
+				animation:
+					typing-1 $animation-duration steps(400, end) infinite,
+					fadein-background-1 $animation-duration linear infinite;
+			}
+			@keyframes typing-1 {
+				from { width: 0; }
+				15%, to { width: unquote("calc(100% - 50px)"); }
+			}
+			@keyframes fadein-background-1 {
+				from, 15% {
+					background-color: transparent;
+					border-color: transparent;
+				}
+				20%, to {
+					background-color: #e8f9f6;;
+					border-color: #00b89c;
+				}
 			}
 		}
-	}
 
-	#upAndRunning-typing-1 {
-		.typed-text {
-			animation:
-				typing-1 $animation-duration steps(400, end) infinite,
-				fadein-background-1 $animation-duration linear infinite;
+		#upAndRunning-typing-2 {
+			.line-number {
+				animation: delayed-show-2-1 $animation-duration linear infinite;
+			}
+			@keyframes delayed-show-2-1 {
+				from, 25%  {
+					opacity: 0;
+				}
+				26%, to {
+					opacity: 1;
+				}
+			}
+			.typed-text {
+				animation:
+					typing-2 $animation-duration steps(400, end) infinite,
+					fadein-background-2 $animation-duration linear infinite,
+					delayed-show-2-2 $animation-duration linear infinite;
+			}
+			@keyframes typing-2 {
+				from, 25% { width: 0; }
+				40%, to { width: unquote("calc(100% - 50px)"); }
+			}
+			@keyframes fadein-background-2 {
+				from, 40% {
+					background-color: transparent;
+					border-color: transparent;
+				}
+				45%, to {
+					background-color: #e8f9f6;;
+					border-color: #00b89c;
+				}
+			}
+			@keyframes delayed-show-2-2 {
+				from, 25%  {
+					opacity: 0;
+				}
+				26%, to {
+					opacity: 1;
+				}
+			}
 		}
-		@keyframes typing-1 {
-			from { width: 0; }
-			15%, to { width: unquote("calc(100% - 50px)"); }
-		}
-		@keyframes fadein-background-1 {
-			from, 15% {
+
+		#upAndRunning-typing-3 {
+			border-radius: 3px;
+			animation: shadow-1 $animation-duration linear infinite;
+			@keyframes shadow-1 {
+				from, 80% {
+					box-shadow: 0 10px 5px transparent;
+				}
+				85%, to {
+					box-shadow: 0 10px 5px #cccccc;
+				}
+			}
+
+			.line-number {
+				animation: delayed-show-3-1 $animation-duration linear infinite;
+			}
+			@keyframes delayed-show-3-1 {
+				from, 65%  {
+					opacity: 0;
+				}
+				66%, to {
+					opacity: 1;
+				}
+			}
+			.typed-text {
+				color: 00b89c;
 				background-color: transparent;
 				border-color: transparent;
+				animation:
+					typing-3 $animation-duration steps(400, end) infinite,
+					delayed-show-3-2 $animation-duration linear infinite;
 			}
-			20%, to {
-				background-color: #e8f9f6;;
-				border-color: #00b89c;
+			@keyframes typing-3 {
+				from, 65% { width: 0; }
+				80%, to { width: unquote("calc(100% - 50px)"); }
 			}
-		}
-	}
-
-	#upAndRunning-typing-2 {
-		.line-number {
-			animation: delayed-show-2-1 $animation-duration linear infinite;
-		}
-		@keyframes delayed-show-2-1 {
-			from, 25%  {
-				opacity: 0;
-			}
-			26%, to {
-				opacity: 1;
-			}
-		}
-		.typed-text {
-			animation:
-				typing-2 $animation-duration steps(400, end) infinite,
-				fadein-background-2 $animation-duration linear infinite,
-				delayed-show-2-2 $animation-duration linear infinite;
-		}
-		@keyframes typing-2 {
-			from, 25% { width: 0; }
-			40%, to { width: unquote("calc(100% - 50px)"); }
-		}
-		@keyframes fadein-background-2 {
-			from, 40% {
-				background-color: transparent;
-				border-color: transparent;
-			}
-			45%, to {
-				background-color: #e8f9f6;;
-				border-color: #00b89c;
-			}
-		}
-		@keyframes delayed-show-2-2 {
-			from, 25%  {
-				opacity: 0;
-			}
-			26%, to {
-				opacity: 1;
-			}
-		}
-	}
-
-	#upAndRunning-typing-3 {
-		border-radius: 3px;
-		animation: shadow-1 $animation-duration linear infinite;
-		@keyframes shadow-1 {
-			from, 80% {
-				box-shadow: 0 10px 5px transparent;
-			}
-			85%, to {
-				box-shadow: 0 10px 5px #cccccc;
-			}
-		}
-
-		.line-number {
-			animation: delayed-show-3-1 $animation-duration linear infinite;
-		}
-		@keyframes delayed-show-3-1 {
-			from, 65%  {
-				opacity: 0;
-			}
-			66%, to {
-				opacity: 1;
-			}
-		}
-		.typed-text {
-			color: 00b89c;
-			background-color: transparent;
-			border-color: transparent;
-			animation:
-				typing-3 $animation-duration steps(400, end) infinite,
-				delayed-show-3-2 $animation-duration linear infinite;
-		}
-		@keyframes typing-3 {
-			from, 65% { width: 0; }
-			80%, to { width: unquote("calc(100% - 50px)"); }
-		}
-		@keyframes delayed-show-3-2 {
-			from, 65%  {
-				opacity: 0;
-			}
-			66%, to {
-				opacity: 1;
+			@keyframes delayed-show-3-2 {
+				from, 65%  {
+					opacity: 0;
+				}
+				66%, to {
+					opacity: 1;
+				}
 			}
 		}
 	}
@@ -162,12 +161,21 @@ section.up-and-running {
 	.results {
 		position: relative;
 		display: flex;
+		flex-direction: column;
+		justify-content: center;
 
 		.code {
 			margin: auto;
+			z-index: 1;
 			opacity: 0;
 			animation: fadein-1 $animation-duration linear infinite;
 			position: relative;
+			background-color: #000000;
+			border-radius: 5px;
+			width: 515px;
+			height: 340px;
+			font-size: 14px;
+			padding: 1em;
 
 			&:before {
 				content: " ";
@@ -184,8 +192,22 @@ section.up-and-running {
 				animation: shadow-2-2 $animation-duration linear infinite;
 			}
 
-			img {
-				margin-bottom: -8px;
+			.codeline {
+				font-family: 'Source Code Pro';
+				color: #ffffff;
+				overflow: hidden;
+				white-space: unquote('nowrap');
+
+				.keyword {
+					color: #c775df;
+				}
+				.variable {
+					color: #e26b70;
+				}
+				.string {
+					color: #97c475;
+				}
+
 			}
 		}
 		@keyframes fadein-1 {
@@ -208,32 +230,58 @@ section.up-and-running {
 				box-shadow: 5px 5px 30px #d1fbd9;
 			}
 		}
-		.result {
-			z-index: 1;
+
+		.result, .result-shadow {
+			width: 400px;
+			height: 265px;
 			position: absolute;
 			bottom: 10%;
 			left: 10%;
-			opacity: 0;
-			animation:
-				fadein-2 $animation-duration linear infinite,
-				shadow-3 $animation-duration linear infinite;
+		}
+		.result-shadow {
+			animation: shadow-3 $animation-duration linear infinite;
 
-			img {
-				margin-bottom: -10px;
+			@keyframes shadow-3 {
+				from, 57.5% {
+					box-shadow: 0 20px 40px transparent;
+				}
+				60%, to {
+					box-shadow: 0 20px 40px #cccccc;
+				}
+			}
+		}
+		.result {
+			z-index: 1;
+			opacity: 0;
+			animation: fadein-2 $animation-duration linear infinite;
+			background-color: #ffffff;
+			border-radius: 5px;
+			display:flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			.check {
+				width: 48px;
+				height: 48px;
+				line-height: 48px;
+				border-radius: 100%;
+				background-color: #00b89c;
+				color: #ffffff;
+				text-align: center;
+			}
+
+			.success {
+				color: #000000;
+				font-size: 15px;
+				font-weight: bold;
 			}
 		}
 		@keyframes fadein-2 {
 			from, 57.5% { opacity: 0; }
 			60%, to { opacity: 1; }
 		}
-		@keyframes shadow-3 {
-			from, 57.5% {
-				box-shadow: 0 20px 40px transparent;
-			}
-			60%, to {
-				box-shadow: 0 20px 40px #cccccc;
-			}
-		}
+
 	}
 }
 
