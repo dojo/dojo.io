@@ -1,0 +1,25 @@
+section.create-custom-components {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	background: linear-gradient(to right, #009dff, #00f5ff);
+	padding-top: 5em;
+	height: 670px;
+
+	.copy, .demo {
+		width: 40%;
+	}
+
+	.copy {
+		display: flex;
+		flex-direction: column;
+
+		h2 {
+			max-width: 60%;
+		}
+	}
+
+	.demo {
+
+	}
+}

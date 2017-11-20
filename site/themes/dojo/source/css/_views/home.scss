@@ -20,8 +20,9 @@
 		flex-direction: column;
 		justify-content: center;
 		height: 100%;
-		
+
 		@import '../_partials/landingPage/hero';
 		@import '../_partials/landingPage/upAndRunning';
+		@import '../_partials/landingPage/createCustomComponents';
 	}
 }
