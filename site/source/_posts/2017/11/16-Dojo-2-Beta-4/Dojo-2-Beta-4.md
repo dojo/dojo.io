@@ -13,9 +13,9 @@ The Beta 4 Release of Dojo 2 puts us on a clear path to releasing Dojo 2.  It ha
 
 ## Integrated virtual DOM
 
-This was the biggest fundamental change for the Beta 4 release.  We were really impressed with [Maquette](https://maquettejs.org/).  It was a focused, minimalistic, virtual DOM library.  We learned a lot from Maquette.  As we saw the roadmap for Maquette 3 materialise, we needed to re-evaluate our roadmap.  During the development of the widgeting system for Dojo 2, we really started to realise that _description_ of the virtual DOM and the _application_ were really linked.  We had created abstract objects, similar to the HyperScript nodes that Maquette used, but were specialised to our widgets and _standard_ DOM nodes.  We made the hard decision that we would continue to want features from a virtual DOM system that only be needed by Dojo 2, and therefore would unlikely to benefit a generic virtual DOM library.  We therefore made the hard decision to integrate the virtual DOM directly into `@dojo/widget-core`, where previously we had Maquette as a dependency.
+This was the biggest fundamental change for the Beta 4 release.  We were really impressed with [Maquette](https://maquettejs.org/).  It was a focused, minimalistic, virtual DOM library.  We learned a lot from Maquette.  As we saw the roadmap for Maquette 3 materialise, we needed to re-evaluate our roadmap.  During the development of the widgeting system for Dojo 2, we really started to realise that _description_ of the virtual DOM and the _application_ were really linked.  We had created abstract objects, similar to the HyperScript nodes that Maquette used, but were specialised to our widgets and _standard_ DOM nodes.  We made the hard decision that we would continue to want features from a virtual DOM system that _would_ only be needed by Dojo 2, and therefore would be unlikely to benefit a generic virtual DOM library.  We therefore made the hard decision to integrate the virtual DOM directly into `@dojo/widget-core`, where previously we had Maquette as a dependency.
 
-This alone was essentially transparent to end developers of Dojo 2, but it allowed us to address a whole list of features we desired and refactoring of code that introduced some significant **breaking changes** in Beta 4.
+This alone would not have had an effect on users of Dojo 2, but it allowed us to address a whole list of features we desired and refactoring of code that introduced some significant **breaking changes** in Beta 4.
 
 ## Virtual DOM classes
 
@@ -63,13 +63,34 @@ export default class MyWidget extends ThemedBase {
 
 The `classes` property is now just an array of strings.  Also we think that the mixed in method `theme()` is a lot more clear on what you are doing instead of `classes()`.  _Fixed_ classes are just simply added to the array, instead of being supplied to a chained function.
 
-This also means that the `@dojo/test-extras/harness` has also been updated to remove the memoised class functionality, making tests far easier to author, not having to worry about replicating the order of adding classes to an expected widget render.  Also, we renamed `Themeable` to `Themed` as we felt it was better semantics for our mixins.
+This also means that the `@dojo/test-extras/harness` has been updated to remove the memoised class functionality, making tests far easier to author, not having to worry about replicating the order of adding classes to an expected widget render.  Also, we renamed `Themeable` to `Themed` as we felt it was better semantics for our mixins.
 
 ## Widget lifecycle changes
 
-We were never completely happy with the way end users to interact with the lifecycle of widgets.  We have long felt that one of the biggest challenges with Dojo 1 Dijits was a complicated lifecycle.  In general the Dojo 2 widgeting system takes care of everything and developers really shouldn't need to worry about the lifecycle and instead just worry about rendering when requested.  There are still use cases where a developer does need to know when the virtual DOM they render is added or removed from the DOM.
+We were never completely happy with the APIs we provided for end users to interact with the widget lifecycle.  We have long felt that one of the biggest challenges with Dojo 1 Dijits was a complicated lifecycle.  In general the Dojo 2 widgeting system takes care of everything and developers really shouldn't need to worry about the lifecycle and instead just worry about rendering when requested.  There are still use cases where a developer does need to know when the virtual DOM they render is added to or removed from the DOM.
 
-In Beta 4 we have introduced two lifecycle methods to `WidgetBase` which can be overridden.  They are called `onAttach` and `onDetach`.  They are designed to allow a widget developer to
+In Beta 4 we have introduced two lifecycle methods to `WidgetBase`.  They are called `onAttach` and `onDetach`.  They are designed to allow a widget developer to _hook_ when a widget instance is attached to the DOM or detached from the DOM.
+
+To use them, it simply requires overriding the `onAttach` or `onDetach` methods.  For example:
+
+```typescript
+import { v } from '@dojo/widget-core/d';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
+
+export default class MyWidget extends WidgetBase {
+    protected onAttach() {
+        // perform actions when attached
+    }
+
+    protected onDetach() {
+        // perform actins when detached
+    }
+
+    protected render() {
+        return v('div', { }, [ 'Hello world!' ])
+    }
+}
+```
 
 Previously, we had other capabilities which provided functionality in this area, but we have deprecated those and will remove them in the future.
 
@@ -131,7 +152,7 @@ export default class AnimatedWidget extends WidgetBase {
 
 ## Custom Elements/Web Components
 
-One of the main objectives for Dojo 2 was that there was a high level of interoperability with Web Components, both using Web Components in Dojo 2 applications but also being able to Dojo 2 widgets easily as Custom Elements.  We made several changes to the widgeting system to better support Dojo 2 widgets used as Custom Elements, specifically making it efficient to use children Custom Elements of a Dojo 2 widget Custom Element.
+One of the main objectives for Dojo 2 was that there was a high level of interoperability with Web Components, both using Web Components in Dojo 2 applications but also being able to use Dojo 2 widgets easily as Custom Elements.  We made several changes to the widgeting system to better support Dojo 2 widgets used as Custom Elements, specifically making it efficient to use children Custom Elements of a Dojo 2 widget Custom Element.
 
 So what you would write in TypeScript:
 
@@ -175,7 +196,7 @@ We have an [live example](https://dojo.github.io/examples/custom-element-menu/) 
 
 There were other changes to the widgeting system which enable some features and capabilities we think can make widgets more robust:
 
-* The way event listeners on virtual DOM nodes has changed, and we now allow the listeners to change between renders.  Previously this would have errored.
+* The way event listeners behave on virtual DOM nodes has changed, and we now allow the listeners to change between renders.  Previously this would have errored.
 * There is a lot more flexibility about what the _root_ of a `Projector` can be, which includes being able to return a widget node, or an array of nodes.  Also, previously there were challenges with changing the root of the projector after the first render, which is now allowed.
 * Several internal performance and memory improvements to the virtual DOM and widgeting system.
 
@@ -197,7 +218,7 @@ We have also been trying to standardise our conventions in widgets in Beta 4, th
 
 ## Stores re-architecture
 
-How to manage data and state has continually evolved in Dojo 1 where most recently it focused on a fairly focused CRUD type interface to data.  Recently though, the concept of state containers has taken front and centre and we knew we wanted to create a solution that aligned to that architecture.  While our earlier beta releases contained an API very similiar to Dojo 1 _stores_ interfaces, we have rewritten `@dojo/stores` to adopt the state container API.
+The current API in Dojo 1 for managing state focused on a CRUD type API.  Originally in Dojo 2 we directly adapted that API as part of _stores_.  Recently though, the concept of state containers has taken front and centre and we knew we wanted to create a solution that aligned to that architecture.
 
 Instead of CRUD type API, it focuses on three main concepts:
 
