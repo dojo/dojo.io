@@ -106,9 +106,9 @@ Previously, we had other capabilities which provided functionality in this area,
 
 ## Deferred properties
 
-A virtual DOM node can now provide its properties in a way that are resolved in a deferred fashion, where instead of providing an object of `VirtualDomProperties`, you can provide a function which takes a boolean flag of if the virtual DOM node has been insterted into the DOM and returns an object of `VirtualDomProperties`.  The widget rendering system will then only call the function when it needs to be provided with the properties, instead of the properties having to be fully calculated at render time.
+A virtual DOM node can now provide its properties in a way that are resolved in a deferred fashion, where instead of providing an object of `VirtualDomProperties`, you can provide a function which takes a boolean flag of if the virtual DOM node has been insterted into the DOM and returns an object of `VirtualDomProperties`.
 
-Because these functions will be called during the next `requestAnimationFrame` (when the projector is running in its default asynronous mode), this feature can be used to better handle CSS transistion states.  For example, you can now do something like this:
+Because these functions will be called during the next `requestAnimationFrame` (when the projector is running in its default asynchronous mode), this feature can be used to better handle CSS transistion states.  For example, you can now do something like this:
 
 ```typescript
 import { v } from '@dojo/widget-core/d';
