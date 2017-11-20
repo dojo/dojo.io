@@ -11,6 +11,14 @@ The Beta 4 Release of Dojo 2 puts us on a clear path to releasing Dojo 2.  It ha
 
 <!-- more -->
 
+## Getting Beta 4
+
+Beta 4 is currently tagged as `latest` in npm, so all just updating to the latest version will provide you with Beta 4.  We also have a release tag of `beta4` in npm if you want to focus just on using Beta 4.
+
+With Beta 3, we revised our package versions to make it easier to keep a compatible set of packes.  We are releasing all the pre-release versions of Dojo 2 packages under major version `0`, but are introducing breaking changes in the minor release (e.g. `0.2.0` has breaking changes from `0.1.0`).  The versions we publish to npm rely upon a minor range.  You will see that some packages for Beta 4 are `0.3.#` and some are `0.2.#`, but they all depend on a range of version they know they are compatible with.  This means you don't have to rely upon a release tag.  So ideally you would want to ensure if you are managing your dependencies directly, you depend upon a minor release (e.g. `~0.2.0`) for packages.
+
+As we make releases of packages in anticipation of Beta 5, we will not publish those packages to `latest` until we release Beta 5.
+
 ## Integrated virtual DOM
 
 This was the biggest fundamental change for the Beta 4 release.  Instead of depending on the [Maquette](https://maquettejs.org/) virtual DOM library, we realised that our specialised requirements and needs were better solved in the medium and long term by integrating it directly.  So in Beta 4 we have replace Maquette with `@dojo/widget-core/vdom`.
