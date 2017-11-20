@@ -21,7 +21,7 @@ As we make releases of packages in anticipation of Beta 5, we will not publish t
 
 ## Integrated virtual DOM
 
-This was the biggest fundamental change for the Beta 4 release.  Instead of depending on the [Maquette](https://maquettejs.org/) virtual DOM library, we realised that our specialised requirements and needs were better solved in the medium and long term by integrating it directly.  So in Beta 4 we have replace Maquette with `@dojo/widget-core/vdom`.
+This was the biggest fundamental change for the Beta 4 release.  Instead of depending on the [Maquette](https://maquettejs.org/) virtual DOM library, we realised that our specialised requirements and needs were better solved in the medium and long term by integrating it directly.  So in Beta 4 we have replaced Maquette with `@dojo/widget-core/vdom`.
 
 This has allowed us to directly merge our abstraction of widgets and virtual DOM nodes with the virtual DOM nodes that get rendered to the DOM.  This increases the performance of the widgeting system, but also allowed us to make other performance and memory improvements to the widgeting system.
 
@@ -106,9 +106,9 @@ Previously, we had other capabilities which provided functionality in this area,
 
 ## Deferred properties
 
-A virtual DOM node can now provide its properties in a way that are resolved in a deferred fashion, where instead of providing an object of `VirtualDomProperties`, you can provide a function which takes a boolean flag of if the virtual DOM node has been insterted into the DOM and returns an object of `VirtualDomProperties`.
+A virtual DOM node can now provide its properties in a way that are resolved in a deferred fashion, where instead of providing an object of `VirtualDomProperties`, you can provide a function which takes a boolean flag of if the virtual DOM node has been inserted into the DOM and returns an object of `VirtualDomProperties`.
 
-Because these functions will be called during the next `requestAnimationFrame` (when the projector is running in its default asynchronous mode), this feature can be used to better handle CSS transistion states.  For example, you can now do something like this:
+Because these functions will be called during the next `requestAnimationFrame` (when the projector is running in its default asynchronous mode), this feature can be used to better handle CSS transition states.  For example, you can now do something like this:
 
 ```typescript
 import { v } from '@dojo/widget-core/d';
