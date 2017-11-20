@@ -13,7 +13,9 @@ The Beta 4 Release of Dojo 2 puts us on a clear path to releasing Dojo 2.  It ha
 
 ## Integrated virtual DOM
 
-This was the biggest fundamental change for the Beta 4 release.  We were really impressed with [Maquette](https://maquettejs.org/).  It was a focused, minimalistic, virtual DOM library.  We learned a lot from Maquette.  As we saw the roadmap for Maquette 3 materialise, we needed to re-evaluate our roadmap.  During the development of the widgeting system for Dojo 2, we really started to realise that _description_ of the virtual DOM and the _application_ were really linked.  We had created abstract objects, similar to the HyperScript nodes that Maquette used, but were specialised to our widgets and _standard_ DOM nodes.  We made the hard decision that we would continue to want features from a virtual DOM system that _would_ only be needed by Dojo 2, and therefore would be unlikely to benefit a generic virtual DOM library.  We therefore made the hard decision to integrate the virtual DOM directly into `@dojo/widget-core`, where previously we had Maquette as a dependency.
+This was the biggest fundamental change for the Beta 4 release.  Instead of depending on the [Maquette](https://maquettejs.org/) virtual DOM library, we realised that our specialised requirements and needs were better solved in the medium and long term by integrating it directly.  So in Beta 4 we have replace Maquette with `@dojo/widget-core/vdom`.
+
+This has allowed us to directly merge our abstraction of widgets and virtual DOM nodes with the virtual DOM nodes that get rendered to the DOM.  This increases the performance of the widgeting system, but also allowed us to make other performance and memory improvements to the widgeting system.
 
 This alone would not have had an effect on users of Dojo 2, but it allowed us to address a whole list of features we desired and refactoring of code that introduced some significant **breaking changes** in Beta 4.
 
@@ -98,22 +100,21 @@ Previously, we had other capabilities which provided functionality in this area,
 
 A virtual DOM node can now provide its properties in a way that are resolved in a deferred fashion, where instead of providing an object of `VirtualDomProperties`, you can provide a function which takes a boolean flag of if the virtual DOM node has been insterted into the DOM and returns an object of `VirtualDomProperties`.  The widget rendering system will then only call the function when it needs to be provided with the properties, instead of the properties having to be fully calculated at render time.
 
-For example, you can now do something like this:
+Because these functions will be called during the next `requestAnimationFrame` (when the projector is running in its default asynronous mode), this feature can be used to better handle CSS transistion states.  For example, you can now do something like this:
 
 ```typescript
 import { v } from '@dojo/widget-core/d';
 import WidgetBase from '@dojo/widget-core/WidgetBase';
 
-export default class MyWidget extends WidgetBase {
-    protected render() {
-        return v('div', (inserted) => {
-            return {
-                classes: [ this.theme(css.root), css.rootFixed ],
-                inserted
-            };
-        },
-        [ 'Hello world!' ])
-    }
+render() {
+    return v('div', (inserted) => {
+        return {
+            classes: 'fadeInTransition',
+            styles: {
+                opacity: inserted ? '1' : '0'
+            }
+        };
+    }, [ 'Hello World!' ]);
 }
 ```
 
