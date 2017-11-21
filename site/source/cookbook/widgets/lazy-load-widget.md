@@ -45,7 +45,7 @@ registry.define('my-lazy-widget', async () => {
 projector.setProperties({ registry });
 ```
 
-The widget definition of 'MyLazyWidget' is excluded from the main output bundle. A separate network request is made to `MyLazyWidget.js` on-demand, at the point at which it is rendered in the application runtime.
+The widget definition of '`MyLazyWidget`' is excluded from the main output bundle. A separate network request is made to `MyLazyWidget.js` on-demand, at the point at which it is rendered in the application runtime.
 
 # Further reading
 

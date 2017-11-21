@@ -20,6 +20,8 @@ const routingConfig = [{
 }];
 ```
 
+Note: You can learn how to apply the above routing configuration within a Dojo 2 app in the ['Render URL aware widgets' recipe](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/routing/render-widget-url.md).
+
 2. Define an outlet and provide a callback function which returns the properties the wrapped widget expects:
 
 ```js
@@ -30,20 +32,19 @@ const ContactWidgetOutlet = Outlet(ContactWidget, 'contact page', ({params}) => 
 });
 ```
 
-3. Your `ContactWidget` receives the object which the outlet returns:
+3. Visit the URL: `http://localhost:9999/#contact/person-1`
+
+4. Your `ContactWidget` receives the object which the outlet returns:
 
 ```js
 class ContactWidget extends WidgetBase {
-    protected render() {
-        console.log(this.properties.id); // 'person-1'
-        return v('div', []);
+    render() {
+        return v('div', [this.properties.id]); // 'person-1'
     }
 }
 ```
 
-3. Visit the URL: `http://localhost:9999/#contact/person-1`
-
-4. Observe the callback passed to the `Outlet()` function is invoked with an object argument containing a `params` property.
+5. Observe the callback passed to the `Outlet()` function is invoked with an object argument containing a `params` property.
 
 ## Further reading
 

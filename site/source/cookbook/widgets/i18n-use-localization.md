@@ -11,7 +11,7 @@ This recipe demonstrates how to set up internationalization within your Dojo 2 a
 
 ## Procedure
 
-1. Your localized strings must be part of your app bundle. To achieve this, add the following configuration to the file `.dojorc`:
+1. Your localized strings must be part of your app bundle. To achieve this, first add the following configuration to the file `.dojorc`:
 
 ```json
 {
@@ -31,7 +31,7 @@ The `supportedLocales` property value must be an array of all supported language
 * Create folder: `src/nls/FR`
 * Create folder: `src/nls/ES`
 
-3. Create a single _main_ language file here: `src/nls/common.ts`
+3. Create a single main language file here: `src/nls/common.ts`
 
 ```js
 const bundlePath = 'src/nls/common';

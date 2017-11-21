@@ -11,7 +11,7 @@ This recipe demonstrates how to render one or many widgets based on a URL match.
 
 ## Procedure
 
-1. Add the necessary imports:
+1. Add the necessary imports in your `main` file:
 
 ```js
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
@@ -21,13 +21,13 @@ import { Outlet } from '@dojo/routing/Outlet';
 import { w } from '@dojo/widget-core/d';
 ```
 
-2. Wrap your widget with an outlet
+2. Create a `ContactWidget` and wrap this widget with an `Outlet`:
 
 ```js
 const ContactWidgetOutlet = Outlet(ContactWidget, 'contact page');
 ```
 
-3. Define and register your routing configuration
+3. Define and register your routing configuration in your main file:
 
 ```js
 const routingConfig = [{
@@ -49,7 +49,7 @@ router.start();
 
 ```js
 render() {
-    return v('div', {}, [
+    return v('div', [
         w(ContactWidgetOutlet, {})
     ]);
 }
