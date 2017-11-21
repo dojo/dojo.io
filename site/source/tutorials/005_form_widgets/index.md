@@ -51,8 +51,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		return v('form', {
 			classes: this.theme(css.workerForm),
 			onsubmit: this._onSubmit
-		}, [
-		]);
+		});
 	}
 }
 ```
