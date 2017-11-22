@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-20T20:07:21.719Z">
+<meta property="og:updated_time" content="2017-11-22T11:49:05.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
 <meta name="twitter:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
@@ -263,7 +263,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 registry<span class="token punctuation">.</span><span class="token function">defineInjector</span><span class="token punctuation">(</span><span class="token string">'app-state'</span><span class="token punctuation">,</span> applicationContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>The first statement creates a <code>registry</code> where the application context can be registered. The second statement registers the <code>ApplicationContext</code> instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the <a href="../comingsoon.html">registry tutorial</a>.</p>
+<p>The first statement creates a <code>registry</code> where the application context can be registered. The second statement registers the <code>ApplicationContext</code> instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the <a href="../1020_registries/">registry tutorial</a>.</p>
 <div class="instruction">Add the registry to the projector</div>
 <p>We need to pass the <code>registry</code> to the <code>projector</code> via the <code>setProperties</code> method to ensure that it is available for all widget and container instances.</p>
 <pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-20T20:07:21.739Z">
+<meta property="og:updated_time" content="2017-11-22T11:49:05.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using Dojo 1 Dijits">
 <meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
@@ -83,7 +83,7 @@ ga('send', 'pageview');
 <h1 id="Using-Dojo-1-Dijits"><a href="#Using-Dojo-1-Dijits" class="headerlink" title="Using Dojo 1 Dijits"></a>Using Dojo 1 Dijits</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will extend the the <a href="../005_form_widgets/">Form widgets</a> tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits.</p>
 <p>To achieve maximum performance and efficiency, developers should eventually author their Dojo 2 application with Dojo 2 widgets. This approach is provided as a migration strategy, to leverage custom Dojo 1 Dijits within a Dojo 2 application, to help make it easier to migrate an application in phases over time.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1040_dojo1_dijits-initial.zip">download</a> the demo project to get started.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Adding-dependencies"><a href="#Adding-dependencies" class="headerlink" title="Adding dependencies"></a>Adding dependencies</h2><div class="task">Installing dependencies.</div>
 <p>The first step will be to install our dependencies using npm:</p>
@@ -220,7 +220,7 @@ ga('send', 'pageview');
 </code></pre>
 <article class="aside"><strong>Information</strong><p>The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the <a href="https://dojotoolkit.org/api/" target="_blank" rel="noopener">Dojo 1 API documentation</a>.</p></article>
 <p>Once Dijits are wrapped, they behave similarly to Dojo 2 widgets.  Coupled with the <code>dojo-typings</code> TypeScript typings, you get code completion as well when specifying the <em>properties</em> and TypeScript should help ensure the validity of property values.</p>
-<p>One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit’s as their children. Dojo 2 widgets represent their <a href="../comingsoon.html">DOM virtually</a>, while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.</p>
+<p>One restriction to keep in mind is that wrapped Dijits may only have other wrapped Dijit’s as their children. Dojo 2 widgets represent their <a href="../../docs/fundamentals/working_with_virtual_dom/">DOM virtually</a>, while Dojo 2 Dijits directly manage their own DOM.  Because of this, Dijits cannot properly manage virtual DOM based children.</p>
 <div class="task">Setting a Dojo 1 theme.</div>
 <p>When we configured the <em>externals</em> for our project, we included the main CSS for our theme, via the <code>&quot;inject&quot;</code> property.  The build system will automatically load any CSS or JavaScript files we inject when the page is loaded, meaning we don’t have to add the stylesheet directly to our HTML.</p>
 <p>Most Dijits will not render properly without a theme being applied to them.  There are many different ways to apply a Dojo 1 theme, but the most straightforward is to set the theme class name on the <code>&lt;body&gt;</code> of the application document.</p>

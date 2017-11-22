@@ -13,7 +13,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2017-11-20T20:07:21.731Z">
+<meta property="og:updated_time" content="2017-11-22T11:49:05.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -86,7 +86,7 @@ ga('send', 'pageview');
 <p>In this tutorial, we will start with an application that uses concrete widget classes and request all assets when the application first loads. First we will swap all the concrete widget references to load the widgets from a <code>registry</code>. Then we will create a new widget that will be lazily loaded when the worker card is clicked the first time.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1020_registries-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="The-default-registry"><a href="#The-default-registry" class="headerlink" title="The default registry"></a>The default registry</h2><div class="task">Create a default registry.</div>
 <p>The first step is to create a <code>registry</code> that will be made available to the application by passing the instance as the <code>registry</code> property on the <code>projector</code>.</p>
@@ -291,7 +291,7 @@ declare <span class="token keyword">const</span> require<span class="token punct
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Now that the <code>WorkerBack</code> widget is defined to load lazily, running the application with the browser developer tools open should show that the <code>WorkerBack.js</code> file is only loaded when a worker card is clicked on for the first time:</p>
-<article class="aside"><strong>Auto Bundling Support</strong><p>To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the <a href="../comingsoon.html">build command tutorial</a>.</p></article>
+<article class="aside"><strong>Auto Bundling Support</strong><p>To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the <a href="../006_deploying_to_production/">build command tutorial</a>.</p></article>
 <p><img src="./images/lazy-load-widget.gif" alt="lazy loading gif"></p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In summary, the Registry is a powerful tool for decoupling components from their point of usage. Removing the complexity of dealing with when or how a widget is loaded from the end user means they can author widgets in the same familiar way, while also leveraging the benefits of lazy loading and extensibility as hopefully shown in this tutorial.</p>

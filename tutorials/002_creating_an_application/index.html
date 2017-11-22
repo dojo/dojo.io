@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/html_js.svg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/widget.svg">
-<meta property="og:updated_time" content="2017-11-20T20:07:21.699Z">
+<meta property="og:updated_time" content="2017-11-22T11:49:05.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Components of a Dojo 2 application">
 <meta name="twitter:description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
@@ -86,7 +86,7 @@ ga('send', 'pageview');
 <h1 id="Components-of-a-Dojo-2-application"><a href="#Components-of-a-Dojo-2-application" class="headerlink" title="Components of a Dojo 2 application"></a>Components of a Dojo 2 application</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the possible parts of a Dojo 2 application. We will focus on the minimum application that we started with in <a href="../001_static_content/">Your first Dojo 2 application</a>.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/002_creating_an_application-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../comingsoon.html">TypeScript and Dojo 2</a> article.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="The-main-HTML-document"><a href="#The-main-HTML-document" class="headerlink" title="The main HTML document"></a>The main HTML document</h2><p>HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the <code>index.html</code> file serves this role. Notice that the <code>&lt;body&gt;</code> tag contains a single element: <code>&lt;my-app&gt;</code>. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in <code>main.ts</code>:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
