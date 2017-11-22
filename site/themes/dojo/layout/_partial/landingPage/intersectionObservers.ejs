@@ -1,4 +1,3 @@
-<div style="height: 1200px;width:100%;background:red"></div>
 <section class="intersection-observers">
 		<div class="foreground">
 			<div class="scales">
@@ -38,9 +37,9 @@
 					Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu
 					tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.
 				</p>
-				<button>
+				<a href="/tutorials/comingsoon.html">
 					See the Tutorial
-				</button>
+				</a>
 			</div>
 		</div>
 		<div class="background">
@@ -52,7 +51,6 @@
 		</div>
 	</div>
 </section>
-<div style="height: 1200px;width:100%;background:red"></div>
 <script>
 	(function () {
 		var section = document.querySelector('.intersection-observers');
@@ -75,6 +73,20 @@
 			var reticleDims = reticle.getBoundingClientRect();
 			var reticleTop = reticleDims.top;
 			var reticleHeight = reticleDims.height;
+			var reticleMiddle = reticleTop + reticleHeight / 2;
+
+			squares.forEach(function (square) {
+				var squareDims = square.getBoundingClientRect();
+				if (squareDims.top > reticleMiddle) {
+					square.style.transform = 'rotateY(0deg)';
+				}
+				else if (squareDims.top + squareDims.height < reticleMiddle) {
+					square.style.transform = 'rotateY(180deg)';
+				} else {
+					var percent = ( reticleMiddle - squareDims.top) / squareDims.height;
+					square.style.transform = 'rotateY(' + 180 * percent + 'deg)';
+				}
+			});
 
 		});
 

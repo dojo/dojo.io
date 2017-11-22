@@ -1,6 +1,7 @@
 section.intersection-observers {
 	$height: 670;
 	perspective: 600px;
+	perspective-origin: 24% center;
 	height: 0px + $height;
 	width: 100%;
 	padding: 0 3em;
@@ -55,7 +56,8 @@ section.intersection-observers {
 				max-width: 60%;
 			}
 
-			button {
+			a {
+				display: inline-block;
 				text-transform: uppercase;
 				padding: 1em 0;
 				color: #ffffff;
@@ -63,12 +65,17 @@ section.intersection-observers {
 				box-shadow: 0 10px 20px #cccccc;
 				width: 170px;
 				border: 1px solid #8c8d91;
+				cursor: pointer;
+				line-height: 2.5;
+				font-size: 12px;
+				text-align: center;
 			}
 		}
 
 		.scales {
 			position: absolute;
 			top: 0; bottom: 0; left: 0; right: 0;
+			z-index: -1;
 		}
 
 		.scale {
@@ -107,6 +114,7 @@ section.intersection-observers {
 	.background {
 		position: absolute;
 		left: 0; right: 0; top: 100%; bottom: 0;
+		z-index: -1;
 
 		.square {
 			position: relative;

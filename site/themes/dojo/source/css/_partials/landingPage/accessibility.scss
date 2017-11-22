@@ -1,0 +1,40 @@
+section.accessibility {
+	background-color: #bc1bb4;
+	
+	.animation, .content {
+		width: 49%;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		color: #ffffff;
+
+		img {
+			width: 30px;
+			height: 30px;
+		}
+		h2 {
+			width: 60%;
+		}
+		p {
+			width: 80%;
+		}
+		a {
+			background-color: #272a32;
+			color: #ff00ff;
+			text-transform: uppercase;
+			border: 0;
+			width: 170px;
+			padding: 0 2em;
+			box-shadow: 0 10px 40px darken(#bc1bb4, 10%);
+			border-radius: 3px;
+			font-weight: bold;
+			cursor: pointer;
+			line-height: 3.5;
+			font-size: 12px;
+			text-align: center;
+		}
+	}
+}
