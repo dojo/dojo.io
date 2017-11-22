@@ -3,6 +3,7 @@ section.features {
 	flex-direction: row;
 	justify-content: space-around;
 	height: 620px;
+	width: 85%;
 
 	.feature {
 		width: 25%;
@@ -30,21 +31,21 @@ section.features {
 		&.typescript {
 			.icon {
 				background-color: #3fa9f5;
-				box-shadow: 0 5px 10px darken(#3fa9f5, 20%);
+				box-shadow: 0 5px 20px darken(#3fa9f5, 5%);
 			}
 		}
 
 		&.widget-authoring {
 			.icon {
 				background-color: #ef1b23;
-				box-shadow: 0 5px 10px darken(#ef1b23, 20%);
+				box-shadow: 0 5px 20px darken(#ef1b23, 5%);
 			}
 		}
 
 		&.routing {
 			.icon {
 				background-color: #33de89;
-				box-shadow: 0 5px 10px darken(#33de89, 20%);
+				box-shadow: 0 5px 20px darken(#33de89, 5%);
 			}
 		}
 	}
