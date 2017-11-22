@@ -1,8 +1,14 @@
 section.accessibility {
-	background-color: #bc1bb4;
-	
+	background: linear-gradient(to right, #b332c0, #c405a8);
+	width: 100%;
+	height: 620px;
+	display: flex;
+	flex-direction: row;
+
 	.animation, .content {
 		width: 49%;
+		margin: 0 auto;
+		position: relative;
 	}
 
 	.content {
@@ -17,9 +23,12 @@ section.accessibility {
 		}
 		h2 {
 			width: 60%;
+			color: inherit;
+			margin: 0;
 		}
 		p {
 			width: 80%;
+			margin-top: 1em;
 		}
 		a {
 			background-color: #272a32;
@@ -35,6 +44,163 @@ section.accessibility {
 			line-height: 3.5;
 			font-size: 12px;
 			text-align: center;
+		}
+	}
+
+	.animation {
+		$animation-duration: 30s;
+		overflow: hidden;
+
+		> div {
+			position: absolute;
+			color: #ff00ff;
+		}
+
+		.english {
+			font-size: 8em;
+			font-weight: bold;
+			left: 20%;
+			width: 50%;
+			top: 20%;
+			line-height: 1.2;
+
+		}
+
+		.french {
+			font-size: 3em;
+			right: 0;
+			top: 10%;
+			opacity: 0.6;
+			animation: a11y-french $animation-duration linear infinite;
+
+			@keyframes a11y-french {
+				from, 5% {
+					opacity: 0;
+					right: 10%;
+					top: 20%;
+				}
+				15%, 20% {
+					opacity: 0.6;
+				}
+				30%, to {
+					opacity: 0;
+					right: 0;
+					top: 10%;
+				}
+			}
+		}
+
+		.spanish {
+			font-size: 3em;
+			left: 5%;
+			top: 50%;
+			opacity: 0.6;
+			animation: a11y-spanish $animation-duration linear infinite;
+
+			@keyframes a11y-spanish {
+				from, 12% {
+					opacity: 0;
+					left: 20%;
+				}
+				17%, 22% {
+					opacity: 0.6;
+				}
+				30%, to {
+					opacity: 0;
+					right: 10%;
+				}
+			}
+		}
+
+		.chinese {
+			font-size: 4em;
+			left: 0;
+			top: 80%;
+			opacity: 0.8;
+			animation: a11y-chinese $animation-duration linear infinite;
+
+			@keyframes a11y-chinese {
+				from, 30% {
+					opacity: 0;
+					left: 0;
+					top: 80%;
+					transform: scale(0.3);
+				}
+				40%, 50% {
+					opacity: 0.8;
+				}
+				60%, to {
+					left: 20%;
+					top: 60%;
+					transform: scale(1.5);
+					opacity: 0;
+				}
+			}
+		}
+		.german {
+			font-size: 3em;
+			left: 15%;
+			top: 20%;
+			opacity: 0.2;
+			animation: a11y-german $animation-duration linear infinite;
+
+			@keyframes a11y-german {
+				from, 50% {
+					opacity: 0;
+					transform: scale(1.2);
+				}
+				60%, 70% {
+					opacity: 0.2;
+				}
+				90%, to {
+					transform: scale(0.3);
+					opacity: 0;
+				}
+			}
+		}
+		.russian {
+			font-size: 5em;
+			right: 0;
+			top: 70%;
+			opacity: 0.4;
+			animation: a11y-russian $animation-duration linear infinite;
+
+			@keyframes a11y-russian {
+				from, 60% {
+					transform: scale(2);
+					top: 120%;
+					opacity: 0;
+				}
+				70%, 80% {
+					opacity: 0.4;
+				}
+				to {
+					transform: scale(0.5);
+					top: 60%;
+					opacity: 0;
+				}
+			}
+		}
+		.thai {
+			font-size: 3em;
+			right: 10%;
+			top: 50%;
+			opacity: 0.4;
+			animation: a11y-thai $animation-duration linear infinite;
+
+			@keyframes a11y-thai {
+				from, 25% {
+					right: 10%;
+					opacity: 0;
+				}
+				30%, 70% {
+					opacity: 0.2;
+				}
+				85%, to {
+					right: 20%;
+					opacity: 0;
+				}
+			}
 		}
 	}
 }
