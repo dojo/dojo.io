@@ -1,5 +1,83 @@
-<secction class="intersection-observers">
-	<h2>
-		Intersection Observers
-	</h2>
-</secction>
+<div style="height: 1200px;width:100%;background:red"></div>
+<section class="intersection-observers">
+		<div class="foreground">
+			<div class="scales">
+				<div class="scale">
+					<%	var height = 670; %>
+					<%	var tickOffset = 12; %>
+					<%	for (var i = 0; i < height / tickOffset; i++) { %>
+					<%		if ((i - 6 ) % 10 === 0) { %>
+								<div class="tick large"></div>
+					<%		} else if ((i - 1) % 5 === 0) { %>
+								<div class="tick medium"></div>
+					<%		} else { %>
+								<div class="tick small"></div>
+					<%		} %>
+					<% } %>
+				</div>
+				<div class="scale right">
+					<%	var height = 670; %>
+					<%	var tickOffset = 12; %>
+					<%	for (var i = 0; i < height / tickOffset; i++) { %>
+					<%		if ((i - 6 ) % 10 === 0) { %>
+								<div class="tick large"></div>
+					<%		} else if ((i - 1) % 5 === 0) { %>
+								<div class="tick medium"></div>
+					<%		} else { %>
+								<div class="tick small"></div>
+					<%		} %>
+					<% } %>
+				</div>
+			</div>
+			<div class="content">
+				<h2>
+					<div class="reticle"></div>
+					Intersection Observers
+				</h2>
+				<p>
+					Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu
+					tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.
+				</p>
+				<button>
+					See the Tutorial
+				</button>
+			</div>
+		</div>
+		<div class="background">
+			<div class="square"></div>
+			<div class="square"></div>
+			<div class="square"></div>
+			<div class="square"></div>
+			<div class="square"></div>
+		</div>
+	</div>
+</section>
+<div style="height: 1200px;width:100%;background:red"></div>
+<script>
+	(function () {
+		var section = document.querySelector('.intersection-observers');
+		var foreground = section.querySelector('.foreground');
+		var background = section.querySelector('.background');
+		var contentWrapper = document.querySelector('.content-wrapper');
+		var reticle = section.querySelector('.reticle');
+		var squares = section.querySelectorAll('.square');
+
+		var reactivateTime = null;
+		contentWrapper.addEventListener('scroll', function (e) {
+			var boundingRect = section.getBoundingClientRect();
+			var heightInViewport = window.innerHeight - boundingRect.top;
+			var isShowing = heightInViewport > 0 && boundingRect.bottom > 0;
+			if (!isShowing) {
+				return;
+			}
+			background.style.top = 'calc(100% - ' + heightInViewport + 'px)';
+
+			var reticleDims = reticle.getBoundingClientRect();
+			var reticleTop = reticleDims.top;
+			var reticleHeight = reticleDims.height;
+
+		});
+
+
+	})();
+</script>

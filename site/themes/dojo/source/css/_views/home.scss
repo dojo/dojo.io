@@ -1,4 +1,5 @@
 .body-front-page {
+	
 	.header,
 	.footer {
 		background: transparent;
@@ -24,5 +25,6 @@
 		@import '../_partials/landingPage/hero';
 		@import '../_partials/landingPage/upAndRunning';
 		@import '../_partials/landingPage/createCustomComponents';
+		@import '../_partials/landingPage/intersectionObservers';
 	}
 }
