@@ -32,3 +32,7 @@ class MyCustomWidget extends WidgetBase {
     }
 }
 ```
+
+## Additional resources
+
+* Learn about more advanced forms of injecting state into widgets in the [State Management tutorial](https://dojo.io/tutorials/1010_containers_and_injecting_state/)

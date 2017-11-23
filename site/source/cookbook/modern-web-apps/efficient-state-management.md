@@ -19,7 +19,7 @@ render() {
 }
 ```
 
-2. You created a widget in step one, wrap this widget with a `Container` by creating the file `src/containers/YourWidgetContainer.ts` and adding the following code:
+2. Wrap the widget created in step one with a `Container` by creating the file `src/containers/YourWidgetContainer.ts` and adding the following code:
 
 ```js
 import { Container } from '@dojo/widget-core/Container';

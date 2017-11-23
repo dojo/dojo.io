@@ -27,9 +27,9 @@ The `supportedLocales` property value must be an array of all supported language
 
 2. The bundles directory (`messageBundles`) you specified in step one must be created.
 
-* Create folder: `src/nls`
-* Create folder: `src/nls/FR`
-* Create folder: `src/nls/ES`
+* Create directory: `src/nls`
+* Create directory: `src/nls/FR`
+* Create directory: `src/nls/ES`
 
 3. Create a single main language file here: `src/nls/common.ts`
 
@@ -64,7 +64,7 @@ const messages = {
 export default messages;
 ```
 
-6. Create a widget which uses localised messages, for example in `src/widgets/MyLocalisedWidget.ts`:
+6. Create a widget which uses localized messages, for example in `src/widgets/MyLocalizedWidget.ts`:
 
 ```ts
 import { v } from '@dojo/widget-core/d';
@@ -72,9 +72,9 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import appBundle from '../nls/common';
 
-const MyLocalisedWidgetInternationalized = I18nMixin(WidgetBase);
+const MyLocalizedWidgetInternationalized = I18nMixin(WidgetBase);
 
-class MyLocalisedWidget extends MyLocalisedWidgetInternationalized {
+class MyLocalizedWidget extends MyLocalizedWidgetInternationalized {
     protected render() {
         const messages = this.localizeBundle(appBundle);
 
@@ -84,15 +84,15 @@ class MyLocalisedWidget extends MyLocalisedWidgetInternationalized {
     }
 }
 
-export default MyLocalisedWidget;
+export default MyLocalizedWidget;
 ```
 
-7. Create your main widget, which renders `MyLocalisedWidget`:
+7. Create your main widget, which renders `MyLocalizedWidget`:
 
 ```ts
 import { w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import MyLocalisedWidget from './MyLocalisedWidget';
+import MyLocalizedWidget from './MyLocalizedWidget';
 import { switchLocale } from '@dojo/i18n/i18n';
 
 export class HelloWorld extends WidgetBase {
@@ -114,7 +114,7 @@ export class HelloWorld extends WidgetBase {
     }
 
     protected render() {
-        return w(MyLocalisedWidget, {});
+        return w(MyLocalizedWidget, {});
     }
 }
 

@@ -14,7 +14,7 @@ This recipe demonstrates how a widget can force itself to re-render when its int
 This code example does the following:
 
 1. Defines a `HelloWorld` widget
-2. Invokes the method `this.invalidate()` within a interval timer
+2. Invokes the method `this.invalidate()` within a interval
 
 ```js
 class HelloWorld extends WidgetBase {

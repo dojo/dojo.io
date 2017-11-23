@@ -45,7 +45,7 @@ projector.append();
 router.start();
 ```
 
-4. Render the outlet, instead of your widget
+4. Render the outlet, instead of your widget:
 
 ```js
 render() {
