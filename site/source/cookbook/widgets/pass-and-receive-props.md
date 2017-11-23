@@ -13,7 +13,7 @@ This recipe demonstrates how to pass properties down to a widget and how to rece
 
 To pass properties down to a widget named `MyCustomWidget`, use the second argument of the `w` function:
 
-```js
+```ts
 import { w } from '@dojo/widget-core/d';
 
 w(MyCustomWidget, {
@@ -24,7 +24,7 @@ w(MyCustomWidget, {
 
 Dojo 2 widgets automatically have access to properties passed down from a parent. The properties can be accessed within the widget as `this.properties`.
 
-```js
+```ts
 class MyCustomWidget extends WidgetBase {
     render() {
         const {property, numbers} = this.properties;

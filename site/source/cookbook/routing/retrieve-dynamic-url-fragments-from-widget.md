@@ -13,7 +13,7 @@ This recipe demonstrates how you can inspect dynamic URL parameters through the 
 
 1. Include a dynamic path in your routing configuration:
 
-```js
+```ts
 const routingConfig = [{
     path: 'contact/{id}',
     outlet: 'contact page'
@@ -24,7 +24,7 @@ Note: You can learn how to apply the above routing configuration within a Dojo 2
 
 2. Define an outlet and provide a callback function which returns the properties the wrapped widget expects:
 
-```js
+```ts
 const ContactWidgetOutlet = Outlet(ContactWidget, 'contact page', ({params}) => {
     return {
         id: params.id
@@ -36,7 +36,7 @@ const ContactWidgetOutlet = Outlet(ContactWidget, 'contact page', ({params}) => 
 
 4. Your `ContactWidget` receives the object which the outlet returns:
 
-```js
+```ts
 class ContactWidget extends WidgetBase {
     render() {
         return v('div', [this.properties.id]); // 'person-1'

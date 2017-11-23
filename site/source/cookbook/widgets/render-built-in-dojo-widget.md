@@ -13,19 +13,19 @@ Render a built-in Dojo 2 Button widget.
 
 1. Import the Button widget:
 
-```js
+```ts
 import Button from '@dojo/widgets/button/Button';
 ```
 
 2. Import the widget render function:
 
-```js
+```ts
 import { w } from '@dojo/widget-core/d';
 ```
 
 3. Render the widget within an existing user-defined widget:
 
-```js
+```ts
 render() {
     return w(Button, {
         type: 'submit'

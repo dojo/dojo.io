@@ -33,7 +33,7 @@ The `supportedLocales` property value must be an array of all supported language
 
 3. Create a single main language file here: `src/nls/common.ts`
 
-```js
+```ts
 const bundlePath = 'src/nls/common';
 const locales = [ 'en-PR', 'en-FR' ];
 

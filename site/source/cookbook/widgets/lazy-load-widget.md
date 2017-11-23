@@ -17,7 +17,7 @@ This recipe demonstrates the following:
 
 1. Render your widget using a string based identifier, instead of rendering the class directly:
 
-```js
+```ts
 render() {
     return v('div',[
         // w(MyLazyWidget, {}) // Don't do this
@@ -28,7 +28,7 @@ render() {
 
 2. In your `main` file, import and configure a registry:
 
-```js
+```ts
 import { Registry } from '@dojo/widget-core/Registry';
 
 const registry = new Registry();
@@ -41,7 +41,7 @@ registry.define('my-lazy-widget', async () => {
 
 3. Finally, use the `setProperties` method of your existing `projector` to associate the projector with the registry:
 
-```js
+```ts
 projector.setProperties({ registry });
 ```
 

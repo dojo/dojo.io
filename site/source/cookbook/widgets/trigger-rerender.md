@@ -16,7 +16,7 @@ This code example does the following:
 1. Defines a `HelloWorld` widget
 2. Invokes the method `this.invalidate()` within a interval
 
-```js
+```ts
 class HelloWorld extends WidgetBase {
     constructor() {
         super();

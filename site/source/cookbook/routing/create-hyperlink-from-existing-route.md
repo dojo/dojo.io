@@ -13,7 +13,7 @@ This recipe demonstrates how to generate hyperlinks based on your routing config
 
 1. Assuming a routing configuration like this:
 
-```js
+```ts
 [{
     path: 'products',
     outlet: 'products',
