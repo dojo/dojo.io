@@ -78,7 +78,7 @@ class MyLocalizedWidget extends MyLocalizedWidgetInternationalized {
     protected render() {
         const messages = this.localizeBundle(appBundle);
 
-        return v('div', {}, [
+        return v('div', [
             `Message: ${messages.greeting}`
         ]);
     }

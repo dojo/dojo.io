@@ -19,11 +19,11 @@ render() {
 }
 ```
 
-2. Wrap the widget created in step one with a `Container` by creating the file `src/containers/YourWidgetContainer.ts` and adding the following code:
+2. Wrap the widget created in step one with a `Container` by creating the file `src/containers/MyWidgetContainer.ts` and adding the following code:
 
 ```ts
 import { Container } from '@dojo/widget-core/Container';
-import YourWidget from './../widgets/YourWidget';
+import MyWidget from './../widgets/MyWidget';
 
 function getProperties(inject, properties) {
     return {
@@ -31,11 +31,11 @@ function getProperties(inject, properties) {
     };
 }
 
-const YourWidgetContainer = Container(YourWidget, 'app-state', {
+const MyWidgetContainer = Container(MyWidget, 'app-state', {
     getProperties
 });
 
-export default YourWidgetContainer;
+export default MyWidgetContainer;
 ```
 
 Here are two notes on step 2:
@@ -49,7 +49,7 @@ Here are two notes on step 2:
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { Registry } from '@dojo/widget-core/Registry';
 import { Injector } from '@dojo/widget-core/Injector';
-import YourWidgetContainer from './containers/YourWidgetContainer';
+import MyWidgetContainer from './containers/MyWidgetContainer';
 
 const registry = new Registry();
 const myInjector = new Injector({
@@ -58,7 +58,7 @@ const myInjector = new Injector({
 
 registry.defineInjector('app-state', myInjector);
 
-const Projector = ProjectorMixin(YourWidgetContainer);
+const Projector = ProjectorMixin(MyWidgetContainer);
 const projector = new Projector();
 projector.setProperties({ registry });
 

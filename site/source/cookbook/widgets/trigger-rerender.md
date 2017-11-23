@@ -29,7 +29,7 @@ class HelloWorld extends WidgetBase {
     }
 
     render() {
-        return v('div', {}, [ `Count: ${this.count}`]);
+        return v('div', [ `Count: ${this.count}`]);
     }
 }
 ```

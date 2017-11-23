@@ -9,8 +9,8 @@ overview: Lazy load a widget on demand and exclude it from the main JavaScript b
 
 This recipe demonstrates the following:
 
-1. How to declare a lazily loaded widget
-2. How to exclude a widget from the main JavaScript bundle
+1. How to declare a lazily loaded widget - this is done within step 2 in the procedure section
+2. How to exclude a widget from the main JavaScript bundle - this is handled automatically through the Dojo CLI build tool based on the registry definition
 3. How to download a widget on demand, at the point at which it is needed in the application lifecycle
 
 ## Procedure
