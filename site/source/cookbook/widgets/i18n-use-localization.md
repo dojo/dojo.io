@@ -79,7 +79,7 @@ class MyLocalizedWidget extends MyLocalizedWidgetInternationalized {
         const messages = this.localizeBundle(appBundle);
 
         return v('div', {}, [
-            'Message: ' + messages.greeting
+            `Message: ${messages.greeting}`
         ]);
     }
 }
