@@ -1,13 +1,25 @@
 section.create-custom-components {
+	$mobile-break: 480px;
+
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	background: linear-gradient(to right, #009dff, #00f5ff);
 	padding-top: 5em;
-	height: 670px;
+
+	@media screen and (max-device-width : $mobile-break) {
+		flex-direction: column;
+		background: linear-gradient(60deg, #009dff, #00f5ff);
+		padding-top: 0;
+	}
 
 	.copy, .demo {
 		width: 40%;
+
+		@media screen and (max-device-width : $mobile-break) {
+			margin: 10%;
+			width: 80%;
+		}
 	}
 
 	.copy {
@@ -19,12 +31,22 @@ section.create-custom-components {
 		img {
 			width: 35px;
 			height: 35px;
+
+			@media screen and (max-device-width : $mobile-break) {
+				width: 70px;
+				height: 70px;
+			}
 		}
 
 		h2 {
 			max-width: 60%;
 			line-height: 1.3;
 			padding-bottom: 1em;
+
+			@media screen and (max-device-width : $mobile-break) {
+				max-width: 100%;
+				font-size: 2em;
+			}
 		}
 		p {
 			margin-right: 10%;
@@ -44,11 +66,23 @@ section.create-custom-components {
 			line-height: 3.5;
 			font-size: 12px;
 			text-align: center;
+
+			@media screen and (max-device-width : $mobile-break) {
+				margin: auto;
+				position: relative;
+				top: 27em;
+			}
+
 		}
 	}
 
 	.demo {
 		$animation-duration: 15s;
+
+		@media screen and (max-device-width : $mobile-break) {
+			position: relative;
+			top: -7em;
+		}
 
 		.menu-list {
 			position: relative;
@@ -162,6 +196,10 @@ section.create-custom-components {
 				white-space: unquote("nowrap");
 				letter-spacing: 0.2em;
 
+				@media screen and (max-device-width : $mobile-break) {
+					letter-spacing: 0.1em;
+					font-size: 16px;
+				}
 
 				&.indent {
 					margin-left: 2em;
