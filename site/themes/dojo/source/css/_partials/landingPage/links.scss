@@ -1,0 +1,83 @@
+section.links {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content:  flex-start;
+	height: 135px;
+	width: 100%;
+	background-color: #272a32;
+	align-items: center;
+
+	h2 {
+		margin-left: 5em;
+		display: inline-block;
+		color: #ffffff;
+	}
+
+	a {
+		position: relative;
+		display: inline-block;
+		text-transform: uppercase;
+		margin-left: 3em;
+		color: #ffffff;
+		font-size: 10px;
+		display: inline-block;
+		padding-left: 30px;
+
+		&:before {
+			content: " ";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 20px;
+			background-image: url(https://via.placeholder.com/20x20);
+			background-repeat: no-repeat;
+		}
+	}
+
+	.reference-guide {
+
+		&:before {
+			top: unquote('calc(50% - 15px)');
+			height: 30px;
+			width: 30px;
+			background-image: url(/images/icon-reference-guide.svg);
+		}
+	}
+
+	.tutorials {
+		&:before {
+			top: unquote('calc(50% - 15px)');
+			height: 30px;
+			width: 30px;
+			background-image: url(/images/icon-tutorials.svg);
+		}
+	}
+
+	.api {
+		&:before {
+			top: unquote('calc(50% - 15px)');
+			height: 30px;
+			width: 30px;
+			background-image: url(/images/icon-docs.svg);
+		}
+	}
+
+	.bottom-border {
+		position: absolute;
+		left: 0; right: 0; bottom: 0;
+		height: 1px;
+		background: linear-gradient(to right,
+			#ef1b23 0%,
+			#ef1b23 16.6%,
+			#ff8431 16.7%,
+			#ff8431 33.2%,
+			#fffb69 33.3%,
+			#fffb69 49.9%,
+			#33de89 50%,
+			#33de89 66.6%,
+			#2db5f9 66.7%,
+			#2db5f9 83.2%,
+			#b333c0 83.3%);
+	}
+}

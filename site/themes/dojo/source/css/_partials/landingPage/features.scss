@@ -4,6 +4,7 @@ section.features {
 	justify-content: space-around;
 	height: 620px;
 	width: 85%;
+	align-items: center;
 
 	.feature {
 		width: 25%;
@@ -26,6 +27,7 @@ section.features {
 
 		p {
 			text-align: center;
+			color: #333333;
 		}
 
 		&.typescript {
