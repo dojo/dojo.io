@@ -20,7 +20,7 @@ You can [download](../assets/1020_registries-initial.zip) the demo project and r
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
 
 {% section %}
 
@@ -125,7 +125,7 @@ The default type of `require` needed to be overridden, with the type of require 
 Now that the `WorkerBack` widget is defined to load lazily, running the application with the browser developer tools open should show that the `WorkerBack.js` file is only loaded when a worker card is clicked on for the first time:
 
 {% aside 'Auto Bundling Support' %}
-To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the [build command tutorial](../comingsoon.html).
+To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the [build command tutorial](../006_deploying_to_production/).
 {% endaside %}
 
 ![lazy loading gif](./images/lazy-load-widget.gif)

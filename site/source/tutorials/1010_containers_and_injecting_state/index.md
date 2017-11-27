@@ -91,7 +91,7 @@ Now that we have the `ApplicationContext` instance, let's use it within our widg
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:30,31 %}
 
-The first statement creates a `registry` where the application context can be registered. The second statement registers the `ApplicationContext` instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../comingsoon.html).
+The first statement creates a `registry` where the application context can be registered. The second statement registers the `ApplicationContext` instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../1020_registries/).
 
 {% instruction 'Add the registry to the projector' %}
 
