@@ -81,7 +81,7 @@ export default class MyWidget extends ThemedBase {
 }
 ```
 
-The `classes` property is now just an array of strings.  Also we think that the mixed in method `theme()` is a lot more clear on what you are doing instead of `classes()`.  _Fixed_ classes are simply added to the array, instead of being supplied to a chained function.
+The `classes` property is now just an array of strings.  Also the mixed in `.theme()` method more clearly express intent over the former `.classes()` name.  _Fixed_ classes are simply added to the array, instead of being supplied to a chained function.
 
 The testing tooling (`@dojo/test-extras/harness`) has been updated to reflect these changes, making it easier to test widgets.  `Themeable` was renamed to `Themed` for improved mixin semantics.
 
