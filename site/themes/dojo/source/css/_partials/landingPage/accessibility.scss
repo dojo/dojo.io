@@ -47,7 +47,7 @@ section.accessibility {
 			width: 80%;
 			margin-top: 1em;
 		}
-		a {
+		> a {
 			background-color: #272a32;
 			color: #ff00ff;
 			text-transform: uppercase;
@@ -61,6 +61,7 @@ section.accessibility {
 			line-height: 3.5;
 			font-size: 12px;
 			text-align: center;
+			margin-top: 5em;
 
 			@media screen and (max-device-width : $mobile-break) {
 				margin: 10vh auto;
@@ -81,9 +82,8 @@ section.accessibility {
 			position: relative;
 			font-size: 8em;
 			font-weight: bold;
-			left: 20%;
+			margin: 10vh 10vw;
 			width: 50%;
-			top: 20%;
 			line-height: 1.2;
 
 			@media screen and (max-device-width : $mobile-break) {
@@ -107,10 +107,13 @@ section.accessibility {
 				15%, 20% {
 					opacity: 0.6;
 				}
-				30%, to {
+				30%, 95% {
 					opacity: 0;
 					right: 0;
 					top: 10%;
+				}
+				95%, to {
+					
 				}
 			}
 		}

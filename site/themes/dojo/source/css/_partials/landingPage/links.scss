@@ -27,10 +27,10 @@ section.links {
 		position: relative;
 		display: inline-block;
 		text-transform: uppercase;
-		margin-left: 3em;
 		color: #ffffff;
 		font-size: 10px;
 		display: inline-block;
+		margin-left: 10vw;
 		padding-left: 30px;
 
 		@media screen and (max-device-width : $mobile-break) {
@@ -49,6 +49,7 @@ section.links {
 	}
 
 	.reference-guide {
+		margin-left: 25vw;
 
 		&:before {
 			top: unquote('calc(50% - 15px)');

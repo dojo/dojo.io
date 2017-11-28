@@ -6,6 +6,7 @@ section.intersection-observers {
 	width: 100%;
 	padding: 0 3em;
 	overflow-y: hidden;
+	width: 100%;
 
 	@media screen and (max-device-width : $mobile-break) {
 		padding: 0;
@@ -87,7 +88,10 @@ section.intersection-observers {
 				line-height: 2.5;
 				font-size: 12px;
 				text-align: center;
-				margin: 5vh auto;
+
+				@media screen and (max-device-width : $mobile-break) {
+					margin: 5vh auto;
+				}
 			}
 		}
 

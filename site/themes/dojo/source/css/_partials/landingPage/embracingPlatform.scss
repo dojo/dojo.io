@@ -1,9 +1,10 @@
-section.create-custom-components {
+section.embrace-platform {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	background: linear-gradient(to right, #009dff, #00f5ff);
-	padding-top: 5em;
+	padding: 6em 0;
+	width: 100%;
 
 	@media screen and (max-device-width : $mobile-break) {
 		flex-direction: column;

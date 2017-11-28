@@ -2,6 +2,7 @@ section.hero {
 	position: relative;
 	z-index: 0;
 	text-align: center;
+	width: 100%;
 
 	h1 {
 		color: white;
@@ -22,6 +23,7 @@ section.hero {
 		color: white;
 		margin: 5vh auto 15vh auto;
 		width: 40vw;
+		max-width: 170px;
 		line-height: 3.5;
 		text-align: center;
 		font-size: 12px;
@@ -80,9 +82,9 @@ section.hero {
 	.shapes {
 		position: absolute;
 		left: 0; right: 0; top: 0; bottom: 0;
-		background: #000000 url(/images/header-bg.svg);
-		background-size: 100vh;
-		background-position: top -20vh center;
+		background: #000000 url(/images/header-bg.jpg);
+		background-size: 100vw 100vh;
+		background-position: top -25vh center;
 		background-repeat: no-repeat;
 		z-index: -1;
 
