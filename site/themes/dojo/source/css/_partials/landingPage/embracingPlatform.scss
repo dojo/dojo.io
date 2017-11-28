@@ -96,6 +96,8 @@ section.embrace-platform {
 				transform-origin: left;
 				background-color: #1f2127;
 				animation: create-custom-stepped-reveal $animation-duration linear infinite;
+				top: 0;
+				left: 0;
 
 				@keyframes create-custom-stepped-reveal {
 					from, 20% {
@@ -194,10 +196,10 @@ section.embrace-platform {
 				overflow: hidden;
 				white-space: unquote("nowrap");
 				letter-spacing: 0.2em;
+				font-size: 16px;
 
 				@media screen and (max-device-width : $mobile-break) {
 					letter-spacing: 0.1em;
-					font-size: 16px;
 				}
 
 				&.indent {

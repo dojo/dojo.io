@@ -137,6 +137,7 @@ section.intersection-observers {
 	.background {
 		position: absolute;
 		left: 0; right: 0; top: 100%; bottom: 0;
+		padding: 0 3em;
 		z-index: -1;
 
 		@media screen and (max-device-width : $mobile-break) {
@@ -147,7 +148,7 @@ section.intersection-observers {
 			position: relative;
 			width: 8vw;
 			height: 8vw;
-			margin: 45px unquote('calc(24% - 4vw)');
+			margin: 45px unquote('calc(24% - 6vw)');
 			border-radius: 5px;
 			background: #272a32;
 			transform-style: preserve-3d;
@@ -159,7 +160,7 @@ section.intersection-observers {
 				content: " ";
 				left: 0; right: 0; top: 0; bottom: 0;
 				border-radius: 5px;
-				transform: rotateY(180deg);
+				transform: rotateY(180deg) translateZ(1px);
 				transform-style: preserve-3d;
 				background: linear-gradient(to bottom, #2fe189, #00ff8f);
 				backface-visibility: hidden;

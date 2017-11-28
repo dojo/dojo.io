@@ -99,21 +99,28 @@ section.accessibility {
 			animation: a11y-french $animation-duration linear infinite;
 
 			@keyframes a11y-french {
-				from, 5% {
+				from {
+					opacity: 0.6;
+					right: 3.3%;
+					top: 13.3%;
+				}
+				10%, 79% {
+					right: 0;
+					top: 10%;
+					opacity: 0;
+				}
+				80%, 85% {
 					opacity: 0;
 					right: 10%;
 					top: 20%;
 				}
-				15%, 20% {
+				95% {
+					opacity: 0.6
+				}
+				to {
 					opacity: 0.6;
-				}
-				30%, 95% {
-					opacity: 0;
-					right: 0;
-					top: 10%;
-				}
-				95%, to {
-
+					right: 3.3%;
+					top: 13.3%;
 				}
 			}
 		}

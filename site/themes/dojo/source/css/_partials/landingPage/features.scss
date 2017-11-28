@@ -1,10 +1,10 @@
 section.features {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	height: 620px;
-	width: 85%;
+	justify-content: space-evenly;
+	width: 100%;
 	align-items: center;
+	margin: 10em;
 
 	@media screen and (max-device-width : $mobile-break) {
 		display: none;
@@ -12,7 +12,7 @@ section.features {
 
 	.feature {
 		width: 25%;
-		height: 300px;
+		height: 360px;
 		text-align: center;
 
 		.icon {
