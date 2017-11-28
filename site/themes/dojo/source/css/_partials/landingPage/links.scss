@@ -3,10 +3,10 @@ section.links {
 	display: flex;
 	flex-direction: row;
 	justify-content:  flex-start;
-	height: 135px;
 	width: 100%;
 	background-color: #272a32;
 	align-items: center;
+	padding: 2em 0;
 
 	@media screen and (max-device-width : $mobile-break) {
 		flex-direction: column;
@@ -15,9 +15,10 @@ section.links {
 	}
 
 	h2 {
-		margin-left: 5em;
+		margin-left: 3em;
 		display: inline-block;
 		color: #ffffff;
+		font-size: 1.5em;
 		@media screen and (max-device-width : $mobile-break) {
 			margin: auto;
 		}
@@ -49,7 +50,7 @@ section.links {
 	}
 
 	.reference-guide {
-		margin-left: 25vw;
+		margin-left: 20vw;
 
 		&:before {
 			top: unquote('calc(50% - 15px)');

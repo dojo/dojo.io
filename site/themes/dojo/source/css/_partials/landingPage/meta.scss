@@ -145,9 +145,9 @@ section.intersection-observers {
 
 		.square {
 			position: relative;
-			width: 120px;
-			height: 120px;
-			margin: 45px unquote('calc(24% - 60px)');
+			width: 8vw;
+			height: 8vw;
+			margin: 45px unquote('calc(24% - 4vw)');
 			border-radius: 5px;
 			background: #272a32;
 			transform-style: preserve-3d;
