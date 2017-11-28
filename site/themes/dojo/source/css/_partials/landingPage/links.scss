@@ -8,10 +8,19 @@ section.links {
 	background-color: #272a32;
 	align-items: center;
 
+	@media screen and (max-device-width : $mobile-break) {
+		flex-direction: column;
+		height: auto;
+		padding: 5vh 0;
+	}
+
 	h2 {
 		margin-left: 5em;
 		display: inline-block;
 		color: #ffffff;
+		@media screen and (max-device-width : $mobile-break) {
+			margin: auto;
+		}
 	}
 
 	a {
@@ -23,6 +32,10 @@ section.links {
 		font-size: 10px;
 		display: inline-block;
 		padding-left: 30px;
+
+		@media screen and (max-device-width : $mobile-break) {
+			margin: 2vh auto;
+		}
 
 		&:before {
 			content: " ";

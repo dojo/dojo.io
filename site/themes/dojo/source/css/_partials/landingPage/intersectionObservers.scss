@@ -7,6 +7,11 @@ section.intersection-observers {
 	padding: 0 3em;
 	overflow-y: hidden;
 
+	@media screen and (max-device-width : $mobile-break) {
+		padding: 0;
+		height: auto;
+	}
+
 	.foreground {
 		position: relative;
 		color: #666666;
@@ -19,6 +24,11 @@ section.intersection-observers {
 			margin-left: 40%;
 			height: 0px + $height;
 
+			@media screen and (max-device-width : $mobile-break) {
+				margin: 15vh 13vw;
+				height: auto;
+			}
+
 			h2 {
 				position: relative;
 
@@ -30,6 +40,10 @@ section.intersection-observers {
 					top: unquote('calc(50% - 2px)');
 					border: 1px solid;
 					border-color: transparent #ced4d6;
+
+					@media screen and (max-device-width : $mobile-break) {
+						display: none;
+					}
 
 					&:before, &:after {
 						position: absolute;
@@ -48,12 +62,16 @@ section.intersection-observers {
 					}
 				}
 
-				padding: 0
+				padding: 0;
 			}
 
 			p {
 				display: inline-block;
 				max-width: 60%;
+
+				@media screen and (max-device-width : $mobile-break) {
+					max-width: 100%;
+				}
 			}
 
 			a {
@@ -69,6 +87,7 @@ section.intersection-observers {
 				line-height: 2.5;
 				font-size: 12px;
 				text-align: center;
+				margin: 5vh auto;
 			}
 		}
 
@@ -115,6 +134,10 @@ section.intersection-observers {
 		position: absolute;
 		left: 0; right: 0; top: 100%; bottom: 0;
 		z-index: -1;
+
+		@media screen and (max-device-width : $mobile-break) {
+			display: none;
+		}
 
 		.square {
 			position: relative;

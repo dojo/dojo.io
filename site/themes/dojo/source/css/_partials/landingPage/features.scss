@@ -6,6 +6,10 @@ section.features {
 	width: 85%;
 	align-items: center;
 
+	@media screen and (max-device-width : $mobile-break) {
+		display: none;
+	}
+
 	.feature {
 		width: 25%;
 		height: 300px;

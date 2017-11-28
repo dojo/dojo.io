@@ -1,5 +1,4 @@
 section.hero {
-	$mobile-break: 480px;
 	position: relative;
 	z-index: 0;
 	text-align: center;
@@ -22,7 +21,7 @@ section.hero {
 		cursor: pointer;
 		color: white;
 		margin: 5vh auto 15vh auto;
-		width: 14vh;
+		width: 40vw;
 		line-height: 3.5;
 		text-align: center;
 		font-size: 12px;

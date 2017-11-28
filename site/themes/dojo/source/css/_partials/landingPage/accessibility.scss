@@ -1,14 +1,21 @@
 section.accessibility {
 	background: linear-gradient(to right, #b332c0, #c405a8);
 	width: 100%;
-	height: 620px;
 	display: flex;
 	flex-direction: row;
+
+	@media screen and (max-device-width : $mobile-break) {
+		flex-direction: column;
+	}
 
 	.animation, .content {
 		width: 49%;
 		margin: 0 auto;
 		position: relative;
+
+		@media screen and (max-device-width : $mobile-break) {
+			width: auto;
+		}
 	}
 
 	.content {
@@ -17,9 +24,19 @@ section.accessibility {
 		justify-content: center;
 		color: #ffffff;
 
+		@media screen and (max-device-width : $mobile-break) {
+			margin: 0 5vw;
+		}
+
 		img {
 			width: 30px;
 			height: 30px;
+
+			@media screen and (max-device-width : $mobile-break) {
+				width: 60px;
+				height: 60px;
+			}
+
 		}
 		h2 {
 			width: 60%;
@@ -44,6 +61,10 @@ section.accessibility {
 			line-height: 3.5;
 			font-size: 12px;
 			text-align: center;
+
+			@media screen and (max-device-width : $mobile-break) {
+				margin: 10vh auto;
+			}
 		}
 	}
 
@@ -57,6 +78,7 @@ section.accessibility {
 		}
 
 		.english {
+			position: relative;
 			font-size: 8em;
 			font-weight: bold;
 			left: 20%;
@@ -64,6 +86,9 @@ section.accessibility {
 			top: 20%;
 			line-height: 1.2;
 
+			@media screen and (max-device-width : $mobile-break) {
+				font-size: 5em;
+			}
 		}
 
 		.french {
