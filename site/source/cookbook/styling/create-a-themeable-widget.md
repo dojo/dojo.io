@@ -42,13 +42,15 @@ Notes:
 * This widget definition extends from the `ThemedMixin`
 * The reference to `this.theme(css.root)` specifies the `root` class as a themeable class
 
-When you render your Header widget defined above, you can override the `root` class by defining your own theme:
+3. When you render your Header widget defined above, you can override the `root` class by defining your own theme:
 
 ```ts
 w(Header, {
     theme: CustomTheme
 });
 ```
+
+There is a dedicated recipe on how to [create the `CustomTheme`](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/styling/built-in-widget-theming.md) variable in the above code snippet.
 
 ## Additional resources
 

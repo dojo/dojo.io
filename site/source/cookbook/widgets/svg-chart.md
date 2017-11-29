@@ -7,13 +7,13 @@ overview: Build a simple SVG chart
 
 ## Objective
 
-This recipe demonstrates how to build a simple SVG bar chart within Dojo.
+This recipe demonstrates how to build a simple SVG bar chart within Dojo 2.
 
 ## Code example
 
 Add this code to your render method:
 
-```
+```ts
 render() {
     return v('svg', {
         preserveAspectRatio: 'none',

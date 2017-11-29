@@ -7,7 +7,7 @@ overview: Style a built-in Dojo 2 widget using the built-in theming functionalit
 
 ## Objective
 
-The recipe explains how to style a built-in Dojo 2 widget using the themeing functionality built into the framework.
+The recipe explains how to style a built-in Dojo 2 widget using the theming functionality built into the framework.
 
 ## Procedure
 
@@ -20,7 +20,7 @@ The recipe explains how to style a built-in Dojo 2 widget using the themeing fun
 }
 ```
 
-The selector must match an existing themeable selector which the widget offers. In this case, the `root` selector provided by the [Dojo 2 button](https://github.com/dojo/widgets/tree/master/src/button#theming) widget is styled.
+The selector must match an existing themeable selector which the widget offers. In this case, the `root` selector provided by the [Dojo 2 button](https://github.com/dojo/widgets/tree/master/src/button#theming) widget is styled and overridden.
 
 2. Create a `theme.ts` file, for example in `styles/themes/dark/theme.ts`:
 

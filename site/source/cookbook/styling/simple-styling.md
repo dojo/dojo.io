@@ -34,4 +34,4 @@ return v('div', { classes: css.root }, [ 'Hello' ]);
 
 ## Additional resources
 
-The [Dojo Theming tutorial](https://dojo.io/tutorials/007_theming/) covers other techniques of styling widgets
+The [Dojo Theming tutorial](https://dojo.io/tutorials/007_theming/) covers more advanced techniques of styling widgets

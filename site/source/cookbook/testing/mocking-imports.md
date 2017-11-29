@@ -1,7 +1,7 @@
 ---
 layout: docs
 category: testing
-title: Test and mock imports of a widget
+title: Test and mock the imports of a widget
 overview: Learn one strategy of mocking imports in a widget
 ---
 
@@ -67,7 +67,7 @@ const stubs = {
 These stubs are used in place of the actual imports. The stubs are key/value pairs:
 
 * `key`: A string which represents the string identifier used in the original import
-* `value`: A data structure which is returned in place of the original imported module
+* `value`: A data type which is returned in place of the original imported module
 
 4. Within your test file, require your widget through the `proxyquire` API and pass in the necessary stubs as defined in step 3:
 
@@ -75,7 +75,7 @@ These stubs are used in place of the actual imports. The stubs are key/value pai
 const HelloWorld = proxyquire('./HelloWorld', stubs);
 ```
 
-5. Invoke methods on your API so you can make assertions:
+5. Invoke the necessary methods on your widget so you can make assertions:
 
 ```js
 const widget = new HelloWorld();
