@@ -73,18 +73,19 @@
 			var reticleHeight = reticleDims.height;
 			var reticleMiddle = reticleTop + reticleHeight / 2;
 
-			squares.forEach(function (square) {
+			for (var i = 0; i < squares.length; i++) {
+				var square = squares[i];
 				var squareDims = square.getBoundingClientRect();
 				if (squareDims.top > reticleMiddle) {
-					square.style.transform = 'rotateY(0deg)';
+					square.style.transform = square.style['-ms-transform'] = 'rotateY(0deg)';
 				}
 				else if (squareDims.top + squareDims.height < reticleMiddle) {
-					square.style.transform = 'rotateY(180deg)';
+					square.style.transform = square.style['-ms-transform'] = 'rotateY(180deg)';
 				} else {
 					var percent = ( reticleMiddle - squareDims.top) / squareDims.height;
-					square.style.transform = 'rotateY(' + 180 * percent + 'deg)';
+					square.style.transform = square.style['-ms-transform'] = 'rotateY(' + 180 * percent + 'deg)';
 				}
-			});
+			};
 
 		});
 	})();

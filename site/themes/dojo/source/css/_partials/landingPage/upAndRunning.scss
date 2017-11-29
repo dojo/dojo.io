@@ -1,7 +1,6 @@
 section.up-and-running {
 	$animation-duration: 10.0s;
-	$mobile-break: 480px;
-
+	
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -31,11 +30,6 @@ section.up-and-running {
 
 		.codeline {
 			margin-bottom: 1em;
-			width: 240px;
-
-			@media screen and (max-device-width : $mobile-break) {
-				width: 300px;
-			}
 
 			span {
 				font-family: "Source Code Pro";
@@ -43,7 +37,7 @@ section.up-and-running {
 
 				&.line-number {
 					font-size: 24px;
-					padding-right: 1em;
+					padding-right: 0.5em;
 					color: #bec7cc;
 
 					@media screen and (max-device-width : $mobile-break) {
@@ -55,7 +49,7 @@ section.up-and-running {
 					padding: 0 0.5em;
 					margin-bottom: 4px;
 					line-height: 26px;
-					font-size: 13px;
+					font-size: 11px;
 					overflow: hidden;
 					white-space: unquote("nowrap");
 					letter-spacing: 0.15em;
@@ -65,9 +59,7 @@ section.up-and-running {
 					color: #00b89c;
 
 					@media screen and (max-device-width : $mobile-break) {
-						font-size: 18px;
 						margin-bottom: 10px;
-
 					}
 				}
 			}
@@ -81,7 +73,7 @@ section.up-and-running {
 			}
 			@keyframes typing-1 {
 				from { width: 0; }
-				15%, to { width: unquote("calc(100% - 50px)"); }
+				15%, to { width: 190px; }
 			}
 			@keyframes fadein-background-1 {
 				from, 15% {
@@ -115,7 +107,7 @@ section.up-and-running {
 			}
 			@keyframes typing-2 {
 				from, 25% { width: 0; }
-				40%, to { width: unquote("calc(100% - 50px)"); }
+				40%, to { width: 280px; }
 			}
 			@keyframes fadein-background-2 {
 				from, 40% {
@@ -140,6 +132,7 @@ section.up-and-running {
 		#upAndRunning-typing-3 {
 			border-radius: 3px;
 			animation: shadow-1 $animation-duration linear infinite;
+			width: 100px;
 			@keyframes shadow-1 {
 				from, 80% {
 					box-shadow: 0 10px 5px transparent;
@@ -169,8 +162,13 @@ section.up-and-running {
 					delayed-show-3-2 $animation-duration linear infinite;
 			}
 			@keyframes typing-3 {
-				from, 65% { width: 0; }
-				80%, to { width: unquote("calc(100% - 50px)"); }
+				from, 65% {
+					width: 0;
+				}
+				80%, to {
+					opacity: 1;
+					width: 60px;
+				}
 			}
 			@keyframes delayed-show-3-2 {
 				from, 65%  {

@@ -57,7 +57,7 @@ section.embrace-platform {
 			text-transform: uppercase;
 			border: 0;
 			width: 170px;
-			padding: 0 2em;
+			padding: 1em 2em;
 			box-shadow: 0 10px 40px darken(#009dff, 10%);
 			border-radius: 3px;
 			font-weight: bold;
@@ -69,7 +69,7 @@ section.embrace-platform {
 			@media screen and (max-device-width : $mobile-break) {
 				margin: auto;
 				position: relative;
-				top: 27em;
+				top: 450px;
 			}
 
 		}
@@ -80,7 +80,7 @@ section.embrace-platform {
 
 		@media screen and (max-device-width : $mobile-break) {
 			position: relative;
-			top: -7em;
+			top: -170px;
 		}
 
 		.menu-list {
@@ -219,7 +219,7 @@ section.embrace-platform {
 					animation: create-custom-typing-1 $animation-duration steps(60, end) infinite;
 
 					@keyframes create-custom-typing-1 {
-						from, 0% {
+						from {
 							width: 0;
 						}
 						20%, to {

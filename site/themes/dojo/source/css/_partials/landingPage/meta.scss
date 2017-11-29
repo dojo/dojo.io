@@ -160,6 +160,7 @@ section.intersection-observers {
 				content: " ";
 				left: 0; right: 0; top: 0; bottom: 0;
 				border-radius: 5px;
+				-ms-transform: rotateY(180deg) translateZ(1px);
 				transform: rotateY(180deg) translateZ(1px);
 				transform-style: preserve-3d;
 				background: linear-gradient(to bottom, #2fe189, #00ff8f);
