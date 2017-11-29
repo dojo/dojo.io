@@ -7,21 +7,29 @@ overview: Use the invalidate method to force a widget to re-render itself
 
 ## Objective
 
-This recipe demonstrates how a widget can force itself to re-render when it is clicked on.
+This recipe demonstrates how a widget can force itself to re-render when its internal state changes.
 
 ## Code example
 
 This code example does the following:
 
 1. Defines a `HelloWorld` widget
-2. Invokes the method `this.invalidate()` within a click handler
+2. Invokes the method `this.invalidate()` within a interval
 
-```js
+```ts
 class HelloWorld extends WidgetBase {
+    constructor() {
+        super();
+        this.count = 0;
+
+        setInterval(() => {
+            this.count++;
+            this.invalidate();
+        }, 1000);
+    }
+
     render() {
-        return v('div', {
-            onclick: this.invalidate
-        }, ['Hello!']);
+        return v('div', [ `Count: ${this.count}`]);
     }
 }
 ```
