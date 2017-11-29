@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: widgets | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ObjectiveThis recipe demonstrates how to set up internationalization within your Dojo 2 app. Procedure Your localized strings must be part of your app bundle. T">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Handle string localization within a widget">
+<meta property="og:url" content="https://dojo.github.io/cookbook/widgets/i18n-use-localization.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="ObjectiveThis recipe demonstrates how to set up internationalization within your Dojo 2 app. Procedure Your localized strings must be part of your app bundle. To achieve this, first add the following">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-29T12:11:58.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Handle string localization within a widget">
+<meta name="twitter:description" content="ObjectiveThis recipe demonstrates how to set up internationalization within your Dojo 2 app. Procedure Your localized strings must be part of your app bundle. To achieve this, first add the following">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-3">
+				<aside class="menu">
+	<p class="menu-label">
+		Fundamentals
+	</p>
+
+	<ul class="menu-list">
+		
+			<li ><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
+		
+			<li ><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
+		
+			<li ><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
+		
+			<li ><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
+		
+			<li ><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
+		
+			<li ><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
+		
+	</ul>
+</aside>
+			</div>
+			<div class="column is-9">
+				<h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><p>This recipe demonstrates how to set up internationalization within your Dojo 2 app.</p>
+<h2 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h2><ol>
+<li>Your localized strings must be part of your app bundle. To achieve this, first add the following configuration to the file <code>.dojorc</code>:</li>
+</ol>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"build-webpack"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"locale"</span><span class="token operator">:</span> <span class="token string">"en"</span><span class="token punctuation">,</span>
+        <span class="token property">"supportedLocales"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"FR"</span><span class="token punctuation">,</span> <span class="token string">"ES"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"messageBundles"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"src/nls/common"</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The <code>supportedLocales</code> property value must be an array of all supported languages.</p>
+<ol>
+<li>The bundles directory (<code>messageBundles</code>) you specified in step one must be created.</li>
+</ol>
+<ul>
+<li>Create directory: <code>src/nls</code></li>
+<li>Create directory: <code>src/nls/FR</code></li>
+<li>Create directory: <code>src/nls/ES</code></li>
+</ul>
+<ol>
+<li>Create a single main language file here: <code>src/nls/common.ts</code></li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> bundlePath <span class="token operator">=</span> <span class="token string">'src/nls/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> locales <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token string">'en-PR'</span><span class="token punctuation">,</span> <span class="token string">'en-FR'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    greeting<span class="token punctuation">:</span> <span class="token string">'Default message'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span> bundlePath<span class="token punctuation">,</span> locales<span class="token punctuation">,</span> messages <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Create a <code>src/nls/FR/common.ts</code> file with these contents:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    greeting<span class="token punctuation">:</span> <span class="token string">'Bonjour à tous'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> messages<span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Create a <code>src/nls/ES/common.ts</code> file with these contents:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token punctuation">{</span>
+    greeting<span class="token punctuation">:</span> <span class="token string">'Hola a todos'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> messages<span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Create a widget which uses localized messages, for example in <code>src/widgets/MyLocalizedWidget.ts</code>:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> I18nMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/I18n'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> appBundle <span class="token keyword">from</span> <span class="token string">'../nls/common'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> MyLocalizedWidgetInternationalized <span class="token operator">=</span> <span class="token function">I18nMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyLocalizedWidget</span> <span class="token keyword">extends</span> <span class="token class-name">MyLocalizedWidgetInternationalized</span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">localizeBundle</span><span class="token punctuation">(</span>appBundle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token template-string"><span class="token string">`Message: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>messages<span class="token punctuation">.</span>greeting<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> MyLocalizedWidget<span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Create your main widget, which renders <code>MyLocalizedWidget</code>:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> MyLocalizedWidget <span class="token keyword">from</span> <span class="token string">'./MyLocalizedWidget'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> switchLocale <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/i18n/i18n'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> locales <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'en'</span><span class="token punctuation">,</span> <span class="token string">'FR'</span><span class="token punctuation">,</span> <span class="token string">'ES'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> localesIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toggleLocale</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">protected</span> <span class="token function">toggleLocale</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> locale <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>locales<span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span>localesIndex<span class="token operator">++</span> <span class="token operator">%</span> <span class="token keyword">this</span><span class="token punctuation">.</span>locales<span class="token punctuation">.</span>length <span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">switchLocale</span><span class="token punctuation">(</span>locale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">w</span><span class="token punctuation">(</span>MyLocalizedWidget<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> HelloWorld<span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>After restarting the <code>dojo build -w</code> command, observe the text on the webpage frequently changes language.</li>
+</ol>
+<h2 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h2><p><a href="https://dojo.io/docs/fundamentals/internationalization/index.html" target="_blank" rel="noopener">Dojo internationalization guide</a></p>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+				</div>
+				<footer class="footer">
+  <div class="container">
+    <div class="info">
+      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+			</div>
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>

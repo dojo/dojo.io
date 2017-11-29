@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: widgets | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ObjectiveThis recipe demonstrates how to render one or many widgets based on a URL match. Procedure Add the necessary imports in your main file:  import { Proje">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Render URL aware widgets">
+<meta property="og:url" content="https://dojo.github.io/cookbook/routing/render-widget-url.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="ObjectiveThis recipe demonstrates how to render one or many widgets based on a URL match. Procedure Add the necessary imports in your main file:  import { ProjectorMixin } from &apos;@dojo/widget-core/mixi">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-29T12:11:58.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Render URL aware widgets">
+<meta name="twitter:description" content="ObjectiveThis recipe demonstrates how to render one or many widgets based on a URL match. Procedure Add the necessary imports in your main file:  import { ProjectorMixin } from &apos;@dojo/widget-core/mixi">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-3">
+				<aside class="menu">
+	<p class="menu-label">
+		Fundamentals
+	</p>
+
+	<ul class="menu-list">
+		
+			<li ><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
+		
+			<li ><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
+		
+			<li ><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
+		
+			<li ><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
+		
+			<li ><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
+		
+			<li ><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
+		
+	</ul>
+</aside>
+			</div>
+			<div class="column is-9">
+				<h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><p>This recipe demonstrates how to render one or many widgets based on a URL match.</p>
+<h2 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h2><ol>
+<li>Add the necessary imports in your <code>main</code> file:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> registerRouterInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/RouterInjector'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Outlet'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Create a <code>ContactWidget</code> and wrap this widget with an <code>Outlet</code>:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> ContactWidgetOutlet <span class="token operator">=</span> <span class="token function">Outlet</span><span class="token punctuation">(</span>ContactWidget<span class="token punctuation">,</span> <span class="token string">'contact page'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Define and register your routing configuration in your main file:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> routingConfig <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    path<span class="token punctuation">:</span> <span class="token string">'contact'</span><span class="token punctuation">,</span>
+    outlet<span class="token punctuation">:</span> <span class="token string">'contact page'</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">registerRouterInjector</span><span class="token punctuation">(</span>routingConfig<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>HelloWorld<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> projector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Projector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ol>
+<li>Render the outlet, instead of your widget:</li>
+</ol>
+<pre class=" language-ts"><code class="language-ts"><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token function">w</span><span class="token punctuation">(</span>ContactWidgetOutlet<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ol>
+<li>Visit the URL: <code>http://localhost:9999/#contact</code> in a browser and observe your contact widget renders on the page</li>
+</ol>
+<p>The widget <code>ContactWidgetOutlet</code> only renders if the <code>path</code> associated with the <code>&#39;contact page&#39;</code> outlet matches in the URL.</p>
+<h2 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h2><p>The <a href="https://dojo.io/tutorials/1030_routing/" target="_blank" rel="noopener">Dojo 2 Routing</a> tutorial covers routing in more depth.</p>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+				</div>
+				<footer class="footer">
+  <div class="container">
+    <div class="info">
+      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+			</div>
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>

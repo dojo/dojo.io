@@ -5,17 +5,17 @@
   
   <title>Category: widgets | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ObjectiveThis recipe demonstrates how a widget can force itself to re-render when it is clicked on. Code exampleThis code example does the following:  Defines a">
+  <meta name="description" content="ObjectiveThis recipe demonstrates how a widget can force itself to re-render when its internal state changes. Code exampleThis code example does the following: ">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Force a widget to re-render itself">
 <meta property="og:url" content="https://dojo.github.io/cookbook/widgets/trigger-rerender.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="ObjectiveThis recipe demonstrates how a widget can force itself to re-render when it is clicked on. Code exampleThis code example does the following:  Defines a HelloWorld widget Invokes the method th">
+<meta property="og:description" content="ObjectiveThis recipe demonstrates how a widget can force itself to re-render when its internal state changes. Code exampleThis code example does the following:  Defines a HelloWorld widget Invokes the">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-27T20:15:46.603Z">
+<meta property="og:updated_time" content="2017-11-29T12:11:58.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Force a widget to re-render itself">
-<meta name="twitter:description" content="ObjectiveThis recipe demonstrates how a widget can force itself to re-render when it is clicked on. Code exampleThis code example does the following:  Defines a HelloWorld widget Invokes the method th">
+<meta name="twitter:description" content="ObjectiveThis recipe demonstrates how a widget can force itself to re-render when its internal state changes. Code exampleThis code example does the following:  Defines a HelloWorld widget Invokes the">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
   
     <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -97,17 +97,25 @@ ga('send', 'pageview');
 </aside>
 			</div>
 			<div class="column is-9">
-				<h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><p>This recipe demonstrates how a widget can force itself to re-render when it is clicked on.</p>
+				<h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><p>This recipe demonstrates how a widget can force itself to re-render when its internal state changes.</p>
 <h2 id="Code-example"><a href="#Code-example" class="headerlink" title="Code example"></a>Code example</h2><p>This code example does the following:</p>
 <ol>
 <li>Defines a <code>HelloWorld</code> widget</li>
-<li>Invokes the method <code>this.invalidate()</code> within a click handler</li>
+<li>Invokes the method <code>this.invalidate()</code> within a interval</li>
 </ol>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-            onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>invalidate
-        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Hello!'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token template-string"><span class="token string">`Count: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
