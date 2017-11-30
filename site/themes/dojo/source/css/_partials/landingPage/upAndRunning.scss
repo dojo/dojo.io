@@ -1,19 +1,32 @@
 section.up-and-running {
 	$animation-duration: 10.0s;
-	
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
+
 	width: 100%;
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
+
+	.commands, .results {
+		width: 49%;
+
+		@media screen and (max-width : $mobile-break) {
+			width: initial;
+		}
+
+	}
 
 	& > div {
 		flex: 1 1 50%;
+
 	}
 
 	.commands {
 		padding: 10vh 5vw;
 
-		@media screen and (max-device-width : $mobile-break) {
+		@media screen and (max-width : $mobile-break) {
 			padding: 3vh 5vw;
 		}
 
@@ -21,7 +34,7 @@ section.up-and-running {
 		h3 {
 			text-align: left;
 
-			@media screen and (max-device-width : $mobile-break) {
+			@media screen and (max-width : $mobile-break) {
 				line-height: 1.2;
 				font-size: 2em;
 			}
@@ -40,7 +53,7 @@ section.up-and-running {
 					padding-right: 0.5em;
 					color: #bec7cc;
 
-					@media screen and (max-device-width : $mobile-break) {
+					@media screen and (max-width : $mobile-break) {
 						font-size: 30px;
 						padding-right: 0.3em;
 					}
@@ -58,7 +71,7 @@ section.up-and-running {
 					border: 1px solid transparent;
 					color: #00b89c;
 
-					@media screen and (max-device-width : $mobile-break) {
+					@media screen and (max-width : $mobile-break) {
 						margin-bottom: 10px;
 					}
 				}
@@ -131,16 +144,7 @@ section.up-and-running {
 
 		#upAndRunning-typing-3 {
 			border-radius: 3px;
-			animation: shadow-1 $animation-duration linear infinite;
 			width: 100px;
-			@keyframes shadow-1 {
-				from, 80% {
-					box-shadow: 0 10px 5px transparent;
-				}
-				85%, to {
-					box-shadow: 0 10px 5px #cccccc;
-				}
-			}
 
 			.line-number {
 				animation: delayed-show-3-1 $animation-duration linear infinite;
@@ -187,12 +191,12 @@ section.up-and-running {
 		flex-direction: column;
 		justify-content: center;
 
-		@media screen and (max-device-width : $mobile-break) {
+		@media screen and (max-width : $mobile-break) {
 			display: none;
 		}
 
 		* {
-			@media screen and (max-device-width : $mobile-break) {
+			@media screen and (max-width : $mobile-break) {
 				animation: none !important;
 			}
 		}
@@ -269,7 +273,7 @@ section.up-and-running {
 			height: 265px;
 			position: absolute;
 			bottom: 10%;
-			left: 10%;
+			left: 0;
 		}
 		.result-shadow {
 			animation: shadow-3 $animation-duration linear infinite;

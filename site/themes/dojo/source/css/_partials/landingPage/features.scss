@@ -2,11 +2,11 @@ section.features {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	width: 100%;
 	align-items: center;
-	margin: 10em;
+	margin-top: 10em;
+	margin-bottom: 10em;
 
-	@media screen and (max-device-width : $mobile-break) {
+	@media screen and (max-width : $mobile-break) {
 		display: none;
 	}
 

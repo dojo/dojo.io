@@ -8,7 +8,7 @@ section.intersection-observers {
 	overflow-y: hidden;
 	width: 100%;
 
-	@media screen and (max-device-width : $mobile-break) {
+	@media screen and (max-width : $mobile-break) {
 		padding: 0;
 		height: auto;
 	}
@@ -25,7 +25,7 @@ section.intersection-observers {
 			margin-left: 40%;
 			height: 0px + $height;
 
-			@media screen and (max-device-width : $mobile-break) {
+			@media screen and (max-width : $mobile-break) {
 				margin: 15vh 13vw;
 				height: auto;
 			}
@@ -42,7 +42,7 @@ section.intersection-observers {
 					border: 1px solid;
 					border-color: transparent #ced4d6;
 
-					@media screen and (max-device-width : $mobile-break) {
+					@media screen and (max-width : $mobile-break) {
 						display: none;
 					}
 
@@ -70,7 +70,7 @@ section.intersection-observers {
 				display: inline-block;
 				max-width: 60%;
 
-				@media screen and (max-device-width : $mobile-break) {
+				@media screen and (max-width : $mobile-break) {
 					max-width: 100%;
 				}
 			}
@@ -78,18 +78,17 @@ section.intersection-observers {
 			a {
 				display: inline-block;
 				text-transform: uppercase;
-				padding: 1em 0;
-				color: #ffffff;
-				background-color: #000000;
-				box-shadow: 0 10px 20px #cccccc;
+				padding: 1em 2em;
 				width: 170px;
-				border: 1px solid #8c8d91;
 				cursor: pointer;
 				line-height: 2.5;
 				font-size: 12px;
 				text-align: center;
+				box-shadow: 0 10px 20px #cccccc;
+				color: #ffffff;
+				background-color: #000000;
 
-				@media screen and (max-device-width : $mobile-break) {
+				@media screen and (max-width : $mobile-break) {
 					margin: 5vh auto;
 				}
 			}
@@ -140,7 +139,7 @@ section.intersection-observers {
 		padding: 0 3em;
 		z-index: -1;
 
-		@media screen and (max-device-width : $mobile-break) {
+		@media screen and (max-width : $mobile-break) {
 			display: none;
 		}
 

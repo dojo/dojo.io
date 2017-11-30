@@ -6,7 +6,7 @@ section.embrace-platform {
 	padding: 6em 0;
 	width: 100%;
 
-	@media screen and (max-device-width : $mobile-break) {
+	@media screen and (max-width : $mobile-break) {
 		flex-direction: column;
 		background: linear-gradient(60deg, #009dff, #00f5ff);
 		padding-top: 0;
@@ -15,7 +15,7 @@ section.embrace-platform {
 	.copy, .demo {
 		width: 40%;
 
-		@media screen and (max-device-width : $mobile-break) {
+		@media screen and (max-width : $mobile-break) {
 			margin: 10%;
 			width: 80%;
 		}
@@ -28,10 +28,11 @@ section.embrace-platform {
 		color: #ffffff;
 
 		img {
-			width: 35px;
-			height: 35px;
+			width: 55px;
+			height: 55px;
+			margin-left: -10px;
 
-			@media screen and (max-device-width : $mobile-break) {
+			@media screen and (max-width : $mobile-break) {
 				width: 70px;
 				height: 70px;
 			}
@@ -42,7 +43,7 @@ section.embrace-platform {
 			line-height: 1.3;
 			padding-bottom: 1em;
 
-			@media screen and (max-device-width : $mobile-break) {
+			@media screen and (max-width : $mobile-break) {
 				max-width: 100%;
 				font-size: 2em;
 			}
@@ -52,21 +53,19 @@ section.embrace-platform {
 		}
 
 		a {
-			background-color: #272a32;
-			color: #4dcdff;
+			display: inline-block;
 			text-transform: uppercase;
-			border: 0;
-			width: 170px;
 			padding: 1em 2em;
-			box-shadow: 0 10px 40px darken(#009dff, 10%);
-			border-radius: 3px;
-			font-weight: bold;
+			width: 170px;
 			cursor: pointer;
-			line-height: 3.5;
+			line-height: 2.5;
 			font-size: 12px;
 			text-align: center;
+			box-shadow: 0 10px 40px darken(#009dff, 10%);
+			background-color: #272a32;
+			color: #4dcdff;
 
-			@media screen and (max-device-width : $mobile-break) {
+			@media screen and (max-width : $mobile-break) {
 				margin: auto;
 				position: relative;
 				top: 450px;
@@ -78,14 +77,19 @@ section.embrace-platform {
 	.demo {
 		$animation-duration: 15s;
 
-		@media screen and (max-device-width : $mobile-break) {
+		@media screen and (max-width : $mobile-break) {
 			position: relative;
-			top: -170px;
+			top: -10px;
 		}
 
 		.menu-list {
 			position: relative;
-			padding: 0.4em;
+			padding: 0.5em;
+			width: 450px;
+
+			@media screen and (max-width : $mobile-break) {
+				width: 325px;
+			}
 
 			.background {
 				border-radius: 3px;
@@ -95,9 +99,9 @@ section.embrace-platform {
 				box-shadow: 0 10px 30px darken(#00f5ff, 10%);
 				transform-origin: left;
 				background-color: #1f2127;
-				animation: create-custom-stepped-reveal $animation-duration linear infinite;
 				top: 0;
 				left: 0;
+				animation: create-custom-stepped-reveal $animation-duration linear infinite;
 
 				@keyframes create-custom-stepped-reveal {
 					from, 20% {
@@ -121,15 +125,23 @@ section.embrace-platform {
 			.menu-item {
 				text-transform: uppercase;
 				font-family: 'Source Code Pro';
-				font-size: 12px;
 				color: #6b7e89;
 				padding: 0.6em 1em;
 				display: inline-block;
+
+				@media screen and (max-width : $mobile-break) {
+					padding: 0.6em 0.5em;
+				}
 
 				> span {
 					border: none;
 					border-bottom: 2px solid transparent;
 					padding: 0.5em 0.3em;
+					font-size: 16px;
+
+					@media screen and (max-width : $mobile-break) {
+						font-size: 13px;
+					}
 
 					&.active {
 						color: #ffffff;
@@ -198,7 +210,7 @@ section.embrace-platform {
 				letter-spacing: 0.2em;
 				font-size: 16px;
 
-				@media screen and (max-device-width : $mobile-break) {
+				@media screen and (max-width : $mobile-break) {
 					letter-spacing: 0.1em;
 				}
 
@@ -223,7 +235,7 @@ section.embrace-platform {
 							width: 0;
 						}
 						20%, to {
-							width: 100%;
+							width: 375px;
 						}
 					}
 				}
@@ -235,7 +247,7 @@ section.embrace-platform {
 							width: 0;
 						}
 						40%, to {
-							width: 100%;
+							width: 375px;
 						}
 					}
 				}
@@ -247,7 +259,7 @@ section.embrace-platform {
 							width: 0;
 						}
 						60%, to {
-							width: 100%;
+							width: 375px;
 						}
 					}
 				}
@@ -259,7 +271,7 @@ section.embrace-platform {
 							width: 0;
 						}
 						80%, to {
-							width: 100%;
+							width: 375px;
 						}
 					}
 				}
