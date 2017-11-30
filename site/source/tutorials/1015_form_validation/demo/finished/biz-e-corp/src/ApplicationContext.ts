@@ -1,4 +1,4 @@
-import { Evented } from '@dojo/widget-core/Evented';
+import { Evented } from '@dojo/core/Evented';
 import { deepAssign } from '@dojo/core/lang';
 
 import { WorkerProperties } from './widgets/Worker';
