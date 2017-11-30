@@ -9,7 +9,7 @@ overview: It is increasingly rare that applications reach a single audience that
 
 ## Philosophy and approach
 
-Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2's core concerns. `@dojo/i18n`, Dojo 2's internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. Rather than reinvent the wheel, Dojo 2 delegates to the excellent [Globalize.js](https://github.com/globalizejs/globalize) library wherever possible. In addition to formatters and parsers for working with localized dates, times, numbers, and units, Globalize.js also includes an implementation of the [ICU `MessageFormat`](http://userguide.icu-project.org/formatparse/messages), which makes it possible to format messages based on locale-specific variables like gender and count. While `@dojo/i18n` can be used independently from the rest of Dojo 2, most applications will also rely on `@dojo/widget-core` and `@dojo/cli-build-webpack` to simplify internationalization.
+Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2's core concerns. `@dojo/i18n`, Dojo 2's internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. Rather than reinvent the wheel, Dojo 2 delegates to the excellent [Globalize.js](https://github.com/globalizejs/globalize) library wherever possible. In addition to formatters and parsers for working with localized dates, times, numbers, and units, Globalize.js also includes an implementation of the [ICU `MessageFormat`](http://userguide.icu-project.org/formatparse/messages), which makes it possible to format messages based on locale-specific variables like gender and count. While `@dojo/i18n` can be used independently from the rest of Dojo 2, most applications will also rely on `@dojo/widget-core` and `@dojo/cli-build-app` to simplify internationalization.
 
 As we will see below, the general process for internationalizing a Dojo 2 application can be outlined as follows:
 
@@ -56,22 +56,30 @@ subscription.unsubscribe();
 
 ## Loading CLDR data
 
-<!-- TODO: This section will require changes once planned updates to cli-build-webpack are released: https://github.com/dojo/dojo.io/issues/179 -->
-
-Most functionality requires [CLDR data](https://github.com/unicode-cldr/), without which errors will be thrown. However, no CLDR data are included by Dojo 2, both due to the size of the complete CLDR data and to prevent tying applications to a specific version of the CLDR. All CLDR data must be registered with the i18n ecosystem via `@dojo/i18n/cldr/load.default` before the corresponding formatters can be used. This function accepts either a JSON object of CLDR data, or an array of paths to JSON files that will be loaded and registered. This same module also exposes an `isLoaded` function that can be used to determine whether specific data have been registered.
+Most functionality requires [CLDR data](https://github.com/unicode-cldr/), without which errors will be thrown. However, no CLDR data are included by Dojo 2, both due to the size of the complete CLDR data and to prevent tying applications to a specific version of the CLDR. All CLDR data must be registered with the i18n ecosystem via `@dojo/i18n/cldr/load.default` before the corresponding formatters can be used. This function accepts a JSON object of CLDR data. This same module also exposes an `isLoaded` function that can be used to determine whether specific data have been registered.
 
 The easiest way to obtain the complete CLDR is with the [`cldr-data`](https://www.npmjs.com/package/cldr-data) npm package, which maps the data from the Unicode repository to `main` and `supplemental` directories. The `main` directory houses a directory for each locale, which in turn contains all CLDR data specific to that locale. The `supplemental` directory contains generic data that makes more sense in standalone files, such as pluralization formats or telephone country codes.
 
 ```typescript
+import request from '@dojo/core/request';
 import loadCldrData, { isLoaded } from '@dojo/i18n/cldr/load';
 
 console.log(isLoaded('supplemental', 'likelySubtags')); // false
 console.log(isLoaded('supplemental', 'plurals-type-cardinal')); // false
 
-loadCldrData([
+const cldrUrls = [
 	'./path/to/cldr/supplemental/likelySubtags.json',
 	'./path/to/cldr/supplemental/plurals.json'
-]).then(() => {
+];
+const cldrRequests = cldrUrls.map(url => {
+	return request(url).then(response => response.json());
+});
+
+Promise.all(cldrRequests).then(results => {
+	results.forEach(json => {
+		loadCldrData(json);
+	});
+
 	console.log(isLoaded('supplemental', 'likelySubtags')); // true
 	// Notice that the check is for the property on the JSON object, not the JSON filename.
 	console.log(isLoaded('supplemental', 'plurals-type-cardinal')); // true
@@ -95,24 +103,25 @@ i18n(bundle, 'fr').then((messages) => {
 
 Translation bundles in Dojo 2 are separated into two components: a required base module containing default values for all possible messages provided by the bundle, and individual modules for each supported locale. While not required, it is a best practice to place all message bundles under the `src/nls` directory. The base module must expose a `default` export, which must be an object, and which must contain the following:
 
-* A string `bundlePath` representing the location of the default bundle. For example, if the default bundle is located at `src/nls/main.ts`, then the bundle path would be `src/nls/main`. This is used to resolve the location of locale-specific messages (see below).
-* An optional `locales` array containing all locales supported by the bundle.
+* An optional `locales` object whose keys are locales and whose values are functions that return either the locale-specific messages or a promise to the messages.
 * A `messages` object containing key-value pairs of default messages.
 
-Locale-specific translations must be located under directories within the same directory as their default bundle. For example, if the `locales` array exposed by a bundle located at `src/nls/main` is specified as `[ 'fr', 'fr-CA' ]`, then the messages for those two locales must be located at `src/nls/fr/main` and `src/nls/fr-CA/main`, respectively. The `default` export from the locale-specific bundle modules must be an object containing the locale-specific messages as key-value pairs. Note that locale-specific bundles need not contain all possible messages; any missing messages will be filled in by the default bundle. For example, if the default bundle contains the messages `{ foo: 'bar', baz: 'bat' }`, but a locale-specific bundle contains only `{ baz: 'xyzzy' }`, then the default value for `foo` ("bar") will be used.
+While there are no specific requirements dictating where locale-specific translations should be located, it makes the most sense to place them in directories within the same directory as their default bundle. For example, if the `locales` map exposed by a bundle located at `src/nls/main` includes both `'fr'` and `'fr-CA'`, then the messages for those two locales might be located at `src/nls/fr/main` and `src/nls/fr-CA/main`, respectively. The `default` export from the locale-specific bundle modules must be an object containing the locale-specific messages as key-value pairs. Note that locale-specific bundles need not contain all possible messages; any missing messages will be filled in by the default bundle. For example, if the default bundle contains the messages `{ foo: 'bar', baz: 'bat' }`, but a locale-specific bundle contains only `{ baz: 'xyzzy' }`, then the default value for `foo` ("bar") will be used.
 
-For example, suppose we have a `greetings` bundle with default messages in English, but that also provides Arabic translations. First, we define our default bundle with a list of supported locales (in this case, just Arabic):
+For example, suppose we have a `greetings` bundle with default messages in English, but that also provides Arabic translations. First, we define our default bundle with a supported locales map (which, in this case, includes just Arabic):
 
 ```typescript
 // Default bundle: "src/nls/greetings.ts"
-const bundlePath = 'src/nls/greetings';
-const locales = [ 'ar' ];
-const messages = {
-	hello: 'Hello',
-	helloReply: 'Hello',
-	goodbye: 'Goodbye'
+export default {
+	locales: {
+		ar: () => import('./ar/greetings')
+	},
+	messages: {
+		hello: 'Hello',
+		helloReply: 'Hello',
+		goodbye: 'Goodbye'
+	}
 };
-export default { bundlePath, locales, messages };
 ```
 
 Second, we add the Arabic translations:
@@ -148,7 +157,7 @@ i18n(greetings).then((messages) => {
 
 ### Locale resolution
 
-Locales are resolved from most to least specific. Continuing with our previous example, if the user's locale is `ar-JO` (Jordanian Arabic), then the `locales` array provided by the default greetings bundle will be inspected for a locale exactly matching `ar-JO`. Since the greetings bundle does not contain translations specific to Jordanian Arabic, those provided for `ar` are used instead. If, however, the locale does not match any supported by the bundle, then the default messages are used.
+Locales are resolved from most to least specific. Continuing with our previous example, if the user's locale is `ar-JO` (Jordanian Arabic), then the `locales` map provided by the default greetings bundle will be inspected for a locale exactly matching `ar-JO`. Since the greetings bundle does not contain translations specific to Jordanian Arabic, those provided for `ar` are used instead. If, however, the locale does not match any supported by the bundle, then the default messages are used.
 
 ```typescript
 // "src/nls/ar-JO/greetings.ts"
@@ -190,11 +199,11 @@ For example, given the message `"Hello, {name}!"`, the formatter would be passed
 
 ```typescript
 // src/nls/greetings.ts
-const bundlePath = 'src/nls/greetings';
-const messages = {
-	hello: 'Hello, {name}!'
+export default {
+	messages: {
+		hello: 'Hello, {name}!'
+	}
 };
-export default { bundlePath, messages };
 ```
 
 ```typescript
@@ -215,14 +224,14 @@ However, if the message needs to adapt to other variables like the number of peo
 
 ```typescript
 // src/nls/greetings.ts
-const bundlePath = 'src/nls/greetings';
-const messages = {
-	hello: `{personCount, plural, offset:1
-		=0: {Hello, nobody!},
-		=1: {Hello, {name}!},
-		other {Hello, everyone!}}`
+export default {
+	messages: {
+		hello: `{personCount, plural, offset:1
+			=0: {Hello, nobody!},
+			=1: {Hello, {name}!},
+			other {Hello, everyone!}}`
+	}
 };
-export default { bundlePath, messages };
 ```
 
 ```typescript
@@ -231,13 +240,10 @@ import i18n, { getMessageFormatter } from '@dojo/i18n/i18n';
 import greetings from './nls/greetings';
 
 // First, ensure the appropriate CLDR data have been loaded
-loadCldrData([
-	'./nls/cldr/supplemental/likelySubtags.json',
-	'./nls/cldr/supplemental/plurals.json'
-]).then(() => {
-	// Next, register the bundle with `@dojo/i18n`
-	return i18n(greetings);
-}).then(() => {
+[ likelySubtagsJson, pluralsJson ].map(json => loadCldrData(json));
+
+// Next, register the bundle with `@dojo/i18n`
+i18n(greetings).then(() => {
 	const formatter = getMessageFormatter(greetings, 'hello');
 
 	// "Hello, nobody!"
@@ -428,7 +434,7 @@ formatUnit(5280, 'foot', { form: 'narrow' }); // '5,280′'
 
 While `@dojo/i18n` is designed to be an independent package, nearly every Dojo 2 application will have a view component. So [`@dojo/widget-core`](https://github.com/widget-core/) provides a custom mixin (`@dojo/widget-core/mixins/I18n`) to make working with `@dojo/i18n` more friendly. Widgets that have incorporated this mixin can localize message bundles by passing them to the `localizeBundle` method during rendering. If messages for the widget's locale have not been loaded yet, then the default messages are returned, and the widget is invalidated once the locale-specific messages have loaded. The object returned by the `localizeBundle` method contains all the messages, as well as a format method that takes a message key as well as any options. If message formatting is not required, then messages can be directly accessed (e.g., `messages.hello`).
 
-In addition to the `localizeBundle` method, `@dojo/widget-core/mixins/I18n` introduces two properties: a boolean `rtl` property and a string `locale` property. The boolean `rtl` property determines whether the text decoration is right-to-left (`true`) or left-to-right(`false`: the default). The `locale` property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no `locale` property is included, widgets assume the root application locale (`i18n.locale`). Note, however, that since [Dojo 2 widgets are controlled](../../../tutorials/003_creating_widgets/), child widgets do not automatically inherit the locale from their parent. Parents must pass the correct locale as needed to child widgets; otherwise, a child widget will use the application locale while its parent uses a custom locale.
+In addition to the `localizeBundle` method, `@dojo/widget-core/mixins/I18n` introduces two properties: a boolean `rtl` property and a string `locale` property. The boolean `rtl` property determines whether the text decoration is right-to-left (`true`) or left-to-right(`false`: the default). The `locale` property specifies the locale used to determine which message translations are rendered. Since each widget can have its own distinct locale, it is possible to use multiple languages in the same application. If no `locale` property is included, widgets assume the root application locale (`i18n.locale`). Note, however, that since [Dojo 2 widgets are controlled](../../../tutorials/003_creating_widgets/), child widgets do not automatically inherit the locale from their parent. Child widgets must receive their locale data directly from their parent widgets or from an [injector](../../../tutorials/1010_containers_and_injecting_state/); otherwise, a child widget will use the application locale while its parent uses a custom locale.
 
 ```typescript
 import I18nMixin, { I18nProperties } from '@dojo/widget-core/mixins/I18n';
@@ -452,55 +458,48 @@ export default class Greeting extends GreetingBase<GreetingProperties> {
 
 ## The build process
 
-Dojo 2 uses [webpack](https://webpack.js.org) to bundle applications. Since Dojo 2's packages are designed to function independently, a few extra steps are required to ensure that CLDR data and locale-specific message translations are included in the build. [Dojo 2's build](../../../tutorials/006_deploying_to_production/) is configured via a `.dojorc` at the project's root directory. `.dojorc` is a JSON file containing settings defined under specific namespaces. All build options are specified under the `build-webpack` namespace, and the following are specific to internationalization:
+Dojo 2 uses [webpack](https://webpack.js.org) to bundle applications. [Dojo 2's build](../../../tutorials/006_deploying_to_production/) is configured via a `.dojorc` at the project's root directory. `.dojorc` is a JSON file containing settings defined under specific namespaces. All build options are specified under the `build-app` namespace, and the following are specific to internationalization:
 
 * `locale`: the default locale for the application
 * `supportedLocales`: an optional array of additional locales to include in the build
-* `messageBundles`: an optional array of any message bundles to include in the build
+* `cldrPaths`: an optional array of URLs for CLDR JSON to include in the build
 
-Currently, the build does not ensure the `locale` specified in the `.dojorc` is set as the application's root locale; it is only used for bundling CLDR data and locale-specific message translations. This will change in a future release, but in the meantime, the initial locale must be set manually in the application with `@dojo/i18n/i18n.switchLocale`. Further, CLDR data are currently parsed from calls to `@dojo/i18n/cldr/load`, but this too will change in a future release to instead inject CLDR data from a `.dojorc` setting.
+The build ensures that the correct locale is set and all relevant CLDR data are loaded when the application starts. The user's locale will be used if it matches either the default locale or one of the supported locales; otherwise the default locale will be used. For example, if the user's locale is "fr-CA", then that locale will be used if either the default locale or one of the supported locales is either "fr-CA" or "fr".
 
-To demonstrate the steps required to set the root locale and bundle all CLDR data and supported message bundles, suppose for our application that the default locale is English, but Spanish and French are also supported. Further, suppose that the application utilizes a single message bundle, located at `src/nls/main.ts`.
+To demonstrate what is required to set the root locale and bundle all CLDR data, suppose for our application that the default locale is English, but Spanish and French are also supported. Further, suppose that we need to support the ICU `MessageFormat`. All that is needed to guarantee the built application functions correctly are the following configuration settings:
 
 ```
 // .dojorc
 {
-	"build-webpack": {
+	"build-app": {
 		"locale": "en",
 		"supportedLocales": [ "es", "fr" ],
-		"messageBundles": [ "src/nls/main" ]
+		"cldrPaths": [
+			"cldr-data/supplemental/likelySubtags.json",
+			"cldr-data/supplemental/plurals.json"
+		]
 	}
 }
 ```
 
-With this configuration, the translations located at `src/nls/main.ts`, `src/nls/es/main.ts`, and `src/nls/fr/main.ts` will be included in the build. As mentioned above, applying the default locale is still a manual process:
+With this configuration, the `likelySubtags` and `plurals` JSON will be bundled with the application and passed to the i18n ecosystem at startup, and the application locale will be set to "en", "es", or "fr" depending on the system locale.
 
-```typescript
-import loadCldrData from '@dojo/i18n/cldr/load';
-import i18n, { switchLocale } from '@dojo/i18n/i18n';
+Finally, since locale-specific message translations are loaded either directly or lazily with `import()` or `require()` calls that webpack can parse, they will be included in the build with no extra effort. However, since it is not always desirable to include every possible translation in the main bundle, locale-specific messages can be separated into dedicated bundles by adding their paths to the generic `bundles` configuration option. `bundles` is an object whose keys represent bundle names and whose values are arrays of modules to include in a specific bundle. For example, continuing with the previous example, suppose we would prefer to place the Spanish and French translations in their own bundles. This would be accomplished as follows:
 
-// Eventually this will be handled automatically, but for now this is required
-const defaultLocale = 'en';
-const supportedLocales = [ 'en', 'fr', 'es' ];
-const rootLocale = i18n.locale.split('-')[0];
-const isLocaleSupported = supportedLocales.some(locale => locale === rootLocale);
-
-// If the locale of the user's environment is not one of the supported locales,
-// then switch to the default locale.
-if (!isLocaleSupported) {
-	switchLocale(defaultLocale);
-}
-
-// The build will parse these URLs, load the data for each supported locale,
-// include the data in the build, and ensure they are registered via
-// `@dojo/i18n/cldr/load`.
-export default loadCldrData([
-	'./cldr/main/{locale}/numbers.json',
-	'./cldr/main/{locale}/currencies.json',
-	'./cldr/supplemental/likelySubtags.json',
-	'./cldr/supplemental/plurals.json'
-]);
 ```
+// .dojorc
+{
+	"build-app": {
+		// ...
+		bundles: {
+			'es': [ 'src/nls/es/main' ],
+			'fr': [ 'src/nls/fr/main' ]
+		}
+	}
+}
+```
+
+Now, the Spanish and French translations will be bundled separately from the main application and loaded on demand.
 
 ## Conclusion
 
