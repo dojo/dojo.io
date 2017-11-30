@@ -78,109 +78,14 @@ section.up-and-running {
 			}
 		}
 
-		#upAndRunning-typing-1 {
-			.typed-text {
-				animation:
-					typing-1 $animation-duration steps(400, end) infinite,
-					fadein-background-1 $animation-duration linear infinite;
-			}
-			@keyframes typing-1 {
-				from { width: 0; }
-				15%, to { width: 190px; }
-			}
-			@keyframes fadein-background-1 {
-				from, 15% {
-					background-color: transparent;
-					border-color: transparent;
-				}
-				20%, to {
-					background-color: #e8f9f6;;
-					border-color: #00b89c;
-				}
-			}
-		}
-
-		#upAndRunning-typing-2 {
-			.line-number {
-				animation: delayed-show-2-1 $animation-duration linear infinite;
-			}
-			@keyframes delayed-show-2-1 {
-				from, 25%  {
-					opacity: 0;
-				}
-				26%, to {
-					opacity: 1;
-				}
-			}
-			.typed-text {
-				animation:
-					typing-2 $animation-duration steps(400, end) infinite,
-					fadein-background-2 $animation-duration linear infinite,
-					delayed-show-2-2 $animation-duration linear infinite;
-			}
-			@keyframes typing-2 {
-				from, 25% { width: 0; }
-				40%, to { width: 280px; }
-			}
-			@keyframes fadein-background-2 {
-				from, 40% {
-					background-color: transparent;
-					border-color: transparent;
-				}
-				45%, to {
-					background-color: #e8f9f6;;
-					border-color: #00b89c;
-				}
-			}
-			@keyframes delayed-show-2-2 {
-				from, 25%  {
-					opacity: 0;
-				}
-				26%, to {
-					opacity: 1;
-				}
-			}
-		}
-
 		#upAndRunning-typing-3 {
 			border-radius: 3px;
 			width: 100px;
 
-			.line-number {
-				animation: delayed-show-3-1 $animation-duration linear infinite;
-			}
-			@keyframes delayed-show-3-1 {
-				from, 65%  {
-					opacity: 0;
-				}
-				66%, to {
-					opacity: 1;
-				}
-			}
 			.typed-text {
 				color: 00b89c;
 				background-color: transparent;
 				border-color: transparent;
-				animation:
-					typing-3 $animation-duration steps(400, end) infinite,
-					delayed-show-3-2 $animation-duration linear infinite;
-			}
-			@keyframes typing-3 {
-				from, 65% {
-					width: 0;
-				}
-				80%, to {
-					opacity: 1;
-					width: 60px;
-				}
-			}
-			@keyframes delayed-show-3-2 {
-				from, 65%  {
-					opacity: 0;
-				}
-				66%, to {
-					opacity: 1;
-				}
 			}
 		}
 	}
@@ -205,7 +110,6 @@ section.up-and-running {
 			margin: auto;
 			z-index: 1;
 			opacity: 0;
-			animation: fadein-1 $animation-duration linear infinite;
 			position: relative;
 			background-color: #000000;
 			border-radius: 5px;
@@ -219,14 +123,14 @@ section.up-and-running {
 				display: block;
 				position: absolute;
 				left: 0; right: 0; top: 0; bottom: 0;
-				animation: shadow-2-1 $animation-duration linear infinite;
+				box-shadow: -5px -5px 30px #ffceef;
 			}
 			&:after {
 				content: " ";
 				display: block;
 				position: absolute;
 				left: 0; right: 0; top: 0; bottom: 0;
-				animation: shadow-2-2 $animation-duration linear infinite;
+				box-shadow: 5px 5px 30px #d1fbd9;
 			}
 
 			.codeline {
@@ -247,26 +151,6 @@ section.up-and-running {
 
 			}
 		}
-		@keyframes fadein-1 {
-			from, 50% { opacity: 0; }
-			52.5%, to { opacity: 1; }
-		}
-		@keyframes shadow-2-1 {
-			from, 50% {
-				box-shadow: -5px -5px 30px transparent;
-			}
-			52.5%, to {
-				box-shadow: -5px -5px 30px #ffceef;
-			}
-		}
-		@keyframes shadow-2-2 {
-			from, 50% {
-				box-shadow: 5px 5px 30px transparent;
-			}
-			52.5%, to {
-				box-shadow: 5px 5px 30px #d1fbd9;
-			}
-		}
 
 		.result, .result-shadow {
 			width: 400px;
@@ -276,21 +160,11 @@ section.up-and-running {
 			left: 0;
 		}
 		.result-shadow {
-			animation: shadow-3 $animation-duration linear infinite;
-
-			@keyframes shadow-3 {
-				from, 57.5% {
-					box-shadow: 0 20px 40px transparent;
-				}
-				60%, to {
-					box-shadow: 0 20px 40px #cccccc;
-				}
-			}
+			box-shadow: 0 20px 40px #cccccc;
 		}
 		.result {
 			z-index: 1;
 			opacity: 0;
-			animation: fadein-2 $animation-duration linear infinite;
 			background-color: #ffffff;
 			border-radius: 5px;
 			display:flex;
@@ -314,11 +188,6 @@ section.up-and-running {
 				font-weight: bold;
 			}
 		}
-		@keyframes fadein-2 {
-			from, 57.5% { opacity: 0; }
-			60%, to { opacity: 1; }
-		}
-
 	}
 }
 
