@@ -95,32 +95,13 @@ section.embrace-platform {
 			.background {
 				border-radius: 3px;
 				position: absolute;
-				width: 100%;
-				height: 100%;
 				box-shadow: 0 10px 30px darken(#00f5ff, 10%);
 				transform-origin: left;
 				background-color: #1f2127;
 				top: 0;
+				bottom: 0;
 				left: 0;
-				animation: create-custom-stepped-reveal $animation-duration linear infinite;
-
-				@keyframes create-custom-stepped-reveal {
-					from, 20% {
-						transform: scaleX(0);
-					}
-					21%, 40% {
-						transform: scaleX(0.25);
-					}
-					41%, 60% {
-						transform: scaleX(0.5);
-					}
-					61%, 80% {
-						transform: scaleX(0.75);
-					}
-					81%, to {
-						transform: scaleX(1);
-					}
-				}
+				right: 0;
 			}
 
 			.menu-item {
@@ -150,59 +131,11 @@ section.embrace-platform {
 						background: inherit;
 					}
 				}
-
-				&.menu1 {
-					animation: create-custom-fade-in-1 $animation-duration linear infinite;
-
-					@keyframes create-custom-fade-in-1 {
-						from, 21% {
-							opacity: 0;
-						}
-						22%, to {
-							opacity: 1;
-						}
-					}
-				}
-				&.menu2 {
-					animation: create-custom-fade-in-2 $animation-duration linear infinite;
-
-					@keyframes create-custom-fade-in-2 {
-						from, 41% {
-							opacity: 0;
-						}
-						42%, to {
-							opacity: 1;
-						}
-					}
-				}
-				&.menu3 {
-					animation: create-custom-fade-in-3 $animation-duration linear infinite;
-
-					@keyframes create-custom-fade-in-3 {
-						from, 61% {
-							opacity: 0;
-						}
-						62%, to {
-							opacity: 1;
-						}
-					}
-				}
-				&.menu4 {
-					animation: create-custom-fade-in-4 $animation-duration linear infinite;
-
-					@keyframes create-custom-fade-in-4 {
-						from, 81% {
-							opacity: 0;
-						}
-						82%, to {
-							opacity: 1;
-						}
-					}
-				}
 			}
 		}
 		.code {
 			margin-top: 3em;
+			width: 375px;
 
 			.codeline {
 				margin: 0.2em 0;
@@ -226,55 +159,6 @@ section.embrace-platform {
 
 				.text {
 					color: #000000;
-				}
-
-				&.menu1 {
-					animation: create-custom-typing-1 $animation-duration steps(60, end) infinite;
-
-					@keyframes create-custom-typing-1 {
-						from {
-							width: 0;
-						}
-						20%, to {
-							width: 375px;
-						}
-					}
-				}
-				&.menu2 {
-					animation: create-custom-typing-2 $animation-duration steps(60, end) infinite;
-
-					@keyframes create-custom-typing-2 {
-						from, 25% {
-							width: 0;
-						}
-						40%, to {
-							width: 375px;
-						}
-					}
-				}
-				&.menu3 {
-					animation: create-custom-typing-3 $animation-duration steps(60, end) infinite;
-
-					@keyframes create-custom-typing-3 {
-						from, 45% {
-							width: 0;
-						}
-						60%, to {
-							width: 375px;
-						}
-					}
-				}
-				&.menu4 {
-					animation: create-custom-typing-4 $animation-duration steps(60, end) infinite;
-
-					@keyframes create-custom-typing-4 {
-						from, 65% {
-							width: 0;
-						}
-						80%, to {
-							width: 375px;
-						}
-					}
 				}
 			}
 		}

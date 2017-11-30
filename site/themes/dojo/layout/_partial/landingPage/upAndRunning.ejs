@@ -89,8 +89,6 @@
 </section>
 <script>
 	(function () {
-		var typing1Elem = document.querySelector('#upAndRunning-typing-1 .typed-text');
-
 		var time = new Date().getTime();
 		var duration = 10000;
 		var durationLeft = duration;
@@ -112,6 +110,8 @@
 
 			requestAnimationFrame(animate);
 		}
+
+		var typing1Elem = document.querySelector('#upAndRunning-typing-1 .typed-text');
 
 		function updateTyping1Animations(percentCompletion) {
 			var typing = {
