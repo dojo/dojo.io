@@ -7,7 +7,7 @@ overview: Access a raw DOM node to retrieve styling information
 
 ## Objective
 
-This recipe demonstrates a technique of getting raw DOM elements via the Dojo 2 API and then extracting computed styling information from such elements.
+This recipe demonstrates a technique of extracting custom properties on-demand from DOM elements via the Dojo 2 API.
 
 ## Procedure
 
@@ -33,6 +33,7 @@ export default getStyle
 The `getStyle` function does the following:
 
 * Extends from `'@dojo/widget-core/meta/Base'` which provides access to DOM node utility functions
+  - Tip: 'meta' is a Dojo 2 term which refers to accessing additional information about a widget which is typically only available through the rendered DOM element
 * Retrieves a DOM node based on the passed in key
 * Extracts the computed style of the selected DOM node
 
@@ -59,4 +60,4 @@ Observe: `The color is: rgb(0, 0, 0)` is logged to the DevTools console.
 
 ## Additional resources
 
-The [Dojo 2 Meta Configuration](https://github.com/dojo/widget-core#meta-configuration) documentation offers extra information on meta configuration.
+See the Dojo 2 [Meta Configuration documentation](https://github.com/dojo/widget-core#meta-configuration) for more information

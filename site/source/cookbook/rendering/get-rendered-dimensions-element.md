@@ -11,7 +11,7 @@ This recipe demonstrates how to get the rendered dimensions of an element on the
 
 ## Procedure
 
-1. Import the `Dimensions` class:
+1. Import the `Dimensions` meta provider:
 
 ```ts
 import Dimensions from '@dojo/widget-core/meta/Dimensions';
@@ -64,4 +64,4 @@ protected render() {
 
 ## Additional resources
 
-The [Dojo 2 Meta Configuration](https://github.com/dojo/widget-core#meta-configuration) documentation offers extra information on meta configuration.
+See the [Dojo 2 Meta Configuration](https://github.com/dojo/widget-core#meta-configuration) documentation for more information

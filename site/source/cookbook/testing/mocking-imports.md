@@ -34,7 +34,7 @@ class HelloWorld extends WidgetBase {
 module.exports = HelloWorld;
 ```
 
-2. Add the imports which your test needs. This is the start of a test file which has only one external dependency: `proxyquire`. `proxyquire` allows you to mock/stub JavaScript modules which your widget loads from.
+2. Import the dependencies for your test. This is the start of a new test file which has only one external dependency: `proxyquire`. The `proxyquire` module intercepts all of your module imports in a file, `proxyquire` then offers an API to mock each of these imports for the purpose of test isolation.
 
 ```js
 const assert = require('assert');

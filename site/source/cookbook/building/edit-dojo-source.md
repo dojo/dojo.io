@@ -19,6 +19,8 @@ This recipe demonstrates how to edit the Dojo 2 source code, and see the change 
 git clone --depth 1 https://github.com/dojo/widget-core
 ```
 
+Tip: `--depth 1` will only grab the latest revision, resulting in a speedier download time.
+
 2. Make the change you require within widget-core, in this example, the `render` invocation within the Dojo 2 framework is instrumented with console timing functions.
 
 Change this code:
@@ -62,3 +64,7 @@ dojo build -w
 ```
 
 5. Navigate to `http://localhost:9999/` and verify you see at least one `Render: 0.135009765625ms` message in the DevTools console.
+
+## Further reading
+
+The the [Submitting a Pull Request](https://github.com/dojo/meta/blob/master/CONTRIBUTING.md#submitting-a-pull-request) guide to learn more about the process of submitting changes.

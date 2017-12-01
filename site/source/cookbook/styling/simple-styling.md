@@ -7,7 +7,7 @@ overview: Apply a class to a node and style it
 
 ## Objective
 
-The recipe demonstrates a simple technique for styling widgets.
+This recipe demonstrates a simple technique for styling widgets.
 
 ## Procedure
 

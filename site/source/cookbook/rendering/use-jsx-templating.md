@@ -7,7 +7,7 @@ overview: Use JSX templating to construct your virtual DOM
 
 ## Objective
 
-This recipe demonstrates how to configure your Dojo 2 application to use [JSX templating](https://facebook.github.io/jsx/).
+This recipe demonstrates how to configure your Dojo 2 application to use [JSX templating](https://facebook.github.io/jsx/). Note, TSX is the TypeScript version of JSX.
 
 ## Procedure
 
@@ -55,4 +55,5 @@ render() {
 
 ## Additional resources
 
-The [JSX Support](https://github.com/dojo/widget-core#jsx-support) section in the widget core documentation also covers how to use JSX templating in your Dojo 2 app.
+* The [JSX Support](https://github.com/dojo/widget-core#jsx-support) section in the widget core documentation also covers how to use JSX templating in your Dojo 2 app
+* [JSX Documentation](https://www.typescriptlang.org/docs/handbook/jsx.html) in the TypeScript handbook

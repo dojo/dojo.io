@@ -7,11 +7,11 @@ overview: Retrieve drag related information for elements on the page
 
 ## Objective
 
-This recipe demonstrates a technique for accessing drag related information for page element.
+This recipe demonstrates a technique for accessing drag related information for elements on the page.
 
 ## Procedure
 
-1. Import the drag function:
+1. Import the drag meta API:
 
 ```ts
 import { Drag } from '@dojo/widget-core/meta/Drag';

@@ -7,7 +7,7 @@ overview: Style a built-in Dojo 2 widget using the built-in theming functionalit
 
 ## Objective
 
-The recipe explains how to style a built-in Dojo 2 widget using the theming functionality built into the framework.
+The recipe explains how to style a built-in Dojo 2 widget using the theming functionality built into Dojo 2.
 
 ## Procedure
 
@@ -33,6 +33,8 @@ export default {
 ```
 
 The theme file must export an object of key-value pairs. The key represents the name of the widget, and the value is the respective CSS module which styles the widget. Built-in Dojo 2 widgets must have their key prefixed with `'dojo-'`.
+
+Note: see the [discover built-in Dojo 2 widgets](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/widgets/discover-built-in-dojo-widgets.md) recipe to learn more about built-in widgets.
 
 3. Import your theme and the button widget:
 

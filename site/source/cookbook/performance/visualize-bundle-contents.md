@@ -2,7 +2,7 @@
 layout: docs
 category: performance
 title: Visualize your bundle contents
-overview: Visualize what your JavaScript bundle consists of
+overview: Visualize what's inside your JavaScript bundle
 ---
 
 ## Objective
@@ -16,6 +16,8 @@ This recipe demonstrates how you can use a tool to visualize what JavaScript mod
 2. Open the HTML file `dist/report.html` in your web browser
 
 3. Click on the different segments of the chart to dive deeper
+
+![JS Bundle](visualize-js-bundle.png "Visualize what's inside your JavaScript bundle")
 
 ## Additional resources
 
