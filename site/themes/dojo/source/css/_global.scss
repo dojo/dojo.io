@@ -39,3 +39,9 @@ body {
 .is-full-height {
 	height: 100%;
 }
+
+.container {
+	@media screen and (max-width: 1023px) {
+		width: 100%;
+	}
+}
