@@ -76,7 +76,8 @@ section.intersection-observers {
 			}
 
 			a {
-				display: inline-block;
+				// display: inline-block;
+				display: none;
 				text-transform: uppercase;
 				padding: 1em 2em;
 				width: 170px;
