@@ -12,6 +12,8 @@ This recipe demonstrates one technique of:
 1. Testing functionality in your widgets
 2. Mocking imports which your widget relies upon
 
+Note: This recipe demonsrates a vanilla approach of testing. It does not leverage the built-in testing ecosystem offered by Dojo 2 out of the box.
+
 ## Procedure
 
 1. Create your widget:
