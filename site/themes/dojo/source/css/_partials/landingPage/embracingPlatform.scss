@@ -77,8 +77,6 @@ section.embrace-platform {
 	}
 
 	.demo {
-		$animation-duration: 15s;
-
 		@media screen and (max-width : $mobile-break) {
 			position: relative;
 			top: -10px;
