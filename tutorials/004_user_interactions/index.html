@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.617Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Responding to events">
 <meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
@@ -91,7 +91,7 @@ ga('send', 'pageview');
 <p>The first step is to add the listener itself. In Dojo 2, an event listener is assigned like any other property that is passed to the rendering function, <code>v</code>. Look at the <code>Worker</code> widget that is in <code>src/widgets</code>. Currently, the top level <code>DNode</code> has one property assigned: <code>classes</code>.</p>
 <div class="instruction">Update the object containing that property as follows.</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token punctuation">{</span>
-    classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
     onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
 <span class="token punctuation">}</span>
 </code></pre>
@@ -103,35 +103,6 @@ ga('send', 'pageview');
 </code></pre>
 <p>Now, run the app (using <code>dojo build --watch</code> or <code>dojo build -w</code>) and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener">localhost:9999</a>. Once there,</p>
 <div class="instruction">Open the console window and click on any of the worker widgets to confirm that the <code>flip</code> method is being called as expected.</div>
-<p>For short event handlers you might be tempted to use an anonymous function like this:</p>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// Note: DO NOT DO THIS, this is an</span>
-        <span class="token comment" spellcheck="true">// example of an anti-pattern</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the handler has been called'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token operator">...</span>
-</code></pre>
-<p>While this appears to work, Maquette doesn’t allow an event handler to be updated. To see what happens, let’s have the <code>onclick</code> handler invalidate the widget, forcing Maquette to re-render it.</p>
-<div class="instruction">Update the <code>render</code> method.</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// Note: DO NOT DO THIS, this is an</span>
-        <span class="token comment" spellcheck="true">// example of an anti-pattern</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the handler has been called'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token operator">...</span>
-</code></pre>
-<p>Open up your browser’s development tools and display the console tab then click on a widget. Notice that an error is written to the console: <code>Error: Functions may not be updated on subsequent renders</code>. To avoid an error, all event handlers must be defined once, normally via a method.</p>
-<div class="instruction">Restore the <code>onclick</code> property to its previous value.</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
-<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token operator">...</span>
-</code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Using-event-handlers"><a href="#Using-event-handlers" class="headerlink" title="Using event handlers"></a>Using event handlers</h2><div class="task">Add a second visual state.</div>
 <p>Now that we have an event handler, it is time to extend the <code>render</code> method to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.</p>
@@ -144,11 +115,11 @@ ga('send', 'pageview');
 		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerFront<span class="token punctuation">)</span><span class="token punctuation">,</span>
+				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerFront<span class="token punctuation">)</span><span class="token punctuation">,</span>
 				onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
 			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span>
+					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span>
 						src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lastName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>firstName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
@@ -168,33 +139,33 @@ ga('send', 'pageview');
 		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerBack<span class="token punctuation">)</span><span class="token punctuation">,</span>
+				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerBack<span class="token punctuation">)</span><span class="token punctuation">,</span>
 				onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
 			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>imageSmall<span class="token punctuation">)</span><span class="token punctuation">,</span>
+					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>imageSmall<span class="token punctuation">)</span><span class="token punctuation">,</span>
 					src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span>
 				<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>generalInfo<span class="token punctuation">)</span>
+					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>generalInfo<span class="token punctuation">)</span>
 				<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-						classes <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>label<span class="token punctuation">)</span>
+						classes <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>label<span class="token punctuation">)</span>
 					<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lastName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>firstName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-						classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>label<span class="token punctuation">)</span>
+						classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>label<span class="token punctuation">)</span>
 					<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Email'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>email<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-						classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>label<span class="token punctuation">)</span>
+						classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>label<span class="token punctuation">)</span>
 					<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Avg. Time per Task'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>timePerTask<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 				<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Current Tasks'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> tasks<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>task <span class="token operator">=></span> <span class="token punctuation">{</span>
-						<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>task<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> task <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>task<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> task <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 					<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 				<span class="token punctuation">]</span><span class="token punctuation">)</span>
 			<span class="token punctuation">]</span>
@@ -304,7 +275,7 @@ ga('send', 'pageview');
 <div class="instruction">Use that field's value to determine which side to show.</div>
 <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span><span class="token punctuation">[</span> css<span class="token punctuation">.</span>worker<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
 		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 			<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_renderFront</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 			<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_renderBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -352,7 +323,7 @@ To pass the specified properties to the first worker<span class="token punctuati
 <span class="token punctuation">}</span>
 </code></pre></section></div>
 </section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property. Be aware that once a widget has been rendered for the first time the values of its event handler properties cannot change. This is normally accomplished by creating a method on the widget class and assigning this method as the event handler.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers are assigned to virtual nodes like any other Dojo 2 property.</p>
 <p>If you would like, you can download the <a href="../assets/004_user_interactions-finished.zip">demo application</a>.</p>
 <p>In <a href="../005_form_widgets/">Form widgets</a>, we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.</p>
 </section>
@@ -362,11 +333,17 @@ To pass the specified properties to the first worker<span class="token punctuati
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

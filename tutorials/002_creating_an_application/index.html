@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/html_js.svg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/widget.svg">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.609Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Components of a Dojo 2 application">
 <meta name="twitter:description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
@@ -126,9 +126,9 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </section><section class="tutorial hidden hiding">
 <h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>The final aspect that our basic application contains is its test suite. Dojo 2 is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application’s components work together as expected. Dojo 2 leverages the <a href="http://theintern.io" target="_blank" rel="noopener">Intern</a> testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the <a href="https://github.com/dojo/test-extras" target="_blank" rel="noopener">Dojo 2 test-extras library</a> to verify the output of the widget’s render function. The test-extras library is designed to facilitate testing the functionality of Dojo 2 widgets. For more information, refer to the <a href="../comingsoon.html">Testing Dojo 2 Widgets</a> article.</p>
 <p>Our demo application includes some tests to verify that it is working as expected. The tests are found in <code>tests/unit/widgets/HelloWorld.ts</code>. Let’s examine this part of the test code:</p>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should render'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
 		helloWorldHarness<span class="token punctuation">.</span><span class="token function">expectRender</span><span class="token punctuation">(</span><span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal command:</p>
 <pre class=" language-bash"><code class="language-bash">dojo <span class="token function">test</span>
@@ -144,11 +144,17 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

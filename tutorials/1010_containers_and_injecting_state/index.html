@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.633Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
 <meta name="twitter:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
@@ -263,7 +263,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 registry<span class="token punctuation">.</span><span class="token function">defineInjector</span><span class="token punctuation">(</span><span class="token string">'app-state'</span><span class="token punctuation">,</span> applicationContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>The first statement creates a <code>registry</code> where the application context can be registered. The second statement registers the <code>ApplicationContext</code> instance with newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the <a href="../1020_registries/">registry tutorial</a>.</p>
+<p>The first statement creates a <code>registry</code> where the application context can be registered. The second statement registers the <code>ApplicationContext</code> instance with the newly created registry. The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the <a href="../1020_registries/">registry tutorial</a>.</p>
 <div class="instruction">Add the registry to the projector</div>
 <p>We need to pass the <code>registry</code> to the <code>projector</code> via the <code>setProperties</code> method to ensure that it is available for all widget and container instances.</p>
 <pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -271,7 +271,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <p>Now that the <code>Injector</code> is defined and registered and the <code>registry</code> has been set in the <code>projector</code>, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a <code>Container</code> that will allow state to be injected into the <code>WorkerForm</code> and <code>WorkerContainer</code> widgets.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-state-containers"><a href="#Creating-state-containers" class="headerlink" title="Creating state containers"></a>Creating state containers</h2><div class="task">Create <code>Containers</code> that will allow state to be injected into widgets</div>
-<p>On their own, <code>Injectors</code> are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an <code>injector</code> must be connected to interested widgets in order for their state to be mapped to <code>properties</code> that widgets can consume by using a <code>Container</code>. <code>Containers</code> are designed to coordinate the injection - they connect <code>injectors</code> to widgets and return <code>properties</code> from the <code>injector</code>‘s state which is passed to the connected widgets.</p>
+<p>On their own, <code>Injectors</code> are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an <code>injector</code> must be connected to interested widgets in order for their state to be mapped to <code>properties</code> that widgets can consume by using a <code>Container</code>. <code>Containers</code> are designed to coordinate the injection - they connect <code>injectors</code> to widgets and return <code>properties</code> from the <code>injector</code>‘s state which are passed to the connected widgets.</p>
 <p>Normally, a separate <code>Container</code> is created for each widget that needs to have <code>properties</code> injected. In the demo application, we have two widgets that rely on application state - <code>WorkerContainer</code> and <code>WorkerForm</code>.</p>
 <p>Let’s start with the <code>WorkerContainer</code>. You must give your containers the same name as their respective widgets, with a <code>Container</code> suffix.</p>
 <p>E.g. Widget name: <code>Foo</code><br>container name ‘FooContainer’. To keep things organized, they are also stored in a different directory - <code>containers</code>.</p>
@@ -325,7 +325,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <p>At this point, we have created the <code>ApplicationContext</code> to manage state, an <code>Injector</code> to inject state into the application’s widgets, and <code>Containers</code> to manage how properties and children from the injector and parent widgets are combined. In the next section, we will integrate these components into our application.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Using-state-containers"><a href="#Using-state-containers" class="headerlink" title="Using state containers"></a>Using state containers</h2><div class="task">Integrate containers into an application.</div>
-<p>As mentioned in the previous section, <code>Container</code> is a higher order component that extends <code>WidgetBase</code> and returns the wrapped widget and injected <code>properties</code> from the <code>render</code>. As such, they can be used just like any other widget. In our demo application, we can take advantage of their extension of <code>WidgetBase</code> by simply replacing the <code>WorkerForm</code> and <code>WorkerContainer</code> with their container equivalents.</p>
+<p>As mentioned in the previous section, <code>Container</code> is a higher order component that extends <code>WidgetBase</code> and returns the wrapped widget and injected <code>properties</code> from the <code>render</code>. As such, it can be used just like any other widget. In our demo application, we can take advantage of its extension of <code>WidgetBase</code> by simply replacing the <code>WorkerForm</code> and <code>WorkerContainer</code> with their container equivalents.</p>
 <div class="instruction">Replace the imports in the <code>App</code> module with the following.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
@@ -396,11 +396,17 @@ registry<span class="token punctuation">.</span><span class="token function">def
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

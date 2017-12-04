@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker_page.png">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.613Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -104,12 +104,11 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <div class="instruction">Add these lines at the top of the file.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./Banner'</span><span class="token punctuation">;</span>
 </code></pre>
 <p>The <code>WidgetBase</code> class will be used as the base class for our <code>App</code> widget. <code>WidgetBase</code> (and its descendants) work with the <code>WidgetProperties</code> interface to define the publicly accessible properties of the widget. Finally, the <code>v</code> and <code>w</code> functions are used to render virtual DOM nodes (with the <code>v</code> function) or widgets (via <code>w</code>). Both virtual DOM nodes and widgets ultimately generate <code>DNode</code>s, the base type of all virtual DOM nodes in Dojo 2.</p>
 <p>Our next dependency to load is the Banner widget that we created in the first tutorial.</p>
 <div class="instruction">To import it, add the following statement to <code>App.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./WorkerContainer'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./Banner'</span><span class="token punctuation">;</span>
 </code></pre>
 <p>With all of the dependencies in place, let’s create the <code>App</code> widget itself.</p>
 <div class="instruction">Add the following class definition.</div>
@@ -117,7 +116,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Notice that the <code>App</code> class is extending <code>WidgetBase</code>, a <a href="https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes" target="_blank" rel="noopener">generic class</a> that accepts the <code>WidgetProperties</code> interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the <code>export</code> and <code>default</code> keywords before the <code>class</code> keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.</p>
-<p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render()</code>, which means that our render method has to return a <code>DNode</code> (an abstraction for a <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="noopener">HyperScript</a> node) so that the application’s projector knows what to render. The normal way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p>
+<p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render(): DNode| DNode[]</code>, which means that our render method has to return a <code>DNode</code> (an abstraction for a <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="noopener">HyperScript</a> node), or an array of <code>DNode</code>s so that the application’s projector knows what to render. The normal way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p>
 <div class="instruction">To start, let's use a simple <code>render</code> method by adding this to the <code>App</code> class:</div>
 <pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -254,14 +253,14 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>Dojo leverages <a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a> to provide all of the flexibility of CSS, but with the additional benefit of localized styling rules to help prevent inadvertent rule collisions. Dojo 2 also makes use of <a href="https://github.com/Quramy/typed-css-modules" target="_blank" rel="noopener">typed CSS modules</a>, so that we can provide CSS typing files, enabling you to target CSS files in your import statements.</p>
 <p>To allow our <code>Worker</code> widget to be styled, we need to modify the class. First, apply a <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank" rel="noopener">decorator</a> to the class to modify the widget’s constructor and prepare its instances to work with CSS modules. Also, we will apply a theme <em>mixin</em> to the Worker widget. A mixin is not intended to be used on its own, but instead works with a class to add useful functionality.</p>
 <div class="instruction">Add the following import to the top of <code>Worker.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">We also need to <code>import</code> our CSS:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/worker.css'</span><span class="token punctuation">;</span>
 </code></pre>
 <p><code>worker.css</code> contains CSS selectors and rules to be consumed by our widget and its components.</p>
 <div class="instruction">With the imports in place, add the <em></em>@theme<em></em> decorator and apply the mixin to the <code>Worker</code> class in <code>Worker.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Worker</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerBase</span><span class="token operator">&lt;</span>WorkerProperties<span class="token operator">></span> <span class="token punctuation">{</span>
@@ -296,10 +295,10 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span>
+				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span>
 			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span>
+					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span>
 					src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lastName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>firstName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
@@ -320,21 +319,21 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> w<span class="token punctuation">,</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Worker <span class="token keyword">from</span> <span class="token string">'./Worker'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'../styles/workerContainer.css'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> WorkerContainerBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> WorkerContainerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">WorkerContainer</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerContainerBase</span> <span class="token punctuation">{</span>
     <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-            classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>container<span class="token punctuation">)</span>
+            classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>container<span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>You may notice that we are calling <code>this.classes</code> with the <code>container</code> class as an argument. <code>classes</code> is a method provided by the <code>ThemeableMixin</code> which adds the specified class or classes to the widget, and verifies that they exist as part of the widget’s theme.</p>
+<p>You may notice that we are calling <code>this.theme</code> with the <code>container</code> class as an argument. <code>theme</code> is a method provided by the <code>ThemedMixin</code> which adds the specified class or classes to the widget, and verifies that they exist as part of the widget’s theme.</p>
 <div class="instruction">Now update the <code>render</code> method to include some workers. Add the following to the top of the <code>render</code> method:</div>
 <pre class=" language-ts"><code class="language-ts">        <span class="token keyword">const</span> workers <span class="token operator">=</span> <span class="token punctuation">[</span>
             <span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -358,7 +357,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>We can now pass these workers as children to the container.</p>
 <div class="instruction">Add this array as the third argument to the <code>v</code> function.</div>
 <pre class=" language-ts"><code class="language-ts">        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-            classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>container<span class="token punctuation">)</span>
+            classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>container<span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span> workers<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Now it is time to add styling rules for the <code>WorkerContainer</code>. Inside  of <code>styles/workerContainer.css</code>.</p>
@@ -396,11 +395,17 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

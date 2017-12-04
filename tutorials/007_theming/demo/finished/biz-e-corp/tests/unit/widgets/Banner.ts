@@ -1,22 +1,21 @@
-import * as registerSuite from 'intern/lib/interfaces/object';
 import { v } from '@dojo/widget-core/d';
 import harness, { Harness } from '@dojo/test-extras/harness';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import Banner from '../../../src/widgets/Banner';
+import * as css from '../../../src/styles/banner.m.css';
 
-let bannerHarness: Harness<WidgetProperties, typeof Banner>;
+const { describe, it, beforeEach, afterEach} = intern.getInterface('bdd');
+let bannerHarness: Harness<Banner>;
 
-registerSuite({
-	name: 'Banner',
-	beforeEach() {
+describe('Banner', () => {
+	beforeEach(() =>  {
 		bannerHarness = harness(Banner);
-	},
+	});
 
-	afterEach() {
+	afterEach(() => {
 		bannerHarness.destroy();
-	},
+	});
 
-	render() {
-		bannerHarness.expectRender(v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ]));
-	}
+	it('should render', () => {
+		bannerHarness.expectRender(v('h1', { title: 'I am a title!', classes: css.root }, [ 'Biz-E-Bodies' ]));
+	});
 });

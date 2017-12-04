@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.653Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using Dojo 1 Dijits">
 <meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
@@ -111,7 +111,7 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p> To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build.  Additionally, some of those dependencies will be injected (loaded) into our bundle.  The first dependency provides configuration for the Dojo 1 loader (which we will create later).  The second dependency includes the <code>dojo</code> package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested.  The third dependency is <code>dijit</code>, which are our Dojo 1 Dijits.  The final dependency is a modern flat theme for Dojo 1 Dijits.  We are injecting the <em>root</em> CSS into our application bundle as well, which will ensure the CSS is loaded an available at run time.</p>
+<p> To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build.  Additionally, some of those dependencies will be injected (loaded) into our bundle.  The first dependency provides configuration for the Dojo 1 loader (which we will create later).  The second dependency includes the <code>dojo</code> package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested.  The third dependency is <code>dijit</code>, which contains our Dojo 1 Dijits.  The final dependency is a modern flat theme for Dojo 1 Dijits.  We are injecting the <em>root</em> CSS into our application bundle as well, which will ensure the CSS is loaded and available at run time.</p>
 <div class="task">Updating the <code>tsconfig.json</code> configuration.</div>
 <p>In order for us to integrate the TypeScript typings, we need to adjust two sections of our <code>tsconfig.json</code>.</p>
 <div class="instruction">Add <code>scripthost</code> to the <code>lib</code> section of <code>tsconfig.json</code>:</div>
@@ -154,7 +154,7 @@ ga('send', 'pageview');
 <p>The <code>DijitWrapper</code> function accepts two arguments.  The first is the Dojo 1 <code>declare</code> class.  The second is an optional string, which represents the tag name that should be used when the Dojo 2 widgeting system needs to create a <em>DOM stub</em> to attach the Dijit instance to.  It defaults to <code>div</code> if not supplied.</p>
 <article class="aside"><strong>Information</strong><p>All Dojo 1 modules are AMD modules without default exports.  As such, you need to import Dojo 1 modules using the <code>import * as Dijit from 'module/id';</code> syntax.</p></article>
 <div class="task">Wrapping Dijits.</div>
-<p>We recommend any wrapped Dijits be created as individual modules in <code>/src/dijit</code> in the same path structure they are located in the source <code>dijit</code> package.</p>
+<p>We recommend any wrapped Dijits be created as individual modules in <code>/src/dijit</code> using the same path structure as in the source <code>dijit</code> package.</p>
 <div class="instruction">Create <code>/src/dijit/Fieldset.ts</code> with the following content:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> DijitWrapper <span class="token keyword">from</span> <span class="token string">'@dojo/interop/dijit/DijitWrapper'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Fieldset <span class="token keyword">from</span> <span class="token string">'dijit/Fieldset'</span><span class="token punctuation">;</span>
@@ -174,7 +174,7 @@ ga('send', 'pageview');
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">DijitWrapper</span><span class="token punctuation">(</span>TextBox<span class="token punctuation">,</span> <span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="task">Importing Dijits.</div>
-<p>Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 or modules.</p>
+<p>Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 modules.</p>
 <div class="instruction">Import Dijits into <code>/src/widgets/WorkerForm.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Fieldset <span class="token keyword">from</span> <span class="token string">'../dijit/Fieldset'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'../dijit/form/Button'</span><span class="token punctuation">;</span>
@@ -183,11 +183,11 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Placing-Dijits"><a href="#Placing-Dijits" class="headerlink" title="Placing Dijits"></a>Placing Dijits</h2><article class="aside"><strong>Reminder</strong><p>We will be using the <code>w()</code> function from <code>@dojo-widget/core/d</code>.  Don't forget to <code>import</code> it...</p></article>
 <div class="task">Adding Dijits to a widget's render function.</div>
-<p>Now that we have imported our wrapped Dijits into the module they will be used, we need to add them to the render function.</p>
+<p>Now that we have imported our wrapped Dijits into the module where they will be used, we need to add them to the render function.</p>
 <div class="instruction">Add imported Dijits to the <code>WorkerForm</code> widget's render function:</div>
 <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
+			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
 			onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
 		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 			<span class="token function">w</span><span class="token punctuation">(</span>Fieldset<span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -242,11 +242,17 @@ ga('send', 'pageview');
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

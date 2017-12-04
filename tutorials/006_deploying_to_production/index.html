@@ -13,7 +13,7 @@
 <meta property="og:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/006_deploying_to_production/resources/build_stats.png">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.625Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deploying to production">
 <meta name="twitter:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
@@ -114,8 +114,8 @@ ga('send', 'pageview');
 <li>The <code>--messageBundles</code> argument specifies all of the message bundles (translations) that should be included in the build.</li>
 </ul>
 <p>For more information about creating internationalized applications with Dojo 2, refer to the <a href="../comingsoon.html">Internationalization</a> article in the reference guide.</p>
-<p>The next two arguments that are listed when the <code>dojo build help</code> command is run are the <code>--element</code> and <code>--elementPrefix</code>. These two fields are primarily used when exporting Dojo 2 widgets as <a href="https://en.wikipedia.org/wiki/Web_Components" target="_blank" rel="noopener">web components</a> rather than for building stand alone Dojo 2 applications. For more information, refer to the <a href="../comingsoon.html">Exporting Dojo 2 widgets as web components</a> article.</p>
-<p>The <code>--debug</code> argument will cause the builder to generate <code>profile.json</code>, providing a great deal of information about the build itself, including what modules were included and how long they took to build. A profile be inspected using WebPack’s <a href="https://webpack.github.io/analyse/" target="_blank" rel="noopener">analyze tool</a>.</p>
+<p>The next two arguments that are listed when the <code>dojo build help</code> command is run are <code>--element</code> and <code>--elementPrefix</code>. These two fields are primarily used when exporting Dojo 2 widgets as <a href="https://en.wikipedia.org/wiki/Web_Components" target="_blank" rel="noopener">web components</a> rather than for building stand alone Dojo 2 applications. For more information, refer to the <a href="../comingsoon.html">Exporting Dojo 2 widgets as web components</a> article.</p>
+<p>The <code>--debug</code> argument will cause the builder to generate <code>profile.json</code>, providing a great deal of information about the build itself, including what modules were included and how long they took to build. A profile can be inspected using WebPack’s <a href="https://webpack.github.io/analyse/" target="_blank" rel="noopener">analyze tool</a>.</p>
 <p>The final argument is <code>--disableLazyWidgetDetection</code>. A widget can be registered with the <a href="https://github.com/dojo/widget-core#widget-registry" target="_blank" rel="noopener">widget registry</a> to load only when required. This <a href="https://en.wikipedia.org/wiki/Lazy_loading" target="_blank" rel="noopener">lazy loading</a> behavior can reduce the initial load time of the application and is often useful when large, sophisticated widgets are not initially required. The build system does this by creating a separate bundle for each of these lazily loaded widgets. Lazy loading can, however, cause unnecessary delays if the widgets are actually needed initially. In those situations, adding the <code>--disableLazyWidgetDetection</code> argument will cause the the build system to include lazily loaded widgets into the main bundle. The widgets will then be immediately available for use by the application.</p>
 <p>The command line arguments give control over how the application is built and prepared for deployment. However, providing these arguments every time a build is required can be error prone. In the next section, we will learn how to create a persistent build configuration by using <code>.dojorc</code>.</p>
 </section><section class="tutorial hidden hiding">
@@ -154,11 +154,17 @@ ga('send', 'pageview');
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

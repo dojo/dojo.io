@@ -67,17 +67,1334 @@ ga('send', 'pageview');
 			<div class="content-wrapper">
 				<div class="page-content">
 					<div class="bodyContainer">
-	<img src="images/home/dragon2.svg" class="dragon">
-	<h1 class="teaser">Dojo is evolving</h1>
-	<h3 class="title is-6">A better way to create enterprise web apps is coming</h3>
+	<section class="hero">
+	<div class="shapes">
+		<!--
+		<div class="sphere lower-left"></div>
+		<div class="sphere upper-right"></div>
+		<div class="cube-scene upper-left">
+			<div class="cube">
+				<div class="side back"></div>
+				<div class="side right"></div>
+				<div class="side left"></div>
+				<div class="side top"></div>
+				<div class="side bottom"></div>
+				<div class="side front"></div>
+			</div>
+		</div>
+		<div class="cube-scene lower-left">
+			<div class="cube">
+				<div class="side back"></div>
+				<div class="side right"></div>
+				<div class="side left"></div>
+				<div class="side top"></div>
+				<div class="side bottom"></div>
+				<div class="side front"></div>
+			</div>
+		</div>
+		<div class="cube-scene upper-right">
+			<div class="cube">
+				<div class="side back"></div>
+				<div class="side right"></div>
+				<div class="side left"></div>
+				<div class="side top"></div>
+				<div class="side bottom"></div>
+				<div class="side front"></div>
+			</div>
+		</div>
+		<div class="pyramid-gyro">
+			<div class="pyramid-axis">
+			  <div class="pyramid-wall front"></div>
+			  <div class="pyramid-wall back"></div>
+			  <div class="pyramid-wall left"></div>
+			  <div class="pyramid-wall right"></div>
+			  <div class="bottom"></div>
+			</div>
+		  </div>
+		-->
+	</div>
+	<div class="container">
+		<h1>
+			Enterprise-grade <br> Web Application Development
+		</h1>
+		<a href="/tutorials" class="call-to-action">
+			Build with Dojo
+		</a>
+		<div class="highlight">
+			<div>
+				<h3>
+					<span class="red">
+						▢
+					</span>
+					Productive
+				</h3>
+				<p>
+					Dojo enables teams to build web applications with a deliberate approach to productivity, sustainability and code management.
+				</p>
+			</div>
+			<div>
+				<h3>
+					<span class="blue">
+						△
+					</span>
+					Adaptable
+				</h3>
+				<p>
+					Intent on not reinventing the wheel, Dojo allows for easy integration with  the most powerful solutions available today on the open web.
+				</p>
+			</div>
+			<div>
+				<h3>
+					<span class="purple">
+						◯
+					</span>
+					Inclusive
+				</h3>
+				<p>
+					Demand for accessibility and internationalization are required for enterprise web applications.  Dojo supports inclusivity and provides both.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+	<section class="up-and-running">
+
+	<div class="container">
+		<div class="commands">
+			<h3>
+				Get Going Quickly
+			</h3>
+			<p>
+				Getting started with Dojo is simple.
+			</p>
+			<div id="upAndRunning-typing-1" class="codeline">
+				<span class="line-number">1</span>
+				<span class="typed-text">
+					npm i @dojo/cli -g
+				</span>
+			</div>
+			<div id="upAndRunning-typing-2" class="codeline">
+				<span class="line-number">2</span>
+				<span class="typed-text">
+					dojo create --name hello-world
+				</span>
+			</div>
+			<div id="upAndRunning-typing-3" class="codeline">
+				<span class="line-number">3</span>
+				<span class="typed-text">
+					<strong>
+						Go!
+					</strong>
+				</span>
+			</div>
+
+		</div>
+		<div class="results">
+			<div class="code">
+				<div class="codeline">
+					<span class="keyword">
+						import
+					</span>
+					<span class="variable">
+						WidgetBase
+					</span>
+					<span class="keyword">
+						from
+					</span>
+					<span class="string">'@dojo/widget-core/WidgetBase'</span><span>;</span>
+				</div>
+				<div class="codeline">
+					<span class="keyword">
+						import
+					</span>
+					<span class="variable">
+						ProjectorMixin
+					</span>
+					<span class="keyword">
+						from
+					</span>
+					<span class="string">'@dojo/widget-core/Projector'</span><span>;</span>
+				</div>
+				<div class="codeline">
+					<span class="keyword">
+						import
+					</span>
+					<span>
+						{
+					</span>
+					<span class="variable">
+						v
+					</span>
+					<span>
+						}
+					</span>
+					<span class="keyword">
+						from
+					</span>
+					<span class="string">'@dojo/widget-core/d'</span><span>;</span>
+				</div>
+			</div>
+			<div class="result-shadow"></div>
+			<div class="result">
+				<div class="check">
+					✔
+				</div>
+				<div class="success">
+					Success!
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	(function () {
+		var time = new Date().getTime();
+		var duration = 10000;
+		var durationLeft = duration;
+
+		function animate() {
+			var now = new Date().getTime();
+			var elapsedTime = now - time;
+			time = now;
+			durationLeft -= elapsedTime;
+			if (durationLeft < 0) {
+				durationLeft += duration;
+			}
+
+			var percentCompletion = (duration - durationLeft) / duration;
+			updateTyping1Animations(percentCompletion);
+			updateTyping2Animations(percentCompletion);
+			updateTyping3Animations(percentCompletion);
+			updateResultAnimations(percentCompletion);
+
+			requestAnimationFrame(animate);
+		}
+
+		var typing1Elem = document.querySelector('#upAndRunning-typing-1 .typed-text');
+
+		function updateTyping1Animations(percentCompletion) {
+			var typing = {
+				x1: 0, x2: 0.15,
+				y1: 0, y2: 220
+			};
+			var fadeIn = {
+				x1: 0.15, x2: 0.2,
+				y1: 0, y2: 1
+			};
+
+			typing1Elem.style.width = interpolate(percentCompletion, typing) + 'px';
+			var opacity = interpolate(percentCompletion, fadeIn);
+			typing1Elem.style.backgroundColor = 'rgba(232, 249, 246, ' + opacity + ')';
+			typing1Elem.style.borderColor = 'rgba(0, 184, 156, ' + opacity + ')';
+		}
+
+		var lineNumber2Elem = document.querySelector('#upAndRunning-typing-2 .line-number');
+		var typing2Elem = document.querySelector('#upAndRunning-typing-2 .typed-text');
+
+		function updateTyping2Animations(percentCompletion) {
+			var delayShow = {
+				x1: 0.25, x2: 0.26,
+				y1: 0, y2: 1
+			};
+			var typing = {
+				x1: 0.25, x2: 0.4,
+				y1: 0, y2: 310
+			};
+			var fadeIn = {
+				x1: 0.4, x2: 0.45,
+				y1: 0, y2: 1
+			};
+
+			lineNumber2Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing2Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing2Elem.style.width = interpolate(percentCompletion, typing) + 'px';
+			var opacity = interpolate(percentCompletion, fadeIn);
+			typing2Elem.style.backgroundColor = 'rgba(232, 249, 246, ' + opacity + ')';
+			typing2Elem.style.borderColor = 'rgba(0, 184, 156, ' + opacity + ')';
+		}
+
+		var lineNumber3Elem = document.querySelector('#upAndRunning-typing-3 .line-number');
+		var typing3Elem = document.querySelector('#upAndRunning-typing-3 .typed-text');
+
+		function updateTyping3Animations(percentCompletion) {
+			var delayShow = {
+				x1: 0.65, x2: 0.66,
+				y1: 0, y2: 1
+			};
+			var typing = {
+				x1: 0.65, x2: 0.8,
+				y1: 0, y2: 60
+			};
+
+			lineNumber3Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing3Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing3Elem.style.width = interpolate(percentCompletion, typing) + 'px';
+		}
+
+		var code = document.querySelector('.up-and-running .results .code');
+		var result = document.querySelector('.up-and-running .results .result');
+		var resultShadow = document.querySelector('.up-and-running .results .result-shadow');
+
+		function updateResultAnimations(percentCompletion) {
+			var fadeInCode = {
+				x1: 0.5, x2: 0.525,
+				y1: 0, y2: 1
+			};
+			var fadeInResult = {
+				x1: 0.575, x2: 0.6,
+				y1: 0, y2: 1
+			};
+
+			code.style.opacity = interpolate(percentCompletion, fadeInCode);
+			resultShadow.style.opacity = interpolate(percentCompletion, fadeInResult);
+			result.style.opacity = interpolate(percentCompletion, fadeInResult);
+		}
+
+		function interpolate(x, params) {
+			if (x > params.x2) {
+				return params.y2;
+			}
+			else if (x >= params.x1) {
+				var ratio = (x - params.x1) / (params.x2 - params.x1);
+				return (params.y2 - params.y1) * ratio + params.y1;
+			}
+			else {
+				return params.y1;
+			}
+		}
+
+		requestAnimationFrame(animate);
+	})();
+</script>
+
+	<section class="embrace-platform">
+	<div class="copy">
+		<div>
+			<img src="/images/icon-components.svg" alt="components">
+		</div>
+		<h2>
+			Embracing the Web Platform
+		</h2>
+		<p>
+			Dojo strives for maximum interoperability. Web components provide a mechanism to leverage non-Dojo components within a Dojo application, and to effortlessly use your Dojo-based widgets in non-Dojo applications. Dojo provides first class support for web components. The decisions you make today should not lock you into decisions for the future.
+		</p>
+		<a href="/tutorials/comingsoon.html">
+			See the Tutorial
+		</a>
+	</div>
+	<div class="demo">
+		<div class="menu-list">
+			<div class="background"></div>
+			<div class="menu-item menu1">
+				<span class="active">
+					Menu 1
+				</span>
+			</div>
+			<div class="menu-item menu2">
+				<span>
+					Menu 2
+				</span>
+			</div>
+			<div class="menu-item menu3">
+				<span>
+					Menu 3
+				</span>
+			</div>
+			<div class="menu-item menu4">
+				<span>
+					Menu 4
+				</span>
+			</div>
+		</div>
+		<div class="code">
+			<div class="codeline">
+				<span class="html">
+						&lt;menu&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu1">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 1
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu2">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 2
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu3">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 3
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu4">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 4
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline">
+				<span class="html">
+						&lt;menu&gt;
+				</span>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	(function() {
+
+		var time = new Date().getTime();
+		var duration = 15000;
+		var durationLeft = duration;
+
+		function animate() {
+			var now = new Date().getTime();
+			var elapsedTime = now - time;
+			time = now;
+			durationLeft -= elapsedTime;
+			if (durationLeft < 0) {
+				durationLeft += duration;
+			}
+
+			var percentCompletion = (duration - durationLeft) / duration;
+			updateMenuListBackgroundAnimations(percentCompletion);
+			updateMenuItemAnimations(percentCompletion);
+			updateCodeAnimations(percentCompletion);
+
+			requestAnimationFrame(animate);
+		}
+
+		var menuListBackground = document.querySelector('.embrace-platform .menu-list .background');
+
+		function updateMenuListBackgroundAnimations(percentCompletion) {
+			var value;
+
+			if (percentCompletion < 0.4) {
+				value = interpolate(percentCompletion, {x1: 0.2, x2: 0.21, y1: 0, y2: 0.25});
+			}
+			else if (percentCompletion < 0.6) {
+				value = interpolate(percentCompletion, {x1: 0.4, x2: 0.41, y1: 0.25, y2: 0.5});
+			}
+			else if (percentCompletion < 0.8) {
+				value = interpolate(percentCompletion, {x1: 0.6, x2: 0.61, y1: 0.5, y2: 0.75});
+			}
+			else {
+				value = interpolate(percentCompletion, {x1: 0.8, x2: 0.81, y1: 0.75, y2: 1});
+			}
+
+			menuListBackground.style.transform = 'scaleX(' + value + ')';
+		}
+
+		var menu1Elem = document.querySelector('.embrace-platform .menu-item.menu1');
+		var menu2Elem = document.querySelector('.embrace-platform .menu-item.menu2');
+		var menu3Elem = document.querySelector('.embrace-platform .menu-item.menu3');
+		var menu4Elem = document.querySelector('.embrace-platform .menu-item.menu4');
+
+		function updateMenuItemAnimations(percentCompletion) {
+			var menu1 = { x1: 0.21, x2: 0.22, y1: 0, y2: 0.99 };
+			var menu2 = { x1: 0.41, x2: 0.42, y1: 0, y2: 0.99 };
+			var menu3 = { x1: 0.61, x2: 0.62, y1: 0, y2: 0.99 };
+			var menu4 = { x1: 0.81, x2: 0.82, y1: 0, y2: 0.99 };
+
+			menu1Elem.style.opacity = interpolate(percentCompletion, menu1);
+			menu2Elem.style.opacity = interpolate(percentCompletion, menu2);
+			menu3Elem.style.opacity = interpolate(percentCompletion, menu3);
+			menu4Elem.style.opacity = interpolate(percentCompletion, menu4);
+		}
+
+		var code1Elem = document.querySelector('.embrace-platform .code .menu1');
+		var code2Elem = document.querySelector('.embrace-platform .code .menu2');
+		var code3Elem = document.querySelector('.embrace-platform .code .menu3');
+		var code4Elem = document.querySelector('.embrace-platform .code .menu4');
+
+		function updateCodeAnimations(percentCompletion) {
+			var menu1 = { x1: 0.0, x2: 0.2, y1: 0, y2: 375 };
+			var menu2 = { x1: 0.25, x2: 0.4, y1: 0, y2: 375 };
+			var menu3 = { x1: 0.45, x2: 0.6, y1: 0, y2: 375 };
+			var menu4 = { x1: 0.65, x2: 0.8, y1: 0, y2: 375 };
+
+			code1Elem.style.width = interpolate(percentCompletion, menu1) + 'px';
+			code2Elem.style.width = interpolate(percentCompletion, menu2) + 'px';
+			code3Elem.style.width = interpolate(percentCompletion, menu3) + 'px';
+			code4Elem.style.width = interpolate(percentCompletion, menu4) + 'px';
+		}
+
+		function interpolate(x, params) {
+			if (x > params.x2) {
+				return params.y2;
+			}
+			else if (x >= params.x1) {
+				var ratio = (x - params.x1) / (params.x2 - params.x1);
+				return (params.y2 - params.y1) * ratio + params.y1;
+			}
+			else {
+				return params.y1;
+			}
+		}
+
+		requestAnimationFrame(animate);
+	})();
+</script>
+
+	<section class="intersection-observers">
+	<div class="foreground">
+		<div class="scales">
+			<div class="scale">
+				
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+			</div>
+			<div class="scale right">
+				
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick large"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick medium"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+				
+							<div class="tick small"></div>
+				
+				
+			</div>
+		</div>
+		<div class="content">
+			<h2>
+				<div class="reticle"></div>
+				Hello Meta!
+			</h2>
+			<p>
+				widget-core’s meta mechanism provides reactive abstractions on cutting edge dom proposals like the web animation api and intersection observers in addition to allowing for abstractions on other higher level concepts like dragging.  This allows you to focus on writing familiar, reactive code and not on complications with the dom.
+			</p>
+			<a href="/tutorials/comingsoon.html">
+				See the Tutorial
+			</a>
+		</div>
+	</div>
+	<div class="background">
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+	</div>
+</section>
+<script>
+	(function () {
+		var section = document.querySelector('.intersection-observers');
+		var foreground = section.querySelector('.foreground');
+		var background = section.querySelector('.background');
+		var contentWrapper = document.querySelector('.content-wrapper');
+		var reticle = section.querySelector('.reticle');
+		var squares = section.querySelectorAll('.square');
+
+		var reactivateTime = null;
+		contentWrapper.addEventListener('scroll', function (e) {
+			var boundingRect = section.getBoundingClientRect();
+			var heightInViewport = window.innerHeight - boundingRect.top;
+			var isShowing = heightInViewport > 0 && boundingRect.bottom > 0;
+			if (!isShowing) {
+				return;
+			}
+			background.style.top = 'calc(100% - ' + heightInViewport + 'px)';
+
+			var reticleDims = reticle.getBoundingClientRect();
+			var reticleTop = reticleDims.top;
+			var reticleHeight = reticleDims.height;
+			var reticleMiddle = reticleTop + reticleHeight / 2;
+
+			for (var i = 0; i < squares.length; i++) {
+				var square = squares[i];
+				var squareDims = square.getBoundingClientRect();
+				if (squareDims.top > reticleMiddle) {
+					square.style.transform = square.style['-ms-transform'] = 'rotateY(0deg)';
+				}
+				else if (squareDims.top + squareDims.height < reticleMiddle) {
+					square.style.transform = square.style['-ms-transform'] = 'rotateY(180deg)';
+				} else {
+					var percent = ( reticleMiddle - squareDims.top) / squareDims.height;
+					square.style.transform = square.style['-ms-transform'] = 'rotateY(' + 180 * percent + 'deg)';
+				}
+			};
+
+		});
+	})();
+</script>
+
+	<section class="accessibility">
+	<div class="animation">
+		<div class="english">Hello, World!</div>
+		<div class="french">Bonjour le monde</div>
+		<div class="spanish">Hola Mundo</div>
+		<div class="german">Hallo, Welt</div>
+		<div class="russian">Привет мир</div>
+		<div class="thai">สวัสดีชาวโลก</div>
+		<div class="chinese">你好，世界</div>
+	</div>
+	<div class="content">
+		<img src="/images/icon-internationalization.svg" alt="">
+		<h2>
+			Accessibility and
+			Internationalization
+			Out of the Box
+		</h2>
+		<p>
+			Dojo widgets offer full
+			<a href="/docs/fundamentals/accessibility/index.html">accessibility</a>
+			and
+			<a href="/docs/fundamentals/internationalization/index.html">internationalization</a> support while providing tools and guidelines to develop applications that provide inclusive experiences for everyone.
+		</p>
+		<a href="/tutorials/comingsoon.html">
+			See the Tutorial
+		</a>
+	</div>
+</section>
+
+<script>
+	(function() {
+
+		var time = new Date().getTime();
+		var duration = 30000;
+		var durationLeft = duration;
+
+		function animate() {
+			var now = new Date().getTime();
+			var elapsedTime = now - time;
+			time = now;
+			durationLeft -= elapsedTime;
+			if (durationLeft < 0) {
+				durationLeft += duration;
+			}
+
+			var percentCompletion = (duration - durationLeft) / duration;
+			updateFrenchAnimation(percentCompletion);
+			updateSpanishAnimation(percentCompletion);
+			updateChineseAnimation(percentCompletion);
+			updateGermanAnimation(percentCompletion);
+			updateRussianAnimation(percentCompletion);
+			updateThaiAnimation(percentCompletion);
+
+			requestAnimationFrame(animate);
+		}
+
+		var frenchElem = document.querySelector('.accessibility .animation .french');
+
+		function updateFrenchAnimation(percentCompletion) {
+			var rightBeginning = {
+				x1: 0, x2: 0.1,
+				y1: 3.3, y2: 0
+			};
+			var rightEnd = {
+				x1: 0.85, x2: 1,
+				y1: 10, y2: 3.3
+			}
+			var topBeginning = {
+				x1: 0, x2: 0.1,
+				y1: 13.3, y2: 10
+			};
+			var topEnd = {
+				x1: 0.85, x2: 1,
+				y1: 20, y2: 13.3
+			};
+			var opacityBeginning = {
+				x1: 0, x2: 0.1,
+				y1: 0.6, y2: 0
+			};
+			var opacityEnd = {
+				x1: 0.8, x2: 0.85,
+				y1: 0, y2: 0.6
+			};
+
+			var rightParams = percentCompletion <= rightBeginning.x2 ? rightBeginning : rightEnd;
+			var topParams = percentCompletion <= topBeginning.x2 ? topBeginning : topEnd;
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			frenchElem.style.right = interpolate(percentCompletion, rightParams) + '%';
+			frenchElem.style.top = interpolate(percentCompletion, topParams) + '%';
+			frenchElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var spanishElem = document.querySelector('.accessibility .animation .spanish');
+
+		function updateSpanishAnimation(percentCompletion) {
+			var left = {
+				x1: 0.12, x2: 0.3,
+				y1: 20, y2: 10
+			};
+			var opacityBeginning = {
+				x1: 0.12, x2: 0.17,
+				y1: 0, y2: 0.6
+			};
+			var opacityEnd = {
+				x1: 0.22, x2: 0.3,
+				y1: 0.6, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			spanishElem.style.left = interpolate(percentCompletion, left) + '%';
+			spanishElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var chineseElem = document.querySelector('.accessibility .animation .chinese');
+
+		function updateChineseAnimation(percentCompletion) {
+			var left = {
+				x1: 0.3, x2: 0.6,
+				y1: 0, y2: 20
+			};
+			var top = {
+				x1: 0.3, x2: 0.6,
+				y1: 80, y2: 60
+			};
+			var scale = {
+				x1: 0.3, x2: 0.6,
+				y1: 0.3, y2: 1.5
+			};
+			var opacityBeginning = {
+				x1: 0.3, x2: 0.4,
+				y1: 0, y2: 0.8
+			};
+			var opacityEnd = {
+				x1: 0.5, x2: 0.6,
+				y1: 0.8, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			chineseElem.style.left = interpolate(percentCompletion, left) + '%';
+			chineseElem.style.top = interpolate(percentCompletion, top) + '%';
+			chineseElem.style.transform = 'scale(' + interpolate(percentCompletion, scale) + ')';
+			chineseElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var germanElem = document.querySelector('.accessibility .animation .german');
+
+		function updateGermanAnimation(percentCompletion) {
+			var scale = {
+				x1: 0.5, x2: 0.9,
+				y1: 1.2, y2: 0.3
+			};
+			var opacityBeginning = {
+				x1: 0.5, x2: 0.6,
+				y1: 0, y2: 0.2
+			};
+			var opacityEnd = {
+				x1: 0.7, x2: 0.9,
+				y1: 0.2, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			germanElem.style.transform = 'scale(' + interpolate(percentCompletion, scale) + ')';
+			germanElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var russianElem = document.querySelector('.accessibility .animation .russian');
+
+		function updateRussianAnimation(percentCompletion) {
+			var top = {
+				x1: 0.6, x2: 1,
+				y1: 120, y2: 60
+			};
+			var scale = {
+				x1: 0.6, x2: 1,
+				y1: 2, y2: 0.5
+			};
+			var opacityBeginning = {
+				x1: 0.6, x2: 0.7,
+				y1: 0, y2: 0.4
+			};
+			var opacityEnd = {
+				x1: 0.8, x2: 1,
+				y1: 0.4, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			russianElem.style.top = interpolate(percentCompletion, top) + '%';
+			russianElem.style.transform = 'scale(' + interpolate(percentCompletion, scale) + ')';
+			russianElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var thaiElem = document.querySelector('.accessibility .animation .thai');
+
+		function updateThaiAnimation(percentCompletion) {
+			var right = {
+				x1: 0.25, x2: 0.85,
+				y1: 10, y2: 20
+			};
+			var opacityBeginning = {
+				x1: 0.25, x2: 0.3,
+				y1: 0, y2: 0.2
+			};
+			var opacityEnd = {
+				x1: 0.7, x2: 0.85,
+				y1: 0.2, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			thaiElem.style.right = interpolate(percentCompletion, right) + '%';
+			thaiElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		function interpolate(x, params) {
+			if (x > params.x2) {
+				return params.y2;
+			}
+			else if (x >= params.x1) {
+				var ratio = (x - params.x1) / (params.x2 - params.x1);
+				return (params.y2 - params.y1) * ratio + params.y1;
+			}
+			else {
+				return params.y1;
+			}
+		}
+
+		requestAnimationFrame(animate);
+	})();
+</script>
+
+	<section class="features container">
+	<div class="typescript feature">
+		<div class="icon">
+			<img src="/images/icon-typescript.svg" alt="typescript">
+		</div>
+		<h4>
+			TypeScript
+		</h4>
+		<p>
+			<a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript’s</a> type system, interfaces, and transpiler facilitate more efficient engineering for enterprise development.
+		</p>
+	</div>
+	<div class="widget-authoring feature">
+		<div class="icon">
+			<img src="/images/icon-widget-authoring.svg" alt="widget authoring">
+		</div>
+		<h4>
+			Easy Widget Authoring
+		</h4>
+		<p>
+			Via CSS Modules, the virtual DOM, strong typing, good theming tools and web components, Dojo provides a powerful approach to
+			<a href="/tutorials/003_creating_widgets/">widget authoring</a>.
+		</p>
+	</div>
+	<div class="routing feature">
+		<div class="icon">
+			<img src="/images/icon-routing.svg" alt="routing">
+		</div>
+		<h4>
+			Routing &amp; SPAs
+		</h4>
+		<p>
+			Modern
+			<a href="/tutorials/1030_routing/">routing</a>,
+			history, and
+			<a href="/tutorials/1010_containers_and_injecting_state/">state management</a>
+			 provide the foundation for robust single page application development.
+		</p>
+	</div>
+</section>
+
+	<section class="links">
+	<div class="container">
+		<h2>
+			Build with Dojo
+		</h2>
+		<a class="reference-guide" href="/docs">
+			Reference Guide
+		</a>
+		<a class="tutorials" href="/tutorials">
+			Tutorials
+		</a>
+		<!--<a class="api" href="/api">
+			API Docs
+		</a>-->
+	</div>
+	<div class="bottom-border"></div>
+</section>
+
 </div>
+
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

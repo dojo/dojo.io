@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can downloa">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.605Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Your first Dojo 2 application">
 <meta name="twitter:description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can downloa">
@@ -122,7 +122,7 @@ ga('send', 'pageview');
 </code></pre></section></div>
 <p>Now, let’s look at the <code>v</code> function again. We are intentionally avoiding something like <code>document.createElement</code> to create DOM (<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank" rel="noopener">Document Object Model</a>) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a <em>virtual</em> DOM.</p>
 <p>In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.</p>
-<p>Dojo 2 leverages the <a href="http://maquettejs.org/" target="_blank" rel="noopener">Maquette</a> virtual DOM library to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the <a href="../../docs/fundamentals/working_with_virtual_dom/">Working with a Virtual DOM</a> and <a href="../../docs/fundamentals/reactive_programming/">Reactive Programming</a> articles in the reference section. For now, let’s get back to our application and make some more changes.</p>
+<p>Dojo 2 leverages its own virtual DOM library, initially created as a fork from <a href="http://maquettejs.org/" target="_blank" rel="noopener">Maquette</a>, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the <a href="../../docs/fundamentals/working_with_virtual_dom/">Working with a Virtual DOM</a> and <a href="../../docs/fundamentals/reactive_programming/">Reactive Programming</a> articles in the reference section. For now, let’s get back to our application and make some more changes.</p>
 <p>In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Virtual-DOM-properties"><a href="#Virtual-DOM-properties" class="headerlink" title="Virtual DOM properties"></a>Virtual DOM properties</h2><div class="task">Set properties on virtual DOM nodes.</div>
@@ -141,11 +141,17 @@ ga('send', 'pageview');
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

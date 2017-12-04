@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import * as css from '../styles/workerForm.css';
 
 export interface WorkerFormData {
@@ -16,7 +16,7 @@ export interface WorkerFormProperties {
 	onFormSave: () => void;
 }
 
-export const WorkerFormBase = ThemeableMixin(WidgetBase);
+export const WorkerFormBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
@@ -40,7 +40,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 
 	protected render() {
 		return v('form', {
-			classes: this.classes(css.workerForm),
+			classes: this.theme(css.workerForm),
 			onsubmit: this._onSubmit
 		}, [ ]);
 	}

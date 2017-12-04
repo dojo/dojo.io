@@ -13,7 +13,7 @@
 <meta property="og:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/list.png">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.661Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-driven widgets">
 <meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
 		<section class="tutorial hidden hiding">
 <h1 id="Data-driven-widgets"><a href="#Data-driven-widgets" class="headerlink" title="Data-driven widgets"></a>Data-driven widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>The Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the <code>properties</code> it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.</p>
 <p>In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.</p>
-<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1006_data_driven_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1060_data_driven_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
 <p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
 </section><section class="tutorial hidden hiding">
@@ -93,13 +93,13 @@ ga('send', 'pageview');
 <div class="instruction">Add the following skeleton to <code>List.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/list.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ListProperties</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">const</span> ListBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ListBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token keyword">extends</span> <span class="token class-name">ListBase</span><span class="token operator">&lt;</span>ListProperties<span class="token operator">></span> <span class="token punctuation">{</span>
@@ -109,7 +109,7 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>This code lays the base foundation for a themeable Dojo 2 widget: it extends the <code>WidgetBase</code> class, it uses the <code>ThemeableMixin</code>, and it defines a <code>render</code> method that returns a virtual DOM. The next step is to import a Dojo 2 <code>TextInput</code> and use it inside the <code>List</code>.</p>
+<p>This code lays the base foundation for a themed Dojo 2 widget: it extends the <code>WidgetBase</code> class, it uses the <code>ThemedMixin</code>, and it defines a <code>render</code> method that returns a virtual DOM. The next step is to import a Dojo 2 <code>TextInput</code> and use it inside the <code>List</code>.</p>
 <div class="instruction">Import <code>TextInput</code> into <code>List.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
 </code></pre>
@@ -256,11 +256,17 @@ ga('send', 'pageview');
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>

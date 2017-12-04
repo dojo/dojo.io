@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { w, v } from '@dojo/widget-core/d';
 import Worker, { WorkerProperties } from './Worker';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from '../styles/workerContainer.css';
 
 import { Link } from '@dojo/routing/Link';
@@ -11,7 +11,7 @@ export interface WorkerContainerProperties {
 	filter?: string;
 }
 
-const WorkerContainerBase = ThemeableMixin(WidgetBase);
+const WorkerContainerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class WorkerContainer extends WorkerContainerBase<WorkerContainerProperties> {
@@ -22,7 +22,7 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 		for (let i = 0; i < alphabet.length; i++) {
 			const char = alphabet.charAt(i);
 			links.push(
-				v('span', { classes: this.classes(css.links) }, [
+				v('span', { classes: this.theme(css.links) }, [
 					w(Link, { key: char, to: 'filter', params: { filter: char }}, [ char ])
 				])
 			);
@@ -47,9 +47,9 @@ export default class WorkerContainer extends WorkerContainerBase<WorkerContainer
 		}));
 
 		return v('div', {}, [
-			v('h1', { classes: this.classes(css.title) }, [ 'Worker Directory' ]),
-			v('div', { classes: this.classes(css.filters) }, this._createFilterLinks()),
-			v('div', { classes: this.classes(css.container) }, workers)
+			v('h1', { classes: this.theme(css.title) }, [ 'Worker Directory' ]),
+			v('div', { classes: this.theme(css.filters) }, this._createFilterLinks()),
+			v('div', { classes: this.theme(css.container) }, workers)
 		]);
 	}
 }

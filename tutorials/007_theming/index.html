@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-02T20:13:52.629Z">
+<meta property="og:updated_time" content="2017-12-04T19:43:54.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -85,26 +85,26 @@ ga('send', 'pageview');
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
 <p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Making-our-widgets-themeable"><a href="#Making-our-widgets-themeable" class="headerlink" title="Making our widgets themeable"></a>Making our widgets themeable</h2><div class="task">Make our widgets themeable</div>
+<h2 id="Theming-our-widgets"><a href="#Theming-our-widgets" class="headerlink" title="Theming our widgets"></a>Theming our widgets</h2><div class="task">Theming our widgets</div>
 <p>In Dojo, we differentiate between two types of styles:</p>
 <ul>
 <li>Structural styles: these are the minimum necessary for a widget to function</li>
-<li>Visual styles these are themeable</li>
+<li>Visual styles: these are themed</li>
 </ul>
 <p>The current CSS in the example app provides the structural styles, we will now review how to create and manage themes.</p>
-<p>In order to theme our widgets, we must ensure that they each extend <code>ThemeableMixin</code> and should change their top level class name to <code>root</code>. <code>ThemeableMixin</code> provides a <code>this.classes</code> function for looking up class names in the provided <code>theme</code> file and applies the processed class names. We change the top level class names to <code>root</code> in order to provide a predictable way to target the outer-node of a widget.</p>
+<p>In order to theme our widgets, we must ensure that they each extend <code>ThemedMixin</code> and should change their top level class name to <code>root</code>. <code>ThemedMixin</code> provides a <code>this.theme</code> function for looking up class names in the provided <code>theme</code> file and applies the processed class names. We change the top level class name to <code>root</code> in order to provide a predictable way to target the outer-node of a widget.</p>
 <div class="instruction">Replace the contents of <code>Banner.ts</code> with the following</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemeableMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/banner.m.css'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Banner</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerBase</span> <span class="token punctuation">{</span>
 	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span><span class="token punctuation">,</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span><span class="token punctuation">,</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -119,9 +119,9 @@ ga('send', 'pageview');
 </code></pre>
 <div class="instruction">Now, let's look at changing the <code>WorkerForm</code> widget</div>
 <article class="aside"><strong>Fixed Classes</strong><p>Fixed classes apply styles that cannot be overridden by a theme, using a suffix is a convention that helps easily differentiate the intention of these classes.</p></article>
-<p><code>WorkerForm</code> already uses the <code>ThemeableMixin</code> and has a <code>workerForm</code> class on its root node. Let’s change the workerForm class to a <code>root</code> class, and while we are there, we will create a <code>rootFixed</code> class too, and apply that as a <code>fixed</code> class to the root node. This passes a class name to the theming system that cannot be changed or overridden via a theme and ensures that structured or nested styles are not lost when a theme is used.</p>
+<p><code>WorkerForm</code> already uses the <code>ThemedMixin</code> and has a <code>workerForm</code> class on its root node. Let’s change the workerForm class to a <code>root</code> class, and while we are there, we will create a <code>rootFixed</code> class too, and apply it to the root node. Classes that are not passed to <code>theme</code> cannot be changed or overridden via a theme, ensuring that structured or nested styles are not lost when a theme is used.</p>
 <pre class="language-javascript"><code class="language-javascript">		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fixed</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>rootFixed<span class="token punctuation">)</span><span class="token punctuation">,</span>
+			classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span><span class="token punctuation">,</span>
 			onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
 		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 </code></pre>
@@ -148,12 +148,26 @@ ga('send', 'pageview');
 <div class="instruction">Now add a <code>root</code> and <code>rootFixed</code> to both <code>Worker.ts</code> and <code>WorkerContainer.ts</code></div>
 <div class="instruction">When you are finished, click on toggle solution to see the results.</div>
 <div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
-<span class="token comment">// Worker.ts / WorkerContainer.ts</span>
+<span class="token comment">// WorkerContainer.ts</span>
 <span class="token comment">// ...</span>
 <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fixed</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>rootFixed<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+			classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> workers<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token comment">// ...</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// Worker.ts</span>
+<span class="token comment">// ...</span>
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span><span class="token punctuation">[</span> css<span class="token punctuation">.</span>root<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
 </code></pre></section></div>
 <p>Next, we will start to create a theme.</p>
 </section><section class="tutorial hidden hiding">
@@ -173,13 +187,13 @@ ga('send', 'pageview');
     <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>To apply a theme to a widget, simply pass the <code>theme</code> as a property to widgets to have the <code>ThemeableMixin</code> applied. To ensure that the entire application applies the <code>theme</code> it needs to be passed to all the themeable widgets in our application. This can become problematic when an application uses a mixture of themeable and non-themeable widgets, or uses a widget from a third party, meaning that there is no guarantee that the <code>theme</code> will be propagated as required.</p>
+<p>To apply a theme to a widget, simply pass the <code>theme</code> as a property to widgets to have the <code>ThemedMixin</code> applied. To ensure that the entire application applies the <code>theme</code> it needs to be passed to all the themed widgets in our application. This can become problematic when an application uses a mixture of themed and non-themed widgets, or uses a widget from a third party, meaning that there is no guarantee that the <code>theme</code> will be propagated as required.</p>
 <article class="aside"><strong>What is a registry?</strong><p>A registry provides a mechanism to inject external payloads into widgets throughout the application tree. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1020_registries/">registry tutorial</a>.</p></article>
-<p>However an application can automatically inject a <code>theme</code> from the <code>registry</code> to every themeable widget in an application tree. First, create a <code>themeInjector</code> using the <code>registerThemeInjector</code> function by passing a <code>registry</code> instance and <code>theme</code>. This will return a handle to the <code>themeInjector</code> that can be used to change the theme using <code>themeInjector.set()</code>, which will invalidate all themeable widgets in the application tree and re-render using the new theme!</p>
+<p>However an application can automatically inject a <code>theme</code> from the <code>registry</code> to every themed widget in an application tree. First, create a <code>themeInjector</code> using the <code>registerThemeInjector</code> function by passing a <code>registry</code> instance and <code>theme</code>. This will return a handle to the <code>themeInjector</code> that can be used to change the theme using <code>themeInjector.set()</code>, which will invalidate all themed widgets in the application tree and re-render using the new theme!</p>
 <div class="instruction">Update our <code>main.ts</code> file to import our theme and create a <code>themeInjector</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> registerThemeInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> registerThemeInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> theme <span class="token keyword">from</span> <span class="token string">'./themes/dojo/theme'</span><span class="token punctuation">;</span>
 
@@ -380,11 +394,17 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </div>
 				</div>
 				<footer class="footer">
-  <div class="container">
-    <div class="info">
-      <span class="is-size-7">&copy; JS Foundation, All Rights Reserved.</span>
-    </div>
-  </div>
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
 </footer>
 
 			</div>
