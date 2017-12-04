@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Build an SVG chart
 overview: Build a simple SVG chart 

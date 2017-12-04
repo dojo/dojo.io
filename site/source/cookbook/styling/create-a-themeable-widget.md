@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: styling
 title: Create a themeable widget
 overview: Create a themeable widget which can be consumed and styled elsewhere

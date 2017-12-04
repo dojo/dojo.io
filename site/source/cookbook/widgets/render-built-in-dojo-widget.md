@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Render a built-in Dojo 2 widget
 overview: Include a built-in Dojo 2 widget into your web application

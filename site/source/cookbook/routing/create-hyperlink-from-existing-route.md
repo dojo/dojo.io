@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: routing
 title: Generate dynamic hyperlinks
 overview: Generate dynamic hyperlinks with the built-in Link component

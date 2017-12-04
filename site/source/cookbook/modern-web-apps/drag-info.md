@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: modern-web-apps
 title: Access drag information
 overview: Retrieve drag related information for elements on the page

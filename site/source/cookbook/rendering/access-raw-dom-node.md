@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: rendering
 title: Access a raw DOM node
 overview: Access a raw DOM node to retrieve styling information

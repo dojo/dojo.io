@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: modern-web-apps
 title: Use built-in Dojo ponyfills
 overview: Use a built-in Dojo ponyfill within your application

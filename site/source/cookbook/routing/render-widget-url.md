@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Render URL aware widgets
 overview: Render a widget when it matches a particular URL

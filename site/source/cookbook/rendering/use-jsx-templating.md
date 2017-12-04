@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Use JSX templating
 overview: Use JSX templating to construct your virtual DOM

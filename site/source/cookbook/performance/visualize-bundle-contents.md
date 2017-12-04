@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: performance
 title: Visualize your bundle contents
 overview: Visualize what's inside your JavaScript bundle
