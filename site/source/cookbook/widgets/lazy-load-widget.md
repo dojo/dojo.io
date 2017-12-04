@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Lazy load a widget
 overview: Lazy load a widget on demand and exclude it from the main JavaScript bundle

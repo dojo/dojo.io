@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Render a list from an array
 overview: Render an array of items as a HTML list

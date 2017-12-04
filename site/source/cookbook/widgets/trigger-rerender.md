@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Force a widget to re-render itself
 overview: Use the invalidate method to force a widget to re-render itself
