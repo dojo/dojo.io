@@ -52,7 +52,7 @@ Explanations for the route configuration in the above code block are explained e
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:33-34 %}
 
-A helper utility above, is provided by `@dojo/routing`, that can be used to create a routing instance. The utility accepts the applications routing configuration, and a `registry` to define a `router` injector against. The utility returns the `router` instance.
+The `registerRouterInjector` helper utility used in the code above is provided by `@dojo/routing`, and can be used to create a routing instance. The utility accepts the application's routing configuration, and a `registry` to define a `router` injector against. The utility returns the `router` instance.
 
 {% instruction 'Initialize the routing' %}
 

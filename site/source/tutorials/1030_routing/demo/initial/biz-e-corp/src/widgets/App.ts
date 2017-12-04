@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';
@@ -12,7 +12,7 @@ import workerData from './../support/workerData';
 import * as css from './../styles/app.m.css';
 
 @theme(css)
-export default class App extends ThemeableMixin(WidgetBase) {
+export default class App extends ThemedMixin(WidgetBase) {
 	private _newWorker: Partial<WorkerFormData> = {};
 
 	private _workerData: WorkerProperties[] = workerData;
