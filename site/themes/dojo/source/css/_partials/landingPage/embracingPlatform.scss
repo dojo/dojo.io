@@ -1,0 +1,165 @@
+section.embrace-platform {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	background: linear-gradient(to right, #009dff, #00f5ff);
+	padding: 6em 0;
+	width: 100%;
+
+	@media screen and (max-width : $mobile-break) {
+		flex-direction: column;
+		background: linear-gradient(60deg, #009dff, #00f5ff);
+		padding-top: 0;
+		display: initial;
+	}
+
+	.copy, .demo {
+		width: 40%;
+
+		@media screen and (max-width : $mobile-break) {
+			margin: 10%;
+			width: 80%;
+		}
+	}
+
+	.copy {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		color: #ffffff;
+
+		img {
+			width: 55px;
+			height: 55px;
+			margin-left: -10px;
+
+			@media screen and (max-width : $mobile-break) {
+				width: 70px;
+				height: 70px;
+			}
+		}
+
+		h2 {
+			max-width: 60%;
+			line-height: 1.3;
+			padding-bottom: 1em;
+
+			@media screen and (max-width : $mobile-break) {
+				max-width: 100%;
+				font-size: 2em;
+			}
+		}
+		p {
+			margin-right: 10%;
+		}
+
+		a {
+			// display: inline-block;
+			display: none;
+			text-transform: uppercase;
+			padding: 1em 2em;
+			width: 170px;
+			cursor: pointer;
+			line-height: 2.5;
+			font-size: 12px;
+			text-align: center;
+			box-shadow: 0 10px 40px darken(#009dff, 10%);
+			background-color: #272a32;
+			color: #4dcdff;
+
+			@media screen and (max-width : $mobile-break) {
+				margin: auto;
+				position: relative;
+				top: 450px;
+			}
+
+		}
+	}
+
+	.demo {
+		@media screen and (max-width : $mobile-break) {
+			position: relative;
+			top: -10px;
+		}
+
+		.menu-list {
+			position: relative;
+			padding: 0.5em;
+			width: 450px;
+
+			@media screen and (max-width : $mobile-break) {
+				width: 325px;
+			}
+
+			.background {
+				border-radius: 3px;
+				position: absolute;
+				box-shadow: 0 10px 30px darken(#00f5ff, 10%);
+				transform-origin: left;
+				background-color: #1f2127;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+
+			.menu-item {
+				text-transform: uppercase;
+				font-family: 'Source Code Pro';
+				color: #6b7e89;
+				padding: 0.6em 1em;
+				display: inline-block;
+
+				@media screen and (max-width : $mobile-break) {
+					padding: 0.6em 0.5em;
+				}
+
+				> span {
+					border: none;
+					border-bottom: 2px solid transparent;
+					padding: 0.5em 0.3em;
+					font-size: 16px;
+
+					@media screen and (max-width : $mobile-break) {
+						font-size: 13px;
+					}
+
+					&.active {
+						color: #ffffff;
+						border-bottom-color: #ffffff;
+						background: inherit;
+					}
+				}
+			}
+		}
+		.code {
+			margin-top: 3em;
+			width: 375px;
+
+			.codeline {
+				margin: 0.2em 0;
+				overflow: hidden;
+				white-space: unquote("nowrap");
+				letter-spacing: 0.2em;
+				font-size: 16px;
+
+				@media screen and (max-width : $mobile-break) {
+					letter-spacing: 0.1em;
+				}
+
+				&.indent {
+					margin-left: 2em;
+				}
+
+				.html {
+					color: #effcff;
+					font-weight: bold;
+				}
+
+				.text {
+					color: #000000;
+				}
+			}
+		}
+	}
+}

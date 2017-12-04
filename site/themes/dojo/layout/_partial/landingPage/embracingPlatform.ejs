@@ -1,0 +1,192 @@
+<section class="embrace-platform">
+	<div class="copy">
+		<div>
+			<img src="/images/icon-components.svg" alt="components">
+		</div>
+		<h2>
+			Embracing the Web Platform
+		</h2>
+		<p>
+			Dojo strives for maximum interoperability. Web components provide a mechanism to leverage non-Dojo components within a Dojo application, and to effortlessly use your Dojo-based widgets in non-Dojo applications. Dojo provides first class support for web components. The decisions you make today should not lock you into decisions for the future.
+		</p>
+		<a href="/tutorials/comingsoon.html">
+			See the Tutorial
+		</a>
+	</div>
+	<div class="demo">
+		<div class="menu-list">
+			<div class="background"></div>
+			<div class="menu-item menu1">
+				<span class="active">
+					Menu 1
+				</span>
+			</div>
+			<div class="menu-item menu2">
+				<span>
+					Menu 2
+				</span>
+			</div>
+			<div class="menu-item menu3">
+				<span>
+					Menu 3
+				</span>
+			</div>
+			<div class="menu-item menu4">
+				<span>
+					Menu 4
+				</span>
+			</div>
+		</div>
+		<div class="code">
+			<div class="codeline">
+				<span class="html">
+						&lt;menu&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu1">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 1
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu2">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 2
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu3">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 3
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline indent menu4">
+				<span class="html">
+					&lt;menu-item&gt;
+				</span>
+				<span class="text">
+					Menu 4
+				</span>
+				<span class="html">
+					&lt;/menu-item&gt;
+				</span>
+			</div>
+			<div class="codeline">
+				<span class="html">
+						&lt;menu&gt;
+				</span>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	(function() {
+
+		var time = new Date().getTime();
+		var duration = 15000;
+		var durationLeft = duration;
+
+		function animate() {
+			var now = new Date().getTime();
+			var elapsedTime = now - time;
+			time = now;
+			durationLeft -= elapsedTime;
+			if (durationLeft < 0) {
+				durationLeft += duration;
+			}
+
+			var percentCompletion = (duration - durationLeft) / duration;
+			updateMenuListBackgroundAnimations(percentCompletion);
+			updateMenuItemAnimations(percentCompletion);
+			updateCodeAnimations(percentCompletion);
+
+			requestAnimationFrame(animate);
+		}
+
+		var menuListBackground = document.querySelector('.embrace-platform .menu-list .background');
+
+		function updateMenuListBackgroundAnimations(percentCompletion) {
+			var value;
+
+			if (percentCompletion < 0.4) {
+				value = interpolate(percentCompletion, {x1: 0.2, x2: 0.21, y1: 0, y2: 0.25});
+			}
+			else if (percentCompletion < 0.6) {
+				value = interpolate(percentCompletion, {x1: 0.4, x2: 0.41, y1: 0.25, y2: 0.5});
+			}
+			else if (percentCompletion < 0.8) {
+				value = interpolate(percentCompletion, {x1: 0.6, x2: 0.61, y1: 0.5, y2: 0.75});
+			}
+			else {
+				value = interpolate(percentCompletion, {x1: 0.8, x2: 0.81, y1: 0.75, y2: 1});
+			}
+
+			menuListBackground.style.transform = 'scaleX(' + value + ')';
+		}
+
+		var menu1Elem = document.querySelector('.embrace-platform .menu-item.menu1');
+		var menu2Elem = document.querySelector('.embrace-platform .menu-item.menu2');
+		var menu3Elem = document.querySelector('.embrace-platform .menu-item.menu3');
+		var menu4Elem = document.querySelector('.embrace-platform .menu-item.menu4');
+
+		function updateMenuItemAnimations(percentCompletion) {
+			var menu1 = { x1: 0.21, x2: 0.22, y1: 0, y2: 0.99 };
+			var menu2 = { x1: 0.41, x2: 0.42, y1: 0, y2: 0.99 };
+			var menu3 = { x1: 0.61, x2: 0.62, y1: 0, y2: 0.99 };
+			var menu4 = { x1: 0.81, x2: 0.82, y1: 0, y2: 0.99 };
+
+			menu1Elem.style.opacity = interpolate(percentCompletion, menu1);
+			menu2Elem.style.opacity = interpolate(percentCompletion, menu2);
+			menu3Elem.style.opacity = interpolate(percentCompletion, menu3);
+			menu4Elem.style.opacity = interpolate(percentCompletion, menu4);
+		}
+
+		var code1Elem = document.querySelector('.embrace-platform .code .menu1');
+		var code2Elem = document.querySelector('.embrace-platform .code .menu2');
+		var code3Elem = document.querySelector('.embrace-platform .code .menu3');
+		var code4Elem = document.querySelector('.embrace-platform .code .menu4');
+
+		function updateCodeAnimations(percentCompletion) {
+			var menu1 = { x1: 0.0, x2: 0.2, y1: 0, y2: 375 };
+			var menu2 = { x1: 0.25, x2: 0.4, y1: 0, y2: 375 };
+			var menu3 = { x1: 0.45, x2: 0.6, y1: 0, y2: 375 };
+			var menu4 = { x1: 0.65, x2: 0.8, y1: 0, y2: 375 };
+
+			code1Elem.style.width = interpolate(percentCompletion, menu1) + 'px';
+			code2Elem.style.width = interpolate(percentCompletion, menu2) + 'px';
+			code3Elem.style.width = interpolate(percentCompletion, menu3) + 'px';
+			code4Elem.style.width = interpolate(percentCompletion, menu4) + 'px';
+		}
+
+		function interpolate(x, params) {
+			if (x > params.x2) {
+				return params.y2;
+			}
+			else if (x >= params.x1) {
+				var ratio = (x - params.x1) / (params.x2 - params.x1);
+				return (params.y2 - params.y1) * ratio + params.y1;
+			}
+			else {
+				return params.y1;
+			}
+		}
+
+		requestAnimationFrame(animate);
+	})();
+</script>

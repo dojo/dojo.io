@@ -1,0 +1,234 @@
+<section class="accessibility">
+	<div class="animation">
+		<div class="english">Hello, World!</div>
+		<div class="french">Bonjour le monde</div>
+		<div class="spanish">Hola Mundo</div>
+		<div class="german">Hallo, Welt</div>
+		<div class="russian">Привет мир</div>
+		<div class="thai">สวัสดีชาวโลก</div>
+		<div class="chinese">你好，世界</div>
+	</div>
+	<div class="content">
+		<img src="/images/icon-internationalization.svg" alt="">
+		<h2>
+			Accessibility and
+			Internationalization
+			Out of the Box
+		</h2>
+		<p>
+			Dojo widgets offer full
+			<a href="/docs/fundamentals/accessibility/index.html">accessibility</a>
+			and
+			<a href="/docs/fundamentals/internationalization/index.html">internationalization</a> support while providing tools and guidelines to develop applications that provide inclusive experiences for everyone.
+		</p>
+		<a href="/tutorials/comingsoon.html">
+			See the Tutorial
+		</a>
+	</div>
+</section>
+
+<script>
+	(function() {
+
+		var time = new Date().getTime();
+		var duration = 30000;
+		var durationLeft = duration;
+
+		function animate() {
+			var now = new Date().getTime();
+			var elapsedTime = now - time;
+			time = now;
+			durationLeft -= elapsedTime;
+			if (durationLeft < 0) {
+				durationLeft += duration;
+			}
+
+			var percentCompletion = (duration - durationLeft) / duration;
+			updateFrenchAnimation(percentCompletion);
+			updateSpanishAnimation(percentCompletion);
+			updateChineseAnimation(percentCompletion);
+			updateGermanAnimation(percentCompletion);
+			updateRussianAnimation(percentCompletion);
+			updateThaiAnimation(percentCompletion);
+
+			requestAnimationFrame(animate);
+		}
+
+		var frenchElem = document.querySelector('.accessibility .animation .french');
+
+		function updateFrenchAnimation(percentCompletion) {
+			var rightBeginning = {
+				x1: 0, x2: 0.1,
+				y1: 3.3, y2: 0
+			};
+			var rightEnd = {
+				x1: 0.85, x2: 1,
+				y1: 10, y2: 3.3
+			}
+			var topBeginning = {
+				x1: 0, x2: 0.1,
+				y1: 13.3, y2: 10
+			};
+			var topEnd = {
+				x1: 0.85, x2: 1,
+				y1: 20, y2: 13.3
+			};
+			var opacityBeginning = {
+				x1: 0, x2: 0.1,
+				y1: 0.6, y2: 0
+			};
+			var opacityEnd = {
+				x1: 0.8, x2: 0.85,
+				y1: 0, y2: 0.6
+			};
+
+			var rightParams = percentCompletion <= rightBeginning.x2 ? rightBeginning : rightEnd;
+			var topParams = percentCompletion <= topBeginning.x2 ? topBeginning : topEnd;
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			frenchElem.style.right = interpolate(percentCompletion, rightParams) + '%';
+			frenchElem.style.top = interpolate(percentCompletion, topParams) + '%';
+			frenchElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var spanishElem = document.querySelector('.accessibility .animation .spanish');
+
+		function updateSpanishAnimation(percentCompletion) {
+			var left = {
+				x1: 0.12, x2: 0.3,
+				y1: 20, y2: 10
+			};
+			var opacityBeginning = {
+				x1: 0.12, x2: 0.17,
+				y1: 0, y2: 0.6
+			};
+			var opacityEnd = {
+				x1: 0.22, x2: 0.3,
+				y1: 0.6, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			spanishElem.style.left = interpolate(percentCompletion, left) + '%';
+			spanishElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var chineseElem = document.querySelector('.accessibility .animation .chinese');
+
+		function updateChineseAnimation(percentCompletion) {
+			var left = {
+				x1: 0.3, x2: 0.6,
+				y1: 0, y2: 20
+			};
+			var top = {
+				x1: 0.3, x2: 0.6,
+				y1: 80, y2: 60
+			};
+			var scale = {
+				x1: 0.3, x2: 0.6,
+				y1: 0.3, y2: 1.5
+			};
+			var opacityBeginning = {
+				x1: 0.3, x2: 0.4,
+				y1: 0, y2: 0.8
+			};
+			var opacityEnd = {
+				x1: 0.5, x2: 0.6,
+				y1: 0.8, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			chineseElem.style.left = interpolate(percentCompletion, left) + '%';
+			chineseElem.style.top = interpolate(percentCompletion, top) + '%';
+			chineseElem.style.transform = 'scale(' + interpolate(percentCompletion, scale) + ')';
+			chineseElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var germanElem = document.querySelector('.accessibility .animation .german');
+
+		function updateGermanAnimation(percentCompletion) {
+			var scale = {
+				x1: 0.5, x2: 0.9,
+				y1: 1.2, y2: 0.3
+			};
+			var opacityBeginning = {
+				x1: 0.5, x2: 0.6,
+				y1: 0, y2: 0.2
+			};
+			var opacityEnd = {
+				x1: 0.7, x2: 0.9,
+				y1: 0.2, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			germanElem.style.transform = 'scale(' + interpolate(percentCompletion, scale) + ')';
+			germanElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var russianElem = document.querySelector('.accessibility .animation .russian');
+
+		function updateRussianAnimation(percentCompletion) {
+			var top = {
+				x1: 0.6, x2: 1,
+				y1: 120, y2: 60
+			};
+			var scale = {
+				x1: 0.6, x2: 1,
+				y1: 2, y2: 0.5
+			};
+			var opacityBeginning = {
+				x1: 0.6, x2: 0.7,
+				y1: 0, y2: 0.4
+			};
+			var opacityEnd = {
+				x1: 0.8, x2: 1,
+				y1: 0.4, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			russianElem.style.top = interpolate(percentCompletion, top) + '%';
+			russianElem.style.transform = 'scale(' + interpolate(percentCompletion, scale) + ')';
+			russianElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		var thaiElem = document.querySelector('.accessibility .animation .thai');
+
+		function updateThaiAnimation(percentCompletion) {
+			var right = {
+				x1: 0.25, x2: 0.85,
+				y1: 10, y2: 20
+			};
+			var opacityBeginning = {
+				x1: 0.25, x2: 0.3,
+				y1: 0, y2: 0.2
+			};
+			var opacityEnd = {
+				x1: 0.7, x2: 0.85,
+				y1: 0.2, y2: 0
+			};
+
+			var opacityParams = percentCompletion <= opacityBeginning.x2 ? opacityBeginning : opacityEnd;
+
+			thaiElem.style.right = interpolate(percentCompletion, right) + '%';
+			thaiElem.style.opacity = interpolate(percentCompletion, opacityParams);
+		}
+
+		function interpolate(x, params) {
+			if (x > params.x2) {
+				return params.y2;
+			}
+			else if (x >= params.x1) {
+				var ratio = (x - params.x1) / (params.x2 - params.x1);
+				return (params.y2 - params.y1) * ratio + params.y1;
+			}
+			else {
+				return params.y1;
+			}
+		}
+
+		requestAnimationFrame(animate);
+	})();
+</script>

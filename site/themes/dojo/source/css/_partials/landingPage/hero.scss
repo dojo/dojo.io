@@ -1,0 +1,394 @@
+section.hero {
+		position: relative;
+		z-index: 0;
+		text-align: center;
+		width: 100%;
+
+		.container {
+			text-align: center;
+		}
+
+	h1 {
+		color: white;
+		margin: 10vh auto 0 auto;
+		text-align: center;
+		max-width: 60%;
+	}
+
+	a {
+		background-color: transparent;
+		text-transform: uppercase;
+		border: 1px solid #00B89C;
+		border-radius: 0;
+		font-weight: bold;
+		cursor: pointer;
+		color: white;
+		margin: 5vh auto 15vh auto;
+		width: 40vw;
+		max-width: 250px;
+		line-height: 3.5;
+		text-align: center;
+		font-size: 16px;
+		display: inline-block;
+	}
+
+	.highlight {
+		display: flex;
+		flex: 0 0 auto;
+		flex-direction: row;
+		justify-content: space-around;
+		margin-bottom: 3vh;
+
+		@media screen and (max-width : $mobile-break) {
+			flex-direction: column;
+		}
+
+		> div {
+			width: 30%;
+			padding: 0 2rem;
+
+			@media screen and (max-width : $mobile-break) {
+				width: 100%;
+				padding: 0 1em;
+			}
+
+			h3 {
+				font-size: 22px;
+				color: white;
+				text-align: left;
+
+				.red {
+					color: #b3141a;
+				}
+				.blue {
+					color: #279eda;
+					font-size: 22px;
+				}
+				.purple {
+					color: #b333c0;
+					font-size: 22px;
+				}
+			}
+			p {
+				font-size: 16px;
+				color: #666666;
+				text-align: left;
+			}
+		}
+	}
+
+	.shapes {
+		position: absolute;
+		left: 0; right: 0; top: 0; bottom: 0;
+		background: #000000 url(/images/header-bg.jpg);
+		background-size: 100vw 100vh;
+		background-position: top -25vh center;
+		background-repeat: no-repeat;
+		z-index: -1;
+
+		* {
+			@media screen and (max-width : $mobile-break) {
+				animation: none !important;
+			}
+		}
+
+		.sphere {
+			width: 20vh;
+			height: 20vh;
+			background:#222;
+			border-radius:100%;
+			animation: example 7s ease-in-out infinite;
+
+			&.lower-left {
+				transform: scale(0.5);
+				position: absolute;
+				animation: hero-lower-left-sphere 75s ease-in-out infinite;
+				left: 28%;
+				background: -webkit-radial-gradient(15% 15%, darken(#293232, 10%) 5%, #000 70%, #293232 95%);
+
+				@media screen and (max-width : $mobile-break) {
+					left: 0;
+					top: 0;
+					transform: translate(60vw, 20vh) scale(0.1);
+				}
+
+				@keyframes hero-lower-left-sphere {
+					from, to {
+						bottom: 15%;
+					}
+					50% {
+						bottom: 17%;
+					}
+				}
+			}
+			&.upper-right {
+				$color: darken(#2A659C, 30%);
+				transform: scale(0.25);
+				position: absolute;
+				animation: hero-upper-right-sphere 90s ease-in-out infinite;
+				background: -webkit-radial-gradient(15% 15%, $color 5%, #000 70%, $color 95%);
+				right: 30%;
+
+				@media screen and (max-width : $mobile-break) {
+					transform: translate(108vw, -4vh) scale(0.2);
+					right: 100%;
+					top: 0;
+				}
+
+				@keyframes hero-upper-right-sphere {
+					from, to {
+						top: 2%;
+						right: 33%;
+					}
+					50% {
+						top: 4%;
+						right: 30%;
+					}
+				}
+			}
+		}
+
+		.cube-scene {
+			position: absolute;
+			width: 20vh;
+			height: 20vh;
+			margin: 75px auto 0;
+			perspective: 1200px;
+
+			.cube {
+				top:0;
+				width: 20vh;
+				height: 20vh;
+				transform: rotateZ(-15deg) rotateX(-20deg);
+				transform-style: preserve-3d;
+
+				.side {
+					position: absolute;
+					width: 20vh;
+					height: 20vh;
+					box-sizing: border-box;
+					background: linear-gradient(to bottom right, #000, #222);
+					color: #fff;
+					text-transform: uppercase;
+					text-align: center;
+
+					&.back {
+						transform: translateZ(-10vh);
+					}
+					&.right {
+						transform: translateX(10vh) rotateY(90deg);
+					}
+					&.left {
+						transform: translateX(-10vh) rotateY(90deg);
+						background: linear-gradient(to bottom right, #333, #111);
+					}
+					&.top {
+						transform: translateY(-10vh) rotateX(90deg);
+					}
+					&.bottom {
+						transform: translateY(10vh) rotateX(90deg);
+						background: linear-gradient(to bottom left, #000, #222);
+					}
+					&.front {
+						transform: translateZ(10vh);
+						background: linear-gradient(to bottom right, #333, #000);
+					}
+				}
+			}
+			&.upper-left {
+				$color1: darken(#333b33, 20%);
+				$color1-light: lighten($color1, 5%);
+				$color1-dark: darken($color1, 20%);
+				transform: scale(0.45) rotateZ(100deg);
+				left: 6%;
+				top: 4%;
+
+				@media screen and (max-width : $mobile-break) {
+					transform: translate(-15vw, -11vh) scale(0.2);
+					left: 0;
+					top: 0;
+				}
+
+				.cube {
+					animation: hero-cube-upper-left 55s ease-in-out infinite;
+
+					@keyframes hero-cube-upper-left {
+						50% {
+							transform: rotateX(35deg) rotateY(50deg) translateZ(20px);
+						}
+					}
+				}
+
+				.side  {
+					background: linear-gradient(to bottom right, #000, $color1);
+
+					&.left {
+						background: linear-gradient(to bottom right, $color1-light, $color1-dark);
+					}
+
+					&.bottom {
+						background: linear-gradient(to bottom left, #000, $color1);
+					}
+
+					&.front {
+						background: linear-gradient(to bottom right, $color1-light, #000);
+					}
+				}
+
+			}
+			&.lower-left {
+				$color1: darken(#333b33, 15%);
+				$color1-light: lighten($color1, 5%);
+				$color1-dark: darken($color1, 20%);
+				transform: scale(0.25) rotateZ(40deg);
+				left: 15%;
+				bottom: 25%;
+
+				@media screen and (max-width : $mobile-break) {
+					transform: translate(60vw, 32vh) scale(0.15);
+					left: 0;
+					bottom: 100%;
+				}
+
+				.cube {
+					animation: hero-cube-lower-left 47s ease-in-out infinite;
+
+					@keyframes hero-cube-lower-left {
+						50% {
+							transform: rotateX(15deg) rotateY(20deg) translateZ(10px);
+							left: 16%;
+							bottom: 26%;
+						}
+					}
+				}
+
+				.side  {
+					background: linear-gradient(to bottom right, #000, $color1);
+
+					&.left {
+						background: linear-gradient(to bottom right, $color1-light, $color1-dark);
+					}
+
+					&.bottom {
+						background: linear-gradient(to bottom left, #000, $color1);
+					}
+
+					&.front {
+						background: linear-gradient(to bottom right, $color1-light, #000);
+					}
+				}
+			}
+
+			&.upper-right {
+				$color1: darken(#2A659C, 35%);
+				$color1-light: lighten($color1, 5%);
+				$color1-dark: darken($color1, 20%);
+				transform: scale(0.3) rotateZ(100deg);
+				right: 15%;
+				top: 35%;
+
+				@media screen and (max-width : $mobile-break) {
+					transform: translate(49vw, 8vh) scale(0.1);
+					right: 100%;
+					top: 0;
+				}
+
+				.cube {
+					animation: hero-cube-lower-left 30s ease-in-out infinite;
+
+					@keyframes hero-cube-lower-left {
+						50% {
+							transform: rotateX(35deg) rotateY(50deg) translateZ(20px);
+						}
+					}
+				}
+
+				.side  {
+					background: linear-gradient(to bottom right, #000, $color1);
+
+					&.left {
+						background: linear-gradient(to bottom right, $color1-light, $color1-dark);
+					}
+
+					&.bottom {
+						background: linear-gradient(to bottom left, #000, $color1);
+					}
+
+					&.front {
+						background: linear-gradient(to bottom right, $color1-light, #000);
+					}
+				}
+
+			}
+		}
+
+		.pyramid-gyro {
+			$color1: darken(#2A659C, 35%);
+			$color1-light: lighten($color1, 10%);
+			$color1-dark: darken($color1, 5%);
+			$size: 10vh;
+			position: absolute;
+			top: 10%;
+			right: 10%;
+			perspective: 1000px;
+			perspective-origin: 50% 100px;
+			transform: rotateY(180deg) rotateZ(30deg);
+
+			@media screen and (max-width : $mobile-break) {
+				top: 0;
+				right: 100%;
+				transform: translate(40vw, 33vh) scale(1);
+			}
+
+			.pyramid-axis {
+				position: relative;
+				width: $size;
+				transform-style: preserve-3d;
+				transform: rotateX(-50deg) rotateZ(20deg);
+				animation: pyramid 32s infinite ease-in-out;
+
+				@keyframes pyramid {
+					50% { transform: rotateY(50deg) rotateZ(-45deg);}
+				}
+			}
+
+			.pyramid-wall {
+				position: absolute;
+				border: $size/2 solid transparent;
+			}
+
+			.front {
+				bottom: -1vh;
+				border-bottom: $size solid $color1;
+				border-bottom: -webkit-linear-gradient(red, yellow);
+				transform: translateZ(1.25vh) rotateX(30deg);
+			}
+			.back {
+				bottom: -20px;
+				border-bottom: $size solid $color1;
+				transform: translateZ(-1.25vh) rotateY(180deg) rotateX(30deg);
+			}
+			.left {
+				bottom: -1vh;
+				left: 3.75vh;
+				border-bottom: $size solid $color1-dark;
+				transform: rotateY(270deg) translateX(-5vh) rotateX(30deg);
+				transform-origin: center left;
+			}
+			.right {
+				bottom: -2vh;
+				right: 7.5vh;
+				border-bottom: $size solid $color1-light;
+				transform: rotateY(-270deg) translateX(5vh) rotateX(30deg);
+				transform-origin: top right;
+			}
+			.bottom {
+				width: 10vh;
+				height: 10vh;
+				background: #000;
+				transform: rotateX(90deg) translateY(5vh);
+				transform-origin: bottom center;
+			}
+		}
+	}
+}
