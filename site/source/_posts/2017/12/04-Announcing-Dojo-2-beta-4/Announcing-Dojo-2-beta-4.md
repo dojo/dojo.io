@@ -1,15 +1,15 @@
 ---
 title: Announcing Dojo 2 beta 4!
-date: 2017-11-17 18:00:00
+date: 2017-12-04 18:00:00
 authorId: kitsonk
 featured_image: featured.png
 ---
 
 Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and optimized with the needs of enterprise application development in mind.
 
-With a focus on leveraging cutting edge standards such as web components and intersection observers, as well as emerging patterns like CSS modules, progressive web apps, and the virtual DOM, Dojo  provides an excellent experience for engineers and end users.  
+With a focus on leveraging cutting edge standards such as web components and intersection observers, as well as emerging patterns like CSS modules, progressive web apps, and the virtual DOM, Dojo  provides an excellent experience for engineers and end users.
 
-Dojo’s out-of-the-box experience takes under a minute to get started  and provides a variety of features including user interface widgets backed by powerful and flexible internationalization and accessibility options.  Intent on avoiding framework lock-in, its robust architectural flexibility and its support for modern standards makes Dojo a strong contender for enterprise development teams. 
+Dojo’s out-of-the-box experience takes under a minute to get started  and provides a variety of features including user interface widgets backed by powerful and flexible internationalization and accessibility options.  Intent on avoiding framework lock-in, its robust architectural flexibility and its support for modern standards makes Dojo a strong contender for enterprise development teams.
 
 The latest beta 4 release has several significant changes and updates from earlier versions. Here we highlight the current state of Dojo 2, as well as emphasize the recent changes and additions in beta 4.
 
