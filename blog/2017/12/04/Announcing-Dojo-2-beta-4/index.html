@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Announcing Dojo 2 beta 4! | Dojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and optimized with the needs of enterprise application development in mind. With a foc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Announcing Dojo 2 beta 4!">
+<meta property="og:url" content="https://dojo.github.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and optimized with the needs of enterprise application development in mind. With a focus on leveraging cutting edge standards">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.github.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/featured.png">
+<meta property="og:image" content="https://dojo.github.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/accordion.png">
+<meta property="og:image" content="https://dojo.github.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/tooltip.png">
+<meta property="og:updated_time" content="2017-12-04T21:03:22.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Announcing Dojo 2 beta 4!">
+<meta name="twitter:description" content="Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and optimized with the needs of enterprise application development in mind. With a focus on leveraging cutting edge standards">
+<meta name="twitter:image" content="https://dojo.github.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/featured.png">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+  
+    <link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicons/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="body-single-page
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="section">
+	<div class="container article">
+		<article id="post-Announcing-Dojo-2-beta-4" class="article article-type-post" itemscope itemprop="blogPost">
+			<div class="article-inner">
+				
+				
+					<header class="article-header">
+						<div class="article-meta">
+							<div class="author-meta">
+	
+	<span class="author-name"> Kitson Kelly</span>
+	<span class="article-date">
+  <time datetime="2017-12-04T18:00:00.000Z" itemprop="datePublished">December 4th 2017, 6:00 pm</time>
+</span>
+</div>
+							
+						</div>
+						
+  
+    <h1 class="article-title" itemprop="name">
+      Announcing Dojo 2 beta 4!
+    </h1>
+  
+
+					</header>
+				
+				<div class="article-entry" itemprop="articleBody">
+					
+						<p>Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and optimized with the needs of enterprise application development in mind.</p>
+<p>With a focus on leveraging cutting edge standards such as web components and intersection observers, as well as emerging patterns like CSS modules, progressive web apps, and the virtual DOM, Dojo  provides an excellent experience for engineers and end users.</p>
+<p>Dojo’s out-of-the-box experience takes under a minute to get started  and provides a variety of features including user interface widgets backed by powerful and flexible internationalization and accessibility options.  Intent on avoiding framework lock-in, its robust architectural flexibility and its support for modern standards makes Dojo a strong contender for enterprise development teams.</p>
+<p>The latest beta 4 release has several significant changes and updates from earlier versions. Here we highlight the current state of Dojo 2, as well as emphasize the recent changes and additions in beta 4.</p>
+<img src="/blog/2017/12/04/Announcing-Dojo-2-beta-4/featured.png" title="feature-full">
+<a id="more"></a>
+<h2 id="Getting-Beta-4"><a href="#Getting-Beta-4" class="headerlink" title="Getting Beta 4"></a>Getting Beta 4</h2><p>Beta 4 is currently tagged as <code>latest</code> in npm, so simply updating to the latest version will provide you with the Beta 4 release.  We also have a release tag of <code>beta4</code> in npm if you want to focus just on using Beta 4.</p>
+<p>With Beta 3, we revised our package versions to make it easier to keep a compatible set of packages.  We are releasing all pre-release versions of Dojo 2 packages under major version <code>0</code>, but are introducing breaking changes in the minor release (e.g. <code>0.2.0</code> has breaking changes from <code>0.1.0</code>).  The versions we publish to npm rely upon a minor range.  You will see that some packages for Beta 4 are <code>0.3.#</code> and some are <code>0.2.#</code>, but all packages depend on a range where compatibility has been verified by the Dojo team.  This means you do not need to reply upon a specific release tag.  If you are managing your dependencies directly, you should ideally depend upon a minor release for packages (e.g. <code>~0.2.0</code>).</p>
+<p>As we make releases of packages in anticipation of Beta 5, we will not publish those packages to <code>latest</code> until we release Beta 5.</p>
+<h2 id="Just-getting-started"><a href="#Just-getting-started" class="headerlink" title="Just getting started"></a>Just getting started</h2><p>If you want to get started with Dojo 2, the best way is to take a look at our <a href="/tutorials/">tutorials</a> or even take a look at Dojo 2 in action with our <a href="https://dojo.github.io/examples/">example applications</a> (source on <a href="https://github.com/dojo/examples" target="_blank" rel="noopener">GitHub</a>).  Good starting tutorials are:</p>
+<ul>
+<li><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+<li><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+<li><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+</ul>
+<h2 id="Integrated-virtual-DOM"><a href="#Integrated-virtual-DOM" class="headerlink" title="Integrated virtual DOM"></a>Integrated virtual DOM</h2><p>Directly integrating the virtual DOM is the biggest change for the beta 4 release.  Instead of depending on the <a href="https://maquettejs.org/" target="_blank" rel="noopener">Maquette</a> virtual DOM library, we realized that our specialized requirements and needs are better solved by direct integration.  So in Beta 4 we have replaced Maquette with <code>@dojo/widget-core/vdom</code>.</p>
+<p>This change allows us to directly merge our abstraction of widgets and virtual DOM nodes that get rendered to the DOM.  This increases the performance of the widgeting system, and also led to other performance and memory improvements to the widgeting system.</p>
+<p>This alone would not affect users of Dojo 2, but it allows us to address many features and refactor code that introduces some significant <strong>breaking changes</strong> in the beta 4 release.</p>
+<p>Explore the widgeting system via the <a href="/tutorials/003_creating_widgets/">Creating widgets</a> tutorial.</p>
+<h2 id="Virtual-DOM-classes"><a href="#Virtual-DOM-classes" class="headerlink" title="Virtual DOM classes"></a>Virtual DOM classes</h2><p>One of the biggest usability issues with earlier Dojo 2 beta releases was managing CSS classes.  In Beta 4, we have changed this significantly, and while it is a <strong>breaking change</strong> we think the end result is <em>a lot</em> more usable.</p>
+<p>Previously, <code>classes</code> were actually an object map of keys with a boolean value.  If you were using the Dojo 2 theming system, you would use a function to specify your classes in a more functional way, which would automatically generate a memoized map.  If you were not using the theming system, you would need to memoize classes directly. While this approach might be ok to author, it was really challenging to test. It would look something like this:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> WidgetBase <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ThemeableMixin<span class="token punctuation">,</span> <span class="token punctuation">{</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themeable'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'./styles/mywidget.m.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> ThemeableBase <span class="token operator">=</span> <span class="token function">ThemeableMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">MyWidget</span> <span class="token keyword">extends</span> <span class="token class-name">ThemeableBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">classes</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fixed</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>rootFixed<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Hello world!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>With the changes in Beta 4, this gets written as:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> WidgetBase <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ThemedMixin<span class="token punctuation">,</span> <span class="token punctuation">{</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'./styles/mywidget.m.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> ThemedBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">MyWidget</span> <span class="token keyword">extends</span> <span class="token class-name">ThemedBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Hello world!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The <code>classes</code> property is now just an array of strings.  Also the mixed in <code>.theme()</code> method more clearly express intent over the former <code>.classes()</code> name.  <em>Fixed</em> classes are simply added to the array, instead of being supplied to a chained function.</p>
+<p>The testing tooling (<code>@dojo/test-extras/harness</code>) has been updated to reflect these changes, making it easier to test widgets.  <code>Themeable</code> was renamed to <code>Themed</code> for improved mixin semantics.</p>
+<h2 id="Widget-lifecycle-changes"><a href="#Widget-lifecycle-changes" class="headerlink" title="Widget lifecycle changes"></a>Widget lifecycle changes</h2><p>We have a goal with Dojo 2 to provide straightforward and efficient APIs. One of the biggest lessons we learned with Dojo 2 was that the widget lifecycle was far too complex. The Dojo 2 widget system handles the vast majority of lifecycle changes and updates automatically. There are some scenarios where you many need to know when an item is added or removed from the DOM by the virtual DOM system.</p>
+<p>In Beta 4, we have introduced the <code>onAttach</code> and <code>onDetach</code> lifecycle methods to WidgetBase.  They are designed to allow a widget developer to <em>hook</em> when a widget instance is attached to the DOM or detached from the DOM.</p>
+<p>To use the lifecycle methods, simply override <code>onAttach</code> or <code>onDetach</code>:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> WidgetBase <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">MyWidget</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token function">onAttach</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// perform actions when attached</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">protected</span> <span class="token function">onDetach</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// perform actions when detached</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Hello world!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Earlier, less effective efforts to provide lifecycle methods are deprecated and will be removed in the future.</p>
+<h2 id="Deferred-properties"><a href="#Deferred-properties" class="headerlink" title="Deferred properties"></a>Deferred properties</h2><p>A virtual DOM node may have its property resolution deferred. Instead of providing an object of <code>VirtualDomProperties</code>, you may provide a function which accepts a boolean flag representing whether the virtual DOM node has been inserted into the DOM. This function returns an object of <code>VirtualDomProperties</code>.</p>
+<p>Because these functions will be called during the next <code>requestAnimationFrame</code> (when the projector is running in its default asynchronous mode), this feature can be used to better handle CSS transition states.  For example, you can now do something like this:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> WidgetBase <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>inserted<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            classes<span class="token punctuation">:</span> <span class="token string">'fadeInTransition'</span><span class="token punctuation">,</span>
+            styles<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                opacity<span class="token punctuation">:</span> inserted <span class="token operator">?</span> <span class="token string">'1'</span> <span class="token punctuation">:</span> <span class="token string">'0'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Hello World!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Web-animations-meta-provider"><a href="#Web-animations-meta-provider" class="headerlink" title="Web animations meta provider"></a>Web animations meta provider</h2><p>The Dojo 2 widgeting system strives to provide sufficient tools and abstractions to avoid needing to directly manipulate the DOM.  Meta providers offer reactive ways to interact with features that would otherwise require direct DOM interaction.  Dojo 2 includes meta providers for Intersection Observers, dragging on an element, node dimensions, and the matching of a virtual DOM node.</p>
+<p>In this vein, we have added a web animations meta provider in Beta 4.  It provides a way to easily animate DOM nodes in a reactive way, as just part of your widget’s <code>.render()</code> function.  For example:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> WidgetBase <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> WebAnimation <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/meta/WebAnimation'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">AnimatedWidget</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> animate <span class="token operator">=</span> <span class="token punctuation">{</span>
+            id<span class="token punctuation">:</span> <span class="token string">'rootAnimation'</span><span class="token punctuation">,</span>
+            effects<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span> height<span class="token punctuation">:</span> <span class="token string">'10px'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> height<span class="token punctuation">:</span> <span class="token string">'100px'</span> <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                play<span class="token punctuation">:</span> <span class="token keyword">true</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">meta</span><span class="token punctuation">(</span>WebAnimation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">,</span> animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            key<span class="token punctuation">:</span> <span class="token string">'root'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Custom-Elements-Web-Components"><a href="#Custom-Elements-Web-Components" class="headerlink" title="Custom Elements/Web Components"></a>Custom Elements/Web Components</h2><p>A primary objective for Dojo 2 is to embrace and leverage standards wherever possible to encourage interoperability. One such area is Web Components, where it is possible to both use Web Components within Dojo 2 applications, and also use Dojo 2 widgets as Custom Elements outside the context of a Dojo 2 application.  Beta 4 introduces several changes to the widgeting system to better support Dojo 2 widgets used as Custom Elements.  Earlier, it was challenging to have a Dojo 2 Custom Element efficiently use other Dojo 2 Custom Elements as children.  With Beta 4, this is no longer a problem.</p>
+<p>If you write the following in TypeScript:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">private</span> <span class="token function">_onSelected</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> <span class="token keyword">any</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">w</span><span class="token punctuation">(</span>Menu<span class="token punctuation">,</span> <span class="token punctuation">{</span> onSelected<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSelected <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+      <span class="token function">w</span><span class="token punctuation">(</span>MenuItem<span class="token punctuation">,</span> <span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token string">'a'</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'Menu Item A'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">w</span><span class="token punctuation">(</span>MenuItem<span class="token punctuation">,</span> <span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token string">'b'</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'Menu Item B'</span><span class="token punctuation">,</span> selected<span class="token punctuation">:</span> <span class="token keyword">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">w</span><span class="token punctuation">(</span>MenuItem<span class="token punctuation">,</span> <span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token string">'c'</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'Menu Item C'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You could express the same using Custom Elements, independent of a Dojo 2 application:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-menu</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>menu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-menu-item</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>a<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Menu Item A<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu-item</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-menu-item</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>b<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Menu Item B<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu-item</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-menu-item</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Menu Item C<span class="token punctuation">"</span></span> <span class="token attr-name">selected</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu-item</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
+  a.data = { foo: 'bar' };
+  menu.addEventListener('selected', function(event) {
+    const detail = event.detail;
+    console.log(detail);
+  });
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>We have a <a href="https://dojo.github.io/examples/custom-element-menu/">live custom elements example</a>, along with the example’s <a href="https://github.com/dojo/examples/tree/master/custom-element-menu" target="_blank" rel="noopener">source code</a>.</p>
+<h2 id="Other-widget-system-improvements"><a href="#Other-widget-system-improvements" class="headerlink" title="Other widget system improvements"></a>Other widget system improvements</h2><p>Additional widget system changes enable features and capabilities to make widgets more robust:</p>
+<ul>
+<li>Event listeners on virtual DOM nodes now allow the listeners to change between renders.</li>
+<li>Options for the <em>root</em> of a <code>Projector</code> are more flexible, including being able to return a widget node, or an array of nodes. Changing the root of the projector after the first render is now supported.</li>
+<li>Several internal performance and memory improvements to the virtual DOM and widgeting system.</li>
+</ul>
+<h2 id="New-widgets"><a href="#New-widgets" class="headerlink" title="New widgets"></a>New widgets</h2><p>We have introduced two new widgets in Beta 4 and are considering more before the release of Dojo 2.  While our focus is providing solid patterns and examples for building widgets, it is very helpful to have <em>out-of-the-box</em> widgets, especially for rapid prototyping.</p>
+<p>We have introduced a new accordion pane widget (<code>@dojo/widgets/accordionpane/AccordionPane</code>):</p>
+<p><img src="./accordion.png" alt="The accordion pane widget" height="465" width="351"></p>
+<p>And we have introduced a tooltip widget (<code>@dojo/widgets/tooltip/Tooltip</code>):</p>
+<p><img src="./tooltip.png" alt="The tooltip widget" height="104" width="415"></p>
+<h2 id="Other-widget-improvements"><a href="#Other-widget-improvements" class="headerlink" title="Other widget improvements"></a>Other widget improvements</h2><p>We are working to standardize conventions in widgets. Some changes have landed for Beta 4, with additional refinements planned for Beta 5. In particular we have been rationalizing our styles, clearly delineating between themeable and structural styles, making it easier to theme existing widgets. We are also investigating approaches to better customize and extend the out of the box widgets.</p>
+<h2 id="Stores-re-architecture"><a href="#Stores-re-architecture" class="headerlink" title="Stores re-architecture"></a>Stores re-architecture</h2><p>The current API in Dojo 1 for managing state focused on a CRUD type API.  Originally in Dojo 2 we directly adapted that API as part of <em>stores</em>.  The concept of state containers has become a primary focus, so we created a solution that aligns to that architecture.</p>
+<p>Instead of a CRUD type API, <code>@dojo/stores</code> focuses on three main concepts:</p>
+<ul>
+<li><em>Operation</em> which is a granular state mutation based on the JSON Patch API</li>
+<li><em>Command</em> a semantically aligned function which returns a set of operations to apply</li>
+<li><em>Process</em> a function that groups commands into a <em>process flow</em> to represent a complete behavior</li>
+</ul>
+<p>You can read more about the new API at <a href="https://github.com/dojo/stores" target="_blank" rel="noopener"><code>dojo/stores</code></a>.</p>
+<h2 id="A-new-approach-to-shims-and-polyfills"><a href="#A-new-approach-to-shims-and-polyfills" class="headerlink" title="A new approach to shims and polyfills"></a>A new approach to shims and polyfills</h2><p>We have rationalized the way we introduce environment compatibility, and improved the build system to further optimize this approach when building an application. We realize that some packages depend upon third-party polyfills, but we did not have a consistent way to introduce them and elide them if not needed.</p>
+<p>Now <code>@dojo/shim/main</code> loads all polyfills needed for the expected base functionality and <code>@dojo/shim/browser</code> will load polyfills for a browser environment.  Most end developers will not need to worry about this as the other Dojo 2 packages will ensure that these modules get loaded.</p>
+<p>If you are building an application targeting only certain platforms, any unneeded polyfills will simply result in a non-operation, but will still be included in the bundle. Beta 4 adds an additional static build optimization feature, where a specially formed pragma will denote the feature that the next import will be polyfilling. If that feature is not required based on the build targets, it will be removed from the build. More information can be found in the <a href="https://github.com/dojo/webpack-contrib#elided-imports" target="_blank" rel="noopener">elided imports documentation</a>.</p>
+<h2 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h2><p>Previously we provided a functional replacement for <code>for...of</code> constructs, allowing developers to author code that worked in older environments. We also provided shims for <code>Symbol</code> and the built in ES6 iterators. TypeScript 2.3 added a down level emit for iterators. We have restructured our packages to use <code>for...of</code> instead of the <code>@dojo/shim/iterator.forOf()</code> function and will likely remove <code>forOf()</code> in the future. We recommend users of Dojo 2 also migrate to this syntax.</p>
+<h2 id="TypeScript-helpers"><a href="#TypeScript-helpers" class="headerlink" title="TypeScript helpers"></a>TypeScript helpers</h2><p>When emitting to JavaScript from TypeScript, each run-time module included all TypeScript helpers needed by that module. This increases the bundle size because these helpers would be duplicated many times. In Beta 4, we import helpers from <code>tslib</code> and automatically include these helpers once as part of the CLI build tool, eliminating any duplication of TS helper code.</p>
+<h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><p>We are planning many things for Beta 5, which will always chop and change a bit. You may look forward to:</p>
+<ul>
+<li>A re-architected build tool, which will include build time rendering to automatically identify critical path resources in the build, providing automatic code splitting and build optimization.</li>
+<li>More performance improvements for the widgeting system.</li>
+<li>More examples and applications of <code>@dojo/stores</code> based on the new architecture.</li>
+<li>Improvements to the tooling around widget themes</li>
+</ul>
+<p>At the moment, we are planning for Beta 5 in December and a release candidate for Dojo 2 in January.</p>
+<h2 id="Getting-involved"><a href="#Getting-involved" class="headerlink" title="Getting involved"></a>Getting involved</h2><p>If you want to get involved, you can see an overview of the parts of Dojo 2 at <a href="https://github.com/dojo/meta" target="_blank" rel="noopener">dojo/meta</a>.  In all of our repositories we use the labels <a href="https://github.com/dojo/meta/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22" target="_blank" rel="noopener"><code>good first issue</code></a> and <a href="https://github.com/dojo/meta/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22" target="_blank" rel="noopener"><code>help wanted</code></a> to help guide you on a good place to get started.</p>
+
+					
+				</div>
+				<footer class="article-footer">
+					
+					
+				</footer>
+			</div>
+			
+				
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2017/03/27/Dojo-2-is-coming/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Dojo 2 is coming</div>
+    </a>
+  
+</nav>
+
+			
+		</article>
+
+		
+	</div>
+</div>
+
+				</div>
+				<footer class="footer">
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+			</div>
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>
