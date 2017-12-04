@@ -47,15 +47,7 @@ export const hexo = {
 };
 
 export const intern = {
-	unit: {
-		options: {
-			runType: 'client',
-			config: '_build/tests/intern',
-			reporters: [
-				'Console', 'LcovHtml'
-			]
-		}
-	}
+	version: 4
 };
 
 export const prompt = {
