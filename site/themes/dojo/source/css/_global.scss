@@ -5,6 +5,7 @@ body {
 	background: $page-background;
 	height: 100%;
 	margin: 0;
+	overflow: hidden;
 }
 
 // Fixed header + sticky footer
@@ -20,6 +21,11 @@ body {
 	flex: 1;
 	overflow-y: auto;
 	overflow-x: hidden;
+
+	@media screen and (max-width: $mobile-break) {
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
 
 	.page-content {
 		flex: 1 0 auto;
