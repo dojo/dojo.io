@@ -5,6 +5,10 @@
   <%
   var title = page.title;
 
+  function toTitleCase(str) {
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+
   if (is_archive()){
     title = __('archive_a');
 
@@ -14,9 +18,9 @@
       title += ': ' + page.year;
     }
   } else if (is_category()){
-    title = __('category') + ': ' + page.category;
+    title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
   } else if (is_tag()){
-    title = __('tag') + ': ' + page.tag;
+    title = __('tag') + ': ' + toTitleCase(page.tag.replace(/\-/g, ' '));
   }
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>

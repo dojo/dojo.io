@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: cookbook
 category: widgets
 title: Handle string localization within a widget
 overview: Use a localized message within a widget
