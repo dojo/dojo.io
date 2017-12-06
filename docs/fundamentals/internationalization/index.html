@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: fundamentals | Dojo</title>
+  <title>Docs: Fundamentals | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="InternationalizationPhilosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and">
+  <meta name="description" content="InternationalizationPhilosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterpri">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Internationalization">
 <meta property="og:url" content="https://dojo.github.io/docs/fundamentals/internationalization/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="InternationalizationPhilosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterpri">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-04T21:03:22.966Z">
+<meta property="og:updated_time" content="2017-12-06T14:51:33.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Internationalization">
 <meta name="twitter:description" content="InternationalizationPhilosophy and approachInternationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterpri">
@@ -60,6 +60,7 @@ ga('send', 'pageview');
 				<div class="navbar-end">
 					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
 					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
 					<a class="navbar-item" href="/blog">Blog</a>
 					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
 				</div>
@@ -75,26 +76,65 @@ ga('send', 'pageview');
 		<div class="columns">
 			<div class="column is-3">
 				<aside class="menu">
+		
 	<p class="menu-label">
-		Fundamentals
-	</p>
+			fundamentals
+		</p>
 
-	<ul class="menu-list">
-		
-			<li ><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
-		
-			<li class="active" ><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
-		
-			<li ><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
-		
-			<li ><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
-		
-			<li ><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
-		
-			<li ><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
-		
-	</ul>
+		<ul class="menu-list">
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/accessibility/index.html">
+						Accessibility
+					</a>
+				</li>
+			
+				<li
+					class="active" 
+				>
+					<a href="/docs/fundamentals/internationalization/index.html">
+						Internationalization
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/reactive_programming/index.html">
+						Reactive programming
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/typescript_and_dojo_2/index.html">
+						TypeScript and Dojo 2
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/vdom_abstractions/index.html">
+						vDOM Abstractions - w and v in the d module
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/working_with_virtual_dom/index.html">
+						Working with a Virtual DOM
+					</a>
+				</li>
+			
+		</ul>
+	
 </aside>
+
 			</div>
 			<div class="column is-9">
 				<h1 id="Internationalization"><a href="#Internationalization" class="headerlink" title="Internationalization"></a>Internationalization</h1><h2 id="Philosophy-and-approach"><a href="#Philosophy-and-approach" class="headerlink" title="Philosophy and approach"></a>Philosophy and approach</h2><p>Internationalization, or i18n, is the process of decoupling an application from a particular language or culture, and is a major requirement of most enterprise applications. As such, internationalization is one of Dojo 2’s core concerns. <code>@dojo/i18n</code>, Dojo 2’s internationalization ecosystem, provides everything that is needed to internationalize and localize an application, from locale-specific messaging to date, number, and unit formatting. Rather than reinvent the wheel, Dojo 2 delegates to the excellent <a href="https://github.com/globalizejs/globalize" target="_blank" rel="noopener">Globalize.js</a> library wherever possible. In addition to formatters and parsers for working with localized dates, times, numbers, and units, Globalize.js also includes an implementation of the <a href="http://userguide.icu-project.org/formatparse/messages" target="_blank" rel="noopener">ICU <code>MessageFormat</code></a>, which makes it possible to format messages based on locale-specific variables like gender and count. While <code>@dojo/i18n</code> can be used independently from the rest of Dojo 2, most applications will also rely on <code>@dojo/widget-core</code> and <code>@dojo/cli-build-webpack</code> to simplify internationalization.</p>

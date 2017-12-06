@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: fundamentals | Dojo</title>
+  <title>Docs: Fundamentals | Dojo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Working with a virtual DOMAlmost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the">
+  <meta name="description" content="Working with a virtual DOMAlmost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the Document Object Model (DOM) API. While">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Working with a Virtual DOM">
 <meta property="og:url" content="https://dojo.github.io/docs/fundamentals/working_with_virtual_dom/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Working with a virtual DOMAlmost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the Document Object Model (DOM) API. While">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-04T21:03:22.966Z">
+<meta property="og:updated_time" content="2017-12-06T14:51:33.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Working with a Virtual DOM">
 <meta name="twitter:description" content="Working with a virtual DOMAlmost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the Document Object Model (DOM) API. While">
@@ -60,6 +60,7 @@ ga('send', 'pageview');
 				<div class="navbar-end">
 					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
 					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
 					<a class="navbar-item" href="/blog">Blog</a>
 					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
 				</div>
@@ -75,26 +76,65 @@ ga('send', 'pageview');
 		<div class="columns">
 			<div class="column is-3">
 				<aside class="menu">
+		
 	<p class="menu-label">
-		Fundamentals
-	</p>
+			fundamentals
+		</p>
 
-	<ul class="menu-list">
-		
-			<li ><a href="/docs/fundamentals/accessibility/index.html">Accessibility</a></li>
-		
-			<li ><a href="/docs/fundamentals/internationalization/index.html">Internationalization</a></li>
-		
-			<li ><a href="/docs/fundamentals/reactive_programming/index.html">Reactive programming</a></li>
-		
-			<li ><a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript and Dojo 2</a></li>
-		
-			<li ><a href="/docs/fundamentals/vdom_abstractions/index.html">vDOM Abstractions - w and v in the d module</a></li>
-		
-			<li class="active" ><a href="/docs/fundamentals/working_with_virtual_dom/index.html">Working with a Virtual DOM</a></li>
-		
-	</ul>
+		<ul class="menu-list">
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/accessibility/index.html">
+						Accessibility
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/internationalization/index.html">
+						Internationalization
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/reactive_programming/index.html">
+						Reactive programming
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/typescript_and_dojo_2/index.html">
+						TypeScript and Dojo 2
+					</a>
+				</li>
+			
+				<li
+					
+				>
+					<a href="/docs/fundamentals/vdom_abstractions/index.html">
+						vDOM Abstractions - w and v in the d module
+					</a>
+				</li>
+			
+				<li
+					class="active" 
+				>
+					<a href="/docs/fundamentals/working_with_virtual_dom/index.html">
+						Working with a Virtual DOM
+					</a>
+				</li>
+			
+		</ul>
+	
 </aside>
+
 			</div>
 			<div class="column is-9">
 				<h1 id="Working-with-a-virtual-DOM"><a href="#Working-with-a-virtual-DOM" class="headerlink" title="Working with a virtual DOM"></a>Working with a virtual DOM</h1><p>Almost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener">Document Object Model (DOM) API</a>. While this works well, increased consumer expectations combined with higher levels of application complexity have made it difficult to build high performance applications that directly interact with the page via the DOM. Dojo 2 addresses this challenge by using an abstraction layer, called a virtual DOM, to remove the responsibility for manipulating the page structure from the application. In this article, we will discuss what the virtual DOM is and how Dojo 2 uses it to streamline the process of creating highly performant applications.</p>
