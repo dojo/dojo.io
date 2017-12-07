@@ -1,25 +1,28 @@
 ---
 layout: tutorial
-title: Using Dojo 1 Dijits
-overview: Find out how to use Dojo 1 Dijits in a Dojo 2 application.
+title: Using Dojo 2 Widgets in a Dojo 1 Application
+overview: Find out how to use Dojo 2 Widgets in a Dojo 1 application.
 paginate: true
 ---
 
 {% section 'first' %}
 
-# Using Dojo 1 Dijits
+# Using Dojo 2 Widgets in a Dojo 1 Application
 
 ## Overview
 
-This tutorial will extend the [Form widgets](../005_form_widgets/) tutorial.  In this tutorial, we will replace some of the Dojo 2 based form widgets with Dojo 1 Dijits.
+This tutorial will use the Worker widget from the [Creating widgets](../003_creating_widgets/) tutorial.  
+In this tutorial, we will add Dojo 2 widgets to a Dojo 1 application.
 
-To achieve maximum performance and efficiency, developers should eventually author their Dojo 2 application with Dojo 2 widgets. This approach is provided as a migration strategy, to leverage custom Dojo 1 Dijits within a Dojo 2 application, to help make it easier to migrate an application in phases over time.
+Ideally, you would upgrade your Dojo 1 application to Dojo 2. This approach is provided as a migration strategy, 
+to leverage Dojo 2 Widgets within a Dojo 1 application, to help make it easier to migrate an application in phases over time.
 
 ## Prerequisites
 
-You can [download](../assets/1040_dojo1_dijits-initial.zip) the demo project to get started.
+You can [download](../assets/1045_custom_elements_in_dojo1-initial.zip) the demo project to get started.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+If you want to author a Dojo 2 widget, you need to be familiar with TypeScript as Dojo 2 uses it extensively. 
+For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
 
 {% section %}
 
@@ -27,7 +30,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Installing dependencies.' %}
 
-The first step will be to install our dependencies using npm:
+The first step will be to install our dependencies using npm.
 
 {% instruction 'Install the initial dependencies via npm:' %}
 
@@ -35,19 +38,12 @@ The first step will be to install our dependencies using npm:
 $ npm install
 ```
 
-{% instruction 'Install this additional development dependency:' %}
+{% instruction 'Install the Dojo 2 widget dependencies:' %}
 
 ```
+$ cd dojo2-widget
 $ npm install dojo-typings --save-dev
 ```
-
-{% instruction 'Install additional run-time dependencies:' %}
-
-```
-$ npm install dojo dijit dojo-themes @dojo/interop --save
-```
-
-The `dojo`, `dijit`, and `dojo-themes` packages are the Dojo 1 dependencies we will be using at run-time.  The `@dojo/interop` package contains several tools that allow easy integration with other projects, like Dojo 1 and Redux.
 
 {% section %}
 

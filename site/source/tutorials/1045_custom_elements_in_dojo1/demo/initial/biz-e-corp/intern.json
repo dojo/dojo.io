@@ -1,0 +1,33 @@
+{
+	"browser": {
+		"suites": [
+			"../../tests/unit/main.js"
+		],
+
+		"loader": {
+			"script": "dojo",
+			"options": {
+				"packages": [
+					{ "name": "dojo", "location": "../../node_modules/dojo" },
+					{ "name": "dijit", "location": "../../node_modules/dijit" },
+					{ "name": "myapp", "location": "../../src" },
+					{ "name": "dojo2Widget", "location": "../../dojo2-widget/dist" }
+				]
+			}
+		}
+	},
+	"configs": {
+		"local": {
+			"tunnel": "selenium",
+			"environments": [
+				{ "browserName": "chrome" }
+			]
+		},
+		"browserstack": {
+			"tunnel": "browserstack",
+			"environments": [
+				{ "browserName": "chrome", "platform": "WINDOWS" }
+			]
+		}
+	}
+}
