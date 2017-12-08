@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="main.css">
 
 	<script src="https://rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+
+	<link rel="import" href="./dojo2-widget/dist/worker/worker.html">
 </head>
 <body>
 <div id="myapp"></div>
@@ -15,8 +17,7 @@
 	  async: true,
 
 	  packages: [
-		  { name: 'myapp', location: '../../src' },
-		  { name: 'dojo2Widget', location: '../../dojo2-widget/dist' }
+		  { name: 'myapp', location: '../../src' }
 	  ]
 	}
 </script>

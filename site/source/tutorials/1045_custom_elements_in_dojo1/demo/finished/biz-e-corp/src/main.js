@@ -1,7 +1,6 @@
 define([
-	'./customElement!dojo2Widget/worker/worker.html',
 	'dojo/domReady!'
-], function(_WidgetBase) {
+], function() {
 	return {
 		start: function (rootNode) {
 			var workerData = [
