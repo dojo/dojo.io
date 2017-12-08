@@ -14,7 +14,13 @@
 					{ "name": "dojo2Widget", "location": "../../dojo2-widget/dist" }
 				]
 			}
-		}
+		},
+
+		"plugins": [
+			"//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js",
+			"./dojo2-widget/dist/worker/widget-core.js",
+			"./dojo2-widget/dist/worker/worker.js"
+		]
 	},
 	"configs": {
 		"local": {

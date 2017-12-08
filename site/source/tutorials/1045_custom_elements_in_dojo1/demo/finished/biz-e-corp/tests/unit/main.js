@@ -25,5 +25,13 @@ define([ 'myapp' ], function (myapp) {
 			var workerNodes = sandbox.getElementsByTagName('myapp-worker');
 			assert.strictEqual(3, workerNodes.length);
 		});
+
+		it('should run the widget', function () {
+			var workerNodes = sandbox.getElementsByTagName('myapp-worker');
+			var nameNodes = workerNodes[0].getElementsByTagName('strong');
+			assert.isNotNull(nameNodes);
+			assert.strictEqual(1, nameNodes.length);
+			assert.strictEqual('Jones, Tim', nameNodes[0].textContent);
+		});
 	});
 });
