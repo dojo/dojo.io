@@ -28,12 +28,6 @@
 			"environments": [
 				{ "browserName": "chrome" }
 			]
-		},
-		"browserstack": {
-			"tunnel": "browserstack",
-			"environments": [
-				{ "browserName": "chrome", "platform": "WINDOWS" }
-			]
 		}
 	}
 }
