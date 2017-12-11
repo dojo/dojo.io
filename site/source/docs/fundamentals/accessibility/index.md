@@ -11,7 +11,7 @@ overview: Accessibility is a core concern of Dojo 2. This article demonstrates h
 
 Dojo 2 is grounded in the belief that accessibility is as important online as it is in our physical environments, and architects of both share a similar responsibility to provide access to all. Accessibility failures abound in each setting, and they can be very obvious once one starts looking:
 
-| ![Bad wheelchair ramp example](../../../tutorials/resources/ramp-bad.jpg)  | ![Good ramp example](../../../tutorials/resources/ramp-good.jpg) |
+| ![Bad wheelchair ramp example](/docs/resources/ramp-bad.jpg)  | ![Good ramp example](/docs/resources/ramp-good.jpg) |
 |:---:|:---:|
 | Afterthought Accessibility | Designed Accessibility |
 

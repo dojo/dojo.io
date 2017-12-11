@@ -13,9 +13,9 @@ Consider a banking application where the user's account balance might appear in 
 ## Imperative approach
 
 Traditionally, we might use an event emitter. Each time the balance is updated we emit an event, and any interested parties can listen for these events.
-
-![Banking](resources/imperative.png)
-
+<p class="center">
+    ![Banking](/docs/resources/imperative.png)
+</p>
 ```javascript
 // assume some sort of application wide messageBus
 
@@ -42,8 +42,9 @@ Dojo 2 is built around unidirectional, top-down property propagation where it is
 
 In our banking example, we simply provide the account balance as a property to the widget - and when the property changes, so does our user interface. The account balance is propagated down to the widgets that need it.
 
-![Account Balance](resources/dojo2-reactive.png)
-
+<p class="center">
+    ![Account Balance](/docs/resources/dojo2-reactive.png)
+</p>
 ```typescript
 export interface AccountBalanceProperties {
     balance: number;
