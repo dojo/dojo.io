@@ -14613,6 +14613,9 @@ body {
   .container {
     width: 100%; } }
 
+.center {
+  text-align: center; }
+
 .header {
   background: #222127; }
 

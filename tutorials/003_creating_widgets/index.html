@@ -14,8 +14,8 @@
 <meta property="og:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
-<meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker_page.png">
-<meta property="og:updated_time" content="2017-12-11T20:32:37.526Z">
+<meta property="og:image" content="https://dojo.github.io/tutorials/003_creating_widgets/resources/worker_page.png">
+<meta property="og:updated_time" content="2017-12-11T21:10:32.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -158,7 +158,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-the-Worker-widget"><a href="#Creating-the-Worker-widget" class="headerlink" title="Creating the Worker widget"></a>Creating the Worker widget</h2><div class="task">Create the <code>Worker</code> widget and use it to display some information about a worker.</div>
 <p>Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:</p>
-<p class="center"><img src="../resources/worker.png" alt="worker_widget"></p>
+<p class="center"><img src="/tutorials/resources/worker.png" alt="worker_widget"></p>
 
 <p>The first step is to create the worker widget. We will put the implementation in <code>Worker.ts</code>. As with the <code>App</code> widget that we created earlier, we need to add some initial dependencies and the class declaration to <code>Worker.ts</code>.</p>
 <div class="instruction">Add this code:</div>
@@ -310,7 +310,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token punctuation">}</span>
 </code></pre>
 <p>If you return to the browser, you’ll see that the widget now has the classes applied and looks a little better.</p>
-<p class="center"><img src="../resources/worker_page.png" alt="worker_page"></p>
+<p class="center"><img src="./resources/worker_page.png" alt="worker_page"></p>
 
 <p>While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget’s components. Notice that we don’t have class names such as <code>.worker</code> or <code>.image</code> like we used in the CSS file, rather we have something like <code>.worker__image__3aIJl</code>. The <code>dojo build</code> command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called “themes”). To learn more about those, take a look at the <a href="../007_theming/">Theming an Application</a> tutorial in the Cookbook section.</p>
 <p>We’ve now updated our application to display a single employee, but our goal is to display a collection of employees. We could certainly add additional <code>Worker</code> widgets to our application, but they would all be siblings of the <code>Banner</code> widget and could be difficult to style properly. In the next section, we’ll create a simple container widget that will manage the layout of the <code>Worker</code> widgets.</p>
