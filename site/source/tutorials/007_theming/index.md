@@ -65,17 +65,49 @@ Fixed classes apply styles that cannot be overridden by a theme, using a suffix 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:48-51 %}
 
-Add the following to `workerForm.m.css`.
+Replace all of the selectors containing `.workerForm` with the following rules in `workerForm.m.css`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.m.css' lines:1-17 lang:css %}
 
 If you open the application in a browser its appearance and behavior should be unchanged.
 
-{% instruction 'Now add a `root` and `rootFixed` to both `Worker.ts` and `WorkerContainer.ts`' %}
+{% instruction 'Now update `worker.m.css` and `workerContain.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors. %}
 
-{% instruction 'When you are finished, click on toggle solution to see the results.' %}
+{% instruction 'When you are finished, click on toggle solution to see one possible result.' %}
 
 {% solution showsolution1 %}
+```css
+/* workerContainer.m.css */
+.rootFixed {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.root {
+
+}
+
+/* worker.m.css */
+
+/* all rules were originally in the .worker selector */
+.root {
+	margin: 0 10px 40px;
+	max-width: 350px;
+	min-width: 250px;
+	flex: 1 1 calc(33% - 20px);
+	position: relative;
+}
+
+.rootFixed {
+	/* flip transform styles */
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+```
 ```typescript
 // WorkerContainer.ts
 // ...
@@ -96,8 +128,8 @@ render() {
     }, [
     // ...
 }
-
 ```
+
 {% endsolution %}
 
 Next, we will start to create a theme.
@@ -112,7 +144,7 @@ Let's create a `themes` directory under your project `src` to store our theme re
 
 {% instruction 'Theme the Worker widget' %}
 
-In order to theme the `Worker` widget, we need to create `worker.m.css` within our `theme/dojo` directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's style sheet.
+In order to theme the `Worker` widget, we need to create `worker.m.css` within our `themes/dojo` directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's style sheet.
 
 Add the following code to `theme.ts`:
 
