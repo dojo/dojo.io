@@ -77,7 +77,7 @@ Before continuing with the `List` implementation, let’s review and verify the 
 
 We will add the `List` widget to the existing `Banner` widget so users can filter a list of workers by name when first visiting the application. The end result should look something like this:
 
-<p class="center">![list_widget](../resources/list.png)</p>
+<p class="center">![list_widget](/tutorials/resources/list.png)</p>
 
 {% instruction 'Import the `List` and the `w` module into `Banner.ts`:' %}
 

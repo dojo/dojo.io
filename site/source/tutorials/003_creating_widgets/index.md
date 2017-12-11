@@ -123,7 +123,7 @@ In the next section, we'll create the `Worker` widget that will show the portrai
 
 Now it is time to create our Worker widget. For now, this widget will only render static content. We will use its properties to allow the application to customize what is rendered. Our goal is to end up with something that looks like this:
 
-<p class="center">![worker_widget](../resources/worker.png)</p>
+<p class="center">![worker_widget](/tutorials/resources/worker.png)</p>
 
 The first step is to create the worker widget. We will put the implementation in `Worker.ts`. As with the `App` widget that we created earlier, we need to add some initial dependencies and the class declaration to `Worker.ts`.
 
@@ -291,7 +291,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better.
 
-<p class="center">![worker_page](../resources/worker_page.png)</p>
+<p class="center">![worker_page](./resources/worker_page.png)</p>
 
 While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../007_theming/) tutorial in the Cookbook section.
 
