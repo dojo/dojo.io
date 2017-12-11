@@ -14762,9 +14762,9 @@ body {
         background-repeat: no-repeat;
         background-size: contain; }
         .body-front-page .footer .link-container .links a.twitter {
-          background-image: url(/images/github.png); }
-        .body-front-page .footer .link-container .links a.github {
           background-image: url(/images/twitter.png); }
+        .body-front-page .footer .link-container .links a.github {
+          background-image: url(/images/github.png); }
   .body-front-page .footer {
     color: rgba(245, 245, 245, 0.6);
     text-align: center; }
