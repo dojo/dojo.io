@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-11T21:41:35.795Z">
+<meta property="og:updated_time" content="2017-12-11T22:03:41.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using Dojo 1 Dijits">
 <meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
@@ -274,7 +274,35 @@ ga('send', 'pageview');
 
 <script src="/js/tutorial-support.js"></script>
 <script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'Using Dojo 1 Dijits');
+	function isMobile() {
+		if( navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i)
+		){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	if (isMobile()) {
+		(function() {
+			var paginator = document.querySelector('.paginator');
+			paginator && paginator.parentNode.removeChild(paginator);
+			var sections = document.querySelectorAll('section.tutorial');
+			for (var i = 0; i < sections.length; i++) {
+				var section = sections[i];
+				section.classList.remove('hidden', 'hiding');
+			}
+		})();
+	}
+	else {
+		tutorial.populatePaginator(document.getElementById('paginator'), 'Using Dojo 1 Dijits');
+	}
 </script>
 
 			

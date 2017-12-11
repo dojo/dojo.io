@@ -14,7 +14,7 @@
 <meta property="og:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/006_deploying_to_production/resources/build_stats.png">
-<meta property="og:updated_time" content="2017-12-11T21:41:35.751Z">
+<meta property="og:updated_time" content="2017-12-11T22:03:41.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deploying to production">
 <meta name="twitter:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
@@ -186,7 +186,35 @@ ga('send', 'pageview');
 
 <script src="/js/tutorial-support.js"></script>
 <script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'Deploying to production');
+	function isMobile() {
+		if( navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i)
+		){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	if (isMobile()) {
+		(function() {
+			var paginator = document.querySelector('.paginator');
+			paginator && paginator.parentNode.removeChild(paginator);
+			var sections = document.querySelectorAll('section.tutorial');
+			for (var i = 0; i < sections.length; i++) {
+				var section = sections[i];
+				section.classList.remove('hidden', 'hiding');
+			}
+		})();
+	}
+	else {
+		tutorial.populatePaginator(document.getElementById('paginator'), 'Deploying to production');
+	}
 </script>
 
 			

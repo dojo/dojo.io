@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-11T21:41:35.791Z">
+<meta property="og:updated_time" content="2017-12-11T22:03:41.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
@@ -379,7 +379,35 @@ router<span class="token punctuation">.</span><span class="token function">start
 
 <script src="/js/tutorial-support.js"></script>
 <script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'Routing');
+	function isMobile() {
+		if( navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i)
+		){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	if (isMobile()) {
+		(function() {
+			var paginator = document.querySelector('.paginator');
+			paginator && paginator.parentNode.removeChild(paginator);
+			var sections = document.querySelectorAll('section.tutorial');
+			for (var i = 0; i < sections.length; i++) {
+				var section = sections[i];
+				section.classList.remove('hidden', 'hiding');
+			}
+		})();
+	}
+	else {
+		tutorial.populatePaginator(document.getElementById('paginator'), 'Routing');
+	}
 </script>
 
 			

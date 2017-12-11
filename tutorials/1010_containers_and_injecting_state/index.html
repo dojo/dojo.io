@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-11T21:41:35.763Z">
+<meta property="og:updated_time" content="2017-12-11T22:03:41.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
 <meta name="twitter:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
@@ -428,7 +428,35 @@ registry<span class="token punctuation">.</span><span class="token function">def
 
 <script src="/js/tutorial-support.js"></script>
 <script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'State management');
+	function isMobile() {
+		if( navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i)
+		){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	if (isMobile()) {
+		(function() {
+			var paginator = document.querySelector('.paginator');
+			paginator && paginator.parentNode.removeChild(paginator);
+			var sections = document.querySelectorAll('section.tutorial');
+			for (var i = 0; i < sections.length; i++) {
+				var section = sections[i];
+				section.classList.remove('hidden', 'hiding');
+			}
+		})();
+	}
+	else {
+		tutorial.populatePaginator(document.getElementById('paginator'), 'State management');
+	}
 </script>
 
 			

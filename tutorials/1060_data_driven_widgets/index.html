@@ -14,7 +14,7 @@
 <meta property="og:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/list.png">
-<meta property="og:updated_time" content="2017-12-11T21:41:35.811Z">
+<meta property="og:updated_time" content="2017-12-11T22:03:41.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-driven widgets">
 <meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
@@ -288,7 +288,35 @@ ga('send', 'pageview');
 
 <script src="/js/tutorial-support.js"></script>
 <script>
-	tutorial.populatePaginator(document.getElementById('paginator'), 'Data-driven widgets');
+	function isMobile() {
+		if( navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i)
+		){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	if (isMobile()) {
+		(function() {
+			var paginator = document.querySelector('.paginator');
+			paginator && paginator.parentNode.removeChild(paginator);
+			var sections = document.querySelectorAll('section.tutorial');
+			for (var i = 0; i < sections.length; i++) {
+				var section = sections[i];
+				section.classList.remove('hidden', 'hiding');
+			}
+		})();
+	}
+	else {
+		tutorial.populatePaginator(document.getElementById('paginator'), 'Data-driven widgets');
+	}
 </script>
 
 			
