@@ -1,22 +1,20 @@
-import * as registerSuite from 'intern/lib/interfaces/object';
 import { v } from '@dojo/widget-core/d';
 import harness, { Harness } from '@dojo/test-extras/harness';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import HelloWorld from '../../../src/widgets/HelloWorld';
 
-let helloWorldHarness: Harness<WidgetProperties, typeof HelloWorld>;
-registerSuite({
-	name: 'HelloWorld',
+const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
+let helloWorldHarness: Harness<HelloWorld>;
 
-	beforeEach() {
+describe('HelloWorld', () => {
+	beforeEach(() => {
 		helloWorldHarness = harness(HelloWorld);
-	},
+	});
 
-	afterEach() {
+	afterEach(() => {
 		helloWorldHarness.destroy();
-	},
+	});
 
-	render() {
+	it('should render', () => {
 		helloWorldHarness.expectRender(v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ]));
-	}
+	});
 });

@@ -1,0 +1,209 @@
+<section class="up-and-running">
+
+	<div class="container">
+		<div class="commands">
+			<h3>
+				Get Going Quickly
+			</h3>
+			<p>
+				Getting started with Dojo is simple.
+			</p>
+			<div id="upAndRunning-typing-1" class="codeline">
+				<span class="line-number">1</span>
+				<span class="typed-text">
+					npm i @dojo/cli -g
+				</span>
+			</div>
+			<div id="upAndRunning-typing-2" class="codeline">
+				<span class="line-number">2</span>
+				<span class="typed-text">
+					dojo create --name hello-world
+				</span>
+			</div>
+			<div id="upAndRunning-typing-3" class="codeline">
+				<span class="line-number">3</span>
+				<span class="typed-text">
+					<strong>
+						Go!
+					</strong>
+				</span>
+			</div>
+
+		</div>
+		<div class="results">
+			<div class="code">
+				<div class="codeline">
+					<span class="keyword">
+						import
+					</span>
+					<span class="variable">
+						WidgetBase
+					</span>
+					<span class="keyword">
+						from
+					</span>
+					<span class="string">'@dojo/widget-core/WidgetBase'</span><span>;</span>
+				</div>
+				<div class="codeline">
+					<span class="keyword">
+						import
+					</span>
+					<span class="variable">
+						ProjectorMixin
+					</span>
+					<span class="keyword">
+						from
+					</span>
+					<span class="string">'@dojo/widget-core/Projector'</span><span>;</span>
+				</div>
+				<div class="codeline">
+					<span class="keyword">
+						import
+					</span>
+					<span>
+						{
+					</span>
+					<span class="variable">
+						v
+					</span>
+					<span>
+						}
+					</span>
+					<span class="keyword">
+						from
+					</span>
+					<span class="string">'@dojo/widget-core/d'</span><span>;</span>
+				</div>
+			</div>
+			<div class="result-shadow"></div>
+			<div class="result">
+				<div class="check">
+					✔
+				</div>
+				<div class="success">
+					Success!
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	(function () {
+		var time = new Date().getTime();
+		var duration = 10000;
+		var durationLeft = duration;
+
+		function animate() {
+			var now = new Date().getTime();
+			var elapsedTime = now - time;
+			time = now;
+			durationLeft -= elapsedTime;
+			if (durationLeft < 0) {
+				durationLeft += duration;
+			}
+
+			var percentCompletion = (duration - durationLeft) / duration;
+			updateTyping1Animations(percentCompletion);
+			updateTyping2Animations(percentCompletion);
+			updateTyping3Animations(percentCompletion);
+			updateResultAnimations(percentCompletion);
+
+			requestAnimationFrame(animate);
+		}
+
+		var typing1Elem = document.querySelector('#upAndRunning-typing-1 .typed-text');
+
+		function updateTyping1Animations(percentCompletion) {
+			var typing = {
+				x1: 0, x2: 0.15,
+				y1: 0, y2: 220
+			};
+			var fadeIn = {
+				x1: 0.15, x2: 0.2,
+				y1: 0, y2: 1
+			};
+
+			typing1Elem.style.width = interpolate(percentCompletion, typing) + 'px';
+			var opacity = interpolate(percentCompletion, fadeIn);
+			typing1Elem.style.backgroundColor = 'rgba(232, 249, 246, ' + opacity + ')';
+			typing1Elem.style.borderColor = 'rgba(0, 184, 156, ' + opacity + ')';
+		}
+
+		var lineNumber2Elem = document.querySelector('#upAndRunning-typing-2 .line-number');
+		var typing2Elem = document.querySelector('#upAndRunning-typing-2 .typed-text');
+
+		function updateTyping2Animations(percentCompletion) {
+			var delayShow = {
+				x1: 0.25, x2: 0.26,
+				y1: 0, y2: 1
+			};
+			var typing = {
+				x1: 0.25, x2: 0.4,
+				y1: 0, y2: 310
+			};
+			var fadeIn = {
+				x1: 0.4, x2: 0.45,
+				y1: 0, y2: 1
+			};
+
+			lineNumber2Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing2Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing2Elem.style.width = interpolate(percentCompletion, typing) + 'px';
+			var opacity = interpolate(percentCompletion, fadeIn);
+			typing2Elem.style.backgroundColor = 'rgba(232, 249, 246, ' + opacity + ')';
+			typing2Elem.style.borderColor = 'rgba(0, 184, 156, ' + opacity + ')';
+		}
+
+		var lineNumber3Elem = document.querySelector('#upAndRunning-typing-3 .line-number');
+		var typing3Elem = document.querySelector('#upAndRunning-typing-3 .typed-text');
+
+		function updateTyping3Animations(percentCompletion) {
+			var delayShow = {
+				x1: 0.65, x2: 0.66,
+				y1: 0, y2: 1
+			};
+			var typing = {
+				x1: 0.65, x2: 0.8,
+				y1: 0, y2: 60
+			};
+
+			lineNumber3Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing3Elem.style.opacity = interpolate(percentCompletion, delayShow);
+			typing3Elem.style.width = interpolate(percentCompletion, typing) + 'px';
+		}
+
+		var code = document.querySelector('.up-and-running .results .code');
+		var result = document.querySelector('.up-and-running .results .result');
+		var resultShadow = document.querySelector('.up-and-running .results .result-shadow');
+
+		function updateResultAnimations(percentCompletion) {
+			var fadeInCode = {
+				x1: 0.5, x2: 0.525,
+				y1: 0, y2: 1
+			};
+			var fadeInResult = {
+				x1: 0.575, x2: 0.6,
+				y1: 0, y2: 1
+			};
+
+			code.style.opacity = interpolate(percentCompletion, fadeInCode);
+			resultShadow.style.opacity = interpolate(percentCompletion, fadeInResult);
+			result.style.opacity = interpolate(percentCompletion, fadeInResult);
+		}
+
+		function interpolate(x, params) {
+			if (x > params.x2) {
+				return params.y2;
+			}
+			else if (x >= params.x1) {
+				var ratio = (x - params.x1) / (params.x2 - params.x1);
+				return (params.y2 - params.y1) * ratio + params.y1;
+			}
+			else {
+				return params.y1;
+			}
+		}
+
+		requestAnimationFrame(animate);
+	})();
+</script>

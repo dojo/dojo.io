@@ -1,8 +1,11 @@
+$mobile-break: 768px;
+
 html,
 body {
 	background: $page-background;
 	height: 100%;
 	margin: 0;
+	overflow: hidden;
 }
 
 // Fixed header + sticky footer
@@ -17,6 +20,12 @@ body {
 	flex-direction: column;
 	flex: 1;
 	overflow-y: auto;
+	overflow-x: hidden;
+
+	@media screen and (max-width: $mobile-break) {
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
 
 	.page-content {
 		flex: 1 0 auto;
@@ -36,4 +45,10 @@ body {
 // Makes inline flex items full height e.g. cards
 .is-full-height {
 	height: 100%;
+}
+
+.container {
+	@media screen and (max-width: 1023px) {
+		width: 100%;
+	}
 }

@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: routing
 title: Get the dynamic components of a URL from within a widget
 overview: Access URL parameters from within a widget
 ---

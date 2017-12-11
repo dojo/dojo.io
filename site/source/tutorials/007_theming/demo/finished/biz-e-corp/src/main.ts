@@ -1,6 +1,6 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import App from './widgets/App';
-import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
+import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
 import { Registry } from '@dojo/widget-core/Registry';
 import theme from './themes/dojo/theme';
 

@@ -1,0 +1,172 @@
+section.intersection-observers {
+	$height: 670;
+	perspective: 600px;
+	perspective-origin: 24% center;
+	height: 0px + $height;
+	width: 100%;
+	padding: 0 3em;
+	overflow-y: hidden;
+	width: 100%;
+
+	@media screen and (max-width : $mobile-break) {
+		padding: 0;
+		height: auto;
+	}
+
+	.foreground {
+		position: relative;
+		color: #666666;
+		height: 100%;
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			margin-left: 40%;
+			height: 0px + $height;
+
+			@media screen and (max-width : $mobile-break) {
+				margin: 15vh 13vw;
+				height: auto;
+			}
+
+			h2 {
+				position: relative;
+
+				.reticle {
+					position: absolute;
+					left: -40%;
+					width: 20%;
+					height: 8px;
+					top: unquote('calc(50% - 2px)');
+					border: 1px solid;
+					border-color: transparent #ced4d6;
+
+					@media screen and (max-width : $mobile-break) {
+						display: none;
+					}
+
+					&:before, &:after {
+						position: absolute;
+						content: " ";
+						border-bottom: 1px solid #ced4d6;
+						width: 100px;
+						top: 50%;
+					}
+
+					&:before {
+						right: 100%;
+					}
+
+					&:after {
+						left: 100%;
+					}
+				}
+
+				padding: 0;
+			}
+
+			p {
+				display: inline-block;
+				max-width: 60%;
+
+				@media screen and (max-width : $mobile-break) {
+					max-width: 100%;
+				}
+			}
+
+			a {
+				// display: inline-block;
+				display: none;
+				text-transform: uppercase;
+				padding: 1em 2em;
+				width: 170px;
+				cursor: pointer;
+				line-height: 2.5;
+				font-size: 12px;
+				text-align: center;
+				box-shadow: 0 10px 20px #cccccc;
+				color: #ffffff;
+				background-color: #000000;
+
+				@media screen and (max-width : $mobile-break) {
+					margin: 5vh auto;
+				}
+			}
+		}
+
+		.scales {
+			position: absolute;
+			top: 0; bottom: 0; left: 0; right: 0;
+			z-index: -1;
+		}
+
+		.scale {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+
+			&.right {
+				right: 0;
+
+				.tick {
+					margin-left:auto;
+				}
+			}
+		}
+
+		.tick {
+			$tickWidth: 9px;
+			margin-bottom: 11px;
+			border-bottom: 1px solid #ced4d6;
+
+			&.small {
+				width: $tickWidth;
+			}
+
+			&.medium {
+				width: $tickWidth * 2;
+			}
+
+			&.large {
+				width: $tickWidth * 4;
+			}
+		}
+	}
+
+	.background {
+		position: absolute;
+		left: 0; right: 0; top: 100%; bottom: 0;
+		padding: 0 3em;
+		z-index: -1;
+
+		@media screen and (max-width : $mobile-break) {
+			display: none;
+		}
+
+		.square {
+			position: relative;
+			width: 8vw;
+			height: 8vw;
+			margin: 45px unquote('calc(24% - 6vw)');
+			border-radius: 5px;
+			background: #272a32;
+			transform-style: preserve-3d;
+			backface-visibility: hidden;
+			box-shadow: 0 10px 20px #dddddd;
+
+			&:after {
+				position: absolute;
+				content: " ";
+				left: 0; right: 0; top: 0; bottom: 0;
+				border-radius: 5px;
+				-ms-transform: rotateY(180deg) translateZ(1px);
+				transform: rotateY(180deg) translateZ(1px);
+				transform-style: preserve-3d;
+				background: linear-gradient(to bottom, #2fe189, #00ff8f);
+				backface-visibility: hidden;
+				box-shadow: 0 10px 30px #00ff8f;
+			}
+		}
+	}
+}

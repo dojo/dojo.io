@@ -15,7 +15,7 @@ The Dojo 2 widget system provides a functional API that strives to strictly enfo
 In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.
 
 ## Prerequisites
-You can [download](../assets/1006_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
+You can [download](../assets/1060_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -33,7 +33,7 @@ Before digging into the specifics of wiring a widget to a data source, a basic l
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-3,6,7-8,12-17,27-28,35-37 %}
 
-This code lays the base foundation for a themeable Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemeableMixin`, and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
+This code lays the base foundation for a themed Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemedMixin`, and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
 
 {% instruction 'Import `TextInput` into `List.ts`:' %}
 

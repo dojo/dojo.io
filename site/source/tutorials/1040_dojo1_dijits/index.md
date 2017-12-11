@@ -61,7 +61,7 @@ Dojo 1 and Dijits at run-time are considered _external_ dependencies for the Doj
 
 {% include_codefile 'demo/finished/biz-e-corp/.dojorc' %}
 
- To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build.  Additionally, some of those dependencies will be injected (loaded) into our bundle.  The first dependency provides configuration for the Dojo 1 loader (which we will create later).  The second dependency includes the `dojo` package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested.  The third dependency is `dijit`, which are our Dojo 1 Dijits.  The final dependency is a modern flat theme for Dojo 1 Dijits.  We are injecting the _root_ CSS into our application bundle as well, which will ensure the CSS is loaded an available at run time.
+ To support Dojo 1 Dijits we have declared four external dependencies which will be copied during our build.  Additionally, some of those dependencies will be injected (loaded) into our bundle.  The first dependency provides configuration for the Dojo 1 loader (which we will create later).  The second dependency includes the `dojo` package and loads the Dojo 1 AMD loader which will then subsequently load the other Dojo 1 modules that are requested.  The third dependency is `dijit`, which contains our Dojo 1 Dijits.  The final dependency is a modern flat theme for Dojo 1 Dijits.  We are injecting the _root_ CSS into our application bundle as well, which will ensure the CSS is loaded and available at run time.
 
 {% task 'Updating the `tsconfig.json` configuration.' %}
 
@@ -125,7 +125,7 @@ All Dojo 1 modules are AMD modules without default exports.  As such, you need t
 
 {% task 'Wrapping Dijits.' %}
 
-We recommend any wrapped Dijits be created as individual modules in `/src/dijit` in the same path structure they are located in the source `dijit` package.
+We recommend any wrapped Dijits be created as individual modules in `/src/dijit` using the same path structure as in the source `dijit` package.
 
 {% instruction 'Create `/src/dijit/Fieldset.ts` with the following content:' %}
 
@@ -141,7 +141,7 @@ We recommend any wrapped Dijits be created as individual modules in `/src/dijit`
 
 {% task 'Importing Dijits.' %}
 
-Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 or modules.
+Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 modules.
 
 {% instruction 'Import Dijits into `/src/widgets/WorkerForm.ts`:' %}
 
@@ -157,7 +157,7 @@ We will be using the `w()` function from `@dojo-widget/core/d`.  Don't forget to
 
 {% task 'Adding Dijits to a widget\'s render function.' %}
 
-Now that we have imported our wrapped Dijits into the module they will be used, we need to add them to the render function.
+Now that we have imported our wrapped Dijits into the module where they will be used, we need to add them to the render function.
 
 {% instruction 'Add imported Dijits to the `WorkerForm` widget\'s render function:' %}
 

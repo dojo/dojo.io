@@ -1,0 +1,136 @@
+section.accessibility {
+	background: linear-gradient(to right, #b332c0, #c405a8);
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+
+	@media screen and (max-width : $mobile-break) {
+		flex-direction: column;
+	}
+
+	.animation, .content {
+		width: 49%;
+		margin: 0 auto;
+		position: relative;
+
+		@media screen and (max-width : $mobile-break) {
+			width: auto;
+		}
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		color: #ffffff;
+
+		@media screen and (max-width : $mobile-break) {
+			margin: 0 5vw;
+		}
+
+		img {
+			width: 55px;
+			height: 55px;
+			margin-left: -10px;
+
+			@media screen and (max-width : $mobile-break) {
+				width: 60px;
+				height: 60px;
+			}
+
+		}
+		h2 {
+			width: 60%;
+			color: inherit;
+			margin: 0;
+		}
+		p {
+			width: 80%;
+			margin-top: 1em;
+
+			a {
+				color: #ffffff;
+				text-decoration: underline;
+			}
+		}
+		> a {
+			// display: inline-block;
+			display: none;
+			text-transform: uppercase;
+			padding: 1em 2em;
+			width: 170px;
+			cursor: pointer;
+			line-height: 2.5;
+			font-size: 12px;
+			text-align: center;
+			box-shadow: 0 10px 40px darken(#bc1bb4, 10%);
+			background-color: #272a32;
+			color: #ff00ff;
+
+			@media screen and (max-width : $mobile-break) {
+				margin: 10vh auto;
+			}
+		}
+	}
+
+	.animation {
+		overflow: hidden;
+
+		> div {
+			position: absolute;
+			color: #ff00ff;
+		}
+
+		.english {
+			position: relative;
+			font-size: 7em;
+			font-weight: bold;
+			margin: 10vh 8vw;
+			width: 50%;
+			line-height: 1.2;
+
+			@media screen and (max-width : $mobile-break) {
+				font-size: 5em;
+			}
+		}
+
+		.french {
+			font-size: 3em;
+			right: 0;
+			top: 10%;
+			opacity: 0.6;
+		}
+
+		.spanish {
+			font-size: 3em;
+			left: 5%;
+			top: 50%;
+			opacity: 0.6;
+		}
+
+		.chinese {
+			font-size: 4em;
+			left: 0;
+			top: 80%;
+			opacity: 0.8;
+		}
+		.german {
+			font-size: 3em;
+			left: 15%;
+			top: 20%;
+			opacity: 0.2;
+		}
+		.russian {
+			font-size: 5em;
+			right: 0;
+			top: 70%;
+			opacity: 0.4;
+		}
+		.thai {
+			font-size: 3em;
+			right: 10%;
+			top: 50%;
+			opacity: 0.4;
+		}
+	}
+}

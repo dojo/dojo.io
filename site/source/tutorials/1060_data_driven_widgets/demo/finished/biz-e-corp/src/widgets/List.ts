@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import { WorkerProperties } from './Worker';
 import * as css from '../styles/list.m.css';
@@ -11,7 +11,7 @@ export interface ListProperties {
 	value: string;
 }
 
-const ListBase = ThemeableMixin(WidgetBase);
+const ListBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class List extends ListBase<ListProperties> {

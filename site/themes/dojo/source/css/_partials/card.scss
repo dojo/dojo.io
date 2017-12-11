@@ -6,4 +6,8 @@
 	&:hover {
 		@include shadow(3);
 	}
+
+	.content {
+		color: $card-color;
+	}
 }

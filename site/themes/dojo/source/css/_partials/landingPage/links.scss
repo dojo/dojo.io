@@ -1,0 +1,105 @@
+section.links {
+	position: relative;
+	background-color: #272a32;
+	padding: 2em 0;
+	width: 100%;
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		justify-content:  flex-start;
+		width: 100%;
+		align-items: center;
+
+		@media screen and (max-width : $mobile-break) {
+			flex-direction: column;
+			justify-content: center;
+			padding: 5vh 0;
+		}
+	}
+
+	h2 {
+		margin-left: 3em;
+		display: inline-block;
+		color: #ffffff;
+		font-size: 1.5em;
+		@media screen and (max-width : $mobile-break) {
+			margin: auto;
+		}
+	}
+
+	a {
+		position: relative;
+		display: inline-block;
+		text-transform: uppercase;
+		color: #ffffff;
+		font-size: 14px;
+		display: inline-block;
+		margin-left: 10%;
+		padding-left: 50px;
+
+		@media screen and (max-width : $mobile-break) {
+			margin: 2vh auto;
+		}
+
+		&:before {
+			content: " ";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 20px;
+			background-image: url(https://via.placeholder.com/20x20);
+			background-repeat: no-repeat;
+		}
+	}
+
+	.reference-guide {
+
+		@media screen and (max-width : $mobile-break) {
+			margin-left: auto;
+		}
+
+		&:before {
+			top: unquote('calc(50% - 25px)');
+			height: 50px;
+			width: 50px;
+			background-image: url(/images/icon-reference-guide.svg);
+		}
+	}
+
+	.tutorials {
+		&:before {
+			top: unquote('calc(50% - 25px)');
+			height: 50px;
+			width: 50px;
+			background-image: url(/images/icon-tutorials.svg);
+		}
+	}
+
+	.api {
+		&:before {
+			top: unquote('calc(50% - 25px)');
+			height: 50px;
+			width: 50px;
+			background-image: url(/images/icon-docs.svg);
+		}
+	}
+
+	.bottom-border {
+		position: absolute;
+		left: 0; right: 0; bottom: 0;
+		height: 1px;
+		background: linear-gradient(to right,
+			#ef1b23 0%,
+			#ef1b23 16.6%,
+			#ff8431 16.7%,
+			#ff8431 33.2%,
+			#fffb69 33.3%,
+			#fffb69 49.9%,
+			#33de89 50%,
+			#33de89 66.6%,
+			#2db5f9 66.7%,
+			#2db5f9 83.2%,
+			#b333c0 83.3%);
+	}
+}

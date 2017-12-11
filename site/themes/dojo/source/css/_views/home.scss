@@ -1,11 +1,77 @@
 .body-front-page {
+
 	.header,
 	.footer {
-		background: transparent;
+		background: #000000;
 	}
 
-	background: #000000 url("images/bg.jpg") 50% 50% no-repeat;
-	background-size: cover;
+	.page-content {
+		padding-bottom: 0;
+	}
+
+	.footer {
+		.info {
+			position: relative;
+			display: inline-block;
+			margin-left: 10%;
+			width: 39%;
+			text-align: left;
+
+			@media screen and (max-width : $mobile-break) {
+				width: auto;
+				text-align: center;
+			}
+
+			&:before {
+				position: absolute;
+				content: " ";
+				background-image: url(/images/logos/dojo-logo-white.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				opacity: 0.3;
+				width: 60px;
+				top: 0;
+				bottom: 0;
+				right: 105%;
+			}
+
+		}
+
+		.link-container {
+			width: 49%;
+			display: inline-block;
+			position: relative;
+			top: 10px;
+			text-align: right;
+			padding-right: 10%;
+
+			@media screen and (max-width : $mobile-break) {
+				display: none;
+			}
+
+			.links {
+				margin-left: 1em;
+
+				a {
+					display: inline-block;
+					width: 30px;
+					height: 30px;
+					opacity: 0.3;
+					background-repeat: no-repeat;
+					background-size: contain;
+
+					&.twitter {
+						background-image: url(/images/github.png);
+					}
+
+					&.github {
+						background-image: url(/images/twitter.png);
+					}
+				}
+			}
+		}
+	}
+
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -22,22 +88,13 @@
 		flex-direction: column;
 		justify-content: center;
 		height: 100%;
-		width: 90%;
-		margin: auto;
-		.dragon {
-			width: 50%;
-			padding-top: 2rem;
-		}
-		.teaser,
-		.title {
-			color: #fff;
-			font-weight: 300;
-			letter-spacing: 0.2rem;
-			text-transform: uppercase;
-			text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);
-			text-align: center;
-			margin: 0 auto;
-			padding: 0 0 1rem 0;
-		}
+
+		@import '../_partials/landingPage/hero';
+		@import '../_partials/landingPage/upAndRunning';
+		@import '../_partials/landingPage/embracingPlatform';
+		@import '../_partials/landingPage/meta';
+		@import '../_partials/landingPage/accessibility';
+		@import '../_partials/landingPage/features';
+		@import '../_partials/landingPage/links';
 	}
 }

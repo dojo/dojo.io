@@ -1,0 +1,13 @@
+{
+  "suites": [
+    "./_build/tests/unit/all.js"
+  ],
+
+  "coverage": [
+    "./_build/src/**/*.js"
+  ],
+
+  "configs": {
+    "local": {}
+  }
+}

@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from '../styles/worker.m.css';
 
 export interface WorkerProperties {
@@ -11,7 +11,7 @@ export interface WorkerProperties {
 	tasks?: string[];
 }
 
-const WorkerBase = ThemeableMixin(WidgetBase);
+const WorkerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class Worker extends WorkerBase<WorkerProperties> {
@@ -19,7 +19,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 
 	protected render() {
 		return v('div', {
-			classes: this.classes(css.worker, this._isFlipped ? css.reverse : null)
+			classes: this.theme([ css.worker, this._isFlipped ? css.reverse : null ])
 		}, [
 			this._renderFront(),
 			this._renderBack()
@@ -33,10 +33,10 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-				classes: this.classes(css.workerFront),
+				classes: this.theme(css.workerFront),
 				onclick: this.flip
 			}, [
-				v('div', { classes: this.classes(css.image) }, []),
+				v('div', { classes: this.theme(css.image) }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])
@@ -54,32 +54,32 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-				classes: this.classes(css.workerBack),
+				classes: this.theme(css.workerBack),
 				onclick: this.flip
 			}, [
-				v('div', { classes: this.classes(css.heading) }, [
-					v('div', { classes: this.classes(css.imageSmall) }),
+				v('div', { classes: this.theme(css.heading) }, [
+					v('div', { classes: this.theme(css.imageSmall) }),
 					v('div', {
-						classes: this.classes(css.generalInfo)
+						classes: this.theme(css.generalInfo)
 					}, [
 						v('div', {
-							classes : this.classes(css.label)
+							classes : this.theme(css.label)
 						}, ['Name']),
 						v('div', [`${lastName}, ${firstName}`]),
 						v('div', {
-							classes: this.classes(css.label)
+							classes: this.theme(css.label)
 						}, ['Email']),
 						v('div', [`${email}`]),
 						v('div', {
-							classes: this.classes(css.label)
+							classes: this.theme(css.label)
 						}, ['Avg. Time per Task']),
 						v('div', [`${timePerTask}`])
 					])
 				]),
-				v('div', { classes: this.classes(css.tasks) }, [
+				v('div', { classes: this.theme(css.tasks) }, [
 					v('strong', ['Current Tasks']),
 					v('div', tasks.map(task => {
-						return v('div', { classes: this.classes(css.task) }, [ task ]);
+						return v('div', { classes: this.theme(css.task) }, [ task ]);
 					}))
 				])
 			]

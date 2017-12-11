@@ -2,7 +2,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import uuid from '@dojo/core/uuid';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
 import * as css from '../styles/workerForm.css';
 
@@ -11,7 +11,7 @@ export interface ValidatedTextInputProperties extends TextInputProperties {
 	onValidate?: (event: Event) => void;
 }
 
-export const ValidatedTextInputBase = ThemeableMixin(WidgetBase);
+export const ValidatedTextInputBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class ValidatedTextInput extends ValidatedTextInputBase<ValidatedTextInputProperties> {
@@ -48,7 +48,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 			errorMessage,
 			onBlur
 		} = this.properties;
-		return v('div', { classes: this.classes(css.inputWrapper) }, [
+		return v('div', { classes: this.theme(css.inputWrapper) }, [
 			w(TextInput, {
 				describedBy: this._errorId,
 				disabled,
@@ -67,7 +67,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 			}),
 			invalid === true ? v('span', {
 				id: this._errorId,
-				classes: this.classes(css.error),
+				classes: this.theme(css.error),
 				'aria-live': 'polite'
 			}, [ errorMessage ]) : null
 		]);

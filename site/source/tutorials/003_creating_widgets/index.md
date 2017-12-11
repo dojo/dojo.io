@@ -32,7 +32,7 @@ This line: `const Projector = ProjectorMixin(Banner);` tells the application to 
 
 {% instruction 'Add these lines at the top of the file.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-3 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-2 %}
 
 The `WidgetBase` class will be used as the base class for our `App` widget. `WidgetBase` (and its descendants) work with the `WidgetProperties` interface to define the publicly accessible properties of the widget. Finally, the `v` and `w` functions are used to render virtual DOM nodes (with the `v` function) or widgets (via `w`). Both virtual DOM nodes and widgets ultimately generate `DNode`s, the base type of all virtual DOM nodes in Dojo 2.
 
@@ -40,7 +40,7 @@ Our next dependency to load is the Banner widget that we created in the first tu
 
 {% instruction 'To import it, add the following statement to `App.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:3 %}
 
 With all of the dependencies in place, let's create the `App` widget itself.
 
@@ -50,7 +50,7 @@ With all of the dependencies in place, let's create the `App` widget itself.
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
-Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render()`, which means that our render method has to return a `DNode` (an abstraction for a [HyperScript](https://github.com/hyperhype/hyperscript) node) so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
+Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode| DNode[]`, which means that our render method has to return a `DNode` (an abstraction for a [HyperScript](https://github.com/hyperhype/hyperscript) node), or an array of `DNode`s so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
 
 {% instruction 'To start, let\'s use a simple `render` method by adding this to the `App` class:' %}
 
@@ -310,22 +310,22 @@ The `WorkerContainer` manages the layout of our `Worker` widgets and makes it ea
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { w, v } from '@dojo/widget-core/d';
 import Worker from './Worker';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from '../styles/workerContainer.css';
 
-const WorkerContainerBase = ThemeableMixin(WidgetBase);
+const WorkerContainerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class WorkerContainer extends WorkerContainerBase {
 	protected render() {
 		return v('div', {
-			classes: this.classes(css.container)
+			classes: this.theme(css.container)
 		});
 	}
 }
 ```
 
-You may notice that we are calling `this.classes` with the `container` class as an argument. `classes` is a method provided by the `ThemeableMixin` which adds the specified class or classes to the widget, and verifies that they exist as part of the widget's theme.
+You may notice that we are calling `this.theme` with the `container` class as an argument. `theme` is a method provided by the `ThemedMixin` which adds the specified class or classes to the widget, and verifies that they exist as part of the widget's theme.
 
 {% instruction 'Now update the `render` method to include some workers. Add the following to the top of the `render` method:' %}
 
@@ -358,7 +358,7 @@ We can now pass these workers as children to the container.
 
 ```ts
 		return v('div', {
-			classes: this.classes(css.container)
+			classes: this.theme(css.container)
 		}, workers);
 ```
 

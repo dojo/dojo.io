@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import { Link } from '@dojo/routing/Link';
 
 import { WorkerFormData } from './WorkerForm';
@@ -15,7 +15,7 @@ import workerData from './../support/workerData';
 import * as css from './../styles/app.m.css';
 
 @theme(css)
-export default class App extends ThemeableMixin(WidgetBase) {
+export default class App extends ThemedMixin(WidgetBase) {
 	private _newWorker: Partial<WorkerFormData> = {};
 
 	private _workerData: WorkerProperties[] = workerData;
@@ -36,17 +36,17 @@ export default class App extends ThemeableMixin(WidgetBase) {
 
 	protected render() {
 		return v('div', [
-			v('div', { classes: this.classes(css.root) },  [
-				v('div', { classes: this.classes(css.container) },  [
-					v('h1', { classes: this.classes(css.title) }, [ 'Biz-E-Bodies' ]),
-					v('div', { classes: this.classes(css.links) }, [
-						w(Link, { key: 'home', to: 'home', classes: this.classes(css.link) }, [ 'Home' ]),
-						w(Link, { key: 'directory', to: 'directory', classes: this.classes(css.link) }, [ 'Worker Directory' ]),
-						w(Link, { key: 'newWorker', to: 'new-worker', classes: this.classes(css.link) }, [ 'New Worker' ])
+			v('div', { classes: this.theme(css.root) },  [
+				v('div', { classes: this.theme(css.container) },  [
+					v('h1', { classes: this.theme(css.title) }, [ 'Biz-E-Bodies' ]),
+					v('div', { classes: this.theme(css.links) }, [
+						w(Link, { key: 'home', to: 'home', classes: this.theme(css.link) }, [ 'Home' ]),
+						w(Link, { key: 'directory', to: 'directory', classes: this.theme(css.link) }, [ 'Worker Directory' ]),
+						w(Link, { key: 'newWorker', to: 'new-worker', classes: this.theme(css.link) }, [ 'New Worker' ])
 					])
 				])
 			]),
-			v('div', { classes: this.classes(css.main) },  [
+			v('div', { classes: this.theme(css.main) },  [
 				w(BannerOutlet, {}),
 				w(WorkerFormOutlet, {
 					formData: this._newWorker,
