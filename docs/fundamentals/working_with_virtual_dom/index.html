@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Working with a virtual DOMAlmost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the Document Object Model (DOM) API. While">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-13T20:32:20.061Z">
+<meta property="og:updated_time" content="2017-12-14T16:56:11.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Working with a Virtual DOM">
 <meta name="twitter:description" content="Working with a virtual DOMAlmost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the Document Object Model (DOM) API. While">
@@ -137,7 +137,7 @@ ga('send', 'pageview');
 </aside>
 
 			</div>
-			<div class="column is-9">
+			<div class="column is-9 article">
 				<h1 id="Working-with-a-virtual-DOM"><a href="#Working-with-a-virtual-DOM" class="headerlink" title="Working with a virtual DOM"></a>Working with a virtual DOM</h1><p>Almost all client-side web applications interact with the web page in some way. Traditionally, this has been accomplished by using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener">Document Object Model (DOM) API</a>. While this works well, increased consumer expectations combined with higher levels of application complexity have made it difficult to build high performance applications that directly interact with the page via the DOM. Dojo 2 addresses this challenge by using an abstraction layer, called a virtual DOM, to remove the responsibility for manipulating the page structure from the application. In this article, we will discuss what the virtual DOM is and how Dojo 2 uses it to streamline the process of creating highly performant applications.</p>
 <h2 id="Responsibilities-of-the-Document-Object-Model-DOM-API"><a href="#Responsibilities-of-the-Document-Object-Model-DOM-API" class="headerlink" title="Responsibilities of the Document Object Model (DOM) API"></a>Responsibilities of the Document Object Model (DOM) API</h2><p>To understand the advantages of a virtual DOM, it is important to understand the role that the DOM itself plays in a web application. The DOM consists of a series of objects, methods, and properties that allow an application to interact with the elements that make up a web page. The DOM <code>document</code> is a tree structure that represents the elements that make up a web page. By adding, deleting, and moving elements from the <code>document</code>, the appearance and behavior of the page can be altered. Additionally, the DOM contains methods that allow the properties of page elements to be manipulated, providing a way to control the appearance and behavior of individual elements within the page.</p>
 <p>For example, if we started with an empty web page, and needed to add an <code>h1</code> header containing the page’s title, then we could do that with the following statements:</p>

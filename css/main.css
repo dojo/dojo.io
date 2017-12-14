@@ -14605,6 +14605,10 @@ body {
 
 .container.article {
   max-width: 900px; }
+  .container.article h1 {
+    font-weight: 400;
+    line-height: 1.3em;
+    margin-bottom: 0.8em; }
 
 .is-full-height {
   height: 100%; }
@@ -15790,6 +15794,9 @@ body {
 .body-single-page .article-title {
   font-size: 3.8rem;
   font-weight: 300; }
+  @media screen and (max-width: 768px) {
+    .body-single-page .article-title {
+      font-size: 2.4em; } }
 
 .body-single-page .article-entry > p:first-of-type {
   font-family: "Roboto Slab", serif;
