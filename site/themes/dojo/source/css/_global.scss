@@ -39,6 +39,12 @@ body {
 
 .container.article {
 	max-width: $article-max-width;
+
+	h1 {
+		font-weight: 400;
+		line-height: 1.3em;
+		margin-bottom: 0.8em;
+	}
 }
 
 

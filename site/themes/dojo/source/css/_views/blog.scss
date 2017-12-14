@@ -12,6 +12,10 @@
 	.article-title {
 		font-size: 3.8rem;
 		font-weight: 300;
+
+		@media screen and (max-width: $mobile-break) {
+			font-size: 2.4em;
+		}
 	}
 
 	.article-entry {
