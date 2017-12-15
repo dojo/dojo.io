@@ -1,4 +1,9 @@
-import { readdirSync, statSync, existsSync } from 'fs';
+import { readdirSync,
+	statSync,
+	existsSync } from 'fs';
+
+import { platform } from 'os';
+
 import { join } from 'path';
 import { logger } from '../log';
 import { execSync } from 'child_process';
@@ -10,7 +15,7 @@ import { execSync } from 'child_process';
  * @param targetDirectory where the archives will be placed
  * @return {Promise<void>}
  */
-export default async function archiveTutorials(tutorialRoot: string, targetDirectory: string) {
+export default async function exportTutorialProjects(tutorialRoot: string, targetDirectory: string) {
 	const tutorialDirectories = readdirSync(tutorialRoot).filter(function (file) {
 		const stat = statSync(join(tutorialRoot, file));
 		return stat.isDirectory();
@@ -46,13 +51,24 @@ export function exportProject(exampleDirectory: string, targetDirectory: string,
 		execSync('npm i', {
 			cwd: dojoProjectDirectory
 		});
+
 		// run dojo export -p {path}
 		execSync(`dojo export -p ${dojoProjectDirectory}`);
+
 		// rename and move project.json file
-		console.log(`mv ${exportDestination} ${destination}`);
-		execSync(`mv ${exportDestination} ${destination}`);
-		// delete project's node_modules
-		execSync(`rm -rf ${join(dojoProjectDirectory, 'node_modules')}`);
-		execSync(`rm ${join(dojoProjectDirectory, 'package-lock.json')}`);
+		let moveCommand: string;
+		let rmDirCommand: string;
+		if (platform() === 'win32') {
+			moveCommand = 'move';
+			rmDirCommand = 'rmdir /s /q';
+		}
+		else {
+			moveCommand = 'mv';
+			rmDirCommand = 'rm -rf';
+		}
+		execSync(`${moveCommand} ${exportDestination} ${destination}`);
+
+		// clean up
+		execSync(`${rmDirCommand} ${join(dojoProjectDirectory, 'node_modules')}`);
 	}
 }

@@ -25,6 +25,9 @@ export default async function archiveTutorials(tutorialRoot: string, targetDirec
 		if (existsSync(examplesRoot)) {
 			for (let directory of readdirSync(examplesRoot)) {
 				const exampleDirectory = join(examplesRoot, directory);
+				if (!statSync(exampleDirectory).isDirectory()) {
+					continue;
+				}
 				const tutorialName = tutorialDirectory.substring(Math.max(0, join(tutorialDirectory, '..').length - 1));
 				const archivePath = join(targetDirectory, `${ tutorialName }-${ directory }.zip`);
 				const internalDestination = join(tutorialName, directory);
