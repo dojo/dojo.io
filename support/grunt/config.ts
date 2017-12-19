@@ -123,7 +123,14 @@ export const tslint = {
 	site: [ 'site/**/*.ts', '!site/node_modules/**' ]
 };
 
-export const tutorials = {
+export const archiveTutorialsTask = {
+	'dojo2-tutorials': {
+		src: 'site/source/tutorials',
+		dest: '<%= distDirectory %>/tutorials/assets'
+	}
+};
+
+export const precommit = {
 	'dojo2-tutorials': {
 		src: 'site/source/tutorials',
 		dest: '<%= distDirectory %>/tutorials/assets'
