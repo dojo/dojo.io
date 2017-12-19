@@ -201,6 +201,9 @@ private _getZombieBodyAnimation(id: string): AnimationProperties {
 ```
 
 Refresh your browser and you should now see two stumbling zombies moving towards one another. Feel free to have a play with the params for rotation / timings to get it just how you like it.
+
+![Zombie-Walk](./walking.gif)
+
 Notice that these two new animations have `iterations` set to `Infinity`. This ensures that they will play indefinitely, or until the first animation completes and `this._play` is set to false.
 
 {% section %}
