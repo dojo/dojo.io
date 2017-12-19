@@ -9,7 +9,7 @@ interface TutorialHashes {
 	[key: string]: string;
 }
 
-export default async function verifyTutorials(tutorialRoot: string, _targetDirectory: string) {
+export default async function verifyTutorials(tutorialRoot: string, updateHashes: boolean = false) {
 	const tutorialDirectories = readdirSync(tutorialRoot).filter(function (file) {
 		const stat = statSync(join(tutorialRoot, file));
 		return stat.isDirectory();
@@ -37,18 +37,20 @@ export default async function verifyTutorials(tutorialRoot: string, _targetDirec
 							testTutorial(exampleDirectory);
 						}
 						cleanup(exampleDirectory);
-						tutorialHashes[exampleDirectory] = getTutorialSignature(exampleDirectory);
-						await new Promise((resolve, reject) => {
-							const file = createWriteStream(tutorialHashPath);
-							file.on('finish', () => {
-								logger.info('...updated complete!');
-								resolve();
+						if (updateHashes) {
+							tutorialHashes[exampleDirectory] = getTutorialSignature(exampleDirectory);
+							await new Promise((resolve, reject) => {
+								const file = createWriteStream(tutorialHashPath);
+								file.on('finish', () => {
+									logger.info('...updated complete!');
+									resolve();
+								});
+								file.on('error', (error: Error) => {
+									reject(error);
+								});
+								file.end(JSON.stringify(tutorialHashes));
 							});
-							file.on('error', (error: Error) => {
-								reject(error);
-							});
-							file.end(JSON.stringify(tutorialHashes));
-						});
+						}
 					}
 					else {
 						logger.info('...no changes detected');

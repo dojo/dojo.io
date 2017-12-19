@@ -16,15 +16,18 @@ export = function (grunt: IGrunt) {
 		}));
 	}
 
-	function precommitTutorialsTask(this: IMultiTask<any>) {
+	function verifyTutorialsTask(this: IMultiTask<any>) {
+		const { updateHashes } = this.options({
+			updateHashes: true
+		});
 		return Promise.all(this.files.map((file) => {
-			const { src, dest } = file;
+			const { src } = file;
 			return Promise.all(src.map((s) => {
-				return verifyTutorials(s, dest);
+				return verifyTutorials(s, updateHashes);
 			}));
 		}));
 	}
 
 	grunt.registerMultiTask('archiveTutorials', wrapAsyncTask(archiveTutorialsTask));
-	grunt.registerMultiTask('precommit', wrapAsyncTask(precommitTutorialsTask));
+	grunt.registerMultiTask('verifyTutorials', wrapAsyncTask(verifyTutorialsTask));
 };

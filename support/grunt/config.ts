@@ -123,17 +123,25 @@ export const tslint = {
 	site: [ 'site/**/*.ts', '!site/node_modules/**' ]
 };
 
-export const archiveTutorialsTask = {
+export const archiveTutorials = {
 	'dojo2-tutorials': {
 		src: 'site/source/tutorials',
 		dest: '<%= distDirectory %>/tutorials/assets'
 	}
 };
 
-export const precommit = {
-	'dojo2-tutorials': {
+export const verifyTutorials = {
+	'precommit': {
 		src: 'site/source/tutorials',
-		dest: '<%= distDirectory %>/tutorials/assets'
+		options: {
+			updateHashes: true
+		}
+	},
+	'ci': {
+		src: 'site/source/tutorials',
+		options: {
+			updateHashes: false
+		}
 	}
 };
 
