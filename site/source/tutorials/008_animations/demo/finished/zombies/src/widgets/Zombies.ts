@@ -1,14 +1,17 @@
-import { v } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import WebAnimation from '@dojo/widget-core/meta/WebAnimation';
 import { AnimationProperties, HNode } from '@dojo/widget-core/interfaces';
+import Slider from '@dojo/widgets/slider/Slider';
 
 import * as css from './styles/zombies.m.css';
 
 export class Zombies extends WidgetBase {
 	private _play = false;
+	private _playHearts = false;
 	private _zombieWalkDuration = 8000;
 	private _numHearts = 5;
+	private _zombieLegsPlaybackRate = 1;
 
 	private _onZombieClick() {
 		this._play = !this._play;
@@ -17,7 +20,15 @@ export class Zombies extends WidgetBase {
 
 	private _onAnimationFinish() {
 		this._play = false;
+		this._playHearts = true;
 		this.invalidate();
+	}
+
+	private _onHeartsFinish() {
+		if (this._playHearts = true) {
+			this._playHearts = false;
+			this.invalidate();
+		}
 	}
 
 	private _getZombieAnimation(id: string, direction: string): AnimationProperties {
@@ -33,7 +44,8 @@ export class Zombies extends WidgetBase {
 				fill: 'forwards'
 			},
 			controls: {
-				play: this._play
+				play: this._play,
+				onFinish: this._onAnimationFinish
 			}
 		}
 	}
@@ -49,7 +61,7 @@ export class Zombies extends WidgetBase {
 				{ transform: 'rotate(0deg)' }
 			],
 			timing: {
-				duration: 2000,
+				duration: 1000,
 				iterations: Infinity
 			},
 			controls: {
@@ -75,34 +87,35 @@ export class Zombies extends WidgetBase {
 			id,
 			effects,
 			timing: {
-				duration: 2000,
+				duration: 1000,
 				iterations: Infinity
 			},
 			controls: {
-				play: this._play
+				play: this._play,
+				playbackRate: this._zombieLegsPlaybackRate
 			}
 		};
 	}
 
 	private _getHeartAnimation(id: string, sequence: number, play: boolean): AnimationProperties[] {
-		const delay = (sequence * 500) + this._zombieWalkDuration / 2;
+		const delay = sequence * 500;
+		const leftOffset = Math.floor(Math.random() * 400) - 200;
 
 		return [
 			{
 				id: `${id}FloatAway`,
 				effects: [
-					{ opacity: 0, marginTop: '0' },
-					{ opacity: 0.8, marginTop: '-300px' },
-					{ opacity: 0, marginTop: '-600px' }
+					{ opacity: 0, marginTop: '0', marginLeft: '0px' },
+					{ opacity: 0.8, marginTop: '-300px', marginLeft: `${1- leftOffset}px` },
+					{ opacity: 0, marginTop: '-600px', marginLeft: `${leftOffset}px` }
 				],
 				timing: {
 					duration: 1500,
-					iterations: 2,
 					delay,
 				},
 				controls: {
-					play: this._play,
-					onFinish: sequence === this._numHearts -1 ? this._onAnimationFinish : undefined
+					play: this._playHearts,
+					onFinish: sequence === this._numHearts -1 ? this._onHeartsFinish : undefined
 				}
 			},
 			{
@@ -121,7 +134,8 @@ export class Zombies extends WidgetBase {
 					easing: 'ease-in-out'
 				},
 				controls: {
-					play: this._play
+					play: this._playHearts,
+
 				}
 			}
 		];
@@ -133,11 +147,18 @@ export class Zombies extends WidgetBase {
 		let i;
 		for (i = 0; i < this._numHearts; i++) {
 			const key = `heart${i}`;
-			const leftOffset = Math.floor(Math.random() * 200) - 100;
-			hearts.push(v('div', { classes: css.heart, styles: { marginLeft: `${leftOffset}px` }, key }));
+
+			hearts.push(v('div', { classes: css.heart, key }));
 			this.meta(WebAnimation).animate(key, this._getHeartAnimation(key, i, play));
 		}
 		return hearts;
+	}
+
+	private _onZombieLegsPlaybackRateChange(event: Event) {
+		const value = (event.target as HTMLInputElement).value;
+
+		this._zombieLegsPlaybackRate = parseFloat(value);
+		this.invalidate();
 	}
 
 	protected render() {
@@ -152,6 +173,9 @@ export class Zombies extends WidgetBase {
 		webAnimation.animate('zombieTwoFrontLeg', this._getZombieLegAnimation('zombieTwoFrontLeg', true));
 
 		return v('div', { classes: css.root }, [
+			v('div', { classes: css.controls }, [
+				w(Slider, { min: 0.1, max: 10, step: 0.1, value: this._zombieLegsPlaybackRate, onChange: this._onZombieLegsPlaybackRateChange })
+			]),
 			v('div', { classes: css.zombieOne, onclick: this._onZombieClick, key: 'zombieOne' }, [
 				v('div', { classes: css.zombieOneBody, key: 'zombieOneBody' }),
 				v('div', { classes: [ css.zombieOneLeg, css.zombieOneBackLeg ], key: 'zombieOneBackLeg' }),

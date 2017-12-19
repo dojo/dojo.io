@@ -95,3 +95,7 @@
 	background-image: url('./heart.png');
 	opacity: 0;
 }
+
+.controls {
+	padding: 50px;
+}
