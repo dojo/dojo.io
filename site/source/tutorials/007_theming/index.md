@@ -71,7 +71,7 @@ Replace all of the selectors containing `.workerForm` with the following rules i
 
 If you open the application in a browser its appearance and behavior should be unchanged.
 
-{% instruction 'Now update `worker.m.css` and `workerContain.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors. %}
+{% instruction 'Now update `worker.m.css` and `workerContain.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors.' %}
 
 {% instruction 'When you are finished, click on toggle solution to see one possible result.' %}
 
