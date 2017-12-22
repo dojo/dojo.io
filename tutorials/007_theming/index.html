@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-21T20:33:56.612Z">
+<meta property="og:updated_time" content="2017-12-22T18:43:13.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -147,8 +147,62 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <p>If you open the application in a browser its appearance and behavior should be unchanged.</p>
-<div class="instruction">Now update <code>worker.m.css</code> and <code>workerContain.m.css</code> to use <code>.root</code> and <code>.rootFixed</code> and then update the associated widgets to use the new selectors. %}
-{% instruction When</div>
+<div class="instruction">Now update <code>worker.m.css</code> and <code>workerContain.m.css</code> to use <code>.root</code> and <code>.rootFixed</code> and then update the associated widgets to use the new selectors.</div>
+<div class="instruction">When you are finished, click on toggle solution to see one possible result.</div>
+<div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
+<span class="token comment">/* workerContainer.m.css */</span>
+<span class="token punctuation">.</span>rootFixed <span class="token punctuation">{</span>
+	display<span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+	flex<span class="token operator">-</span>flow<span class="token punctuation">:</span> row wrap<span class="token punctuation">;</span>
+	justify<span class="token operator">-</span>content<span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+	align<span class="token operator">-</span>items<span class="token punctuation">:</span> stretch<span class="token punctuation">;</span>
+	margin<span class="token punctuation">:</span> <span class="token number">0</span> auto<span class="token punctuation">;</span>
+	width<span class="token punctuation">:</span> <span class="token number">100</span><span class="token operator">%</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">.</span>root <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* worker.m.css */</span>
+
+<span class="token comment">/* all rules were originally in the .worker selector */</span>
+<span class="token punctuation">.</span>root <span class="token punctuation">{</span>
+	margin<span class="token punctuation">:</span> <span class="token number">0</span> 10px 40px<span class="token punctuation">;</span>
+	max<span class="token operator">-</span>width<span class="token punctuation">:</span> 350px<span class="token punctuation">;</span>
+	min<span class="token operator">-</span>width<span class="token punctuation">:</span> 250px<span class="token punctuation">;</span>
+	flex<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">33</span><span class="token operator">%</span> <span class="token operator">-</span> 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	position<span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">.</span>rootFixed <span class="token punctuation">{</span>
+	<span class="token comment">/* flip transform styles */</span>
+	perspective<span class="token punctuation">:</span> 1000px<span class="token punctuation">;</span>
+	transform<span class="token operator">-</span>style<span class="token punctuation">:</span> preserve<span class="token operator">-</span>3d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// WorkerContainer.ts</span>
+<span class="token comment">// ...</span>
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+			classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> workers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Worker.ts</span>
+<span class="token comment">// ...</span>
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span><span class="token punctuation">[</span> css<span class="token punctuation">.</span>root<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+</code></pre></section></div>
 <p>Next, we will start to create a theme.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-a-Theme"><a href="#Creating-a-Theme" class="headerlink" title="Creating a Theme"></a>Creating a Theme</h2><div class="task">Create a theme directory</div>
