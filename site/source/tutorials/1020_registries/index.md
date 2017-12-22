@@ -103,7 +103,7 @@ First we need to extract the `_renderBack` function from `Worker.ts` into a new 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:51-65 %}
 
 {% aside 'Use Before You Define' %}
-The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and, once defined, and used before it is defined and, once defined, widgets that use the `registry` will automatically re-render!
+The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the `registry` will automatically re-render!
 {% endaside %}
 
 Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, requires and returns the concrete widget. This function will not be called until the first time the application tries to use the widget label as part of the usual `render` cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.
