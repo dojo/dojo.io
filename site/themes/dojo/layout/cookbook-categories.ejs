@@ -1,0 +1,65 @@
+<section class="section">
+	<div class="container">
+		<%- page.content %>
+		
+
+		<%
+			var recipeRegex = /cookbook/;
+			var categoryRegex = /cookbook\/(.*?)\//;
+
+			var recipes = _.filter(site.pages.data, function (page) {
+				return recipeRegex.test(page.path) && page.path !== 'cookbook/index.html';
+			});
+			var categories = {};
+			recipes.forEach(function (recipe) {
+				var match = categoryRegex.exec(recipe.path);
+				if (match) {
+					var categoryName = match[1];
+					if (!categories[categoryName]) {
+						categories[categoryName] = [];
+					}
+					categories[categoryName].push(recipe);
+				}
+			});
+
+			for (var idx in categories) {
+				var categoryName = idx.replace(/\-/g, ' ');
+		%>
+			<h4 class="is-size-5"><%- categoryName %></h4>
+				<div class="columns is-mobile is-multiline">
+
+				
+			
+							<%
+								_.each(categories[idx], function(recipe) {
+									// remove index.html from the path to make relative URLs work consistently
+									var urlRaw = recipe.path.substr(0, recipe.path.length - 10 /* length of 'index.html' */);
+							%>
+							<div class="column is-12-mobile is-6-tablet is-4-desktop is-3-widescreen">
+								<div class="card is-full-height">
+									<div class="card-content">
+										<h4><a href="<%- url_for(recipe.path) %>">
+											<%- recipe.title %>
+										</a></h4>
+									</div>
+								</div>
+							</div>
+
+							<%
+								});
+							%>
+					
+			
+				</div>
+					
+				<%
+					}
+				%>
+
+
+
+		
+
+	
+	</div>
+</section>
