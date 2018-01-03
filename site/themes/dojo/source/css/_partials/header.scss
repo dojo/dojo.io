@@ -1,5 +1,8 @@
 .header {
 	background: $header-background;
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
 }
 
 .navbar {
