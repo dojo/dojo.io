@@ -1,6 +1,7 @@
 <section class="section">
 	<div class="container article">
 
+
 		<%
 			var recipeRegex = /cookbook/;
 			var categoryRegex = /cookbook\/(.*?)\//;
@@ -20,6 +21,9 @@
 				}
 			});
 
+			
+
+
 		%>
 
 		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
@@ -29,6 +33,7 @@
 				<li class="is-active"><a class="step-current"></a></li>
 			</ul>
 		</nav>
+		<h1><%- page.title %></h1>
 		<%- page.content %>
 		
 		<h4>Next Recipe:</h4>
