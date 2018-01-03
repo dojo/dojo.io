@@ -13,6 +13,7 @@ section.hero {
 		margin: 10vh auto 0 auto;
 		text-align: center;
 		max-width: 60%;
+		line-height: 1.3em;
 	}
 
 	a {
@@ -47,6 +48,11 @@ section.hero {
 			width: 30%;
 			padding: 0 2rem;
 
+			@media screen and (max-width: 900px){
+				width: 32%;
+				padding: 0 .5%;
+			}
+
 			@media screen and (max-width : $mobile-break) {
 				width: 100%;
 				padding: 0 1em;
@@ -58,10 +64,10 @@ section.hero {
 				text-align: left;
 
 				.red {
-					color: #b3141a;
+					color: #ef1b23;
 				}
 				.blue {
-					color: #279eda;
+					color: #2db5f9;
 					font-size: 22px;
 				}
 				.purple {
@@ -71,7 +77,7 @@ section.hero {
 			}
 			p {
 				font-size: 16px;
-				color: #666666;
+				color: #CCC;
 				text-align: left;
 			}
 		}
@@ -81,15 +87,14 @@ section.hero {
 		position: absolute;
 		left: 0; right: 0; top: 0; bottom: 0;
 		background: #000000 url(/images/header-bg.jpg);
-		background-size: 100vw 100vh;
+		background-size: cover;
 		background-position: top -25vh center;
 		background-repeat: no-repeat;
 		z-index: -1;
 
-		* {
-			@media screen and (max-width : $mobile-break) {
-				animation: none !important;
-			}
+		@media screen and (max-width : $mobile-break) {
+			background-size:250%;
+			background-position:center -50vw;
 		}
 
 		.sphere {
@@ -100,49 +105,51 @@ section.hero {
 			animation: example 7s ease-in-out infinite;
 
 			&.lower-left {
-				transform: scale(0.5);
+				transform: scale(0.9);
 				position: absolute;
-				animation: hero-lower-left-sphere 75s ease-in-out infinite;
-				left: 28%;
-				background: -webkit-radial-gradient(15% 15%, darken(#293232, 10%) 5%, #000 70%, #293232 95%);
+				animation: hero-lower-left-sphere 12s ease-in-out infinite;
+				left: 25%;
+				z-index: 5;
+				opacity:.9;
+				background: -webkit-radial-gradient(25% 25%, #444 5%, #000 70%, #333 85%);
+
+				@media screen and (max-width: 800px){
+					left:14%;
+				}
 
 				@media screen and (max-width : $mobile-break) {
-					left: 0;
-					top: 0;
-					transform: translate(60vw, 20vh) scale(0.1);
+					display:none;
 				}
 
 				@keyframes hero-lower-left-sphere {
 					from, to {
-						bottom: 15%;
+						transform: translate(0, 160%) scale(0.8);
 					}
 					50% {
-						bottom: 17%;
+						transform: translate(0, 178%) scale(0.8);
 					}
 				}
 			}
 			&.upper-right {
 				$color: darken(#2A659C, 30%);
-				transform: scale(0.25);
+				transform: scale(0.5);
 				position: absolute;
-				animation: hero-upper-right-sphere 90s ease-in-out infinite;
-				background: -webkit-radial-gradient(15% 15%, $color 5%, #000 70%, $color 95%);
-				right: 30%;
+				animation: hero-upper-right-sphere 14s ease-in-out infinite;
+				background: -webkit-radial-gradient(25% 25%, #333 5%, #000 70%, #222 85%);
+				opacity:.6;
+				left: 62%;
+				z-index: 3;
 
 				@media screen and (max-width : $mobile-break) {
-					transform: translate(108vw, -4vh) scale(0.2);
-					right: 100%;
-					top: 0;
+					display:none;
 				}
 
 				@keyframes hero-upper-right-sphere {
 					from, to {
-						top: 2%;
-						right: 33%;
-					}
+						transform: translate(0, 10%) scale(0.5);
+				}
 					50% {
-						top: 4%;
-						right: 30%;
+						transform: translate(0, 15%) scale(0.5);
 					}
 				}
 			}
@@ -171,6 +178,7 @@ section.hero {
 					color: #fff;
 					text-transform: uppercase;
 					text-align: center;
+					outline: 1px solid transparent;
 
 					&.back {
 						transform: translateZ(-10vh);
@@ -199,14 +207,20 @@ section.hero {
 				$color1: darken(#333b33, 20%);
 				$color1-light: lighten($color1, 5%);
 				$color1-dark: darken($color1, 20%);
-				transform: scale(0.45) rotateZ(100deg);
-				left: 6%;
-				top: 4%;
+				transform: scale(0.95) rotateZ(100deg);
+				left: 7%;
+				top: 3%;
+				width:20vh;
+				height:20vh;
+				z-index:6;
+
+				@media screen and (max-width: 800px){
+					left:0;
+					transform: scale(0.8) rotateZ(100deg);
+				}
 
 				@media screen and (max-width : $mobile-break) {
-					transform: translate(-15vw, -11vh) scale(0.2);
-					left: 0;
-					top: 0;
+					display:none;
 				}
 
 				.cube {
@@ -220,34 +234,34 @@ section.hero {
 				}
 
 				.side  {
-					background: linear-gradient(to bottom right, #000, $color1);
+					background: linear-gradient(to bottom right, #000, #2d332d);
 
 					&.left {
-						background: linear-gradient(to bottom right, $color1-light, $color1-dark);
+						background: linear-gradient(to bottom right, #222, #000);
 					}
 
 					&.bottom {
-						background: linear-gradient(to bottom left, #000, $color1);
+						background: linear-gradient(to bottom right, #222, #000);
 					}
 
 					&.front {
-						background: linear-gradient(to bottom right, $color1-light, #000);
+						background: linear-gradient(to bottom right, #333, #000);
 					}
 				}
 
 			}
 			&.lower-left {
 				$color1: darken(#333b33, 15%);
-				$color1-light: lighten($color1, 5%);
-				$color1-dark: darken($color1, 20%);
-				transform: scale(0.25) rotateZ(40deg);
-				left: 15%;
+				$color1-light: #333;
+				$color1-dark: #222;
+				transform: scale(0.45) rotateZ(40deg);
+				left: 13%;
 				bottom: 25%;
+				opacity:.6;
+				z-index:4;
 
 				@media screen and (max-width : $mobile-break) {
-					transform: translate(60vw, 32vh) scale(0.15);
-					left: 0;
-					bottom: 100%;
+					display:none;
 				}
 
 				.cube {
@@ -263,7 +277,7 @@ section.hero {
 				}
 
 				.side  {
-					background: linear-gradient(to bottom right, #000, $color1);
+					background: linear-gradient(to bottom right, #000, #222);
 
 					&.left {
 						background: linear-gradient(to bottom right, $color1-light, $color1-dark);
@@ -281,16 +295,15 @@ section.hero {
 
 			&.upper-right {
 				$color1: darken(#2A659C, 35%);
-				$color1-light: lighten($color1, 5%);
-				$color1-dark: darken($color1, 20%);
-				transform: scale(0.3) rotateZ(100deg);
-				right: 15%;
-				top: 35%;
+				$color1-light: #333;
+				$color1-dark: #222;
+				transform: scale(0.4) rotateZ(120deg);
+				right: 25%;
+				top: 32%;
+				opacity:.4;
 
 				@media screen and (max-width : $mobile-break) {
-					transform: translate(49vw, 8vh) scale(0.1);
-					right: 100%;
-					top: 0;
+					display:none;
 				}
 
 				.cube {
@@ -324,20 +337,24 @@ section.hero {
 
 		.pyramid-gyro {
 			$color1: darken(#2A659C, 35%);
-			$color1-light: lighten($color1, 10%);
-			$color1-dark: darken($color1, 5%);
+			$color1-light: #333;
+			$color1-dark: #222;
 			$size: 10vh;
 			position: absolute;
 			top: 10%;
 			right: 10%;
 			perspective: 1000px;
 			perspective-origin: 50% 100px;
-			transform: rotateY(180deg) rotateZ(30deg);
+			z-index:10;
+			transform: scale(2.2) rotateY(0deg) rotateZ(40deg);
+
+			@media screen and (max-width: 800px){
+				right:0;
+				transform: scale(2) rotateY(0deg) rotateZ(40deg);
+			}
 
 			@media screen and (max-width : $mobile-break) {
-				top: 0;
-				right: 100%;
-				transform: translate(40vw, 33vh) scale(1);
+				display:none;
 			}
 
 			.pyramid-axis {
@@ -345,7 +362,7 @@ section.hero {
 				width: $size;
 				transform-style: preserve-3d;
 				transform: rotateX(-50deg) rotateZ(20deg);
-				animation: pyramid 32s infinite ease-in-out;
+				animation: pyramid 40s infinite ease-in-out;
 
 				@keyframes pyramid {
 					50% { transform: rotateY(50deg) rotateZ(-45deg);}
@@ -364,21 +381,21 @@ section.hero {
 				transform: translateZ(1.25vh) rotateX(30deg);
 			}
 			.back {
-				bottom: -20px;
+				bottom: -10px;
 				border-bottom: $size solid $color1;
 				transform: translateZ(-1.25vh) rotateY(180deg) rotateX(30deg);
 			}
 			.left {
 				bottom: -1vh;
 				left: 3.75vh;
-				border-bottom: $size solid $color1-dark;
+				border-bottom: $size solid #222;
 				transform: rotateY(270deg) translateX(-5vh) rotateX(30deg);
 				transform-origin: center left;
 			}
 			.right {
 				bottom: -2vh;
 				right: 7.5vh;
-				border-bottom: $size solid $color1-light;
+				border-bottom: $size solid #142023;
 				transform: rotateY(-270deg) translateX(5vh) rotateX(30deg);
 				transform-origin: top right;
 			}
