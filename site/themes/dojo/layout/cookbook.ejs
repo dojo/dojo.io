@@ -32,10 +32,47 @@
 		</nav>
 		<h1><%- page.title %></h1>
 		<%- page.content %>
-		
-		<h4>Next Recipe:</h4>
-		<a href="" class="button is-primary begin-button">Next</a>
+		<hr />
 	
+		<% 
+
+		for (var idx in categories) {
+			var categoryName = idx
+			if(categoryName == page.category){
+				%>
+					<h2 class="is-size-3">Other recipes for <%- categoryName.toLowerCase().replace(/\-/g, ' ') -%></h2>
+
+					<div class="columns is-mobile is-multiline">
+
+					<%
+						_.each(categories[idx], function(recipe) {
+							// remove index.html from the path to make relative URLs work consistently
+							var urlRaw = recipe.path.substr(0, recipe.path.length - 10 /* length of 'index.html' */);
+
+							if(recipe.title != page.title){
+					%>
+					<div class="column is-12-mobile is-6-tablet is-4-desktop is-4-widescreen">
+						<div class="card is-full-height">
+							<a href="<%- url_for(recipe.path) %>">
+								<div class="card-content">
+									<h4 class="is-size-6">
+										<%- recipe.title %>
+									</h4>
+									<div class="content is-size-7"><%- recipe.overview %></div>
+								</div>
+							</a>
+						</div>
+					</div>
+				<%
+							}
+				 });
+
+			}
+		}
+
+		%>
+		</div>
+		<a href="/cookbook" class="button is-primary begin-button">See all recipes</a>
 	
 	</div>
 </section>
