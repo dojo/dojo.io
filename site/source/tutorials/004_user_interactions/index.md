@@ -82,9 +82,9 @@ Three new properties need to be added to the `WorkerProperties` interface. These
 
 Now, we need to add the CSS selectors that will provide the rules for rendering this view's elements.
 
-{% instruction 'Open up the `worker.css` file and update it as follows.' %}
+{% instruction 'Open up the `worker.m.css` file and update it as follows.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lang:css %}
 
 We also need to update the CSS selector for the front view by changing the selector from `css.worker` to `css.workerFront`.
 
