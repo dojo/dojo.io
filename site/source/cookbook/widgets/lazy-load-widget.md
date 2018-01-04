@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Lazy load a widget
 overview: Lazy load a widget on demand and exclude it from the main JavaScript bundle
 ---

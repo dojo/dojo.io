@@ -26,7 +26,7 @@
 			for (var idx in categories) {
 				var categoryName = idx.replace(/\-/g, ' ');
 		%>
-			<h2 class="is-size-4 cookbook-category"><%- categoryName %></h2>
+			<h2 id="<%- categoryName.replace(/\ /g, '-').toLowerCase() -%>" class="is-size-4 cookbook-category"><%- categoryName -%></h2>
 				<div class="columns is-mobile is-multiline">
 
 				

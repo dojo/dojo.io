@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Render a list from an array
 overview: Render an array of items as a HTML list
 ---

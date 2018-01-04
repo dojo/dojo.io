@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: styling
+category: Styling
 title: Style a built-in widget using themes
 overview: Style a built-in Dojo 2 widget using the built-in theming functionality
 ---

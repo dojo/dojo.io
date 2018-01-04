@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: performance
+category: Performance
 title: Visualize your bundle contents
 overview: Visualize what's inside your JavaScript bundle
 ---

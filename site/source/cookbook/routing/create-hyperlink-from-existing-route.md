@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: routing
+category: Routing
 title: Generate dynamic hyperlinks
 overview: Generate dynamic hyperlinks with the built-in Link component
 ---

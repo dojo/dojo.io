@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Discover all built-in Dojo 2 widgets
 overview: Discover the built-in Dojo 2 widgets available to you
 ---

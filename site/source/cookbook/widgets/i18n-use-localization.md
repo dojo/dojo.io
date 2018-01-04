@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Handle string localization within a widget
 overview: Use a localized message within a widget
 ---

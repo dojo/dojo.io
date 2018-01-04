@@ -21,16 +21,13 @@
 				}
 			});
 
-			
-
-
 		%>
 
 		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
 			<ul>
 				<li><a href="/cookbook">Cookbook</a></li>
-				<li><a href="#"><%- page.title %></a></li>
-				<li class="is-active"><a class="step-current"></a></li>
+				<li><a href="/cookbook#<%- page.category.toLowerCase() -%>"><%- page.category.replace(/\-/g, ' ') -%></a></li>
+				<li class="is-active"><a href="#"><%- page.title %></a></li>
 			</ul>
 		</nav>
 		<h1><%- page.title %></h1>
@@ -38,6 +35,7 @@
 		
 		<h4>Next Recipe:</h4>
 		<a href="" class="button is-primary begin-button">Next</a>
+	
 	
 	</div>
 </section>

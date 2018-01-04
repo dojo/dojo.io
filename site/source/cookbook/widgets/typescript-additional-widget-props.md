@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Allow a widget to receive additional properties in TypeScript
 overview: Provide an interface for a widget in TypeScript so it can receive additional properties
 ---

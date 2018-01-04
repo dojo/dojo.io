@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: modern-web-apps
+category: Modern-web-apps
 title: Manage state in your application
 overview: Manage state to decrease complexity in your application
 ---

@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: rendering
+category: Rendering
 title: Access a raw DOM node
 overview: Access a raw DOM node to retrieve styling information
 ---

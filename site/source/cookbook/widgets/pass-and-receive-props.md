@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Pass and receive properties with widgets
 overview: Pass down properties to a widget and receive them from within a widget
 ---

@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: styling
+category: Styling
 title: Style a virtual DOM node with simple CSS classes
 overview: Apply a class to a node and style it
 ---

@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: styling
+category: Styling
 title: Create a themeable widget
 overview: Create a themeable widget which can be consumed and styled elsewhere
 ---

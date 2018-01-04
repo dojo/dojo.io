@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: rendering
+category: Rendering
 title: Get the rendered dimensions of an element
 overview: Use built-in Dojo 2 methods to retrieve the rendered dimensions of a page element
 ---

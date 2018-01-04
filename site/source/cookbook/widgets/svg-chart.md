@@ -1,6 +1,6 @@
 ---
 layout: cookbook
-category: widgets
+category: Widgets
 title: Build an SVG chart
 overview: Build a simple SVG chart 
 ---
