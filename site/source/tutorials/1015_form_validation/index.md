@@ -192,7 +192,7 @@ The error message is associated with the text input through `aria-describedby`, 
 
 Re-creating the same error message boilerplate for multiple text inputs seems overly repetitive, so we're going to extend `TextInput` instead. This will also allow us to have better control over when validation occurs, e.g. by adding it to blur events as well. For now, just create a `ValidatedTextInput` widget that accepts the same properties interface as `TextInput` but with an `errorMessage` string and `onValidate` method. It should return the same node structure modeled above.
 
-You will also need to modify `workerForm.css` to include the `error` and `inputWrapper` classes, although we will forgo adding specific styles in this tutorial:
+You will also need to modify `workerForm.m.css` to include the `error` and `inputWrapper` classes, although we will forgo adding specific styles in this tutorial:
 
 ```css
 .inputWrapper {}
@@ -208,7 +208,7 @@ import { v, w } from '@dojo/widget-core/d';
 import uuid from '@dojo/core/uuid';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface ValidatedTextInputProperties extends TextInputProperties {
 	errorMessage?: string;

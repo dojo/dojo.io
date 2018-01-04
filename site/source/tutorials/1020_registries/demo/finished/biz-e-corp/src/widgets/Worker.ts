@@ -3,7 +3,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
 import WorkerBack from './WorkerBack';
-import * as css from '../styles/worker.css';
+import * as css from '../styles/worker.m.css';
 
 export interface WorkerProperties {
 	firstName?: string;

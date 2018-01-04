@@ -4,7 +4,7 @@ import { v, w } from '@dojo/widget-core/d';
 import uuid from '@dojo/core/uuid';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface ValidatedTextInputProperties extends TextInputProperties {
 	errorMessage?: string;

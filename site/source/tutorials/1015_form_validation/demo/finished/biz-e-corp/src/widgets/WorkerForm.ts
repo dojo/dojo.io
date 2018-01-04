@@ -4,7 +4,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import Button from '@dojo/widgets/button/Button';
 import ValidatedTextInput from './ValidatedTextInput';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormData {
 	firstName: string;
@@ -20,7 +20,7 @@ export interface WorkerFormErrors {
 
 export interface WorkerFormProperties {
 	formData: WorkerFormData;
-	formErrors: WorkerFormErrors;
+	formErrors: WorkerFormErrors;cd src/
 	onFormInput: (data: Partial<WorkerFormData>) => void;
 	onFormValidate: (data: Partial<WorkerFormData>) => void;
 	onFormSave: () => void;
