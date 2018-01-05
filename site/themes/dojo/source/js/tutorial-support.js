@@ -110,7 +110,7 @@ tutorial.populatePaginator = function(container, title) {
 			timeoutHandle = null;
 		}
 
-		setTimeout(function (sectionToActivate) {
+		timeoutHandle = setTimeout(function (sectionToActivate) {
 			for (var i = 0; i < sections.length; i++) {
 				var section = sections[i];
 				if (section.getAttribute('data-section-num') === sectionToActivate) {
