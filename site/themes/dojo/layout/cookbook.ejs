@@ -9,6 +9,7 @@
 			var recipes = _.filter(site.pages.data, function (page) {
 				return recipeRegex.test(page.path) && page.path !== 'cookbook/index.html';
 			});
+			var recipeCount = 0;
 			var categories = {};
 			recipes.forEach(function (recipe) {
 				var match = categoryRegex.exec(recipe.path);
@@ -18,6 +19,9 @@
 						categories[categoryName] = [];
 					}
 					categories[categoryName].push(recipe);
+					if (categoryName == page.category){
+						recipeCount++;
+					}
 				}
 			});
 
@@ -38,41 +42,52 @@
 
 		for (var idx in categories) {
 			var categoryName = idx
-			if(categoryName == page.category){
+			if(categoryName == page.category && recipeCount > 1){
 				%>
-					<h2 class="is-size-3">Other recipes for <%- categoryName.toLowerCase().replace(/\-/g, ' ') -%></h2>
+					<h2 class="is-size-3">Other recipes for <%- categoryName.toLowerCase().replace(/\-/g, ' ') -%> <%- recipeCount -%></h2>
 
 					<div class="columns is-mobile is-multiline">
 
 					<%
-						_.each(categories[idx], function(recipe) {
-							// remove index.html from the path to make relative URLs work consistently
-							var urlRaw = recipe.path.substr(0, recipe.path.length - 10 /* length of 'index.html' */);
+					_.each(categories[idx], function(recipe) {
+						// remove index.html from the path to make relative URLs work consistently
+						var urlRaw = recipe.path.substr(0, recipe.path.length - 10 /* length of 'index.html' */);
 
-							if(recipe.title != page.title){
+						if(recipe.title != page.title){
 					%>
-					<div class="column is-12-mobile is-6-tablet is-4-desktop is-4-widescreen">
-						<div class="card is-full-height">
-							<a href="<%- url_for(recipe.path) %>">
-								<div class="card-content">
-									<h4 class="is-size-6">
-										<%- recipe.title %>
-									</h4>
-									<div class="content is-size-7"><%- recipe.overview %></div>
-								</div>
-							</a>
+						<div class="column is-12-mobile is-6-tablet is-4-desktop is-4-widescreen">
+							<div class="card is-full-height">
+								<a href="<%- url_for(recipe.path) %>">
+									<div class="card-content">
+										<h4 class="is-size-6">
+											<%- recipe.title %>
+										</h4>
+										<div class="content is-size-7"><%- recipe.overview %></div>
+									</div>
+								</a>
+							</div>
 						</div>
-					</div>
+
 				<%
 							}
-				 });
 
+
+
+				 });
+				 %></div><%
 			}
+			else if (categoryName == page.category && recipeCount <= 1) {
+				%>
+				<h2 class="is-size-3">Explore other Dojo Recipes</h2>
+				<%
+			}
+
+
 		}
 
 		%>
-		</div>
 		<a href="/cookbook" class="button is-primary begin-button">See all recipes</a>
+		
 	
 	</div>
 </section>
