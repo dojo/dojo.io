@@ -34,9 +34,10 @@ Many of the arguments passed to `dojo create` have abbreviated versions. So `doj
 
 This command will create the basic scaffolding for a Dojo 2 application in the newly created "first-dojo-2-app" directory with all of its dependencies pre-installed.
 
-At this point, we've successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another `@dojo/cli` command. You don't have to install this one, it was added when you installed the other dependencies. In the terminal, enter the command:
+At this point, we've successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another `@dojo/cli` command. You don't have to install this one, it was added when you installed the other dependencies. In the terminal, switch into the `first-dojo-2-app` directory and then enter the `dojo build --watch` command:
 
 ```bash
+cd first-dojo-2-app
 dojo build --watch
 ```
 (or, the shorter, `dojo build -w`)
