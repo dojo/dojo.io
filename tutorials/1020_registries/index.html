@@ -14,7 +14,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2018-01-10T20:44:58.252Z">
+<meta property="og:updated_time" content="2018-01-11T16:03:32.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -276,7 +276,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 		<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 </code></pre>
-<article class="aside"><strong>Use Before You Define</strong><p>The <code>registry</code> is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and, once defined, and used before it is defined and, once defined, widgets that use the <code>registry</code> will automatically re-render!</p></article>
+<article class="aside"><strong>Use Before You Define</strong><p>The <code>registry</code> is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the <code>registry</code> will automatically re-render!</p></article>
 <p>Now we need to add the <code>registry</code> definition for <code>WorkerBack.ts</code> to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, requires and returns the concrete widget. This function will not be called until the first time the application tries to use the widget label as part of the usual <code>render</code> cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.</p>
 <div class="task">Import <code>load</code> from <code>@dojo/core/load</code> in <code>main.ts</code></div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> load <span class="token keyword">from</span> <span class="token string">'@dojo/core/load'</span><span class="token punctuation">;</span>
