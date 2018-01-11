@@ -20,7 +20,7 @@ export interface WorkerFormErrors {
 
 export interface WorkerFormProperties {
 	formData: WorkerFormData;
-	formErrors: WorkerFormErrors;cd src/
+	formErrors: WorkerFormErrors;
 	onFormInput: (data: Partial<WorkerFormData>) => void;
 	onFormValidate: (data: Partial<WorkerFormData>) => void;
 	onFormSave: () => void;
