@@ -273,15 +273,15 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:4 %}
 
-`worker.css` contains CSS selectors and rules to be consumed by our widget and its components.
+`worker.m.css` contains CSS selectors and rules to be consumed by our widget and its components.
 
 {% instruction 'With the imports in place, add the **@theme** decorator and apply the mixin to the `Worker` class in `Worker.ts`:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:11-14 %}
 
-{% instruction 'Add the CSS rules in `src/styles/worker.css` which will allow us to style the `Worker` widget:' %}
+{% instruction 'Add the CSS rules in `src/styles/worker.m.css` which will allow us to style the `Worker` widget:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.css' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lang:css %}
 
 `dojo build --watch` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget.
 
@@ -311,7 +311,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { w, v } from '@dojo/widget-core/d';
 import Worker from './Worker';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import * as css from '../styles/workerContainer.css';
+import * as css from '../styles/workerContainer.m.css';
 
 const WorkerContainerBase = ThemedMixin(WidgetBase);
 
@@ -362,11 +362,11 @@ We can now pass these workers as children to the container.
 		}, workers);
 ```
 
-Now it is time to add styling rules for the `WorkerContainer`. Inside  of `styles/workerContainer.css`.
+Now it is time to add styling rules for the `WorkerContainer`. Inside  of `styles/workerContainer.m.css`.
 
 {% instruction 'Add the following rule.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.css' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.m.css' lang:css %}
 
 {% instruction 'Finally, update the `App` class to replace the `Worker` widget with the new `WorkerContainer`.' %}
 

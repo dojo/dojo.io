@@ -5,7 +5,7 @@ import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import Fieldset from '../dijit/Fieldset';
 import Button from '../dijit/form/Button';
 import TextBox from '../dijit/form/TextBox';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormData {
 	firstName: string;

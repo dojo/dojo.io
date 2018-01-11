@@ -33,7 +33,7 @@ The first step to allowing the user to create new workers is to create a form. T
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormProperties {
 }
@@ -62,9 +62,9 @@ If you cannot see the application, remember to run `dojo build -w` to build the 
 
 This widget will render an empty form with a `submit` handler that prevents the form from being submitted to the server. Before we continue to expand on this starting point though, let's integrate the form into the application so we can observe the form as we add more features.
 
-{% instruction 'Add the following widget CSS rules to `workerForm.css`.' %}
+{% instruction 'Add the following widget CSS rules to `workerForm.m.css`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.css' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.m.css' lang:css %}
 
 {% instruction 'Now, add the `WorkerForm` to the `App` class.' %}
 

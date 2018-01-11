@@ -3,7 +3,7 @@ import { DNode } from '@dojo/widget-core/interfaces';
 import { w, v } from '@dojo/widget-core/d';
 import Worker, { WorkerProperties } from './Worker';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import * as css from '../styles/workerContainer.css';
+import * as css from '../styles/workerContainer.m.css';
 
 export interface WorkerContainerProperties {
 	workerData?: WorkerProperties[];

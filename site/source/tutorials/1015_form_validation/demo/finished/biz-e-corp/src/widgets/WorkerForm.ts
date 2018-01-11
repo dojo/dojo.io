@@ -4,7 +4,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import Button from '@dojo/widgets/button/Button';
 import ValidatedTextInput from './ValidatedTextInput';
-import * as css from '../styles/workerForm.css';
+import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormData {
 	firstName: string;
