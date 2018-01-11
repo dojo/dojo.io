@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/003_creating_widgets/resources/worker_page.png">
-<meta property="og:updated_time" content="2018-01-11T16:03:32.275Z">
+<meta property="og:updated_time" content="2018-01-11T20:12:29.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -258,16 +258,16 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">We also need to <code>import</code> our CSS:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/worker.css'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/worker.m.css'</span><span class="token punctuation">;</span>
 </code></pre>
-<p><code>worker.css</code> contains CSS selectors and rules to be consumed by our widget and its components.</p>
+<p><code>worker.m.css</code> contains CSS selectors and rules to be consumed by our widget and its components.</p>
 <div class="instruction">With the imports in place, add the <em></em>@theme<em></em> decorator and apply the mixin to the <code>Worker</code> class in <code>Worker.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> WorkerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Worker</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerBase</span><span class="token operator">&lt;</span>WorkerProperties<span class="token operator">></span> <span class="token punctuation">{</span>
 </code></pre>
-<div class="instruction">Add the CSS rules in <code>src/styles/worker.css</code> which will allow us to style the <code>Worker</code> widget:</div>
+<div class="instruction">Add the CSS rules in <code>src/styles/worker.m.css</code> which will allow us to style the <code>Worker</code> widget:</div>
 <pre class="language-css"><code class="language-css"><span class="token selector">.worker</span> <span class="token punctuation">{</span>
 	<span class="token property">flex</span><span class="token punctuation">:</span> 1 1 <span class="token function">calc</span><span class="token punctuation">(</span>33% - 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token property">margin</span><span class="token punctuation">:</span> 0 10px 40px<span class="token punctuation">;</span>
@@ -322,7 +322,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token keyword">import</span> <span class="token punctuation">{</span> w<span class="token punctuation">,</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Worker <span class="token keyword">from</span> <span class="token string">'./Worker'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'../styles/workerContainer.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'../styles/workerContainer.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> WorkerContainerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -362,7 +362,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
             classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>container<span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span> workers<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Now it is time to add styling rules for the <code>WorkerContainer</code>. Inside  of <code>styles/workerContainer.css</code>.</p>
+<p>Now it is time to add styling rules for the <code>WorkerContainer</code>. Inside  of <code>styles/workerContainer.m.css</code>.</p>
 <div class="instruction">Add the following rule.</div>
 <pre class="language-css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">{</span>
 	<span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
