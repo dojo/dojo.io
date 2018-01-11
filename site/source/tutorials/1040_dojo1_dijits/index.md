@@ -152,7 +152,7 @@ Now that you have wrapped Dijits for use, we need to import them into their cont
 ## Placing Dijits
 
 {% aside 'Reminder' %}
-We will be using the `w()` function from `@dojo-widget/core/d`.  Don't forget to `import` it...
+We will be using the `w()` function from `@dojo/widget-core/d`.  Don't forget to `import` it...
 {% endaside %}
 
 {% task 'Adding Dijits to a widget\'s render function.' %}
