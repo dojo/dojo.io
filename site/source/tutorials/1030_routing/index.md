@@ -127,7 +127,7 @@ Now, we can the swap out the widgets for the newly created `outlets`. Notice we 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-55,59-61 %}
 
-Running the application now should display the `Banner.ts` by default, but also enable routing to the other widgets using the `/#directory` and `/#new-worker` routes.
+Running the application now should display the `Banner.ts` by default, but also enable routing to the other widgets using the `/directory` and `/new-worker` routes.
 
 Next, we will add a side menu with links for the created outlets.
 
