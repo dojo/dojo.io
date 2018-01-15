@@ -49,7 +49,11 @@ TODO: Details about the addition of the Progress and Toolbar widgets
 
 ### Updated examples
 
-TODO: Summary of examples and what was updated
+TODO: Summary of examples and what was updated (e.g. kitchen sink using stores)
+
+### ESM packages
+
+TODO: content
 
 ### Theme creation and new dojo/themes package
 
