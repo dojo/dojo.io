@@ -248,7 +248,7 @@ w(Worker, { firstName: 'Tim', lastName: 'Jones' })
 ```
 
 {% aside 'Remember' %}
-You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -w memory -s` and navigating to `http://localhost:9999`.
+You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -m dev -w memory -s` and navigating to `http://localhost:9999`.
 {% endaside %}
 
 At this point, we have a good start to our widget, but it still doesn't look very good. In the next section we'll address that by learning how to use CSS to style our widgets.
