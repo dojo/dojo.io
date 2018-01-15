@@ -39,7 +39,7 @@ In order to theme our widgets, we must ensure that they each extend `ThemedMixin
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-13 %}
 
 {% aside 'Reminder' %}
-If you cannot see the application, remember to run `dojo build -w` to build the application and start the development server.
+If you cannot see the application, remember to run `dojo build -m dev -w memory -s` to build the application and start the development server.
 {% endaside %}
 
 This `Banner` widget will now have access to the classes in `banner.m.css` and can receive a `theme`. We use the `root` class to ensure that the theme we create can easily target the correct node.
@@ -63,7 +63,7 @@ Fixed classes apply styles that cannot be overridden by a theme, using a suffix 
 
 `WorkerForm` already uses the `ThemedMixin` and has a `workerForm` class on its root node. Let's change the workerForm class to a `root` class, and while we are there, we will create a `rootFixed` class too, and apply it to the root node. Classes that are not passed to `theme` cannot be changed or overridden via a theme, ensuring that structured or nested styles are not lost when a theme is used.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:48-51 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:50-53 %}
 
 Replace all of the selectors containing `.workerForm` with the following rules in `workerForm.m.css`.
 
@@ -213,22 +213,22 @@ export default {
 };
 ```
 
-This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `dojoTextInput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.
+This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `@dojo/widgets/textinput/textinput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.
 
-{% instruction 'Create `dojoTextInput.m.css`' %}
+{% instruction 'Create `textinput.m.css`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/dojoTextInput.m.css' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/textinput/textinput.m.css' lang:css %}
 
 {% instruction 'And export it from `theme.ts`' %}
 
 ``` typescript
 import * as worker from './worker.m.css';
 import * as workerForm from './workerForm.m.css';
-import * as dojoTextInput from './dojoTextInput.m.css';
+import * as dojoTextInput from './@dojo/textinput/textinput.m.css';
 export default {
 	worker,
 	workerForm,
-	'dojo-textinput': dojoTextInput
+	'@dojo/textinput/textinput': dojoTextInput
 };
 ```
 

@@ -57,6 +57,10 @@ The `dojo`, `dijit`, and `dojo-themes` packages are the Dojo 1 dependencies we w
 
 Dojo 1 and Dijits at run-time are considered _external_ dependencies for the Dojo 2 build system.  We need to supply information to the `dojo build` CLI command to include our external dependencies as part of our build.  We provide additional configuration information to the Dojo 2 CLI via `.dojorc` in the root of our project.  `.dojorc` is formatted as a JSON file and configuration can be provided to each CLI command.
 
+{% aside 'Dojo Build Command' %}
+Currently only the older command `cli-build-webpack` supports loading external modules into Dojo 2, so for this tutorial this is the build command that is required.
+{% endaside %}
+
 {% instruction 'Create a `.dojorc` with the following content:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/.dojorc' %}

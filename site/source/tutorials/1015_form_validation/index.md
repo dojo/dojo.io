@@ -279,7 +279,7 @@ Now that `ValidatedTextInput` exists, let's import it and swap it with `TextInpu
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-7 %}
 
 **Inside render()**
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:74-114 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:80-116 %}
 
 {% task 'Create `onFormValidate` method separate from `onFormInput`' %}
 
@@ -294,14 +294,14 @@ Currently the validation logic is unceremoniously dumped in `formInput` within `
 3. Within `WorkerForm` first add `onFormValidate` to the `WorkerFormProperties` interface:
 	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:21-27 %}
 	Then create internal methods for each form field's validation and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:51-61 %}
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-67 %}
 
 {% instruction 'Handle calling `onValidate` within `ValidatedTextInput`' %}
 
 You might have noticed that the form no longer validates on user input events. This is because we no longer handle validation within `formInput` in `ApplicationContext.ts`, but we also haven't added it anywhere else. To do that, add the following private method to `ValidatedTextInput`:
 
 ```ts
-private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
+private _onInput(event: Event) {
 	const { onInput, onValidate } = this.properties;
 	onInput && onInput(event);
 	onValidate && onValidate(event);

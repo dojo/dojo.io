@@ -100,7 +100,7 @@ protected render() {
 ```
 {% endsolution %}
 
-{% instruction 'Run the application with `dojo build --watch` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
+{% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
 A solid foundation for a filterable list widget using a Dojo 2 `TextInput` widget has been created and added to the existing `Banner`. Thus far, the widget is not connected to an external data source.
 

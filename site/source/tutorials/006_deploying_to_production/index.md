@@ -68,11 +68,7 @@ The `--help` argument displays the help information for the `dojo build` command
 Dojo 2 has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo 2, refer to the [Internationalization in Dojo 2 tutorial](../comingsoon.html).
 {% endaside %}
 
-The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configure the build's support for internationalization.
-
-For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
-
-The command line arguments give control over how the application is built and prepared for deployment. However, providing these arguments every time a build is required can be error prone. In the next section, we will learn how to create a persistent build configuration by using `.dojorc`.
+The command line arguments give control over how the application is built and prepared for deployment. However, there is further configuration that can be provided for build concerns such as Internationalization. In the next section, we will learn how to configure these options using the `.dojorc`.
 
 {% section %}
 
@@ -80,7 +76,11 @@ The command line arguments give control over how the application is built and pr
 
 {% task 'Use .dojorc to store configuration settings.' %}
 
-The command line arguments that the `dojo build` tool accepts are very useful when developing an application and preparing it to be deployed to production. However, since command line arguments can't be committed to source control, they are not the best way to ensure that production deployment builds are executed consistently. To store configuration settings, Dojo 2 applications can store their settings in `.dojorc`.
+The command line arguments that the `dojo build` tool accepts generally relate to the build target such as the `mode`, whether to run the build with under `watch` and if the build command needs to start a web server using `serve`.
+
+The `.dojorc` configuration expands on these settings enabling configuration for internationalization, code splitting, PWA manifest and eliding code based on feature tests.
+
+For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
 
 {% aside 'Arguments vs .dojorc' %}
 It is possible to provide different settings when using command line arguments and `.dojorc`. When this occurs, command line arguments always take precedence over configuration settings stored in `.dojorc`.
@@ -92,14 +92,46 @@ Consider the following:
 
 ```json
 {
-  "build-ap": {
+  "build-app": {
     "locale": "en",
     "supportedLocales": [ "ja_JP" ],
+    "cldrPaths": [
+      "cldr-data/main/{locale}/numbers.json"
+    ],
+    "bundles": {
+      "foo": [
+        "src/Foo",
+        "src/Bar"
+      ]
+    },
+    "features": {
+      "foo": true,
+      "bar": false
+    },
+    "pwa": {
+      "manifest": {
+        "name": "My Application",
+        "description": "My amazing application"
+      }
+    }
   }
 }
 ```
 
-This is a sample `.dojorc` and contains configuration settings for the `dojo build` command. Note the field name, `build-app`. This is the full name of the command that we have been using. Each `dojo-cli` command group, such as `build`, has a default sub-command. The `build` command's default sub-command is `app`, so the `dojo build` command is equivalent to entering `dojo build app`. Since each entry in `.dojorc` needs the full command name, the field name must be `build-app`. That entry contains an object with two values - `locale` and `supportedLocales`.
+This is a sample `.dojorc` and contains configuration settings for the `dojo build` command. Note the field name, `build-app`. This is the full name of the command that we have been using. Each `dojo-cli` command group, such as `build`, has a default sub-command. The `build` command's default sub-command is `app`, so the `dojo build` command is equivalent to entering `dojo build app`. Since each entry in `.dojorc` needs the full command name, the field name must be `build-app`. That entry contains an object with examples of the available configuration for `cli-build-app`:
+
+#### `locale`
+The default locale of the application
+#### `supportedLocales`
+An array of supported locales beyond the default. When the application loads, the user's locale is checked against the list of supported locales. If the user's locale is compatible with the supported locales, then the user's locale is used throughout the application.
+#### `cldrData`
+An array of paths to CLDR JSON files. Used in conjunction with the locale and supportedLocales options. If a path contains the string {locale}, that file will be loaded for each locale listed in the locale and supportedLocales properties.
+#### `bundles`
+Useful for breaking an application into smaller bundles, the bundles option is a map of webpack bundle names to arrays of modules that should be bundled together. For example, with the following configuration both src/Foo and src/Bar will be grouped in the foo.[hash].js bundle:
+#### `features`
+A map of has features to boolean flags that can be used when building in `dist` mode to remove unneeded imports or conditional branches.
+#### `pwa.manifest`
+Specifies information for a web app manifest.
 
 Dojo 2's build system is designed to encapsulate the build process as completely as possible. However, there may be times when a greater degree of control is required. In those situations, a project can be *ejected* from the `dojo` command line tool. We will take a look at that next.
 
@@ -131,9 +163,7 @@ For many software projects, preparing an application for deployment to productio
 
 While the `dojo build` command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios.
 
-To ensure repeatable builds, all of the configuration options for the `dojo` CLI commands can be stored in `.dojorc`, an ideal choice when it is necessary to ensure that consecutive builds are executed with the same parameters.
-
-In the event that the development team requires a higher level of control than Dojo 2's build system offers, a project can be exported via the `dojo eject` command. This non-reversible command exports all of the `dojo` CLI commmands' configuration information, providing a solid starting point for additional optimizations.
+In the event that the development team requires a higher level of control than Dojo 2's build system offers, a project can be exported via the `dojo eject` command. This non-reversible command exports all of the `dojo` CLI commands' configuration information, providing a solid starting point for additional optimizations.
 
 ## Next steps
 
