@@ -29,7 +29,7 @@ Before we start making changes, let's start the application with the development
 
 `dojo build --mode dev --watch memory --serve`
 
-or using the short params:
+or using the abbreviated parameters:
 
 `dojo build -m dev -w memory -s`
 

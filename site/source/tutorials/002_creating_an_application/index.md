@@ -86,7 +86,7 @@ dojo build --mode test
 dojo test
 ```
 
-The tests can be built using a watch that means the full application doesn't need to be rebuilt to re-run the tests after every change.
+The tests can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.
 
 In one terminal run:
 

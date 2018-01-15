@@ -106,9 +106,9 @@ First we need to extract the `_renderBack` function from `Worker.ts` into a new 
 The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the `registry` will automatically re-render!
 {% endaside %}
 
-Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns the a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual `render` cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.
+Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual `render` cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.
 
-There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated in the `main.ts` file. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the `@registry` decorator from `@dojo/widget-core/decorators/registry`.
+There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated `main.ts`. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the `@registry` decorator from `@dojo/widget-core/decorators/registry`.
 
 {% task 'Add the import for the `@registry` decorator `Worker.ts`' %}
 
