@@ -40,7 +40,7 @@ jspm_packages
 .idea
 
 _dist
-output/
+output
 _build
 html-report
 .ghpublish

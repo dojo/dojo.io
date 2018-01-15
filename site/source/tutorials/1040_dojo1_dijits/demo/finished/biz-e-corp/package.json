@@ -1,6 +1,10 @@
 {
   "name": "biz-e-corp",
   "version": "1.0.0",
+  "scripts": {
+    "test": "dojo build -t && dojo test",
+    "build": "dojo build"
+  },
   "dependencies": {
     "@dojo/core": "~0.3.1",
     "@dojo/has": "~0.1.2",
