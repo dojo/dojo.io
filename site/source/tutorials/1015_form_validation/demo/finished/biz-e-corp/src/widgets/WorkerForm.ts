@@ -36,27 +36,33 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onFirstNameInput(event: KeyboardEvent) {
+		const { value: firstName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onLastNameInput(event: KeyboardEvent) {
+		const { value: lastName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onEmailInput(event: KeyboardEvent) {
+		const { value: email } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ email });
 	}
 
-	protected onFirstNameValidate({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onFirstNameValidate(event: KeyboardEvent) {
+		const { value: firstName } = event.target as HTMLInputElement;
 		this.properties.onFormValidate({ firstName });
 	}
 
-	protected onLastNameValidate({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onLastNameValidate(event: KeyboardEvent) {
+		const { value: lastName } = event.target as HTMLInputElement;
 		this.properties.onFormValidate({ lastName });
 	}
 
-	protected onEmailValidate({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onEmailValidate(event: KeyboardEvent) {
+		const { value: email } = event.target as HTMLInputElement;
 		this.properties.onFormValidate({ email });
 	}
 
@@ -75,10 +81,8 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 				w(ValidatedTextInput, {
 					key: 'firstNameInput',
-					label: {
-						content: 'First Name',
-						hidden: true
-					},
+					label: 'First Name',
+					labelHidden: true,
 					placeholder: 'Given name',
 					value: firstName,
 					required: true,
@@ -89,10 +93,8 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				}),
 				w(ValidatedTextInput, {
 					key: 'lastNameInput',
-					label: {
-						content: 'Last Name',
-						hidden: true
-					},
+					label: 'Last Name',
+					labelHidden: true,
 					placeholder: 'Surname name',
 					value: lastName,
 					required: true,

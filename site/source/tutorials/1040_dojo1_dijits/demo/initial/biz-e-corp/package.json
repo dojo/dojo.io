@@ -9,7 +9,7 @@
     "@dojo/widget-core": "~0.6.1",
     "@dojo/i18n": "~0.4.1",
     "@dojo/widgets": "~0.4.1",
-    "@dojo/interop": "~0.3.1",
+    "@dojo/interop": "~0.4.0d",
     "dijit": "^1.13.0",
     "dojo": "^1.13.0",
     "dojo-themes": "^1.13.0"

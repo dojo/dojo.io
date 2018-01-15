@@ -124,10 +124,8 @@ protected render() {
 			v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 			w(TextInput, {
 				key: 'firstNameInput',
-				label: {
-					content: 'First Name',
-					hidden: true
-				},
+				label:'First Name',
+				labelHidden: true,
 				placeholder: 'Given name',
 				value: firstName,
 				required: true,
@@ -136,10 +134,8 @@ protected render() {
 			}),
 			w(TextInput, {
 				key: 'lastNameInput',
-				label: {
-					content: 'Last Name',
-					hidden: true
-				},
+				label: 'Last Name',
+				labelHidden: true,
 				placeholder: 'Surname name',
 				value: lastName,
 				required: true,
@@ -175,7 +171,9 @@ Simply changing the border color of form fields to be red or green doesn't impar
 v('div', { classes: this.theme(css.inputWrapper) }, [
 	w(TextInput, {
 		...
-		describedBy: this._errorId,
+		aria: {
+			describedBy: this._errorId
+		},
 		onInput: this._onInput
 	}),
 	invalid === true ? v('span', {
@@ -241,7 +239,9 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 
 		return v('div', { classes: this.theme(css.inputWrapper) }, [
 			w(TextInput, {
-				describedBy: this._errorId,
+				aria: {
+					describedBy: this._errorId
+				},
 				disabled,
 				invalid,
 				label,
@@ -311,7 +311,9 @@ private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
 Now pass it to `TextInput` in place of `this.properties.onInput`:
 ```ts
 w(TextInput, {
-	describedBy: this._errorId,
+	aria: {
+		describedBy: this._errorId
+	},
 	disabled,
 	invalid,
 	label,
