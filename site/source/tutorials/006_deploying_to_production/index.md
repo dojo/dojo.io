@@ -26,21 +26,21 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% task 'Create a production build.' %}
 
-Creating a production build of a Dojo 2 application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build --watch` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
+Creating a production build of a Dojo 2 application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w memory -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
 
 {% instruction 'Run the `dojo build` command.' %}
 
-The build command creates a new folder, `dist`, where all of the built files are located. Open that directory and examine `index.html`. This version of `index.html` is slightly different than the one in the `src` directory - the build process has added links to `main.css` and `src/main.js` so the application and its styling rules will be available.
+The build command creates a new folder, `output/dist`, where all of the built files are located. Open that directory and examine `index.html`. This version of `index.html` is slightly different than the one in the `src` directory - the build process has added links to `main.[hash].bundle.css` and `main.[hash].bundle.js` so the application and its styling rules will be available.
 
-`main.css` contains the styling rules for the application's custom widgets as well as the `Button` and `TextInput` widgets that are used in the `WorkerForm`. `main.css.map` provides information that development tools use to map the styling rules in `main.css` to the original sources.
+Along with the `index.html` the directory contains two bundles, `main.[hash].bundle.js` and `runtime.[hash].bundle.js`. The runtime bundle contains all of code required by webpack to load the application and the main bundle contains all of the application source code. Both bundles have been transpiled to JavaScript, bundled, and [minified](http://bit.ly/2rVdhNk). This allows the application to be served as efficiently as possible. `main.[bundle].js.map` is used to allow developers to view the original source code when debugging the application.
 
-Finally, there is `report.html` in the `dist` directory. Opening that in a browser reveals a page that looks like this:
+`main.[hash].bundle.css` contains the styling rules for the application's custom widgets as well as the `Button` and `TextInput` widgets that are used in the `WorkerForm`. `main.[hash].bundle.css.map` provides information that development tools use to map the styling rules in `main.[hash].bundle.css` to the original sources.
+
+Finally, there is a report for each bundle in the `output/info` directory. Opening that in a browser reveals a page that looks like this:
 
 <p class="center">![build_stats](./resources/build_stats.png)</p>
 
 This interactive chart shows how much the build process was able to compress the source code. Hovering over different sections shows the individual resources that have been included in the build.
-
-Additionally, the `dist` folder contains three subdirectories. Two of those, `images` and `styles` are copies from the `src` directory. The third directory, `src`, contains two entries - `main.js` and `main.js.map`. `main.js` contains all of the application's source code after it has been transpiled to JavaScript, bundled, and [minified](http://bit.ly/2rVdhNk). This allows the application to be served as efficiently as possible. `main.js.map` is used to allow developers to view the original source code when debugging the application.
 
 Since all of the resources in the `dist` folder are optimized for use in production, deployment only involves copying the contents of the `dist` directory to the location that the web application expects them to be.
 
@@ -58,7 +58,9 @@ The default options for `dojo build` are sufficient for many situations, but the
 
 There are four groups of command line arguments that are available when using the `dojo build` command.
 
-The first group consists of the `--watch` and `--port` arguments. These are used to start and configure the development server that is designed to host Dojo 2 applications as they are being authored.
+The first group is `--mode` that accepts `dist`, `dev` and `test` depending on the bundle that is needed, the argument defaults to `dist`.
+
+The build command supports two modes of `--watch`, `file` which writes built files to the relevant directory in `output` and `memory` that uses webpack dev server (and must be run with the `--serve` argument).
 
 The `--help` argument displays the help information for the `dojo build` command and is equivalent to the `dojo build help` command.
 
@@ -68,17 +70,7 @@ Dojo 2 has a complete set of internationalization (i18n) capabilities that are b
 
 The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configure the build's support for internationalization.
 
-* The `--locale` argument is used to specify which language should be considered the *default*. Whenever a different locale is used that does not have a specific translation, the default locale's translation will be used.
-* The `--supportedLocales` argument is used to specify all of the provided locales for the application. Each locale that is added here will have its rules for date formatting, currency, etc. added to the build.
-* The `--messageBundles` argument specifies all of the message bundles (translations) that should be included in the build.
-
 For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
-
-The next two arguments that are listed when the `dojo build help` command is run are `--element` and `--elementPrefix`. These two fields are primarily used when exporting Dojo 2 widgets as [web components](https://en.wikipedia.org/wiki/Web_Components) rather than for building stand alone Dojo 2 applications. For more information, refer to the [Exporting Dojo 2 widgets as web components](../comingsoon.html) article.
-
-The `--debug` argument will cause the builder to generate `profile.json`, providing a great deal of information about the build itself, including what modules were included and how long they took to build. A profile can be inspected using WebPack's [analyze tool](https://webpack.github.io/analyse/).
-
-The final argument is `--disableLazyWidgetDetection`. A widget can be registered with the [widget registry](https://github.com/dojo/widget-core#widget-registry) to load only when required. This [lazy loading](https://en.wikipedia.org/wiki/Lazy_loading) behavior can reduce the initial load time of the application and is often useful when large, sophisticated widgets are not initially required. The build system does this by creating a separate bundle for each of these lazily loaded widgets. Lazy loading can, however, cause unnecessary delays if the widgets are actually needed initially. In those situations, adding the `--disableLazyWidgetDetection` argument will cause the the build system to include lazily loaded widgets into the main bundle. The widgets will then be immediately available for use by the application.
 
 The command line arguments give control over how the application is built and prepared for deployment. However, providing these arguments every time a build is required can be error prone. In the next section, we will learn how to create a persistent build configuration by using `.dojorc`.
 
@@ -100,14 +92,14 @@ Consider the following:
 
 ```json
 {
-  "build-webpack": {
+  "build-ap": {
     "locale": "en",
-    "messageBundles": [ "src/nls/main" ]
+    "supportedLocales": [ "ja_JP" ],
   }
 }
 ```
 
-This is a sample `.dojorc` and contains configuration settings for the `dojo build` command. Note the field name, `build-webpack`. This is the full name of the command that we have been using. Each `dojo-cli` command group, such as `build`, has a default sub-command. The `build` command's default sub-command is `webpack`, so the `dojo build` command is equivalent to entering `dojo build webpack`. Since each entry in `.dojorc` needs the full command name, the field name must be `build-webpack`. That entry contains an object with two values - `locale` and `messageBundles`. Each of these fields takes values that are similar to the same options when provided by the command line.
+This is a sample `.dojorc` and contains configuration settings for the `dojo build` command. Note the field name, `build-app`. This is the full name of the command that we have been using. Each `dojo-cli` command group, such as `build`, has a default sub-command. The `build` command's default sub-command is `app`, so the `dojo build` command is equivalent to entering `dojo build app`. Since each entry in `.dojorc` needs the full command name, the field name must be `build-app`. That entry contains an object with two values - `locale` and `supportedLocales`.
 
 Dojo 2's build system is designed to encapsulate the build process as completely as possible. However, there may be times when a greater degree of control is required. In those situations, a project can be *ejected* from the `dojo` command line tool. We will take a look at that next.
 
@@ -123,7 +115,13 @@ The build tool is designed to cover the most common use cases for developing and
 
 To eject a project, use the `dojo eject` command. You will be prompted to ensure that you understand that this is a non-reversible action. Entering **'y'** will begin to export process. The export process generates a new directory - `config` that contains all of the exported configuration information for each of the `dojo-cli` tools that the project had been using. The process will also install some additional dependencies that the project now requires.
 
-The project is now configured to be managed as a webpack project. Changes can be made to the build configuration by altering `config/build-webpack/webpack.config.js`. A build can then be triggered by running `webpack`'s build command and providing the configuration. That command is: `./node_modules/.bin/webpack --config ./config/build-webpack/webpack.config.js`.
+The project is now configured to be managed as a webpack project. Changes can be made to the build configuration by altering `config/build-app/base.config.js` and the relevant configuration for the target mode e.g. `dist.config.js`.
+
+A build can then be triggered by running `webpack`'s build command and providing the configuration. Further, the modes are specified using webpack's env flag (e.g., --env.mode=dev), defaulting to dist. You can run a build using webpack with:
+
+```
+./node_modules/.bin/webpack --config=config/build-app/ejected.config.js --env.mode={dev|dist|test}
+```
 
 {% section %}
 
@@ -131,7 +129,7 @@ The project is now configured to be managed as a webpack project. Changes can be
 
 For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo 2, on the other hand, provides a single command, `dojo build` that is used both during development as well as for production deployments.
 
-While the `dojo build` command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios. The `--locale`, `--supportedLocales`, and `--messageBundles` arguments are used to configurate the applications internationalization support. The `--debug` argument allows the results of the build to be examined in more depth. Finally, the `--disableLazyWidgetDetection` argument can be used to optimize how an application loads widgets.
+While the `dojo build` command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios.
 
 To ensure repeatable builds, all of the configuration options for the `dojo` CLI commands can be stored in `.dojorc`, an ideal choice when it is necessary to ensure that consecutive builds are executed with the same parameters.
 

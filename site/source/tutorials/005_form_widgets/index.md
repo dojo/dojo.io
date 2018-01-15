@@ -57,7 +57,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 ```
 
 {% aside 'Reminder' %}
-If you cannot see the application, remember to run `dojo build -w` to build the application and start the development server.
+If you cannot see the application, remember to run `dojo build -m dev -w memory -s` to build the application and start the development server.
 {% endaside %}
 
 This widget will render an empty form with a `submit` handler that prevents the form from being submitted to the server. Before we continue to expand on this starting point though, let's integrate the form into the application so we can observe the form as we add more features.
