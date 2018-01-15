@@ -53,7 +53,7 @@ TODO: Summary of examples and what was updated (e.g. kitchen sink using stores)
 
 ### ESM packages
 
-TODO: content
+Dojo packages now ship ES modules alongside UMD! In the future we will be leveraging ESM for evergreen browser builds with webpack.
 
 ### Theme creation and new dojo/themes package
 
