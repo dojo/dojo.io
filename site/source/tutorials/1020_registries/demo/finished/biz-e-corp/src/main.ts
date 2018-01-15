@@ -18,10 +18,6 @@ registry.define('banner', Banner);
 registry.define('worker', Worker);
 registry.define('worker-form', WorkerForm);
 registry.define('worker-container', WorkerContainer);
-registry.define('worker-back', async () => {
-	const WorkerBack = await import('./widgets/WorkerBack');
-	return WorkerBack.default;
-});
 
 const Projector = ProjectorMixin(App);
 const projector = new Projector();
