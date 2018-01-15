@@ -68,8 +68,8 @@ TODO: Explain these items
 *  More end developer tooling improvements
 	* dojo/cli-build-app Finish re-architecture of the build system
 	* dojo/cli-build-widget Focused build process for Dojo 2 widgets as web components
-    * dojo/devtool A development tool for Dojo 2 (Chrome and Firefox)
-    * dojo/diagnostics A diagnostic API for debugging Dojo 2 applications
+	* dojo/devtool A development tool for Dojo 2 (Chrome and Firefox)
+	* dojo/diagnostics A diagnostic API for debugging Dojo 2 applications
 * dojo/widget-core Finish DOM abstraction
 * dojo/widgets Standardize widget events
 * Dojo 1 flat theme interoperability
