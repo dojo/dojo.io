@@ -40,23 +40,33 @@ Application routing paths are assembled into a hierarchy bsaed on the routing co
 
 {% instruction 'Include the required imports in the file `main.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2,3 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2-4 %}
 
 {% instruction 'Define the routing configuration.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-31 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-32 %}
 
 Explanations for the route configuration in the above code block are explained earlier in this step.
 
 {% instruction 'Now, register the router in a `registry`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:33-34 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:34-36 %}
 
-The `registerRouterInjector` helper utility used in the code above is provided by `@dojo/routing`, and can be used to create a routing instance. The utility accepts the application's routing configuration, and a `registry` to define a `router` injector against. The utility returns the `router` instance.
+The `registerRouterInjector` helper utility used in the code above is provided by `@dojo/routing`, and can be used to create a routing instance. The utility accepts:
+
+* The application's routing configuration
+* A `registry` to define a `router` injector against
+* An object which specifies the [history manager](https://github.com/dojo/routing#history-management) to be used
+
+The utility returns the `router` instance.
+
+{% aside 'History Managers' %}
+The default history manager uses hash-based (fragment style) URLs. You can omit the third argument to `registerRouterInjector` to fallback to hash-based URLs.
+{% endaside %}
 
 {% instruction 'Initialize the routing' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:38-41 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:40-43 %}
 
 {% aside 'Important!' %}
 When using a `defaultRoute` in the routing configuration, the `router` will need to be started after the projector is appended.
