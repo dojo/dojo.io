@@ -1,7 +1,7 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { Registry } from '@dojo/widget-core/Registry';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import { StateHistory } from '@dojo/routing/history/StateHistory'
+import { StateHistory } from '@dojo/routing/history/StateHistory';
 
 import App from './widgets/App';
 
