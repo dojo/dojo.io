@@ -33,7 +33,15 @@ Since the beta 4 release, we have made a number of improvements. The biggest cha
 
 ### Initial re-architecture of the build system
 
-TODO: List major changes (why, and that it's been split up)
+Prior to beta5, the structure of the build commands was focused around the tooling and not around the actual creation of applications. So we completed a re-architecture and restructuring of the commands to align more to their use. Specifically, `@dojo/cli-build-webpack` is deprecated and replaced with:
+
+* [`@dojo/cli-build-app`](https://github.com/dojo/cli-build-app/) A command that builds an application
+* [`@dojo/cli-build-widget`](https://github.com/dojo/cli-build-widget/) A command that build a widget, including support for web components
+* Other commands may be planned for the future
+
+This refactoring is mostly complete for Beta 5, with a few remaining items to complete for release candidate 1.
+
+Usage of the build system is reflected in updates to the [Dojo 2 tutorials](https://dojo.io/tutorials/).
 
 ### Improvements to using Custom Elements/Web Components
 
@@ -45,11 +53,29 @@ TODO: Explain, provide metrics?
 
 ### New widgets
 
-TODO: Details about the addition of the Progress and Toolbar widgets
+Two new widgets were added in Beta 5:
+
+* [Progress](https://github.com/dojo/widgets/issues/385) (`@dojo/widgets/progress/Progress`)
+* [Toolbar](https://github.com/dojo/widgets/issues/386) (`@dojo/widgets/toolbar/Toolbar`)
+
+TODO Add screenshots
+
+These widgets may be viewed in the [widget showcase](https://dojo.github.io/examples/widget-showcase/).  TODO: blocked by https://github.com/dojo/examples/issues/278
+
+### Stores
+
+A number of refinements were made since the initial `@dojo/stores` release in Beta 4:
+
+* [Add a basic `onChange` mechanism](https://github.com/dojo/stores/commit/b6165e6fd670874726e67ab166cb888967785d19)
+* Improvements to providing type definitions for state
+
+See the [@dojo/stores readme](https://github.com/dojo/stores) for more information about this package.
 
 ### Updated examples
 
-TODO: Summary of examples and what was updated (e.g. kitchen sink using stores)
+Our collection of [Dojo 2 examples](http://github.com/dojo/examples/) were updated for beta 5.
+
+In particular, the [kitchen sink version of ToDoMVC](https://github.com/dojo/examples/blob/master/todo-mvc-kitchensink) now uses `@dojo/stores`.
 
 ### ESM packages
 
@@ -57,26 +83,24 @@ Dojo packages now ship ES modules alongside UMD! In the future we will be levera
 
 ### Theme creation and new dojo/themes package
 
-TODO: Explain  Improvements to tooling around theme creation
+TODO: Explain improvements to tooling around theme creation
 
 ### Migrate to TypeScript 2.6
 
-TODO: Explain, fully strict, etc.
+[TypeScript 2.6](https://blogs.msdn.microsoft.com/typescript/2017/10/31/announcing-typescript-2-6/) was released and introduced a number of significant improvements to the language, in particular the strictness of certain types of typings. These changes helped us further refine the type definitions and find a few bugs along the way. Dojo 2 beta 5 ships all of its packages leveraging TypeScript 2.6, and all packages conform to `strict` type mode.
 
 ## What's next?
 
 We are nearly there for the initial 2.0 release. For RC1 in just a few weeks, you can look forward to:
 
-TODO: Explain these items
-
 *  More end developer tooling improvements
-	* dojo/cli-build-app Finish re-architecture of the build system
-	* dojo/cli-build-widget Focused build process for Dojo 2 widgets as web components
-	* dojo/devtool A development tool for Dojo 2 (Chrome and Firefox)
-	* dojo/diagnostics A diagnostic API for debugging Dojo 2 applications
-* dojo/widget-core Finish DOM abstraction
-* dojo/widgets Standardize widget events
-* Dojo 1 flat theme interoperability
+	* `dojo/cli-build-app` Finish re-architecture of the build system
+	* `dojo/cli-build-widget` Focused build process for Dojo 2 widgets as web components
+	* `dojo/devtool` A development tool for Dojo 2 (Chrome and Firefox)  TODO: Part of rc1?
+	* `dojo/diagnostics` A diagnostic API for debugging Dojo 2 applications  TODO: Part of rc1?
+* `dojo/widget-core` Finish DOM abstraction
+* `dojo/widgets` Standardize widget events
+* Additional theme to provide Dojo 1 flat theme style interoperability
 
 At the moment, we are planning for RC1 in early February.
 
