@@ -1,0 +1,19 @@
+.worker {
+	flex: 1 1 calc(33% - 20px);
+	margin: 0 10px 40px;
+	max-width: 350px;
+	min-width: 250px;
+	position: relative;
+	border: 1px solid #333;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding: 30px;
+	text-align: center;
+	z-index: 2;
+}
+
+.image {
+	margin: 0 auto 20px;
+	max-width: 250px;
+	width: 100%;
+}

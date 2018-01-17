@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Dojo 1 application with Custom Elements</title>
+
+	<link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+<div id="myapp"></div>
+<script>
+	dojoConfig = {
+	  async: true,
+
+	  packages: [
+		  { name: 'myapp', location: '../../src' }
+	  ]
+	}
+</script>
+<script src="node_modules/dojo/dojo.js"></script>
+<script>
+	require([ 'myapp' ], function(myapp) {
+		myapp.start(document.getElementById('myapp'));
+	});
+</script>
+</body>
+</html>

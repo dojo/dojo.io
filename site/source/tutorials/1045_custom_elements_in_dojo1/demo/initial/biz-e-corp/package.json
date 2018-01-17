@@ -1,0 +1,17 @@
+{
+  "name": "mydojo1app",
+  "version": "0.0.1",
+  "description": "Incorporate custom elements in a Dojo 1 app",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "install": "cd dojo2-widget && npm i"
+  },
+  "dependencies": {
+    "dijit": "^1.13.0",
+    "dojo": "^1.13.0"
+  },
+  "devDependencies": {
+    "intern": "^4.1.1"
+  }
+}

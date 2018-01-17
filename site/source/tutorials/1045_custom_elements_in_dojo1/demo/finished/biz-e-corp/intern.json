@@ -1,0 +1,33 @@
+{
+	"browser": {
+		"suites": [
+			"../../tests/unit/main.js"
+		],
+
+		"loader": {
+			"script": "dojo",
+			"options": {
+				"packages": [
+					{ "name": "dojo", "location": "/node_modules/dojo" },
+					{ "name": "dijit", "location": "/node_modules/dijit" },
+					{ "name": "myapp", "location": "/src" },
+					{ "name": "dojo2Widget", "location": "/dojo2-widget/dist" }
+				]
+			}
+		},
+
+		"plugins": [
+			"//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js",
+			"./dojo2-widget/dist/worker/widget-core.js",
+			"./dojo2-widget/dist/worker/worker.js"
+		]
+	},
+	"configs": {
+		"local": {
+			"tunnel": "selenium",
+			"environments": [
+				{ "browserName": "chrome" }
+			]
+		}
+	}
+}

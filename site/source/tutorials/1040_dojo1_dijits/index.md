@@ -11,7 +11,7 @@ paginate: true
 
 ## Overview
 
-This tutorial will extend the the [Form widgets](../005_form_widgets/) tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits.
+This tutorial will extend the [Form widgets](../005_form_widgets/) tutorial.  In this tutorial, we will replace some of the Dojo 2 based form widgets with Dojo 1 Dijits.
 
 To achieve maximum performance and efficiency, developers should eventually author their Dojo 2 application with Dojo 2 widgets. This approach is provided as a migration strategy, to leverage custom Dojo 1 Dijits within a Dojo 2 application, to help make it easier to migrate an application in phases over time.
 
