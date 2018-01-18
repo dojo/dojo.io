@@ -45,11 +45,15 @@ Usage of the build system is reflected in updates to the [Dojo 2 tutorials](http
 
 ### Improvements to using Custom Elements/Web Components
 
-TODO: Explain
+[Added a decorator for the custom element descriptor](https://github.com/dojo/widget-core/pull/792). There is no longer a requirement for a separate module any more!
 
-### widget-core performance and memory improvements
+### `widget-core` changes
 
-TODO: Explain, provide metrics?
+* [Focus meta](https://github.com/dojo/widget-core/pull/808)
+* [Always render decorator](https://github.com/dojo/widget-core/pull/824)
+* [Registry decorator](https://github.com/dojo/widget-core/pull/801)
+
+The primary breaking change in `widget-core` is that [`HNode` was renamed to `VNode`](https://github.com/dojo/widget-core/pull/806)
 
 ### New widgets
 
@@ -82,6 +86,8 @@ In particular, the [kitchen sink version of ToDoMVC](https://github.com/dojo/exa
 Dojo packages now ship ES modules alongside UMD! In the future we will be leveraging ESM for evergreen browser builds with webpack.
 
 ### Theme creation and new dojo/themes package
+
+A new [`cli-create-theme`](https://github.com/dojo/cli-create-theme) package has been added to make it easier to create a custom theme.
 
 TODO: Explain improvements to tooling around theme creation
 
