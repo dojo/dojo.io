@@ -71,7 +71,7 @@ These widgets may be viewed in the [widget showcase](https://dojo.github.io/exam
 A number of refinements were made since the initial `@dojo/stores` release in Beta 4:
 
 * [Add a basic `onChange` mechanism](https://github.com/dojo/stores/commit/b6165e6fd670874726e67ab166cb888967785d19)
-* Improvements to providing type definitions for state
+* Improvements to providing type definitions for [state](https://github.com/dojo/stores/pull/143) and [payload](https://github.com/dojo/stores/pull/152)
 
 See the [@dojo/stores readme](https://github.com/dojo/stores) for more information about this package.
 
@@ -81,7 +81,7 @@ Our collection of [Dojo 2 examples](http://github.com/dojo/examples/) were updat
 
 In particular, the [kitchen sink version of ToDoMVC](https://github.com/dojo/examples/blob/master/todo-mvc-kitchensink) now uses `@dojo/stores`.
 
-Also the [Dojo 2 HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/) example was accepted and is now available. 
+Also the [Dojo 2 HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/) example was accepted and is now available.
 
 ### ESM packages
 
