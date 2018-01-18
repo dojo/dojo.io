@@ -81,6 +81,8 @@ Our collection of [Dojo 2 examples](http://github.com/dojo/examples/) were updat
 
 In particular, the [kitchen sink version of ToDoMVC](https://github.com/dojo/examples/blob/master/todo-mvc-kitchensink) now uses `@dojo/stores`.
 
+Also the [Dojo 2 HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/) example was accepted and is now available. 
+
 ### ESM packages
 
 Dojo packages now ship ES modules alongside UMD! In the future we will be leveraging ESM for evergreen browser builds with webpack.
