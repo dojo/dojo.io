@@ -62,9 +62,7 @@ Two new widgets were added in Beta 5:
 * [Progress](https://github.com/dojo/widgets/issues/385) (`@dojo/widgets/progress/Progress`)
 * [Toolbar](https://github.com/dojo/widgets/issues/386) (`@dojo/widgets/toolbar/Toolbar`)
 
-TODO Add screenshots
-
-These widgets may be viewed in the [widget showcase](https://dojo.github.io/examples/widget-showcase/).  TODO: blocked by https://github.com/dojo/examples/issues/278
+These widgets may be viewed in the [widget showcase](https://dojo.github.io/examples/widget-showcase/).
 
 ### Stores
 
@@ -87,11 +85,9 @@ Also the [Dojo 2 HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/) example was
 
 Dojo packages now ship ES modules alongside UMD! In the future we will be leveraging ESM for evergreen browser builds with webpack.
 
-### Theme creation and new dojo/themes package
+### Theme creation
 
 A new [`cli-create-theme`](https://github.com/dojo/cli-create-theme) package has been added to make it easier to create a custom theme.
-
-TODO: Explain improvements to tooling around theme creation
 
 ### Migrate to TypeScript 2.6
 
@@ -104,13 +100,19 @@ We are nearly there for the initial 2.0 release. For RC1 in just a few weeks, yo
 *  More end developer tooling improvements
 	* `dojo/cli-build-app` Finish re-architecture of the build system
 	* `dojo/cli-build-widget` Focused build process for Dojo 2 widgets as web components
-	* `dojo/devtool` A development tool for Dojo 2 (Chrome and Firefox)  TODO: Part of rc1?
-	* `dojo/diagnostics` A diagnostic API for debugging Dojo 2 applications  TODO: Part of rc1?
+* `dojo/themes` A new package for Dojo 2 themes
 * `dojo/widget-core` Finish DOM abstraction
 * `dojo/widgets` Standardize widget events
 * Additional theme to provide Dojo 1 flat theme style interoperability
 
 At the moment, we are planning for RC1 in early February.
+
+We are also working on additional packages which may land in time for 2.0, but more likely for a subsequent release:
+
+* `dojo/devtool` A development tool for Dojo 2 (Chrome and Firefox)
+* `dojo/dgrid` Powerful data grid widget
+* `dojo/diagnostics` A diagnostic API for debugging Dojo 2 applications
+
 
 ## Getting involved
 
