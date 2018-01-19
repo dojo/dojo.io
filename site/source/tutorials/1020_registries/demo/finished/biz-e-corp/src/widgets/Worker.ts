@@ -18,7 +18,7 @@ const WorkerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 @registry('worker-back', async () => {
-	const WorkerBack = await import('./WorkerBack');
+	const WorkerBack = await import ('./WorkerBack');
 	return WorkerBack.default;
 })
 export default class Worker extends WorkerBase<WorkerProperties> {
