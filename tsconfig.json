@@ -22,7 +22,11 @@
 		"removeComments": true,
 		"rootDir": ".",
 		"sourceMap": true,
-		"target": "ES5"
+		"target": "ES5",
+		"typeRoots": [
+			"./node_modules/@types",
+			"./apiviewer/types"
+		]
 	},
 	"include": [
 		"./support/**/*.ts",

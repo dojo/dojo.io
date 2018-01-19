@@ -44,6 +44,7 @@
     "grunt-dojo2-extras": "^2.0.0-beta1.3",
     "grunt-shell": "^2.1.0",
     "grunt-tslint": "^4.0.1",
+    "highlight.js": "^9.12.0",
     "intern": "~4.1.0",
     "load-grunt-tasks": "^3.5.2",
     "mockery": "^2.0.0",
@@ -52,13 +53,25 @@
     "ts-node": "^3.3.0",
     "tslint-sitepen": "^0.1.0",
     "typescript": "~2.4.2",
+    "webpack": "^3.10.0",
     "webserv": "^0.6.1"
   },
   "dependencies": {
     "@dojo/has": "^2.0.0-beta2.2",
+    "@types/hyperscript": "0.0.3",
+    "@types/markdown-it": "0.0.4",
+    "@types/promise-polyfill": "^6.0.0",
+    "@types/webpack": "^3.8.3",
     "bulma": "^0.5.1",
     "hexo": "^3.3.9",
     "hexo-renderer-yasr": "^4.0.0",
-    "tslib": "^1.6.0"
+    "hyperscript": "^2.0.2",
+    "mark.js": "^8.11.1",
+    "markdown-it": "^8.4.0",
+    "promise-polyfill": "^7.0.0",
+    "ts-loader": "^3.2.0",
+    "tslib": "^1.6.0",
+    "typedoc": "^0.9.0",
+    "whatwg-fetch": "^2.0.3"
   }
 }
