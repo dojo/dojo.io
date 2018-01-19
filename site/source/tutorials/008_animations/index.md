@@ -25,11 +25,17 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 ## What is the Web Animations API
 
-The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of `requestAnimationFrame` or the less efficient  `setInterval`. Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered [virtual dom](https://dojo.io/docs/fundamentals/working_with_virtual_dom/) in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
-<!--TODO: timing model and animation model are kind of dropped on the user without explanation. Perhaps a short explanation as an aside? -->
+{% aside 'Effect Timing' %}
+[`AnimationEffectTiming`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEffectTiming) you control over the timing of the animations you create. It provides access to `delay`, `fill`, `duration` and more.
+{% endaside %}
+
+The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of `requestAnimationFrame` or the less efficient  `setInterval`.
+
 {% aside 'Meta' %}
 Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the `domNode` itself.
 {% endaside %}
+
+Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered [virtual dom](https://dojo.io/docs/fundamentals/working_with_virtual_dom/) in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
 
 ## Introducing the zombies
 
