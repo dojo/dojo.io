@@ -2,9 +2,129 @@
 description: This is a template used to generate the API index
 title: API Documentation
 ---
-<section class="section">
-	<div class="container">
-		<h1 id="API-Documentation"><a href="#API-Documentation" class="headerlink" title="API Documentation"></a>API Documentation</h1>
-		<p><a href="/api/cli/v2.0.0-beta2.3">cli</a><br><a href="/api/compose/v2.0.0-beta1.1">compose</a><br><a href="/api/core/v2.0.0-beta2.4">core</a><br><a href="/api/has/v2.0.0-beta2.3">has</a><br><a href="/api/i18n/v2.0.0-beta2.3">i18n</a><br><a href="/api/interfaces/v2.0.0-beta2.4">interfaces</a><br><a href="/api/loader/v2.0.0-beta2.3">loader</a><br><a href="/api/routing/v2.0.0-beta2.4">routing</a><br><a href="/api/shim/v2.0.0-beta2.4">shim</a><br><a href="/api/stores/v2.0.0-alpha.12">stores</a><br><a href="/api/streams/v2.0.0-alpha.2">streams</a><br><a href="/api/widget-core/v2.0.0-beta2.11">widget-core</a><br><a href="/api/widgets/v2.0.0-beta2.1">widgets</a></p>
+<section class="section page-docs">
+	<header class="header">
+		<nav class="navbar docs-nav">
+			<div class="navbar-brand">
+				<div class="navbar-item project-selector">
+					<div class="control is-expanded">
+						<div class="select is-fullwidth is-primary is-small">
+							<select data-select-property="project">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="navbar-item version-selector">
+					<div class="control is-expanded">
+						<div class="select is-fullwidth is-primary is-small">
+							<select data-select-property="version">
+							</select>
+						</div>
+					</div>
+				</div>
+				<a class="navbar-item is-hidden-desktop github-button" title="GitHub" ><span class="fa fa-github"></span></a>
+				<a class="navbar-item is-hidden-desktop search-button" title="Search" aria-haspopup="true" aria-controls="search-panel"><span class="fa fa-search"></span></a>
+				<div class="navbar-burger" data-target="docs-nav-menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu" id="docs-nav-menu">
+				<div class="navbar-start">
+					<a class="navbar-item" data-doc-type="docs" title="Docs">Docs</a>
+					<a class="navbar-item" data-doc-type="api" title="API">API</a>
+					<div class="navbar-item type-legend">
+						<div class="legend-column">
+							<div class="is-type is-type-class">Class</div>
+							<div class="is-type is-type-interface">Interface</div>
+						</div>
+						<div class="legend-column">
+							<div class="is-type is-type-callable">Callable</div>
+							<div class="is-type is-type-constructor">Constructor</div>
+						</div>
+						<div class="legend-column">
+							<div class="is-type is-type-property">Property</div>
+							<div class="is-type is-type-value">Value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="navbar-item is-hidden-touch github-button" title="GitHub" ><span class="fa fa-github"></span></a>
+			<a class="navbar-item is-hidden-touch search-button" title="Search" aria-haspopup="true" aria-controls="search-panel"><span class="fa fa-search"></span></a>
+		</nav>
+	</header>
+
+	<div class="columns docs-layout">
+		<div class="modal message-modal is-active">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<h1 class="message-heading">
+					<noscript>It looks like you’ve disabled JavaScript.</noscript>
+				</h1>
+				<div class="modal-spinner">
+					<img class="fa-spin" src="/images/intern-logo.svg" alt="The Intern" inline>
+				</div>
+				<div class="message-content">
+					<noscript>
+						<p>This document viewer uses JavaScript to load and render pages from the various Intern project repositories. Please enable JavaScript if you’d like to use it, or visit our project repositories on GitHub:
+						</p>
+						<ul>
+							<li><a href="https://github.com/dojo/core">@dojo/core</a></li>
+						</ul>
+					</noscript>
+				</div>
+			</div>
+		</div>
+
+		<div class="search-panel dropdown-content" id="search-panel" role="menu">
+			<div class="field search-field has-addons">
+				<div class="control is-expanded">
+					<input class="input is-small" type="text" placeholder="Search">
+				</div>
+				<div class="control">
+					<a class="button is-small" title="Clear search results">
+						<span class="icon is-small"><span class="fa fa-close"></span></span>
+					</a>
+				</div>
+			</div>
+			<div class="menu">
+				<ul class="search-results menu-list">
+				</ul>
+			</div>
+		</div>
+
+		<div class="column is-3 docs-column docs-menu">
+			<aside class="menu">
+				<ul class="menu-list">
+				</ul>
+			</aside>
+		</div>
+		<div class="column is-9 docs-column docs-content">
+			&nbsp;
+		</div>
 	</div>
+	<script>
+		document.body.classList.remove('no-script');
+	</script>
 </section>
+<script>
+	var docSets =
+	{
+		"core": {
+			"url": "https://github.com/vansimke/core",
+			"logo": "/images/home/dragon2.svg",
+			"latest": "beta5",
+			"versions": {
+				"beta5": {
+					"branch": "docs"
+				},
+				"beta4": {
+					"branch": "docs"
+				}
+			}
+		}
+	};
+</script>
+<script src="/js/dependencies.js"></script>
+<script src="/js/doc_viewer.js"></script>

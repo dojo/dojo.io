@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 config.plugins!.push(
 	new optimize.CommonsChunkPlugin({
 		name: 'dependencies.js',
-		filename: 'scripts/dependencies.js',
+		filename: 'dependencies.js',
 		minChunks: module => /node_modules/.test(module.resource)
 	})
 );

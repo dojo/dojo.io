@@ -65,7 +65,7 @@ const ready = new Promise(resolve => {
 });
 
 ready.then(() => {
-	viewer = <HTMLElement>document.body;
+	viewer = <HTMLElement>document.querySelector('.page-docs');
 	content = <HTMLElement>document.querySelector('.docs-content');
 	messageModal = <HTMLElement>document.querySelector('.message-modal')!;
 	searchPanel = <HTMLElement>document.querySelector('.search-panel')!;

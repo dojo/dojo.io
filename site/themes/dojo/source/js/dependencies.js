@@ -231,7 +231,7 @@ var UNESCAPE_ALL_RE = new RegExp(UNESCAPE_MD_RE.source + '|' + ENTITY_RE.source,
 
 var DIGITAL_ENTITY_TEST_RE = /^#((?:x[a-f0-9]{1,8}|[0-9]{1,8}))/i;
 
-var entities = __webpack_require__(12);
+var entities = __webpack_require__(11);
 
 function replaceEntityPattern(match, name) {
   var code = 0;
@@ -337,7 +337,7 @@ function isWhiteSpace(code) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /*eslint-disable max-len*/
-var UNICODE_PUNCT_RE = __webpack_require__(7);
+var UNICODE_PUNCT_RE = __webpack_require__(6);
 
 // Currently without astral characters support.
 function isPunctChar(ch) {
@@ -408,8 +408,8 @@ function normalizeReference(str) {
 // bundled size (e.g. a browser build).
 //
 exports.lib                 = {};
-exports.lib.mdurl           = __webpack_require__(13);
-exports.lib.ucmicro         = __webpack_require__(39);
+exports.lib.mdurl           = __webpack_require__(12);
+exports.lib.ucmicro         = __webpack_require__(40);
 
 exports.assign              = assign;
 exports.isString            = isString;
@@ -431,8 +431,7 @@ exports.normalizeReference  = normalizeReference;
 
 /***/ }),
 /* 1 */,
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -623,8 +622,7 @@ function __makeTemplateObject(cooked, raw) {
 
 
 /***/ }),
-/* 4 */,
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var split = __webpack_require__(28)
@@ -790,14 +788,15 @@ function isArray (arr) {
 
 
 /***/ }),
-/* 6 */,
-/* 7 */
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1156,7 +1155,7 @@ module.exports = Ruler;
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1360,7 +1359,7 @@ module.exports = Token;
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1387,7 +1386,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2209,7 +2208,7 @@ https://highlightjs.org/
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2218,43 +2217,43 @@ https://highlightjs.org/
 
 
 /*eslint quotes:0*/
-module.exports = __webpack_require__(34);
+module.exports = __webpack_require__(35);
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 
-module.exports.encode = __webpack_require__(35);
-module.exports.decode = __webpack_require__(36);
-module.exports.format = __webpack_require__(37);
-module.exports.parse  = __webpack_require__(38);
+module.exports.encode = __webpack_require__(36);
+module.exports.decode = __webpack_require__(37);
+module.exports.format = __webpack_require__(38);
+module.exports.parse  = __webpack_require__(39);
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports=/[\0-\x1F\x7F-\x9F]/
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2289,7 +2288,7 @@ module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2413,7 +2412,7 @@ module.exports.postProcess = function strikethrough(state) {
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2547,8 +2546,343 @@ module.exports.postProcess = function emphasis(state) {
 
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = function(hljs) {
+  var IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
+  var KEYWORDS = {
+    keyword:
+      'in of if for while finally var new function do return void else break catch ' +
+      'instanceof with throw case default try this switch continue typeof delete ' +
+      'let yield const export super debugger as async await static ' +
+      // ECMAScript 6 modules import
+      'import from as'
+    ,
+    literal:
+      'true false null undefined NaN Infinity',
+    built_in:
+      'eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent ' +
+      'encodeURI encodeURIComponent escape unescape Object Function Boolean Error ' +
+      'EvalError InternalError RangeError ReferenceError StopIteration SyntaxError ' +
+      'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
+      'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
+      'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require ' +
+      'module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect ' +
+      'Promise'
+  };
+  var EXPRESSIONS;
+  var NUMBER = {
+    className: 'number',
+    variants: [
+      { begin: '\\b(0[bB][01]+)' },
+      { begin: '\\b(0[oO][0-7]+)' },
+      { begin: hljs.C_NUMBER_RE }
+    ],
+    relevance: 0
+  };
+  var SUBST = {
+    className: 'subst',
+    begin: '\\$\\{', end: '\\}',
+    keywords: KEYWORDS,
+    contains: []  // defined later
+  };
+  var TEMPLATE_STRING = {
+    className: 'string',
+    begin: '`', end: '`',
+    contains: [
+      hljs.BACKSLASH_ESCAPE,
+      SUBST
+    ]
+  };
+  SUBST.contains = [
+    hljs.APOS_STRING_MODE,
+    hljs.QUOTE_STRING_MODE,
+    TEMPLATE_STRING,
+    NUMBER,
+    hljs.REGEXP_MODE
+  ]
+  var PARAMS_CONTAINS = SUBST.contains.concat([
+    hljs.C_BLOCK_COMMENT_MODE,
+    hljs.C_LINE_COMMENT_MODE
+  ]);
+
+  return {
+    aliases: ['js', 'jsx'],
+    keywords: KEYWORDS,
+    contains: [
+      {
+        className: 'meta',
+        relevance: 10,
+        begin: /^\s*['"]use (strict|asm)['"]/
+      },
+      {
+        className: 'meta',
+        begin: /^#!/, end: /$/
+      },
+      hljs.APOS_STRING_MODE,
+      hljs.QUOTE_STRING_MODE,
+      TEMPLATE_STRING,
+      hljs.C_LINE_COMMENT_MODE,
+      hljs.C_BLOCK_COMMENT_MODE,
+      NUMBER,
+      { // object attr container
+        begin: /[{,]\s*/, relevance: 0,
+        contains: [
+          {
+            begin: IDENT_RE + '\\s*:', returnBegin: true,
+            relevance: 0,
+            contains: [{className: 'attr', begin: IDENT_RE, relevance: 0}]
+          }
+        ]
+      },
+      { // "value" container
+        begin: '(' + hljs.RE_STARTERS_RE + '|\\b(case|return|throw)\\b)\\s*',
+        keywords: 'return throw case',
+        contains: [
+          hljs.C_LINE_COMMENT_MODE,
+          hljs.C_BLOCK_COMMENT_MODE,
+          hljs.REGEXP_MODE,
+          {
+            className: 'function',
+            begin: '(\\(.*?\\)|' + IDENT_RE + ')\\s*=>', returnBegin: true,
+            end: '\\s*=>',
+            contains: [
+              {
+                className: 'params',
+                variants: [
+                  {
+                    begin: IDENT_RE
+                  },
+                  {
+                    begin: /\(\s*\)/,
+                  },
+                  {
+                    begin: /\(/, end: /\)/,
+                    excludeBegin: true, excludeEnd: true,
+                    keywords: KEYWORDS,
+                    contains: PARAMS_CONTAINS
+                  }
+                ]
+              }
+            ]
+          },
+          { // E4X / JSX
+            begin: /</, end: /(\/\w+|\w+\/)>/,
+            subLanguage: 'xml',
+            contains: [
+              {begin: /<\w+\s*\/>/, skip: true},
+              {
+                begin: /<\w+/, end: /(\/\w+|\w+\/)>/, skip: true,
+                contains: [
+                  {begin: /<\w+\s*\/>/, skip: true},
+                  'self'
+                ]
+              }
+            ]
+          }
+        ],
+        relevance: 0
+      },
+      {
+        className: 'function',
+        beginKeywords: 'function', end: /\{/, excludeEnd: true,
+        contains: [
+          hljs.inherit(hljs.TITLE_MODE, {begin: IDENT_RE}),
+          {
+            className: 'params',
+            begin: /\(/, end: /\)/,
+            excludeBegin: true,
+            excludeEnd: true,
+            contains: PARAMS_CONTAINS
+          }
+        ],
+        illegal: /\[|%/
+      },
+      {
+        begin: /\$[(.]/ // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
+      },
+      hljs.METHOD_GUARD,
+      { // ES6 class
+        className: 'class',
+        beginKeywords: 'class', end: /[{;=]/, excludeEnd: true,
+        illegal: /[:"\[\]]/,
+        contains: [
+          {beginKeywords: 'extends'},
+          hljs.UNDERSCORE_TITLE_MODE
+        ]
+      },
+      {
+        beginKeywords: 'constructor', end: /\{/, excludeEnd: true
+      }
+    ],
+    illegal: /#(?!!)/
+  };
+};
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = function(hljs) {
+  var KEYWORDS = {
+    keyword:
+      'in if for while finally var new function do return void else break catch ' +
+      'instanceof with throw case default try this switch continue typeof delete ' +
+      'let yield const class public private protected get set super ' +
+      'static implements enum export import declare type namespace abstract ' +
+      'as from extends async await',
+    literal:
+      'true false null undefined NaN Infinity',
+    built_in:
+      'eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent ' +
+      'encodeURI encodeURIComponent escape unescape Object Function Boolean Error ' +
+      'EvalError InternalError RangeError ReferenceError StopIteration SyntaxError ' +
+      'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
+      'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
+      'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require ' +
+      'module console window document any number boolean string void Promise'
+  };
+
+  return {
+    aliases: ['ts'],
+    keywords: KEYWORDS,
+    contains: [
+      {
+        className: 'meta',
+        begin: /^\s*['"]use strict['"]/
+      },
+      hljs.APOS_STRING_MODE,
+      hljs.QUOTE_STRING_MODE,
+      { // template string
+        className: 'string',
+        begin: '`', end: '`',
+        contains: [
+          hljs.BACKSLASH_ESCAPE,
+          {
+            className: 'subst',
+            begin: '\\$\\{', end: '\\}'
+          }
+        ]
+      },
+      hljs.C_LINE_COMMENT_MODE,
+      hljs.C_BLOCK_COMMENT_MODE,
+      {
+        className: 'number',
+        variants: [
+          { begin: '\\b(0[bB][01]+)' },
+          { begin: '\\b(0[oO][0-7]+)' },
+          { begin: hljs.C_NUMBER_RE }
+        ],
+        relevance: 0
+      },
+      { // "value" container
+        begin: '(' + hljs.RE_STARTERS_RE + '|\\b(case|return|throw)\\b)\\s*',
+        keywords: 'return throw case',
+        contains: [
+          hljs.C_LINE_COMMENT_MODE,
+          hljs.C_BLOCK_COMMENT_MODE,
+          hljs.REGEXP_MODE,
+          {
+            className: 'function',
+            begin: '(\\(.*?\\)|' + hljs.IDENT_RE + ')\\s*=>', returnBegin: true,
+            end: '\\s*=>',
+            contains: [
+              {
+                className: 'params',
+                variants: [
+                  {
+                    begin: hljs.IDENT_RE
+                  },
+                  {
+                    begin: /\(\s*\)/,
+                  },
+                  {
+                    begin: /\(/, end: /\)/,
+                    excludeBegin: true, excludeEnd: true,
+                    keywords: KEYWORDS,
+                    contains: [
+                      'self',
+                      hljs.C_LINE_COMMENT_MODE,
+                      hljs.C_BLOCK_COMMENT_MODE
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        relevance: 0
+      },
+      {
+        className: 'function',
+        begin: 'function', end: /[\{;]/, excludeEnd: true,
+        keywords: KEYWORDS,
+        contains: [
+          'self',
+          hljs.inherit(hljs.TITLE_MODE, {begin: /[A-Za-z$_][0-9A-Za-z$_]*/}),
+          {
+            className: 'params',
+            begin: /\(/, end: /\)/,
+            excludeBegin: true,
+            excludeEnd: true,
+            keywords: KEYWORDS,
+            contains: [
+              hljs.C_LINE_COMMENT_MODE,
+              hljs.C_BLOCK_COMMENT_MODE
+            ],
+            illegal: /["'\(]/
+          }
+        ],
+        illegal: /%/,
+        relevance: 0 // () => {} is more typical in TypeScript
+      },
+      {
+        beginKeywords: 'constructor', end: /\{/, excludeEnd: true,
+        contains: [
+          'self',
+          {
+            className: 'params',
+            begin: /\(/, end: /\)/,
+            excludeBegin: true,
+            excludeEnd: true,
+            keywords: KEYWORDS,
+            contains: [
+              hljs.C_LINE_COMMENT_MODE,
+              hljs.C_BLOCK_COMMENT_MODE
+            ],
+            illegal: /["'\(]/
+          }
+        ]
+      },
+      { // prevent references like module.id from being higlighted as module definitions
+        begin: /module\./,
+        keywords: {built_in: 'module'},
+        relevance: 0
+      },
+      {
+        beginKeywords: 'module', end: /\{/, excludeEnd: true
+      },
+      {
+        beginKeywords: 'interface', end: /\{/, excludeEnd: true,
+        keywords: 'interface extends'
+      },
+      {
+        begin: /\$[(.]/ // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
+      },
+      {
+        begin: '\\.' + hljs.IDENT_RE, relevance: 0 // hack: prevents detection of keywords after dots
+      },
+      {
+        className: 'meta', begin: '@[A-Za-z]+'
+      }
+    ]
+  };
+};
+
+/***/ }),
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -3015,8 +3349,8 @@ module.exports.postProcess = function emphasis(state) {
 
 
 /***/ }),
-/* 22 */,
-/* 23 */
+/* 23 */,
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3247,10 +3581,10 @@ Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
 
 /* harmony default export */ __webpack_exports__["default"] = (Promise);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(24).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(25).setImmediate))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -3303,13 +3637,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(25);
+__webpack_require__(26);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -3499,10 +3833,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(27)))
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -3692,7 +4026,6 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 27 */,
 /* 28 */
 /***/ (function(module, exports) {
 
@@ -3926,18 +4259,19 @@ module.exports = function(arr, obj){
 
 /***/ }),
 /* 31 */,
-/* 32 */
+/* 32 */,
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 
-module.exports = __webpack_require__(33);
+module.exports = __webpack_require__(34);
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3947,20 +4281,20 @@ module.exports = __webpack_require__(33);
 
 
 var utils        = __webpack_require__(0);
-var helpers      = __webpack_require__(41);
-var Renderer     = __webpack_require__(45);
-var ParserCore   = __webpack_require__(46);
-var ParserBlock  = __webpack_require__(54);
-var ParserInline = __webpack_require__(68);
-var LinkifyIt    = __webpack_require__(81);
-var mdurl        = __webpack_require__(13);
-var punycode     = __webpack_require__(83);
+var helpers      = __webpack_require__(42);
+var Renderer     = __webpack_require__(46);
+var ParserCore   = __webpack_require__(47);
+var ParserBlock  = __webpack_require__(55);
+var ParserInline = __webpack_require__(69);
+var LinkifyIt    = __webpack_require__(82);
+var mdurl        = __webpack_require__(12);
+var punycode     = __webpack_require__(84);
 
 
 var config = {
-  'default': __webpack_require__(85),
-  zero: __webpack_require__(86),
-  commonmark: __webpack_require__(87)
+  'default': __webpack_require__(86),
+  zero: __webpack_require__(87),
+  commonmark: __webpack_require__(88)
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -4525,13 +4859,13 @@ module.exports = MarkdownIt;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = {"Aacute":"Á","aacute":"á","Abreve":"Ă","abreve":"ă","ac":"∾","acd":"∿","acE":"∾̳","Acirc":"Â","acirc":"â","acute":"´","Acy":"А","acy":"а","AElig":"Æ","aelig":"æ","af":"⁡","Afr":"𝔄","afr":"𝔞","Agrave":"À","agrave":"à","alefsym":"ℵ","aleph":"ℵ","Alpha":"Α","alpha":"α","Amacr":"Ā","amacr":"ā","amalg":"⨿","amp":"&","AMP":"&","andand":"⩕","And":"⩓","and":"∧","andd":"⩜","andslope":"⩘","andv":"⩚","ang":"∠","ange":"⦤","angle":"∠","angmsdaa":"⦨","angmsdab":"⦩","angmsdac":"⦪","angmsdad":"⦫","angmsdae":"⦬","angmsdaf":"⦭","angmsdag":"⦮","angmsdah":"⦯","angmsd":"∡","angrt":"∟","angrtvb":"⊾","angrtvbd":"⦝","angsph":"∢","angst":"Å","angzarr":"⍼","Aogon":"Ą","aogon":"ą","Aopf":"𝔸","aopf":"𝕒","apacir":"⩯","ap":"≈","apE":"⩰","ape":"≊","apid":"≋","apos":"'","ApplyFunction":"⁡","approx":"≈","approxeq":"≊","Aring":"Å","aring":"å","Ascr":"𝒜","ascr":"𝒶","Assign":"≔","ast":"*","asymp":"≈","asympeq":"≍","Atilde":"Ã","atilde":"ã","Auml":"Ä","auml":"ä","awconint":"∳","awint":"⨑","backcong":"≌","backepsilon":"϶","backprime":"‵","backsim":"∽","backsimeq":"⋍","Backslash":"∖","Barv":"⫧","barvee":"⊽","barwed":"⌅","Barwed":"⌆","barwedge":"⌅","bbrk":"⎵","bbrktbrk":"⎶","bcong":"≌","Bcy":"Б","bcy":"б","bdquo":"„","becaus":"∵","because":"∵","Because":"∵","bemptyv":"⦰","bepsi":"϶","bernou":"ℬ","Bernoullis":"ℬ","Beta":"Β","beta":"β","beth":"ℶ","between":"≬","Bfr":"𝔅","bfr":"𝔟","bigcap":"⋂","bigcirc":"◯","bigcup":"⋃","bigodot":"⨀","bigoplus":"⨁","bigotimes":"⨂","bigsqcup":"⨆","bigstar":"★","bigtriangledown":"▽","bigtriangleup":"△","biguplus":"⨄","bigvee":"⋁","bigwedge":"⋀","bkarow":"⤍","blacklozenge":"⧫","blacksquare":"▪","blacktriangle":"▴","blacktriangledown":"▾","blacktriangleleft":"◂","blacktriangleright":"▸","blank":"␣","blk12":"▒","blk14":"░","blk34":"▓","block":"█","bne":"=⃥","bnequiv":"≡⃥","bNot":"⫭","bnot":"⌐","Bopf":"𝔹","bopf":"𝕓","bot":"⊥","bottom":"⊥","bowtie":"⋈","boxbox":"⧉","boxdl":"┐","boxdL":"╕","boxDl":"╖","boxDL":"╗","boxdr":"┌","boxdR":"╒","boxDr":"╓","boxDR":"╔","boxh":"─","boxH":"═","boxhd":"┬","boxHd":"╤","boxhD":"╥","boxHD":"╦","boxhu":"┴","boxHu":"╧","boxhU":"╨","boxHU":"╩","boxminus":"⊟","boxplus":"⊞","boxtimes":"⊠","boxul":"┘","boxuL":"╛","boxUl":"╜","boxUL":"╝","boxur":"└","boxuR":"╘","boxUr":"╙","boxUR":"╚","boxv":"│","boxV":"║","boxvh":"┼","boxvH":"╪","boxVh":"╫","boxVH":"╬","boxvl":"┤","boxvL":"╡","boxVl":"╢","boxVL":"╣","boxvr":"├","boxvR":"╞","boxVr":"╟","boxVR":"╠","bprime":"‵","breve":"˘","Breve":"˘","brvbar":"¦","bscr":"𝒷","Bscr":"ℬ","bsemi":"⁏","bsim":"∽","bsime":"⋍","bsolb":"⧅","bsol":"\\","bsolhsub":"⟈","bull":"•","bullet":"•","bump":"≎","bumpE":"⪮","bumpe":"≏","Bumpeq":"≎","bumpeq":"≏","Cacute":"Ć","cacute":"ć","capand":"⩄","capbrcup":"⩉","capcap":"⩋","cap":"∩","Cap":"⋒","capcup":"⩇","capdot":"⩀","CapitalDifferentialD":"ⅅ","caps":"∩︀","caret":"⁁","caron":"ˇ","Cayleys":"ℭ","ccaps":"⩍","Ccaron":"Č","ccaron":"č","Ccedil":"Ç","ccedil":"ç","Ccirc":"Ĉ","ccirc":"ĉ","Cconint":"∰","ccups":"⩌","ccupssm":"⩐","Cdot":"Ċ","cdot":"ċ","cedil":"¸","Cedilla":"¸","cemptyv":"⦲","cent":"¢","centerdot":"·","CenterDot":"·","cfr":"𝔠","Cfr":"ℭ","CHcy":"Ч","chcy":"ч","check":"✓","checkmark":"✓","Chi":"Χ","chi":"χ","circ":"ˆ","circeq":"≗","circlearrowleft":"↺","circlearrowright":"↻","circledast":"⊛","circledcirc":"⊚","circleddash":"⊝","CircleDot":"⊙","circledR":"®","circledS":"Ⓢ","CircleMinus":"⊖","CirclePlus":"⊕","CircleTimes":"⊗","cir":"○","cirE":"⧃","cire":"≗","cirfnint":"⨐","cirmid":"⫯","cirscir":"⧂","ClockwiseContourIntegral":"∲","CloseCurlyDoubleQuote":"”","CloseCurlyQuote":"’","clubs":"♣","clubsuit":"♣","colon":":","Colon":"∷","Colone":"⩴","colone":"≔","coloneq":"≔","comma":",","commat":"@","comp":"∁","compfn":"∘","complement":"∁","complexes":"ℂ","cong":"≅","congdot":"⩭","Congruent":"≡","conint":"∮","Conint":"∯","ContourIntegral":"∮","copf":"𝕔","Copf":"ℂ","coprod":"∐","Coproduct":"∐","copy":"©","COPY":"©","copysr":"℗","CounterClockwiseContourIntegral":"∳","crarr":"↵","cross":"✗","Cross":"⨯","Cscr":"𝒞","cscr":"𝒸","csub":"⫏","csube":"⫑","csup":"⫐","csupe":"⫒","ctdot":"⋯","cudarrl":"⤸","cudarrr":"⤵","cuepr":"⋞","cuesc":"⋟","cularr":"↶","cularrp":"⤽","cupbrcap":"⩈","cupcap":"⩆","CupCap":"≍","cup":"∪","Cup":"⋓","cupcup":"⩊","cupdot":"⊍","cupor":"⩅","cups":"∪︀","curarr":"↷","curarrm":"⤼","curlyeqprec":"⋞","curlyeqsucc":"⋟","curlyvee":"⋎","curlywedge":"⋏","curren":"¤","curvearrowleft":"↶","curvearrowright":"↷","cuvee":"⋎","cuwed":"⋏","cwconint":"∲","cwint":"∱","cylcty":"⌭","dagger":"†","Dagger":"‡","daleth":"ℸ","darr":"↓","Darr":"↡","dArr":"⇓","dash":"‐","Dashv":"⫤","dashv":"⊣","dbkarow":"⤏","dblac":"˝","Dcaron":"Ď","dcaron":"ď","Dcy":"Д","dcy":"д","ddagger":"‡","ddarr":"⇊","DD":"ⅅ","dd":"ⅆ","DDotrahd":"⤑","ddotseq":"⩷","deg":"°","Del":"∇","Delta":"Δ","delta":"δ","demptyv":"⦱","dfisht":"⥿","Dfr":"𝔇","dfr":"𝔡","dHar":"⥥","dharl":"⇃","dharr":"⇂","DiacriticalAcute":"´","DiacriticalDot":"˙","DiacriticalDoubleAcute":"˝","DiacriticalGrave":"`","DiacriticalTilde":"˜","diam":"⋄","diamond":"⋄","Diamond":"⋄","diamondsuit":"♦","diams":"♦","die":"¨","DifferentialD":"ⅆ","digamma":"ϝ","disin":"⋲","div":"÷","divide":"÷","divideontimes":"⋇","divonx":"⋇","DJcy":"Ђ","djcy":"ђ","dlcorn":"⌞","dlcrop":"⌍","dollar":"$","Dopf":"𝔻","dopf":"𝕕","Dot":"¨","dot":"˙","DotDot":"⃜","doteq":"≐","doteqdot":"≑","DotEqual":"≐","dotminus":"∸","dotplus":"∔","dotsquare":"⊡","doublebarwedge":"⌆","DoubleContourIntegral":"∯","DoubleDot":"¨","DoubleDownArrow":"⇓","DoubleLeftArrow":"⇐","DoubleLeftRightArrow":"⇔","DoubleLeftTee":"⫤","DoubleLongLeftArrow":"⟸","DoubleLongLeftRightArrow":"⟺","DoubleLongRightArrow":"⟹","DoubleRightArrow":"⇒","DoubleRightTee":"⊨","DoubleUpArrow":"⇑","DoubleUpDownArrow":"⇕","DoubleVerticalBar":"∥","DownArrowBar":"⤓","downarrow":"↓","DownArrow":"↓","Downarrow":"⇓","DownArrowUpArrow":"⇵","DownBreve":"̑","downdownarrows":"⇊","downharpoonleft":"⇃","downharpoonright":"⇂","DownLeftRightVector":"⥐","DownLeftTeeVector":"⥞","DownLeftVectorBar":"⥖","DownLeftVector":"↽","DownRightTeeVector":"⥟","DownRightVectorBar":"⥗","DownRightVector":"⇁","DownTeeArrow":"↧","DownTee":"⊤","drbkarow":"⤐","drcorn":"⌟","drcrop":"⌌","Dscr":"𝒟","dscr":"𝒹","DScy":"Ѕ","dscy":"ѕ","dsol":"⧶","Dstrok":"Đ","dstrok":"đ","dtdot":"⋱","dtri":"▿","dtrif":"▾","duarr":"⇵","duhar":"⥯","dwangle":"⦦","DZcy":"Џ","dzcy":"џ","dzigrarr":"⟿","Eacute":"É","eacute":"é","easter":"⩮","Ecaron":"Ě","ecaron":"ě","Ecirc":"Ê","ecirc":"ê","ecir":"≖","ecolon":"≕","Ecy":"Э","ecy":"э","eDDot":"⩷","Edot":"Ė","edot":"ė","eDot":"≑","ee":"ⅇ","efDot":"≒","Efr":"𝔈","efr":"𝔢","eg":"⪚","Egrave":"È","egrave":"è","egs":"⪖","egsdot":"⪘","el":"⪙","Element":"∈","elinters":"⏧","ell":"ℓ","els":"⪕","elsdot":"⪗","Emacr":"Ē","emacr":"ē","empty":"∅","emptyset":"∅","EmptySmallSquare":"◻","emptyv":"∅","EmptyVerySmallSquare":"▫","emsp13":" ","emsp14":" ","emsp":" ","ENG":"Ŋ","eng":"ŋ","ensp":" ","Eogon":"Ę","eogon":"ę","Eopf":"𝔼","eopf":"𝕖","epar":"⋕","eparsl":"⧣","eplus":"⩱","epsi":"ε","Epsilon":"Ε","epsilon":"ε","epsiv":"ϵ","eqcirc":"≖","eqcolon":"≕","eqsim":"≂","eqslantgtr":"⪖","eqslantless":"⪕","Equal":"⩵","equals":"=","EqualTilde":"≂","equest":"≟","Equilibrium":"⇌","equiv":"≡","equivDD":"⩸","eqvparsl":"⧥","erarr":"⥱","erDot":"≓","escr":"ℯ","Escr":"ℰ","esdot":"≐","Esim":"⩳","esim":"≂","Eta":"Η","eta":"η","ETH":"Ð","eth":"ð","Euml":"Ë","euml":"ë","euro":"€","excl":"!","exist":"∃","Exists":"∃","expectation":"ℰ","exponentiale":"ⅇ","ExponentialE":"ⅇ","fallingdotseq":"≒","Fcy":"Ф","fcy":"ф","female":"♀","ffilig":"ﬃ","fflig":"ﬀ","ffllig":"ﬄ","Ffr":"𝔉","ffr":"𝔣","filig":"ﬁ","FilledSmallSquare":"◼","FilledVerySmallSquare":"▪","fjlig":"fj","flat":"♭","fllig":"ﬂ","fltns":"▱","fnof":"ƒ","Fopf":"𝔽","fopf":"𝕗","forall":"∀","ForAll":"∀","fork":"⋔","forkv":"⫙","Fouriertrf":"ℱ","fpartint":"⨍","frac12":"½","frac13":"⅓","frac14":"¼","frac15":"⅕","frac16":"⅙","frac18":"⅛","frac23":"⅔","frac25":"⅖","frac34":"¾","frac35":"⅗","frac38":"⅜","frac45":"⅘","frac56":"⅚","frac58":"⅝","frac78":"⅞","frasl":"⁄","frown":"⌢","fscr":"𝒻","Fscr":"ℱ","gacute":"ǵ","Gamma":"Γ","gamma":"γ","Gammad":"Ϝ","gammad":"ϝ","gap":"⪆","Gbreve":"Ğ","gbreve":"ğ","Gcedil":"Ģ","Gcirc":"Ĝ","gcirc":"ĝ","Gcy":"Г","gcy":"г","Gdot":"Ġ","gdot":"ġ","ge":"≥","gE":"≧","gEl":"⪌","gel":"⋛","geq":"≥","geqq":"≧","geqslant":"⩾","gescc":"⪩","ges":"⩾","gesdot":"⪀","gesdoto":"⪂","gesdotol":"⪄","gesl":"⋛︀","gesles":"⪔","Gfr":"𝔊","gfr":"𝔤","gg":"≫","Gg":"⋙","ggg":"⋙","gimel":"ℷ","GJcy":"Ѓ","gjcy":"ѓ","gla":"⪥","gl":"≷","glE":"⪒","glj":"⪤","gnap":"⪊","gnapprox":"⪊","gne":"⪈","gnE":"≩","gneq":"⪈","gneqq":"≩","gnsim":"⋧","Gopf":"𝔾","gopf":"𝕘","grave":"`","GreaterEqual":"≥","GreaterEqualLess":"⋛","GreaterFullEqual":"≧","GreaterGreater":"⪢","GreaterLess":"≷","GreaterSlantEqual":"⩾","GreaterTilde":"≳","Gscr":"𝒢","gscr":"ℊ","gsim":"≳","gsime":"⪎","gsiml":"⪐","gtcc":"⪧","gtcir":"⩺","gt":">","GT":">","Gt":"≫","gtdot":"⋗","gtlPar":"⦕","gtquest":"⩼","gtrapprox":"⪆","gtrarr":"⥸","gtrdot":"⋗","gtreqless":"⋛","gtreqqless":"⪌","gtrless":"≷","gtrsim":"≳","gvertneqq":"≩︀","gvnE":"≩︀","Hacek":"ˇ","hairsp":" ","half":"½","hamilt":"ℋ","HARDcy":"Ъ","hardcy":"ъ","harrcir":"⥈","harr":"↔","hArr":"⇔","harrw":"↭","Hat":"^","hbar":"ℏ","Hcirc":"Ĥ","hcirc":"ĥ","hearts":"♥","heartsuit":"♥","hellip":"…","hercon":"⊹","hfr":"𝔥","Hfr":"ℌ","HilbertSpace":"ℋ","hksearow":"⤥","hkswarow":"⤦","hoarr":"⇿","homtht":"∻","hookleftarrow":"↩","hookrightarrow":"↪","hopf":"𝕙","Hopf":"ℍ","horbar":"―","HorizontalLine":"─","hscr":"𝒽","Hscr":"ℋ","hslash":"ℏ","Hstrok":"Ħ","hstrok":"ħ","HumpDownHump":"≎","HumpEqual":"≏","hybull":"⁃","hyphen":"‐","Iacute":"Í","iacute":"í","ic":"⁣","Icirc":"Î","icirc":"î","Icy":"И","icy":"и","Idot":"İ","IEcy":"Е","iecy":"е","iexcl":"¡","iff":"⇔","ifr":"𝔦","Ifr":"ℑ","Igrave":"Ì","igrave":"ì","ii":"ⅈ","iiiint":"⨌","iiint":"∭","iinfin":"⧜","iiota":"℩","IJlig":"Ĳ","ijlig":"ĳ","Imacr":"Ī","imacr":"ī","image":"ℑ","ImaginaryI":"ⅈ","imagline":"ℐ","imagpart":"ℑ","imath":"ı","Im":"ℑ","imof":"⊷","imped":"Ƶ","Implies":"⇒","incare":"℅","in":"∈","infin":"∞","infintie":"⧝","inodot":"ı","intcal":"⊺","int":"∫","Int":"∬","integers":"ℤ","Integral":"∫","intercal":"⊺","Intersection":"⋂","intlarhk":"⨗","intprod":"⨼","InvisibleComma":"⁣","InvisibleTimes":"⁢","IOcy":"Ё","iocy":"ё","Iogon":"Į","iogon":"į","Iopf":"𝕀","iopf":"𝕚","Iota":"Ι","iota":"ι","iprod":"⨼","iquest":"¿","iscr":"𝒾","Iscr":"ℐ","isin":"∈","isindot":"⋵","isinE":"⋹","isins":"⋴","isinsv":"⋳","isinv":"∈","it":"⁢","Itilde":"Ĩ","itilde":"ĩ","Iukcy":"І","iukcy":"і","Iuml":"Ï","iuml":"ï","Jcirc":"Ĵ","jcirc":"ĵ","Jcy":"Й","jcy":"й","Jfr":"𝔍","jfr":"𝔧","jmath":"ȷ","Jopf":"𝕁","jopf":"𝕛","Jscr":"𝒥","jscr":"𝒿","Jsercy":"Ј","jsercy":"ј","Jukcy":"Є","jukcy":"є","Kappa":"Κ","kappa":"κ","kappav":"ϰ","Kcedil":"Ķ","kcedil":"ķ","Kcy":"К","kcy":"к","Kfr":"𝔎","kfr":"𝔨","kgreen":"ĸ","KHcy":"Х","khcy":"х","KJcy":"Ќ","kjcy":"ќ","Kopf":"𝕂","kopf":"𝕜","Kscr":"𝒦","kscr":"𝓀","lAarr":"⇚","Lacute":"Ĺ","lacute":"ĺ","laemptyv":"⦴","lagran":"ℒ","Lambda":"Λ","lambda":"λ","lang":"⟨","Lang":"⟪","langd":"⦑","langle":"⟨","lap":"⪅","Laplacetrf":"ℒ","laquo":"«","larrb":"⇤","larrbfs":"⤟","larr":"←","Larr":"↞","lArr":"⇐","larrfs":"⤝","larrhk":"↩","larrlp":"↫","larrpl":"⤹","larrsim":"⥳","larrtl":"↢","latail":"⤙","lAtail":"⤛","lat":"⪫","late":"⪭","lates":"⪭︀","lbarr":"⤌","lBarr":"⤎","lbbrk":"❲","lbrace":"{","lbrack":"[","lbrke":"⦋","lbrksld":"⦏","lbrkslu":"⦍","Lcaron":"Ľ","lcaron":"ľ","Lcedil":"Ļ","lcedil":"ļ","lceil":"⌈","lcub":"{","Lcy":"Л","lcy":"л","ldca":"⤶","ldquo":"“","ldquor":"„","ldrdhar":"⥧","ldrushar":"⥋","ldsh":"↲","le":"≤","lE":"≦","LeftAngleBracket":"⟨","LeftArrowBar":"⇤","leftarrow":"←","LeftArrow":"←","Leftarrow":"⇐","LeftArrowRightArrow":"⇆","leftarrowtail":"↢","LeftCeiling":"⌈","LeftDoubleBracket":"⟦","LeftDownTeeVector":"⥡","LeftDownVectorBar":"⥙","LeftDownVector":"⇃","LeftFloor":"⌊","leftharpoondown":"↽","leftharpoonup":"↼","leftleftarrows":"⇇","leftrightarrow":"↔","LeftRightArrow":"↔","Leftrightarrow":"⇔","leftrightarrows":"⇆","leftrightharpoons":"⇋","leftrightsquigarrow":"↭","LeftRightVector":"⥎","LeftTeeArrow":"↤","LeftTee":"⊣","LeftTeeVector":"⥚","leftthreetimes":"⋋","LeftTriangleBar":"⧏","LeftTriangle":"⊲","LeftTriangleEqual":"⊴","LeftUpDownVector":"⥑","LeftUpTeeVector":"⥠","LeftUpVectorBar":"⥘","LeftUpVector":"↿","LeftVectorBar":"⥒","LeftVector":"↼","lEg":"⪋","leg":"⋚","leq":"≤","leqq":"≦","leqslant":"⩽","lescc":"⪨","les":"⩽","lesdot":"⩿","lesdoto":"⪁","lesdotor":"⪃","lesg":"⋚︀","lesges":"⪓","lessapprox":"⪅","lessdot":"⋖","lesseqgtr":"⋚","lesseqqgtr":"⪋","LessEqualGreater":"⋚","LessFullEqual":"≦","LessGreater":"≶","lessgtr":"≶","LessLess":"⪡","lesssim":"≲","LessSlantEqual":"⩽","LessTilde":"≲","lfisht":"⥼","lfloor":"⌊","Lfr":"𝔏","lfr":"𝔩","lg":"≶","lgE":"⪑","lHar":"⥢","lhard":"↽","lharu":"↼","lharul":"⥪","lhblk":"▄","LJcy":"Љ","ljcy":"љ","llarr":"⇇","ll":"≪","Ll":"⋘","llcorner":"⌞","Lleftarrow":"⇚","llhard":"⥫","lltri":"◺","Lmidot":"Ŀ","lmidot":"ŀ","lmoustache":"⎰","lmoust":"⎰","lnap":"⪉","lnapprox":"⪉","lne":"⪇","lnE":"≨","lneq":"⪇","lneqq":"≨","lnsim":"⋦","loang":"⟬","loarr":"⇽","lobrk":"⟦","longleftarrow":"⟵","LongLeftArrow":"⟵","Longleftarrow":"⟸","longleftrightarrow":"⟷","LongLeftRightArrow":"⟷","Longleftrightarrow":"⟺","longmapsto":"⟼","longrightarrow":"⟶","LongRightArrow":"⟶","Longrightarrow":"⟹","looparrowleft":"↫","looparrowright":"↬","lopar":"⦅","Lopf":"𝕃","lopf":"𝕝","loplus":"⨭","lotimes":"⨴","lowast":"∗","lowbar":"_","LowerLeftArrow":"↙","LowerRightArrow":"↘","loz":"◊","lozenge":"◊","lozf":"⧫","lpar":"(","lparlt":"⦓","lrarr":"⇆","lrcorner":"⌟","lrhar":"⇋","lrhard":"⥭","lrm":"‎","lrtri":"⊿","lsaquo":"‹","lscr":"𝓁","Lscr":"ℒ","lsh":"↰","Lsh":"↰","lsim":"≲","lsime":"⪍","lsimg":"⪏","lsqb":"[","lsquo":"‘","lsquor":"‚","Lstrok":"Ł","lstrok":"ł","ltcc":"⪦","ltcir":"⩹","lt":"<","LT":"<","Lt":"≪","ltdot":"⋖","lthree":"⋋","ltimes":"⋉","ltlarr":"⥶","ltquest":"⩻","ltri":"◃","ltrie":"⊴","ltrif":"◂","ltrPar":"⦖","lurdshar":"⥊","luruhar":"⥦","lvertneqq":"≨︀","lvnE":"≨︀","macr":"¯","male":"♂","malt":"✠","maltese":"✠","Map":"⤅","map":"↦","mapsto":"↦","mapstodown":"↧","mapstoleft":"↤","mapstoup":"↥","marker":"▮","mcomma":"⨩","Mcy":"М","mcy":"м","mdash":"—","mDDot":"∺","measuredangle":"∡","MediumSpace":" ","Mellintrf":"ℳ","Mfr":"𝔐","mfr":"𝔪","mho":"℧","micro":"µ","midast":"*","midcir":"⫰","mid":"∣","middot":"·","minusb":"⊟","minus":"−","minusd":"∸","minusdu":"⨪","MinusPlus":"∓","mlcp":"⫛","mldr":"…","mnplus":"∓","models":"⊧","Mopf":"𝕄","mopf":"𝕞","mp":"∓","mscr":"𝓂","Mscr":"ℳ","mstpos":"∾","Mu":"Μ","mu":"μ","multimap":"⊸","mumap":"⊸","nabla":"∇","Nacute":"Ń","nacute":"ń","nang":"∠⃒","nap":"≉","napE":"⩰̸","napid":"≋̸","napos":"ŉ","napprox":"≉","natural":"♮","naturals":"ℕ","natur":"♮","nbsp":" ","nbump":"≎̸","nbumpe":"≏̸","ncap":"⩃","Ncaron":"Ň","ncaron":"ň","Ncedil":"Ņ","ncedil":"ņ","ncong":"≇","ncongdot":"⩭̸","ncup":"⩂","Ncy":"Н","ncy":"н","ndash":"–","nearhk":"⤤","nearr":"↗","neArr":"⇗","nearrow":"↗","ne":"≠","nedot":"≐̸","NegativeMediumSpace":"​","NegativeThickSpace":"​","NegativeThinSpace":"​","NegativeVeryThinSpace":"​","nequiv":"≢","nesear":"⤨","nesim":"≂̸","NestedGreaterGreater":"≫","NestedLessLess":"≪","NewLine":"\n","nexist":"∄","nexists":"∄","Nfr":"𝔑","nfr":"𝔫","ngE":"≧̸","nge":"≱","ngeq":"≱","ngeqq":"≧̸","ngeqslant":"⩾̸","nges":"⩾̸","nGg":"⋙̸","ngsim":"≵","nGt":"≫⃒","ngt":"≯","ngtr":"≯","nGtv":"≫̸","nharr":"↮","nhArr":"⇎","nhpar":"⫲","ni":"∋","nis":"⋼","nisd":"⋺","niv":"∋","NJcy":"Њ","njcy":"њ","nlarr":"↚","nlArr":"⇍","nldr":"‥","nlE":"≦̸","nle":"≰","nleftarrow":"↚","nLeftarrow":"⇍","nleftrightarrow":"↮","nLeftrightarrow":"⇎","nleq":"≰","nleqq":"≦̸","nleqslant":"⩽̸","nles":"⩽̸","nless":"≮","nLl":"⋘̸","nlsim":"≴","nLt":"≪⃒","nlt":"≮","nltri":"⋪","nltrie":"⋬","nLtv":"≪̸","nmid":"∤","NoBreak":"⁠","NonBreakingSpace":" ","nopf":"𝕟","Nopf":"ℕ","Not":"⫬","not":"¬","NotCongruent":"≢","NotCupCap":"≭","NotDoubleVerticalBar":"∦","NotElement":"∉","NotEqual":"≠","NotEqualTilde":"≂̸","NotExists":"∄","NotGreater":"≯","NotGreaterEqual":"≱","NotGreaterFullEqual":"≧̸","NotGreaterGreater":"≫̸","NotGreaterLess":"≹","NotGreaterSlantEqual":"⩾̸","NotGreaterTilde":"≵","NotHumpDownHump":"≎̸","NotHumpEqual":"≏̸","notin":"∉","notindot":"⋵̸","notinE":"⋹̸","notinva":"∉","notinvb":"⋷","notinvc":"⋶","NotLeftTriangleBar":"⧏̸","NotLeftTriangle":"⋪","NotLeftTriangleEqual":"⋬","NotLess":"≮","NotLessEqual":"≰","NotLessGreater":"≸","NotLessLess":"≪̸","NotLessSlantEqual":"⩽̸","NotLessTilde":"≴","NotNestedGreaterGreater":"⪢̸","NotNestedLessLess":"⪡̸","notni":"∌","notniva":"∌","notnivb":"⋾","notnivc":"⋽","NotPrecedes":"⊀","NotPrecedesEqual":"⪯̸","NotPrecedesSlantEqual":"⋠","NotReverseElement":"∌","NotRightTriangleBar":"⧐̸","NotRightTriangle":"⋫","NotRightTriangleEqual":"⋭","NotSquareSubset":"⊏̸","NotSquareSubsetEqual":"⋢","NotSquareSuperset":"⊐̸","NotSquareSupersetEqual":"⋣","NotSubset":"⊂⃒","NotSubsetEqual":"⊈","NotSucceeds":"⊁","NotSucceedsEqual":"⪰̸","NotSucceedsSlantEqual":"⋡","NotSucceedsTilde":"≿̸","NotSuperset":"⊃⃒","NotSupersetEqual":"⊉","NotTilde":"≁","NotTildeEqual":"≄","NotTildeFullEqual":"≇","NotTildeTilde":"≉","NotVerticalBar":"∤","nparallel":"∦","npar":"∦","nparsl":"⫽⃥","npart":"∂̸","npolint":"⨔","npr":"⊀","nprcue":"⋠","nprec":"⊀","npreceq":"⪯̸","npre":"⪯̸","nrarrc":"⤳̸","nrarr":"↛","nrArr":"⇏","nrarrw":"↝̸","nrightarrow":"↛","nRightarrow":"⇏","nrtri":"⋫","nrtrie":"⋭","nsc":"⊁","nsccue":"⋡","nsce":"⪰̸","Nscr":"𝒩","nscr":"𝓃","nshortmid":"∤","nshortparallel":"∦","nsim":"≁","nsime":"≄","nsimeq":"≄","nsmid":"∤","nspar":"∦","nsqsube":"⋢","nsqsupe":"⋣","nsub":"⊄","nsubE":"⫅̸","nsube":"⊈","nsubset":"⊂⃒","nsubseteq":"⊈","nsubseteqq":"⫅̸","nsucc":"⊁","nsucceq":"⪰̸","nsup":"⊅","nsupE":"⫆̸","nsupe":"⊉","nsupset":"⊃⃒","nsupseteq":"⊉","nsupseteqq":"⫆̸","ntgl":"≹","Ntilde":"Ñ","ntilde":"ñ","ntlg":"≸","ntriangleleft":"⋪","ntrianglelefteq":"⋬","ntriangleright":"⋫","ntrianglerighteq":"⋭","Nu":"Ν","nu":"ν","num":"#","numero":"№","numsp":" ","nvap":"≍⃒","nvdash":"⊬","nvDash":"⊭","nVdash":"⊮","nVDash":"⊯","nvge":"≥⃒","nvgt":">⃒","nvHarr":"⤄","nvinfin":"⧞","nvlArr":"⤂","nvle":"≤⃒","nvlt":"<⃒","nvltrie":"⊴⃒","nvrArr":"⤃","nvrtrie":"⊵⃒","nvsim":"∼⃒","nwarhk":"⤣","nwarr":"↖","nwArr":"⇖","nwarrow":"↖","nwnear":"⤧","Oacute":"Ó","oacute":"ó","oast":"⊛","Ocirc":"Ô","ocirc":"ô","ocir":"⊚","Ocy":"О","ocy":"о","odash":"⊝","Odblac":"Ő","odblac":"ő","odiv":"⨸","odot":"⊙","odsold":"⦼","OElig":"Œ","oelig":"œ","ofcir":"⦿","Ofr":"𝔒","ofr":"𝔬","ogon":"˛","Ograve":"Ò","ograve":"ò","ogt":"⧁","ohbar":"⦵","ohm":"Ω","oint":"∮","olarr":"↺","olcir":"⦾","olcross":"⦻","oline":"‾","olt":"⧀","Omacr":"Ō","omacr":"ō","Omega":"Ω","omega":"ω","Omicron":"Ο","omicron":"ο","omid":"⦶","ominus":"⊖","Oopf":"𝕆","oopf":"𝕠","opar":"⦷","OpenCurlyDoubleQuote":"“","OpenCurlyQuote":"‘","operp":"⦹","oplus":"⊕","orarr":"↻","Or":"⩔","or":"∨","ord":"⩝","order":"ℴ","orderof":"ℴ","ordf":"ª","ordm":"º","origof":"⊶","oror":"⩖","orslope":"⩗","orv":"⩛","oS":"Ⓢ","Oscr":"𝒪","oscr":"ℴ","Oslash":"Ø","oslash":"ø","osol":"⊘","Otilde":"Õ","otilde":"õ","otimesas":"⨶","Otimes":"⨷","otimes":"⊗","Ouml":"Ö","ouml":"ö","ovbar":"⌽","OverBar":"‾","OverBrace":"⏞","OverBracket":"⎴","OverParenthesis":"⏜","para":"¶","parallel":"∥","par":"∥","parsim":"⫳","parsl":"⫽","part":"∂","PartialD":"∂","Pcy":"П","pcy":"п","percnt":"%","period":".","permil":"‰","perp":"⊥","pertenk":"‱","Pfr":"𝔓","pfr":"𝔭","Phi":"Φ","phi":"φ","phiv":"ϕ","phmmat":"ℳ","phone":"☎","Pi":"Π","pi":"π","pitchfork":"⋔","piv":"ϖ","planck":"ℏ","planckh":"ℎ","plankv":"ℏ","plusacir":"⨣","plusb":"⊞","pluscir":"⨢","plus":"+","plusdo":"∔","plusdu":"⨥","pluse":"⩲","PlusMinus":"±","plusmn":"±","plussim":"⨦","plustwo":"⨧","pm":"±","Poincareplane":"ℌ","pointint":"⨕","popf":"𝕡","Popf":"ℙ","pound":"£","prap":"⪷","Pr":"⪻","pr":"≺","prcue":"≼","precapprox":"⪷","prec":"≺","preccurlyeq":"≼","Precedes":"≺","PrecedesEqual":"⪯","PrecedesSlantEqual":"≼","PrecedesTilde":"≾","preceq":"⪯","precnapprox":"⪹","precneqq":"⪵","precnsim":"⋨","pre":"⪯","prE":"⪳","precsim":"≾","prime":"′","Prime":"″","primes":"ℙ","prnap":"⪹","prnE":"⪵","prnsim":"⋨","prod":"∏","Product":"∏","profalar":"⌮","profline":"⌒","profsurf":"⌓","prop":"∝","Proportional":"∝","Proportion":"∷","propto":"∝","prsim":"≾","prurel":"⊰","Pscr":"𝒫","pscr":"𝓅","Psi":"Ψ","psi":"ψ","puncsp":" ","Qfr":"𝔔","qfr":"𝔮","qint":"⨌","qopf":"𝕢","Qopf":"ℚ","qprime":"⁗","Qscr":"𝒬","qscr":"𝓆","quaternions":"ℍ","quatint":"⨖","quest":"?","questeq":"≟","quot":"\"","QUOT":"\"","rAarr":"⇛","race":"∽̱","Racute":"Ŕ","racute":"ŕ","radic":"√","raemptyv":"⦳","rang":"⟩","Rang":"⟫","rangd":"⦒","range":"⦥","rangle":"⟩","raquo":"»","rarrap":"⥵","rarrb":"⇥","rarrbfs":"⤠","rarrc":"⤳","rarr":"→","Rarr":"↠","rArr":"⇒","rarrfs":"⤞","rarrhk":"↪","rarrlp":"↬","rarrpl":"⥅","rarrsim":"⥴","Rarrtl":"⤖","rarrtl":"↣","rarrw":"↝","ratail":"⤚","rAtail":"⤜","ratio":"∶","rationals":"ℚ","rbarr":"⤍","rBarr":"⤏","RBarr":"⤐","rbbrk":"❳","rbrace":"}","rbrack":"]","rbrke":"⦌","rbrksld":"⦎","rbrkslu":"⦐","Rcaron":"Ř","rcaron":"ř","Rcedil":"Ŗ","rcedil":"ŗ","rceil":"⌉","rcub":"}","Rcy":"Р","rcy":"р","rdca":"⤷","rdldhar":"⥩","rdquo":"”","rdquor":"”","rdsh":"↳","real":"ℜ","realine":"ℛ","realpart":"ℜ","reals":"ℝ","Re":"ℜ","rect":"▭","reg":"®","REG":"®","ReverseElement":"∋","ReverseEquilibrium":"⇋","ReverseUpEquilibrium":"⥯","rfisht":"⥽","rfloor":"⌋","rfr":"𝔯","Rfr":"ℜ","rHar":"⥤","rhard":"⇁","rharu":"⇀","rharul":"⥬","Rho":"Ρ","rho":"ρ","rhov":"ϱ","RightAngleBracket":"⟩","RightArrowBar":"⇥","rightarrow":"→","RightArrow":"→","Rightarrow":"⇒","RightArrowLeftArrow":"⇄","rightarrowtail":"↣","RightCeiling":"⌉","RightDoubleBracket":"⟧","RightDownTeeVector":"⥝","RightDownVectorBar":"⥕","RightDownVector":"⇂","RightFloor":"⌋","rightharpoondown":"⇁","rightharpoonup":"⇀","rightleftarrows":"⇄","rightleftharpoons":"⇌","rightrightarrows":"⇉","rightsquigarrow":"↝","RightTeeArrow":"↦","RightTee":"⊢","RightTeeVector":"⥛","rightthreetimes":"⋌","RightTriangleBar":"⧐","RightTriangle":"⊳","RightTriangleEqual":"⊵","RightUpDownVector":"⥏","RightUpTeeVector":"⥜","RightUpVectorBar":"⥔","RightUpVector":"↾","RightVectorBar":"⥓","RightVector":"⇀","ring":"˚","risingdotseq":"≓","rlarr":"⇄","rlhar":"⇌","rlm":"‏","rmoustache":"⎱","rmoust":"⎱","rnmid":"⫮","roang":"⟭","roarr":"⇾","robrk":"⟧","ropar":"⦆","ropf":"𝕣","Ropf":"ℝ","roplus":"⨮","rotimes":"⨵","RoundImplies":"⥰","rpar":")","rpargt":"⦔","rppolint":"⨒","rrarr":"⇉","Rrightarrow":"⇛","rsaquo":"›","rscr":"𝓇","Rscr":"ℛ","rsh":"↱","Rsh":"↱","rsqb":"]","rsquo":"’","rsquor":"’","rthree":"⋌","rtimes":"⋊","rtri":"▹","rtrie":"⊵","rtrif":"▸","rtriltri":"⧎","RuleDelayed":"⧴","ruluhar":"⥨","rx":"℞","Sacute":"Ś","sacute":"ś","sbquo":"‚","scap":"⪸","Scaron":"Š","scaron":"š","Sc":"⪼","sc":"≻","sccue":"≽","sce":"⪰","scE":"⪴","Scedil":"Ş","scedil":"ş","Scirc":"Ŝ","scirc":"ŝ","scnap":"⪺","scnE":"⪶","scnsim":"⋩","scpolint":"⨓","scsim":"≿","Scy":"С","scy":"с","sdotb":"⊡","sdot":"⋅","sdote":"⩦","searhk":"⤥","searr":"↘","seArr":"⇘","searrow":"↘","sect":"§","semi":";","seswar":"⤩","setminus":"∖","setmn":"∖","sext":"✶","Sfr":"𝔖","sfr":"𝔰","sfrown":"⌢","sharp":"♯","SHCHcy":"Щ","shchcy":"щ","SHcy":"Ш","shcy":"ш","ShortDownArrow":"↓","ShortLeftArrow":"←","shortmid":"∣","shortparallel":"∥","ShortRightArrow":"→","ShortUpArrow":"↑","shy":"­","Sigma":"Σ","sigma":"σ","sigmaf":"ς","sigmav":"ς","sim":"∼","simdot":"⩪","sime":"≃","simeq":"≃","simg":"⪞","simgE":"⪠","siml":"⪝","simlE":"⪟","simne":"≆","simplus":"⨤","simrarr":"⥲","slarr":"←","SmallCircle":"∘","smallsetminus":"∖","smashp":"⨳","smeparsl":"⧤","smid":"∣","smile":"⌣","smt":"⪪","smte":"⪬","smtes":"⪬︀","SOFTcy":"Ь","softcy":"ь","solbar":"⌿","solb":"⧄","sol":"/","Sopf":"𝕊","sopf":"𝕤","spades":"♠","spadesuit":"♠","spar":"∥","sqcap":"⊓","sqcaps":"⊓︀","sqcup":"⊔","sqcups":"⊔︀","Sqrt":"√","sqsub":"⊏","sqsube":"⊑","sqsubset":"⊏","sqsubseteq":"⊑","sqsup":"⊐","sqsupe":"⊒","sqsupset":"⊐","sqsupseteq":"⊒","square":"□","Square":"□","SquareIntersection":"⊓","SquareSubset":"⊏","SquareSubsetEqual":"⊑","SquareSuperset":"⊐","SquareSupersetEqual":"⊒","SquareUnion":"⊔","squarf":"▪","squ":"□","squf":"▪","srarr":"→","Sscr":"𝒮","sscr":"𝓈","ssetmn":"∖","ssmile":"⌣","sstarf":"⋆","Star":"⋆","star":"☆","starf":"★","straightepsilon":"ϵ","straightphi":"ϕ","strns":"¯","sub":"⊂","Sub":"⋐","subdot":"⪽","subE":"⫅","sube":"⊆","subedot":"⫃","submult":"⫁","subnE":"⫋","subne":"⊊","subplus":"⪿","subrarr":"⥹","subset":"⊂","Subset":"⋐","subseteq":"⊆","subseteqq":"⫅","SubsetEqual":"⊆","subsetneq":"⊊","subsetneqq":"⫋","subsim":"⫇","subsub":"⫕","subsup":"⫓","succapprox":"⪸","succ":"≻","succcurlyeq":"≽","Succeeds":"≻","SucceedsEqual":"⪰","SucceedsSlantEqual":"≽","SucceedsTilde":"≿","succeq":"⪰","succnapprox":"⪺","succneqq":"⪶","succnsim":"⋩","succsim":"≿","SuchThat":"∋","sum":"∑","Sum":"∑","sung":"♪","sup1":"¹","sup2":"²","sup3":"³","sup":"⊃","Sup":"⋑","supdot":"⪾","supdsub":"⫘","supE":"⫆","supe":"⊇","supedot":"⫄","Superset":"⊃","SupersetEqual":"⊇","suphsol":"⟉","suphsub":"⫗","suplarr":"⥻","supmult":"⫂","supnE":"⫌","supne":"⊋","supplus":"⫀","supset":"⊃","Supset":"⋑","supseteq":"⊇","supseteqq":"⫆","supsetneq":"⊋","supsetneqq":"⫌","supsim":"⫈","supsub":"⫔","supsup":"⫖","swarhk":"⤦","swarr":"↙","swArr":"⇙","swarrow":"↙","swnwar":"⤪","szlig":"ß","Tab":"\t","target":"⌖","Tau":"Τ","tau":"τ","tbrk":"⎴","Tcaron":"Ť","tcaron":"ť","Tcedil":"Ţ","tcedil":"ţ","Tcy":"Т","tcy":"т","tdot":"⃛","telrec":"⌕","Tfr":"𝔗","tfr":"𝔱","there4":"∴","therefore":"∴","Therefore":"∴","Theta":"Θ","theta":"θ","thetasym":"ϑ","thetav":"ϑ","thickapprox":"≈","thicksim":"∼","ThickSpace":"  ","ThinSpace":" ","thinsp":" ","thkap":"≈","thksim":"∼","THORN":"Þ","thorn":"þ","tilde":"˜","Tilde":"∼","TildeEqual":"≃","TildeFullEqual":"≅","TildeTilde":"≈","timesbar":"⨱","timesb":"⊠","times":"×","timesd":"⨰","tint":"∭","toea":"⤨","topbot":"⌶","topcir":"⫱","top":"⊤","Topf":"𝕋","topf":"𝕥","topfork":"⫚","tosa":"⤩","tprime":"‴","trade":"™","TRADE":"™","triangle":"▵","triangledown":"▿","triangleleft":"◃","trianglelefteq":"⊴","triangleq":"≜","triangleright":"▹","trianglerighteq":"⊵","tridot":"◬","trie":"≜","triminus":"⨺","TripleDot":"⃛","triplus":"⨹","trisb":"⧍","tritime":"⨻","trpezium":"⏢","Tscr":"𝒯","tscr":"𝓉","TScy":"Ц","tscy":"ц","TSHcy":"Ћ","tshcy":"ћ","Tstrok":"Ŧ","tstrok":"ŧ","twixt":"≬","twoheadleftarrow":"↞","twoheadrightarrow":"↠","Uacute":"Ú","uacute":"ú","uarr":"↑","Uarr":"↟","uArr":"⇑","Uarrocir":"⥉","Ubrcy":"Ў","ubrcy":"ў","Ubreve":"Ŭ","ubreve":"ŭ","Ucirc":"Û","ucirc":"û","Ucy":"У","ucy":"у","udarr":"⇅","Udblac":"Ű","udblac":"ű","udhar":"⥮","ufisht":"⥾","Ufr":"𝔘","ufr":"𝔲","Ugrave":"Ù","ugrave":"ù","uHar":"⥣","uharl":"↿","uharr":"↾","uhblk":"▀","ulcorn":"⌜","ulcorner":"⌜","ulcrop":"⌏","ultri":"◸","Umacr":"Ū","umacr":"ū","uml":"¨","UnderBar":"_","UnderBrace":"⏟","UnderBracket":"⎵","UnderParenthesis":"⏝","Union":"⋃","UnionPlus":"⊎","Uogon":"Ų","uogon":"ų","Uopf":"𝕌","uopf":"𝕦","UpArrowBar":"⤒","uparrow":"↑","UpArrow":"↑","Uparrow":"⇑","UpArrowDownArrow":"⇅","updownarrow":"↕","UpDownArrow":"↕","Updownarrow":"⇕","UpEquilibrium":"⥮","upharpoonleft":"↿","upharpoonright":"↾","uplus":"⊎","UpperLeftArrow":"↖","UpperRightArrow":"↗","upsi":"υ","Upsi":"ϒ","upsih":"ϒ","Upsilon":"Υ","upsilon":"υ","UpTeeArrow":"↥","UpTee":"⊥","upuparrows":"⇈","urcorn":"⌝","urcorner":"⌝","urcrop":"⌎","Uring":"Ů","uring":"ů","urtri":"◹","Uscr":"𝒰","uscr":"𝓊","utdot":"⋰","Utilde":"Ũ","utilde":"ũ","utri":"▵","utrif":"▴","uuarr":"⇈","Uuml":"Ü","uuml":"ü","uwangle":"⦧","vangrt":"⦜","varepsilon":"ϵ","varkappa":"ϰ","varnothing":"∅","varphi":"ϕ","varpi":"ϖ","varpropto":"∝","varr":"↕","vArr":"⇕","varrho":"ϱ","varsigma":"ς","varsubsetneq":"⊊︀","varsubsetneqq":"⫋︀","varsupsetneq":"⊋︀","varsupsetneqq":"⫌︀","vartheta":"ϑ","vartriangleleft":"⊲","vartriangleright":"⊳","vBar":"⫨","Vbar":"⫫","vBarv":"⫩","Vcy":"В","vcy":"в","vdash":"⊢","vDash":"⊨","Vdash":"⊩","VDash":"⊫","Vdashl":"⫦","veebar":"⊻","vee":"∨","Vee":"⋁","veeeq":"≚","vellip":"⋮","verbar":"|","Verbar":"‖","vert":"|","Vert":"‖","VerticalBar":"∣","VerticalLine":"|","VerticalSeparator":"❘","VerticalTilde":"≀","VeryThinSpace":" ","Vfr":"𝔙","vfr":"𝔳","vltri":"⊲","vnsub":"⊂⃒","vnsup":"⊃⃒","Vopf":"𝕍","vopf":"𝕧","vprop":"∝","vrtri":"⊳","Vscr":"𝒱","vscr":"𝓋","vsubnE":"⫋︀","vsubne":"⊊︀","vsupnE":"⫌︀","vsupne":"⊋︀","Vvdash":"⊪","vzigzag":"⦚","Wcirc":"Ŵ","wcirc":"ŵ","wedbar":"⩟","wedge":"∧","Wedge":"⋀","wedgeq":"≙","weierp":"℘","Wfr":"𝔚","wfr":"𝔴","Wopf":"𝕎","wopf":"𝕨","wp":"℘","wr":"≀","wreath":"≀","Wscr":"𝒲","wscr":"𝓌","xcap":"⋂","xcirc":"◯","xcup":"⋃","xdtri":"▽","Xfr":"𝔛","xfr":"𝔵","xharr":"⟷","xhArr":"⟺","Xi":"Ξ","xi":"ξ","xlarr":"⟵","xlArr":"⟸","xmap":"⟼","xnis":"⋻","xodot":"⨀","Xopf":"𝕏","xopf":"𝕩","xoplus":"⨁","xotime":"⨂","xrarr":"⟶","xrArr":"⟹","Xscr":"𝒳","xscr":"𝓍","xsqcup":"⨆","xuplus":"⨄","xutri":"△","xvee":"⋁","xwedge":"⋀","Yacute":"Ý","yacute":"ý","YAcy":"Я","yacy":"я","Ycirc":"Ŷ","ycirc":"ŷ","Ycy":"Ы","ycy":"ы","yen":"¥","Yfr":"𝔜","yfr":"𝔶","YIcy":"Ї","yicy":"ї","Yopf":"𝕐","yopf":"𝕪","Yscr":"𝒴","yscr":"𝓎","YUcy":"Ю","yucy":"ю","yuml":"ÿ","Yuml":"Ÿ","Zacute":"Ź","zacute":"ź","Zcaron":"Ž","zcaron":"ž","Zcy":"З","zcy":"з","Zdot":"Ż","zdot":"ż","zeetrf":"ℨ","ZeroWidthSpace":"​","Zeta":"Ζ","zeta":"ζ","zfr":"𝔷","Zfr":"ℨ","ZHcy":"Ж","zhcy":"ж","zigrarr":"⇝","zopf":"𝕫","Zopf":"ℤ","Zscr":"𝒵","zscr":"𝓏","zwj":"‍","zwnj":"‌"}
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4636,7 +4970,7 @@ module.exports = encode;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4765,7 +5099,7 @@ module.exports = decode;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4797,7 +5131,7 @@ module.exports = function format(url) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5116,27 +5450,27 @@ module.exports = urlParse;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.Any = __webpack_require__(14);
-exports.Cc  = __webpack_require__(15);
-exports.Cf  = __webpack_require__(40);
-exports.P   = __webpack_require__(7);
-exports.Z   = __webpack_require__(16);
+exports.Any = __webpack_require__(13);
+exports.Cc  = __webpack_require__(14);
+exports.Cf  = __webpack_require__(41);
+exports.P   = __webpack_require__(6);
+exports.Z   = __webpack_require__(15);
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804\uDCBD|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5144,13 +5478,13 @@ module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u2
 
 
 
-exports.parseLinkLabel       = __webpack_require__(42);
-exports.parseLinkDestination = __webpack_require__(43);
-exports.parseLinkTitle       = __webpack_require__(44);
+exports.parseLinkLabel       = __webpack_require__(43);
+exports.parseLinkDestination = __webpack_require__(44);
+exports.parseLinkTitle       = __webpack_require__(45);
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5205,7 +5539,7 @@ module.exports = function parseLinkLabel(state, start, disableNested) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5292,7 +5626,7 @@ module.exports = function parseLinkDestination(str, pos, max) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5352,7 +5686,7 @@ module.exports = function parseLinkTitle(str, pos, max) {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5694,7 +6028,7 @@ module.exports = Renderer;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5707,16 +6041,16 @@ module.exports = Renderer;
 
 
 
-var Ruler  = __webpack_require__(8);
+var Ruler  = __webpack_require__(7);
 
 
 var _rules = [
-  [ 'normalize',      __webpack_require__(47)      ],
-  [ 'block',          __webpack_require__(48)          ],
-  [ 'inline',         __webpack_require__(49)         ],
-  [ 'linkify',        __webpack_require__(50)        ],
-  [ 'replacements',   __webpack_require__(51)   ],
-  [ 'smartquotes',    __webpack_require__(52)    ]
+  [ 'normalize',      __webpack_require__(48)      ],
+  [ 'block',          __webpack_require__(49)          ],
+  [ 'inline',         __webpack_require__(50)         ],
+  [ 'linkify',        __webpack_require__(51)        ],
+  [ 'replacements',   __webpack_require__(52)   ],
+  [ 'smartquotes',    __webpack_require__(53)    ]
 ];
 
 
@@ -5752,14 +6086,14 @@ Core.prototype.process = function (state) {
   }
 };
 
-Core.prototype.State = __webpack_require__(53);
+Core.prototype.State = __webpack_require__(54);
 
 
 module.exports = Core;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5786,7 +6120,7 @@ module.exports = function inline(state) {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5809,7 +6143,7 @@ module.exports = function block(state) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5829,7 +6163,7 @@ module.exports = function inline(state) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5969,7 +6303,7 @@ module.exports = function linkify(state) {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6083,7 +6417,7 @@ module.exports = function replace(state) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6283,7 +6617,7 @@ module.exports = function smartquotes(state) {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6291,7 +6625,7 @@ module.exports = function smartquotes(state) {
 //
 
 
-var Token = __webpack_require__(9);
+var Token = __webpack_require__(8);
 
 
 function StateCore(src, md, env) {
@@ -6310,7 +6644,7 @@ module.exports = StateCore;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6322,23 +6656,23 @@ module.exports = StateCore;
 
 
 
-var Ruler           = __webpack_require__(8);
+var Ruler           = __webpack_require__(7);
 
 
 var _rules = [
   // First 2 params - rule name & source. Secondary array - list of rules,
   // which can be terminated by this one.
-  [ 'table',      __webpack_require__(55),      [ 'paragraph', 'reference' ] ],
-  [ 'code',       __webpack_require__(56) ],
-  [ 'fence',      __webpack_require__(57),      [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'blockquote', __webpack_require__(58), [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'hr',         __webpack_require__(59),         [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'list',       __webpack_require__(60),       [ 'paragraph', 'reference', 'blockquote' ] ],
-  [ 'reference',  __webpack_require__(61) ],
-  [ 'heading',    __webpack_require__(62),    [ 'paragraph', 'reference', 'blockquote' ] ],
-  [ 'lheading',   __webpack_require__(63) ],
-  [ 'html_block', __webpack_require__(64), [ 'paragraph', 'reference', 'blockquote' ] ],
-  [ 'paragraph',  __webpack_require__(66) ]
+  [ 'table',      __webpack_require__(56),      [ 'paragraph', 'reference' ] ],
+  [ 'code',       __webpack_require__(57) ],
+  [ 'fence',      __webpack_require__(58),      [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
+  [ 'blockquote', __webpack_require__(59), [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
+  [ 'hr',         __webpack_require__(60),         [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
+  [ 'list',       __webpack_require__(61),       [ 'paragraph', 'reference', 'blockquote' ] ],
+  [ 'reference',  __webpack_require__(62) ],
+  [ 'heading',    __webpack_require__(63),    [ 'paragraph', 'reference', 'blockquote' ] ],
+  [ 'lheading',   __webpack_require__(64) ],
+  [ 'html_block', __webpack_require__(65), [ 'paragraph', 'reference', 'blockquote' ] ],
+  [ 'paragraph',  __webpack_require__(67) ]
 ];
 
 
@@ -6432,14 +6766,14 @@ ParserBlock.prototype.parse = function (src, md, env, outTokens) {
 };
 
 
-ParserBlock.prototype.State = __webpack_require__(67);
+ParserBlock.prototype.State = __webpack_require__(68);
 
 
 module.exports = ParserBlock;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6642,7 +6976,7 @@ module.exports = function table(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6683,7 +7017,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6784,7 +7118,7 @@ module.exports = function fence(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7076,7 +7410,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7128,7 +7462,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7471,7 +7805,7 @@ module.exports = function list(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7676,7 +8010,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7738,7 +8072,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7828,7 +8162,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7837,8 +8171,8 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
 
 
 
-var block_names = __webpack_require__(65);
-var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(17).HTML_OPEN_CLOSE_TAG_RE;
+var block_names = __webpack_require__(66);
+var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(16).HTML_OPEN_CLOSE_TAG_RE;
 
 // An array of opening and corresponding closing sequences for html tags,
 // last argument defines whether it can terminate a paragraph or not
@@ -7909,7 +8243,7 @@ module.exports = function html_block(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7987,7 +8321,7 @@ module.exports = [
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8046,7 +8380,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8054,7 +8388,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
 
 
 
-var Token = __webpack_require__(9);
+var Token = __webpack_require__(8);
 var isSpace = __webpack_require__(0).isSpace;
 
 
@@ -8283,7 +8617,7 @@ module.exports = StateBlock;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8295,31 +8629,31 @@ module.exports = StateBlock;
 
 
 
-var Ruler           = __webpack_require__(8);
+var Ruler           = __webpack_require__(7);
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Parser rules
 
 var _rules = [
-  [ 'text',            __webpack_require__(69) ],
-  [ 'newline',         __webpack_require__(70) ],
-  [ 'escape',          __webpack_require__(71) ],
-  [ 'backticks',       __webpack_require__(72) ],
-  [ 'strikethrough',   __webpack_require__(18).tokenize ],
-  [ 'emphasis',        __webpack_require__(19).tokenize ],
-  [ 'link',            __webpack_require__(73) ],
-  [ 'image',           __webpack_require__(74) ],
-  [ 'autolink',        __webpack_require__(75) ],
-  [ 'html_inline',     __webpack_require__(76) ],
-  [ 'entity',          __webpack_require__(77) ]
+  [ 'text',            __webpack_require__(70) ],
+  [ 'newline',         __webpack_require__(71) ],
+  [ 'escape',          __webpack_require__(72) ],
+  [ 'backticks',       __webpack_require__(73) ],
+  [ 'strikethrough',   __webpack_require__(17).tokenize ],
+  [ 'emphasis',        __webpack_require__(18).tokenize ],
+  [ 'link',            __webpack_require__(74) ],
+  [ 'image',           __webpack_require__(75) ],
+  [ 'autolink',        __webpack_require__(76) ],
+  [ 'html_inline',     __webpack_require__(77) ],
+  [ 'entity',          __webpack_require__(78) ]
 ];
 
 var _rules2 = [
-  [ 'balance_pairs',   __webpack_require__(78) ],
-  [ 'strikethrough',   __webpack_require__(18).postProcess ],
-  [ 'emphasis',        __webpack_require__(19).postProcess ],
-  [ 'text_collapse',   __webpack_require__(79) ]
+  [ 'balance_pairs',   __webpack_require__(79) ],
+  [ 'strikethrough',   __webpack_require__(17).postProcess ],
+  [ 'emphasis',        __webpack_require__(18).postProcess ],
+  [ 'text_collapse',   __webpack_require__(80) ]
 ];
 
 
@@ -8460,14 +8794,14 @@ ParserInline.prototype.parse = function (str, md, env, outTokens) {
 };
 
 
-ParserInline.prototype.State = __webpack_require__(80);
+ParserInline.prototype.State = __webpack_require__(81);
 
 
 module.exports = ParserInline;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8563,7 +8897,7 @@ module.exports = function text(state, silent) {
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8612,7 +8946,7 @@ module.exports = function newline(state, silent) {
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8671,7 +9005,7 @@ module.exports = function escape(state, silent) {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8721,7 +9055,7 @@ module.exports = function backtick(state, silent) {
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8878,7 +9212,7 @@ module.exports = function link(state, silent) {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9037,7 +9371,7 @@ module.exports = function image(state, silent) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9116,7 +9450,7 @@ module.exports = function autolink(state, silent) {
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9125,7 +9459,7 @@ module.exports = function autolink(state, silent) {
 
 
 
-var HTML_TAG_RE = __webpack_require__(17).HTML_TAG_RE;
+var HTML_TAG_RE = __webpack_require__(16).HTML_TAG_RE;
 
 
 function isLetter(ch) {
@@ -9170,7 +9504,7 @@ module.exports = function html_inline(state, silent) {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9178,7 +9512,7 @@ module.exports = function html_inline(state, silent) {
 
 
 
-var entities          = __webpack_require__(12);
+var entities          = __webpack_require__(11);
 var has               = __webpack_require__(0).has;
 var isValidEntityCode = __webpack_require__(0).isValidEntityCode;
 var fromCodePoint     = __webpack_require__(0).fromCodePoint;
@@ -9225,7 +9559,7 @@ module.exports = function entity(state, silent) {
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9276,7 +9610,7 @@ module.exports = function link_pairs(state) {
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9316,7 +9650,7 @@ module.exports = function text_collapse(state) {
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9325,7 +9659,7 @@ module.exports = function text_collapse(state) {
 
 
 
-var Token          = __webpack_require__(9);
+var Token          = __webpack_require__(8);
 var isWhiteSpace   = __webpack_require__(0).isWhiteSpace;
 var isPunctChar    = __webpack_require__(0).isPunctChar;
 var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
@@ -9453,7 +9787,7 @@ module.exports = StateInline;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9609,7 +9943,7 @@ function createNormalizer() {
 function compile(self) {
 
   // Load & clone RE patterns.
-  var re = self.re = __webpack_require__(82)(self.__opts__);
+  var re = self.re = __webpack_require__(83)(self.__opts__);
 
   // Define dynamic patterns
   var tlds = self.__tlds__.slice();
@@ -10097,7 +10431,7 @@ module.exports = LinkifyIt;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10108,10 +10442,10 @@ module.exports = function (opts) {
   var re = {};
 
   // Use direct extract instead of `regenerate` to reduse browserified size
-  re.src_Any = __webpack_require__(14).source;
-  re.src_Cc  = __webpack_require__(15).source;
-  re.src_Z   = __webpack_require__(16).source;
-  re.src_P   = __webpack_require__(7).source;
+  re.src_Any = __webpack_require__(13).source;
+  re.src_Cc  = __webpack_require__(14).source;
+  re.src_Z   = __webpack_require__(15).source;
+  re.src_P   = __webpack_require__(6).source;
 
   // \p{\Z\P\Cc\CF} (white spaces + control + format + punctuation)
   re.src_ZPCc = [ re.src_Z, re.src_P, re.src_Cc ].join('|');
@@ -10281,7 +10615,7 @@ module.exports = function (opts) {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -10817,10 +11151,10 @@ module.exports = function (opts) {
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(84)(module), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(85)(module), __webpack_require__(9)))
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -10848,7 +11182,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10896,7 +11230,7 @@ module.exports = {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10965,7 +11299,7 @@ module.exports = {
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11052,8 +11386,212 @@ module.exports = {
 
 
 /***/ }),
-/* 88 */,
 /* 89 */
+/***/ (function(module, exports) {
+
+module.exports = function(hljs) {
+  var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
+  var TAG_INTERNALS = {
+    endsWithParent: true,
+    illegal: /</,
+    relevance: 0,
+    contains: [
+      {
+        className: 'attr',
+        begin: XML_IDENT_RE,
+        relevance: 0
+      },
+      {
+        begin: /=\s*/,
+        relevance: 0,
+        contains: [
+          {
+            className: 'string',
+            endsParent: true,
+            variants: [
+              {begin: /"/, end: /"/},
+              {begin: /'/, end: /'/},
+              {begin: /[^\s"'=<>`]+/}
+            ]
+          }
+        ]
+      }
+    ]
+  };
+  return {
+    aliases: ['html', 'xhtml', 'rss', 'atom', 'xjb', 'xsd', 'xsl', 'plist'],
+    case_insensitive: true,
+    contains: [
+      {
+        className: 'meta',
+        begin: '<!DOCTYPE', end: '>',
+        relevance: 10,
+        contains: [{begin: '\\[', end: '\\]'}]
+      },
+      hljs.COMMENT(
+        '<!--',
+        '-->',
+        {
+          relevance: 10
+        }
+      ),
+      {
+        begin: '<\\!\\[CDATA\\[', end: '\\]\\]>',
+        relevance: 10
+      },
+      {
+        begin: /<\?(php)?/, end: /\?>/,
+        subLanguage: 'php',
+        contains: [{begin: '/\\*', end: '\\*/', skip: true}]
+      },
+      {
+        className: 'tag',
+        /*
+        The lookahead pattern (?=...) ensures that 'begin' only matches
+        '<style' as a single word, followed by a whitespace or an
+        ending braket. The '$' is needed for the lexeme to be recognized
+        by hljs.subMode() that tests lexemes outside the stream.
+        */
+        begin: '<style(?=\\s|>|$)', end: '>',
+        keywords: {name: 'style'},
+        contains: [TAG_INTERNALS],
+        starts: {
+          end: '</style>', returnEnd: true,
+          subLanguage: ['css', 'xml']
+        }
+      },
+      {
+        className: 'tag',
+        // See the comment in the <style tag about the lookahead pattern
+        begin: '<script(?=\\s|>|$)', end: '>',
+        keywords: {name: 'script'},
+        contains: [TAG_INTERNALS],
+        starts: {
+          end: '\<\/script\>', returnEnd: true,
+          subLanguage: ['actionscript', 'javascript', 'handlebars', 'xml']
+        }
+      },
+      {
+        className: 'meta',
+        variants: [
+          {begin: /<\?xml/, end: /\?>/, relevance: 10},
+          {begin: /<\?\w+/, end: /\?>/}
+        ]
+      },
+      {
+        className: 'tag',
+        begin: '</?', end: '/?>',
+        contains: [
+          {
+            className: 'name', begin: /[^\/><\s]+/, relevance: 0
+          },
+          TAG_INTERNALS
+        ]
+      }
+    ]
+  };
+};
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports) {
+
+module.exports = function(hljs) {
+  var VAR = {
+    className: 'variable',
+    variants: [
+      {begin: /\$\d+/},
+      {begin: /\$\{/, end: /}/},
+      {begin: '[\\$\\@]' + hljs.UNDERSCORE_IDENT_RE}
+    ]
+  };
+  var DEFAULT = {
+    endsWithParent: true,
+    lexemes: '[a-z/_]+',
+    keywords: {
+      literal:
+        'on off yes no true false none blocked debug info notice warn error crit ' +
+        'select break last permanent redirect kqueue rtsig epoll poll /dev/poll'
+    },
+    relevance: 0,
+    illegal: '=>',
+    contains: [
+      hljs.HASH_COMMENT_MODE,
+      {
+        className: 'string',
+        contains: [hljs.BACKSLASH_ESCAPE, VAR],
+        variants: [
+          {begin: /"/, end: /"/},
+          {begin: /'/, end: /'/}
+        ]
+      },
+      // this swallows entire URLs to avoid detecting numbers within
+      {
+        begin: '([a-z]+):/', end: '\\s', endsWithParent: true, excludeEnd: true,
+        contains: [VAR]
+      },
+      {
+        className: 'regexp',
+        contains: [hljs.BACKSLASH_ESCAPE, VAR],
+        variants: [
+          {begin: "\\s\\^", end: "\\s|{|;", returnEnd: true},
+          // regexp locations (~, ~*)
+          {begin: "~\\*?\\s+", end: "\\s|{|;", returnEnd: true},
+          // *.example.com
+          {begin: "\\*(\\.[a-z\\-]+)+"},
+          // sub.example.*
+          {begin: "([a-z\\-]+\\.)+\\*"}
+        ]
+      },
+      // IP
+      {
+        className: 'number',
+        begin: '\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?\\b'
+      },
+      // units
+      {
+        className: 'number',
+        begin: '\\b\\d+[kKmMgGdshdwy]*\\b',
+        relevance: 0
+      },
+      VAR
+    ]
+  };
+
+  return {
+    aliases: ['nginxconf'],
+    contains: [
+      hljs.HASH_COMMENT_MODE,
+      {
+        begin: hljs.UNDERSCORE_IDENT_RE + '\\s+{', returnBegin: true,
+        end: '{',
+        contains: [
+          {
+            className: 'section',
+            begin: hljs.UNDERSCORE_IDENT_RE
+          }
+        ],
+        relevance: 0
+      },
+      {
+        begin: hljs.UNDERSCORE_IDENT_RE + '\\s', end: ';|{', returnBegin: true,
+        contains: [
+          {
+            className: 'attribute',
+            begin: hljs.UNDERSCORE_IDENT_RE,
+            starts: DEFAULT
+          }
+        ],
+        relevance: 0
+      }
+    ],
+    illegal: '[^\\s\\}]'
+  };
+};
+
+/***/ }),
+/* 91 */,
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!***************************************************
@@ -11465,39 +12003,24 @@ var DOMIterator = function () {
   return DOMIterator;
 }();
 
-var Mark$1 = function () {
-  function Mark(ctx) {
-    classCallCheck(this, Mark);
+var RegExpCreator = function () {
+  function RegExpCreator(options) {
+    classCallCheck(this, RegExpCreator);
 
-    this.ctx = ctx;
-    this.ie = false;
-    var ua = window.navigator.userAgent;
-    if (ua.indexOf('MSIE') > -1 || ua.indexOf('Trident') > -1) {
-      this.ie = true;
-    }
+    this.opt = _extends({}, {
+      'diacritics': true,
+      'synonyms': {},
+      'accuracy': 'partially',
+      'caseSensitive': false,
+      'ignoreJoiners': false,
+      'ignorePunctuation': [],
+      'wildcards': 'disabled'
+    }, options);
   }
 
-  createClass(Mark, [{
-    key: 'log',
-    value: function log(msg) {
-      var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'debug';
-
-      var log = this.opt.log;
-      if (!this.opt.debug) {
-        return;
-      }
-      if ((typeof log === 'undefined' ? 'undefined' : _typeof(log)) === 'object' && typeof log[level] === 'function') {
-        log[level]('mark.js: ' + msg);
-      }
-    }
-  }, {
-    key: 'escapeStr',
-    value: function escapeStr(str) {
-      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-    }
-  }, {
-    key: 'createRegExp',
-    value: function createRegExp(str) {
+  createClass(RegExpCreator, [{
+    key: 'create',
+    value: function create(str) {
       if (this.opt.wildcards !== 'disabled') {
         str = this.setupWildcardsRegExp(str);
       }
@@ -11519,7 +12042,12 @@ var Mark$1 = function () {
         str = this.createWildcardsRegExp(str);
       }
       str = this.createAccuracyRegExp(str);
-      return str;
+      return new RegExp(str, 'gm' + (this.opt.caseSensitive ? '' : 'i'));
+    }
+  }, {
+    key: 'escapeStr',
+    value: function escapeStr(str) {
+      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
     }
   }, {
     key: 'createSynonymsRegExp',
@@ -11533,15 +12061,15 @@ var Mark$1 = function () {
               k1 = this.opt.wildcards !== 'disabled' ? this.setupWildcardsRegExp(index) : this.escapeStr(index),
               k2 = this.opt.wildcards !== 'disabled' ? this.setupWildcardsRegExp(value) : this.escapeStr(value);
           if (k1 !== '' && k2 !== '') {
-            str = str.replace(new RegExp('(' + this.escapeStr(k1) + '|' + this.escapeStr(k2) + ')', 'gm' + sens), joinerPlaceholder + ('(' + this.processSynomyms(k1) + '|') + (this.processSynomyms(k2) + ')') + joinerPlaceholder);
+            str = str.replace(new RegExp('(' + this.escapeStr(k1) + '|' + this.escapeStr(k2) + ')', 'gm' + sens), joinerPlaceholder + ('(' + this.processSynonyms(k1) + '|') + (this.processSynonyms(k2) + ')') + joinerPlaceholder);
           }
         }
       }
       return str;
     }
   }, {
-    key: 'processSynomyms',
-    value: function processSynomyms(str) {
+    key: 'processSynonyms',
+    value: function processSynonyms(str) {
       if (this.opt.ignoreJoiners || this.opt.ignorePunctuation.length) {
         str = this.setupIgnoreJoinersRegExp(str);
       }
@@ -11637,14 +12165,43 @@ var Mark$1 = function () {
           return '(^|\\s' + lsJoin + ')(' + str + ')(?=$|\\s' + lsJoin + ')';
       }
     }
+  }]);
+  return RegExpCreator;
+}();
+
+var Mark$1 = function () {
+  function Mark(ctx) {
+    classCallCheck(this, Mark);
+
+    this.ctx = ctx;
+    this.ie = false;
+    var ua = window.navigator.userAgent;
+    if (ua.indexOf('MSIE') > -1 || ua.indexOf('Trident') > -1) {
+      this.ie = true;
+    }
+  }
+
+  createClass(Mark, [{
+    key: 'log',
+    value: function log(msg) {
+      var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'debug';
+
+      var log = this.opt.log;
+      if (!this.opt.debug) {
+        return;
+      }
+      if ((typeof log === 'undefined' ? 'undefined' : _typeof(log)) === 'object' && typeof log[level] === 'function') {
+        log[level]('mark.js: ' + msg);
+      }
+    }
   }, {
     key: 'getSeparatedKeywords',
     value: function getSeparatedKeywords(sv) {
-      var _this2 = this;
+      var _this = this;
 
       var stack = [];
       sv.forEach(function (kw) {
-        if (!_this2.opt.separateWordSearch) {
+        if (!_this.opt.separateWordSearch) {
           if (kw.trim() && stack.indexOf(kw) === -1) {
             stack.push(kw);
           }
@@ -11671,7 +12228,7 @@ var Mark$1 = function () {
   }, {
     key: 'checkRanges',
     value: function checkRanges(array) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (!Array.isArray(array) || Object.prototype.toString.call(array[0]) !== '[object Object]') {
         this.log('markRanges() will only accept an array of objects');
@@ -11683,7 +12240,7 @@ var Mark$1 = function () {
       array.sort(function (a, b) {
         return a.start - b.start;
       }).forEach(function (item) {
-        var _callNoMatchOnInvalid = _this3.callNoMatchOnInvalidRanges(item, last),
+        var _callNoMatchOnInvalid = _this2.callNoMatchOnInvalidRanges(item, last),
             start = _callNoMatchOnInvalid.start,
             end = _callNoMatchOnInvalid.end,
             valid = _callNoMatchOnInvalid.valid;
@@ -11754,7 +12311,7 @@ var Mark$1 = function () {
   }, {
     key: 'getTextNodes',
     value: function getTextNodes(cb) {
-      var _this4 = this;
+      var _this3 = this;
 
       var val = '',
           nodes = [];
@@ -11765,7 +12322,7 @@ var Mark$1 = function () {
           node: node
         });
       }, function (node) {
-        if (_this4.matchesExclude(node.parentNode)) {
+        if (_this3.matchesExclude(node.parentNode)) {
           return NodeFilter.FILTER_REJECT;
         } else {
           return NodeFilter.FILTER_ACCEPT;
@@ -11800,7 +12357,7 @@ var Mark$1 = function () {
   }, {
     key: 'wrapRangeInMappedTextNode',
     value: function wrapRangeInMappedTextNode(dict, start, end, filterCb, eachCb) {
-      var _this5 = this;
+      var _this4 = this;
 
       dict.nodes.every(function (n, i) {
         var sibl = dict.nodes[i + 1];
@@ -11812,7 +12369,7 @@ var Mark$1 = function () {
               e = (end > n.end ? n.end : end) - n.start,
               startStr = dict.value.substr(0, n.start),
               endStr = dict.value.substr(e + n.start);
-          n.node = _this5.wrapRangeInTextNode(n.node, s, e);
+          n.node = _this4.wrapRangeInTextNode(n.node, s, e);
           dict.value = startStr + endStr;
           dict.nodes.forEach(function (k, j) {
             if (j >= i) {
@@ -11836,7 +12393,7 @@ var Mark$1 = function () {
   }, {
     key: 'wrapMatches',
     value: function wrapMatches(regex, ignoreGroups, filterCb, eachCb, endCb) {
-      var _this6 = this;
+      var _this5 = this;
 
       var matchIdx = ignoreGroups === 0 ? 0 : ignoreGroups + 1;
       this.getTextNodes(function (dict) {
@@ -11853,7 +12410,7 @@ var Mark$1 = function () {
                 pos += match[i].length;
               }
             }
-            node = _this6.wrapRangeInTextNode(node, pos, pos + match[matchIdx].length);
+            node = _this5.wrapRangeInTextNode(node, pos, pos + match[matchIdx].length);
             eachCb(node.previousSibling);
             regex.lastIndex = 0;
           }
@@ -11864,7 +12421,7 @@ var Mark$1 = function () {
   }, {
     key: 'wrapMatchesAcrossElements',
     value: function wrapMatchesAcrossElements(regex, ignoreGroups, filterCb, eachCb, endCb) {
-      var _this7 = this;
+      var _this6 = this;
 
       var matchIdx = ignoreGroups === 0 ? 0 : ignoreGroups + 1;
       this.getTextNodes(function (dict) {
@@ -11877,7 +12434,7 @@ var Mark$1 = function () {
             }
           }
           var end = start + match[matchIdx].length;
-          _this7.wrapRangeInMappedTextNode(dict, start, end, function (node) {
+          _this6.wrapRangeInMappedTextNode(dict, start, end, function (node) {
             return filterCb(match[matchIdx], node);
           }, function (node, lastIndex) {
             regex.lastIndex = lastIndex;
@@ -11890,18 +12447,18 @@ var Mark$1 = function () {
   }, {
     key: 'wrapRangeFromIndex',
     value: function wrapRangeFromIndex(ranges, filterCb, eachCb, endCb) {
-      var _this8 = this;
+      var _this7 = this;
 
       this.getTextNodes(function (dict) {
         var originalLength = dict.value.length;
         ranges.forEach(function (range, counter) {
-          var _checkWhitespaceRange = _this8.checkWhitespaceRanges(range, originalLength, dict.value),
+          var _checkWhitespaceRange = _this7.checkWhitespaceRanges(range, originalLength, dict.value),
               start = _checkWhitespaceRange.start,
               end = _checkWhitespaceRange.end,
               valid = _checkWhitespaceRange.valid;
 
           if (valid) {
-            _this8.wrapRangeInMappedTextNode(dict, start, end, function (node) {
+            _this7.wrapRangeInMappedTextNode(dict, start, end, function (node) {
               return filterCb(node, range, dict.value.substring(start, end), counter);
             }, function (node) {
               eachCb(node, range);
@@ -11945,7 +12502,7 @@ var Mark$1 = function () {
   }, {
     key: 'markRegExp',
     value: function markRegExp(regexp, opt) {
-      var _this9 = this;
+      var _this8 = this;
 
       this.opt = opt;
       this.log('Searching with expression "' + regexp + '"');
@@ -11953,24 +12510,24 @@ var Mark$1 = function () {
           fn = 'wrapMatches';
       var eachCb = function eachCb(element) {
         totalMatches++;
-        _this9.opt.each(element);
+        _this8.opt.each(element);
       };
       if (this.opt.acrossElements) {
         fn = 'wrapMatchesAcrossElements';
       }
       this[fn](regexp, this.opt.ignoreGroups, function (match, node) {
-        return _this9.opt.filter(node, match, totalMatches);
+        return _this8.opt.filter(node, match, totalMatches);
       }, eachCb, function () {
         if (totalMatches === 0) {
-          _this9.opt.noMatch(regexp);
+          _this8.opt.noMatch(regexp);
         }
-        _this9.opt.done(totalMatches);
+        _this8.opt.done(totalMatches);
       });
     }
   }, {
     key: 'mark',
     value: function mark(sv, opt) {
-      var _this10 = this;
+      var _this9 = this;
 
       this.opt = opt;
       var totalMatches = 0,
@@ -11979,23 +12536,22 @@ var Mark$1 = function () {
       var _getSeparatedKeywords = this.getSeparatedKeywords(typeof sv === 'string' ? [sv] : sv),
           kwArr = _getSeparatedKeywords.keywords,
           kwArrLen = _getSeparatedKeywords.length,
-          sens = this.opt.caseSensitive ? '' : 'i',
           handler = function handler(kw) {
-        var regex = new RegExp(_this10.createRegExp(kw), 'gm' + sens),
-            matches = 0;
-        _this10.log('Searching with expression "' + regex + '"');
-        _this10[fn](regex, 1, function (term, node) {
-          return _this10.opt.filter(node, kw, totalMatches, matches);
+        var regex = new RegExpCreator(_this9.opt).create(kw);
+        var matches = 0;
+        _this9.log('Searching with expression "' + regex + '"');
+        _this9[fn](regex, 1, function (term, node) {
+          return _this9.opt.filter(node, kw, totalMatches, matches);
         }, function (element) {
           matches++;
           totalMatches++;
-          _this10.opt.each(element);
+          _this9.opt.each(element);
         }, function () {
           if (matches === 0) {
-            _this10.opt.noMatch(kw);
+            _this9.opt.noMatch(kw);
           }
           if (kwArr[kwArrLen - 1] === kw) {
-            _this10.opt.done(totalMatches);
+            _this9.opt.done(totalMatches);
           } else {
             handler(kwArr[kwArr.indexOf(kw) + 1]);
           }
@@ -12014,7 +12570,7 @@ var Mark$1 = function () {
   }, {
     key: 'markRanges',
     value: function markRanges(rawRanges, opt) {
-      var _this11 = this;
+      var _this10 = this;
 
       this.opt = opt;
       var totalMatches = 0,
@@ -12022,12 +12578,12 @@ var Mark$1 = function () {
       if (ranges && ranges.length) {
         this.log('Starting to mark with the following ranges: ' + JSON.stringify(ranges));
         this.wrapRangeFromIndex(ranges, function (node, range, match, counter) {
-          return _this11.opt.filter(node, range, match, counter);
+          return _this10.opt.filter(node, range, match, counter);
         }, function (element, range) {
           totalMatches++;
-          _this11.opt.each(element, range);
+          _this10.opt.each(element, range);
         }, function () {
-          _this11.opt.done(totalMatches);
+          _this10.opt.done(totalMatches);
         });
       } else {
         this.opt.done(totalMatches);
@@ -12036,7 +12592,7 @@ var Mark$1 = function () {
   }, {
     key: 'unmark',
     value: function unmark(opt) {
-      var _this12 = this;
+      var _this11 = this;
 
       this.opt = opt;
       var sel = this.opt.element ? this.opt.element : '*';
@@ -12046,10 +12602,10 @@ var Mark$1 = function () {
       }
       this.log('Removal selector "' + sel + '"');
       this.iterator.forEachNode(NodeFilter.SHOW_ELEMENT, function (node) {
-        _this12.unwrapMatches(node);
+        _this11.unwrapMatches(node);
       }, function (node) {
         var matchesSel = DOMIterator.matches(node, sel),
-            matchesExclude = _this12.matchesExclude(node);
+            matchesExclude = _this11.matchesExclude(node);
         if (!matchesSel || matchesExclude) {
           return NodeFilter.FILTER_REJECT;
         } else {
@@ -12067,15 +12623,8 @@ var Mark$1 = function () {
         'iframes': false,
         'iframesTimeout': 5000,
         'separateWordSearch': true,
-        'diacritics': true,
-        'synonyms': {},
-        'accuracy': 'partially',
         'acrossElements': false,
-        'caseSensitive': false,
-        'ignoreJoiners': false,
         'ignoreGroups': 0,
-        'ignorePunctuation': [],
-        'wildcards': 'disabled',
         'each': function each() {},
         'noMatch': function noMatch() {},
         'filter': function filter() {

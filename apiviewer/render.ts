@@ -311,6 +311,7 @@ export function renderMarkdown(text: string, context: Partial<RenderContext>) {
  * Create the sidebar menu for a docset
  */
 export function renderMenu(id: DocSetId, type: DocType, maxDepth = 3) {
+
 	const docSet = getDocSet(id);
 	const pageNames = type === 'api' ? docSet.apiPages! : docSet.pages;
 	const cache = type === 'api' ? docSet.apiCache! : docSet.pageCache!;
@@ -390,6 +391,9 @@ export function renderDocPage(text: string, pageName: string, id: DocSetId) {
 	const element = h('div', { innerHTML: html });
 
 	const h1 = element.querySelector('h1')!;
+	if (!h1) {
+		return element;
+	}
 	const icons = addHeadingIcons(h1);
 	const link = createGitHubLink(id, pageName);
 	link.classList.add('edit-page');

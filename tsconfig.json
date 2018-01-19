@@ -11,7 +11,7 @@
 			"ES2015.symbol.wellknown",
 			"ES2015.Symbol"
 		],
-		"module": "umd",
+		"module": "commonjs",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noImplicitThis": true,

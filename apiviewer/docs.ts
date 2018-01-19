@@ -150,8 +150,8 @@ export function getDocSet(id: DocSetId) {
  */
 export function getDefaultDocSetId() {
 	return {
-		project: 'Intern',
-		version: docSets['Intern'].latest
+		project: 'core',
+		version: docSets['core'].latest
 	};
 }
 
