@@ -1,6 +1,7 @@
-# animationTutorial
+# Animation Tutorial
 
 This project was generated with the [Dojo CLI](https://github.com/dojo/cli) & [Dojo CLI create app command](https://github.com/dojo/cli-create-app).
+For help setting up you development environment please see our [tutorial](https://dojo.io/tutorials/1050_development_environment/).
 
 ## Build
 

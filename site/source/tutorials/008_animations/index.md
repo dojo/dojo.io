@@ -10,7 +10,7 @@ paginate: true
 # Web Animations
 
 ## Overview
-This tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 `WebAnimation` meta. We will introduce the api provided by WebAnimations and show you how to use it with Dojo 2.
+This tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 `WebAnimation` meta. We will introduce the [API provided by Web Animations](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) and show you how to use it with Dojo 2.
 
 ![Zombies](./zombieCover.png)
 
@@ -23,22 +23,22 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 {% section %}
 
-## What is the web animations API
+## What is the Web Animations API
 
-The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events etc... something which would previously have required the use of `requestAnimationFrame` or the dreaded `setInterval`. Dojo 2 provides a meta that can apply Web Animations to the rendered vdom in the widgets you create. This allows properties such as `play` and `duration` to be reactive to state changes and fits in neatly within the Dojo 2 eco stystem.
+The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of `requestAnimationFrame` or the less efficient  `setInterval`. Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered [virtual dom](https://dojo.io/docs/fundamentals/working_with_virtual_dom/) in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
+<!--TODO: timing model and animation model are kind of dropped on the user without explanation. Perhaps a short explanation as an aside? -->
+{% aside 'Meta' %}
+Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the `domNode` itself.
+{% endaside %}
 
 ## Introducing the zombies
 
-Looking at the `Zombies.ts` file within the initial project we can see that we have a series of divs representing two zombies, each with a body and two legs. Via the magic of css these turn into two zombies when you open your browser. To demonstrate the use of Web Animations with Dojo 2 we make the zombies walk towards each other when they are clicked.
-
-{% aside 'Meta' %}
-Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the domNode itself.
-{% endaside %}
+Looking at the `Zombies.ts` file within the initial project, there are a series of `DIV`s representing two zombies, each with a body and two legs. Via the magic of `CSS` these `DIV`s are converted into two zombies when you open your web browser. To demonstrate the use of Web Animations with Dojo 2, we will make the zombies walk towards each other when they are clicked.
 
 {% task 'Animating our zombies' %}
 
-To animate the zombies, we use the `@dojo/widget-core/meta/WebAnimation` meta. This takes a `key` and `AnimationProperties`.
-Lets add animation properties to our first Zombie.
+To animate the zombies, we use the `@dojo/widget-core/meta/WebAnimation` meta. This accepts `key` and `AnimationProperties` parameters.
+Let's add animation properties to our first Zombie.
 
 {% instruction 'Add the following to the render function in Zombies.ts' %}
 
@@ -46,9 +46,9 @@ Lets add animation properties to our first Zombie.
 // add the import
 import WebAnimation from '@dojo/widget-core/meta/WebAnimation';
 
-//add to the top of the render function
+// add to the top of the render function
 const zombieOneMoveAnimation = {
-	id: 'zombieOneMove,
+	id: 'zombieOneMove',
 	effects: [
 		{ left: '0%' },
 		{ left: '35%' }
@@ -67,21 +67,21 @@ this.meta(WebAnimation).animate('zombieOne', zombieOneMoveAnimation);
 ```
 
 {% aside 'Reminder' %}
-If you cannot see the zombies, make sure you have run `dojo build -w` to build the application and start the development server.
+If you cannot see the zombies, make sure you have run `dojo build -w` to build the application and start the local development server.
 {% endaside %}
 
-Refresh your browser and you should now see the left zombie moving across the screen for 2 seconds.
+Refresh your web browser and you should now see the left zombie moving across the screen for 2 seconds.
 
-So let's talk about the animation properties we've created here:
+Let's explore the animation properties we have created:
 
-- A unique id for this animation
-- Effects array depicts the steps for the animation, in this case we're animating the `left` style from `0%` to `35%`
-- The timing object specifies the duration and easing effects for the animation. The fill param specifies that the animation should finish in it's final position
+- A unique `id` for this animation
+- Effects array depicts the steps for the animation; here we are animating the `left` style from `0%` to `35%`
+- The timing object specifies the duration and easing effects for the animation; the fill parameter specifies that the animation should finish in its final position
 - The controls object in this case simply sets play to `true`
 
-{% task 'Animating our zombie on click' %}
+{% task 'Animating our zombie `onclick`' %}
 
-To make the zombie animate on click, we need to use our widgets state to control the `play` property of the `zombieOneMoveAnimation` object. We can do this by creating a `_play: boolean` property on our widget and toggling it in our zombie click function.
+To make the zombie animate on click, we use our widget's state to control the `play` property of the `zombieOneMoveAnimation` object. Create a `_play: boolean` property on our widget and toggle it in the zombie click function.
 
 {% instruction 'Edit Zombies.ts' %}
 
@@ -100,26 +100,26 @@ export class Zombies extends WidgetBase {
 	// now use this._play instead of a hardcoded `true` in the `zombieOneMoveAnimation` object
 ```
 
-Refresh the browser and the zombie animation should now play / pause when clicked.
+Refresh the web browser and the zombie animation should now play / pause when clicked.
 
 {% section %}
 
 ## Animation events
 
-The webanimation meta provides callback functions for `onFinish` and `onCancel`. To ensure that we can replay our animation we need to set `this._play` to false when the animation has finished, to do this we will add an `onFinish` callback.
+The `WebAnimation` meta provides callback functions for `onFinish` and `onCancel`. To ensure that we can replay our animation we need to set `this._play` to false when the animation has finished by adding an `onFinish` callback.
 
-{% instruction 'Add onFinish callback to Zombies.ts' %}
+{% instruction 'Add `onFinish` callback to Zombies.ts' %}
 
 ``` typescript
-// Add the onFinish function
+// add the `onFinish` function
 private _onAnimationFinish() {
 	this._play = false;
 	this.invalidate();
 }
 
-//add to the top of the render function
+// add to the top of the render function
 const zombieOneMoveAnimation = {
-	id: 'zombieOneMove,
+	id: 'zombieOneMove',
 	effects: [
 		{ left: '0%' },
 		{ left: '35%' }
@@ -138,69 +138,69 @@ const zombieOneMoveAnimation = {
 
 We will use this `onFinish` callback later in the tutorial to trigger a second animation.
 
-## Lets add more animations
+## Let's add more animations
 
-Not content with your zombie just sliding across the screen like that? Let's add some hollywood style move effects by animating the legs and the body.
+Not content with your zombie just sliding across the screen like that? Let's add some Hollywood style movie effects by animating the legs and the body.
 
 {% instruction 'Add more animations to Zombies.ts' %}
 
 ``` typescript
 private _getZombieBodyAnimation(id: string): AnimationProperties {
-		return {
-			id,
-			effects: [
-				{ transform: 'rotate(0deg)' },
-				{ transform: 'rotate(-2deg)' },
-				{ transform: 'rotate(0deg)' },
-				{ transform: 'rotate(3deg)' },
-				{ transform: 'rotate(0deg)' }
-			],
-			timing: {
-				duration: 1000,
-				iterations: Infinity
-			},
-			controls: {
-				play: this._play
-			}
-		};
-	};
-
-	private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties {
-		const effects = [
+	return {
+		id,
+		effects: [
 			{ transform: 'rotate(0deg)' },
-			{ transform: 'rotate(-5deg)' },
+			{ transform: 'rotate(-2deg)' },
 			{ transform: 'rotate(0deg)' },
-			{ transform: 'rotate(5deg)' },
+			{ transform: 'rotate(3deg)' },
 			{ transform: 'rotate(0deg)' }
-		];
-
-		if (front) {
-			effects.reverse();
+		],
+		timing: {
+			duration: 1000,
+			iterations: Infinity
+		},
+		controls: {
+			play: this._play
 		}
+	};
+};
 
-		return {
-			id,
-			effects,
-			timing: {
-				duration: 1000,
-				iterations: Infinity
-			},
-			controls: {
-				play: this._play
-			}
-		};
+private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties {
+	const effects = [
+		{ transform: 'rotate(0deg)' },
+		{ transform: 'rotate(-5deg)' },
+		{ transform: 'rotate(0deg)' },
+		{ transform: 'rotate(5deg)' },
+		{ transform: 'rotate(0deg)' }
+	];
+
+	if (front) {
+		effects.reverse();
 	}
 
-	// Add this to the render function with the other `animate` calls
-	webAnimation.animate('zombieOneBody', this._getZombieBodyAnimation('zombieOneBody'));
-	webAnimation.animate('zombieOneBackLeg', this._getZombieLegAnimation('zombieOneBackLeg'));
-	webAnimation.animate('zombieOneFrontLeg', this._getZombieLegAnimation('zombieOneFrontLeg', true));
-	webAnimation.animate('zombieTwoBody', this._getZombieBodyAnimation('zombieTwoBody'));
-	webAnimation.animate('zombieTwoBackLeg', this._getZombieLegAnimation('zombieTwoBackLeg'));
-	webAnimation.animate('zombieTwoFrontLeg', this._getZombieLegAnimation('zombieTwoFrontLeg', true));
+	return {
+		id,
+		effects,
+		timing: {
+			duration: 1000,
+			iterations: Infinity
+		},
+		controls: {
+			play: this._play
+		}
+	};
+}
+
+// add this to the render function with the other `animate` calls
+webAnimation.animate('zombieOneBody', this._getZombieBodyAnimation('zombieOneBody'));
+webAnimation.animate('zombieOneBackLeg', this._getZombieLegAnimation('zombieOneBackLeg'));
+webAnimation.animate('zombieOneFrontLeg', this._getZombieLegAnimation('zombieOneFrontLeg', true));
+webAnimation.animate('zombieTwoBody', this._getZombieBodyAnimation('zombieTwoBody'));
+webAnimation.animate('zombieTwoBackLeg', this._getZombieLegAnimation('zombieTwoBackLeg'));
+webAnimation.animate('zombieTwoFrontLeg', this._getZombieLegAnimation('zombieTwoFrontLeg', true));
 ```
 
-Refresh your browser and you should now see two stumbling zombies moving towards one another. Feel free to have a play with the params for rotation / timings to get it just how you like it.
+Refresh your browser and you should now see two stumbling zombies moving towards one another. Feel free to experiment with the parameters for rotation and timings.
 
 ![Zombie-Walk](./walking.gif)
 
@@ -208,9 +208,9 @@ Notice that these two new animations have `iterations` set to `Infinity`. This e
 
 {% section %}
 
-## Joining Animations
+## Joining animations
 
-Lets finish off by adding some hearts that appear once the Zombies have reached the middle of the screen. We want them to float upto the top of the screen whilst changing size. We can do this by returning an array of `AnimationProperties` rather than a single object.
+Let's finish by adding some hearts that appear once the Zombies have reached the middle of the screen. We want them to float up to the top of the screen whilst changing size. We can do this by returning an array of `AnimationProperties` rather than a single object.
 
 {% instruction 'Add hearts to Zombies.ts' %}
 
@@ -240,20 +240,20 @@ private _getHeartAnimation(id: string, sequence: number, play: boolean): Animati
 
 	return [
 		{
-				id: `${id}FloatAway`,
-				effects: [
-					{ opacity: 0, marginTop: '0', marginLeft: '0px' },
-					{ opacity: 0.8, marginTop: '-300px', marginLeft: `${1- leftOffset}px` },
-					{ opacity: 0, marginTop: '-600px', marginLeft: `${leftOffset}px` }
-				],
-				timing: {
-					duration: 1500,
-					delay,
-				},
-				controls: {
-					play: this._playHearts,
-					onFinish: sequence === this._numHearts -1 ? this._onHeartsFinish : undefined
-				}
+			id: `${id}FloatAway`,
+			effects: [
+				{ opacity: 0, marginTop: '0', marginLeft: '0px' },
+				{ opacity: 0.8, marginTop: '-300px', marginLeft: `${1- leftOffset}px` },
+				{ opacity: 0, marginTop: '-600px', marginLeft: `${leftOffset}px` }
+			],
+			timing: {
+				duration: 1500,
+				delay,
+			},
+			controls: {
+				play: this._playHearts,
+				onFinish: sequence === this._numHearts -1 ? this._onHeartsFinish : undefined
+			}
 		},
 		{
 			id: `${id}Scale`,
@@ -300,8 +300,8 @@ Now you should see the hearts appearing and floating away when the zombies get t
 
 ## Controlling our animations
 
-Due to the reactive nature of the Dojo 2 `WebAnimation` meta, we can control our animation by changing the properties passed. For example we can change the `playbackRate` programatically.
-Lets go ahead and add slider widgets to our page to change the speed of the zombie shuffle and legs.
+Due to the reactive nature of the Dojo 2 `WebAnimation` meta, we can control our animation by changing the properties passed into the get animation functions. For example we can change the `playbackRate` programatically.
+Let's add slider widgets to our page to change the speed of the zombie shuffle and legs.
 
 ``` typescript
 // add the import, you may need to npm install `@dojo/widgets`
@@ -360,10 +360,10 @@ Open your browser and you should now be able to speed up and slow down the zombi
 In this tutorial, we learned:
 
 * How to use a Dojo 2 meta
-* How to pass AnimationProperties via the WebAnimation meta
+* How to pass `AnimationProperties` via the `WebAnimation` meta
 * How to stop and start an animation
 * How to control an animation
-* That zombies feel love
+* That zombies feel love 😂 💕
 
 You can download the completed [demo application](../assets/008_animation-finished.zip) from this tutorial.
 
