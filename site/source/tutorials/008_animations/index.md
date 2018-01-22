@@ -73,7 +73,7 @@ this.meta(WebAnimation).animate('zombieOne', zombieOneMoveAnimation);
 ```
 
 {% aside 'Reminder' %}
-If you cannot see the zombies, make sure you have run `dojo build -w` to build the application and start the local development server.
+If you cannot see the zombies, make sure you have run `npm run dev` to build the application and start the local development server.
 {% endaside %}
 
 Refresh your web browser and you should now see the left zombie moving across the screen for 2 seconds.
