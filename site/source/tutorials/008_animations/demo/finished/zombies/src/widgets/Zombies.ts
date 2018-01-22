@@ -1,7 +1,7 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import WebAnimation from '@dojo/widget-core/meta/WebAnimation';
-import { AnimationProperties, HNode } from '@dojo/widget-core/interfaces';
+import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
+import { VNode } from '@dojo/widget-core/interfaces';
 import Slider from '@dojo/widgets/slider/Slider';
 
 import * as css from './styles/zombies.m.css';
@@ -141,7 +141,7 @@ export class Zombies extends WidgetBase {
 		];
 	}
 
-	private _getHearts(): HNode[] {
+	private _getHearts(): VNode[] {
 		const hearts = [];
 		let play = false;
 		let i;

@@ -151,6 +151,9 @@ Not content with your zombie just sliding across the screen like that? Let's add
 {% instruction 'Add more animations to Zombies.ts' %}
 
 ``` typescript
+// add the import for AnimationProperties
+import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
+
 private _getZombieBodyAnimation(id: string): AnimationProperties {
 	return {
 		id,
@@ -283,7 +286,7 @@ private _getHeartAnimation(id: string, sequence: number, play: boolean): Animati
 	];
 }
 
-private _getHearts(): HNode[] {
+private _getHearts(): VNode[] {
 	const hearts = [];
 	let play = false;
 	let i;
@@ -295,7 +298,7 @@ private _getHearts(): HNode[] {
 	return hearts;
 }
 
-// add this as the last child of the `root` HNode in render
+// add this as the last child of the `root` VNode in render
 v('div', { classes: css.heartsHolder }, this._getHearts())
 
 ```
