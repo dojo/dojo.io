@@ -1,0 +1,17 @@
+@import './../../../variables';
+
+.root {
+	margin-right: 10px;
+	display: inline-block;
+	composes: nameLabel from './../../../workerForm.m.css';
+	text-align: left;
+}
+
+.input {
+	height: 38px;
+	border: 1px solid var(--input-border);
+	box-sizing: border-box;
+	border-bottom-color: color(var(--input-border) blackness(60%));
+	padding: 8px;
+	min-width: 230px;
+}

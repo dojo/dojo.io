@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-22T20:57:46.485Z">
+<meta property="og:updated_time" content="2018-01-23T14:14:30.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Using Dojo 1 Dijits">
 <meta name="twitter:description" content="Using Dojo 1 DijitsOverviewThis tutorial will extend the the Form widgets tutorial.  In this tutorial, will replace some of the Dojo 2 based form widgets and with Dojo 1 Dijits. To achieve maximum pe">
@@ -99,6 +99,7 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Updating-project-configuration"><a href="#Updating-project-configuration" class="headerlink" title="Updating project configuration"></a>Updating project configuration</h2><div class="task">Updating the <code>dojo build</code> configuration.</div>
 <p>Dojo 1 and Dijits at run-time are considered <em>external</em> dependencies for the Dojo 2 build system.  We need to supply information to the <code>dojo build</code> CLI command to include our external dependencies as part of our build.  We provide additional configuration information to the Dojo 2 CLI via <code>.dojorc</code> in the root of our project.  <code>.dojorc</code> is formatted as a JSON file and configuration can be provided to each CLI command.</p>
+<article class="aside"><strong>Dojo Build Command</strong><p>Currently only the older command <code>cli-build-webpack</code> supports loading external modules into Dojo 2, so for this tutorial this is the build command that is required.</p></article>
 <div class="instruction">Create a <code>.dojorc</code> with the following content:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
 	<span class="token string">"build-webpack"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -178,16 +179,18 @@ ga('send', 'pageview');
 <div class="task">Importing Dijits.</div>
 <p>Now that you have wrapped Dijits for use, we need to import them into their containing Dojo 2 modules.</p>
 <div class="instruction">Import Dijits into <code>/src/widgets/WorkerForm.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Fieldset <span class="token keyword">from</span> <span class="token string">'../dijit/Fieldset'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'../dijit/form/Button'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'../dijit/form/Button'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TextBox <span class="token keyword">from</span> <span class="token string">'../dijit/form/TextBox'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/workerForm.m.css'</span><span class="token punctuation">;</span>
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Placing-Dijits"><a href="#Placing-Dijits" class="headerlink" title="Placing Dijits"></a>Placing Dijits</h2><article class="aside"><strong>Reminder</strong><p>We will be using the <code>w()</code> function from <code>@dojo/widget-core/d</code>.  Don't forget to <code>import</code> it...</p></article>
 <div class="task">Adding Dijits to a widget's render function.</div>
 <p>Now that we have imported our wrapped Dijits into the module where they will be used, we need to add them to the render function.</p>
 <div class="instruction">Add imported Dijits to the <code>WorkerForm</code> widget's render function:</div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token punctuation">}</span>
+
+	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
 			onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
@@ -217,8 +220,6 @@ ga('send', 'pageview');
 				label<span class="token punctuation">:</span> <span class="token string">'Save'</span><span class="token punctuation">,</span>
 				type<span class="token punctuation">:</span> <span class="token string">'submit'</span>
 			<span class="token punctuation">}</span><span class="token punctuation">)</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
 </code></pre>
 <article class="aside"><strong>Information</strong><p>The <em>properties</em> for a wrapped Dijit are equivalent to the <em>params</em> that can be passed when constructing a Dijit.  For more information on what parameters are possible on Dijits, you can refer to the <a href="https://dojotoolkit.org/api/" target="_blank" rel="noopener">Dojo 1 API documentation</a>.</p></article>
 <p>Once Dijits are wrapped, they behave similarly to Dojo 2 widgets.  Coupled with the <code>dojo-typings</code> TypeScript typings, you get code completion as well when specifying the <em>properties</em> and TypeScript should help ensure the validity of property values.</p>

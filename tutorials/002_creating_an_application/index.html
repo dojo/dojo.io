@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/html_js.svg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/widget.svg">
-<meta property="og:updated_time" content="2018-01-22T20:57:46.441Z">
+<meta property="og:updated_time" content="2018-01-23T14:14:30.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Components of a Dojo 2 application">
 <meta name="twitter:description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
@@ -132,7 +132,15 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 		helloWorldHarness<span class="token punctuation">.</span><span class="token function">expectRender</span><span class="token punctuation">(</span><span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal command:</p>
+<p>This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal commands:</p>
+<pre class=" language-bash"><code class="language-bash">dojo build --mode <span class="token function">test</span>
+dojo <span class="token function">test</span>
+</code></pre>
+<p>The tests can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.</p>
+<p>In one terminal run:</p>
+<pre class=" language-bash"><code class="language-bash">dojo build --mode <span class="token function">test</span> --watch
+</code></pre>
+<p>While this is command is running, in another terminal run:</p>
 <pre class=" language-bash"><code class="language-bash">dojo <span class="token function">test</span>
 </code></pre>
 </section><section class="tutorial hidden hiding">

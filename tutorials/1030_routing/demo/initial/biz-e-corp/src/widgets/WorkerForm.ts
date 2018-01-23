@@ -1,5 +1,4 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import Button from '@dojo/widgets/button/Button';
@@ -28,15 +27,18 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onFirstNameInput(event: KeyboardEvent) {
+		const { value: firstName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onLastNameInput(event: KeyboardEvent) {
+		const { value: lastName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onEmailInput(event: KeyboardEvent) {
+		const { value: email } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ email });
 	}
 
@@ -53,10 +55,8 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 				w(TextInput, {
 					key: 'firstNameInput',
-					label: {
-						content: 'First Name',
-						hidden: true
-					},
+					label: 'First Name',
+					labelHidden: true,
 					placeholder: 'First name',
 					value: firstName,
 					required: true,
@@ -64,10 +64,8 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				}),
 				w(TextInput, {
 					key: 'lastNameInput',
-					label: {
-						content: 'Last Name',
-						hidden: true
-					},
+					label: 'Last Name',
+					labelHidden: true,
 					placeholder: 'Last name',
 					value: lastName,
 					required: true,

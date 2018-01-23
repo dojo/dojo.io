@@ -21,7 +21,7 @@ export default class List extends ListBase<ListProperties> {
 
 	protected renderItems() {
 		const { data = [] } = this.properties;
-		return data.map((item: any) => v('div', [ `${item.firstName} ${item.lastName}` ]));
+		return data.map((item: any, index: number) => v('div', { key: index }, [ `${item.firstName} ${item.lastName}` ]));
 	}
 
 	protected render() {

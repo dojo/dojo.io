@@ -1,9 +1,10 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
+import { registry } from '@dojo/widget-core/decorators/registry';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
-import WorkerBack from './WorkerBack';
 import * as css from '../styles/worker.m.css';
+import WorkerBack from './WorkerBack';
 
 export interface WorkerProperties {
 	firstName?: string;
@@ -16,6 +17,10 @@ export interface WorkerProperties {
 const WorkerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
+@registry('worker-back', async () => {
+	const WorkerBack = await import ('./WorkerBack');
+	return WorkerBack.default;
+})
 export default class Worker extends WorkerBase<WorkerProperties> {
 	private _isFlipped = false;
 

@@ -14,7 +14,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2018-01-22T20:57:46.477Z">
+<meta property="og:updated_time" content="2018-01-23T14:14:30.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -104,12 +104,12 @@ ga('send', 'pageview');
 <article class="aside"><strong>Registries Everywhere!</strong><p>A <code>registry</code> can also be used to define an injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1030_routing/">routing tutorial</a> .</p></article>
 <p>At the moment we haven’t affected the application, however we now have a handle to a <code>registry</code> where we can start to define widgets. Once the widgets are defined in the <code>registry</code>, they will be available through the application and can be used by switching the concrete class in <code>w()</code> with the <code>registry</code> label.</p>
 <div class="instruction">Add the widget imports to <code>main.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/button/Button'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./widgets/Banner'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> WorkerForm <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerForm'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerContainer'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Worker <span class="token keyword">from</span> <span class="token string">'./widgets/Worker'</span><span class="token punctuation">;</span>
+
 </code></pre>
 <div class="instruction">Then define widgets in the <code>registry</code>.</div>
 <pre class="language-javascript"><code class="language-javascript">registry<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'dojo-button'</span><span class="token punctuation">,</span> Button<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -158,10 +158,8 @@ registry<span class="token punctuation">.</span><span class="token function">def
 				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'legend'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameLabel<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Name'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 				w<span class="token operator">&lt;</span>TextInput<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'dojo-text-input'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 					key<span class="token punctuation">:</span> <span class="token string">'firstNameInput'</span><span class="token punctuation">,</span>
-					label<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-						content<span class="token punctuation">:</span> <span class="token string">'First Name'</span><span class="token punctuation">,</span>
-						hidden<span class="token punctuation">:</span> <span class="token boolean">true</span>
-					<span class="token punctuation">}</span><span class="token punctuation">,</span>
+					label<span class="token punctuation">:</span> <span class="token string">'First Name'</span><span class="token punctuation">,</span>
+					labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
 					placeholder<span class="token punctuation">:</span> <span class="token string">'First name'</span><span class="token punctuation">,</span>
 					value<span class="token punctuation">:</span> firstName<span class="token punctuation">,</span>
 					required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
@@ -169,10 +167,8 @@ registry<span class="token punctuation">.</span><span class="token function">def
 				<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 				w<span class="token operator">&lt;</span>TextInput<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'dojo-text-input'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 					key<span class="token punctuation">:</span> <span class="token string">'lastNameInput'</span><span class="token punctuation">,</span>
-					label<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-						content<span class="token punctuation">:</span> <span class="token string">'Last Name'</span><span class="token punctuation">,</span>
-						hidden<span class="token punctuation">:</span> <span class="token boolean">true</span>
-					<span class="token punctuation">}</span><span class="token punctuation">,</span>
+					label<span class="token punctuation">:</span> <span class="token string">'Last Name'</span><span class="token punctuation">,</span>
+					labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
 					placeholder<span class="token punctuation">:</span> <span class="token string">'Last name'</span><span class="token punctuation">,</span>
 					value<span class="token punctuation">:</span> lastName<span class="token punctuation">,</span>
 					required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
@@ -189,6 +185,8 @@ registry<span class="token punctuation">.</span><span class="token function">def
 			w<span class="token operator">&lt;</span>Button<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'dojo-button'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Save'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
 </code></pre>
 <p>Next, we will create a widget that is lazily loaded when needed!</p>
 </section><section class="tutorial hidden hiding">
@@ -277,20 +275,16 @@ registry<span class="token punctuation">.</span><span class="token function">def
 	<span class="token punctuation">}</span>
 </code></pre>
 <article class="aside"><strong>Use Before You Define</strong><p>The <code>registry</code> is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the <code>registry</code> will automatically re-render!</p></article>
-<p>Now we need to add the <code>registry</code> definition for <code>WorkerBack.ts</code> to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, requires and returns the concrete widget. This function will not be called until the first time the application tries to use the widget label as part of the usual <code>render</code> cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.</p>
-<div class="task">Import <code>load</code> from <code>@dojo/core/load</code> in <code>main.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> load <span class="token keyword">from</span> <span class="token string">'@dojo/core/load'</span><span class="token punctuation">;</span>
+<p>Now we need to add the <code>registry</code> definition for <code>WorkerBack.ts</code> to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual <code>render</code> cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.</p>
+<p>There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated <code>main.ts</code>. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the <code>@registry</code> decorator from <code>@dojo/widget-core/decorators/registry</code>.</p>
+<div class="task">Add the import for the <code>@registry</code> decorator <code>Worker.ts</code></div>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/decorators/registry'</span><span class="token punctuation">;</span>
 </code></pre>
-<div class="task">Import the <code>Require</code> interface and define the type of <code>require</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Require <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/interfaces/loader'</span><span class="token punctuation">;</span>
-
-declare <span class="token keyword">const</span> require<span class="token punctuation">:</span> Require<span class="token punctuation">;</span>
-</code></pre>
-<p>The default type of <code>require</code> needed to be overridden, with the type of require that we know will be available at runtime.</p>
-<div class="task">Now define a function that lazily loads <code>WorkerBack.ts</code> in the registry</div>
-<pre class="language-javascript"><code class="language-javascript">registry<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token function">load</span><span class="token punctuation">(</span>require<span class="token punctuation">,</span> <span class="token string">'./widgets/WorkerBack'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">[</span>WorkerBack<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=></span> WorkerBack<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="task">Add the registry item using the <code>@registry</code> decorator in <code>WorkerBack.ts</code></div>
+<pre class="language-javascript"><code class="language-javascript">@<span class="token function">registry</span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> WorkerBack <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">import</span> <span class="token punctuation">(</span><span class="token string">'./WorkerBack'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> WorkerBack<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Now that the <code>WorkerBack</code> widget is defined to load lazily, running the application with the browser developer tools open should show that the <code>WorkerBack.js</code> file is only loaded when a worker card is clicked on for the first time:</p>
 <article class="aside"><strong>Auto Bundling Support</strong><p>To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the <a href="../006_deploying_to_production/">build command tutorial</a>.</p></article>
