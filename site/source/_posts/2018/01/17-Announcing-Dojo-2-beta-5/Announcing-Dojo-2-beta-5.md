@@ -107,11 +107,10 @@ We are nearly there for the initial 2.0 release. For RC1 in just a few weeks, yo
 
 At the moment, we are planning for RC1 in early February.
 
-We are also working on additional packages which may land in time for 2.0, but more likely for a subsequent release:
+We are also working on additional features post Dojo 2.0:
 
-* `dojo/devtool` A development tool for Dojo 2 (Chrome and Firefox)
+* Development and diagnostic tools
 * `dojo/dgrid` Powerful data grid widget
-* `dojo/diagnostics` A diagnostic API for debugging Dojo 2 applications
 
 
 ## Getting involved
