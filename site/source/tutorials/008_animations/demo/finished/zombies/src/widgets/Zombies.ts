@@ -47,7 +47,7 @@ export class Zombies extends WidgetBase {
 				play: this._play,
 				onFinish: this._onAnimationFinish
 			}
-		}
+		};
 	}
 
 	private _getZombieBodyAnimation(id: string): AnimationProperties {
@@ -106,16 +106,16 @@ export class Zombies extends WidgetBase {
 				id: `${id}FloatAway`,
 				effects: [
 					{ opacity: 0, marginTop: '0', marginLeft: '0px' },
-					{ opacity: 0.8, marginTop: '-300px', marginLeft: `${1- leftOffset}px` },
+					{ opacity: 0.8, marginTop: '-300px', marginLeft: `${1 - leftOffset}px` },
 					{ opacity: 0, marginTop: '-600px', marginLeft: `${leftOffset}px` }
 				],
 				timing: {
 					duration: 1500,
-					delay,
+					delay
 				},
 				controls: {
 					play: this._playHearts,
-					onFinish: sequence === this._numHearts -1 ? this._onHeartsFinish : undefined
+					onFinish: sequence === this._numHearts - 1 ? this._onHeartsFinish : undefined
 				}
 			},
 			{
@@ -134,8 +134,7 @@ export class Zombies extends WidgetBase {
 					easing: 'ease-in-out'
 				},
 				controls: {
-					play: this._playHearts,
-
+					play: this._playHearts
 				}
 			}
 		];
