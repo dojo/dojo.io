@@ -124,10 +124,8 @@ protected render() {
 			v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 			w(TextInput, {
 				key: 'firstNameInput',
-				label: {
-					content: 'First Name',
-					hidden: true
-				},
+				label:'First Name',
+				labelHidden: true,
 				placeholder: 'Given name',
 				value: firstName,
 				required: true,
@@ -136,10 +134,8 @@ protected render() {
 			}),
 			w(TextInput, {
 				key: 'lastNameInput',
-				label: {
-					content: 'Last Name',
-					hidden: true
-				},
+				label: 'Last Name',
+				labelHidden: true,
 				placeholder: 'Surname name',
 				value: lastName,
 				required: true,
@@ -175,7 +171,9 @@ Simply changing the border color of form fields to be red or green doesn't impar
 v('div', { classes: this.theme(css.inputWrapper) }, [
 	w(TextInput, {
 		...
-		describedBy: this._errorId,
+		aria: {
+			describedBy: this._errorId
+		},
 		onInput: this._onInput
 	}),
 	invalid === true ? v('span', {
@@ -241,7 +239,9 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 
 		return v('div', { classes: this.theme(css.inputWrapper) }, [
 			w(TextInput, {
-				describedBy: this._errorId,
+				aria: {
+					describedBy: this._errorId
+				},
 				disabled,
 				invalid,
 				label,
@@ -279,7 +279,7 @@ Now that `ValidatedTextInput` exists, let's import it and swap it with `TextInpu
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-7 %}
 
 **Inside render()**
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:74-114 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:80-116 %}
 
 {% task 'Create `onFormValidate` method separate from `onFormInput`' %}
 
@@ -294,14 +294,14 @@ Currently the validation logic is unceremoniously dumped in `formInput` within `
 3. Within `WorkerForm` first add `onFormValidate` to the `WorkerFormProperties` interface:
 	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:21-27 %}
 	Then create internal methods for each form field's validation and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:51-61 %}
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-67 %}
 
 {% instruction 'Handle calling `onValidate` within `ValidatedTextInput`' %}
 
 You might have noticed that the form no longer validates on user input events. This is because we no longer handle validation within `formInput` in `ApplicationContext.ts`, but we also haven't added it anywhere else. To do that, add the following private method to `ValidatedTextInput`:
 
 ```ts
-private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
+private _onInput(event: Event) {
 	const { onInput, onValidate } = this.properties;
 	onInput && onInput(event);
 	onValidate && onValidate(event);
@@ -311,7 +311,9 @@ private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
 Now pass it to `TextInput` in place of `this.properties.onInput`:
 ```ts
 w(TextInput, {
-	describedBy: this._errorId,
+	aria: {
+		describedBy: this._errorId
+	},
 	disabled,
 	invalid,
 	label,

@@ -1,7 +1,10 @@
-@import './variables';
+@import './../../../variables';
 
 .root {
-	composes: nameLabel from './workerForm.m.css';
+	margin-right: 10px;
+	display: inline-block;
+	composes: nameLabel from './../../../workerForm.m.css';
+	text-align: left;
 }
 
 .input {

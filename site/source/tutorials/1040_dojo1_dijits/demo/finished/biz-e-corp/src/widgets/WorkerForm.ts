@@ -1,5 +1,4 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import Fieldset from '../dijit/Fieldset';
@@ -29,15 +28,18 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement> & DocumentEvent) {
+	protected onFirstNameInput(event: KeyboardEvent & DocumentEvent) {
+		const { value: firstName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement> & DocumentEvent) {
+	protected onLastNameInput(event: KeyboardEvent & DocumentEvent) {
+		const { value: lastName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement> & DocumentEvent) {
+	protected onEmailInput(event: KeyboardEvent & DocumentEvent) {
+		const { value: email } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ email });
 	}
 

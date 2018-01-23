@@ -23,7 +23,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 		onBlur && onBlur(event);
 	}
 
-	private _onInput(event: TypedTargetEvent<HTMLInputElement>) {
+	private _onInput(event: Event) {
 		const { invalid, onInput, onValidate } = this.properties;
 		onInput && onInput(event);
 
@@ -50,7 +50,9 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 		} = this.properties;
 		return v('div', { classes: this.theme(css.inputWrapper) }, [
 			w(TextInput, {
-				describedBy: this._errorId,
+				aria: {
+					describedBy: this._errorId
+				},
 				disabled,
 				invalid,
 				label,

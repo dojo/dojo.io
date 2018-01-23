@@ -50,7 +50,7 @@ flip(): void {
 }
 ```
 
-Now, run the app (using `dojo build --watch` or `dojo build -w`) and navigate to [localhost:9999](http://localhost:9999). Once there,
+Now, run the app (using `dojo build -m dev -w memory -s`) and navigate to [localhost:9999](http://localhost:9999). Once there,
 
 {% instruction 'Open the console window and click on any of the worker widgets to confirm that the `flip` method is being called as expected.' %}
 

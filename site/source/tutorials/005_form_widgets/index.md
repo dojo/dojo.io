@@ -57,7 +57,7 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 ```
 
 {% aside 'Reminder' %}
-If you cannot see the application, remember to run `dojo build -w` to build the application and start the development server.
+If you cannot see the application, remember to run `dojo build -m dev -w memory -s` to build the application and start the development server.
 {% endaside %}
 
 This widget will render an empty form with a `submit` handler that prevents the form from being submitted to the server. Before we continue to expand on this starting point though, let's integrate the form into the application so we can observe the form as we add more features.
@@ -111,19 +111,15 @@ The `Button` class will be used to provide the form's submit button and the `Tex
 				v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 				w(TextInput, {
 					key: 'firstNameInput',
-					label: {
-						content: 'First Name',
-						hidden: true
-					},
+					label: 'First Name',
+					labelHidden: true,
 					placeholder: 'Given name',
 					required: true
 				}),
 				w(TextInput, {
 					key: 'lastNameInput',
-					label: {
-						content: 'Last Name',
-						hidden: true
-					},
+					label: 'Last Name',
+					labelHidden: true,
 					placeholder: 'Surname name',
 					required: true
 				})
@@ -142,17 +138,13 @@ At this point, the user interface for the form is available, but it does not do 
 
 {% instruction 'Update the `render` method once again.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:43-86 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:46-86 %}
 
 This form of the `render` method now does everything that we need: it creates the user interface and registers event handlers that will update the application as the user enters information. However, we need to add a few more methods to the `WorkerForm` to define the event handlers.
 
-{% instruction 'Add an import for `TypedTargetEvent`' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' line:2 %}
-
 {% instruction 'Add these methods:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:31-41 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:31-43 %}
 
 The `render` method starts by decomposing the properties into local constants. We still need to define those properties.
 
@@ -164,7 +156,7 @@ Most of these properties should be familiar by now, but notice the type signatur
 
 There are two types of properties that we are using in this form. The `firstName`, `lastName` and `email` properties are grouped together in the `WorkerFormData` interface and are going to set the values that are displayed in the form fields. The `onFormInput` and `onFormSave` properties expose the events that the `WorkerForm` widget can emit. To see how these different property types are used, let's examine the properties that are being passed into the first `TextInput` widget:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-64 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:57-65 %}
 
 The first thing that we see is a `key` property. As mentioned before, a key is necessary whenever more than one of the same type of widget or virtual DOM element will be rendered by a widget. The `label`, `placeholder`, and `required` fields map to their expected properties.
 

@@ -28,15 +28,18 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput({ target: { value: firstName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onFirstNameInput(event: KeyboardEvent) {
+		const { value: firstName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput({ target: { value: lastName } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onLastNameInput(event: KeyboardEvent) {
+		const { value: lastName } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput({ target: { value: email } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onEmailInput(event: KeyboardEvent) {
+		const { value: email } = event.target as HTMLInputElement;
 		this.properties.onFormInput({ email });
 	}
 
@@ -53,22 +56,18 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 				v('legend', { classes: this.theme(css.nameLabel) }, [ 'Name' ]),
 				w(TextInput, {
 					key: 'firstNameInput',
-					label: {
-						content: 'First Name',
-						hidden: true
-					},
-					placeholder: 'Given name',
+					label: 'First Name',
+					labelHidden: true,
+					placeholder: 'First name',
 					value: firstName,
 					required: true,
 					onInput: this.onFirstNameInput
 				}),
 				w(TextInput, {
 					key: 'lastNameInput',
-					label: {
-						content: 'Last Name',
-						hidden: true
-					},
-					placeholder: 'Surname name',
+					label: 'Last Name',
+					labelHidden: true,
+					placeholder: 'Last name',
 					value: lastName,
 					required: true,
 					onInput: this.onLastNameInput

@@ -108,7 +108,7 @@ With that change, the `App` widget is ready to serve as the root of our applicat
 {% instruction 'If you are working locally, run the following command:' %}
 
 ```bash
-dojo build --watch
+dojo build -m dev -w memory -s
 ```
 
 then open up a web browser and navigate to [`http://localhost:9999`](http://localhost:9999). You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner's `<h1>` tag has been wrapped by the App's `<div>`, so everything appears to be working.
@@ -186,7 +186,7 @@ export default class App extends WidgetBase {
 ```
 {% endsolution %}
 
-{% instruction 'Run the application with `dojo build --watch` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
+{% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
 We have succeeded in rendering the widget, but there seem to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface to pass configuration information into the widget.
 
@@ -248,7 +248,7 @@ w(Worker, { firstName: 'Tim', lastName: 'Jones' })
 ```
 
 {% aside 'Remember' %}
-You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build --watch` and navigating to `http://localhost:9999`.
+You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -m dev -w memory -s` and navigating to `http://localhost:9999`.
 {% endaside %}
 
 At this point, we have a good start to our widget, but it still doesn't look very good. In the next section we'll address that by learning how to use CSS to style our widgets.
@@ -283,7 +283,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lang:css %}
 
-`dojo build --watch` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget.
+`dojo build -m dev -w memory -s` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget.
 
 {% instruction 'Return to `Worker.ts` and update the render method:' %}
 

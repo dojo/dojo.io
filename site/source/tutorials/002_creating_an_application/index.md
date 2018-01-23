@@ -79,7 +79,22 @@ Our demo application includes some tests to verify that it is working as expecte
 
 {% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:17-19 %}
 
-This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal command:
+This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal commands:
+
+```bash
+dojo build --mode test
+dojo test
+```
+
+The tests can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.
+
+In one terminal run:
+
+```bash
+dojo build --mode test --watch
+```
+
+While this is command is running, in another terminal run:
 
 ```bash
 dojo test
