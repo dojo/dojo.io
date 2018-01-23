@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 2 beta 5!
-date: 2018-01-17 09:00:00
+date: 2018-01-23 09:00:00
 authorId: dylan
 featured_image: featured.png
 ---
