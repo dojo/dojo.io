@@ -13,7 +13,7 @@ If you're learning about Dojo 2 for the first time, please read our overview abo
 
 <!-- more -->
 
-## Getting Beta 5
+## Getting beta 5
 
 Beta 5 is currently tagged as `latest` in npm, so simply updating to the latest version will provide you with the Beta 5 release.  We also have a release tag of `beta5` in npm if you want to focus just on using Beta 5.
 
