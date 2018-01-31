@@ -64,9 +64,6 @@ authors:
     name: Kitson Kelly
     email: kkelly@sitepen.com
 
-webpack:
-  entry: 'themes/dojo/source/js/site.js'
-
 # Hexo Filter Cleanup
 # https://github.com/mamboer/hexo-filter-cleanup
 hfc_useref:

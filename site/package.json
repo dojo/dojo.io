@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.5.0"
+    "version": "3.4.4"
   },
   "dependencies": {
     "animate-scss": "^3.2.1",
@@ -24,7 +24,6 @@
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.11",
     "hexo-renderer-sass": "^0.3.2",
-    "hexo-renderer-webpack": "^0.4.0",
     "hexo-server": "^0.2.0",
     "hexo-tag-htmltag": "^1.0.3",
     "markdown-it": "^8.3.1",
