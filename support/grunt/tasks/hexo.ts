@@ -15,7 +15,7 @@ export = function (grunt: IGrunt) {
 		const options = this.options<any>({});
 		const flags = [];
 
-		if(grunt.option('watch')) {
+		if (grunt.option('watch')) {
 			flags.push('-w');
 		}
 
