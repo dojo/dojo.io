@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { exec, promisify } from 'grunt-dojo2-extras/src/util/process';
 
-function generateHexo(siteDirectory: string, configs: string[] = [ '_config.yml' ], flags: string[]) {
+function generateHexo(siteDirectory: string, configs: string[] = ['_config.yml'], flags: string[] = []) {
 	const hexoBin = join('node_modules', '.bin', 'hexo');
 	const proc = exec(`${hexoBin} --config=${configs.join(',')} generate ${flags.join(',') }`, { silent: false, cwd: siteDirectory });
 	return promisify(proc);
