@@ -1,0 +1,101 @@
+.root {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	background: url('./back.jpg');
+	background-size: cover;
+}
+
+.zombieOne {
+	width: 394px;
+	height: 640px;
+	position: absolute;
+	bottom: 10px;
+	left: 0%;
+}
+
+.zombieOneBody {
+	width: 394px;
+	height: 640px;
+	background-image: url('./zombie1Top.png');
+	position: absolute;
+	z-index: 2;
+}
+
+.zombieOneLeg {
+	position: absolute;
+	background-image: url('./zombie1Leg.png');
+	width: 131px;
+	height: 204px;
+	bottom: 3px;
+	transform-origin: 50% 10%;
+}
+
+.zombieOneBackLeg {
+	left: 1px;
+	z-index: 3;
+}
+
+.zombieOneFrontLeg {
+	left: 80px;
+	z-index: 1;
+}
+
+.zombieTwo {
+	width: 414px;
+	height: 640px;
+	position: absolute;
+	bottom: 10px;
+	right: 0%;
+}
+
+.zombieTwoBody {
+	width: 394px;
+	height: 640px;
+	background-image: url('./zombie2Top.png');
+	position: absolute;
+	z-index: 6;
+}
+
+.zombieTwoLeg {
+	position: absolute;
+	background-image: url('./zombie2Leg.png');
+	width: 122px;
+	height: 142px;
+	bottom: 6px;
+	transform-origin: 50% 20%;
+}
+
+.zombieTwoBackLeg {
+	right: 67px;
+	z-index: 5;
+	transform-origin: 50% 20%;
+}
+
+.zombieTwoFrontLeg {
+	right: 143px;
+	z-index: 4;
+	transform-origin: 50% 30%;
+}
+
+.heartsHolder {
+	position: absolute;
+	bottom: 400px;
+	left: 50%;
+	transform: translateX(-70px);
+	z-index: 10;
+}
+
+.heart {
+	position: absolute;
+	width: 140px;
+	height: 130px;
+	background-image: url('./heart.png');
+	opacity: 0;
+}
+
+.controls {
+	padding: 50px;
+}

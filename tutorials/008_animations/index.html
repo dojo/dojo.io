@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Web Animations | Dojo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Web Animations">
+<meta property="og:url" content="https://dojo.github.io/tutorials/008_animations/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.github.io/tutorials/008_animations/zombieCover.png">
+<meta property="og:image" content="https://dojo.github.io/tutorials/008_animations/walking.gif">
+<meta property="og:updated_time" content="2018-02-02T18:06:01.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Animations">
+<meta name="twitter:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
+<meta name="twitter:image" content="https://dojo.github.io/tutorials/008_animations/zombieCover.png">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+	
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+	
+	
+		<link rel="icon" href="/images/favicons/favicon.ico">
+	
+	<link rel="stylesheet" href="/css/main.css">
+	
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+
+	<body class="body-tutorial
+">
+		<div class="page-wrapper">
+			<header class="header">
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-brand">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+				<div class="navbar-burger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
+					<a class="navbar-item" href="/tutorials">Tutorials</a>
+					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
+					<a class="navbar-item" href="/blog">Blog</a>
+					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="section">
+	<div class="container article">	
+		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
+			<ul>
+				<li><a href="/tutorials">Tutorials</a></li>
+				<li><a href="#">Web Animations</a></li>
+				<li class="is-active"><a class="step-current"></a></li>
+			</ul>
+		</nav>
+		<section class="tutorial hidden hiding">
+<h1 id="Web-Animations"><a href="#Web-Animations" class="headerlink" title="Web Animations"></a>Web Animations</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 <code>WebAnimation</code> meta. We will introduce the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">API provided by Web Animations</a> and show you how to use it with Dojo 2.</p>
+<p><img src="./zombieCover.png" alt="Zombies"></p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/008_animations-initial.zip">download</a> the initial demo project and run <code>npm install</code> to get started.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="What-is-the-Web-Animations-API"><a href="#What-is-the-Web-Animations-API" class="headerlink" title="What is the Web Animations API"></a>What is the Web Animations API</h2><article class="aside"><strong>Effect Timing</strong><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/AnimationEffectTiming" target="_blank" rel="noopener"><code>AnimationEffectTiming</code></a> you control over the timing of the animations you create. It provides access to <code>delay</code>, <code>fill</code>, <code>duration</code> and more.</p></article>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">Web Animations API</a> provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of <code>requestAnimationFrame</code> or the less efficient  <code>setInterval</code>.</p>
+<article class="aside"><strong>Meta</strong><p>Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the <code>domNode</code> itself.</p></article>
+<p>Dojo 2 provides a <a href="https://github.com/dojo/widget-core#meta-configuration" target="_blank" rel="noopener">meta</a> that can apply Web Animations to the rendered <a href="https://dojo.io/docs/fundamentals/working_with_virtual_dom/" target="_blank" rel="noopener">virtual dom</a> in the widgets you create. The <code>WebAnimation</code> meta allows properties such as <code>play</code> and <code>duration</code> to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.</p>
+<h2 id="Introducing-the-zombies"><a href="#Introducing-the-zombies" class="headerlink" title="Introducing the zombies"></a>Introducing the zombies</h2><p>Looking at the <code>Zombies.ts</code> file within the initial project, there are a series of <code>DIV</code>s representing two zombies, each with a body and two legs. Via the magic of <code>CSS</code> these <code>DIV</code>s are converted into two zombies when you open your web browser. To demonstrate the use of Web Animations with Dojo 2, we will make the zombies walk towards each other when they are clicked.</p>
+<div class="task">Animating our zombies</div>
+<p>To animate the zombies, we use the <code>@dojo/widget-core/meta/WebAnimation</code> meta. This accepts <code>key</code> and <code>AnimationProperties</code> parameters.<br>Let’s add animation properties to our first Zombie.</p>
+<div class="instruction">Add the following to the render function in Zombies.ts</div>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// add the import</span>
+<span class="token keyword">import</span> WebAnimation <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/meta/WebAnimation'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// add to the top of the render function</span>
+<span class="token keyword">const</span> zombieOneMoveAnimation <span class="token operator">=</span> <span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token string">'zombieOneMove'</span><span class="token punctuation">,</span>
+    effects<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> left<span class="token punctuation">:</span> <span class="token string">'0%'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> left<span class="token punctuation">:</span> <span class="token string">'35%'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+        easing<span class="token punctuation">:</span> <span class="token string">'ease-in'</span><span class="token punctuation">,</span>
+        fill<span class="token punctuation">:</span> <span class="token string">'forwards'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        play<span class="token punctuation">:</span> <span class="token keyword">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">meta</span><span class="token punctuation">(</span>WebAnimation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieOne'</span><span class="token punctuation">,</span> zombieOneMoveAnimation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<article class="aside"><strong>Reminder</strong><p>If you cannot see the zombies, make sure you have run <code>npm run dev</code> to build the application and start the local development server.</p></article>
+<p>Refresh your web browser and you should now see the left zombie moving across the screen for 2 seconds.</p>
+<p>Let’s explore the animation properties we have created:</p>
+<ul>
+<li>A unique <code>id</code> for this animation</li>
+<li>Effects array depicts the steps for the animation; here we are animating the <code>left</code> style from <code>0%</code> to <code>35%</code></li>
+<li>The timing object specifies the duration and easing effects for the animation; the fill parameter specifies that the animation should finish in its final position</li>
+<li>The controls object in this case simply sets play to <code>true</code></li>
+</ul>
+<div class="task">Animating our zombie <code>onclick</code></div>
+<p>To make the zombie animate on click, we use our widget’s state to control the <code>play</code> property of the <code>zombieOneMoveAnimation</code> object. Create a <code>_play: boolean</code> property on our widget and toggle it in the zombie click function.</p>
+<div class="instruction">Edit Zombies.ts</div>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Zombies</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// add the _play boolean at the top of the class</span>
+    <span class="token keyword">private</span> _play <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token function">_onZombieClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// add the toggle and an invalidate call to the zombie</span>
+        <span class="token comment" spellcheck="true">// click function</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_play <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_play<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// now use this._play instead of a hardcoded `true` in the `zombieOneMoveAnimation` object</span>
+</code></pre>
+<p>Refresh the web browser and the zombie animation should now play / pause when clicked.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="Animation-events"><a href="#Animation-events" class="headerlink" title="Animation events"></a>Animation events</h2><p>The <code>WebAnimation</code> meta provides callback functions for <code>onFinish</code> and <code>onCancel</code>. To ensure that we can replay our animation we need to set <code>this._play</code> to false when the animation has finished by adding an <code>onFinish</code> callback.</p>
+<div class="instruction">Add <code>onFinish</code> callback to Zombies.ts</div>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// add the `onFinish` function</span>
+<span class="token keyword">private</span> <span class="token function">_onAnimationFinish</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_play <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// add to the top of the render function</span>
+<span class="token keyword">const</span> zombieOneMoveAnimation <span class="token operator">=</span> <span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token string">'zombieOneMove'</span><span class="token punctuation">,</span>
+    effects<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> left<span class="token punctuation">:</span> <span class="token string">'0%'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> left<span class="token punctuation">:</span> <span class="token string">'35%'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        duration<span class="token punctuation">:</span> <span class="token number">8000</span><span class="token punctuation">,</span>
+        easing<span class="token punctuation">:</span> <span class="token string">'ease-in'</span><span class="token punctuation">,</span>
+        fill<span class="token punctuation">:</span> <span class="token string">'forwards'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        play<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+        onFinish<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onAnimationFinish <span class="token comment" spellcheck="true">// Add the callback here</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>We will use this <code>onFinish</code> callback later in the tutorial to trigger a second animation.</p>
+<h2 id="Let’s-add-more-animations"><a href="#Let’s-add-more-animations" class="headerlink" title="Let’s add more animations"></a>Let’s add more animations</h2><p>Not content with your zombie just sliding across the screen like that? Let’s add some Hollywood style movie effects by animating the legs and the body.</p>
+<div class="instruction">Add more animations to Zombies.ts</div>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// add the import for AnimationProperties</span>
+<span class="token keyword">import</span> WebAnimation<span class="token punctuation">,</span> <span class="token punctuation">{</span> AnimationProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/meta/WebAnimation'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token function">_getZombieBodyAnimation</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> AnimationProperties <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        id<span class="token punctuation">,</span>
+        effects<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(-2deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(3deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            duration<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+            iterations<span class="token punctuation">:</span> <span class="token number">Infinity</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            play<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_play
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token function">_getZombieLegAnimation</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> front<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">boolean</span><span class="token punctuation">)</span><span class="token punctuation">:</span> AnimationProperties <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> effects <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(-5deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(5deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>front<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        effects<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        id<span class="token punctuation">,</span>
+        effects<span class="token punctuation">,</span>
+        timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            duration<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+            iterations<span class="token punctuation">:</span> <span class="token number">Infinity</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            play<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_play
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// add this to the render function with the other `animate` calls</span>
+webAnimation<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieOneBody'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getZombieBodyAnimation</span><span class="token punctuation">(</span><span class="token string">'zombieOneBody'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+webAnimation<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieOneBackLeg'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getZombieLegAnimation</span><span class="token punctuation">(</span><span class="token string">'zombieOneBackLeg'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+webAnimation<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieOneFrontLeg'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getZombieLegAnimation</span><span class="token punctuation">(</span><span class="token string">'zombieOneFrontLeg'</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+webAnimation<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieTwoBody'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getZombieBodyAnimation</span><span class="token punctuation">(</span><span class="token string">'zombieTwoBody'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+webAnimation<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieTwoBackLeg'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getZombieLegAnimation</span><span class="token punctuation">(</span><span class="token string">'zombieTwoBackLeg'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+webAnimation<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieTwoFrontLeg'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getZombieLegAnimation</span><span class="token punctuation">(</span><span class="token string">'zombieTwoFrontLeg'</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Refresh your browser and you should now see two stumbling zombies moving towards one another. Feel free to experiment with the parameters for rotation and timings.</p>
+<p><img src="./walking.gif" alt="Zombie-Walk"></p>
+<p>Notice that these two new animations have <code>iterations</code> set to <code>Infinity</code>. This ensures that they will play indefinitely, or until the first animation completes and <code>this._play</code> is set to false.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="Joining-animations"><a href="#Joining-animations" class="headerlink" title="Joining animations"></a>Joining animations</h2><p>Let’s finish by adding some hearts that appear once the Zombies have reached the middle of the screen. We want them to float up to the top of the screen whilst changing size. We can do this by returning an array of <code>AnimationProperties</code> rather than a single object.</p>
+<div class="instruction">Add hearts to Zombies.ts</div>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">private</span> _playHearts <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> _numHearts <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token function">_onAnimationFinish</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_play <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// add toggle for `_playHearts`</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_playHearts <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token function">_onHeartsFinish</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_playHearts <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_playHearts <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token function">_getHeartAnimation</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> sequence<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">,</span> play<span class="token punctuation">:</span> <span class="token keyword">boolean</span><span class="token punctuation">)</span><span class="token punctuation">:</span> AnimationProperties<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> delay <span class="token operator">=</span> sequence <span class="token operator">*</span> <span class="token number">500</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> leftOffset <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">400</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">200</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            id<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">FloatAway`</span></span><span class="token punctuation">,</span>
+            effects<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span> opacity<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> marginTop<span class="token punctuation">:</span> <span class="token string">'0'</span><span class="token punctuation">,</span> marginLeft<span class="token punctuation">:</span> <span class="token string">'0px'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> opacity<span class="token punctuation">:</span> <span class="token number">0.8</span><span class="token punctuation">,</span> marginTop<span class="token punctuation">:</span> <span class="token string">'-300px'</span><span class="token punctuation">,</span> marginLeft<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token number">1</span><span class="token operator">-</span> leftOffset<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">px`</span></span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> opacity<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> marginTop<span class="token punctuation">:</span> <span class="token string">'-600px'</span><span class="token punctuation">,</span> marginLeft<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>leftOffset<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">px`</span></span> <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                duration<span class="token punctuation">:</span> <span class="token number">1500</span><span class="token punctuation">,</span>
+                delay<span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                play<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_playHearts<span class="token punctuation">,</span>
+                onFinish<span class="token punctuation">:</span> sequence <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_numHearts <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onHeartsFinish <span class="token punctuation">:</span> undefined
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            id<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">Scale`</span></span><span class="token punctuation">,</span>
+            effects<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'scale(1)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'scale(0.8)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'scale(1)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'scale(1.2)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'scale(1)'</span> <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                duration<span class="token punctuation">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+                iterations<span class="token punctuation">:</span> <span class="token number">Infinity</span><span class="token punctuation">,</span>
+                delay<span class="token punctuation">,</span>
+                easing<span class="token punctuation">:</span> <span class="token string">'ease-in-out'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                play<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_playHearts
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token function">_getHearts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> VNode<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> hearts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> play <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_numHearts<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> key <span class="token operator">=</span> <span class="token template-string"><span class="token string">`heart</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+        hearts<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> css<span class="token punctuation">.</span>heart<span class="token punctuation">,</span> key <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">meta</span><span class="token punctuation">(</span>WebAnimation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getHeartAnimation</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> i<span class="token punctuation">,</span> play<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> hearts<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// add this as the last child of the `root` VNode in render</span>
+<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> css<span class="token punctuation">.</span>heartsHolder <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getHearts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Now you should see the hearts appearing and floating away when the zombies get to the middle of the screen.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="Controlling-our-animations"><a href="#Controlling-our-animations" class="headerlink" title="Controlling our animations"></a>Controlling our animations</h2><p>Due to the reactive nature of the Dojo 2 <code>WebAnimation</code> meta, we can control our animation by changing the properties passed into the get animation functions. For example we can change the <code>playbackRate</code> programatically.<br>Let’s add slider widgets to our page to change the speed of the zombie shuffle and legs.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// add the import, you may need to npm install `@dojo/widgets`</span>
+<span class="token keyword">import</span> Slider <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/slider/Slider'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// add the variable and then change event</span>
+<span class="token keyword">private</span> _zombieLegsPlaybackRate <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token function">_onZombieLegsPlaybackRateChange</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> Event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>target as HTMLInputElement<span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_zombieLegsPlaybackRate <span class="token operator">=</span> <span class="token function">parseFloat</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// use the new this._zombieLegsPlaybackRate property in the animation</span>
+<span class="token keyword">private</span> <span class="token function">_getZombieLegAnimation</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> front<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">boolean</span><span class="token punctuation">)</span><span class="token punctuation">:</span> AnimationProperties <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> effects <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(-5deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(5deg)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span> transform<span class="token punctuation">:</span> <span class="token string">'rotate(0deg)'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>front<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        effects<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        id<span class="token punctuation">,</span>
+        effects<span class="token punctuation">,</span>
+        timing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            duration<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+            iterations<span class="token punctuation">:</span> <span class="token number">Infinity</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        controls<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            play<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_play<span class="token punctuation">,</span>
+            playbackRate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_zombieLegsPlaybackRate <span class="token comment" spellcheck="true">// add it here</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// finally, add the control to the top of the render function</span>
+<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> css<span class="token punctuation">.</span>controls <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token function">w</span><span class="token punctuation">(</span>Slider<span class="token punctuation">,</span> <span class="token punctuation">{</span> min<span class="token punctuation">:</span> <span class="token number">0.1</span><span class="token punctuation">,</span> max<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> step<span class="token punctuation">:</span> <span class="token number">0.1</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_zombieLegsPlaybackRate<span class="token punctuation">,</span> onChange<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onZombieLegsPlaybackRateChange <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Open your browser and you should now be able to speed up and slow down the zombie leg animation as they move across the screen.</p>
+</section><section class="tutorial hidden hiding">
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned:</p>
+<ul>
+<li>How to use a Dojo 2 meta</li>
+<li>How to pass <code>AnimationProperties</code> via the <code>WebAnimation</code> meta</li>
+<li>How to stop and start an animation</li>
+<li>How to control an animation</li>
+<li>That zombies feel love 😂 💕</li>
+</ul>
+<p>You can download the completed <a href="../assets/008_animation-finished.zip">demo application</a> from this tutorial.</p>
+</section>
+
+		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
+	</div>
+</div>
+				</div>
+				<footer class="footer">
+	<div class="container">
+		<div class="info">
+			<span class="is-size-7">&copy; 2017 JS Foundation, All Rights Reserved.</span>
+		</div>
+		<div class="link-container">
+			<div class="links">
+				<a href="https://twitter.com/dojo" class="twitter"></a>
+				<a href="https://github.com/dojo" class="github"></a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+			</div>
+			
+				<div class="paginator">
+	<div class="container paginator-controls">
+		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
+				<a class="pagination-previous">Previous</a>
+				<a class="pagination-next">Next page</a>
+				<ul class="pagination-list">
+
+				</ul>
+		</nav>
+	</div>
+</div>
+
+
+<script src="/js/tutorial-support.js"></script>
+<script>
+	function isMobile() {
+		if( navigator.userAgent.match(/Android/i)
+		|| navigator.userAgent.match(/webOS/i)
+		|| navigator.userAgent.match(/iPhone/i)
+		|| navigator.userAgent.match(/iPad/i)
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/BlackBerry/i)
+		|| navigator.userAgent.match(/Windows Phone/i)
+		){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	if (isMobile()) {
+		(function() {
+			var paginator = document.querySelector('.paginator');
+			paginator && paginator.parentNode.removeChild(paginator);
+			var sections = document.querySelectorAll('section.tutorial');
+			for (var i = 0; i < sections.length; i++) {
+				var section = sections[i];
+				section.classList.remove('hidden', 'hiding');
+			}
+		})();
+	}
+	else {
+		tutorial.populatePaginator(document.getElementById('paginator'), 'Web Animations');
+	}
+</script>
+
+			
+		</div>
+		
+<!-- build:js /js/combined.js -->
+<script src='/js/site.js'></script>
+<!-- endbuild -->
+	</body>
+</html>
