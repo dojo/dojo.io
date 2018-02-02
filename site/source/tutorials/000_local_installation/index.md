@@ -38,10 +38,10 @@ At this point, we've successfully created our first basic Dojo 2 application and
 
 ```bash
 cd first-dojo-2-app
-dojo build --watch
+dojo build --watch --serve
 ```
-(or, the shorter, `dojo build -w`)
+(or, the shorter, `dojo build -w -s`)
 
-This command will invoke Dojo 2's tool to build and transpile the project using [Webpack](https://webpack.github.io/), a popular tool for optimizing JavaScript source code. The `--watch` (or `-w`) flag also starts a simple web server which allows us to run our application in the browser while we make modifications. Additionally, the watch flag will keep an eye on the project's files and rebuild it whenever any changes are saved.
+This command will invoke Dojo 2's tool to build and transpile the project using [Webpack](https://webpack.github.io/), a popular tool for optimizing JavaScript source code. The `--watch` (or `-w`) flag watches rebuild it whenever any changes are saved in the project and the `--serve` (or `-s`) flag starts a simple web server which allows us to run our application in the browser while we make modifications.
 
 In order to see what the application looks like, open a modern web browser (such as the latest version of Chrome, Edge, Firefox, Internet Explorer, or Safari) and navigate to [`http://localhost:9999`](http://localhost:9999). You will be greeted by a humble page that welcomes you to your new application.
