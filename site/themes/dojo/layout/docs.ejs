@@ -1,9 +1,15 @@
+<nav class="leftnav">
+	<ul>
+		<li><a href="/start"><i class="fa fa-compass" aria-hidden="true"></i>Start</a></li>
+		<li><a href="/tutorials"><i class="fa fa-map-o" aria-hidden="true"></i>Tutorials</a></li>
+		<li><a href="/guide"><i class="fa fa-bookmark-o" aria-hidden="true"></i>Guide</a></li>
+		<li><a href="/api"><i class="fa fa-crosshairs" aria-hidden="true"></i>API</a></li>
+	</ul>
+</nav>
 <section class="section">
 	<div class="container">
 		<div class="columns">
-			<div class="column is-3">
-				<%- partial('_partial/docs-nav') %>
-			</div>
+			<div class="toc"><!-- TODO replaces _partial/docs-nav. Fill w/ data from JSON files --></div>
 			<div class="column is-9 article">
 				<%- page.content %>
 			</div>

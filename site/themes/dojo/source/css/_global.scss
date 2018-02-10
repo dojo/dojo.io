@@ -29,7 +29,7 @@ body {
 
 	.page-content {
 		flex: 1 0 auto;
-		padding-bottom: 2rem;
+		display: flex;
 
 		.footer {
 			flex: none;

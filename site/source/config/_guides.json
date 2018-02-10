@@ -1,0 +1,153 @@
+{
+	"Fundamentals": {
+		"Reactive Programming": "/docs/fundamentals/reactive_programming/index.html",
+		"TypeScript and Dojo 2": "/docs/fundamentals/typescript_and_dojo_2/index.html",
+		"Setting up a Dev Environment": "/tutorials/1050_development_environment/"
+	},
+
+	"Command Line Interface": {
+		"cli": {
+			"url": "https://github.com/dojo/cli",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"cli-create-app": {
+			"url": "https://github.com/dojo/cli-create-app",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"cli-create-widget": {
+			"url": "https://github.com/dojo/cli-create-widget",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"cli-create-theme": {
+			"url": "https://github.com/dojo/cli-create-theme",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"cli-build-app": {
+			"url": "https://github.com/dojo/cli-build-app",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		}
+	},
+	"Widgets": {
+		"widget-core": {
+			"url": "https://github.com/dojo/widget-core",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"widgets": {
+			"url": "https://github.com/dojo/widgets",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		}
+	},
+	"Routing": {
+		"url": "https://github.com/dojo/routing",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"Stores": {
+		"url": "https://github.com/dojo/stores",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"Interoperability": {
+		"url": "https://github.com/dojo/interop",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"i18n": {
+		"url": "https://github.com/dojo/i18n",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"Accessibility": {
+		"url": "https://github.com/dojo/accessibility",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"Utilities": {
+		"core": {
+			"url": "https://github.com/dojo/core",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"loader": {
+			"url": "https://github.com/dojo/loader",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		"streams": {
+			"url": "https://github.com/dojo/streams",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		}
+	},
+	"vDOM": {
+		"vDOM Abstractions": "/docs/fundamentals/vdom_abstractions/index.html",
+		"Working with Virtual Dom": "/docs/fundamentals/working_with_virtual_dom/index.html"
+	}
+}

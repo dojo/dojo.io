@@ -1,0 +1,29 @@
+.leftnav {
+	background: #363636;
+	background-image: linear-gradient(0deg, #953DE5 29%, #2499D4 100%);
+	flex: 0 0 125px;
+	margin: 0;
+	padding: 0;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		color: white;
+
+		li {
+			display: block;
+			width: 65px;
+			height: 65px;
+			margin: 10px 30px;
+
+			i {
+				display: block;
+			}
+		}
+
+		a {
+			color: white;
+		}
+	}
+}
