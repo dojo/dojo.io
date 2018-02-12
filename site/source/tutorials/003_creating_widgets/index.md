@@ -34,7 +34,7 @@ This line: `const Projector = ProjectorMixin(Banner);` tells the application to 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:1-2 %}
 
-The `WidgetBase` class will be used as the base class for our `App` widget. `WidgetBase` (and its descendants) work with the `WidgetProperties` interface to define the publicly accessible properties of the widget. Finally, the `v` and `w` functions are used to render virtual DOM nodes (with the `v` function) or widgets (via `w`). Both virtual DOM nodes and widgets ultimately generate `DNode`s, the base type of all virtual DOM nodes in Dojo 2.
+The `WidgetBase` class will be used as the base class for our `App` widget. `WidgetBase` (and its descendants) work with the `WidgetProperties` interface to define the publicly accessible properties of the widget. Finally, the `v()` and `w()` functions are used to render virtual DOM nodes (with the `v` function) or widgets (via `w`). Both virtual DOM nodes and widgets ultimately generate `DNode`s, the base type of all virtual DOM nodes in Dojo 2.
 
 Our next dependency to load is the Banner widget that we created in the first tutorial.
 
@@ -50,7 +50,7 @@ With all of the dependencies in place, let's create the `App` widget itself.
 
 Notice that the `App` class is extending `WidgetBase`, a [generic class](https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes) that accepts the `WidgetProperties` interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the `export` and `default` keywords before the `class` keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.
 
-Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode| DNode[]`, which means that our render method has to return a `DNode` (an abstraction for a [HyperScript](https://github.com/hyperhype/hyperscript) node), or an array of `DNode`s so that the application's projector knows what to render. The normal way to generate this `DNode` is by calling either the `v` or `w` functions.
+Our next step is to override `WidgetBase`'s `render` method to generate the application's view. The `render` method has the following signature `protected render(): DNode| DNode[]`, which means that our render method has to return a `DNode` or an array of `DNode`s so that the application's projector knows what to render. The only way to generate this `DNode` is by calling either the `v` or `w` functions.
 
 {% instruction 'To start, let\'s use a simple `render` method by adding this to the `App` class:' %}
 
@@ -77,11 +77,10 @@ Notice that the `w` function takes two parameters - a widget class and an object
 ```ts
 export interface WidgetProperties {
 	key?: string;
-	bind?: any;
 }
 ```
 
-Both of these properties are optional, so we can pass an empty object for now. Next, we will replace the `Banner` class with the `App` as the root of our application.
+`key` is optional, so we can pass an empty object for now. Next, we will replace the `Banner` class with the `App` as the root of our application.
 
 {% aside 'Mandatory object for properties' %}
 The 2nd argument of the `w()` function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.
@@ -142,7 +141,7 @@ export default class Worker extends WidgetBase {
 
 This is nearly identical to the `App` widget with one exception: we are not importing the `w` function as the `Worker` widget will not contain any child widgets.
 
-Our next step is to extend the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the worker's portrait and a `<strong>` tag to display the worker's name.
+Our next step is to override the `render()` method to customize the widget's appearance. To accomplish this, we are going to need two children. One `<img>` tag to show the worker's portrait and a `<strong>` tag to display the worker's name.
 
 {% instruction 'Try and implement that using the URL `https://dojo.io/tutorials/resources/worker.svg` and `"lastName, firstName"` as the worker\'s name.' %}
 
@@ -206,7 +205,7 @@ We have succeeded in rendering the widget, but there seem to be some styling iss
 export default class Worker extends WidgetBase<WorkerProperties>
 ```
 
-The `WorkerProperties` interface adds two new optional properties that we'll be able to use. Now that these are available, let's use them to make the name of the worker dynamic.
+The `WorkerProperties` interface adds two new optional properties that we'll be able to use. Now that these are available, let's use them to make the name of the worker controlled.
 
 {% instruction 'Inside of the render method, add the following code to create some local constants for the first and last names:' %}
 
@@ -239,7 +238,7 @@ protected render() {
 
 {% task 'Pass properties to the Worker widget to configure it.' %}
 
-To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values would normally be retrieved from a store, but for now, we'll just use static properties. To learn more about working with stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
+To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values could possibly be retrieved from an external state store or fetched from an external resource, but for now, we'll just use static properties. To learn more about working with stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
 
 {% instruction 'In `App.ts`, update the line that is rendering the `Worker` to contain values for the `firstName` and `lastName` properties:' %}
 

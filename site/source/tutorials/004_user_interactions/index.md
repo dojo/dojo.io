@@ -100,7 +100,7 @@ In general, the use of private state should be minimized. Dojo 2 encourages the 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:20-27 %}
 
-Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application recompiles, all three widgets should be showing their back faces.
+Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application re-compiles, all three widgets should be showing their back faces.
 
 In order to re-render our widget, we need to update the `flip` method to toggle the `_isFlipped` field and invalidate the widget
 
