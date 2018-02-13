@@ -1,0 +1,54 @@
+<% /*
+	Table of contents for docs layout
+
+	format
+	============================================
+	{
+		title: "name"
+		icon: "titleicon"
+		categories: [
+			{ title: "category title", topics: [
+				{ name: "topic", url: "https://example.org" }
+			] }
+		]
+	}
+*/
+const source = locals.src;
+const data = site.data[source];
+const groupName = data.group || locals.src;
+const visibility = locals.visible ? '' : 'hidden';
+%>
+<aside class="menu <%- visibility %>" data-group-name="<%- groupName %>">
+	<%
+	function printCategory(category) { %>
+		<p class="menu-label">
+			<%- category.title %>
+		</p>
+		<ul class="menu-list">
+			<% for (let topic of category.topics) { %>
+			<li><a href="<%- topic.url %>"><%- topic.name %></a></li>
+			<% } %>
+		</ul>
+	<% }
+
+	function printTopicHeader(topic) { %>
+		<p class="menu-label">
+			<%- topic.name %>
+		</p>
+	<% }
+
+	if (data.title) { %>
+		<div class="title">
+			<i class="<%- data.icon %>"></i>
+			<p class="title"><%- data.title %></p>
+		</div>
+	<% } %>
+	<% for (let item of data.contents) {
+		if (item.title) {
+			printCategory(item);
+		}
+		else {
+			printTopicHeader(item);
+		}
+	} %>
+</aside>

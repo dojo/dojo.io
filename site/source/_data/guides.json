@@ -1,0 +1,183 @@
+{
+	"title": "Guide",
+	"icon": "fa fa-bookmark-o",
+	"group": "guides",
+	"contents": [
+		{ "title": "Fundamentals", "topics": [
+			{ "name": "Reactive Programming", "url": "/docs/fundamentals/reactive_programming/index.html" },
+			{ "name": "TypeScript and Dojo 2", "url": "/docs/fundamentals/typescript_and_dojo_2/index.html" },
+			{ "name": "Setting up a Dev Environment", "url": "/tutorials/1050_development_environment/" }
+		]},
+		{ "title": "Command Line Interface", "topics": [
+			{
+				"name": "CLI",
+				"type": "readme",
+				"url": "https://github.com/dojo/cli",
+				"latest": "rc",
+				"versions": {
+					"rc": { "branch": "master" }
+				}
+			},
+			{
+				"name": "cli-create-app",
+				"type": "readme",
+				"url": "https://github.com/dojo/cli-create-app",
+				"latest": "rc",
+				"versions": {
+					"rc": { "branch": "master" }
+				}
+			},
+			{
+				"name": "cli-create-widget",
+				"type": "readme",
+				"url": "https://github.com/dojo/cli-create-widget",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			},
+			{
+				"name": "cli-create-theme",
+				"type": "readme",
+				"url": "https://github.com/dojo/cli-create-theme",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			},
+			{
+				"name": "cli-build-app",
+				"type": "readme",
+				"url": "https://github.com/dojo/cli-build-app",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			}
+		] },
+		{ "title": "Widgets", "topics": [
+			{
+				"name": "widget-core",
+				"type": "readme",
+				"url": "https://github.com/dojo/widget-core",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			},
+			{
+				"name": "widgets",
+				"type": "readme",
+				"url": "https://github.com/dojo/widgets",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			}
+		] },
+		{
+			"name": "Routing",
+			"type": "readme",
+			"url": "https://github.com/dojo/routing",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		{
+			"name": "Stores",
+			"type": "readme",
+			"url": "https://github.com/dojo/stores",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		{
+			"name": "Interoperability",
+			"type": "readme",
+			"url": "https://github.com/dojo/interop",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		{
+			"name": "i18n",
+			"type": "readme",
+			"url": "https://github.com/dojo/i18n",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		{
+			"name": "Accessibility",
+			"type": "readme",
+			"url": "https://github.com/dojo/accessibility",
+			"latest": "rc",
+			"versions": {
+				"rc": {
+					"branch": "master"
+				}
+			}
+		},
+		{ "title": "Utilities", "topics": [
+			{
+				"name": "core",
+				"type": "readme",
+				"url": "https://github.com/dojo/core",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			},
+			{
+				"name": "loader",
+				"type": "readme",
+				"url": "https://github.com/dojo/loader",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			},
+			{
+				"name": "streams",
+				"type": "readme",
+				"url": "https://github.com/dojo/streams",
+				"latest": "rc",
+				"versions": {
+					"rc": {
+						"branch": "master"
+					}
+				}
+			}
+		] },
+		{ "title": "vDom", "topics": [
+			{ "name": "vDOM Abstractions", "url": "/docs/fundamentals/vdom_abstractions/index.html" },
+			{ "name": "Working with Virtual Dom", "url": "/docs/fundamentals/working_with_virtual_dom/index.html" }
+		] }
+	]
+}

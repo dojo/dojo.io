@@ -1,0 +1,237 @@
+{
+	"title": "API",
+	"icon": "fa fa-crosshairs",
+	"group": "api",
+	"contents": [
+		{
+			"title": "Dojo",
+			"topics": [
+				{
+					"name": "core",
+					"type": "api",
+					"url": "https://github.com/dojo/core",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "has",
+					"type": "api",
+					"url": "https://github.com/dojo/has",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "interfaces",
+					"type": "api",
+					"url": "https://github.com/dojo/interfaces",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "interop",
+					"type": "api",
+					"url": "https://github.com/dojo/interop",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "i18n",
+					"type": "api",
+					"url": "https://github.com/dojo/i18n",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "loader",
+					"type": "api",
+					"url": "https://github.com/dojo/loader",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "routing",
+					"type": "api",
+					"url": "https://github.com/dojo/routing",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "shim",
+					"type": "api",
+					"url": "https://github.com/dojo/shim",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "stores",
+					"type": "api",
+					"url": "https://github.com/dojo/stores",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "streams",
+					"type": "api",
+					"url": "https://github.com/dojo/streams",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "widget-core",
+					"type": "api",
+					"url": "https://github.com/dojo/widget-core",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "widgets",
+					"type": "api",
+					"url": "https://github.com/dojo/widgets",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				}
+			]
+		},
+		{
+			"title": "CLI",
+			"topics": [
+				{
+					"name": "cli",
+					"type": "api",
+					"url": "https://github.com/dojo/cli",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "build-app",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-build-app",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "build-webpack",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-build-webpack",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "create-app",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-create-app",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "create-theme",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-create-theme",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "create-widget",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-create-widget",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "export-project",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-export-project",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				},
+				{
+					"name": "test-intern",
+					"type": "api",
+					"url": "https://github.com/dojo/cli-test-intern",
+					"latest": "rc",
+					"versions": {
+						"rc": {
+							"branch": "master"
+						}
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,15 +1,11 @@
-<nav class="leftnav">
-	<ul>
-		<li><a href="/start"><i class="fa fa-compass" aria-hidden="true"></i>Start</a></li>
-		<li><a href="/tutorials"><i class="fa fa-map-o" aria-hidden="true"></i>Tutorials</a></li>
-		<li><a href="/guide"><i class="fa fa-bookmark-o" aria-hidden="true"></i>Guide</a></li>
-		<li><a href="/api"><i class="fa fa-crosshairs" aria-hidden="true"></i>API</a></li>
-	</ul>
-</nav>
+<%- partial('_partial/docs-nav') %>
+<%- partial('_partial/table-of-contents', { src: "start" }) %>
+<%- partial('_partial/table-of-contents', { src: "tutorials" }) %>
+<%- partial('_partial/table-of-contents', { src: "guides" }) %>
+<%- partial('_partial/table-of-contents', { src: "api" }) %>
 <section class="section">
 	<div class="container">
 		<div class="columns">
-			<div class="toc"><!-- TODO replaces _partial/docs-nav. Fill w/ data from JSON files --></div>
 			<div class="column is-9 article">
 				<%- page.content %>
 			</div>

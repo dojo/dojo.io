@@ -1,0 +1,16 @@
+{
+	"title": "Tutorials",
+	"icon": "fa fa-compass",
+	"group": "tutorials",
+	"contents": [
+		{ "title": "Beginning Dojo", "topics": [
+			{ "title": "Installing Dojo 2", "url": "https://dojo.io/tutorials/000_local_installation/" },
+			{ "title": "Your first Dojo 2 App", "url": "https://dojo.io/tutorials/001_static_content/" },
+			{ "title": "Components of a Dojo 2 Application", "url": "https://dojo.io/tutorials/002_creating_an_application/" },
+			{ "title": "Creating Widgets", "url": "https://dojo.io/tutorials/003_creating_widgets/" },
+			{ "title": "Responding to Events", "url": "https://dojo.io/tutorials/004_user_interactions/" },
+			{ "title": "Form Widgets", "url": "https://dojo.io/tutorials/005_form_widgets/" },
+			{ "title": "Deploying to Production", "url": "https://dojo.io/tutorials/006_deploying_to_production/" }
+		]}
+	]
+}
