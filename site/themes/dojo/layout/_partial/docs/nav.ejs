@@ -1,0 +1,19 @@
+<% /*
+	Left menu bar for Docs
+
+	format
+	=============================================
+	[
+	]
+*/
+const docs = site.data.docs;
+%>
+<nav class="leftnav">
+	<ul>
+		<% for (let doc of docs) {
+			const classes = locals.active === doc.group ? 'is-active-group' : '';
+		%>
+			<li class='<%- classes %>' data-group="<%- doc.group %>"><a href="<%- doc.url %>"><i class="<%- doc.icon %>" aria-hidden="true"></i><%- doc.title %></a></li>
+		<% } %>
+	</ul>
+</nav>

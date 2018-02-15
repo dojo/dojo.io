@@ -9,8 +9,8 @@ import {
 	getDocSet,
 	getCurrentDocSetId,
 	getProjectUrl
-} from './docs';
-import { createHash } from './hash';
+} from '../docs';
+import { createHash } from '../hash';
 
 hljs.registerLanguage(
 	'html',

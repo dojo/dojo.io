@@ -1,26 +1,20 @@
 [
 	{
-		"title": "Start",
-		"icon": "fa fa-compass",
-		"group": "start",
-		"url": "#start"
-	},
-	{
 		"title": "Tutorials",
 		"icon": "fa fa-map-o",
 		"group": "tutorials",
-		"url": "#tutorials"
+		"url": "/tutorials"
 	},
 	{
 		"title": "Guide",
 		"icon": "fa fa-bookmark-o",
 		"group": "guide",
-		"url": "#guide"
+		"url": "/guide"
 	},
 	{
 		"title": "API",
 		"icon": "fa fa-crosshairs",
 		"group": "api",
-		"url": "#api"
+		"url": "/api"
 	}
 ]

@@ -2,7 +2,7 @@ import * as h from 'hyperscript';
 import * as Mark from 'mark.js';
 
 import { DocType, getDocSet, getCurrentDocSetId } from './docs';
-import { createLinkItem } from './render';
+import { createLinkItem } from './renderer/markdown';
 
 const maxSnippetLength = 60;
 const minSearchTermLength = 4;

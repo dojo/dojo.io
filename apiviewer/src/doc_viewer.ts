@@ -23,8 +23,8 @@ import {
 	getNextVersion,
 	getProjectLogo
 } from './docs';
-import { renderApiPages } from './render_api';
-import { renderMenu, renderDocPage } from './render';
+import { renderApiPages } from './renderer/api';
+import { renderMenu, renderDocPage } from './renderer/markdown';
 import { createHash, parseHash, updateHash, HashEvent } from './hash';
 import search from './search';
 import {place, queryExpected} from './dom';

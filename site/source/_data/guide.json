@@ -11,168 +11,67 @@
 		{ "title": "Command Line Interface", "topics": [
 			{
 				"name": "CLI",
-				"type": "readme",
-				"url": "https://github.com/dojo/cli",
-				"latest": "rc",
-				"versions": {
-					"rc": { "branch": "master" }
-				}
+				"url": "/guide/#cli/rc/docs"
 			},
 			{
 				"name": "cli-create-app",
-				"type": "readme",
-				"url": "https://github.com/dojo/cli-create-app",
-				"latest": "rc",
-				"versions": {
-					"rc": { "branch": "master" }
-				}
+				"url": "/guide/#cli-create-app/rc/docs"
 			},
 			{
 				"name": "cli-create-widget",
-				"type": "readme",
-				"url": "https://github.com/dojo/cli-create-widget",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#cli-create-widget/rc/docs"
 			},
 			{
 				"name": "cli-create-theme",
-				"type": "readme",
-				"url": "https://github.com/dojo/cli-create-theme",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#cli-create-theme/rc/docs"
 			},
 			{
 				"name": "cli-build-app",
-				"type": "readme",
-				"url": "https://github.com/dojo/cli-build-app",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#cli-build-app/rc/docs"
 			}
 		] },
 		{ "title": "Widgets", "topics": [
 			{
 				"name": "widget-core",
-				"type": "readme",
-				"url": "https://github.com/dojo/widget-core",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#widget-core/rc/docs"
 			},
 			{
 				"name": "widgets",
-				"type": "readme",
-				"url": "https://github.com/dojo/widgets",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#widgets/rc/docs"
 			}
 		] },
 		{
 			"name": "Routing",
-			"type": "readme",
-			"url": "https://github.com/dojo/routing",
-			"latest": "rc",
-			"versions": {
-				"rc": {
-					"branch": "master"
-				}
-			}
+			"url": "/guide/#routing/rc/docs"
 		},
 		{
 			"name": "Stores",
-			"type": "readme",
-			"url": "https://github.com/dojo/stores",
-			"latest": "rc",
-			"versions": {
-				"rc": {
-					"branch": "master"
-				}
-			}
+			"url": "/guide/#stores/rc/docs"
 		},
 		{
 			"name": "Interoperability",
-			"type": "readme",
-			"url": "https://github.com/dojo/interop",
-			"latest": "rc",
-			"versions": {
-				"rc": {
-					"branch": "master"
-				}
-			}
+			"url": "/guide/#interop/rc/docs"
 		},
 		{
 			"name": "i18n",
-			"type": "readme",
-			"url": "https://github.com/dojo/i18n",
-			"latest": "rc",
-			"versions": {
-				"rc": {
-					"branch": "master"
-				}
-			}
+			"url": "/guide/#i18n/rc/docs"
 		},
 		{
 			"name": "Accessibility",
-			"type": "readme",
-			"url": "https://github.com/dojo/accessibility",
-			"latest": "rc",
-			"versions": {
-				"rc": {
-					"branch": "master"
-				}
-			}
+			"url": "/guide/#accessibility/rc/docs"
 		},
 		{ "title": "Utilities", "topics": [
 			{
 				"name": "core",
-				"type": "readme",
-				"url": "https://github.com/dojo/core",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#core/rc/docs"
 			},
 			{
 				"name": "loader",
-				"type": "readme",
-				"url": "https://github.com/dojo/loader",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#loader/rc/docs"
 			},
 			{
 				"name": "streams",
-				"type": "readme",
-				"url": "https://github.com/dojo/streams",
-				"latest": "rc",
-				"versions": {
-					"rc": {
-						"branch": "master"
-					}
-				}
+				"url": "/guide/#streams/rc/docs"
 			}
 		] },
 		{ "title": "vDom", "topics": [

@@ -1,0 +1,137 @@
+{
+	"core": {
+		"url": "https://github.com/devpaul/core",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "api"
+			}
+		}
+	},
+	"cli": {
+		"url": "https://github.com/dojo/cli",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"cli-create-app": {
+		"url": "https://github.com/dojo/cli-create-app",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"cli-create-widget": {
+		"url": "https://github.com/dojo/cli-create-widget",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"cli-create-theme": {
+		"url": "https://github.com/dojo/cli-create-theme",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"cli-build-app": {
+		"url": "https://github.com/dojo/cli-build-app",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"widget-core": {
+		"url": "https://github.com/dojo/widget-core",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"widgets": {
+		"url": "https://github.com/dojo/widgets",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"routing": {
+		"url": "https://github.com/dojo/routing",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"stores": {
+		"url": "https://github.com/dojo/stores",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"interop": {
+		"url": "https://github.com/dojo/interop",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"i18n": {
+		"url": "https://github.com/dojo/i18n",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"accessibility": {
+		"url": "https://github.com/dojo/accessibility",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"loader": {
+		"url": "https://github.com/dojo/loader",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	},
+	"streams": {
+		"url": "https://github.com/dojo/streams",
+		"latest": "rc",
+		"versions": {
+			"rc": {
+				"branch": "master"
+			}
+		}
+	}
+}

@@ -230,8 +230,8 @@ var tslib_1 = __webpack_require__(2);
 var PromisePolyfill = __webpack_require__(24);
 var h = __webpack_require__(3);
 var docs_1 = __webpack_require__(1);
-var render_api_1 = __webpack_require__(32);
-var render_1 = __webpack_require__(6);
+var api_1 = __webpack_require__(32);
+var markdown_1 = __webpack_require__(6);
 var hash_1 = __webpack_require__(4);
 var search_1 = __webpack_require__(91);
 var dom_1 = __webpack_require__(93);
@@ -376,7 +376,7 @@ function loadDocSet(id) {
                 .then(function (response) { return response.text(); })
                 .then(function (text) { return renderPage(text, name, id); });
         })).then(function () {
-            docSet.menu = render_1.renderMenu(id, docs_1.DocType.docs);
+            docSet.menu = markdown_1.renderMenu(id, docs_1.DocType.docs);
         });
         if (docSet.api) {
             docSet.apiReady = fetch(docBase + docSet.api)
@@ -384,15 +384,15 @@ function loadDocSet(id) {
                 return response.json();
             })
                 .then(function (data) {
-                render_api_1.renderApiPages(id, data);
-                docSet.apiMenu = render_1.renderMenu(id, docs_1.DocType.api, 4);
+                api_1.renderApiPages(id, data);
+                docSet.apiMenu = markdown_1.renderMenu(id, docs_1.DocType.api, 4);
             });
         }
         return docSet;
     });
     function renderPage(text, name, id, logo) {
         return ready.then(function () {
-            var element = render_1.renderDocPage(text, name, id);
+            var element = markdown_1.renderDocPage(text, name, id);
             var h1 = element.querySelector('h1');
             var title = (h1 && h1.textContent) || id.project;
             if (logo && h1) {
@@ -739,7 +739,7 @@ var h = __webpack_require__(3);
 var hljs = __webpack_require__(10);
 var docs_1 = __webpack_require__(1);
 var hash_1 = __webpack_require__(4);
-var render_1 = __webpack_require__(6);
+var markdown_1 = __webpack_require__(6);
 var preferredSignatureWidth = 60;
 hljs.registerLanguage('typescript', __webpack_require__(20));
 hljs.registerLanguage('javascript', __webpack_require__(19));
@@ -758,7 +758,7 @@ function renderApiPages(docSetId, data) {
         if (getExports(module_1).length === 0 && !hasComment(module_1)) {
             continue;
         }
-        var renderHeading = getHeadingRenderer(render_1.createSlugifier());
+        var renderHeading = getHeadingRenderer(markdown_1.createSlugifier());
         var name_1 = module_1.name.replace(/^"/, '').replace(/"$/, '');
         pages.push(name_1);
         pageIndex[module_1.id] = name_1;
@@ -1175,7 +1175,7 @@ function renderText(text, pageName) {
             return "[" + name + "](api:" + p1 + ")";
         }
     });
-    return render_1.renderMarkdown(text, {
+    return markdown_1.renderMarkdown(text, {
         info: { page: pageName, type: docs_1.DocType.api }
     });
 }
@@ -1191,7 +1191,7 @@ function createSourceLink(source, context) {
     if (source.fileName[0] === '/') {
         return;
     }
-    var link = render_1.createGitHubLink({
+    var link = markdown_1.createGitHubLink({
         project: context.docSetId.project,
         version: context.docSetId.version
     }, "src/" + source.fileName + "#L" + source.line);
@@ -1430,7 +1430,7 @@ function getHeadingRenderer(slugify) {
             sourceLink = createSourceLink(content.sources[0], context);
         }
         if (sourceLink) {
-            var icons = render_1.addHeadingIcons(heading);
+            var icons = markdown_1.addHeadingIcons(heading);
             icons.appendChild(sourceLink);
         }
         context.page.element.appendChild(heading);
@@ -2047,7 +2047,7 @@ var tslib_1 = __webpack_require__(2);
 var h = __webpack_require__(3);
 var Mark = __webpack_require__(92);
 var docs_1 = __webpack_require__(1);
-var render_1 = __webpack_require__(6);
+var markdown_1 = __webpack_require__(6);
 var maxSnippetLength = 60;
 var minSearchTermLength = 4;
 function search(term, docType, results) {
@@ -2069,9 +2069,9 @@ function search(term, docType, results) {
         var page = cache[name_1];
         finders.push(findAllMatches(searchTerm, page.element).then(function (matches) {
             if (matches.length > 0) {
-                var link = render_1.createLinkItem(page.title, tslib_1.__assign({ page: name_1, type: docType }, docSetId));
+                var link = markdown_1.createLinkItem(page.title, tslib_1.__assign({ page: name_1, type: docType }, docSetId));
                 var submenu = h('ul', {}, matches.map(function (match) {
-                    return render_1.createLinkItem(match.snippet, tslib_1.__assign({ type: docType, page: name_1, section: match.section }, docSetId));
+                    return markdown_1.createLinkItem(match.snippet, tslib_1.__assign({ type: docType, page: name_1, section: match.section }, docSetId));
                 }));
                 link.appendChild(submenu);
                 searchResults.appendChild(link);

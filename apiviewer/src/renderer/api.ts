@@ -19,15 +19,15 @@ import { UnknownType } from 'typedoc/dist/lib/models/types/unknown';
 import * as h from 'hyperscript';
 import * as hljs from 'highlight.js';
 
-import { DocSetId, DocPage, DocType, getDocSet } from './docs';
-import { createHash } from './hash';
+import { DocSetId, DocPage, DocType, getDocSet } from '../docs';
+import { createHash } from '../hash';
 import {
 	addHeadingIcons,
 	createGitHubLink,
 	createSlugifier,
 	renderMarkdown,
 	Slugifier
-} from './render';
+} from './markdown';
 
 const preferredSignatureWidth = 60;
 
