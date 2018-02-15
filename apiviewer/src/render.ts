@@ -336,7 +336,7 @@ export function renderMenu(id: DocSetId, type: DocType, maxDepth = 3) {
 		}
 
 		const headings = page.element.querySelectorAll(headingTags.join(','))!;
-		const stack: MenuNode[][] = <MenuNode[][]>[[root]];
+		const stack: MenuNode[][] = <MenuNode[][]> [[root]];
 		let children: MenuNode[];
 
 		for (let i = 0; i < headings.length; i++) {
@@ -429,7 +429,7 @@ function renderSubMenu(children: MenuNode[], pageId: PageId) {
  */
 function createNode(heading: Element) {
 	const level = parseInt(heading.tagName.slice(1), 10);
-	return { level, element: heading, children: <MenuNode[]>[] };
+	return { level, element: heading, children: <MenuNode[]> [] };
 }
 
 /**

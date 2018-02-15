@@ -28,9 +28,9 @@ import { renderMenu, renderDocPage } from './render';
 import { createHash, parseHash, updateHash, HashEvent } from './hash';
 import search from './search';
 
-const global = <any>window;
+const global = <any> window;
 if (!global.Promise) {
-	global.Promise = <typeof Promise>(<any>PromisePolyfill);
+	global.Promise = <typeof Promise> (<any> PromisePolyfill);
 }
 
 let viewer: HTMLElement;
@@ -65,19 +65,19 @@ const ready = new Promise(resolve => {
 });
 
 ready.then(() => {
-	viewer = <HTMLElement>document.querySelector('.page-docs');
-	content = <HTMLElement>document.querySelector('.docs-content');
-	messageModal = <HTMLElement>document.querySelector('.message-modal')!;
-	searchPanel = <HTMLElement>document.querySelector('.search-panel')!;
+	viewer = <HTMLElement> document.querySelector('.page-docs');
+	content = <HTMLElement> document.querySelector('.docs-content');
+	messageModal = <HTMLElement> document.querySelector('.message-modal')!;
+	searchPanel = <HTMLElement> document.querySelector('.search-panel')!;
 
 	// Handle updates to the project + version selects.
 	document.querySelector('.docs-nav')!.addEventListener('change', event => {
-		const target: Element = <Element>event.target;
+		const target: Element = <Element> event.target;
 		if (target.tagName !== 'SELECT') {
 			return;
 		}
 
-		const select = <HTMLSelectElement>target;
+		const select = <HTMLSelectElement> target;
 		const docSetId = getCurrentDocSetId();
 
 		if (target.getAttribute('data-select-property') === 'project') {
@@ -95,7 +95,7 @@ ready.then(() => {
 
 	// Open the search dropdown if the user clicks a search button
 	document.querySelector('.docs-nav')!.addEventListener('click', event => {
-		let target = <HTMLElement>event.target;
+		let target = <HTMLElement> event.target;
 
 		if (target.classList.contains('fa')) {
 			// An icon was clicked, get its parent
@@ -122,18 +122,18 @@ ready.then(() => {
 		if (searchTimer) {
 			clearTimeout(searchTimer);
 		}
-		searchTimer = <any>setTimeout(() => {
+		searchTimer = <any> setTimeout(() => {
 			const results = searchPanel.querySelector('.search-results')!;
-			const docType = <DocType>viewer.getAttribute('data-doc-type')!;
-			search((<HTMLInputElement>event.target).value, docType, results);
+			const docType = <DocType> viewer.getAttribute('data-doc-type')!;
+			search((<HTMLInputElement> event.target).value, docType, results);
 		}, searchDelay);
 	});
 
 	// Clear the search field when the user clicks the 'x' in the search box
 	searchPanel.querySelector('.button')!.addEventListener('click', () => {
 		const results = searchPanel.querySelector('.search-results')!;
-		const docType = <DocType>viewer.getAttribute('data-doc-type')!;
-		const input = <HTMLInputElement>searchPanel.querySelector('input');
+		const docType = <DocType> viewer.getAttribute('data-doc-type')!;
+		const input = <HTMLInputElement> searchPanel.querySelector('input');
 		input.value = '';
 		search('', docType, results);
 		searchPanel.querySelector('input')!.focus();
@@ -150,7 +150,7 @@ ready.then(() => {
 		if (menuTimer) {
 			clearTimeout(menuTimer);
 		}
-		menuTimer = <any>setTimeout(() => {
+		menuTimer = <any> setTimeout(() => {
 			menuTimer = undefined;
 			updateHashFromContent();
 		}, menuHighlightDelay);
@@ -181,7 +181,7 @@ function loadDocSet(id: DocSetId): Promise<DocSet> {
 	const docBase = getDocBaseUrl(id);
 	const cache = (docSet.pageCache = <{
 		[name: string]: DocPage;
-	}>Object.create(null));
+	}> Object.create(null));
 
 	return fetch(`${docBase}README.md`)
 		.then(response => response.text())
@@ -196,14 +196,14 @@ function loadDocSet(id: DocSetId): Promise<DocSet> {
 				const start = readme.indexOf('{', index);
 				const end = readme.indexOf('-->', index);
 				const data = readme.slice(start, end).trim();
-				return <DocSet>JSON.parse(data);
+				return <DocSet> JSON.parse(data);
 			}
 			return null;
 		})
 		.then(config => {
 			if (config) {
 				for (const key of Object.keys(config)) {
-					const prop = <keyof DocSet>key;
+					const prop = <keyof DocSet> key;
 					docSet[prop] = config[prop];
 				}
 			}
@@ -260,18 +260,18 @@ function loadDocSet(id: DocSetId): Promise<DocSet> {
  */
 function updateNavBarLinks(id: DocSetId) {
 	const docSet = getDocSet(id);
-	const navbar = <HTMLElement>document.querySelector(
+	const navbar = <HTMLElement> document.querySelector(
 		'.docs-nav .navbar-start'
 	);
 
 	navbar.classList[docSet.api ? 'add' : 'remove']('has-api');
 	navbar.classList[docSet.pages ? 'add' : 'remove']('has-docs');
 
-	const docTypes = <DocType[]>Object.keys(DocType).filter(
+	const docTypes = <DocType[]> Object.keys(DocType).filter(
 		type => !Number(type)
 	);
 	for (const type of docTypes) {
-		const link = <HTMLLinkElement>navbar.querySelector(
+		const link = <HTMLLinkElement> navbar.querySelector(
 			`.navbar-item[data-doc-type="${type}"]`
 		)!;
 		link.href = createHash({
@@ -298,7 +298,7 @@ function updateDocsetSelector() {
 		}
 	}
 
-	const option = <HTMLOptionElement>selector.querySelector(
+	const option = <HTMLOptionElement> selector.querySelector(
 		`option[value="${getCurrentPageId().project}"]`
 	);
 	if (option) {
@@ -342,7 +342,7 @@ function updateDocsetSelector() {
 function showPage(type: DocType, name: string, section?: string) {
 	const docSet = getDocSet(getCurrentDocSetId());
 	const page = getPage(docSet, type, name);
-	const content = <HTMLElement>document.body.querySelector('.docs-content')!;
+	const content = <HTMLElement> document.body.querySelector('.docs-content')!;
 	if (content.children.length > 0) {
 		content.removeChild(content.children[0]);
 	}
@@ -360,7 +360,7 @@ function showPage(type: DocType, name: string, section?: string) {
 	ignoreScroll = true;
 
 	if (section) {
-		const header = <HTMLElement>document.querySelector(`#${section}`);
+		const header = <HTMLElement> document.querySelector(`#${section}`);
 		if (header) {
 			header.scrollIntoView();
 		}
@@ -417,7 +417,7 @@ function highlightActiveSection() {
 	}
 
 	const currentSection = location.hash;
-	let link = <HTMLElement>menu.querySelector(
+	let link = <HTMLElement> menu.querySelector(
 		`li > a[href="${currentSection}"]`
 	)!;
 	if (!link) {
@@ -429,7 +429,7 @@ function highlightActiveSection() {
 				type: docs.type,
 				page: docs.page
 			});
-			link = <HTMLElement>menu.querySelector(
+			link = <HTMLElement> menu.querySelector(
 				`li > a[href="${currentPage}"]`
 			)!;
 		} catch (error) {
@@ -439,7 +439,7 @@ function highlightActiveSection() {
 
 	if (link) {
 		link.classList.add('is-active');
-		scrollIntoViewIfNessary(link, <HTMLElement>document.querySelector(
+		scrollIntoViewIfNessary(link, <HTMLElement> document.querySelector(
 			'.docs-menu'
 		)!);
 	}
@@ -559,7 +559,7 @@ function processHash() {
 			h('span', {}, [
 				'The URL hash ',
 				h('code', {}, location.hash),
-				" isn't valid. Click ",
+				` isn't valid. Click `,
 				h('a', { href: `${newHash || '#'}` }, 'here'),
 				' to open the default doc set.'
 			]),
@@ -595,7 +595,7 @@ function hideMessage() {
  * Update the hrefs for the navbar GitHub buttons
  */
 function updateGitHubButtons(docs: DocSetId) {
-	const links = <NodeListOf<HTMLAnchorElement>>document.querySelectorAll(
+	const links = <NodeListOf<HTMLAnchorElement>> document.querySelectorAll(
 		'.github-button'
 	);
 	const url = getDocVersionUrl(docs);
@@ -628,10 +628,10 @@ function updateHashFromContent() {
 	const pageHash = createHash(pageId);
 
 	if (pageHash !== scrollState.pageHash) {
-		const content = <HTMLElement>document.querySelector('.docs-content')!;
+		const content = <HTMLElement> document.querySelector('.docs-content')!;
 		const menu = document.querySelector('.docs-menu .menu-list');
-		const depth = <number>(<any>menu).menuDepth || 3;
-		const tags = <string[]>[];
+		const depth = <number> (<any> menu).menuDepth || 3;
+		const tags: string[] = [];
 		for (let i = 1; i < depth; i++) {
 			tags.push(`h${i + 1}`);
 		}
@@ -645,7 +645,7 @@ function updateHashFromContent() {
 	let above: Element | undefined;
 	let below: Element | undefined;
 	for (let i = 1; i < headings.length; i++) {
-		const heading = <HTMLElement>headings[i];
+		const heading = <HTMLElement> headings[i];
 		const headingTop = getOffsetTop(heading);
 		if (headingTop > viewportTop) {
 			below = headings[i];
@@ -662,7 +662,7 @@ function updateHashFromContent() {
 		{
 			project: pageId.project,
 			version: pageId.version,
-			type: <DocType>viewer.getAttribute('data-doc-type')!,
+			type: <DocType> viewer.getAttribute('data-doc-type')!,
 			page: pageId.page,
 			section: above.id
 		},
@@ -674,7 +674,7 @@ function updateHashFromContent() {
 	function getOffsetTop(element: HTMLElement) {
 		let top = element.offsetTop;
 		while (
-			(element = <HTMLElement>element.offsetParent) &&
+			(element = <HTMLElement> element.offsetParent) &&
 			element !== content
 		) {
 			top += element.offsetTop;

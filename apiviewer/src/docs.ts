@@ -245,7 +245,7 @@ export function isValidPageId(id: Partial<PageId>): id is PageId {
 		return false;
 	}
 
-	const { type, page } = <Partial<PageId>>id;
+	const { type, page } = <Partial<PageId>> id;
 
 	if (!type || !(type in DocType)) {
 		return false;

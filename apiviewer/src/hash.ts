@@ -26,7 +26,7 @@ export function parseHash() {
 	let [project, version, type, page, section] = hash
 		.split('/')
 		.map(part => decodeURIComponent(part));
-	return <PageId>{ project, version, type, page, section };
+	return <PageId> { project, version, type, page, section };
 }
 
 /**
