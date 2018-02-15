@@ -7,7 +7,8 @@
   },
   "private": true,
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "tslint -p ."
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   },
   "homepage": "https://dojo.io",
   "devDependencies": {
-    "tslint-sitepen": "^0.1.0",
+    "tslint": "^5.9.1",
+    "tslint-sitepen": "^5.0.0",
     "typescript": "~2.4.2",
     "webpack": "^3.5.5"
   },
