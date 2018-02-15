@@ -1,7 +1,7 @@
 {
 	"title": "Guide",
 	"icon": "fa fa-bookmark-o",
-	"group": "guides",
+	"group": "guide",
 	"contents": [
 		{ "title": "Fundamentals", "topics": [
 			{ "name": "Reactive Programming", "url": "/docs/fundamentals/reactive_programming/index.html" },

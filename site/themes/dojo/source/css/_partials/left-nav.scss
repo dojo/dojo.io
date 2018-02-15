@@ -10,6 +10,10 @@
 	margin: 0;
 	padding: 0;
 
+	.is-active-group {
+		border: 1px solid black;
+	}
+
 	ul {
 		list-style: none;
 		margin: 0;

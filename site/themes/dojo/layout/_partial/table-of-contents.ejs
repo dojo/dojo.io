@@ -16,7 +16,8 @@
 const source = locals.src;
 const data = site.data[source];
 const groupName = data.group || locals.src;
-const visibility = locals.visible ? '' : 'hidden';
+const section = page.path.split('/')[0];
+const visibility = locals.visible || section === groupName ? '' : 'hidden';
 %>
 <aside class="menu <%- visibility %>" data-group-name="<%- groupName %>">
 	<%

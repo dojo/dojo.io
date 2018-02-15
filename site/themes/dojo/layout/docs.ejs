@@ -1,13 +1,16 @@
 <%- partial('_partial/docs-nav') %>
 <%- partial('_partial/table-of-contents', { src: "start" }) %>
 <%- partial('_partial/table-of-contents', { src: "tutorials" }) %>
-<%- partial('_partial/table-of-contents', { src: "guides" }) %>
+<%- partial('_partial/table-of-contents', { src: "guide" }) %>
 <%- partial('_partial/table-of-contents', { src: "api" }) %>
 <section class="section">
 	<div class="container">
 		<div class="columns">
 			<div class="column is-9 article">
 				<%- page.content %>
+				<div class="content">
+					<div class="docs-content"></div>
+				</div>
 			</div>
 		</div>
 	</div>

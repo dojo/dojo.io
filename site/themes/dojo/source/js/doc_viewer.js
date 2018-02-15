@@ -234,6 +234,7 @@ var render_api_1 = __webpack_require__(32);
 var render_1 = __webpack_require__(6);
 var hash_1 = __webpack_require__(4);
 var search_1 = __webpack_require__(91);
+var dom_1 = __webpack_require__(93);
 var global = window;
 if (!global.Promise) {
     global.Promise = PromisePolyfill;
@@ -255,79 +256,85 @@ var ready = new Promise(function (resolve) {
     window.addEventListener('load', resolve);
 });
 ready.then(function () {
-    viewer = document.querySelector('.page-docs');
-    content = document.querySelector('.docs-content');
-    messageModal = document.querySelector('.message-modal');
-    searchPanel = document.querySelector('.search-panel');
-    document.querySelector('.docs-nav').addEventListener('change', function (event) {
-        var target = event.target;
-        if (target.tagName !== 'SELECT') {
-            return;
-        }
-        var select = target;
-        var docSetId = docs_1.getCurrentDocSetId();
-        if (target.getAttribute('data-select-property') === 'project') {
-            docSetId.project = select.value;
-            docSetId.version = docs_1.getLatestVersion(select.value);
-        }
-        else {
-            docSetId.version = select.value;
-        }
-        hash_1.updateHash(tslib_1.__assign({}, docSetId, { type: docs_1.DocType.docs, page: 'README.md' }));
-        processHash();
-    });
-    document.querySelector('.docs-nav').addEventListener('click', function (event) {
-        var target = event.target;
-        if (target.classList.contains('fa')) {
-            target = target.parentElement;
-        }
-        if (target.classList.contains('search-button')) {
-            target.classList.toggle('is-active');
-            viewer.classList.toggle('is-searching');
-            if (viewer.classList.contains('is-searching')) {
-                searchPanel.querySelector('input').focus();
+    viewer = dom_1.queryExpected('.page-docs');
+    content = dom_1.queryExpected('.docs-content');
+    messageModal = dom_1.queryExpected('.message-modal');
+    searchPanel = dom_1.queryExpected('.search-panel');
+    dom_1.place(dom_1.queryExpected('.docs-nav'), function (docsNavNode) {
+        docsNavNode.addEventListener('change', function (event) {
+            var target = event.target;
+            if (target.tagName !== 'SELECT') {
+                return;
             }
-        }
-        else if (target.classList.contains('navbar-burger')) {
-            var menuId = target.getAttribute('data-target');
-            var menu = document.getElementById(menuId);
-            target.classList.toggle('is-active');
-            menu.classList.toggle('is-active');
-        }
+            var select = target;
+            var docSetId = docs_1.getCurrentDocSetId();
+            if (target.getAttribute('data-select-property') === 'project') {
+                docSetId.project = select.value;
+                docSetId.version = docs_1.getLatestVersion(select.value);
+            }
+            else {
+                docSetId.version = select.value;
+            }
+            hash_1.updateHash(tslib_1.__assign({}, docSetId, { type: docs_1.DocType.docs, page: 'README.md' }));
+            processHash();
+        });
+        docsNavNode.addEventListener('click', function (event) {
+            var target = event.target;
+            if (target.classList.contains('fa')) {
+                target = target.parentElement;
+            }
+            if (target.classList.contains('search-button')) {
+                target.classList.toggle('is-active');
+                viewer.classList.toggle('is-searching');
+                if (viewer.classList.contains('is-searching')) {
+                    searchPanel.querySelector('input').focus();
+                }
+            }
+            else if (target.classList.contains('navbar-burger')) {
+                var menuId = target.getAttribute('data-target');
+                var menu = document.getElementById(menuId);
+                target.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            }
+        });
     });
-    var searchTimer;
-    searchPanel.addEventListener('input', function (event) {
-        if (searchTimer) {
-            clearTimeout(searchTimer);
-        }
-        searchTimer = setTimeout(function () {
+    dom_1.place(searchPanel, function (searchPanel) {
+        var searchTimer;
+        searchPanel.addEventListener('input', function (event) {
+            if (searchTimer) {
+                clearTimeout(searchTimer);
+            }
+            searchTimer = setTimeout(function () {
+                var results = dom_1.queryExpected('.search-results', searchPanel);
+                var docType = viewer.getAttribute('data-doc-type');
+                search_1.default(event.target.value, docType, results);
+            }, searchDelay);
+        });
+        searchPanel.querySelector('.button').addEventListener('click', function () {
             var results = searchPanel.querySelector('.search-results');
             var docType = viewer.getAttribute('data-doc-type');
-            search_1.default(event.target.value, docType, results);
-        }, searchDelay);
+            var input = searchPanel.querySelector('input');
+            input.value = '';
+            search_1.default('', docType, results);
+            searchPanel.querySelector('input').focus();
+        });
     });
-    searchPanel.querySelector('.button').addEventListener('click', function () {
-        var results = searchPanel.querySelector('.search-results');
-        var docType = viewer.getAttribute('data-doc-type');
-        var input = searchPanel.querySelector('input');
-        input.value = '';
-        search_1.default('', docType, results);
-        searchPanel.querySelector('input').focus();
-    });
-    var menuTimer;
-    content.addEventListener('scroll', function () {
-        var ignoring = ignoreScroll;
-        ignoreScroll = false;
-        if (ignoring) {
-            return;
-        }
-        if (menuTimer) {
-            clearTimeout(menuTimer);
-        }
-        menuTimer = setTimeout(function () {
-            menuTimer = undefined;
-            updateHashFromContent();
-        }, menuHighlightDelay);
+    dom_1.place(content, function (content) {
+        var menuTimer;
+        content.addEventListener('scroll', function () {
+            var ignoring = ignoreScroll;
+            ignoreScroll = false;
+            if (ignoring) {
+                return;
+            }
+            if (menuTimer) {
+                clearTimeout(menuTimer);
+            }
+            menuTimer = setTimeout(function () {
+                menuTimer = undefined;
+                updateHashFromContent();
+            }, menuHighlightDelay);
+        });
     });
     processHash();
 });
@@ -452,23 +459,24 @@ function updateDocsetSelector() {
 function showPage(type, name, section) {
     var docSet = docs_1.getDocSet(docs_1.getCurrentDocSetId());
     var page = getPage(docSet, type, name);
-    var content = document.body.querySelector('.docs-content');
-    if (content.children.length > 0) {
-        content.removeChild(content.children[0]);
-    }
-    content.appendChild(page.element);
-    highlightActivePage();
-    highlightActiveSection();
-    ignoreScroll = true;
-    if (section) {
-        var header = document.querySelector("#" + section);
-        if (header) {
-            header.scrollIntoView();
+    dom_1.place(dom_1.queryExpected('.docs-content', document.body), function (content) {
+        if (content.children.length > 0) {
+            content.removeChild(content.children[0]);
         }
-    }
-    else {
-        content.scrollTop = 0;
-    }
+        content.appendChild(page.element);
+        highlightActivePage();
+        highlightActiveSection();
+        ignoreScroll = true;
+        if (section) {
+            var header = document.querySelector("#" + section);
+            if (header) {
+                header.scrollIntoView();
+            }
+        }
+        else {
+            content.scrollTop = 0;
+        }
+    });
 }
 function getPage(docSet, type, name) {
     if (!name) {
@@ -525,13 +533,15 @@ function highlightActiveSection() {
 function showMenu(type) {
     type = type || docs_1.DocType.docs;
     var docSet = docs_1.getDocSet(docs_1.getCurrentDocSetId());
-    var menu = document.querySelector('.docs-menu .menu');
-    var menuList = menu.querySelector('.menu-list');
-    if (menuList) {
-        menu.removeChild(menuList);
-    }
-    var docMenu = type === docs_1.DocType.api ? docSet.apiMenu : docSet.menu;
-    menu.appendChild(docMenu);
+    var menu = dom_1.queryExpected('.docs-menu .menu');
+    dom_1.place(menu, function (menu) {
+        var menuList = menu.querySelector('.menu-list');
+        if (menuList) {
+            menu.removeChild(menuList);
+        }
+        var docMenu = type === docs_1.DocType.api ? docSet.apiMenu : docSet.menu;
+        menu.appendChild(docMenu);
+    });
 }
 function processHash() {
     highlightActiveSection();
@@ -545,10 +555,20 @@ function processHash() {
                 .then(function () {
                 var pageId = docs_1.getCurrentPageId();
                 var project = pageId.project, version = pageId.version, type = pageId.type, page = pageId.page, section = pageId.section;
-                viewer.setAttribute('data-doc-type', type);
+                if (viewer) {
+                    viewer.setAttribute('data-doc-type', type);
+                }
+                else {
+                    console.warn('missing .viewer');
+                }
                 var container = document.querySelector('.docs-content');
-                container.setAttribute('data-doc-project', project);
-                container.setAttribute('data-doc-version', version);
+                if (container) {
+                    container.setAttribute('data-doc-project', project);
+                    container.setAttribute('data-doc-version', version);
+                }
+                else {
+                    console.warn('missing .docs-content');
+                }
                 showMenu(type);
                 showPage(type, page, section);
                 updateGitHubButtons(pageId);
@@ -606,8 +626,18 @@ function processHash() {
 }
 function showMessage(heading, message, type) {
     if (type === void 0) { type = ''; }
-    messageModal.querySelector('.message-heading').textContent = heading;
+    if (!messageModal) {
+        return console.warn('missing .message-modal');
+    }
+    var messageHeadingNode = messageModal.querySelector('.message-heading');
     var content = messageModal.querySelector('.message-content');
+    if (!messageHeadingNode) {
+        return console.warn('missing .message-heading');
+    }
+    if (!content) {
+        return console.warn('missing .message-content');
+    }
+    messageHeadingNode.textContent = heading;
     content.innerHTML = '';
     if (typeof message === 'string') {
         content.textContent = message;
@@ -2176,6 +2206,31 @@ function createSnippet(searchMatch) {
         }
     }
 }
+
+
+/***/ }),
+
+/***/ 93:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function place(node, modifier) {
+    if (node) {
+        modifier(node);
+    }
+}
+exports.place = place;
+function queryExpected(selector, root) {
+    if (root === void 0) { root = document; }
+    var node = root.querySelector(selector);
+    if (!node) {
+        console.warn("missing " + selector);
+    }
+    return node;
+}
+exports.queryExpected = queryExpected;
 
 
 /***/ })

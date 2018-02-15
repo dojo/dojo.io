@@ -11,7 +11,7 @@ const docs = site.data.docs;
 <nav class="leftnav">
 	<ul>
 		<% for (let doc of docs) { %>
-			<li><a href="<%- doc.url %>" data-group="<%- doc.group %>"><i class="<%- doc.icon %>" aria-hidden="true"></i><%- doc.title %></a></li>
+			<li data-group="<%- doc.group %>"><a href="<%- doc.url %>"><i class="<%- doc.icon %>" aria-hidden="true"></i><%- doc.title %></a></li>
 		<% } %>
 	</ul>
 </nav>

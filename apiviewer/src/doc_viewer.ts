@@ -27,6 +27,7 @@ import { renderApiPages } from './render_api';
 import { renderMenu, renderDocPage } from './render';
 import { createHash, parseHash, updateHash, HashEvent } from './hash';
 import search from './search';
+import {place, queryExpected} from './dom';
 
 const global = <any> window;
 if (!global.Promise) {
@@ -65,95 +66,101 @@ const ready = new Promise(resolve => {
 });
 
 ready.then(() => {
-	viewer = <HTMLElement> document.querySelector('.page-docs');
-	content = <HTMLElement> document.querySelector('.docs-content');
-	messageModal = <HTMLElement> document.querySelector('.message-modal')!;
-	searchPanel = <HTMLElement> document.querySelector('.search-panel')!;
+	viewer = queryExpected('.page-docs');
+	content = queryExpected('.docs-content');
+	messageModal = queryExpected('.message-modal');
+	searchPanel = queryExpected('.search-panel');
 
-	// Handle updates to the project + version selects.
-	document.querySelector('.docs-nav')!.addEventListener('change', event => {
-		const target: Element = <Element> event.target;
-		if (target.tagName !== 'SELECT') {
-			return;
-		}
-
-		const select = <HTMLSelectElement> target;
-		const docSetId = getCurrentDocSetId();
-
-		if (target.getAttribute('data-select-property') === 'project') {
-			// The project was changed
-			docSetId.project = select.value;
-			docSetId.version = getLatestVersion(select.value);
-		} else {
-			// The version was changed
-			docSetId.version = select.value;
-		}
-
-		updateHash({ ...docSetId, type: DocType.docs, page: 'README.md' });
-		processHash();
-	});
-
-	// Open the search dropdown if the user clicks a search button
-	document.querySelector('.docs-nav')!.addEventListener('click', event => {
-		let target = <HTMLElement> event.target;
-
-		if (target.classList.contains('fa')) {
-			// An icon was clicked, get its parent
-			target = target.parentElement!;
-		}
-
-		if (target.classList.contains('search-button')) {
-			target.classList.toggle('is-active');
-			viewer.classList.toggle('is-searching');
-			if (viewer.classList.contains('is-searching')) {
-				searchPanel.querySelector('input')!.focus();
+	place(queryExpected('.docs-nav'), (docsNavNode) => {
+		// Handle updates to the project + version selects.
+		docsNavNode.addEventListener('change', event => {
+			const target: Element = <Element> event.target;
+			if (target.tagName !== 'SELECT') {
+				return;
 			}
-		} else if (target.classList.contains('navbar-burger')) {
-			const menuId = target.getAttribute('data-target')!;
-			const menu = document.getElementById(menuId)!;
-			target.classList.toggle('is-active');
-			menu.classList.toggle('is-active');
-		}
+
+			const select = <HTMLSelectElement> target;
+			const docSetId = getCurrentDocSetId();
+
+			if (target.getAttribute('data-select-property') === 'project') {
+				// The project was changed
+				docSetId.project = select.value;
+				docSetId.version = getLatestVersion(select.value);
+			} else {
+				// The version was changed
+				docSetId.version = select.value;
+			}
+
+			updateHash({ ...docSetId, type: DocType.docs, page: 'README.md' });
+			processHash();
+		});
+
+		// Open the search dropdown if the user clicks a search button
+		docsNavNode.addEventListener('click', event => {
+			let target = <HTMLElement> event.target;
+
+			if (target.classList.contains('fa')) {
+				// An icon was clicked, get its parent
+				target = target.parentElement!;
+			}
+
+			if (target.classList.contains('search-button')) {
+				target.classList.toggle('is-active');
+				viewer.classList.toggle('is-searching');
+				if (viewer.classList.contains('is-searching')) {
+					searchPanel.querySelector('input')!.focus();
+				}
+			} else if (target.classList.contains('navbar-burger')) {
+				const menuId = target.getAttribute('data-target')!;
+				const menu = document.getElementById(menuId)!;
+				target.classList.toggle('is-active');
+				menu.classList.toggle('is-active');
+			}
+		});
 	});
 
-	// Live search as the user types into the search dropdown input
-	let searchTimer: number | undefined;
-	searchPanel.addEventListener('input', event => {
-		if (searchTimer) {
-			clearTimeout(searchTimer);
-		}
-		searchTimer = <any> setTimeout(() => {
+	place(searchPanel, (searchPanel) => {
+		// Live search as the user types into the search dropdown input
+		let searchTimer: number | undefined;
+		searchPanel.addEventListener('input', event => {
+			if (searchTimer) {
+				clearTimeout(searchTimer);
+			}
+			searchTimer = <any> setTimeout(() => {
+				const results = queryExpected('.search-results', searchPanel);
+				const docType = <DocType> viewer.getAttribute('data-doc-type')!;
+				search((<HTMLInputElement> event.target).value, docType, results);
+			}, searchDelay);
+		});
+
+		// Clear the search field when the user clicks the 'x' in the search box
+		searchPanel.querySelector('.button')!.addEventListener('click', () => {
 			const results = searchPanel.querySelector('.search-results')!;
 			const docType = <DocType> viewer.getAttribute('data-doc-type')!;
-			search((<HTMLInputElement> event.target).value, docType, results);
-		}, searchDelay);
+			const input = <HTMLInputElement> searchPanel.querySelector('input');
+			input.value = '';
+			search('', docType, results);
+			searchPanel.querySelector('input')!.focus();
+		});
 	});
 
-	// Clear the search field when the user clicks the 'x' in the search box
-	searchPanel.querySelector('.button')!.addEventListener('click', () => {
-		const results = searchPanel.querySelector('.search-results')!;
-		const docType = <DocType> viewer.getAttribute('data-doc-type')!;
-		const input = <HTMLInputElement> searchPanel.querySelector('input');
-		input.value = '';
-		search('', docType, results);
-		searchPanel.querySelector('input')!.focus();
-	});
-
-	// Update the url hash as the user scrolls
-	let menuTimer: number | undefined;
-	content.addEventListener('scroll', () => {
-		const ignoring = ignoreScroll;
-		ignoreScroll = false;
-		if (ignoring) {
-			return;
-		}
-		if (menuTimer) {
-			clearTimeout(menuTimer);
-		}
-		menuTimer = <any> setTimeout(() => {
-			menuTimer = undefined;
-			updateHashFromContent();
-		}, menuHighlightDelay);
+	place(content, (content) => {
+		// Update the url hash as the user scrolls
+		let menuTimer: number | undefined;
+		content.addEventListener('scroll', () => {
+			const ignoring = ignoreScroll;
+			ignoreScroll = false;
+			if (ignoring) {
+				return;
+			}
+			if (menuTimer) {
+				clearTimeout(menuTimer);
+			}
+			menuTimer = <any> setTimeout(() => {
+				menuTimer = undefined;
+				updateHashFromContent();
+			}, menuHighlightDelay);
+		});
 	});
 
 	processHash();
@@ -342,31 +349,32 @@ function updateDocsetSelector() {
 function showPage(type: DocType, name: string, section?: string) {
 	const docSet = getDocSet(getCurrentDocSetId());
 	const page = getPage(docSet, type, name);
-	const content = <HTMLElement> document.body.querySelector('.docs-content')!;
-	if (content.children.length > 0) {
-		content.removeChild(content.children[0]);
-	}
-	content.appendChild(page.element);
-
-	// Do highlighting before scrolling a sectoin into view. Highlighting
-	// also involves scroll manipulation, and if the viewer is using a
-	// mobile layout, we want the content scroll to take priority over the
-	// menu scroll.
-	highlightActivePage();
-	highlightActiveSection();
-
-	// Showing the page will probably scroll the content area, but we don't
-	// want to invoke the normal scroll handling code in this case.
-	ignoreScroll = true;
-
-	if (section) {
-		const header = <HTMLElement> document.querySelector(`#${section}`);
-		if (header) {
-			header.scrollIntoView();
+	place(queryExpected('.docs-content', document.body), (content) => {
+		if (content.children.length > 0) {
+			content.removeChild(content.children[0]);
 		}
-	} else {
-		content.scrollTop = 0;
-	}
+		content.appendChild(page.element);
+
+		// Do highlighting before scrolling a sectoin into view. Highlighting
+		// also involves scroll manipulation, and if the viewer is using a
+		// mobile layout, we want the content scroll to take priority over the
+		// menu scroll.
+		highlightActivePage();
+		highlightActiveSection();
+
+		// Showing the page will probably scroll the content area, but we don't
+		// want to invoke the normal scroll handling code in this case.
+		ignoreScroll = true;
+
+		if (section) {
+			const header = <HTMLElement> document.querySelector(`#${section}`);
+			if (header) {
+				header.scrollIntoView();
+			}
+		} else {
+			content.scrollTop = 0;
+		}
+	});
 }
 
 /**
@@ -451,13 +459,15 @@ function highlightActiveSection() {
 function showMenu(type?: DocType) {
 	type = type || DocType.docs;
 	const docSet = getDocSet(getCurrentDocSetId());
-	const menu = document.querySelector('.docs-menu .menu')!;
-	const menuList = menu.querySelector('.menu-list');
-	if (menuList) {
-		menu.removeChild(menuList);
-	}
-	const docMenu = type === DocType.api ? docSet.apiMenu! : docSet.menu!;
-	menu.appendChild(docMenu);
+	const menu = queryExpected('.docs-menu .menu');
+	place(menu, (menu) => {
+		const menuList = menu.querySelector('.menu-list');
+		if (menuList) {
+			menu.removeChild(menuList);
+		}
+		const docMenu = type === DocType.api ? docSet.apiMenu! : docSet.menu!;
+		menu.appendChild(docMenu);
+	});
 }
 
 /**
@@ -484,13 +494,21 @@ function processHash() {
 							section
 						} = pageId;
 
-						viewer.setAttribute('data-doc-type', type);
+						if (viewer) {
+							viewer.setAttribute('data-doc-type', type);
+						}
+						else {
+							console.warn('missing .viewer');
+						}
 
-						const container = document.querySelector(
-							'.docs-content'
-						)!;
-						container.setAttribute('data-doc-project', project);
-						container.setAttribute('data-doc-version', version);
+						const container = document.querySelector('.docs-content');
+						if (container) {
+							container.setAttribute('data-doc-project', project);
+							container.setAttribute('data-doc-version', version);
+						}
+						else {
+							console.warn('missing .docs-content');
+						}
 
 						showMenu(type);
 						showPage(type, page, section);
@@ -572,8 +590,20 @@ function processHash() {
  * Show a message in the error modal
  */
 function showMessage(heading: string, message: string | Element, type = '') {
-	messageModal.querySelector('.message-heading')!.textContent = heading;
-	const content = messageModal.querySelector('.message-content')!;
+	if (!messageModal) {
+		return console.warn('missing .message-modal');
+	}
+	const messageHeadingNode = messageModal.querySelector('.message-heading');
+	const content = messageModal.querySelector('.message-content');
+
+	if (!messageHeadingNode) {
+		return console.warn('missing .message-heading');
+	}
+	if (!content) {
+		return console.warn('missing .message-content');
+	}
+
+	messageHeadingNode.textContent = heading;
 	content.innerHTML = '';
 	if (typeof message === 'string') {
 		content.textContent = message;
