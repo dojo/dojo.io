@@ -3,10 +3,10 @@ import { Configuration, optimize } from 'webpack';
 
 const config: Configuration = {
 	devtool: 'source-map',
-	entry: ['whatwg-fetch', './apiviewer/doc_viewer.ts'],
+	entry: ['whatwg-fetch', './src/doc_viewer.ts'],
 	output: {
 		filename: 'doc_viewer.js',
-		path: resolve('./site/themes/dojo/source/js')
+		path: resolve('../site/themes/dojo/source/js')
 	},
 	module: {
 		rules: [
@@ -22,7 +22,7 @@ const config: Configuration = {
 	plugins: [],
 	resolve: {
 		extensions: ['.ts', '.js', '.json'],
-		modules: [resolve('./apiviewer'), resolve('./node_modules')],
+		modules: [resolve('./src'), resolve('./node_modules')],
 		alias: {
 			// A module requesting highlight.js will load just the bare
 			// highlighter, and will then register languages of interest

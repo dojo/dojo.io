@@ -1,0 +1,43 @@
+{
+  "name": "apiviewer",
+  "version": "1.0.0-pre",
+  "description": "Document tool for loading APIs and READMEs",
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SitePen/dojoio.git"
+  },
+  "author": "SitePen <support@sitepen.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/SitePen/dojoio/issues"
+  },
+  "homepage": "https://dojo.io",
+  "devDependencies": {
+    "tslint-sitepen": "^0.1.0",
+    "typescript": "~2.4.2",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "highlight.js": "^9.12.0",
+    "@types/hyperscript": "0.0.3",
+    "@types/markdown-it": "0.0.4",
+    "@types/promise-polyfill": "^6.0.0",
+    "@types/webpack": "^3.8.3",
+    "hyperscript": "^2.0.2",
+    "mark.js": "github:julmot/mark.js",
+    "markdown-it": "^8.4.0",
+    "promise-polyfill": "^7.0.0",
+    "ts-loader": "^3.2.0",
+    "tslib": "^1.6.0",
+    "typedoc": "^0.9.0",
+    "webpack-polyfill-injector": "^1.0.1",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

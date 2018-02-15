@@ -231,7 +231,7 @@ var PromisePolyfill = __webpack_require__(24);
 var h = __webpack_require__(3);
 var docs_1 = __webpack_require__(1);
 var render_api_1 = __webpack_require__(32);
-var render_1 = __webpack_require__(5);
+var render_1 = __webpack_require__(6);
 var hash_1 = __webpack_require__(4);
 var search_1 = __webpack_require__(91);
 var global = window;
@@ -709,7 +709,7 @@ var h = __webpack_require__(3);
 var hljs = __webpack_require__(10);
 var docs_1 = __webpack_require__(1);
 var hash_1 = __webpack_require__(4);
-var render_1 = __webpack_require__(5);
+var render_1 = __webpack_require__(6);
 var preferredSignatureWidth = 60;
 hljs.registerLanguage('typescript', __webpack_require__(20));
 hljs.registerLanguage('javascript', __webpack_require__(19));
@@ -1677,7 +1677,7 @@ var HashEvent;
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2017,7 +2017,7 @@ var tslib_1 = __webpack_require__(2);
 var h = __webpack_require__(3);
 var Mark = __webpack_require__(92);
 var docs_1 = __webpack_require__(1);
-var render_1 = __webpack_require__(5);
+var render_1 = __webpack_require__(6);
 var maxSnippetLength = 60;
 var minSearchTermLength = 4;
 function search(term, docType, results) {
