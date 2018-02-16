@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: tutorials
 title: Responding to events
 overview: Update an application in response to user-generated events, such as clicking a button.
 paginate: true

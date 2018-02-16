@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: tutorials
 title: Creating widgets
 overview: Learn how to create and style custom widgets in Dojo 2.
 paginate: true

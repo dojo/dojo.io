@@ -4,23 +4,22 @@
 	"group": "tutorials",
 	"contents": [
 		{ "title": "Beginning Tutorials", "topics": [
-			{ "name": "Installing Dojo 2", "url": "https://dojo.io/tutorials/000_local_installation/" },
-			{ "name": "Your first Dojo 2 App", "url": "https://dojo.io/tutorials/001_static_content/" },
-			{ "name": "Components of a Dojo 2 Application", "url": "https://dojo.io/tutorials/002_creating_an_application/" },
-			{ "name": "Creating Widgets", "url": "https://dojo.io/tutorials/003_creating_widgets/" },
-			{ "name": "Responding to Events", "url": "https://dojo.io/tutorials/004_user_interactions/" },
-			{ "name": "Working with Forms", "url": "https://dojo.io/tutorials/005_form_widgets/" },
-			{ "name": "Deploying to Production", "url": "https://dojo.io/tutorials/006_deploying_to_production/" }
+			{ "name": "Installing Dojo 2", "url": "/tutorials/000_local_installation/" },
+			{ "name": "Your first Dojo 2 App", "url": "/tutorials/001_static_content/" },
+			{ "name": "Components of a Dojo 2 Application", "url": "/tutorials/002_creating_an_application/" },
+			{ "name": "Creating Widgets", "url": "/tutorials/003_creating_widgets/" },
+			{ "name": "Responding to Events", "url": "/tutorials/004_user_interactions/" },
+			{ "name": "Working with Forms", "url": "/tutorials/005_form_widgets/" },
+			{ "name": "Deploying to Production", "url": "/tutorials/006_deploying_to_production/" }
 		]},
 		{ "title": "Advanced Tutorials", "topics": [
-			{ "name": "Theming" },
-			{ "name": "Web Animations" },
-			{ "name": "State Management" },
-			{ "name": "Form Validation" },
-			{ "name": "Registry" },
-			{ "name": "Routing" },
-			{ "name": "Using Dijit Widgets" },
-			{ "name": "Data-Driven Widgets" }
+			{ "name": "Theming", "url": "/tutorials/007_theming" },
+			{ "name": "State Management", "url": "/tutorials/1010_containers_and_injecting_state" },
+			{ "name": "Form Validation", "url": "/tutorials/1015_form_validation" },
+			{ "name": "Registry", "url": "/tutorials/1020_registries" },
+			{ "name": "Routing", "url": "/tutorials/1030_routing" },
+			{ "name": "Using Dijit Widgets", "url": "/tutorials/1040_dojo1_dijits" },
+			{ "name": "Data-Driven Widgets", "url": "/tutorials/1060_data_driven_widgets" }
 		]}
 	]
 }

@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: tutorials
 title: Form widgets
 overview: Use some of Dojo 2's out-of-the-box form widgets to create a simple form and use it to update the application.
 paginate: true

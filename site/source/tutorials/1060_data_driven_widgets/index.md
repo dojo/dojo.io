@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: tutorials
 title: Data-driven widgets
 overview: In this tutorial, you will learn how to create reactive, data-driven widgets in Dojo 2.
 paginate: true

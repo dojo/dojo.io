@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: tutorials
 title: Deploying to production
 overview: Prepare a Dojo 2 application for production deployment.
 paginate: true

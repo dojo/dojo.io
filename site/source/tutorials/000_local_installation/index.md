@@ -1,6 +1,6 @@
 ---
 title: Dojo 2 local installation
-layout: tutorial
+layout: tutorials
 overview: Discover the basics of creating a Dojo 2 application.
 paginate: false
 ---

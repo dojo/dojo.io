@@ -1,6 +1,6 @@
 ---
 title: Your first Dojo 2 application
-layout: tutorial
+layout: tutorials
 overview: Create your first Dojo 2 application and use it to print a simple message in the browser.
 paginate: true
 ---

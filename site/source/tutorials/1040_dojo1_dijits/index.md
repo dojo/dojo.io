@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: tutorials
 title: Using Dojo 1 Dijits
 overview: Find out how to use Dojo 1 Dijits in a Dojo 2 application.
 paginate: true
