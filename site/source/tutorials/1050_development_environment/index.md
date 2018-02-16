@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: guidedoc
 title: Setting up a development environment
 overview: This tutorial shows how to set up and use a development environment to optimize your Dojo 2 experience.
 paginate: true

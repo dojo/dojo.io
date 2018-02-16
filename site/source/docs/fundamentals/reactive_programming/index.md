@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: guidedoc
 category: fundamentals
 title: Reactive programming
 overview: Dojo 2 embraces reactive programming patterns like unidirectional property propagation. This article gives a high level overview of the reactive patterns in Dojo 2 and how they are different from more traditional patterns.

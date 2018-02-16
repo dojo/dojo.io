@@ -17,9 +17,8 @@ const source = locals.src;
 const data = site.data[source];
 const groupName = data.group || locals.src;
 const section = page.path.split('/')[0];
-const visibility = locals.visible || section === groupName ? '' : 'hidden';
 %>
-<aside class="menu <%- visibility %>" data-group-name="<%- groupName %>">
+<aside class="menu" data-group-name="<%- groupName %>">
 	<%
 	function printCategory(category) { %>
 		<p class="menu-label">
@@ -41,7 +40,7 @@ const visibility = locals.visible || section === groupName ? '' : 'hidden';
 	if (data.title) { %>
 		<div class="title">
 			<i class="<%- data.icon %>"></i>
-			<p class="title"><%- data.title %></p>
+			<span class="title"><%- data.title %></span>
 		</div>
 	<% } %>
 	<% for (let item of data.contents) {

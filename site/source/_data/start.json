@@ -1,8 +1,0 @@
-{
-	"title": "Start",
-	"icon": "fa fa-compass",
-	"group": "start",
-	"contents": [
-		{ "name": "Install Dojo 2", "url": "https://dojo.io/tutorials/000_local_installation/" }
-	]
-}

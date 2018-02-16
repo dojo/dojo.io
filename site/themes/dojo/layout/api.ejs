@@ -1,3 +1,15 @@
 <%- partial('_partial/docs/nav', { active: 'api' }) %>
 <%- partial('_partial/docs/table-of-contents', { src: "api" }) %>
-<%- partial('_partial/docs/content', { docset: 'docsets' }) %>
+<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-9 article">
+				<%- page.content %>
+				<div class="content">
+					<div class="docs-content"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<%- partial('_partial/docs/docviewer') %>

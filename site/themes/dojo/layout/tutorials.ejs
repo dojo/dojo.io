@@ -1,3 +1,11 @@
 <%- partial('_partial/docs/nav', { active: 'tutorials' }) %>
 <%- partial('_partial/docs/table-of-contents', { src: 'tutorials' }) %>
-<%- partial('_partial/docs/content', { docset: 'docsets' }) %>
+<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-9 article">
+				<%- page.content %>
+			</div>
+		</div>
+	</div>
+</section>

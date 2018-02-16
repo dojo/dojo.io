@@ -9,12 +9,12 @@
 		"title": "Guide",
 		"icon": "fa fa-bookmark-o",
 		"group": "guide",
-		"url": "/guide"
+		"url": "/docs/fundamentals/reactive_programming/index.html"
 	},
 	{
 		"title": "API",
 		"icon": "fa fa-crosshairs",
 		"group": "api",
-		"url": "/api"
+		"url": "/api/#core/rc/api"
 	}
 ]

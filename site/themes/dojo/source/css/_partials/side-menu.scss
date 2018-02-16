@@ -1,3 +1,12 @@
+aside.menu {
+	min-width: 10em;
+	max-width: 20em;
+	padding: 1em 2em;
+	background-color: #EEE;
+	border-right: 1px solid #BBB;
+	flex: 1 0 15em;
+}
+
 .menu-list {
 	margin: 0;
 	.active {
@@ -9,5 +18,4 @@
 		list-style-type: none;
 		margin-left:-.75em;
 	}
-	
 }
