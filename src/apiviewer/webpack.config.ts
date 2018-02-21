@@ -1,12 +1,14 @@
 import { resolve } from 'path';
 import { Configuration, optimize } from 'webpack';
 
+const distPath = '../../site/themes/dojo/source/js';
+
 const config: Configuration = {
 	devtool: 'source-map',
 	entry: ['whatwg-fetch', './src/doc_viewer.ts'],
 	output: {
 		filename: 'doc_viewer.js',
-		path: resolve('../site/themes/dojo/source/js')
+		path: resolve(distPath)
 	},
 	module: {
 		rules: [

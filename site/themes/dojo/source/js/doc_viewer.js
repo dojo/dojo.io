@@ -6,7 +6,7 @@ webpackJsonp([0],{
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var hash_1 = __webpack_require__(4);
+var hash_1 = __webpack_require__(2);
 var DocType;
 (function (DocType) {
     DocType["api"] = "api";
@@ -211,6 +211,391 @@ function compareVersions(a, b) {
 
 /***/ }),
 
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(3);
+var MarkdownIt = __webpack_require__(33);
+var hljs = __webpack_require__(9);
+var h = __webpack_require__(5);
+var docs_1 = __webpack_require__(1);
+var hash_1 = __webpack_require__(2);
+hljs.registerLanguage('html', __webpack_require__(89));
+hljs.registerLanguage('nginx', __webpack_require__(90));
+hljs.registerLanguage('javascript', __webpack_require__(19));
+hljs.registerLanguage('typescript', __webpack_require__(20));
+function createGitHubLink(id, page) {
+    var docSet = docs_1.getDocSet(id);
+    var url = docs_1.getProjectUrl(id.project);
+    return h('a.source-link', {
+        title: 'View page source',
+        href: url + "/blob/" + docSet.branch + "/" + page
+    });
+}
+exports.createGitHubLink = createGitHubLink;
+function createLinkItem(content, id) {
+    var text;
+    var classes = [];
+    if (typeof content === 'string') {
+        text = content;
+    }
+    else {
+        text = content.textContent;
+        for (var i = 0; i < content.classList.length; i++) {
+            classes.push(content.classList[i]);
+        }
+    }
+    return h('li', {}, h('a', {
+        href: hash_1.createHash(id),
+        title: text,
+        className: classes.join(' ')
+    }, h('span', {}, text)));
+}
+exports.createLinkItem = createLinkItem;
+function addHeadingIcons(heading) {
+    var existing = heading.querySelector('.heading-icons');
+    if (existing != null) {
+        return existing.childNodes[1];
+    }
+    var container = h('span.heading-icons', {}, [h('span'), h('span')]);
+    var icons = container.childNodes[1];
+    var content = heading.textContent;
+    heading.textContent = '';
+    heading.appendChild(document.createTextNode(content));
+    heading.appendChild(container);
+    heading.classList.add('has-heading-icons');
+    return icons;
+}
+exports.addHeadingIcons = addHeadingIcons;
+function createSlugifier() {
+    var cache = Object.create(null);
+    return function (str) {
+        var slug = str
+            .toLowerCase()
+            .replace(/[^A-Za-z0-9_ ]/g, '')
+            .replace(/\s+/g, '-');
+        if (cache[slug]) {
+            var i = 1;
+            var next = slug + "-" + i;
+            while (cache[next]) {
+                i++;
+                next = slug + "-" + i;
+            }
+            slug = next;
+        }
+        cache[slug] = true;
+        return slug;
+    };
+}
+exports.createSlugifier = createSlugifier;
+function renderMarkdown(text, context) {
+    if (!markdown) {
+        markdown = new MarkdownIt({
+            highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return ('<pre><code class="hljs language-' +
+                            lang +
+                            '">' +
+                            hljs.highlight(lang, str, true).value +
+                            '</code></pre>');
+                    }
+                    catch (error) {
+                        console.error(error);
+                    }
+                }
+                return '<pre><code class="hljs">' + str + '</code></pre>';
+            },
+            html: true
+        });
+        markdown.renderer.rules.table_open = function () {
+            return '<table class="table is-bordered">';
+        };
+        markdown.renderer.rules.thead_open = function (tokens, idx) {
+            var i = idx + 2;
+            var token = tokens[i];
+            var empty = true;
+            while (token && token.type !== 'tr_close') {
+                var token2 = tokens[i + 2];
+                if (token.type !== 'th_open' ||
+                    !token2 ||
+                    token2.type !== 'th_close') {
+                    empty = false;
+                    break;
+                }
+                var token1 = tokens[i + 1];
+                if (token1.type !== 'inline' || token1.children.length > 0) {
+                    empty = false;
+                    break;
+                }
+                i += 3;
+                token = tokens[i];
+            }
+            return "<thead" + (empty ? ' class="is-hidden"' : '') + ">";
+        };
+        markdown.renderer.rules.blockquote_open = function (tokens, idx) {
+            var token = tokens[idx + 2].children[0];
+            var warning = '⚠️';
+            var info = '💡';
+            var deprecated = '👎';
+            if (token.content.indexOf(warning) === 0) {
+                token.content = token.content
+                    .replace(warning, '')
+                    .replace(/^\s*/, '');
+                return ('<blockquote class="warning"><div>' +
+                    '<span class="fa fa-warning" aria-hidden="true">' +
+                    '</span></div>');
+            }
+            else if (token.content.indexOf(info) === 0) {
+                token.content = token.content
+                    .replace(info, '')
+                    .replace(/^\s*/, '');
+                return ('<blockquote class="info"><div>' +
+                    '<span class="fa fa-lightbulb-o" aria-hidden="true">' +
+                    '</span></div>');
+            }
+            else if (token.content.indexOf(deprecated) === 0) {
+                token.content = token.content
+                    .replace(deprecated, '')
+                    .replace(/^\s*/, '');
+                return ('<blockquote class="deprecated"><div>' +
+                    '<span class="fa fa-thumbs-o-down" aria-hidden="true">' +
+                    '</span></div>');
+            }
+            return '<blockquote>';
+        };
+        var defaultLinkRender_1 = markdown.renderer.rules.link_open ||
+            (function (tokens, idx, options, _env, self) {
+                return self.renderToken(tokens, idx, options);
+            });
+        markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+            var hrefIdx = tokens[idx].attrIndex('href');
+            var hrefToken = tokens[idx].attrs[hrefIdx];
+            var _a = hrefToken[1].split('#'), file = _a[0], hash = _a[1];
+            var docSetId = docs_1.getCurrentDocSetId();
+            var _b = env.info, page = _b.page, type = _b.type;
+            if (!file) {
+                hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: page,
+                    type: type, section: hash }, docSetId));
+            }
+            else if (!/\/\//.test(file)) {
+                if (type !== 'api' || file.indexOf('api:') !== 0) {
+                    if (/\.md$/.test(file)) {
+                        var cleanFile = file.replace(/^\.\//, '');
+                        var pageBase = '';
+                        if (page.indexOf('/') !== -1) {
+                            pageBase = page.slice(0, page.lastIndexOf('/') + 1);
+                        }
+                        hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: pageBase + cleanFile, section: hash, type: type }, docSetId));
+                    }
+                    else {
+                        hrefToken[1] = createGitHubLink(docSetId, file);
+                    }
+                }
+            }
+            return defaultLinkRender_1(tokens, idx, options, env, self);
+        };
+        markdown.renderer.rules.heading_open = function (tokens, idx, _options, env) {
+            var token = tokens[idx];
+            var content = tokens[idx + 1].content;
+            var id = env.slugify(content);
+            return "<" + token.tag + " id=\"" + id + "\">";
+        };
+    }
+    if (!context.slugify) {
+        context.slugify = context.slugify || createSlugifier();
+    }
+    return markdown.render(text, context);
+}
+exports.renderMarkdown = renderMarkdown;
+function renderMenu(id, type, maxDepth) {
+    if (maxDepth === void 0) { maxDepth = 3; }
+    var docSet = docs_1.getDocSet(id);
+    var pageNames = type === 'api' ? docSet.apiPages : docSet.pages;
+    var cache = type === 'api' ? docSet.apiCache : docSet.pageCache;
+    var menu = h('ul.menu-list', { menuDepth: maxDepth });
+    for (var _i = 0, pageNames_1 = pageNames; _i < pageNames_1.length; _i++) {
+        var pageName = pageNames_1[_i];
+        var page = cache[pageName];
+        var root = void 0;
+        try {
+            root = createNode(page.element.querySelector('h1'));
+        }
+        catch (error) {
+            root = {
+                level: 1,
+                element: h('li'),
+                children: []
+            };
+        }
+        var headingTags = [];
+        for (var i = 2; i <= maxDepth; i++) {
+            headingTags.push("h" + i);
+        }
+        var headings = page.element.querySelectorAll(headingTags.join(','));
+        var stack = [[root]];
+        var children = void 0;
+        for (var i = 0; i < headings.length; i++) {
+            var heading = headings[i];
+            var newNode = createNode(heading);
+            var level = newNode.level;
+            if (level === stack[0][0].level) {
+                stack[0].unshift(newNode);
+            }
+            else if (level > stack[0][0].level) {
+                stack.unshift([newNode]);
+            }
+            else {
+                while (stack[0][0].level > level) {
+                    children = stack.shift().reverse();
+                    stack[0][0].children = children;
+                }
+                if (level === stack[0][0].level) {
+                    stack[0].unshift(newNode);
+                }
+                else {
+                    stack.unshift([newNode]);
+                }
+            }
+        }
+        while (stack.length > 1) {
+            children = stack.shift().reverse();
+            stack[0][0].children = children;
+        }
+        var project = id.project, version = id.version;
+        var pageId = { project: project, version: version, page: pageName, type: type };
+        var li = createLinkItem(page.title, pageId);
+        if (root.children.length > 0) {
+            li.appendChild(renderSubMenu(root.children, pageId));
+        }
+        menu.appendChild(li);
+    }
+    return menu;
+}
+exports.renderMenu = renderMenu;
+function renderDocPage(text, pageName, id) {
+    text = filterGhContent(text);
+    var html = renderMarkdown(text, {
+        info: { page: pageName, type: docs_1.DocType.docs }
+    });
+    var element = h('div', { innerHTML: html });
+    var h1 = element.querySelector('h1');
+    if (!h1) {
+        return element;
+    }
+    var icons = addHeadingIcons(h1);
+    var link = createGitHubLink(id, pageName);
+    link.classList.add('edit-page');
+    icons.appendChild(link);
+    element.insertBefore(h1, element.firstChild);
+    return element;
+}
+exports.renderDocPage = renderDocPage;
+function renderSubMenu(children, pageId) {
+    var ul = h('ul');
+    for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
+        var child = children_1[_i];
+        var heading = child.element;
+        var li = createLinkItem(heading, tslib_1.__assign({}, pageId, { section: heading.id }));
+        if (child.children.length > 0) {
+            li.appendChild(renderSubMenu(child.children, pageId));
+        }
+        ul.appendChild(li);
+    }
+    return ul;
+}
+function createNode(heading) {
+    var level = parseInt(heading.tagName.slice(1), 10);
+    return { level: level, element: heading, children: [] };
+}
+function filterGhContent(text) {
+    var markers = [
+        ['<!-- vim-markdown-toc GFM -->', '<!-- vim-markdown-toc -->'],
+        ['<!-- start-github-only -->', '<!-- end-github-only -->']
+    ];
+    return markers.reduce(function (text, marker) {
+        var chunks = [];
+        var start = 0;
+        var left = text.indexOf(marker[0]);
+        var right = 0;
+        while (left !== -1) {
+            chunks.push(text.slice(start, left));
+            right = text.indexOf(marker[1], left);
+            if (right === -1) {
+                break;
+            }
+            start = right + marker[1].length;
+            left = text.indexOf(marker[0], start);
+        }
+        if (right !== -1) {
+            chunks.push(text.slice(start));
+        }
+        return chunks.join('');
+    }, text);
+}
+var markdown;
+
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var docs_1 = __webpack_require__(1);
+function createHash(id) {
+    var parts = [id.project, id.version, id.type];
+    if (docs_1.isValidPageId(id)) {
+        parts.push(id.page);
+        if (id.section) {
+            parts.push(id.section);
+        }
+    }
+    return '#' + parts.map(encodeURIComponent).join('/');
+}
+exports.createHash = createHash;
+function parseHash() {
+    var hash = location.hash.slice(1);
+    var _a = hash
+        .split('/')
+        .map(function (part) { return decodeURIComponent(part); }), project = _a[0], version = _a[1], type = _a[2], page = _a[3], section = _a[4];
+    return { project: project, version: version, type: type, page: page, section: section };
+}
+exports.parseHash = parseHash;
+function updateHash(newHash, event) {
+    if (event === void 0) { event = HashEvent.nav; }
+    var hash = typeof newHash === 'string' ? newHash : createHash(newHash);
+    if (location.hash === hash) {
+        return;
+    }
+    var state = { event: event };
+    if (event === HashEvent.rename) {
+        history.replaceState(state, '', hash);
+    }
+    else if (event === HashEvent.nav ||
+        (!history.state || history.state.event !== event)) {
+        history.pushState(state, '', hash);
+    }
+    else {
+        history.replaceState(state, '', hash);
+    }
+}
+exports.updateHash = updateHash;
+var HashEvent;
+(function (HashEvent) {
+    HashEvent["nav"] = "nav";
+    HashEvent["rename"] = "rename";
+    HashEvent["scroll"] = "scroll";
+})(HashEvent = exports.HashEvent || (exports.HashEvent = {}));
+
+
+/***/ }),
+
 /***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -226,15 +611,14 @@ module.exports = __webpack_require__(23);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(2);
+var tslib_1 = __webpack_require__(3);
 var PromisePolyfill = __webpack_require__(24);
-var h = __webpack_require__(3);
+var h = __webpack_require__(5);
 var docs_1 = __webpack_require__(1);
 var api_1 = __webpack_require__(32);
-var markdown_1 = __webpack_require__(6);
-var hash_1 = __webpack_require__(4);
-var search_1 = __webpack_require__(91);
-var dom_1 = __webpack_require__(93);
+var markdown_1 = __webpack_require__(10);
+var hash_1 = __webpack_require__(2);
+var dom_1 = __webpack_require__(91);
 var global = window;
 if (!global.Promise) {
     global.Promise = PromisePolyfill;
@@ -243,9 +627,7 @@ var viewer;
 var content;
 var messageModal;
 var ignoreScroll = false;
-var searchPanel;
 var scrollState = Object.create(null);
-var searchDelay = 300;
 var menuHighlightDelay = 20;
 window.addEventListener('hashchange', processHash);
 if (!location.hash) {
@@ -259,66 +641,6 @@ ready.then(function () {
     viewer = dom_1.queryExpected('.page-docs');
     content = dom_1.queryExpected('.docs-content');
     messageModal = dom_1.queryExpected('.message-modal');
-    searchPanel = dom_1.queryExpected('.search-panel');
-    dom_1.place(dom_1.queryExpected('.docs-nav'), function (docsNavNode) {
-        docsNavNode.addEventListener('change', function (event) {
-            var target = event.target;
-            if (target.tagName !== 'SELECT') {
-                return;
-            }
-            var select = target;
-            var docSetId = docs_1.getCurrentDocSetId();
-            if (target.getAttribute('data-select-property') === 'project') {
-                docSetId.project = select.value;
-                docSetId.version = docs_1.getLatestVersion(select.value);
-            }
-            else {
-                docSetId.version = select.value;
-            }
-            hash_1.updateHash(tslib_1.__assign({}, docSetId, { type: docs_1.DocType.docs, page: 'README.md' }));
-            processHash();
-        });
-        docsNavNode.addEventListener('click', function (event) {
-            var target = event.target;
-            if (target.classList.contains('fa')) {
-                target = target.parentElement;
-            }
-            if (target.classList.contains('search-button')) {
-                target.classList.toggle('is-active');
-                viewer.classList.toggle('is-searching');
-                if (viewer.classList.contains('is-searching')) {
-                    searchPanel.querySelector('input').focus();
-                }
-            }
-            else if (target.classList.contains('navbar-burger')) {
-                var menuId = target.getAttribute('data-target');
-                var menu = document.getElementById(menuId);
-                target.classList.toggle('is-active');
-                menu.classList.toggle('is-active');
-            }
-        });
-    });
-    dom_1.place(searchPanel, function (searchPanel) {
-        var searchTimer;
-        searchPanel.addEventListener('input', function (event) {
-            if (searchTimer) {
-                clearTimeout(searchTimer);
-            }
-            searchTimer = setTimeout(function () {
-                var results = dom_1.queryExpected('.search-results', searchPanel);
-                var docType = viewer.getAttribute('data-doc-type');
-                search_1.default(event.target.value, docType, results);
-            }, searchDelay);
-        });
-        searchPanel.querySelector('.button').addEventListener('click', function () {
-            var results = searchPanel.querySelector('.search-results');
-            var docType = viewer.getAttribute('data-doc-type');
-            var input = searchPanel.querySelector('input');
-            input.value = '';
-            search_1.default('', docType, results);
-            searchPanel.querySelector('input').focus();
-        });
-    });
     dom_1.place(content, function (content) {
         var menuTimer;
         content.addEventListener('scroll', function () {
@@ -400,22 +722,6 @@ function loadDocSet(id) {
                 h1.insertBefore(logoImg, h1.firstChild);
             }
             cache[name] = { name: name, element: element, title: title };
-        });
-    }
-}
-function updateNavBarLinks(id) {
-    var docSet = docs_1.getDocSet(id);
-    var navbar = document.querySelector('.docs-nav .navbar-start');
-    navbar.classList[docSet.api ? 'add' : 'remove']('has-api');
-    navbar.classList[docSet.pages ? 'add' : 'remove']('has-docs');
-    var docTypes = Object.keys(docs_1.DocType).filter(function (type) { return !Number(type); });
-    for (var _i = 0, docTypes_1 = docTypes; _i < docTypes_1.length; _i++) {
-        var type = docTypes_1[_i];
-        var link = navbar.querySelector(".navbar-item[data-doc-type=\"" + type + "\"]");
-        link.href = hash_1.createHash({
-            project: id.project,
-            version: id.version,
-            type: type
         });
     }
 }
@@ -572,7 +878,6 @@ function processHash() {
                 showMenu(type);
                 showPage(type, page, section);
                 updateGitHubButtons(pageId);
-                updateNavBarLinks(pageId);
                 updateDocsetSelector();
                 hideMessage();
             })
@@ -734,12 +1039,12 @@ function updateHashFromContent() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(2);
-var h = __webpack_require__(3);
-var hljs = __webpack_require__(10);
+var tslib_1 = __webpack_require__(3);
+var h = __webpack_require__(5);
+var hljs = __webpack_require__(9);
 var docs_1 = __webpack_require__(1);
-var hash_1 = __webpack_require__(4);
-var markdown_1 = __webpack_require__(6);
+var hash_1 = __webpack_require__(2);
+var markdown_1 = __webpack_require__(10);
 var preferredSignatureWidth = 60;
 hljs.registerLanguage('typescript', __webpack_require__(20));
 hljs.registerLanguage('javascript', __webpack_require__(19));
@@ -1652,565 +1957,7 @@ var Relationship;
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var docs_1 = __webpack_require__(1);
-function createHash(id) {
-    var parts = [id.project, id.version, id.type];
-    if (docs_1.isValidPageId(id)) {
-        parts.push(id.page);
-        if (id.section) {
-            parts.push(id.section);
-        }
-    }
-    return '#' + parts.map(encodeURIComponent).join('/');
-}
-exports.createHash = createHash;
-function parseHash() {
-    var hash = location.hash.slice(1);
-    var _a = hash
-        .split('/')
-        .map(function (part) { return decodeURIComponent(part); }), project = _a[0], version = _a[1], type = _a[2], page = _a[3], section = _a[4];
-    return { project: project, version: version, type: type, page: page, section: section };
-}
-exports.parseHash = parseHash;
-function updateHash(newHash, event) {
-    if (event === void 0) { event = HashEvent.nav; }
-    var hash = typeof newHash === 'string' ? newHash : createHash(newHash);
-    if (location.hash === hash) {
-        return;
-    }
-    var state = { event: event };
-    if (event === HashEvent.rename) {
-        history.replaceState(state, '', hash);
-    }
-    else if (event === HashEvent.nav ||
-        (!history.state || history.state.event !== event)) {
-        history.pushState(state, '', hash);
-    }
-    else {
-        history.replaceState(state, '', hash);
-    }
-}
-exports.updateHash = updateHash;
-var HashEvent;
-(function (HashEvent) {
-    HashEvent["nav"] = "nav";
-    HashEvent["rename"] = "rename";
-    HashEvent["scroll"] = "scroll";
-})(HashEvent = exports.HashEvent || (exports.HashEvent = {}));
-
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(2);
-var MarkdownIt = __webpack_require__(33);
-var hljs = __webpack_require__(10);
-var h = __webpack_require__(3);
-var docs_1 = __webpack_require__(1);
-var hash_1 = __webpack_require__(4);
-hljs.registerLanguage('html', __webpack_require__(89));
-hljs.registerLanguage('nginx', __webpack_require__(90));
-hljs.registerLanguage('javascript', __webpack_require__(19));
-hljs.registerLanguage('typescript', __webpack_require__(20));
-function createGitHubLink(id, page) {
-    var docSet = docs_1.getDocSet(id);
-    var url = docs_1.getProjectUrl(id.project);
-    return h('a.source-link', {
-        title: 'View page source',
-        href: url + "/blob/" + docSet.branch + "/" + page
-    });
-}
-exports.createGitHubLink = createGitHubLink;
-function createLinkItem(content, id) {
-    var text;
-    var classes = [];
-    if (typeof content === 'string') {
-        text = content;
-    }
-    else {
-        text = content.textContent;
-        for (var i = 0; i < content.classList.length; i++) {
-            classes.push(content.classList[i]);
-        }
-    }
-    return h('li', {}, h('a', {
-        href: hash_1.createHash(id),
-        title: text,
-        className: classes.join(' ')
-    }, h('span', {}, text)));
-}
-exports.createLinkItem = createLinkItem;
-function addHeadingIcons(heading) {
-    var existing = heading.querySelector('.heading-icons');
-    if (existing != null) {
-        return existing.childNodes[1];
-    }
-    var container = h('span.heading-icons', {}, [h('span'), h('span')]);
-    var icons = container.childNodes[1];
-    var content = heading.textContent;
-    heading.textContent = '';
-    heading.appendChild(document.createTextNode(content));
-    heading.appendChild(container);
-    heading.classList.add('has-heading-icons');
-    return icons;
-}
-exports.addHeadingIcons = addHeadingIcons;
-function createSlugifier() {
-    var cache = Object.create(null);
-    return function (str) {
-        var slug = str
-            .toLowerCase()
-            .replace(/[^A-Za-z0-9_ ]/g, '')
-            .replace(/\s+/g, '-');
-        if (cache[slug]) {
-            var i = 1;
-            var next = slug + "-" + i;
-            while (cache[next]) {
-                i++;
-                next = slug + "-" + i;
-            }
-            slug = next;
-        }
-        cache[slug] = true;
-        return slug;
-    };
-}
-exports.createSlugifier = createSlugifier;
-function renderMarkdown(text, context) {
-    if (!markdown) {
-        markdown = new MarkdownIt({
-            highlight: function (str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                    try {
-                        return ('<pre><code class="hljs language-' +
-                            lang +
-                            '">' +
-                            hljs.highlight(lang, str, true).value +
-                            '</code></pre>');
-                    }
-                    catch (error) {
-                        console.error(error);
-                    }
-                }
-                return '<pre><code class="hljs">' + str + '</code></pre>';
-            },
-            html: true
-        });
-        markdown.renderer.rules.table_open = function () {
-            return '<table class="table is-bordered">';
-        };
-        markdown.renderer.rules.thead_open = function (tokens, idx) {
-            var i = idx + 2;
-            var token = tokens[i];
-            var empty = true;
-            while (token && token.type !== 'tr_close') {
-                var token2 = tokens[i + 2];
-                if (token.type !== 'th_open' ||
-                    !token2 ||
-                    token2.type !== 'th_close') {
-                    empty = false;
-                    break;
-                }
-                var token1 = tokens[i + 1];
-                if (token1.type !== 'inline' || token1.children.length > 0) {
-                    empty = false;
-                    break;
-                }
-                i += 3;
-                token = tokens[i];
-            }
-            return "<thead" + (empty ? ' class="is-hidden"' : '') + ">";
-        };
-        markdown.renderer.rules.blockquote_open = function (tokens, idx) {
-            var token = tokens[idx + 2].children[0];
-            var warning = '⚠️';
-            var info = '💡';
-            var deprecated = '👎';
-            if (token.content.indexOf(warning) === 0) {
-                token.content = token.content
-                    .replace(warning, '')
-                    .replace(/^\s*/, '');
-                return ('<blockquote class="warning"><div>' +
-                    '<span class="fa fa-warning" aria-hidden="true">' +
-                    '</span></div>');
-            }
-            else if (token.content.indexOf(info) === 0) {
-                token.content = token.content
-                    .replace(info, '')
-                    .replace(/^\s*/, '');
-                return ('<blockquote class="info"><div>' +
-                    '<span class="fa fa-lightbulb-o" aria-hidden="true">' +
-                    '</span></div>');
-            }
-            else if (token.content.indexOf(deprecated) === 0) {
-                token.content = token.content
-                    .replace(deprecated, '')
-                    .replace(/^\s*/, '');
-                return ('<blockquote class="deprecated"><div>' +
-                    '<span class="fa fa-thumbs-o-down" aria-hidden="true">' +
-                    '</span></div>');
-            }
-            return '<blockquote>';
-        };
-        var defaultLinkRender_1 = markdown.renderer.rules.link_open ||
-            (function (tokens, idx, options, _env, self) {
-                return self.renderToken(tokens, idx, options);
-            });
-        markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-            var hrefIdx = tokens[idx].attrIndex('href');
-            var hrefToken = tokens[idx].attrs[hrefIdx];
-            var _a = hrefToken[1].split('#'), file = _a[0], hash = _a[1];
-            var docSetId = docs_1.getCurrentDocSetId();
-            var _b = env.info, page = _b.page, type = _b.type;
-            if (!file) {
-                hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: page,
-                    type: type, section: hash }, docSetId));
-            }
-            else if (!/\/\//.test(file)) {
-                if (type !== 'api' || file.indexOf('api:') !== 0) {
-                    if (/\.md$/.test(file)) {
-                        var cleanFile = file.replace(/^\.\//, '');
-                        var pageBase = '';
-                        if (page.indexOf('/') !== -1) {
-                            pageBase = page.slice(0, page.lastIndexOf('/') + 1);
-                        }
-                        hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: pageBase + cleanFile, section: hash, type: type }, docSetId));
-                    }
-                    else {
-                        hrefToken[1] = createGitHubLink(docSetId, file);
-                    }
-                }
-            }
-            return defaultLinkRender_1(tokens, idx, options, env, self);
-        };
-        markdown.renderer.rules.heading_open = function (tokens, idx, _options, env) {
-            var token = tokens[idx];
-            var content = tokens[idx + 1].content;
-            var id = env.slugify(content);
-            return "<" + token.tag + " id=\"" + id + "\">";
-        };
-    }
-    if (!context.slugify) {
-        context.slugify = context.slugify || createSlugifier();
-    }
-    return markdown.render(text, context);
-}
-exports.renderMarkdown = renderMarkdown;
-function renderMenu(id, type, maxDepth) {
-    if (maxDepth === void 0) { maxDepth = 3; }
-    var docSet = docs_1.getDocSet(id);
-    var pageNames = type === 'api' ? docSet.apiPages : docSet.pages;
-    var cache = type === 'api' ? docSet.apiCache : docSet.pageCache;
-    var menu = h('ul.menu-list', { menuDepth: maxDepth });
-    for (var _i = 0, pageNames_1 = pageNames; _i < pageNames_1.length; _i++) {
-        var pageName = pageNames_1[_i];
-        var page = cache[pageName];
-        var root = void 0;
-        try {
-            root = createNode(page.element.querySelector('h1'));
-        }
-        catch (error) {
-            root = {
-                level: 1,
-                element: h('li'),
-                children: []
-            };
-        }
-        var headingTags = [];
-        for (var i = 2; i <= maxDepth; i++) {
-            headingTags.push("h" + i);
-        }
-        var headings = page.element.querySelectorAll(headingTags.join(','));
-        var stack = [[root]];
-        var children = void 0;
-        for (var i = 0; i < headings.length; i++) {
-            var heading = headings[i];
-            var newNode = createNode(heading);
-            var level = newNode.level;
-            if (level === stack[0][0].level) {
-                stack[0].unshift(newNode);
-            }
-            else if (level > stack[0][0].level) {
-                stack.unshift([newNode]);
-            }
-            else {
-                while (stack[0][0].level > level) {
-                    children = stack.shift().reverse();
-                    stack[0][0].children = children;
-                }
-                if (level === stack[0][0].level) {
-                    stack[0].unshift(newNode);
-                }
-                else {
-                    stack.unshift([newNode]);
-                }
-            }
-        }
-        while (stack.length > 1) {
-            children = stack.shift().reverse();
-            stack[0][0].children = children;
-        }
-        var project = id.project, version = id.version;
-        var pageId = { project: project, version: version, page: pageName, type: type };
-        var li = createLinkItem(page.title, pageId);
-        if (root.children.length > 0) {
-            li.appendChild(renderSubMenu(root.children, pageId));
-        }
-        menu.appendChild(li);
-    }
-    return menu;
-}
-exports.renderMenu = renderMenu;
-function renderDocPage(text, pageName, id) {
-    text = filterGhContent(text);
-    var html = renderMarkdown(text, {
-        info: { page: pageName, type: docs_1.DocType.docs }
-    });
-    var element = h('div', { innerHTML: html });
-    var h1 = element.querySelector('h1');
-    if (!h1) {
-        return element;
-    }
-    var icons = addHeadingIcons(h1);
-    var link = createGitHubLink(id, pageName);
-    link.classList.add('edit-page');
-    icons.appendChild(link);
-    element.insertBefore(h1, element.firstChild);
-    return element;
-}
-exports.renderDocPage = renderDocPage;
-function renderSubMenu(children, pageId) {
-    var ul = h('ul');
-    for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
-        var child = children_1[_i];
-        var heading = child.element;
-        var li = createLinkItem(heading, tslib_1.__assign({}, pageId, { section: heading.id }));
-        if (child.children.length > 0) {
-            li.appendChild(renderSubMenu(child.children, pageId));
-        }
-        ul.appendChild(li);
-    }
-    return ul;
-}
-function createNode(heading) {
-    var level = parseInt(heading.tagName.slice(1), 10);
-    return { level: level, element: heading, children: [] };
-}
-function filterGhContent(text) {
-    var markers = [
-        ['<!-- vim-markdown-toc GFM -->', '<!-- vim-markdown-toc -->'],
-        ['<!-- start-github-only -->', '<!-- end-github-only -->']
-    ];
-    return markers.reduce(function (text, marker) {
-        var chunks = [];
-        var start = 0;
-        var left = text.indexOf(marker[0]);
-        var right = 0;
-        while (left !== -1) {
-            chunks.push(text.slice(start, left));
-            right = text.indexOf(marker[1], left);
-            if (right === -1) {
-                break;
-            }
-            start = right + marker[1].length;
-            left = text.indexOf(marker[0], start);
-        }
-        if (right !== -1) {
-            chunks.push(text.slice(start));
-        }
-        return chunks.join('');
-    }, text);
-}
-var markdown;
-
-
-/***/ }),
-
 /***/ 91:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(2);
-var h = __webpack_require__(3);
-var Mark = __webpack_require__(92);
-var docs_1 = __webpack_require__(1);
-var markdown_1 = __webpack_require__(6);
-var maxSnippetLength = 60;
-var minSearchTermLength = 4;
-function search(term, docType, results) {
-    var searchResults = typeof results === 'string'
-        ? document.querySelector(results)
-        : results;
-    searchResults.innerHTML = '';
-    var highlightTerm = term.trim();
-    var searchTerm = highlightTerm.toLowerCase();
-    if (searchTerm && searchTerm.length < minSearchTermLength) {
-        return;
-    }
-    var docSetId = docs_1.getCurrentDocSetId();
-    var docs = docs_1.getDocSet(docSetId);
-    var pages = docType === 'api' ? docs.apiPages : docs.pages;
-    var cache = docType === 'api' ? docs.apiCache : docs.pageCache;
-    var finders = [];
-    var _loop_1 = function (name_1) {
-        var page = cache[name_1];
-        finders.push(findAllMatches(searchTerm, page.element).then(function (matches) {
-            if (matches.length > 0) {
-                var link = markdown_1.createLinkItem(page.title, tslib_1.__assign({ page: name_1, type: docType }, docSetId));
-                var submenu = h('ul', {}, matches.map(function (match) {
-                    return markdown_1.createLinkItem(match.snippet, tslib_1.__assign({ type: docType, page: name_1, section: match.section }, docSetId));
-                }));
-                link.appendChild(submenu);
-                searchResults.appendChild(link);
-            }
-        }));
-    };
-    for (var _i = 0, pages_1 = pages; _i < pages_1.length; _i++) {
-        var name_1 = pages_1[_i];
-        _loop_1(name_1);
-    }
-    Promise.all(finders).then(function () {
-        if (searchResults.childNodes.length === 0) {
-            if (searchTerm) {
-                searchResults.innerHTML =
-                    '<li class="no-results">No results found</li>';
-            }
-        }
-        else {
-            findAllMatches(searchTerm, searchResults, false);
-        }
-    });
-}
-exports.default = search;
-function findAllMatches(searchTerm, page, saveMatches) {
-    if (saveMatches === void 0) { saveMatches = true; }
-    return new Promise(function (resolve) {
-        var highlighter = new Mark(page);
-        highlighter.unmark();
-        var matches = [];
-        highlighter.mark(searchTerm, {
-            acrossElements: true,
-            caseSensitive: false,
-            ignorePunctuation: ['“', '”', '‘', '’'],
-            separateWordSearch: false,
-            each: function (element) {
-                if (saveMatches) {
-                    element.id = "search-result-" + matches.length;
-                    matches.push({
-                        element: element,
-                        section: element.id,
-                        snippet: createSnippet(element)
-                    });
-                }
-            },
-            done: function () {
-                resolve(matches);
-            }
-        });
-    });
-}
-function createSnippet(searchMatch) {
-    var searchText = searchMatch.textContent;
-    var container = getContainer(searchMatch);
-    var extraLength = maxSnippetLength - searchText.length;
-    var previousSibling = function (node) { return node.previousSibling; };
-    var previousText = '';
-    var previous = getNextTextNode(searchMatch, previousSibling, getRightLeaf);
-    while (previous && previousText.length < extraLength) {
-        previousText = previous.textContent + previousText;
-        previous = getNextTextNode(previous, previousSibling, getRightLeaf);
-    }
-    var nextSibling = function (node) { return node.nextSibling; };
-    var nextText = '';
-    var next = getNextTextNode(searchMatch, nextSibling, getLeftLeaf);
-    while (next && nextText.length < extraLength) {
-        nextText += next.textContent;
-        next = getNextTextNode(next, nextSibling, getLeftLeaf);
-    }
-    var halfExtra = extraLength / 2;
-    var nextTarget = halfExtra;
-    var prevTarget = halfExtra;
-    if (nextText.length > halfExtra && previousText.length > halfExtra) {
-        nextTarget = halfExtra;
-        prevTarget = halfExtra;
-    }
-    else if (nextText.length > halfExtra) {
-        nextTarget = halfExtra + (halfExtra - previousText.length);
-    }
-    else if (previousText.length > halfExtra) {
-        prevTarget = halfExtra + (halfExtra - nextText.length);
-    }
-    if (previousText.length > prevTarget) {
-        previousText = "..." + previousText.slice(previousText.length - prevTarget);
-    }
-    if (nextText.length > nextTarget) {
-        nextText = nextText.slice(0, nextTarget) + "...";
-    }
-    return [previousText, searchText, nextText].join('');
-    function getNextTextNode(node, getNext, getLeaf) {
-        if (!node || node === container) {
-            return null;
-        }
-        var next = getNext(node);
-        if (!next) {
-            return getNextTextNode(node.parentElement, getNext, getLeaf);
-        }
-        if (next.childNodes.length > 0) {
-            next = getLeaf(next);
-        }
-        if (next && next.nodeType !== Node.TEXT_NODE) {
-            return getNextTextNode(next, getNext, getLeaf);
-        }
-        return next;
-    }
-    function getLeftLeaf(node) {
-        while (node.childNodes.length > 0) {
-            return getLeftLeaf(node.childNodes[0]);
-        }
-        return node;
-    }
-    function getRightLeaf(node) {
-        while (node.childNodes.length > 0) {
-            return getRightLeaf(node.childNodes[node.childNodes.length - 1]);
-        }
-        return node;
-    }
-    function getContainer(node) {
-        switch (node.tagName) {
-            case 'H1':
-            case 'H2':
-            case 'H3':
-            case 'H4':
-            case 'P':
-            case 'BLOCKQUOTE':
-            case 'PRE':
-            case 'LI':
-            case 'TR':
-            case 'TABLE':
-                return node;
-            default:
-                return getContainer(node.parentElement);
-        }
-    }
-}
-
-
-/***/ }),
-
-/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

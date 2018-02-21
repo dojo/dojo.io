@@ -26,7 +26,6 @@ import {
 import { renderApiPages } from './renderer/api';
 import { renderMenu, renderDocPage } from './renderer/markdown';
 import { createHash, parseHash, updateHash, HashEvent } from './hash';
-import search from './search';
 import {place, queryExpected} from './dom';
 
 const global = <any> window;
@@ -38,13 +37,11 @@ let viewer: HTMLElement;
 let content: HTMLElement;
 let messageModal: HTMLElement;
 let ignoreScroll = false;
-let searchPanel: HTMLElement;
 let scrollState: {
 	pageHash: string;
 	headings: NodeListOf<Element>;
 } = Object.create(null);
 
-const searchDelay = 300;
 const menuHighlightDelay = 20;
 
 // Super simple router. The location hash fully controls the state of the
@@ -69,80 +66,6 @@ ready.then(() => {
 	viewer = queryExpected('.page-docs');
 	content = queryExpected('.docs-content');
 	messageModal = queryExpected('.message-modal');
-	searchPanel = queryExpected('.search-panel');
-
-	place(queryExpected('.docs-nav'), (docsNavNode) => {
-		// Handle updates to the project + version selects.
-		docsNavNode.addEventListener('change', event => {
-			const target: Element = <Element> event.target;
-			if (target.tagName !== 'SELECT') {
-				return;
-			}
-
-			const select = <HTMLSelectElement> target;
-			const docSetId = getCurrentDocSetId();
-
-			if (target.getAttribute('data-select-property') === 'project') {
-				// The project was changed
-				docSetId.project = select.value;
-				docSetId.version = getLatestVersion(select.value);
-			} else {
-				// The version was changed
-				docSetId.version = select.value;
-			}
-
-			updateHash({ ...docSetId, type: DocType.docs, page: 'README.md' });
-			processHash();
-		});
-
-		// Open the search dropdown if the user clicks a search button
-		docsNavNode.addEventListener('click', event => {
-			let target = <HTMLElement> event.target;
-
-			if (target.classList.contains('fa')) {
-				// An icon was clicked, get its parent
-				target = target.parentElement!;
-			}
-
-			if (target.classList.contains('search-button')) {
-				target.classList.toggle('is-active');
-				viewer.classList.toggle('is-searching');
-				if (viewer.classList.contains('is-searching')) {
-					searchPanel.querySelector('input')!.focus();
-				}
-			} else if (target.classList.contains('navbar-burger')) {
-				const menuId = target.getAttribute('data-target')!;
-				const menu = document.getElementById(menuId)!;
-				target.classList.toggle('is-active');
-				menu.classList.toggle('is-active');
-			}
-		});
-	});
-
-	place(searchPanel, (searchPanel) => {
-		// Live search as the user types into the search dropdown input
-		let searchTimer: number | undefined;
-		searchPanel.addEventListener('input', event => {
-			if (searchTimer) {
-				clearTimeout(searchTimer);
-			}
-			searchTimer = <any> setTimeout(() => {
-				const results = queryExpected('.search-results', searchPanel);
-				const docType = <DocType> viewer.getAttribute('data-doc-type')!;
-				search((<HTMLInputElement> event.target).value, docType, results);
-			}, searchDelay);
-		});
-
-		// Clear the search field when the user clicks the 'x' in the search box
-		searchPanel.querySelector('.button')!.addEventListener('click', () => {
-			const results = searchPanel.querySelector('.search-results')!;
-			const docType = <DocType> viewer.getAttribute('data-doc-type')!;
-			const input = <HTMLInputElement> searchPanel.querySelector('input');
-			input.value = '';
-			search('', docType, results);
-			searchPanel.querySelector('input')!.focus();
-		});
-	});
 
 	place(content, (content) => {
 		// Update the url hash as the user scrolls
@@ -258,33 +181,6 @@ function loadDocSet(id: DocSetId): Promise<DocSet> {
 				h1.insertBefore(logoImg, h1.firstChild);
 			}
 			cache[name] = { name, element, title };
-		});
-	}
-}
-
-/**
- * Update the links in doc navbar
- */
-function updateNavBarLinks(id: DocSetId) {
-	const docSet = getDocSet(id);
-	const navbar = <HTMLElement> document.querySelector(
-		'.docs-nav .navbar-start'
-	);
-
-	navbar.classList[docSet.api ? 'add' : 'remove']('has-api');
-	navbar.classList[docSet.pages ? 'add' : 'remove']('has-docs');
-
-	const docTypes = <DocType[]> Object.keys(DocType).filter(
-		type => !Number(type)
-	);
-	for (const type of docTypes) {
-		const link = <HTMLLinkElement> navbar.querySelector(
-			`.navbar-item[data-doc-type="${type}"]`
-		)!;
-		link.href = createHash({
-			project: id.project,
-			version: id.version,
-			type
 		});
 	}
 }
@@ -513,7 +409,6 @@ function processHash() {
 						showMenu(type);
 						showPage(type, page, section);
 						updateGitHubButtons(pageId);
-						updateNavBarLinks(pageId);
 						updateDocsetSelector();
 						hideMessage();
 					})
