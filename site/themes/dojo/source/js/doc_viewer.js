@@ -1,12 +1,362 @@
 webpackJsonp([0],{
 
-/***/ 1:
+/***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var hash_1 = __webpack_require__(2);
+var tslib_1 = __webpack_require__(1);
+var MarkdownIt = __webpack_require__(33);
+var hljs = __webpack_require__(9);
+var h = __webpack_require__(5);
+var docs_1 = __webpack_require__(2);
+var hash_1 = __webpack_require__(3);
+hljs.registerLanguage('html', __webpack_require__(89));
+hljs.registerLanguage('nginx', __webpack_require__(90));
+hljs.registerLanguage('javascript', __webpack_require__(19));
+hljs.registerLanguage('typescript', __webpack_require__(20));
+function createGitHubLink(id, page) {
+    var docSet = docs_1.getDocSet(id);
+    var url = docs_1.getProjectUrl(id.project);
+    return h('a.source-link', {
+        title: 'View page source',
+        href: url + "/blob/" + docSet.branch + "/" + page
+    });
+}
+exports.createGitHubLink = createGitHubLink;
+function createLinkItem(content, id) {
+    var text;
+    var classes = [];
+    if (typeof content === 'string') {
+        text = content;
+    }
+    else {
+        text = content.textContent;
+        for (var i = 0; i < content.classList.length; i++) {
+            classes.push(content.classList[i]);
+        }
+    }
+    return h('li', {}, h('a', {
+        href: hash_1.createHash(id),
+        title: text,
+        className: classes.join(' ')
+    }, h('span', {}, text)));
+}
+exports.createLinkItem = createLinkItem;
+function addHeadingIcons(heading) {
+    var existing = heading.querySelector('.heading-icons');
+    if (existing != null) {
+        return existing.childNodes[1];
+    }
+    var container = h('span.heading-icons', {}, [h('span'), h('span')]);
+    var icons = container.childNodes[1];
+    var content = heading.textContent;
+    heading.textContent = '';
+    heading.appendChild(document.createTextNode(content));
+    heading.appendChild(container);
+    heading.classList.add('has-heading-icons');
+    return icons;
+}
+exports.addHeadingIcons = addHeadingIcons;
+function createSlugifier() {
+    var cache = Object.create(null);
+    return function (str) {
+        var slug = str
+            .toLowerCase()
+            .replace(/[^A-Za-z0-9_ ]/g, '')
+            .replace(/\s+/g, '-');
+        if (cache[slug]) {
+            var i = 1;
+            var next = slug + "-" + i;
+            while (cache[next]) {
+                i++;
+                next = slug + "-" + i;
+            }
+            slug = next;
+        }
+        cache[slug] = true;
+        return slug;
+    };
+}
+exports.createSlugifier = createSlugifier;
+function renderMarkdown(text, context) {
+    if (!markdown) {
+        markdown = new MarkdownIt({
+            highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return ('<pre><code class="hljs language-' +
+                            lang +
+                            '">' +
+                            hljs.highlight(lang, str, true).value +
+                            '</code></pre>');
+                    }
+                    catch (error) {
+                        console.error(error);
+                    }
+                }
+                return '<pre><code class="hljs">' + str + '</code></pre>';
+            },
+            html: true
+        });
+        markdown.renderer.rules.table_open = function () {
+            return '<table class="table is-bordered">';
+        };
+        markdown.renderer.rules.thead_open = function (tokens, idx) {
+            var i = idx + 2;
+            var token = tokens[i];
+            var empty = true;
+            while (token && token.type !== 'tr_close') {
+                var token2 = tokens[i + 2];
+                if (token.type !== 'th_open' ||
+                    !token2 ||
+                    token2.type !== 'th_close') {
+                    empty = false;
+                    break;
+                }
+                var token1 = tokens[i + 1];
+                if (token1.type !== 'inline' || token1.children.length > 0) {
+                    empty = false;
+                    break;
+                }
+                i += 3;
+                token = tokens[i];
+            }
+            return "<thead" + (empty ? ' class="is-hidden"' : '') + ">";
+        };
+        markdown.renderer.rules.blockquote_open = function (tokens, idx) {
+            var token = tokens[idx + 2].children[0];
+            var warning = '⚠️';
+            var info = '💡';
+            var deprecated = '👎';
+            if (token.content.indexOf(warning) === 0) {
+                token.content = token.content
+                    .replace(warning, '')
+                    .replace(/^\s*/, '');
+                return ('<blockquote class="warning"><div>' +
+                    '<span class="fa fa-warning" aria-hidden="true">' +
+                    '</span></div>');
+            }
+            else if (token.content.indexOf(info) === 0) {
+                token.content = token.content
+                    .replace(info, '')
+                    .replace(/^\s*/, '');
+                return ('<blockquote class="info"><div>' +
+                    '<span class="fa fa-lightbulb-o" aria-hidden="true">' +
+                    '</span></div>');
+            }
+            else if (token.content.indexOf(deprecated) === 0) {
+                token.content = token.content
+                    .replace(deprecated, '')
+                    .replace(/^\s*/, '');
+                return ('<blockquote class="deprecated"><div>' +
+                    '<span class="fa fa-thumbs-o-down" aria-hidden="true">' +
+                    '</span></div>');
+            }
+            return '<blockquote>';
+        };
+        var defaultLinkRender_1 = markdown.renderer.rules.link_open ||
+            (function (tokens, idx, options, _env, self) {
+                return self.renderToken(tokens, idx, options);
+            });
+        markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+            var hrefIdx = tokens[idx].attrIndex('href');
+            var hrefToken = tokens[idx].attrs[hrefIdx];
+            var _a = tslib_1.__read(hrefToken[1].split('#'), 2), file = _a[0], hash = _a[1];
+            var docSetId = docs_1.getCurrentDocSetId();
+            var _b = env.info, page = _b.page, type = _b.type;
+            if (!file) {
+                hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: page,
+                    type: type, section: hash }, docSetId));
+            }
+            else if (!/\/\//.test(file)) {
+                if (type !== 'api' || file.indexOf('api:') !== 0) {
+                    if (/\.md$/.test(file)) {
+                        var cleanFile = file.replace(/^\.\//, '');
+                        var pageBase = '';
+                        if (page.indexOf('/') !== -1) {
+                            pageBase = page.slice(0, page.lastIndexOf('/') + 1);
+                        }
+                        hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: pageBase + cleanFile, section: hash, type: type }, docSetId));
+                    }
+                    else {
+                        hrefToken[1] = createGitHubLink(docSetId, file);
+                    }
+                }
+            }
+            return defaultLinkRender_1(tokens, idx, options, env, self);
+        };
+        markdown.renderer.rules.heading_open = function (tokens, idx, _options, env) {
+            var token = tokens[idx];
+            var content = tokens[idx + 1].content;
+            var id = env.slugify(content);
+            return "<" + token.tag + " id=\"" + id + "\">";
+        };
+    }
+    if (!context.slugify) {
+        context.slugify = context.slugify || createSlugifier();
+    }
+    return markdown.render(text, context);
+}
+exports.renderMarkdown = renderMarkdown;
+function renderMenu(id, type, maxDepth) {
+    if (maxDepth === void 0) { maxDepth = 3; }
+    var docSet = docs_1.getDocSet(id);
+    var pageNames = type === 'api' ? docSet.apiPages : docSet.pages;
+    var cache = type === 'api' ? docSet.apiCache : docSet.pageCache;
+    var menu = h('ul.menu-list', { menuDepth: maxDepth });
+    try {
+        for (var pageNames_1 = tslib_1.__values(pageNames), pageNames_1_1 = pageNames_1.next(); !pageNames_1_1.done; pageNames_1_1 = pageNames_1.next()) {
+            var pageName = pageNames_1_1.value;
+            var page = cache[pageName];
+            var root = void 0;
+            try {
+                root = createNode(page.element.querySelector('h1'));
+            }
+            catch (error) {
+                root = {
+                    level: 1,
+                    element: h('li'),
+                    children: []
+                };
+            }
+            var headingTags = [];
+            for (var i = 2; i <= maxDepth; i++) {
+                headingTags.push("h" + i);
+            }
+            var headings = page.element.querySelectorAll(headingTags.join(','));
+            var stack = [[root]];
+            var children = void 0;
+            for (var i = 0; i < headings.length; i++) {
+                var heading = headings[i];
+                var newNode = createNode(heading);
+                var level = newNode.level;
+                if (level === stack[0][0].level) {
+                    stack[0].unshift(newNode);
+                }
+                else if (level > stack[0][0].level) {
+                    stack.unshift([newNode]);
+                }
+                else {
+                    while (stack[0][0].level > level) {
+                        children = stack.shift().reverse();
+                        stack[0][0].children = children;
+                    }
+                    if (level === stack[0][0].level) {
+                        stack[0].unshift(newNode);
+                    }
+                    else {
+                        stack.unshift([newNode]);
+                    }
+                }
+            }
+            while (stack.length > 1) {
+                children = stack.shift().reverse();
+                stack[0][0].children = children;
+            }
+            var project = id.project, version = id.version;
+            var pageId = { project: project, version: version, page: pageName, type: type };
+            var li = createLinkItem(page.title, pageId);
+            if (root.children.length > 0) {
+                li.appendChild(renderSubMenu(root.children, pageId));
+            }
+            menu.appendChild(li);
+        }
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (pageNames_1_1 && !pageNames_1_1.done && (_a = pageNames_1.return)) _a.call(pageNames_1);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    return menu;
+    var e_1, _a;
+}
+exports.renderMenu = renderMenu;
+function renderDocPage(text, pageName, id) {
+    text = filterGhContent(text);
+    var html = renderMarkdown(text, {
+        info: { page: pageName, type: docs_1.DocType.docs }
+    });
+    var element = h('div', { innerHTML: html });
+    var h1 = element.querySelector('h1');
+    if (!h1) {
+        return element;
+    }
+    var icons = addHeadingIcons(h1);
+    var link = createGitHubLink(id, pageName);
+    link.classList.add('edit-page');
+    icons.appendChild(link);
+    element.insertBefore(h1, element.firstChild);
+    return element;
+}
+exports.renderDocPage = renderDocPage;
+function renderSubMenu(children, pageId) {
+    var ul = h('ul');
+    try {
+        for (var children_1 = tslib_1.__values(children), children_1_1 = children_1.next(); !children_1_1.done; children_1_1 = children_1.next()) {
+            var child = children_1_1.value;
+            var heading = child.element;
+            var li = createLinkItem(heading, tslib_1.__assign({}, pageId, { section: heading.id }));
+            if (child.children.length > 0) {
+                li.appendChild(renderSubMenu(child.children, pageId));
+            }
+            ul.appendChild(li);
+        }
+    }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    finally {
+        try {
+            if (children_1_1 && !children_1_1.done && (_a = children_1.return)) _a.call(children_1);
+        }
+        finally { if (e_2) throw e_2.error; }
+    }
+    return ul;
+    var e_2, _a;
+}
+function createNode(heading) {
+    var level = parseInt(heading.tagName.slice(1), 10);
+    return { level: level, element: heading, children: [] };
+}
+function filterGhContent(text) {
+    var markers = [
+        ['<!-- vim-markdown-toc GFM -->', '<!-- vim-markdown-toc -->'],
+        ['<!-- start-github-only -->', '<!-- end-github-only -->']
+    ];
+    return markers.reduce(function (text, marker) {
+        var chunks = [];
+        var start = 0;
+        var left = text.indexOf(marker[0]);
+        var right = 0;
+        while (left !== -1) {
+            chunks.push(text.slice(start, left));
+            right = text.indexOf(marker[1], left);
+            if (right === -1) {
+                break;
+            }
+            start = right + marker[1].length;
+            left = text.indexOf(marker[0], start);
+        }
+        if (right !== -1) {
+            chunks.push(text.slice(start));
+        }
+        return chunks.join('');
+    }, text);
+}
+var markdown;
+
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var hash_1 = __webpack_require__(3);
 var DocType;
 (function (DocType) {
     DocType["api"] = "api";
@@ -211,391 +561,6 @@ function compareVersions(a, b) {
 
 /***/ }),
 
-/***/ 10:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(3);
-var MarkdownIt = __webpack_require__(33);
-var hljs = __webpack_require__(9);
-var h = __webpack_require__(5);
-var docs_1 = __webpack_require__(1);
-var hash_1 = __webpack_require__(2);
-hljs.registerLanguage('html', __webpack_require__(89));
-hljs.registerLanguage('nginx', __webpack_require__(90));
-hljs.registerLanguage('javascript', __webpack_require__(19));
-hljs.registerLanguage('typescript', __webpack_require__(20));
-function createGitHubLink(id, page) {
-    var docSet = docs_1.getDocSet(id);
-    var url = docs_1.getProjectUrl(id.project);
-    return h('a.source-link', {
-        title: 'View page source',
-        href: url + "/blob/" + docSet.branch + "/" + page
-    });
-}
-exports.createGitHubLink = createGitHubLink;
-function createLinkItem(content, id) {
-    var text;
-    var classes = [];
-    if (typeof content === 'string') {
-        text = content;
-    }
-    else {
-        text = content.textContent;
-        for (var i = 0; i < content.classList.length; i++) {
-            classes.push(content.classList[i]);
-        }
-    }
-    return h('li', {}, h('a', {
-        href: hash_1.createHash(id),
-        title: text,
-        className: classes.join(' ')
-    }, h('span', {}, text)));
-}
-exports.createLinkItem = createLinkItem;
-function addHeadingIcons(heading) {
-    var existing = heading.querySelector('.heading-icons');
-    if (existing != null) {
-        return existing.childNodes[1];
-    }
-    var container = h('span.heading-icons', {}, [h('span'), h('span')]);
-    var icons = container.childNodes[1];
-    var content = heading.textContent;
-    heading.textContent = '';
-    heading.appendChild(document.createTextNode(content));
-    heading.appendChild(container);
-    heading.classList.add('has-heading-icons');
-    return icons;
-}
-exports.addHeadingIcons = addHeadingIcons;
-function createSlugifier() {
-    var cache = Object.create(null);
-    return function (str) {
-        var slug = str
-            .toLowerCase()
-            .replace(/[^A-Za-z0-9_ ]/g, '')
-            .replace(/\s+/g, '-');
-        if (cache[slug]) {
-            var i = 1;
-            var next = slug + "-" + i;
-            while (cache[next]) {
-                i++;
-                next = slug + "-" + i;
-            }
-            slug = next;
-        }
-        cache[slug] = true;
-        return slug;
-    };
-}
-exports.createSlugifier = createSlugifier;
-function renderMarkdown(text, context) {
-    if (!markdown) {
-        markdown = new MarkdownIt({
-            highlight: function (str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                    try {
-                        return ('<pre><code class="hljs language-' +
-                            lang +
-                            '">' +
-                            hljs.highlight(lang, str, true).value +
-                            '</code></pre>');
-                    }
-                    catch (error) {
-                        console.error(error);
-                    }
-                }
-                return '<pre><code class="hljs">' + str + '</code></pre>';
-            },
-            html: true
-        });
-        markdown.renderer.rules.table_open = function () {
-            return '<table class="table is-bordered">';
-        };
-        markdown.renderer.rules.thead_open = function (tokens, idx) {
-            var i = idx + 2;
-            var token = tokens[i];
-            var empty = true;
-            while (token && token.type !== 'tr_close') {
-                var token2 = tokens[i + 2];
-                if (token.type !== 'th_open' ||
-                    !token2 ||
-                    token2.type !== 'th_close') {
-                    empty = false;
-                    break;
-                }
-                var token1 = tokens[i + 1];
-                if (token1.type !== 'inline' || token1.children.length > 0) {
-                    empty = false;
-                    break;
-                }
-                i += 3;
-                token = tokens[i];
-            }
-            return "<thead" + (empty ? ' class="is-hidden"' : '') + ">";
-        };
-        markdown.renderer.rules.blockquote_open = function (tokens, idx) {
-            var token = tokens[idx + 2].children[0];
-            var warning = '⚠️';
-            var info = '💡';
-            var deprecated = '👎';
-            if (token.content.indexOf(warning) === 0) {
-                token.content = token.content
-                    .replace(warning, '')
-                    .replace(/^\s*/, '');
-                return ('<blockquote class="warning"><div>' +
-                    '<span class="fa fa-warning" aria-hidden="true">' +
-                    '</span></div>');
-            }
-            else if (token.content.indexOf(info) === 0) {
-                token.content = token.content
-                    .replace(info, '')
-                    .replace(/^\s*/, '');
-                return ('<blockquote class="info"><div>' +
-                    '<span class="fa fa-lightbulb-o" aria-hidden="true">' +
-                    '</span></div>');
-            }
-            else if (token.content.indexOf(deprecated) === 0) {
-                token.content = token.content
-                    .replace(deprecated, '')
-                    .replace(/^\s*/, '');
-                return ('<blockquote class="deprecated"><div>' +
-                    '<span class="fa fa-thumbs-o-down" aria-hidden="true">' +
-                    '</span></div>');
-            }
-            return '<blockquote>';
-        };
-        var defaultLinkRender_1 = markdown.renderer.rules.link_open ||
-            (function (tokens, idx, options, _env, self) {
-                return self.renderToken(tokens, idx, options);
-            });
-        markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-            var hrefIdx = tokens[idx].attrIndex('href');
-            var hrefToken = tokens[idx].attrs[hrefIdx];
-            var _a = hrefToken[1].split('#'), file = _a[0], hash = _a[1];
-            var docSetId = docs_1.getCurrentDocSetId();
-            var _b = env.info, page = _b.page, type = _b.type;
-            if (!file) {
-                hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: page,
-                    type: type, section: hash }, docSetId));
-            }
-            else if (!/\/\//.test(file)) {
-                if (type !== 'api' || file.indexOf('api:') !== 0) {
-                    if (/\.md$/.test(file)) {
-                        var cleanFile = file.replace(/^\.\//, '');
-                        var pageBase = '';
-                        if (page.indexOf('/') !== -1) {
-                            pageBase = page.slice(0, page.lastIndexOf('/') + 1);
-                        }
-                        hrefToken[1] = hash_1.createHash(tslib_1.__assign({ page: pageBase + cleanFile, section: hash, type: type }, docSetId));
-                    }
-                    else {
-                        hrefToken[1] = createGitHubLink(docSetId, file);
-                    }
-                }
-            }
-            return defaultLinkRender_1(tokens, idx, options, env, self);
-        };
-        markdown.renderer.rules.heading_open = function (tokens, idx, _options, env) {
-            var token = tokens[idx];
-            var content = tokens[idx + 1].content;
-            var id = env.slugify(content);
-            return "<" + token.tag + " id=\"" + id + "\">";
-        };
-    }
-    if (!context.slugify) {
-        context.slugify = context.slugify || createSlugifier();
-    }
-    return markdown.render(text, context);
-}
-exports.renderMarkdown = renderMarkdown;
-function renderMenu(id, type, maxDepth) {
-    if (maxDepth === void 0) { maxDepth = 3; }
-    var docSet = docs_1.getDocSet(id);
-    var pageNames = type === 'api' ? docSet.apiPages : docSet.pages;
-    var cache = type === 'api' ? docSet.apiCache : docSet.pageCache;
-    var menu = h('ul.menu-list', { menuDepth: maxDepth });
-    for (var _i = 0, pageNames_1 = pageNames; _i < pageNames_1.length; _i++) {
-        var pageName = pageNames_1[_i];
-        var page = cache[pageName];
-        var root = void 0;
-        try {
-            root = createNode(page.element.querySelector('h1'));
-        }
-        catch (error) {
-            root = {
-                level: 1,
-                element: h('li'),
-                children: []
-            };
-        }
-        var headingTags = [];
-        for (var i = 2; i <= maxDepth; i++) {
-            headingTags.push("h" + i);
-        }
-        var headings = page.element.querySelectorAll(headingTags.join(','));
-        var stack = [[root]];
-        var children = void 0;
-        for (var i = 0; i < headings.length; i++) {
-            var heading = headings[i];
-            var newNode = createNode(heading);
-            var level = newNode.level;
-            if (level === stack[0][0].level) {
-                stack[0].unshift(newNode);
-            }
-            else if (level > stack[0][0].level) {
-                stack.unshift([newNode]);
-            }
-            else {
-                while (stack[0][0].level > level) {
-                    children = stack.shift().reverse();
-                    stack[0][0].children = children;
-                }
-                if (level === stack[0][0].level) {
-                    stack[0].unshift(newNode);
-                }
-                else {
-                    stack.unshift([newNode]);
-                }
-            }
-        }
-        while (stack.length > 1) {
-            children = stack.shift().reverse();
-            stack[0][0].children = children;
-        }
-        var project = id.project, version = id.version;
-        var pageId = { project: project, version: version, page: pageName, type: type };
-        var li = createLinkItem(page.title, pageId);
-        if (root.children.length > 0) {
-            li.appendChild(renderSubMenu(root.children, pageId));
-        }
-        menu.appendChild(li);
-    }
-    return menu;
-}
-exports.renderMenu = renderMenu;
-function renderDocPage(text, pageName, id) {
-    text = filterGhContent(text);
-    var html = renderMarkdown(text, {
-        info: { page: pageName, type: docs_1.DocType.docs }
-    });
-    var element = h('div', { innerHTML: html });
-    var h1 = element.querySelector('h1');
-    if (!h1) {
-        return element;
-    }
-    var icons = addHeadingIcons(h1);
-    var link = createGitHubLink(id, pageName);
-    link.classList.add('edit-page');
-    icons.appendChild(link);
-    element.insertBefore(h1, element.firstChild);
-    return element;
-}
-exports.renderDocPage = renderDocPage;
-function renderSubMenu(children, pageId) {
-    var ul = h('ul');
-    for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
-        var child = children_1[_i];
-        var heading = child.element;
-        var li = createLinkItem(heading, tslib_1.__assign({}, pageId, { section: heading.id }));
-        if (child.children.length > 0) {
-            li.appendChild(renderSubMenu(child.children, pageId));
-        }
-        ul.appendChild(li);
-    }
-    return ul;
-}
-function createNode(heading) {
-    var level = parseInt(heading.tagName.slice(1), 10);
-    return { level: level, element: heading, children: [] };
-}
-function filterGhContent(text) {
-    var markers = [
-        ['<!-- vim-markdown-toc GFM -->', '<!-- vim-markdown-toc -->'],
-        ['<!-- start-github-only -->', '<!-- end-github-only -->']
-    ];
-    return markers.reduce(function (text, marker) {
-        var chunks = [];
-        var start = 0;
-        var left = text.indexOf(marker[0]);
-        var right = 0;
-        while (left !== -1) {
-            chunks.push(text.slice(start, left));
-            right = text.indexOf(marker[1], left);
-            if (right === -1) {
-                break;
-            }
-            start = right + marker[1].length;
-            left = text.indexOf(marker[0], start);
-        }
-        if (right !== -1) {
-            chunks.push(text.slice(start));
-        }
-        return chunks.join('');
-    }, text);
-}
-var markdown;
-
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var docs_1 = __webpack_require__(1);
-function createHash(id) {
-    var parts = [id.project, id.version, id.type];
-    if (docs_1.isValidPageId(id)) {
-        parts.push(id.page);
-        if (id.section) {
-            parts.push(id.section);
-        }
-    }
-    return '#' + parts.map(encodeURIComponent).join('/');
-}
-exports.createHash = createHash;
-function parseHash() {
-    var hash = location.hash.slice(1);
-    var _a = hash
-        .split('/')
-        .map(function (part) { return decodeURIComponent(part); }), project = _a[0], version = _a[1], type = _a[2], page = _a[3], section = _a[4];
-    return { project: project, version: version, type: type, page: page, section: section };
-}
-exports.parseHash = parseHash;
-function updateHash(newHash, event) {
-    if (event === void 0) { event = HashEvent.nav; }
-    var hash = typeof newHash === 'string' ? newHash : createHash(newHash);
-    if (location.hash === hash) {
-        return;
-    }
-    var state = { event: event };
-    if (event === HashEvent.rename) {
-        history.replaceState(state, '', hash);
-    }
-    else if (event === HashEvent.nav ||
-        (!history.state || history.state.event !== event)) {
-        history.pushState(state, '', hash);
-    }
-    else {
-        history.replaceState(state, '', hash);
-    }
-}
-exports.updateHash = updateHash;
-var HashEvent;
-(function (HashEvent) {
-    HashEvent["nav"] = "nav";
-    HashEvent["rename"] = "rename";
-    HashEvent["scroll"] = "scroll";
-})(HashEvent = exports.HashEvent || (exports.HashEvent = {}));
-
-
-/***/ }),
-
 /***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -611,13 +576,13 @@ module.exports = __webpack_require__(23);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(3);
+var tslib_1 = __webpack_require__(1);
 var PromisePolyfill = __webpack_require__(24);
 var h = __webpack_require__(5);
-var docs_1 = __webpack_require__(1);
+var docs_1 = __webpack_require__(2);
 var api_1 = __webpack_require__(32);
 var markdown_1 = __webpack_require__(10);
-var hash_1 = __webpack_require__(2);
+var hash_1 = __webpack_require__(3);
 var dom_1 = __webpack_require__(91);
 var global = window;
 if (!global.Promise) {
@@ -686,10 +651,19 @@ function loadDocSet(id) {
     })
         .then(function (config) {
         if (config) {
-            for (var _i = 0, _a = Object.keys(config); _i < _a.length; _i++) {
-                var key = _a[_i];
-                var prop = key;
-                docSet[prop] = config[prop];
+            try {
+                for (var _a = tslib_1.__values(Object.keys(config)), _b = _a.next(); !_b.done; _b = _a.next()) {
+                    var key = _b.value;
+                    var prop = key;
+                    docSet[prop] = config[prop];
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+                }
+                finally { if (e_1) throw e_1.error; }
             }
         }
         var pageNames = (docSet.pages = ['README.md'].concat(docSet.pages || []));
@@ -711,6 +685,7 @@ function loadDocSet(id) {
             });
         }
         return docSet;
+        var e_1, _c;
     });
     function renderPage(text, name, id, logo) {
         return ready.then(function () {
@@ -723,43 +698,6 @@ function loadDocSet(id) {
             }
             cache[name] = { name: name, element: element, title: title };
         });
-    }
-}
-function updateDocsetSelector() {
-    var pageId = docs_1.getCurrentPageId();
-    var selector = document.querySelector('select[data-select-property="project"]');
-    if (selector.children.length === 0) {
-        for (var _i = 0, _a = docs_1.getProjects(); _i < _a.length; _i++) {
-            var name_1 = _a[_i];
-            var option_1 = h('option', { value: name_1 }, name_1);
-            selector.appendChild(option_1);
-        }
-    }
-    var option = selector.querySelector("option[value=\"" + docs_1.getCurrentPageId().project + "\"]");
-    if (option) {
-        option.selected = true;
-    }
-    var versions = docs_1.getVersions(pageId.project).reverse();
-    if (versions.length > 1) {
-        viewer.classList.add('multi-version');
-        var selector_1 = document.querySelector('select[data-select-property="version"]');
-        selector_1.innerHTML = '';
-        var latestVersion = docs_1.getLatestVersion(pageId.project);
-        var nextVersion = docs_1.getNextVersion(pageId.project);
-        for (var _b = 0, versions_1 = versions; _b < versions_1.length; _b++) {
-            var version = versions_1[_b];
-            var text = "v" + version;
-            if (version === latestVersion) {
-                text += ' (release)';
-            }
-            else if (version === nextVersion) {
-                text += ' (dev)';
-            }
-            selector_1.appendChild(h('option', { value: version, selected: version === pageId.version }, text));
-        }
-    }
-    else {
-        viewer.classList.remove('multi-version');
     }
 }
 function showPage(type, name, section) {
@@ -794,47 +732,34 @@ function getPage(docSet, type, name) {
         : docSet.pageCache[name];
 }
 function highlightActivePage() {
-    var menu = document.querySelector('.docs-menu .menu .menu-list');
-    var active = menu.querySelector('.is-active-page');
-    if (active) {
-        active.classList.remove('is-active-page');
-    }
-    var pageId = docs_1.getCurrentPageId(false);
-    var currentPage = hash_1.createHash(pageId);
-    var pageLink = menu.querySelector("li > a[href=\"" + currentPage + "\"]");
-    if (pageLink) {
-        pageLink.parentElement.classList.add('is-active-page');
-    }
+    dom_1.place(dom_1.queryExpected('.docs-menu .menu .menu-list'), function (menu) {
+        var active = menu.querySelector('.is-active-page');
+        if (active) {
+            active.classList.remove('is-active-page');
+        }
+        var pageId = docs_1.getCurrentPageId(false);
+        var currentPage = hash_1.createHash(pageId);
+        var pageLink = menu.querySelector("li > a[href=\"" + currentPage + "\"]");
+        if (pageLink) {
+            pageLink.parentElement.classList.add('is-active-page');
+        }
+    });
 }
 function highlightActiveSection() {
-    var menu = document.querySelector('.docs-menu .menu-list');
-    if (!menu) {
-        return;
-    }
-    var active = menu.querySelector('.is-active');
-    if (active) {
-        active.classList.remove('is-active');
-    }
-    var currentSection = location.hash;
-    var link = menu.querySelector("li > a[href=\"" + currentSection + "\"]");
-    if (!link) {
-        try {
-            var docs = docs_1.getCurrentPageId();
-            var currentPage = hash_1.createHash({
-                project: docs.project,
-                version: docs.version,
-                type: docs.type,
-                page: docs.page
-            });
-            link = menu.querySelector("li > a[href=\"" + currentPage + "\"]");
+    dom_1.place(dom_1.queryExpected('.page-content .menu'), function (menu) {
+        var _a = hash_1.parseHash(), project = _a.project, version = _a.version, type = _a.type;
+        var hashBase = "#" + project + "/" + version + "/" + type;
+        var currentRef = location.pathname + hashBase;
+        var active = menu.querySelector('.is-active');
+        if (active) {
+            active.classList.remove('is-active');
         }
-        catch (error) {
+        var link = menu.querySelector("li > a[href=\"" + currentRef + "\"]");
+        if (link) {
+            link.classList.add('is-active');
+            scrollIntoViewIfNessary(link, menu);
         }
-    }
-    if (link) {
-        link.classList.add('is-active');
-        scrollIntoViewIfNessary(link, document.querySelector('.docs-menu'));
-    }
+    });
 }
 function showMenu(type) {
     type = type || docs_1.DocType.docs;
@@ -877,8 +802,6 @@ function processHash() {
                 }
                 showMenu(type);
                 showPage(type, page, section);
-                updateGitHubButtons(pageId);
-                updateDocsetSelector();
                 hideMessage();
             })
                 .catch(function (error) {
@@ -932,7 +855,7 @@ function processHash() {
 function showMessage(heading, message, type) {
     if (type === void 0) { type = ''; }
     if (!messageModal) {
-        return console.warn('missing .message-modal');
+        return console.warn("missing .message-modal. Message: " + message);
     }
     var messageHeadingNode = messageModal.querySelector('.message-heading');
     var content = messageModal.querySelector('.message-content');
@@ -954,14 +877,9 @@ function showMessage(heading, message, type) {
     messageModal.setAttribute('data-message-type', type);
 }
 function hideMessage() {
-    messageModal.classList.remove('is-active');
-}
-function updateGitHubButtons(docs) {
-    var links = document.querySelectorAll('.github-button');
-    var url = docs_1.getDocVersionUrl(docs);
-    for (var i = 0; i < links.length; i++) {
-        links[i].href = url;
-    }
+    dom_1.place(messageModal, function (messageModal) {
+        messageModal.classList.remove('is-active');
+    });
 }
 function scrollIntoViewIfNessary(element, container) {
     var viewportTop = container.offsetTop + container.scrollTop;
@@ -1026,6 +944,62 @@ function updateHashFromContent() {
 
 /***/ }),
 
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(1);
+var docs_1 = __webpack_require__(2);
+function createHash(id) {
+    var parts = [id.project, id.version, id.type];
+    if (docs_1.isValidPageId(id)) {
+        parts.push(id.page);
+        if (id.section) {
+            parts.push(id.section);
+        }
+    }
+    return '#' + parts.map(encodeURIComponent).join('/');
+}
+exports.createHash = createHash;
+function parseHash() {
+    var hash = location.hash.slice(1);
+    var _a = tslib_1.__read(hash
+        .split('/')
+        .map(function (part) { return decodeURIComponent(part); }), 5), project = _a[0], version = _a[1], type = _a[2], page = _a[3], section = _a[4];
+    return { project: project, version: version, type: type, page: page, section: section };
+}
+exports.parseHash = parseHash;
+function updateHash(newHash, event) {
+    if (event === void 0) { event = HashEvent.nav; }
+    var hash = typeof newHash === 'string' ? newHash : createHash(newHash);
+    if (location.hash === hash) {
+        return;
+    }
+    var state = { event: event };
+    if (event === HashEvent.rename) {
+        history.replaceState(state, '', hash);
+    }
+    else if (event === HashEvent.nav ||
+        (!history.state || history.state.event !== event)) {
+        history.pushState(state, '', hash);
+    }
+    else {
+        history.replaceState(state, '', hash);
+    }
+}
+exports.updateHash = updateHash;
+var HashEvent;
+(function (HashEvent) {
+    HashEvent["nav"] = "nav";
+    HashEvent["rename"] = "rename";
+    HashEvent["scroll"] = "scroll";
+})(HashEvent = exports.HashEvent || (exports.HashEvent = {}));
+
+
+/***/ }),
+
 /***/ 31:
 /***/ (function(module, exports) {
 
@@ -1039,11 +1013,11 @@ function updateHashFromContent() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(3);
+var tslib_1 = __webpack_require__(1);
 var h = __webpack_require__(5);
 var hljs = __webpack_require__(9);
-var docs_1 = __webpack_require__(1);
-var hash_1 = __webpack_require__(2);
+var docs_1 = __webpack_require__(2);
+var hash_1 = __webpack_require__(3);
 var markdown_1 = __webpack_require__(10);
 var preferredSignatureWidth = 60;
 hljs.registerLanguage('typescript', __webpack_require__(20));
@@ -1058,43 +1032,62 @@ function renderApiPages(docSetId, data) {
     var pageIndex = {};
     var linksToResolve = [];
     var nameRefs = Object.create(null);
-    for (var _i = 0, modules_1 = modules; _i < modules_1.length; _i++) {
-        var module_1 = modules_1[_i];
-        if (getExports(module_1).length === 0 && !hasComment(module_1)) {
-            continue;
-        }
-        var renderHeading = getHeadingRenderer(markdown_1.createSlugifier());
-        var name_1 = module_1.name.replace(/^"/, '').replace(/"$/, '');
-        pages.push(name_1);
-        pageIndex[module_1.id] = name_1;
-        var element = h('div');
-        var page = (cache[name_1] = { name: name_1, title: name_1, element: element });
-        var context = {
-            page: page,
-            renderHeading: renderHeading,
-            api: data,
-            apiIndex: apiIndex,
-            slugIndex: slugIndex,
-            docSetId: docSetId,
-            linksToResolve: linksToResolve,
-            nameRefs: nameRefs
-        };
-        renderModule(module_1, 1, context);
-    }
-    for (var _a = 0, linksToResolve_1 = linksToResolve; _a < linksToResolve_1.length; _a++) {
-        var _b = linksToResolve_1[_a], link = _b.link, id = _b.id;
-        var type = apiIndex[id];
-        if (id === -1) {
-            continue;
-        }
-        var module_2 = findModule(id, apiIndex);
-        if (module_2 === type) {
-            link.href = hash_1.createHash(tslib_1.__assign({ page: pageIndex[module_2.id], type: docs_1.DocType.api }, docSetId));
-        }
-        else {
-            link.href = hash_1.createHash(tslib_1.__assign({ page: pageIndex[module_2.id], section: slugIndex[type.id], type: docs_1.DocType.api }, docSetId));
+    try {
+        for (var modules_1 = tslib_1.__values(modules), modules_1_1 = modules_1.next(); !modules_1_1.done; modules_1_1 = modules_1.next()) {
+            var module_1 = modules_1_1.value;
+            if (getExports(module_1).length === 0 && !hasComment(module_1)) {
+                continue;
+            }
+            var renderHeading = getHeadingRenderer(markdown_1.createSlugifier());
+            var name_1 = module_1.name.replace(/^"/, '').replace(/"$/, '');
+            pages.push(name_1);
+            pageIndex[module_1.id] = name_1;
+            var element = h('div');
+            var page = (cache[name_1] = { name: name_1, title: name_1, element: element });
+            var context = {
+                page: page,
+                renderHeading: renderHeading,
+                api: data,
+                apiIndex: apiIndex,
+                slugIndex: slugIndex,
+                docSetId: docSetId,
+                linksToResolve: linksToResolve,
+                nameRefs: nameRefs
+            };
+            renderModule(module_1, 1, context);
         }
     }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (modules_1_1 && !modules_1_1.done && (_a = modules_1.return)) _a.call(modules_1);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    try {
+        for (var linksToResolve_1 = tslib_1.__values(linksToResolve), linksToResolve_1_1 = linksToResolve_1.next(); !linksToResolve_1_1.done; linksToResolve_1_1 = linksToResolve_1.next()) {
+            var _b = linksToResolve_1_1.value, link = _b.link, id = _b.id;
+            var type = apiIndex[id];
+            if (id === -1) {
+                continue;
+            }
+            var module_2 = findModule(id, apiIndex);
+            if (module_2 === type) {
+                link.href = hash_1.createHash(tslib_1.__assign({ page: pageIndex[module_2.id], type: docs_1.DocType.api }, docSetId));
+            }
+            else {
+                link.href = hash_1.createHash(tslib_1.__assign({ page: pageIndex[module_2.id], section: slugIndex[type.id], type: docs_1.DocType.api }, docSetId));
+            }
+        }
+    }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    finally {
+        try {
+            if (linksToResolve_1_1 && !linksToResolve_1_1.done && (_c = linksToResolve_1.return)) _c.call(linksToResolve_1);
+        }
+        finally { if (e_2) throw e_2.error; }
+    }
+    var e_1, _a, e_2, _c;
 }
 exports.renderApiPages = renderApiPages;
 function getContainingModule(reflection) {
@@ -1118,21 +1111,31 @@ function findReflectionByName(name, reflection) {
         head = head.slice(0, dot);
     }
     if (isContainerReflection(reflection)) {
-        for (var _i = 0, _a = reflection.children; _i < _a.length; _i++) {
-            var child = _a[_i];
-            var childName = child.name.replace(/^"|"$/g, '');
-            if (childName === head) {
-                if (head !== name) {
-                    var tail = name.slice(dot + 1);
-                    return findReflectionByName(tail, child);
-                }
-                else {
-                    return child;
+        try {
+            for (var _a = tslib_1.__values(reflection.children), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var child = _b.value;
+                var childName = child.name.replace(/^"|"$/g, '');
+                if (childName === head) {
+                    if (head !== name) {
+                        var tail = name.slice(dot + 1);
+                        return findReflectionByName(tail, child);
+                    }
+                    else {
+                        return child;
+                    }
                 }
             }
         }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
     }
     return;
+    var e_3, _c;
 }
 function renderModule(module, level, context) {
     var renderHeading = context.renderHeading, slugIndex = context.slugIndex, page = context.page;
@@ -1145,39 +1148,85 @@ function renderModule(module, level, context) {
     var global = exports.filter(function (ex) { return ex.name === '__global'; })[0];
     if (global) {
         renderHeading(level, 'Globals', context);
-        for (var _i = 0, _a = global.children.slice().sort(nameSorter); _i < _a.length; _i++) {
-            var child = _a[_i];
-            renderProperty(child, level + 1, context);
+        try {
+            for (var _a = tslib_1.__values(global.children.slice().sort(nameSorter)), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var child = _b.value;
+                renderProperty(child, level + 1, context);
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+            }
+            finally { if (e_4) throw e_4.error; }
         }
     }
     var classes = exports
         .filter(function (ex) { return ex.kindString === 'Class'; })
         .sort(nameSorter);
-    for (var _b = 0, classes_1 = classes; _b < classes_1.length; _b++) {
-        var cls = classes_1[_b];
-        renderClass(cls, level + 1, context);
+    try {
+        for (var classes_1 = tslib_1.__values(classes), classes_1_1 = classes_1.next(); !classes_1_1.done; classes_1_1 = classes_1.next()) {
+            var cls = classes_1_1.value;
+            renderClass(cls, level + 1, context);
+        }
+    }
+    catch (e_5_1) { e_5 = { error: e_5_1 }; }
+    finally {
+        try {
+            if (classes_1_1 && !classes_1_1.done && (_d = classes_1.return)) _d.call(classes_1);
+        }
+        finally { if (e_5) throw e_5.error; }
     }
     var interfaces = exports
         .filter(function (ex) { return ex.kindString === 'Interface'; })
         .sort(nameSorter);
-    for (var _c = 0, interfaces_1 = interfaces; _c < interfaces_1.length; _c++) {
-        var iface = interfaces_1[_c];
-        renderInterface(iface, level + 1, context);
+    try {
+        for (var interfaces_1 = tslib_1.__values(interfaces), interfaces_1_1 = interfaces_1.next(); !interfaces_1_1.done; interfaces_1_1 = interfaces_1.next()) {
+            var iface = interfaces_1_1.value;
+            renderInterface(iface, level + 1, context);
+        }
+    }
+    catch (e_6_1) { e_6 = { error: e_6_1 }; }
+    finally {
+        try {
+            if (interfaces_1_1 && !interfaces_1_1.done && (_e = interfaces_1.return)) _e.call(interfaces_1);
+        }
+        finally { if (e_6) throw e_6.error; }
     }
     var functions = exports
         .filter(function (ex) { return ex.kindString === 'Function'; })
         .sort(nameSorter);
-    for (var _d = 0, functions_1 = functions; _d < functions_1.length; _d++) {
-        var func = functions_1[_d];
-        renderFunction(func, level + 1, context);
+    try {
+        for (var functions_1 = tslib_1.__values(functions), functions_1_1 = functions_1.next(); !functions_1_1.done; functions_1_1 = functions_1.next()) {
+            var func = functions_1_1.value;
+            renderFunction(func, level + 1, context);
+        }
+    }
+    catch (e_7_1) { e_7 = { error: e_7_1 }; }
+    finally {
+        try {
+            if (functions_1_1 && !functions_1_1.done && (_f = functions_1.return)) _f.call(functions_1);
+        }
+        finally { if (e_7) throw e_7.error; }
     }
     var constants = exports
         .filter(function (ex) { return ex.kindString === 'Object literal'; })
         .sort(nameSorter);
-    for (var _e = 0, constants_1 = constants; _e < constants_1.length; _e++) {
-        var constant = constants_1[_e];
-        renderValue(constant, level + 1, context);
+    try {
+        for (var constants_1 = tslib_1.__values(constants), constants_1_1 = constants_1.next(); !constants_1_1.done; constants_1_1 = constants_1.next()) {
+            var constant = constants_1_1.value;
+            renderValue(constant, level + 1, context);
+        }
     }
+    catch (e_8_1) { e_8 = { error: e_8_1 }; }
+    finally {
+        try {
+            if (constants_1_1 && !constants_1_1.done && (_g = constants_1.return)) _g.call(constants_1);
+        }
+        finally { if (e_8) throw e_8.error; }
+    }
+    var e_4, _c, e_5, _d, e_6, _e, e_7, _f, e_8, _g;
 }
 function renderClass(cls, level, context) {
     var renderHeading = context.renderHeading, slugIndex = context.slugIndex, page = context.page;
@@ -1212,22 +1261,50 @@ function renderClass(cls, level, context) {
     var properties = exports
         .filter(function (ex) { return ex.kindString === 'Property' || ex.kindString === 'Accessor'; })
         .sort(nameSorter);
-    for (var _i = 0, properties_1 = properties; _i < properties_1.length; _i++) {
-        var property = properties_1[_i];
-        renderProperty(property, level + 1, context);
+    try {
+        for (var properties_1 = tslib_1.__values(properties), properties_1_1 = properties_1.next(); !properties_1_1.done; properties_1_1 = properties_1.next()) {
+            var property = properties_1_1.value;
+            renderProperty(property, level + 1, context);
+        }
+    }
+    catch (e_9_1) { e_9 = { error: e_9_1 }; }
+    finally {
+        try {
+            if (properties_1_1 && !properties_1_1.done && (_a = properties_1.return)) _a.call(properties_1);
+        }
+        finally { if (e_9) throw e_9.error; }
     }
     var constructors = exports.filter(function (ex) { return ex.kindString === 'Constructor'; });
-    for (var _a = 0, constructors_1 = constructors; _a < constructors_1.length; _a++) {
-        var ctor = constructors_1[_a];
-        renderMethod(ctor, level + 1, context);
+    try {
+        for (var constructors_1 = tslib_1.__values(constructors), constructors_1_1 = constructors_1.next(); !constructors_1_1.done; constructors_1_1 = constructors_1.next()) {
+            var ctor = constructors_1_1.value;
+            renderMethod(ctor, level + 1, context);
+        }
+    }
+    catch (e_10_1) { e_10 = { error: e_10_1 }; }
+    finally {
+        try {
+            if (constructors_1_1 && !constructors_1_1.done && (_b = constructors_1.return)) _b.call(constructors_1);
+        }
+        finally { if (e_10) throw e_10.error; }
     }
     var methods = exports
         .filter(function (ex) { return ex.kindString === 'Method'; })
         .sort(nameSorter);
-    for (var _b = 0, methods_1 = methods; _b < methods_1.length; _b++) {
-        var method = methods_1[_b];
-        renderMethod(method, level + 1, context);
+    try {
+        for (var methods_1 = tslib_1.__values(methods), methods_1_1 = methods_1.next(); !methods_1_1.done; methods_1_1 = methods_1.next()) {
+            var method = methods_1_1.value;
+            renderMethod(method, level + 1, context);
+        }
     }
+    catch (e_11_1) { e_11 = { error: e_11_1 }; }
+    finally {
+        try {
+            if (methods_1_1 && !methods_1_1.done && (_c = methods_1.return)) _c.call(methods_1);
+        }
+        finally { if (e_11) throw e_11.error; }
+    }
+    var e_9, _a, e_10, _b, e_11, _c;
 }
 function isGenericReflection(type) {
     return type.typeParameter != null;
@@ -1247,14 +1324,24 @@ function renderMethod(method, level, context) {
     renderFunction(method, level, context);
 }
 function renderParent(types, relationship, context) {
-    for (var _i = 0, types_1 = types; _i < types_1.length; _i++) {
-        var type = types_1[_i];
-        var p = h('p.api-metadata', {}, [
-            h('span.api-label', {}, relationship + ": ")
-        ]);
-        p.appendChild(renderType(type, context));
-        context.page.element.appendChild(p);
+    try {
+        for (var types_1 = tslib_1.__values(types), types_1_1 = types_1.next(); !types_1_1.done; types_1_1 = types_1.next()) {
+            var type = types_1_1.value;
+            var p = h('p.api-metadata', {}, [
+                h('span.api-label', {}, relationship + ": ")
+            ]);
+            p.appendChild(renderType(type, context));
+            context.page.element.appendChild(p);
+        }
     }
+    catch (e_12_1) { e_12 = { error: e_12_1 }; }
+    finally {
+        try {
+            if (types_1_1 && !types_1_1.done && (_a = types_1.return)) _a.call(types_1);
+        }
+        finally { if (e_12) throw e_12.error; }
+    }
+    var e_12, _a;
 }
 function renderInterface(iface, level, context) {
     var renderHeading = context.renderHeading, slugIndex = context.slugIndex, page = context.page;
@@ -1298,22 +1385,50 @@ function renderInterface(iface, level, context) {
     var properties = exports
         .filter(function (ex) { return ex.kindString === 'Property'; })
         .sort(nameSorter);
-    for (var _i = 0, properties_2 = properties; _i < properties_2.length; _i++) {
-        var property = properties_2[_i];
-        renderProperty(property, level + 1, context);
+    try {
+        for (var properties_2 = tslib_1.__values(properties), properties_2_1 = properties_2.next(); !properties_2_1.done; properties_2_1 = properties_2.next()) {
+            var property = properties_2_1.value;
+            renderProperty(property, level + 1, context);
+        }
+    }
+    catch (e_13_1) { e_13 = { error: e_13_1 }; }
+    finally {
+        try {
+            if (properties_2_1 && !properties_2_1.done && (_a = properties_2.return)) _a.call(properties_2);
+        }
+        finally { if (e_13) throw e_13.error; }
     }
     var constructors = exports.filter(function (ex) { return ex.kindString === 'Constructor'; });
-    for (var _a = 0, constructors_2 = constructors; _a < constructors_2.length; _a++) {
-        var ctor = constructors_2[_a];
-        renderMethod(ctor, level + 1, context);
+    try {
+        for (var constructors_2 = tslib_1.__values(constructors), constructors_2_1 = constructors_2.next(); !constructors_2_1.done; constructors_2_1 = constructors_2.next()) {
+            var ctor = constructors_2_1.value;
+            renderMethod(ctor, level + 1, context);
+        }
+    }
+    catch (e_14_1) { e_14 = { error: e_14_1 }; }
+    finally {
+        try {
+            if (constructors_2_1 && !constructors_2_1.done && (_b = constructors_2.return)) _b.call(constructors_2);
+        }
+        finally { if (e_14) throw e_14.error; }
     }
     var methods = exports
         .filter(function (ex) { return ex.kindString === 'Method'; })
         .sort(nameSorter);
-    for (var _b = 0, methods_2 = methods; _b < methods_2.length; _b++) {
-        var method = methods_2[_b];
-        renderMethod(method, level + 1, context);
+    try {
+        for (var methods_2 = tslib_1.__values(methods), methods_2_1 = methods_2.next(); !methods_2_1.done; methods_2_1 = methods_2.next()) {
+            var method = methods_2_1.value;
+            renderMethod(method, level + 1, context);
+        }
     }
+    catch (e_15_1) { e_15 = { error: e_15_1 }; }
+    finally {
+        try {
+            if (methods_2_1 && !methods_2_1.done && (_c = methods_2.return)) _c.call(methods_2);
+        }
+        finally { if (e_15) throw e_15.error; }
+    }
+    var e_13, _a, e_14, _b, e_15, _c;
 }
 function renderProperty(property, level, context) {
     var page = context.page, renderHeading = context.renderHeading, slugIndex = context.slugIndex;
@@ -1373,22 +1488,41 @@ function renderFunction(func, level, context) {
     var heading = renderHeading(level, func, context);
     slugIndex[func.id] = heading.id;
     renderSignatures(func.signatures, func, context);
-    for (var _i = 0, _a = func.signatures; _i < _a.length; _i++) {
-        var signature = _a[_i];
-        if (hasComment(signature)) {
-            page.element.appendChild(renderComment(signature.comment, getContainingModule(func), context));
-            break;
+    try {
+        for (var _a = tslib_1.__values(func.signatures), _b = _a.next(); !_b.done; _b = _a.next()) {
+            var signature = _b.value;
+            if (hasComment(signature)) {
+                page.element.appendChild(renderComment(signature.comment, getContainingModule(func), context));
+                break;
+            }
         }
     }
+    catch (e_16_1) { e_16 = { error: e_16_1 }; }
+    finally {
+        try {
+            if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+        }
+        finally { if (e_16) throw e_16.error; }
+    }
+    var e_16, _c;
 }
 function renderSignatures(signatures, parent, context) {
     var page = context.page;
-    for (var _i = 0, signatures_1 = signatures; _i < signatures_1.length; _i++) {
-        var sig = signatures_1[_i];
-        var text = signatureToString(sig);
-        var formatted = formatSignature(text);
-        var html = hljs.highlight('typescript', formatted, true).value;
-        page.element.appendChild(h('pre', {}, [h('code.hljs.lang-typescript', { innerHTML: html })]));
+    try {
+        for (var signatures_1 = tslib_1.__values(signatures), signatures_1_1 = signatures_1.next(); !signatures_1_1.done; signatures_1_1 = signatures_1.next()) {
+            var sig = signatures_1_1.value;
+            var text = signatureToString(sig);
+            var formatted = formatSignature(text);
+            var html = hljs.highlight('typescript', formatted, true).value;
+            page.element.appendChild(h('pre', {}, [h('code.hljs.lang-typescript', { innerHTML: html })]));
+        }
+    }
+    catch (e_17_1) { e_17 = { error: e_17_1 }; }
+    finally {
+        try {
+            if (signatures_1_1 && !signatures_1_1.done && (_a = signatures_1.return)) _a.call(signatures_1);
+        }
+        finally { if (e_17) throw e_17.error; }
     }
     var parameters = signatures.reduce(function (params, sig) {
         return params.concat(sig.parameters || []);
@@ -1396,6 +1530,7 @@ function renderSignatures(signatures, parent, context) {
     if (parameters.length > 0) {
         renderParameterTable(parameters, parent, context);
     }
+    var e_17, _a;
 }
 function renderParameterTable(parameters, parent, context) {
     var page = context.page;
@@ -1679,19 +1814,29 @@ function getExports(reflection) {
         return [];
     }
     var exports = [];
-    for (var _i = 0, _a = reflection.children; _i < _a.length; _i++) {
-        var child = _a[_i];
-        if (child.name === '_global') {
-            exports.push(child);
-        }
-        if (child.flags.isExported) {
-            var source = child.sources[0].fileName;
-            if (!/^_/.test(child.name) && !/node_modules\//.test(source)) {
+    try {
+        for (var _a = tslib_1.__values(reflection.children), _b = _a.next(); !_b.done; _b = _a.next()) {
+            var child = _b.value;
+            if (child.name === '_global') {
                 exports.push(child);
+            }
+            if (child.flags.isExported) {
+                var source = child.sources[0].fileName;
+                if (!/^_/.test(child.name) && !/node_modules\//.test(source)) {
+                    exports.push(child);
+                }
             }
         }
     }
+    catch (e_18_1) { e_18 = { error: e_18_1 }; }
+    finally {
+        try {
+            if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+        }
+        finally { if (e_18) throw e_18.error; }
+    }
     return exports;
+    var e_18, _c;
 }
 function getHeadingRenderer(slugify) {
     return function (level, content, context) {
@@ -1765,22 +1910,42 @@ function hasComment(reflection) {
 }
 function createApiIndex(data) {
     var index = {};
-    for (var _i = 0, _a = data.children; _i < _a.length; _i++) {
-        var child = _a[_i];
-        child.parent = data;
-        walkTree(child);
+    try {
+        for (var _a = tslib_1.__values(data.children), _b = _a.next(); !_b.done; _b = _a.next()) {
+            var child = _b.value;
+            child.parent = data;
+            walkTree(child);
+        }
+    }
+    catch (e_19_1) { e_19 = { error: e_19_1 }; }
+    finally {
+        try {
+            if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+        }
+        finally { if (e_19) throw e_19.error; }
     }
     return index;
     function walkTree(data) {
         index[data.id] = data;
         if (data.children) {
-            for (var _i = 0, _a = data.children; _i < _a.length; _i++) {
-                var child = _a[_i];
-                child.parent = data;
-                walkTree(child);
+            try {
+                for (var _a = tslib_1.__values(data.children), _b = _a.next(); !_b.done; _b = _a.next()) {
+                    var child = _b.value;
+                    child.parent = data;
+                    walkTree(child);
+                }
+            }
+            catch (e_20_1) { e_20 = { error: e_20_1 }; }
+            finally {
+                try {
+                    if (_b && !_b.done && (_c = _a.return)) _c.call(_a);
+                }
+                finally { if (e_20) throw e_20.error; }
             }
         }
+        var e_20, _c;
     }
+    var e_19, _c;
 }
 function nameSorter(a, b) {
     if (a.name < b.name) {
@@ -1819,9 +1984,9 @@ function formatSignature(text) {
                 if (range) {
                     var indent_1 = getIndent(text_1);
                     output.push(text_1.slice(0, range[0]));
-                    output.push.apply(output, splitList(text_1, range[0], range[1]).map(function (line) {
+                    output.push.apply(output, tslib_1.__spread(splitList(text_1, range[0], range[1]).map(function (line) {
                         return indent_1 + "    " + line;
-                    }));
+                    })));
                     output.push("" + indent_1 + text_1.slice(range[1]));
                     changed = true;
                 }

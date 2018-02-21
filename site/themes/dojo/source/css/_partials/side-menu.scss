@@ -5,6 +5,20 @@ aside.menu {
 	background-color: #EEE;
 	border-right: 1px solid #BBB;
 	flex: 1 0 15em;
+
+	.sub-nav {
+		display: none;
+	}
+
+	.is-active {
+		a {
+			color: #2499D4;
+		}
+
+		.sub-nav {
+			display: inherit;
+		}
+	}
 }
 
 .menu-list {

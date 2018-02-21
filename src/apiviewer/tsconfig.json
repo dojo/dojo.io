@@ -2,14 +2,17 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
+		"downlevelIteration": true,
 		"importHelpers": true,
+		"inlineSources": true,
 		"lib": [
 			"DOM",
 			"ES5",
 			"ES2015.Promise",
 			"es2015.iterable",
 			"ES2015.symbol.wellknown",
-			"ES2015.Symbol"
+			"ES2015.Symbol",
+			"dom.iterable"
 		],
 		"module": "commonjs",
 		"moduleResolution": "node",

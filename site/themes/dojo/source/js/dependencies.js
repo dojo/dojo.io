@@ -381,9 +381,7 @@ exports.normalizeReference  = normalizeReference;
 
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -588,6 +586,8 @@ function __importDefault(mod) {
 
 
 /***/ }),
+/* 2 */,
+/* 3 */,
 /* 4 */
 /***/ (function(module, exports) {
 

@@ -11,16 +11,13 @@ import {
 	DocPage,
 	DocType,
 	getProjects,
-	getVersions,
 	getCurrentDocSetId,
 	getDefaultDocSetId,
 	getDocSet,
 	getCurrentPageId,
 	getDefaultPageId,
 	getDocBaseUrl,
-	getDocVersionUrl,
 	getLatestVersion,
-	getNextVersion,
 	getProjectLogo
 } from './docs';
 import { renderApiPages } from './renderer/api';
@@ -186,60 +183,6 @@ function loadDocSet(id: DocSetId): Promise<DocSet> {
 }
 
 /**
- * Select the currently active project in the project selector.
- */
-function updateDocsetSelector() {
-	const pageId = getCurrentPageId();
-	const selector = document.querySelector(
-		'select[data-select-property="project"]'
-	)!;
-
-	if (selector.children.length === 0) {
-		for (let name of getProjects()) {
-			const option = h('option', { value: name }, name);
-			selector.appendChild(option);
-		}
-	}
-
-	const option = <HTMLOptionElement> selector.querySelector(
-		`option[value="${getCurrentPageId().project}"]`
-	);
-	if (option) {
-		option.selected = true;
-	}
-
-	const versions = getVersions(pageId.project).reverse();
-	// If more than one version is available, show the version selector
-	if (versions.length > 1) {
-		viewer.classList.add('multi-version');
-
-		const selector = document.querySelector(
-			'select[data-select-property="version"]'
-		)!;
-		selector.innerHTML = '';
-		const latestVersion = getLatestVersion(pageId.project);
-		const nextVersion = getNextVersion(pageId.project);
-		for (const version of versions) {
-			let text = `v${version}`;
-			if (version === latestVersion) {
-				text += ' (release)';
-			} else if (version === nextVersion) {
-				text += ' (dev)';
-			}
-			selector.appendChild(
-				h(
-					'option',
-					{ value: version, selected: version === pageId.version },
-					text
-				)
-			);
-		}
-	} else {
-		viewer.classList.remove('multi-version');
-	}
-}
-
-/**
  * Show a page in the currently loaded docset
  */
 function showPage(type: DocType, name: string, section?: string) {
@@ -291,62 +234,45 @@ function getPage(docSet: DocSet, type: DocType, name?: string) {
  * Highlight the active page in the sidebar menu
  */
 function highlightActivePage() {
-	const menu = document.querySelector('.docs-menu .menu .menu-list')!;
-	const active = menu.querySelector('.is-active-page');
-	if (active) {
-		active.classList.remove('is-active-page');
-	}
+	place(queryExpected('.docs-menu .menu .menu-list'), (menu) => {
+		const active = menu.querySelector('.is-active-page');
+		if (active) {
+			active.classList.remove('is-active-page');
+		}
 
-	const pageId = getCurrentPageId(false);
-	const currentPage = createHash(pageId);
+		const pageId = getCurrentPageId(false);
+		const currentPage = createHash(pageId);
 
-	const pageLink = menu.querySelector(`li > a[href="${currentPage}"]`)!;
-	if (pageLink) {
-		pageLink.parentElement!.classList.add('is-active-page');
-	}
+		const pageLink = menu.querySelector(`li > a[href="${currentPage}"]`)!;
+		if (pageLink) {
+			pageLink.parentElement!.classList.add('is-active-page');
+		}
+	});
 }
 
 /**
  * Highlight the active element in the sidebar menu
  */
 function highlightActiveSection() {
-	const menu = document.querySelector('.docs-menu .menu-list')!;
-	if (!menu) {
-		return;
-	}
+	place(queryExpected('.page-content .menu'), (menu) => {
+		const { project, version, type } = parseHash();
+		const hashBase = `#${ project }/${ version }/${ type }`;
+		const currentRef = location.pathname + hashBase;
 
-	const active = menu.querySelector('.is-active');
-	if (active) {
-		active.classList.remove('is-active');
-	}
-
-	const currentSection = location.hash;
-	let link = <HTMLElement> menu.querySelector(
-		`li > a[href="${currentSection}"]`
-	)!;
-	if (!link) {
-		try {
-			const docs = getCurrentPageId();
-			const currentPage = createHash({
-				project: docs.project,
-				version: docs.version,
-				type: docs.type,
-				page: docs.page
-			});
-			link = <HTMLElement> menu.querySelector(
-				`li > a[href="${currentPage}"]`
-			)!;
-		} catch (error) {
-			// ignore
+		const active = menu.querySelector('.is-active');
+		if (active) {
+			active.classList.remove('is-active');
 		}
-	}
 
-	if (link) {
-		link.classList.add('is-active');
-		scrollIntoViewIfNessary(link, <HTMLElement> document.querySelector(
-			'.docs-menu'
-		)!);
-	}
+		let link = <HTMLElement> menu.querySelector(
+			`li > a[href="${currentRef}"]`
+		);
+
+		if (link) {
+			link.classList.add('is-active');
+			scrollIntoViewIfNessary(link, <HTMLElement> menu);
+		}
+	});
 }
 
 /**
@@ -408,8 +334,6 @@ function processHash() {
 
 						showMenu(type);
 						showPage(type, page, section);
-						updateGitHubButtons(pageId);
-						updateDocsetSelector();
 						hideMessage();
 					})
 					.catch(error => {
@@ -486,7 +410,7 @@ function processHash() {
  */
 function showMessage(heading: string, message: string | Element, type = '') {
 	if (!messageModal) {
-		return console.warn('missing .message-modal');
+		return console.warn(`missing .message-modal. Message: ${ message }`);
 	}
 	const messageHeadingNode = messageModal.querySelector('.message-heading');
 	const content = messageModal.querySelector('.message-content');
@@ -513,25 +437,16 @@ function showMessage(heading: string, message: string | Element, type = '') {
  * Show a message in the error modal
  */
 function hideMessage() {
-	messageModal.classList.remove('is-active');
-}
-
-/**
- * Update the hrefs for the navbar GitHub buttons
- */
-function updateGitHubButtons(docs: DocSetId) {
-	const links = <NodeListOf<HTMLAnchorElement>> document.querySelectorAll(
-		'.github-button'
-	);
-	const url = getDocVersionUrl(docs);
-	for (let i = 0; i < links.length; i++) {
-		links[i].href = url;
-	}
+	place(messageModal, (messageModal) => {
+		messageModal.classList.remove('is-active');
+	});
 }
 
 /**
  * Scroll an element into view if it's not currently visible within its
  * container.
+ *
+ * TODO update the correctly scroll into view when item is off page but still in container
  */
 function scrollIntoViewIfNessary(element: HTMLElement, container: HTMLElement) {
 	const viewportTop = container.offsetTop + container.scrollTop;
