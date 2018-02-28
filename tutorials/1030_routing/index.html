@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-28T13:23:37.010Z">
+<meta property="og:updated_time" content="2018-02-28T13:55:10.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
@@ -101,9 +101,11 @@ ga('send', 'pageview');
 <div class="instruction">Include the required imports in the file <code>main.ts</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> registerRouterInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/RouterInjector'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> StateHistory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/history/StateHistory'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Define the routing configuration.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> routingConfig <span class="token operator">=</span> <span class="token punctuation">[</span>
+<pre class="language-javascript"><code class="language-javascript">
+<span class="token keyword">const</span> routingConfig <span class="token operator">=</span> <span class="token punctuation">[</span>
 	<span class="token punctuation">{</span>
 		path<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
 		outlet<span class="token punctuation">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span>
@@ -129,10 +131,18 @@ ga('send', 'pageview');
 </code></pre>
 <p>Explanations for the route configuration in the above code block are explained earlier in this step.</p>
 <div class="instruction">Now, register the router in a <code>registry</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">registerRouterInjector</span><span class="token punctuation">(</span>routingConfig<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> history <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StateHistory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">registerRouterInjector</span><span class="token punctuation">(</span>routingConfig<span class="token punctuation">,</span> registry<span class="token punctuation">,</span> <span class="token punctuation">{</span> history <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>The <code>registerRouterInjector</code> helper utility used in the code above is provided by <code>@dojo/routing</code>, and can be used to create a routing instance. The utility accepts the application’s routing configuration, and a <code>registry</code> to define a <code>router</code> injector against. The utility returns the <code>router</code> instance.</p>
+<p>The <code>registerRouterInjector</code> helper utility used in the code above is provided by <code>@dojo/routing</code>, and can be used to create a routing instance. The utility accepts:</p>
+<ul>
+<li>The application’s routing configuration</li>
+<li>A <code>registry</code> to define a <code>router</code> injector against</li>
+<li>An object which specifies the <a href="https://github.com/dojo/routing#history-management" target="_blank" rel="noopener">history manager</a> to be used</li>
+</ul>
+<p>The utility returns the <code>router</code> instance.</p>
+<article class="aside"><strong>History Managers</strong><p>The default history manager uses hash-based (fragment style) URLs. You can omit the third argument to <code>registerRouterInjector</code> to fallback to hash-based URLs.</p></article>
 <div class="instruction">Initialize the routing</div>
 <pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -203,7 +213,7 @@ router<span class="token punctuation">.</span><span class="token function">start
 					workerData<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_workerData
 				<span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
-<p>Running the application now should display the <code>Banner.ts</code> by default, but also enable routing to the other widgets using the <code>/#directory</code> and <code>/#new-worker</code> routes.</p>
+<p>Running the application now should display the <code>Banner.ts</code> by default, but also enable routing to the other widgets using the <code>/directory</code> and <code>/new-worker</code> routes.</p>
 <p>Next, we will add a side menu with links for the created outlets.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Adding-Links"><a href="#Adding-Links" class="headerlink" title="Adding Links"></a>Adding Links</h2><div class="task">Add a sidebar menu to the application.</div>
