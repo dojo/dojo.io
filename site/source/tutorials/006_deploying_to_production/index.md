@@ -32,7 +32,7 @@ Creating a production build of a Dojo 2 application is straightforward. We have 
 
 The build command creates a new folder, `output/dist`, where all of the built files are located. Open that directory and examine `index.html`. This version of `index.html` is slightly different than the one in the `src` directory - the build process has added links to `main.[hash].bundle.css` and `main.[hash].bundle.js` so the application and its styling rules will be available.
 
-Along with the `index.html` the directory contains two bundles, `main.[hash].bundle.js` and `runtime.[hash].bundle.js`. The runtime bundle contains all of code required by webpack to load the application and the main bundle contains all of the application source code. Both bundles have been transpiled to JavaScript, bundled, and [minified](http://bit.ly/2rVdhNk). This allows the application to be served as efficiently as possible. `main.[bundle].js.map` is used to allow developers to view the original source code when debugging the application.
+Along with the `index.html` the directory contains two bundles, `main.[hash].bundle.js` and `runtime.[hash].bundle.js`. The runtime bundle contains all of the code required by webpack to load the application and the main bundle contains all of the application source code. Both bundles have been transpiled to JavaScript, bundled, and [minified](http://bit.ly/2rVdhNk). This allows the application to be served as efficiently as possible. `main.[bundle].js.map` is used to allow developers to view the original source code when debugging the application.
 
 `main.[hash].bundle.css` contains the styling rules for the application's custom widgets as well as the `Button` and `TextInput` widgets that are used in the `WorkerForm`. `main.[hash].bundle.css.map` provides information that development tools use to map the styling rules in `main.[hash].bundle.css` to the original sources.
 
@@ -58,7 +58,7 @@ The default options for `dojo build` are sufficient for many situations, but the
 
 There are four groups of command line arguments that are available when using the `dojo build` command.
 
-The first group is `--mode` that accepts `dist`, `dev` and `test` depending on the bundle that is needed, the argument defaults to `dist`.
+The first group is `--mode` that accepts `dist`, `dev`, and `test` depending on the bundle that is needed, the argument defaults to `dist`.
 
 The build command supports two modes of `--watch`, `file` which writes built files to the relevant directory in `output` and `memory` that uses webpack dev server (and must be run with the `--serve` argument).
 
@@ -127,7 +127,7 @@ An array of supported locales beyond the default. When the application loads, th
 #### `cldrData`
 An array of paths to CLDR JSON files. Used in conjunction with the locale and supportedLocales options. If a path contains the string {locale}, that file will be loaded for each locale listed in the locale and supportedLocales properties.
 #### `bundles`
-Useful for breaking an application into smaller bundles, the bundles option is a map of webpack bundle names to arrays of modules that should be bundled together. For example, with the following configuration both src/Foo and src/Bar will be grouped in the foo.[hash].js bundle:
+Useful for breaking an application into smaller bundles, the bundles option is a map of webpack bundle names to arrays of modules that should be bundled together. For example, with the following configuration, both `src/Foo` and `src/Bar` will be grouped in the foo.[hash].js bundle:
 #### `features`
 A map of has features to boolean flags that can be used when building in `dist` mode to remove unneeded imports or conditional branches.
 #### `pwa.manifest`
