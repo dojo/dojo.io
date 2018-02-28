@@ -34,7 +34,7 @@ export default {
 
 The theme file must export an object of key-value pairs. The key represents the name of the widget, and the value is the respective CSS module which styles the widget. Built-in Dojo 2 widgets must have their key prefixed with `'dojo-'`.
 
-Note: see the [discover built-in Dojo 2 widgets](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/widgets/discover-built-in-dojo-widgets.md) recipe to learn more about built-in widgets.
+Note: see the [discover built-in Dojo 2 widgets](https://dojo.io/cookbook/widgets/discover-built-in-dojo-widgets.md) recipe to learn more about built-in widgets.
 
 3. Import your theme and the button widget:
 
@@ -56,5 +56,5 @@ The built-in Dojo 2 button is styled with your custom CSS and the `root` selecto
 ## Additional resources
 
 * The [Dojo Theming tutorial](https://dojo.io/tutorials/007_theming/) explains how to theme widgets in greater detail.
-* The [simple styling](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/styling/simple-styling.md) recipe demonstrates a basic technique for styling widgets
-* The [create a themeable widget](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/styling/create-a-themeable-widget.md) recipe covers how to create a widget which can be themed by an external consumer
+* The [simple styling](https://dojo.io/cookbook/styling/simple-styling.md) recipe demonstrates a basic technique for styling widgets
+* The [create a themeable widget](https://dojo.io/cookbook/styling/create-a-themeable-widget.md) recipe covers how to create a widget which can be themed by an external consumer

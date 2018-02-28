@@ -40,7 +40,7 @@ export default Header;
 Notes:
 
 * This widget definition extends from the `ThemedMixin`
-* The reference to `this.theme(css.root)` specifies the `root` class as a themeable class
+* The reference to `this.theme(css.root)` specifies the `root` class as a themed class
 
 3. When you render your Header widget defined above, you can override the `root` class by defining your own theme:
 
@@ -50,9 +50,9 @@ w(Header, {
 });
 ```
 
-There is a dedicated recipe on how to [create the `CustomTheme`](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/styling/built-in-widget-theming.md) variable in the above code snippet.
+There is a dedicated recipe on how to [create the `CustomTheme`](https://dojo.io/cookbook/styling/built-in-widget-theming.md) variable in the above code snippet.
 
 ## Additional resources
 
 * The [Dojo Theming tutorial](https://dojo.io/tutorials/007_theming/) explains how to theme widgets in greater detail.
-* The [simple styling](https://github.com/dojo/dojo.io/tree/master/site/source/cookbook/styling/simple-styling.md) recipe demonstrates a basic technique for styling widgets
+* The [simple styling](https://dojo.io/cookbook/styling/simple-styling.md) recipe demonstrates a basic technique for styling widgets
