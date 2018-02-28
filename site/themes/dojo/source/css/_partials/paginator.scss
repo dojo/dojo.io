@@ -4,6 +4,9 @@
 	transform: scaleY(1);
 	transition: all 0.3s;
 	@include fadeInUp();
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 
 
 	ul {

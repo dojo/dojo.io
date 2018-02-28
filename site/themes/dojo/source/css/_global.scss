@@ -3,14 +3,10 @@ $mobile-break: 768px;
 html,
 body {
 	background: $page-background;
-	height: 100%;
 	margin: 0;
-	overflow: hidden;
 }
 
-// Fixed header + sticky footer
 .page-wrapper {
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -21,6 +17,7 @@ body {
 	flex: 1;
 	overflow-y: auto;
 	overflow-x: hidden;
+	margin-top: 2em;
 
 	@media screen and (max-width: $mobile-break) {
 		overflow-y: scroll;
