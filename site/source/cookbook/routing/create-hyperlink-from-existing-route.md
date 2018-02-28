@@ -24,7 +24,7 @@ This recipe demonstrates how to generate hyperlinks based on your routing config
 }];
 ```
 
-Note: You can learn how to apply the above routing configuration within a Dojo 2 app in the ['Render URL aware widgets' recipe](https://dojo.io/cookbook/routing/render-widget-url.md).
+Note: You can learn how to apply the above routing configuration within a Dojo 2 app in the ['Render URL aware widgets' recipe](https://dojo.io/cookbook/routing/render-widget-url).
 
 2. You can generate a hyperlink using the built-in `Link` component.
 

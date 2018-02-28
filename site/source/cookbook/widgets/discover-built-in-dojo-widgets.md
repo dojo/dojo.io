@@ -18,4 +18,4 @@ This recipe is a simple outline on how to familiarize yourself with the built-in
 
 ## Further reading:
 
-The [Render a built-in Dojo 2 Widget](https://dojo.io/cookbook/widgets/render-built-in-dojo-widget.md) recipe includes minimal code to embed a built-in widget into your application.
+The [Render a built-in Dojo 2 Widget](https://dojo.io/cookbook/widgets/render-built-in-dojo-widget) recipe includes minimal code to embed a built-in widget into your application.

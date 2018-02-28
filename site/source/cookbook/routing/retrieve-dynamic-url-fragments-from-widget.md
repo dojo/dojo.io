@@ -20,7 +20,7 @@ const routingConfig = [{
 }];
 ```
 
-Note: You can learn how to apply the above routing configuration within a Dojo 2 app in the ['Render URL aware widgets' recipe](https://dojo.io/cookbook/routing/render-widget-url.md).
+Note: You can learn how to apply the above routing configuration within a Dojo 2 app in the ['Render URL aware widgets' recipe](https://dojo.io/cookbook/routing/render-widget-url).
 
 2. Define an outlet and provide a callback function which returns the properties the wrapped widget expects:
 
@@ -49,4 +49,4 @@ class ContactWidget extends WidgetBase {
 ## Further reading
 
 - The [Dojo 2 Routing](https://dojo.io/tutorials/1030_routing/) tutorial covers routing in more depth
-- The [Render a widget against a URL](https://dojo.io/cookbook/widgets/render-built-in-dojo-widget.md) recipe includes minimal code to handle widget based routing
+- The [Render a widget against a URL](https://dojo.io/cookbook/widgets/render-built-in-dojo-widget) recipe includes minimal code to handle widget based routing

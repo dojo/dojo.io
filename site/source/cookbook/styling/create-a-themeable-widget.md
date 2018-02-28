@@ -50,9 +50,9 @@ w(Header, {
 });
 ```
 
-There is a dedicated recipe on how to [create the `CustomTheme`](https://dojo.io/cookbook/styling/built-in-widget-theming.md) variable in the above code snippet.
+There is a dedicated recipe on how to [create the `CustomTheme`](https://dojo.io/cookbook/styling/built-in-widget-theming) variable in the above code snippet.
 
 ## Additional resources
 
 * The [Dojo Theming tutorial](https://dojo.io/tutorials/007_theming/) explains how to theme widgets in greater detail.
-* The [simple styling](https://dojo.io/cookbook/styling/simple-styling.md) recipe demonstrates a basic technique for styling widgets
+* The [simple styling](https://dojo.io/cookbook/styling/simple-styling) recipe demonstrates a basic technique for styling widgets
