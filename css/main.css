@@ -14578,12 +14578,9 @@ body {
 html,
 body {
   background: #fafafa;
-  height: 100%;
-  margin: 0;
-  overflow: hidden; }
+  margin: 0; }
 
 .page-wrapper {
-  height: 100%;
   display: flex;
   flex-direction: column; }
 
@@ -14592,7 +14589,8 @@ body {
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  margin-top: 2em; }
   @media screen and (max-width: 768px) {
     .content-wrapper {
       overflow-y: scroll;
@@ -14621,7 +14619,10 @@ body {
   text-align: center; }
 
 .header {
-  background: #222127; }
+  background: #222127;
+  position: fixed;
+  width: 100%;
+  z-index: 9999; }
 
 .navbar {
   background: transparent; }
@@ -14681,7 +14682,10 @@ body {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
-  backface-visibility: hidden; }
+  backface-visibility: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
   .paginator ul {
     margin: 0;
     padding: 0; }
