@@ -38,4 +38,3 @@ const projector = new Projector();
 projector.setProperties({ registry });
 
 projector.append(root);
-router.start();

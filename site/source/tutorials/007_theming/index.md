@@ -144,14 +144,14 @@ Let's create a `themes` directory under your project `src` to store our theme re
 
 {% instruction 'Theme the Worker widget' %}
 
-In order to theme the `Worker` widget, we need to create `worker.m.css` within our `themes/dojo` directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the naming of the widget's style sheet.
+In order to theme the `Worker` widget, we need to create `worker.m.css` within our `themes/dojo` directory and use it within `theme.ts`. The naming here is important as the object key of the exported theme must match the name from the project's `package.json` and the name of the widget's style sheet joined by a forward slash (`/`).
 
-Add the following code to `theme.ts`:
+So for `worker.m.css`, you need to add the following code to `theme.ts`:
 
 ``` typescript
 import * as worker from './worker.m.css';
 export default {
-	worker
+	'biz-e-corp/worker': worker
 };
 ```
 
@@ -208,14 +208,14 @@ Thus far in this tutorial, we have themed our custom `Worker` widget, but we hav
 import * as worker from './worker.m.css';
 import * as workerForm from './workerForm.m.css';
 export default {
-	worker,
-	workerForm
+	'biz-e-corp/worker': worker,
+	'biz-e-corp/workerForm': workerForm,
 };
 ```
 
-This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `@dojo/widgets/textinput/textinput.m.css` and export it from `theme.ts` using a theme key prefixed with `dojo-`. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.
+This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to create `@dojo/widgets/text-input.m.css` and export it from `theme.ts` using the standard theme key of package name and widget css name joined by `/`.
 
-{% instruction 'Create `textinput.m.css`' %}
+{% instruction 'Create `text-input.m.css`' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/textinput/textinput.m.css' lang:css %}
 
@@ -224,11 +224,11 @@ This should be familiar from theming the `Worker` in the previous section. To th
 ``` typescript
 import * as worker from './worker.m.css';
 import * as workerForm from './workerForm.m.css';
-import * as dojoTextInput from './@dojo/textinput/textinput.m.css';
+import * as dojoTextInput from './@dojo/text-input/text-input.m.css';
 export default {
-	worker,
-	workerForm,
-	'@dojo/textinput/textinput': dojoTextInput
+	'biz-e-corp/worker': worker,
+	'biz-e-corp/workerForm': workerForm,
+	'@dojo/widgets/text-input': dojoTextInput
 };
 ```
 

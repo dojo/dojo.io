@@ -87,7 +87,7 @@ export interface WorkerFormProperties {
 
 {% task 'Perform validation on `onInput`' %}
 
-We now have a place to store form errors in the application state, and those errors are passed into the form widget. The form still lacks any actual validation of the user input; for that, we need to dust off the regexes and write a basic validation function.
+We now have a place to store form errors in the application state, and those errors are passed into the form widget. The form still lacks any actual validation of the user input; for that, we need to dust off our regular expressions and write a basic validation function.
 
 {% instruction 'Create a private `_validateInput` method in `ApplicationContext.ts`' %}
 

@@ -3,7 +3,7 @@ import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import uuid from '@dojo/core/uuid';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
+import TextInput, { TextInputProperties } from '@dojo/widgets/text-input';
 import * as css from '../styles/workerForm.m.css';
 
 export interface ValidatedTextInputProperties extends TextInputProperties {
