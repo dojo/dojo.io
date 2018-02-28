@@ -57,4 +57,4 @@ The built-in Dojo 2 button is styled with your custom CSS and the `root` selecto
 
 * The [Dojo Theming tutorial](https://dojo.io/tutorials/007_theming/) explains how to theme widgets in greater detail.
 * The [simple styling](https://dojo.io/cookbook/styling/simple-styling) recipe demonstrates a basic technique for styling widgets
-* The [create a themeable widget](https://dojo.io/cookbook/styling/create-a-themeable-widget recipe covers how to create a widget which can be themed by an external consumer
+* The [create a themeable widget](https://dojo.io/cookbook/styling/create-a-themeable-widget) recipe covers how to create a widget which can be themed by an external consumer
