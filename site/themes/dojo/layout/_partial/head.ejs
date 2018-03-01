@@ -5,25 +5,28 @@
 	<%
 	var title = page.title;
 
-  function toTitleCase(str) {
-      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
+	function toTitleCase(str) {
+		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	}
 
-  if (is_archive()){
-    // title = __('archive_a');
-		title = 'Blog | ' + page.title;
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
-  } else if (is_tag()){
-    title = __('tag') + ': ' + toTitleCase(page.tag.replace(/\-/g, ' '));
-  }
-  %>
+	if (is_archive()) {
+		if (page.title && typeof page.title !== "undefined") {
+			title = 'Blog | ' + page.title;
+		}
+		else {
+			title = 'Blog';
+		}
+		if (is_month()){
+			title += ': ' + page.year + '/' + page.month;
+		} else if (is_year()){
+			title += ': ' + page.year;
+		}
+	} else if (is_category()) {
+		title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
+	} else if (is_tag()) {
+		title = __('tag') + ': ' + toTitleCase(page.tag.replace(/\-/g, ' '));
+	}
+  	%>
 
 	<title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
