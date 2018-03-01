@@ -20,7 +20,7 @@
 			title += ': ' + page.year + '/' + page.month;
 		} else if (is_year()){
 			title += ': ' + page.year;
-	    }
+		}
 	} else if (is_category()) {
     	title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
 	} else if (is_tag()) {
