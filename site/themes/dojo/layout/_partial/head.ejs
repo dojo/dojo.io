@@ -9,17 +9,21 @@
 		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 	}
 
-	if (is_archive()){
-		title = (page.title && typeof page.title !== "undefined") ? 'Blog | ' + page.title : 'Blog';
-
+	if (is_archive()) {
+		if (page.title && typeof page.title !== "undefined") {
+			title = 'Blog | ' + page.title;
+		}
+		else {
+			title = 'Blog';
+		}
 	    if (is_month()){
 			title += ': ' + page.year + '/' + page.month;
 	    } else if (is_year()){
 	    	title += ': ' + page.year;
 	    }
-	} else if (is_category()){
+	} else if (is_category()) {
     	title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
-	} else if (is_tag()){
+	} else if (is_tag()) {
 		title = __('tag') + ': ' + toTitleCase(page.tag.replace(/\-/g, ' '));
 	}
   	%>
