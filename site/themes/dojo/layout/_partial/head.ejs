@@ -22,7 +22,7 @@
 			title += ': ' + page.year;
 		}
 	} else if (is_category()) {
-    	title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
+		title = toTitleCase(page.layout) + ': ' + toTitleCase(page.category.replace(/\-/g, ' '));
 	} else if (is_tag()) {
 		title = __('tag') + ': ' + toTitleCase(page.tag.replace(/\-/g, ' '));
 	}
