@@ -64,7 +64,7 @@ Fixed classes apply styles that cannot be overridden by a theme, using a suffix 
 
 `WorkerForm` already uses the `ThemedMixin` and has a `workerForm` class on its root node. Let's change the workerForm class to a `root` class, and while we are there, we will create a `rootFixed` class too, and apply it to the root node. Classes that are not passed to `theme` cannot be changed or overridden via a theme, ensuring that structured or nested styles are not lost when a theme is used.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:50-53 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:47-50 %}
 
 Replace all of the selectors containing `.workerForm` with the following rules in `workerForm.m.css`.
 
@@ -125,7 +125,10 @@ render() {
 render() {
     // ...
     return v('div', {
-        classes: [ ...this.theme([ css.root, this._isFlipped ? css.reverse : null ]), css.rootFixed ]
+        classes: [
+			...this.theme([ css.root, this._isFlipped ? css.reverse : null ]),
+			css.rootFixed
+		]
     }, [
     // ...
 }
@@ -141,11 +144,11 @@ Next, we will start to create a theme.
 
 {% task 'Create a theme directory' %}
 
-Dojo 2 provides a CLI command for creating a skeleton theme from existing Dojo 2 widgets. To do this the command prompts the user to enter the name of package that contains Dojo 2 widgets and allows the you to select the specific widgets to include in the output.
+Dojo 2 provides a CLI command for creating a skeleton theme from existing Dojo 2 widgets. To do this the command prompts the user to enter the name of the package that contains Dojo 2 widgets and allows the you to select specific widgets to include in the output.
 
-{% instruction 'At the command line run `dojo create theme --name dojo' %}
+{% instruction 'At the command line run `dojo create theme --name dojo`' %}
 
-When prompted for the package to theme enter `@dojo/widgets` and then `n` to indicate no more packages. You should be presented with a list of widgets that can be scaffolded from @dojo/widgets. For this demo we need to select `button` and `text-input` using the arrow keys and space to select each one, press enter to complete the process.
+When prompted for the package to theme enter `@dojo/widgets` and then type `N` to indicate their are no more packages. You should now be presented with a list of widgets from @dojo/widgets that can be scaffolded. For this demo we need to select `button` and `text-input` using the arrow keys and space to select each one, press enter to complete the process.
 
 This should have created a `themes` directory in the project's `src` directory, this will be where the custom theme is created.
 
