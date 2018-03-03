@@ -68,14 +68,7 @@ The default history manager uses hash-based (fragment style) URLs. You can omit 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:40-43 %}
 
-{% aside 'Important!' %}
-When using a `defaultRoute` in the routing configuration, the `router` will need to be started after the projector is appended.
-{% endaside %}
-
-To initialize the routing:
-
-1. Set the registry on the projector
-2. Call the `start` method on the `router` instance.
+To initialize the routing, set the registry as a property on the projector.
 
 Next, we will create `outlets` to control when our widgets are displayed.
 
