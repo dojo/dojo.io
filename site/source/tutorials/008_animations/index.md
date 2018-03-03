@@ -31,6 +31,14 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of `requestAnimationFrame` or the less efficient  `setInterval`.
 
+The Web Animations API is not currently available even in the latest browsers, this means to use the API the polyfill needs to be included. Dojo 2 does not include the polyfill by default which means that it will need to be added as a script tag in your index.html or alternatively imported in the applications `main.ts` file.
+
+{% instruction 'Import the web animations polyfill' %}
+
+```ts
+import 'web-animations-js/web-animations-next-lite.min';
+```
+
 {% aside 'Meta' %}
 Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the `domNode` itself.
 {% endaside %}
@@ -320,9 +328,7 @@ import Slider from '@dojo/widgets/slider/Slider';
 // add the variable and then change event
 private _zombieLegsPlaybackRate = 1;
 
-private _onZombieLegsPlaybackRateChange(event: Event) {
-	const value = (event.target as HTMLInputElement).value;
-
+private _onZombieLegsPlaybackRateChange(value: string) {
 	this._zombieLegsPlaybackRate = parseFloat(value);
 	this.invalidate();
 }
@@ -357,7 +363,7 @@ private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties
 
 // finally, add the control to the top of the render function
 v('div', { classes: css.controls }, [
-	w(Slider, { min: 0.1, max: 10, step: 0.1, value: this._zombieLegsPlaybackRate, onChange: this._onZombieLegsPlaybackRateChange })
+	w(Slider, { min: 0.1, max: 10, step: 0.1, value: this._zombieLegsPlaybackRate, onInput: this._onZombieLegsPlaybackRateChange })
 ])
 ```
 

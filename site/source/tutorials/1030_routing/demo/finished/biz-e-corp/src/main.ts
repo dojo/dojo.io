@@ -8,25 +8,23 @@ const root = document.querySelector('my-app') || undefined;
 
 const routingConfig = [
 	{
-		path: '/',
-		outlet: 'home',
-		defaultRoute: true,
+		path: 'directory',
+		outlet: 'directory',
 		children: [
 			{
-				path: 'directory',
-				outlet: 'directory',
-				children: [
-					{
-						path: '{filter}',
-						outlet: 'filter'
-					}
-				]
-			},
-			{
-				path: 'new-worker',
-				outlet: 'new-worker'
+				path: '{filter}',
+				outlet: 'filter'
 			}
 		]
+	},
+	{
+		path: 'new-worker',
+		outlet: 'new-worker'
+	},
+	{
+		path: '/',
+		outlet: 'home',
+		defaultRoute: true
 	}
 ];
 
@@ -36,5 +34,4 @@ registerRouterInjector(routingConfig, registry);
 const Projector = ProjectorMixin(App);
 const projector = new Projector();
 projector.setProperties({ registry });
-
 projector.append(root);

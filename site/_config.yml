@@ -29,8 +29,8 @@ skip_render:
   - "**/demo/**"
   - "**/node_modules/**"
 exclude:
-  - "**/node_modules/**"
   - "**/demo/**"
+  - "**/node_modules/**"
 tutorial_dir: tutorials
 
 # Writing
