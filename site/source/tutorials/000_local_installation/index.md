@@ -21,7 +21,7 @@ This command installs the Dojo command-line tool (`@dojo/cli`) to simplify devel
 * `eject` - Disconnects a project from `@dojo/cli` allowing advanced users to customize configuration
 * `version` - Reports the version of `@dojo/cli` and any commands that are installed
 
-Running `dojo` will show all available commands even if they aren't installed, when you try to run a command that is not available the CLI will print out a message saying that the command needs to be installed.
+Running `dojo` will show all available commands even if they are not installed, when you try to run a command that is not available the CLI will print a message that the command needs to be installed.
 
 In order to create your first Dojo 2 application, you need to globally install the `@dojo/cli-create-app` command which creates a template project to get started:
 

@@ -205,7 +205,7 @@ We have succeeded in rendering the widget, but there seem to be some styling iss
 export default class Worker extends WidgetBase<WorkerProperties>
 ```
 
-The `WorkerProperties` interface adds two new optional properties that we'll be able to use. Now that these are available, let's use them to make the name of the worker controlled.
+The `WorkerProperties` interface adds two new optional properties that we'll be able to use. Now that these are available, let's use them to make the name of the worker controlled by the parent widget.
 
 {% instruction 'Inside of the render method, add the following code to create some local constants for the first and last names:' %}
 
