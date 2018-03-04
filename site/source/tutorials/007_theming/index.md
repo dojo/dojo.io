@@ -32,7 +32,7 @@ In Dojo, we differentiate between two types of styles:
 
 The current CSS in the example app provides the structural styles, we will now review how to create and manage themes.
 
-In order to theme our widgets, we must ensure that they each apply the `ThemedMixin` and change the class name of the widget's top level node to `root`. The `ThemedMixin` provides a `this.theme` function that will returns the correct class for the `theme` provided to the widget. The top level class name is changed to `root` in order to provide a predictable way to target the outer-node of a widget, this is a pattern used through out widgets provided by `@dojo/widgets`.
+In order to theme our widgets, we must ensure that they each apply the `ThemedMixin` and change the class name of the widget's top-level node to `root`. The `ThemedMixin` provides a `this.theme` function that returns (or that will return) the correct class for the `theme` provided to the widget. The top-level class name is changed to `root` in order to provide a predictable way to target the outer-node of a widget, this is a pattern used throughout widgets provided by `@dojo/widgets`.
 
 {% instruction 'Replace the contents of `Banner.ts` with the following' %}
 
@@ -144,7 +144,7 @@ Next, we will start to create a theme.
 
 {% task 'Create a theme directory' %}
 
-Dojo 2 provides a CLI command for creating a skeleton theme from existing Dojo 2 widgets. To do this the command prompts the user to enter the name of the package that contains Dojo 2 widgets and allows the you to select specific widgets to include in the output.
+Dojo 2 provides a CLI command for creating a skeleton theme from existing Dojo 2 widgets. To do this the command prompts the user to enter the name of the package that contains Dojo 2 widgets and allows you to select specific widgets to include in the output.
 
 {% instruction 'At the command line run `dojo create theme --name dojo`' %}
 

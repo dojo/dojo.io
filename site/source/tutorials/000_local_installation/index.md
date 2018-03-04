@@ -50,7 +50,7 @@ dojo build --mode dev --watch --serve
 (or, the shorter, `dojo build -m dev -w -s`)
 
 {% aside 'Production build as a default' %}
-The `@dojo/cli-build-app` command will create a production ready build using `--mode dist` by default. Providing `--mode dev` instructs the command to create a development build that is useful for debugging and ongoing development.
+The `@dojo/cli-build-app` command will create a production-ready build using `--mode dist` by default. Providing `--mode dev` instructs the command to create a development build that is useful for debugging and ongoing development.
 {% endaside %}
 
 This command will invoke Dojo 2's tool to build and transpile the project using [Webpack](https://webpack.github.io/), a popular tool for optimizing JavaScript source code. The `--watch` (or `-w`) flag watches and rebuilds your project whenever any changes are saved and the `--serve` (or `-s`) flag starts a simple web server which allows us to run our application in the browser while we make modifications.

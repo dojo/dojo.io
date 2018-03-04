@@ -31,7 +31,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For 
 
 The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of `requestAnimationFrame` or the less efficient  `setInterval`.
 
-The Web Animations API is not currently available even in the latest browsers, this means to use the API the polyfill needs to be included. Dojo 2 does not include the polyfill by default which means that it will need to be added as a script tag in your index.html or alternatively imported in the applications `main.ts` file.
+The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, a polyfill needs to be included. Dojo 2 does not include the polyfill by default, so will need to be added as a script tag in your index.html or alternatively imported in the application's main.ts
 
 {% instruction 'Import the web animations polyfill' %}
 
