@@ -63,9 +63,19 @@ The modified `getProperties` function in `WorkerFormContainer.ts`:
 {% solution showsolution2 %}
 ```typescript
 function getProperties(inject: ApplicationContext, properties: any) {
-	const { formData, formErrors, formInput: onFormInput, submitForm: onFormSave } = inject;
+	const {
+		formData,
+		formErrors,
+		formInput: onFormInput,
+		submitForm: onFormSave
+	} = inject;
 
-	return { formData, formErrors, onFormInput: onFormInput.bind(inject), onFormSave: onFormSave.bind(inject) };
+	return {
+		formData,
+		formErrors,
+		onFormInput: onFormInput.bind(inject),
+		onFormSave: onFormSave.bind(inject)
+	};
 }
 ```
 {% endsolution %}
@@ -279,7 +289,7 @@ Now that `ValidatedTextInput` exists, let's import it and swap it with `TextInpu
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-7 %}
 
 **Inside render()**
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:80-116 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:74-110 %}
 
 {% task 'Create `onFormValidate` method separate from `onFormInput`' %}
 
@@ -290,21 +300,21 @@ Currently the validation logic is unceremoniously dumped in `formInput` within `
 1. Add a `formValidate` method to `ApplicationContext.ts` and update `_formErrors` there instead of in `formInput`:
 	{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:71-79 %}
 2. Update `WorkerFormContainer` to pass `formValidate` as `onFormValidate`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerFormContainer.ts' lines:6-10 %}
+	{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerFormContainer.ts' lines:6-22 %}
 3. Within `WorkerForm` first add `onFormValidate` to the `WorkerFormProperties` interface:
 	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:21-27 %}
 	Then create internal methods for each form field's validation and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:54-67 %}
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:51-61 %}
 
 {% instruction 'Handle calling `onValidate` within `ValidatedTextInput`' %}
 
 You might have noticed that the form no longer validates on user input events. This is because we no longer handle validation within `formInput` in `ApplicationContext.ts`, but we also haven't added it anywhere else. To do that, add the following private method to `ValidatedTextInput`:
 
 ```ts
-private _onInput(event: Event) {
+private _onInput(value: string) {
 	const { onInput, onValidate } = this.properties;
-	onInput && onInput(event);
-	onValidate && onValidate(event);
+	onInput && onInput(value);
+	onValidate && onValidate(value);
 }
 ```
 
@@ -350,16 +360,16 @@ Now that calling `onValidate` is handled within the `ValidatedTextInput` widget,
 
 In `ValidatedTextInput.ts`:
 ```ts
-private _onBlur(event: FocusEvent) {
+private _onBlur(value: string) {
 	const { onBlur, onValidate } = this.properties;
-	onValidate && onValidate(event);
-	onBlur && onBlur(event);
+	onValidate && onValidate(value);
+	onBlur && onBlur();
 }
 ```
 
 We only need to use this function on the first blur event, since subsequent validation can be handled by `onInput`. The following code will use either `this._onBlur` or `this.properties.onBlur` depending on whether the input has been previously validated:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:52-67 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:52-69 %}
 
 Now all that remains is to modify `_onInput` to only call `onValidate` if the field already has a validation state:
 

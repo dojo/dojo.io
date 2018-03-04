@@ -8,7 +8,7 @@ import * as css from '../styles/workerForm.m.css';
 
 export interface ValidatedTextInputProperties extends TextInputProperties {
 	errorMessage?: string;
-	onValidate?: (event: Event) => void;
+	onValidate?: (value: string) => void;
 }
 
 export const ValidatedTextInputBase = ThemedMixin(WidgetBase);
@@ -17,18 +17,18 @@ export const ValidatedTextInputBase = ThemedMixin(WidgetBase);
 export default class ValidatedTextInput extends ValidatedTextInputBase<ValidatedTextInputProperties> {
 	private _errorId = uuid();
 
-	private _onBlur(event: FocusEvent) {
+	private _onBlur(value: string) {
 		const { onBlur, onValidate } = this.properties;
-		onValidate && onValidate(event);
-		onBlur && onBlur(event);
+		onValidate && onValidate(value);
+		onBlur && onBlur();
 	}
 
-	private _onInput(event: Event) {
+	private _onInput(value: string) {
 		const { invalid, onInput, onValidate } = this.properties;
-		onInput && onInput(event);
+		onInput && onInput(value);
 
 		if (typeof invalid !== 'undefined') {
-			onValidate && onValidate(event);
+			onValidate && onValidate(value);
 		}
 	}
 

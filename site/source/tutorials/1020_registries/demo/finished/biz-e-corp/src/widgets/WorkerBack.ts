@@ -49,7 +49,7 @@ export default class WorkerBack extends WorkerBackBase<WorkerBackProperties> {
 			]),
 			v('div', [
 				v('strong', ['Current Tasks']),
-				v('div', tasks.map(task => {
+				v('div', tasks.map((task) => {
 					return v('div', { classes: this.theme(css.task) }, [ task ]);
 				}))
 			])

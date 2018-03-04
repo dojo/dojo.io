@@ -45,7 +45,7 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 			}, [
 				v('img', {
 					classes: this.theme(css.image),
-						src: 'https://dojo.io/tutorials/resources/worker.svg' }, []),
+					src: 'https://dojo.io/tutorials/resources/worker.svg' }, []),
 				v('div', [
 					v('strong', [ `${lastName}, ${firstName}` ])
 				])
@@ -65,7 +65,8 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		return v('div', {
 				classes: this.theme(css.workerBack),
 				onclick: this.flip
-			}, [ this._isFlipped ? w<WorkerBack>('worker-back', { firstName, lastName, email, timePerTask, tasks }) : null ]
+			}, [
+				this._isFlipped ? w<WorkerBack>('worker-back', { firstName, lastName, email, timePerTask, tasks }) : null ]
 		);
 	}
 
