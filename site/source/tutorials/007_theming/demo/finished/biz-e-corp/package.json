@@ -11,11 +11,11 @@
     "@dojo/routing": "~0.5.0",
     "@dojo/shim": "~0.2.6",
     "@dojo/widget-core": "~0.9.4",
-    "@dojo/i18n": "~0.5.0",
+    "@dojo/i18n": "~0.5.1",
     "@dojo/widgets": "~0.5.0"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "~0.3.0",
+    "@dojo/cli-build-app": "~0.3.2",
     "@dojo/cli-test-intern": "~0.5.0",
     "@dojo/cli-create-theme": "~0.1.1",
     "@dojo/loader": "~0.1.1",
