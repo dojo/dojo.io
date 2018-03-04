@@ -1,5 +1,5 @@
 ---
-layout: cookbook
+layout: false
 category: testing
 title: Test and mock the imports of a widget
 overview: Learn one strategy of mocking imports in a widget
