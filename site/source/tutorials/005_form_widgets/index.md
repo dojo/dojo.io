@@ -93,7 +93,7 @@ We could create these fields and buttons using the `v` function to create simple
 
 {% instruction 'Add `w` to the imports from `@dojo/widget-core/d` and add imports for the `Button` and `TextInput` classes to `WorkerForm.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:4-6 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:3-5 %}
 
 These imports are for [built-in Dojo 2 Widgets](https://github.com/dojo/widgets). You can explore other widgets in the [Dojo 2 Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 

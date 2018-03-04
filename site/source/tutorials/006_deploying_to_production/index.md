@@ -92,29 +92,30 @@ Consider the following:
 
 ```json
 {
-  "build-app": {
-    "locale": "en",
-    "supportedLocales": [ "ja_JP" ],
-    "cldrPaths": [
-      "cldr-data/main/{locale}/numbers.json"
-    ],
-    "bundles": {
-      "foo": [
-        "src/Foo",
-        "src/Bar"
-      ]
-    },
-    "features": {
-      "foo": true,
-      "bar": false
-    },
-    "pwa": {
-      "manifest": {
-        "name": "My Application",
-        "description": "My amazing application"
-      }
-    }
-  }
+	"build-app": {
+		"locale": "en",
+		"supportedLocales": [ "ja_JP" ],
+		"cldrPaths": [
+			"cldr-data/main/{locale}/numbers.json"
+		],
+		"bundles": {
+			"foo": [
+				"src/Foo",
+			"src/Bar"
+			]
+		},
+		"features": {
+			"foo": true,
+			"bar": false
+		},
+		"pwa": {
+			"manifest": {
+				"name": "My Application",
+				"description": "My amazing application"
+			}
+		}
+	}
+
 }
 ```
 

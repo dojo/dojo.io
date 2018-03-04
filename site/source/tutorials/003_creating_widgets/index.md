@@ -72,6 +72,10 @@ This method will generate a `div` virtual node with no children. To render the `
 	}
 ```
 
+{% aside 'Mandatory object for properties' %}
+The 2nd argument of the `w()` function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.
+{% endaside %}
+
 Notice that the `w` function takes two parameters - a widget class and an object literal. That literal must implement the interface that was passed to `WidgetBase` via TypeScript generics. In this case, the `Banner` class uses `WidgetProperties` which has the following definition:
 
 ```ts
@@ -81,10 +85,6 @@ export interface WidgetProperties {
 ```
 
 `key` is optional, so we can pass an empty object for now. Next, we will replace the `Banner` class with the `App` as the root of our application.
-
-{% aside 'Mandatory object for properties' %}
-The 2nd argument of the `w()` function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.
-{% endaside %}
 
 {% section %}
 
@@ -151,12 +151,11 @@ If you need help, or want to check your solution, click the button below to see 
 ```ts
 protected render() {
 	return v('div', [
-			v('img', { src: 'https://dojo.io/tutorials/resources/worker.svg' }),
-			v('div', [
-				v('strong', [ 'lastName, firstName' ])
-			])
-		]
-	);
+		v('img', { src: 'https://dojo.io/tutorials/resources/worker.svg' }),
+		v('div', [
+			v('strong', [ 'lastName, firstName' ])
+		])
+	]);
 }
 ```
 {% endsolution %}
@@ -223,12 +222,11 @@ protected render() {
 	} = this.properties;
 
 	return v('div', [
-			v('img', { src: 'https://dojo.io/tutorials/resources/worker.svg' }),
-			v('div', [
-				v('strong', [ `${lastName}, ${firstName}` ])
-			])
-		]
-	);
+		v('img', { src: 'https://dojo.io/tutorials/resources/worker.svg' }),
+		v('div', [
+			v('strong', [ `${lastName}, ${firstName}` ])
+		])
+	]);
 }
 ```
 
@@ -238,6 +236,10 @@ protected render() {
 
 {% task 'Pass properties to the Worker widget to configure it.' %}
 
+{% aside 'Remember' %}
+You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -m dev -w memory -s` and navigating to `http://localhost:9999`.
+{% endaside %}
+
 To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo 2 application, these values could possibly be retrieved from an external state store or fetched from an external resource, but for now, we'll just use static properties. To learn more about working with stores in Dojo 2, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
 
 {% instruction 'In `App.ts`, update the line that is rendering the `Worker` to contain values for the `firstName` and `lastName` properties:' %}
@@ -245,10 +247,6 @@ To use the functionality of the new `Worker` widget we will update the `render` 
 ```ts
 w(Worker, { firstName: 'Tim', lastName: 'Jones' })
 ```
-
-{% aside 'Remember' %}
-You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -m dev -w memory -s` and navigating to `http://localhost:9999`.
-{% endaside %}
 
 At this point, we have a good start to our widget, but it still doesn't look very good. In the next section we'll address that by learning how to use CSS to style our widgets.
 
