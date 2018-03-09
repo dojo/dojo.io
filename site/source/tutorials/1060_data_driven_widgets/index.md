@@ -33,7 +33,7 @@ Before digging into the specifics of wiring a widget to a data source, a basic l
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-2,5-6,10,11-12,24-25,32-34 %}
 
-This code lays the base foundation for a themed Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemedMixin`, and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
+This code lays the base foundation for a standard Dojo 2 widget: it extends the `WidgetBase` class and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
 
 {% instruction 'Import `TextInput` into `List.ts`:' %}
 
