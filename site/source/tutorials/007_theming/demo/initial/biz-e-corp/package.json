@@ -12,7 +12,7 @@
     "@dojo/routing": "~0.5.0",
     "@dojo/shim": "~0.2.6",
     "@dojo/widget-core": "~0.9.4",
-    "@dojo/widgets": "~0.5.0"
+    "@dojo/widgets": "~0.6.1"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "~0.3.2",
