@@ -119,14 +119,16 @@ Now, the widget can be flipped between its front and back sides by clicking on i
 Currently, several of the properties are missing for the widgets. As an exercise, try to update the first widget to contain the following properties:
 
 ```ts
-firstName: 'Tim',
-lastName: 'Jones',
-email: 'tim.jones@bizecorp.org',
-tasks: [
-	'6267 - Untangle paperclips',
-	'4384 - Shred documents',
-	'9663 - Digitize 1985 archive'
-]
+{
+	firstName: 'Tim',
+	lastName: 'Jones',
+	email: 'tim.jones@bizecorp.org',
+	tasks: [
+		'6267 - Untangle paperclips',
+		'4384 - Shred documents',
+		'9663 - Digitize 1985 archive'
+	]
+}
 ```
 
 This will pass the specified properties to the first worker. The widget's parent
