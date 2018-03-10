@@ -129,11 +129,10 @@ tasks: [
 ]
 ```
 
-The widget's parent is responsible for passing properties to the widget.
-In this application, `Worker` widgets are receiving data from the `App` class via the `WorkerContainer`.
+This will pass the specified properties to the first worker. The widget's parent
+is responsible for passing properties to the widget. In this application, `Worker`
+widgets are receiving data from the `App` class via the `WorkerContainer`.
 
-To pass the specified properties to the first worker, the first element in
-`App`'s `_workerData` array needs to be updated to the following:
 
 {% section %}
 
