@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-10T19:33:48.759Z">
+<meta property="og:updated_time" content="2018-03-10T19:56:08.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
@@ -127,9 +127,8 @@ ga('send', 'pageview');
 </code></pre>
 <p>Explanations for the route configuration in the above code block are explained earlier in this step.</p>
 <div class="instruction">Now, register the router in a <code>registry</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> projector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Projector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">registerRouterInjector</span><span class="token punctuation">(</span>routingConfig<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <article class="aside"><strong>History Managers</strong><p>The default history manager uses hash-based (fragment style) URLs. To use one of the other provided history managers pass it as the <code>HistoryManager</code> in the third argument of <code>registerRouterInjector</code>.</p></article>
 <p>The <code>registerRouterInjector</code> helper utility used in the code above is provided by <code>@dojo/routing</code>, and can be used to create a routing instance. The utility accepts:</p>
@@ -142,7 +141,6 @@ projector<span class="token punctuation">.</span><span class="token function">se
 <div class="instruction">Initialize the routing</div>
 <p>To initialize the routing, set the registry as a property on the projector.</p>
 <pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Next, we will create <code>outlets</code> to control when our widgets are displayed.</p>
 </section><section class="tutorial hidden hiding">
@@ -249,8 +247,8 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </section><section class="tutorial hidden hiding">
 <h2 id="Dynamic-Outlet"><a href="#Dynamic-Outlet" class="headerlink" title="Dynamic Outlet"></a>Dynamic <code>Outlet</code></h2><div class="task">Add filters to the <code>WorkerContainer.ts</code> widget and create an outlet.</div>
 <p>Finally, we are going to enhance the <code>WorkerContainer.ts</code> with a filter on the workers’ last name. To do this we need to use the <code>filter</code> outlet configured in the first section. The key difference for the <code>filter</code> outlet is that the path is using a placeholder that indicates a path parameter, <code>{filter}</code>.</p>
-<p>This means a route with any value will match the <code>filter</code> as long as the previous path segments match, so for the <code>filter</code> outlet a route of <code>directory/any-value-here</code> would be considered a match.</p>
 <article class="aside"><strong>URL matching in routes</strong><p>The <a href="https://github.com/dojo/routing/#route-registration" target="_blank" rel="noopener">Dojo 2 Routing documentation</a> on GitHub further explains how outlets map to URLs.</p></article>
+<p>This means a route with any value will match the <code>filter</code> as long as the previous path segments match, so for the <code>filter</code> outlet a route of <code>directory/any-value-here</code> would be considered a match.</p>
 <div class="instruction">Add the new property to the <code>WidgetContainerProperties</code> interface in <code>WorkerContainer.ts</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerContainerProperties</span> <span class="token punctuation">{</span>
 	workerData<span class="token punctuation">:</span> WorkerProperties<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>

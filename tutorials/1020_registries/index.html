@@ -14,7 +14,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2018-03-10T19:33:48.759Z">
+<meta property="og:updated_time" content="2018-03-10T19:56:08.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -111,7 +111,7 @@ ga('send', 'pageview');
 <span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerContainer'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Worker <span class="token keyword">from</span> <span class="token string">'./widgets/Worker'</span><span class="token punctuation">;</span>
 </code></pre>
-<div class="instruction">Then define widgets in the <code>registry</code>.</div>
+<div class="instruction">Then define widgets in the <code>registry</code> after creating the registry.</div>
 <pre class="language-javascript"><code class="language-javascript">registry<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'dojo-button'</span><span class="token punctuation">,</span> Button<span class="token punctuation">)</span><span class="token punctuation">;</span>
 registry<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'dojo-text-input'</span><span class="token punctuation">,</span> TextInput<span class="token punctuation">)</span><span class="token punctuation">;</span>
 registry<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'banner'</span><span class="token punctuation">,</span> Banner<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -256,21 +256,29 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerBack <span class="token keyword">from</span> <span class="token string">'./WorkerBack'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="task">Update the <code>_renderBack</code> function to use the <code>WorkerBack</code> registry items in <code>Worker.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_renderBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span>
-			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
-			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span><span class="token punctuation">,</span>
+<pre class="language-javascript"><code class="language-javascript">			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span><span class="token punctuation">,</span>
 			email <span class="token operator">=</span> <span class="token string">'unavailable'</span><span class="token punctuation">,</span>
 			timePerTask <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
 			tasks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerBack<span class="token punctuation">)</span><span class="token punctuation">,</span>
-				onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
-			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-				<span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> w<span class="token operator">&lt;</span>WorkerBack<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">,</span> lastName<span class="token punctuation">,</span> email<span class="token punctuation">,</span> timePerTask<span class="token punctuation">,</span> tasks <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">]</span>
-		<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerBack<span class="token punctuation">)</span><span class="token punctuation">,</span>
+			onclick<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flip
+		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+			<span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped
+				<span class="token operator">?</span> w<span class="token operator">&lt;</span>WorkerBack<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+					firstName<span class="token punctuation">,</span>
+					lastName<span class="token punctuation">,</span>
+					email<span class="token punctuation">,</span>
+					timePerTask<span class="token punctuation">,</span>
+					tasks <span class="token punctuation">}</span><span class="token punctuation">)</span>
+				<span class="token punctuation">:</span> <span class="token keyword">null</span>
+		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped<span class="token punctuation">;</span>
 </code></pre>
 <article class="aside"><strong>Use Before You Define</strong><p>The <code>registry</code> is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the <code>registry</code> will automatically re-render!</p></article>
 <p>Now we need to add the <code>registry</code> definition for <code>WorkerBack.ts</code> to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual <code>render</code> cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.</p>
@@ -279,10 +287,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/decorators/registry'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="task">Add the registry item using the <code>@registry</code> decorator in <code>WorkerBack.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript">@<span class="token function">registry</span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> WorkerBack <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">import</span> <span class="token punctuation">(</span><span class="token string">'./WorkerBack'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">return</span> WorkerBack<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre class="language-javascript"><code class="language-javascript">@<span class="token function">registry</span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span> <span class="token punctuation">(</span><span class="token string">'./WorkerBack'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Now that the <code>WorkerBack</code> widget is defined to load lazily, running the application with the browser developer tools open should show that the <code>WorkerBack.js</code> file is only loaded when a worker card is clicked on for the first time:</p>
 <article class="aside"><strong>Auto Bundling Support</strong><p>To fully support lazy loading, the Dojo CLI build command will automatically bundle any lazily defined widgets into their own separate file! To learn more, take a look at the <a href="../006_deploying_to_production/">build command tutorial</a>.</p></article>

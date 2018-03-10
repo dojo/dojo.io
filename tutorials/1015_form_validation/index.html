@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-10T19:33:48.759Z">
+<meta property="og:updated_time" content="2018-03-10T19:56:08.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -193,7 +193,7 @@ ga('send', 'pageview');
 				placeholder<span class="token punctuation">:</span> <span class="token string">'Given name'</span><span class="token punctuation">,</span>
 				value<span class="token punctuation">:</span> firstName<span class="token punctuation">,</span>
 				required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span>
+				invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span>
 				onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameInput
 			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 			<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -203,7 +203,7 @@ ga('send', 'pageview');
 				placeholder<span class="token punctuation">:</span> <span class="token string">'Surname name'</span><span class="token punctuation">,</span>
 				value<span class="token punctuation">:</span> lastName<span class="token punctuation">,</span>
 				required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span>
+				invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span>
 				onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameInput
 			<span class="token punctuation">}</span><span class="token punctuation">)</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -212,7 +212,7 @@ ga('send', 'pageview');
 			type<span class="token punctuation">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span>
 			value<span class="token punctuation">:</span> email<span class="token punctuation">,</span>
 			required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-			invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>email<span class="token punctuation">,</span>
+			invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>email<span class="token punctuation">,</span>
 			onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailInput
 		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 		<span class="token function">w</span><span class="token punctuation">(</span>Button<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Save'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
@@ -241,7 +241,7 @@ ga('send', 'pageview');
 <p>The error message is associated with the text input through <code>aria-describedby</code>, and the <code>aria-live</code> attribute ensures it will be read if it is added to the DOM or changed. Wrapping both the input and the error message in a containing <code>&lt;div&gt;</code> allows us to position the error message relative to the input if desired.</p>
 <div class="instruction">Extend <code>TextInput</code> to create a <code>ValidatedTextInput</code> widget with an error message and <code>onValidate</code> method</div>
 <p>Re-creating the same error message boilerplate for multiple text inputs seems overly repetitive, so we’re going to extend <code>TextInput</code> instead. This will also allow us to have better control over when validation occurs, e.g. by adding it to blur events as well. For now, just create a <code>ValidatedTextInput</code> widget that accepts the same properties interface as <code>TextInput</code> but with an <code>errorMessage</code> string and <code>onValidate</code> method. It should return the same node structure modeled above.</p>
-<p>You will also need to modify <code>workerForm.m.css</code> to include the <code>error</code> and <code>inputWrapper</code> classes, although we will forgo adding specific styles in this tutorial:</p>
+<p>You will also need to create <code>validatedTextInput.m.css</code> with <code>error</code> and <code>inputWrapper</code> classes, although we will forgo adding specific styles in this tutorial:</p>
 <pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.inputWrapper</span> </span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 
 <span class="token selector"><span class="token class">.error</span> </span><span class="token punctuation">{</span><span class="token punctuation">}</span>
@@ -252,12 +252,12 @@ ga('send', 'pageview');
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> uuid <span class="token keyword">from</span> <span class="token string">'@dojo/core/uuid'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> ThemedMixin<span class="token punctuation">,</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span> TextInputProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/workerForm.m.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span> TextInputProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/validatedTextInput.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ValidatedTextInputProperties</span> <span class="token keyword">extends</span> <span class="token class-name">TextInputProperties</span> <span class="token punctuation">{</span>
 	errorMessage<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
-	onValidate<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>event<span class="token punctuation">:</span> Event<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+	onValidate<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">export</span> <span class="token keyword">const</span> ValidatedTextInputBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -312,7 +312,7 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></section></div>
-<article class="aside"><strong>onValidate</strong><p>You may have noticed that we created <code>ValidatedTextInput</code> with an <code>onValidate</code> property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.</p></article>
+<p>You may have noticed that we created <code>ValidatedTextInput</code> with an <code>onValidate</code> property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.</p>
 <div class="instruction">Use <code>ValidatedTextInput</code> within <code>WorkerForm</code></div>
 <p>Now that <code>ValidatedTextInput</code> exists, let’s import it and swap it with <code>TextInput</code> in <code>WorkerForm</code>, and write some error message text while we’re at it:</p>
 <p><strong>Import block</strong><br><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>

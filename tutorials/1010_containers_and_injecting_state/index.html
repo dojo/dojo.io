@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-10T19:33:48.759Z">
+<meta property="og:updated_time" content="2018-03-10T19:56:08.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
 <meta name="twitter:description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
@@ -275,7 +275,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <h2 id="Creating-state-containers"><a href="#Creating-state-containers" class="headerlink" title="Creating state containers"></a>Creating state containers</h2><div class="task">Create <code>Containers</code> that will allow state to be injected into widgets</div>
 <p>On their own, <code>Injectors</code> are not able to help us very much because widgets expect state to be passed to them via properties. Therefore an <code>injector</code> must be connected to interested widgets in order for their state to be mapped to <code>properties</code> that widgets can consume by using a <code>Container</code>. <code>Containers</code> are designed to coordinate the injection - they connect <code>injectors</code> to widgets and return <code>properties</code> from the <code>injector</code>‘s state which are passed to the connected widgets.</p>
 <p>Normally, a separate <code>Container</code> is created for each widget that needs to have <code>properties</code> injected. In the demo application, we have two widgets that rely on application state - <code>WorkerContainer</code> and <code>WorkerForm</code>.</p>
-<p>Let’s start with the <code>WorkerContainer</code>. You must give your containers the same name as their respective widgets, with a <code>Container</code> suffix.</p>
+<p>Let’s start with the <code>WorkerContainer</code>. As a best practice, you should give your containers the same name as their respective widgets, with a <code>Container</code> suffix.</p>
 <p>E.g. Widget name: <code>Foo</code><br>container name ‘FooContainer’. To keep things organized, they are also stored in a different directory - <code>containers</code>.</p>
 <div class="instruction">Add the following imports to the <code>WorkerContainerContainer</code> in the <code>containers</code> directory</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Container <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Container'</span><span class="token punctuation">;</span>
