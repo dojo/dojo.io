@@ -90,18 +90,29 @@ The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) projec
 
 By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning that most basic widgets are <20KB (gzipped) which includes all of the `@dojo` runtime needed to support the custom element.
 
-To create or use a Dojo 2 web component,
+The `customElement` decorator annotates the widget class to convert it to a custom element:
 
-```
-<div>
-	<demo-menu-item id="a" title="Menu Item A"></demo-menu-item>
-</div>
+```typescript
+interface HelloWorldWidgetProperties {
+	onClick: (event: Event) => void;
+	foo: string;
+	bar: string;
+}
+
+@customElement<HelloWorldWidgetProperties>({
+	tag: 'hello-world',
+	attribute: [ 'foo', 'bar' ],
+	events: [ 'onClick' ]
+})
+class HelloWorldWidget extends WidgetBase<HelloWorldWidgetProperties> {
+// ...
+}
 ```
 
 To compile a Dojo widget into a web component, run the following command:
 
 ```
-npx @dojo/cli build widget --elements src/Helloworld
+npx @dojo/cli build widget --elements src/HelloWorld
 ```
 
 For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm for easy import into your applications.
