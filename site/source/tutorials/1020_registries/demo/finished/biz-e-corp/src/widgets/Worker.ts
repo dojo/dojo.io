@@ -17,10 +17,7 @@ export interface WorkerProperties {
 const WorkerBase = ThemedMixin(WidgetBase);
 
 @theme(css)
-@registry('worker-back', async () => {
-	const WorkerBack = await import ('./WorkerBack');
-	return WorkerBack.default;
-})
+@registry('worker-back', () => import ('./WorkerBack'))
 export default class Worker extends WorkerBase<WorkerProperties> {
 	private _isFlipped = false;
 
@@ -63,11 +60,18 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 		} = this.properties;
 
 		return v('div', {
-				classes: this.theme(css.workerBack),
-				onclick: this.flip
-			}, [
-				this._isFlipped ? w<WorkerBack>('worker-back', { firstName, lastName, email, timePerTask, tasks }) : null ]
-		);
+			classes: this.theme(css.workerBack),
+			onclick: this.flip
+		}, [
+			this._isFlipped
+				? w<WorkerBack>('worker-back', {
+					firstName,
+					lastName,
+					email,
+					timePerTask,
+					tasks })
+				: null
+		]);
 	}
 
 	flip(): void {

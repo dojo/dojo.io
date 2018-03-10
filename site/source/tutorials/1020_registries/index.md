@@ -52,7 +52,7 @@ At the moment we haven't affected the application, however we now have a handle 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:5-10 %}
 
-{% instruction 'Then define widgets in the `registry`.' %}
+{% instruction 'Then define widgets in the `registry` after creating the registry.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:15-20 %}
 
@@ -100,7 +100,7 @@ First we need to extract the `_renderBack` function from `Worker.ts` into a new 
 
 {% task 'Update the `_renderBack` function to use the `WorkerBack` registry items in `Worker.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:56-70 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:56-78 %}
 
 {% aside 'Use Before You Define' %}
 The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the `registry` will automatically re-render!
@@ -116,7 +116,7 @@ There are two ways to register a widget in a registry, the first is to define th
 
 {% task 'Add the registry item using the `@registry` decorator in `WorkerBack.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:20-23 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:20 %}
 
 Now that the `WorkerBack` widget is defined to load lazily, running the application with the browser developer tools open should show that the `WorkerBack.js` file is only loaded when a worker card is clicked on for the first time:
 

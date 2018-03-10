@@ -50,7 +50,7 @@ Explanations for the route configuration in the above code block are explained e
 
 {% instruction 'Now, register the router in a `registry`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:34-36 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:31-32 %}
 
 {% aside 'History Managers' %}
 The default history manager uses hash-based (fragment style) URLs. To use one of the other provided history managers pass it as the `HistoryManager` in the third argument of `registerRouterInjector`.
@@ -68,7 +68,7 @@ The utility returns the `router` instance if required.
 
 To initialize the routing, set the registry as a property on the projector.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36-37 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
 
 Next, we will create `outlets` to control when our widgets are displayed.
 
@@ -160,11 +160,11 @@ Now, the links in the side menu can be used to navigate around the application!
 
 Finally, we are going to enhance the `WorkerContainer.ts` with a filter on the workers' last name. To do this we need to use the `filter` outlet configured in the first section. The key difference for the `filter` outlet is that the path is using a placeholder that indicates a path parameter, `{filter}`.
 
-This means a route with any value will match the `filter` as long as the previous path segments match, so for the `filter` outlet a route of `directory/any-value-here` would be considered a match.
-
 {% aside 'URL matching in routes' %}
 The [Dojo 2 Routing documentation](https://github.com/dojo/routing/#route-registration) on GitHub further explains how outlets map to URLs.
 {% endaside %}
+
+This means a route with any value will match the `filter` as long as the previous path segments match, so for the `filter` outlet a route of `directory/any-value-here` would be considered a match.
 
 {% instruction 'Add the new property to the `WidgetContainerProperties` interface in `WorkerContainer.ts`.' %}
 

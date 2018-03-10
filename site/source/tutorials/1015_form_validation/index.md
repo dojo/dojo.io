@@ -139,7 +139,7 @@ protected render() {
 				placeholder: 'Given name',
 				value: firstName,
 				required: true,
-				invalid: formErrors.firstName,
+				invalid: this.properties.formErrors.firstName,
 				onInput: this.onFirstNameInput
 			}),
 			w(TextInput, {
@@ -149,7 +149,7 @@ protected render() {
 				placeholder: 'Surname name',
 				value: lastName,
 				required: true,
-				invalid: formErrors.lastName,
+				invalid: this.properties.formErrors.lastName,
 				onInput: this.onLastNameInput
 			})
 		]),
@@ -158,7 +158,7 @@ protected render() {
 			type: 'email',
 			value: email,
 			required: true,
-			invalid: formErrors.email,
+			invalid: this.properties.formErrors.email,
 			onInput: this.onEmailInput
 		}),
 		w(Button, {}, [ 'Save' ])
@@ -200,7 +200,7 @@ The error message is associated with the text input through `aria-describedby`, 
 
 Re-creating the same error message boilerplate for multiple text inputs seems overly repetitive, so we're going to extend `TextInput` instead. This will also allow us to have better control over when validation occurs, e.g. by adding it to blur events as well. For now, just create a `ValidatedTextInput` widget that accepts the same properties interface as `TextInput` but with an `errorMessage` string and `onValidate` method. It should return the same node structure modeled above.
 
-You will also need to modify `workerForm.m.css` to include the `error` and `inputWrapper` classes, although we will forgo adding specific styles in this tutorial:
+You will also need to create `validatedTextInput.m.css` with `error` and `inputWrapper` classes, although we will forgo adding specific styles in this tutorial:
 
 ```css
 .inputWrapper {}
@@ -215,12 +215,12 @@ import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import uuid from '@dojo/core/uuid';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import TextInput, { TextInputProperties } from '@dojo/widgets/textinput/TextInput';
-import * as css from '../styles/workerForm.m.css';
+import TextInput, { TextInputProperties } from '@dojo/widgets/text-input';
+import * as css from '../styles/validatedTextInput.m.css';
 
 export interface ValidatedTextInputProperties extends TextInputProperties {
 	errorMessage?: string;
-	onValidate?: (event: Event) => void;
+	onValidate?: (value: string) => void;
 }
 
 export const ValidatedTextInputBase = ThemedMixin(WidgetBase);
@@ -277,9 +277,7 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 ```
 {% endsolution %}
 
-{% aside 'onValidate' %}
 You may have noticed that we created `ValidatedTextInput` with an `onValidate` property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.
-{% endaside %}
 
 {% instruction 'Use `ValidatedTextInput` within `WorkerForm`' %}
 
