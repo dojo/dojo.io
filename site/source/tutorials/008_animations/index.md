@@ -343,7 +343,7 @@ private _onHeartsFinish() {
 {% instruction 'Finally add lets create the hearts for the animation' %}
 
 ```ts
-private _getHearts(): VNode[] {
+private _getHearts() {
 	const hearts = [];
 	let play = false;
 	let i;
