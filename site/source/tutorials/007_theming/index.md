@@ -72,7 +72,7 @@ Replace all of the selectors containing `.workerForm` with the following rules i
 
 If you open the application in a browser its appearance and behavior should be unchanged.
 
-{% instruction 'Now update `worker.m.css` and `workerContain.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors.' %}
+{% instruction 'Now update `worker.m.css` and `workerContainer.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors.' %}
 
 {% instruction 'When you are finished, click on toggle solution to see one possible result.' %}
 
@@ -158,6 +158,15 @@ Dojo 2 uses the concept of a `key` to be able to look up and load classnames for
 
 In order to theme the `Worker` widget, we need to create `worker.m.css` within our `themes/dojo` directory and use it within `theme.ts`. As mentioned above, the naming of the key of the exported theme must match the name from the project's `package.json` and the name of the widget's style sheet joined by a forward slash (`/`).
 
+Let's start by creating a red `Worker` and observe our theme being applied correctly.
+
+```css
+/* worker.m.css */
+.root {
+	background: red;
+}
+```
+
 So for `worker.m.css`, you need to add the import for the `worker.m.css` and the theme itself to the exported object using the key `biz-e-corp/worker`.
 
 ``` typescript
@@ -170,15 +179,6 @@ export default {
 	'@dojo/widgets/text-input': textInput,
 	'biz-e-corp/worker': worker
 };
-```
-
-Let's start by creating a red `Worker` and observe our theme being applied correctly.
-
-```css
-/* worker.m.css */
-.root {
-	background: red;
-}
 ```
 
 To apply a theme to a widget, simply pass the `theme` as a property to widgets to have the `ThemedMixin` applied. To ensure that the entire application applies the `theme` it needs to be passed to all the themed widgets in our application. This can become problematic when an application uses a mixture of themed and non-themed widgets, or uses a widget from a third party, meaning that there is no guarantee that the `theme` will be propagated as required.
@@ -205,7 +205,7 @@ Let's create `themes/dojo/variables.css` (notice that this file does not have a 
 In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a `:root` selector which makes them available on the global scope within our `css-modules`.
 To use them, we can `@import` the `variables.css` file and use the `var` keyword to assign a `css-custom-property` to a css rule.
 
-Now we will use these variables in `worker.m.css` to create our fully themed `Worker`.
+Now we will use these variables in our themes `worker.m.css` to create our fully themed `Worker`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/worker.m.css' lang:css %}
 
@@ -230,7 +230,7 @@ export default {
 };
 ```
 
-This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to add to the skeleton theme created by `@dojo/cli-create-theme`, this is already exported from `theme.ts`.
+This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to add to the skeleton `text-input.m.css` theme created by `@dojo/cli-create-theme`, this is already exported from `theme.ts`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' lang:css %}
 
@@ -238,15 +238,10 @@ Notice the styling rule for the `.root` selector? Here we are introducing anothe
 
 In your web browser you will see the `TextInput` widgets at the top of the form have been styled.
 
-{% instruction 'Create a theme resource for the Dojo Button' %}
+{% instruction 'Add the following theme styles to the `button.m.css` theme resource' %}
 
-Create a theme resource for the Dojo `Button` within `WidgetForm` following the same pattern within this tutorial.
-
-{% instruction 'When you are finished, click on toggle solution to see the results.' %}
-
-{% solution showsolution2 %}
 ``` css
-@import './variables';
+@import './../../../variables';
 
 .root {
 	height: 38px;
@@ -260,7 +255,6 @@ Create a theme resource for the Dojo `Button` within `WidgetForm` following the 
 	vertical-align: bottom;
 }
 ```
-{% endsolution %}
 
 {% section %}
 

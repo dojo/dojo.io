@@ -33,7 +33,7 @@ The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_An
 
 The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, a polyfill needs to be included. Dojo 2 does not include the polyfill by default, so will need to be added as a script tag in your index.html or alternatively imported in the application's main.ts
 
-{% instruction 'Import the web animations polyfill' %}
+{% instruction 'Import the web animations polyfill' in `main.ts` %}
 
 ```ts
 import 'web-animations-js/web-animations-next-lite.min';
@@ -54,14 +54,17 @@ Looking at the `Zombies.ts` file within the initial project, there are a series 
 To animate the zombies, we use the `@dojo/widget-core/meta/WebAnimation` meta. This accepts `key` and `AnimationProperties` parameters.
 Let's add animation properties to our first Zombie.
 
+{% instruction 'Import the `WebAnimation` meta from `@dojo/widget-core`' %}
+
+```ts
+import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
+```
+
 {% instruction 'Add the following to the render function in Zombies.ts' %}
 
-``` typescript
-// add the import
-import WebAnimation from '@dojo/widget-core/meta/WebAnimation';
-
+```ts
 // add to the top of the render function
-const zombieOneMoveAnimation = {
+const zombieOneMoveAnimation: AnimationProperties = {
 	id: 'zombieOneMove',
 	effects: [
 		{ left: '0%' },
@@ -124,7 +127,7 @@ The `WebAnimation` meta provides callback functions for `onFinish` and `onCancel
 
 {% instruction 'Add `onFinish` callback to Zombies.ts' %}
 
-``` typescript
+```ts
 // add the `onFinish` function
 private _onAnimationFinish() {
 	this._play = false;
@@ -132,7 +135,7 @@ private _onAnimationFinish() {
 }
 
 // add to the top of the render function
-const zombieOneMoveAnimation = {
+const zombieOneMoveAnimation: AnimationProperties = {
 	id: 'zombieOneMove',
 	effects: [
 		{ left: '0%' },
@@ -152,6 +155,41 @@ const zombieOneMoveAnimation = {
 
 We will use this `onFinish` callback later in the tutorial to trigger a second animation.
 
+## All zombies deserve to be able to move!
+
+So far we have only animated one of our zombies, so we will abstract the animation to a private method that we can use for both of our zombies.
+
+{% instruction 'Add a private method that will return our animation properties' %}
+
+```ts
+private _getZombieAnimation(id: string, direction: string): AnimationProperties {
+	return {
+		id,
+		effects: [
+			{ [direction]: '0%' },
+			{ [direction]: '35%' }
+		],
+		timing: {
+			duration: 8000,
+			easing: 'ease-in',
+			fill: 'forwards'
+		},
+		controls: {
+			play: this._play,
+			onFinish: this._onAnimationFinish
+		}
+	};
+}
+```
+
+{% instruction 'Replace the current animation in the render function' %}
+
+```ts
+this.meta(WebAnimation).animate('zombieOne', this._getZombieAnimation('zombieOneShuffle', 'left'));
+this.meta(WebAnimation).animate('zombieTwo', this._getZombieAnimation('zombieTwoShuffle', 'right'));
+```
+
+
 ## Let's add more animations
 
 Not content with your zombie just sliding across the screen like that? Let's add some Hollywood style movie effects by animating the legs and the body.
@@ -159,9 +197,6 @@ Not content with your zombie just sliding across the screen like that? Let's add
 {% instruction 'Add more animations to Zombies.ts' %}
 
 ``` typescript
-// add the import for AnimationProperties
-import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
-
 private _getZombieBodyAnimation(id: string): AnimationProperties {
 	return {
 		id,
@@ -209,12 +244,12 @@ private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties
 }
 
 // add this to the render function with the other `animate` calls
-webAnimation.animate('zombieOneBody', this._getZombieBodyAnimation('zombieOneBody'));
-webAnimation.animate('zombieOneBackLeg', this._getZombieLegAnimation('zombieOneBackLeg'));
-webAnimation.animate('zombieOneFrontLeg', this._getZombieLegAnimation('zombieOneFrontLeg', true));
-webAnimation.animate('zombieTwoBody', this._getZombieBodyAnimation('zombieTwoBody'));
-webAnimation.animate('zombieTwoBackLeg', this._getZombieLegAnimation('zombieTwoBackLeg'));
-webAnimation.animate('zombieTwoFrontLeg', this._getZombieLegAnimation('zombieTwoFrontLeg', true));
+this.meta(WebAnimation).animate('zombieOneBody', this._getZombieBodyAnimation('zombieOneBody'));
+this.meta(WebAnimation).animate('zombieOneBackLeg', this._getZombieLegAnimation('zombieOneBackLeg'));
+this.meta(WebAnimation).animate('zombieOneFrontLeg', this._getZombieLegAnimation('zombieOneFrontLeg', true));
+this.meta(WebAnimation).animate('zombieTwoBody', this._getZombieBodyAnimation('zombieTwoBody'));
+this.meta(WebAnimation).animate('zombieTwoBackLeg', this._getZombieLegAnimation('zombieTwoBackLeg'));
+this.meta(WebAnimation).animate('zombieTwoFrontLeg', this._getZombieLegAnimation('zombieTwoFrontLeg', true));
 ```
 
 Refresh your browser and you should now see two stumbling zombies moving towards one another. Feel free to experiment with the parameters for rotation and timings.
@@ -231,26 +266,16 @@ Let's finish by adding some hearts that appear once the Zombies have reached the
 
 {% instruction 'Add hearts to Zombies.ts' %}
 
-``` typescript
+{% instruction 'Add two private variables that we will need' %}
+
+```ts
 private _playHearts = false;
 private _numHearts = 5;
+```
 
-private _onAnimationFinish() {
-	this._play = false;
+{% instruction 'Add a method to return the heart animation' %}
 
-	// add toggle for `_playHearts`
-	this._playHearts = true;
-
-	this.invalidate();
-}
-
-private _onHeartsFinish() {
-	if (this._playHearts = true) {
-		this._playHearts = false;
-		this.invalidate();
-	}
-}
-
+```ts
 private _getHeartAnimation(id: string, sequence: number, play: boolean): AnimationProperties[] {
 	const delay = sequence * 500;
 	const leftOffset = Math.floor(Math.random() * 400) - 200;
@@ -293,8 +318,32 @@ private _getHeartAnimation(id: string, sequence: number, play: boolean): Animati
 		}
 	];
 }
+```
 
-private _getHearts(): VNode[] {
+{% instruction 'Update the animation onFinish callbacks to link the completion of the walking animation to start the hearts' %}
+
+```ts
+private _onAnimationFinish() {
+	this._play = false;
+
+	// add toggle for `_playHearts`
+	this._playHearts = true;
+
+	this.invalidate();
+}
+
+private _onHeartsFinish() {
+	if (this._playHearts = true) {
+		this._playHearts = false;
+		this.invalidate();
+	}
+}
+```
+
+{% instruction 'Finally, let's create the hearts for the animation' %}
+
+```ts
+private _getHearts() {
 	const hearts = [];
 	let play = false;
 	let i;
@@ -308,7 +357,6 @@ private _getHearts(): VNode[] {
 
 // add this as the last child of the `root` VNode in render
 v('div', { classes: css.heartsHolder }, this._getHearts())
-
 ```
 
 Now you should see the hearts appearing and floating away when the zombies get to the middle of the screen.
@@ -322,8 +370,9 @@ Due to the reactive nature of the Dojo 2 `WebAnimation` meta, we can control our
 Let's add slider widgets to our page to change the speed of the zombie shuffle and legs.
 
 ``` typescript
-// add the import, you may need to npm install `@dojo/widgets`
-import Slider from '@dojo/widgets/slider/Slider';
+// add the imports
+import Slider from '@dojo/widgets/slider';
+import { w } from '@dojo/widget-core/d';
 
 // add the variable and then change event
 private _zombieLegsPlaybackRate = 1;

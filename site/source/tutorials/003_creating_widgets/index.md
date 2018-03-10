@@ -282,9 +282,11 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 `dojo build -m dev -w memory -s` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget.
 
-{% instruction 'Return to `Worker.ts` and update the render method:' %}
+{% instruction 'Return to `Worker.ts` and update the render method to add the classes:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:15-32 %}
+
+You may notice that we are calling `this.theme` with the `worker` and `image` classes as arguments. `theme` is a method provided by the `ThemedMixin` which is used to return the overriding class if the widget has been configured with a theme. To learn more about theming, review the [Theming an Application](../007_theming/) tutorial.
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better.
 
@@ -321,8 +323,6 @@ export default class WorkerContainer extends WorkerContainerBase {
 	}
 }
 ```
-
-You may notice that we are calling `this.theme` with the `container` class as an argument. `theme` is a method provided by the `ThemedMixin` which adds the specified class or classes to the widget, and verifies that they exist as part of the widget's theme.
 
 {% instruction 'Now update the `render` method to include some workers. Add the following to the top of the `render` method:' %}
 
