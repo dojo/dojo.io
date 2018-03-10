@@ -33,7 +33,7 @@ There are many scenarios where it is challenging to preserve a reactive architec
 
 `@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers, Web Animations, and other APIs, with plans shortly for additional emerging standards such as ResizeObserver.
 
-An example of a Dojo 2 widget using the Intersection Observer meta is:
+The following example renders a list with images. By leveraging the Intersection Observer meta, the image `src` gets added only when the item is in the viewport, which prevents needlessly downloading images until the user scrolls to them.
 
 ```typescript
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -75,7 +75,7 @@ protected render() {
 	const { images } = this.properties;
 	const items = images.map((image) => (
 		<ul key={image}>
-			<Image, image={image}/>
+			<Image image={image}/>
 		</ul>
 	));
 	return <div>{items}</div>;
@@ -88,7 +88,7 @@ A top priority for Dojo is interoperability with the web platform, both by lever
 
 The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) project was released last year to highlight framework support for custom elements, and Dojo currently has a perfect score. Within Dojo 2, you may use custom elements, express Dojo 2 widgets as custom elements, and easily export Dojo 2 widgets as custom elements via one of our `@dojo/cli` commands, making it easy to share and distribute custom elements for easy use across projects and frameworks! So if you're in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
 
-By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning that most basic widgets are <20KB (gzipped) which includes all of the @dojo runtime needed to support the custom element.
+By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning that most basic widgets are <20KB (gzipped) which includes all of the `@dojo` runtime needed to support the custom element.
 
 To create or use a Dojo 2 web component,
 
@@ -120,11 +120,9 @@ To install the Dojo CLI, run the following command:
 
 The [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app) package provides powerful tools to code split dynamically imported widgets automatically. Support is planned for the near future to enable users to specify this purely by configuration.
 
-The CLI also offers Build Time Rendering. During build time, the CLI renders the application, extracts the resulting HTML into the application's index.html and inlines critical CSS. `@dojo/cli-build-app` is an initial minimum viable version with more refinements planned. Please let us know what feedback you may have!
+`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. Please let us know what feedback you may have!
 
-To install `@dojo/cli-build-app`, run the following command:
-
-`npm install -g @dojo/cli-create-app`
+Use `@dojo/cli-build-app` in your Dojo 2 project by adding it as a dev dependency to your `package.json`.
 
 Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://dojo.io/tutorials/000_local_installation/).
 
@@ -170,17 +168,17 @@ To learn more about Dojo 2 and get started, check out the [Dojo 2 tutorial serie
 
 ## What's next?
 
-In the release candidate stage, we'll fix any critical issues reported and then have another release candidate. After a week with no blocking critical issues, we'll announce 2.0.0!
+In the release candidate stage, we'll fix any critical issues reported and then have another release candidate. After a week with no critical blocking issues, we'll announce 2.0.0!
 
-We also hope to have Dojo 2 available on CodeSandbox in time for the 2.0 release as well!
+We also hope to have Dojo 2 available on CodeSandbox in time for the 2.0.0 release as well!
 
 ### Versions
 
-After that, we'll be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to that version to keep them synchronized. As such, expect 3.0 to arrive much more quickly than 2.0!
+After that, we'll be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to that version to keep them synchronized. As such, expect 3.0.0 to arrive within a few months rather than ten years!
 
 ### Feedback and help wanted
 
 We still have quite a bit of work to do to update and refine our examples and documentation, so if you see an issue, please let us know, or better yet, create a pull request!
-There's still much we want to complete after 2.0, but we're ready for you to start using Dojo, give us feedback, and let us know where we should prioritize our efforts.
+There's still much we want to complete after 2.0.0, but we're ready for you to start using Dojo, give us feedback, and let us know where we should prioritize our efforts.
 
 Let us know what you think either on [Gitter](https://gitter.im/dojo/dojo2), [Twitter](https://twitter.com/dojo/) or [Discourse](https://discourse.dojo.io/).
