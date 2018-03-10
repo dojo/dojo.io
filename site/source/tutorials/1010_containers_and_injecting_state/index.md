@@ -111,7 +111,7 @@ On their own, `Injectors` are not able to help us very much because widgets expe
 
 Normally, a separate `Container` is created for each widget that needs to have `properties` injected. In the demo application, we have two widgets that rely on application state - `WorkerContainer` and `WorkerForm`.
 
-Let's start with the `WorkerContainer`. As a best practive you should give your containers the same name as their respective widgets, with a `Container` suffix.
+Let's start with the `WorkerContainer`. As a best practice, you should give your containers the same name as their respective widgets, with a `Container` suffix.
 
 E.g. Widget name: `Foo`
 container name ‘FooContainer’. To keep things organized, they are also stored in a different directory - `containers`.
