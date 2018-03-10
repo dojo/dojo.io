@@ -1,7 +1,6 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { Registry } from '@dojo/widget-core/Registry';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import { StateHistory } from '@dojo/routing/history/StateHistory';
 
 import App from './widgets/App';
 
@@ -9,35 +8,30 @@ const root = document.querySelector('my-app') || undefined;
 
 const routingConfig = [
 	{
-		path: '/',
-		outlet: 'home',
-		defaultRoute: true,
+		path: 'directory',
+		outlet: 'directory',
 		children: [
 			{
-				path: 'directory',
-				outlet: 'directory',
-				children: [
-					{
-						path: '{filter}',
-						outlet: 'filter'
-					}
-				]
-			},
-			{
-				path: 'new-worker',
-				outlet: 'new-worker'
+				path: '{filter}',
+				outlet: 'filter'
 			}
 		]
+	},
+	{
+		path: 'new-worker',
+		outlet: 'new-worker'
+	},
+	{
+		path: '/',
+		outlet: 'home',
+		defaultRoute: true
 	}
 ];
 
-const history = new StateHistory();
 const registry = new Registry();
-const router = registerRouterInjector(routingConfig, registry, { history });
+registerRouterInjector(routingConfig, registry);
 
 const Projector = ProjectorMixin(App);
 const projector = new Projector();
 projector.setProperties({ registry });
-
 projector.append(root);
-router.start();

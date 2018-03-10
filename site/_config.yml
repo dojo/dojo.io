@@ -26,10 +26,11 @@ category_dir: categories
 code_dir: tutorials
 i18n_dir: :lang
 skip_render:
-  - "**/*/demo"
-exclude:
+  - "**/demo/**"
   - "**/node_modules/**"
-	- "**/*/demo"
+exclude:
+  - "**/demo/**"
+  - "**/node_modules/**"
 tutorial_dir: tutorials
 
 # Writing

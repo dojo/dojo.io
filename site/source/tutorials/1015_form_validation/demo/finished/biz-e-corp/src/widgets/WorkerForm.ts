@@ -2,7 +2,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import Button from '@dojo/widgets/button/Button';
+import Button from '@dojo/widgets/button';
 import ValidatedTextInput from './ValidatedTextInput';
 import * as css from '../styles/workerForm.m.css';
 
@@ -36,33 +36,27 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput(event: KeyboardEvent) {
-		const { value: firstName } = event.target as HTMLInputElement;
+	protected onFirstNameInput(firstName: string) {
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput(event: KeyboardEvent) {
-		const { value: lastName } = event.target as HTMLInputElement;
+	protected onLastNameInput(lastName: string) {
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput(event: KeyboardEvent) {
-		const { value: email } = event.target as HTMLInputElement;
+	protected onEmailInput(email: string) {
 		this.properties.onFormInput({ email });
 	}
 
-	protected onFirstNameValidate(event: KeyboardEvent) {
-		const { value: firstName } = event.target as HTMLInputElement;
+	protected onFirstNameValidate(firstName: string) {
 		this.properties.onFormValidate({ firstName });
 	}
 
-	protected onLastNameValidate(event: KeyboardEvent) {
-		const { value: lastName } = event.target as HTMLInputElement;
+	protected onLastNameValidate(lastName: string) {
 		this.properties.onFormValidate({ lastName });
 	}
 
-	protected onEmailValidate(event: KeyboardEvent) {
-		const { value: email } = event.target as HTMLInputElement;
+	protected onEmailValidate(email: string) {
 		this.properties.onFormValidate({ email });
 	}
 

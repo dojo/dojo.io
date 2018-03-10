@@ -31,17 +31,17 @@ Before digging into the specifics of wiring a widget to a data source, a basic l
 
 {% instruction 'Add the following skeleton to `List.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-3,6,7-8,12-17,27-28,35-37 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-2,5-6,10,11-12,24-25,32-34 %}
 
-This code lays the base foundation for a themed Dojo 2 widget: it extends the `WidgetBase` class, it uses the `ThemedMixin`, and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
+This code lays the base foundation for a standard Dojo 2 widget: it extends the `WidgetBase` class and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
 
 {% instruction 'Import `TextInput` into `List.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:3 %}
 
 {% instruction 'Update the `ListProperties` interface so that a `value` and an `onInput` callback can be passed into the `List`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:8,10-12 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:6,8-10 %}
 
 The next step in creating an initial filterable list widget is to update its `render` method to define a `TextInput` using the `w` module.
 
@@ -51,7 +51,7 @@ Click the button below to view the solution.
 
 {% solution showsolution1 %}
 ```ts
-protected onInput({ target: { value } }: any) {
+protected onInput(value: string) {
     this.properties.onInput(value);
 }
 
@@ -118,7 +118,7 @@ The first step to connecting the `List` to worker data is to update its `propert
 
 {% instruction 'Update the `ListProperties` to support passing a `data` array property into the `List`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:5,7-12 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:4-10 %}
 
 {% aside 'Playing it safe' %}
 The `WorkerProperties` interface is imported from the `Worker` widget so that the TypeScript typings for the `data` array can be as strict as possible.

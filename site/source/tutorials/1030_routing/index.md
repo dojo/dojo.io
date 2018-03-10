@@ -36,15 +36,15 @@ All application routes needs to be to configured when creating the router instan
 * `defaultRoute` - a default route to be used if there is no other matching route
 * `children` - nested route configurations which can represent a nested path within a parent route
 
-Application routing paths are assembled into a hierarchy bsaed on the routing configuration. The `children` property of a parent route accepts an array of more route configurations.
+Application routing paths are assembled into a hierarchy based on the routing configuration. The `children` property of a parent route accepts an array of more route configurations.
 
 {% instruction 'Include the required imports in the file `main.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2-4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2-3 %}
 
 {% instruction 'Define the routing configuration.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-32 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-29 %}
 
 Explanations for the route configuration in the above code block are explained earlier in this step.
 
@@ -52,30 +52,23 @@ Explanations for the route configuration in the above code block are explained e
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:34-36 %}
 
+{% aside 'History Managers' %}
+The default history manager uses hash-based (fragment style) URLs. To use one of the other provided history managers pass it as the `HistoryManager` in the third argument of `registerRouterInjector`.
+{% endaside %}
+
 The `registerRouterInjector` helper utility used in the code above is provided by `@dojo/routing`, and can be used to create a routing instance. The utility accepts:
 
 * The application's routing configuration
 * A `registry` to define a `router` injector against
 * An object which specifies the [history manager](https://github.com/dojo/routing#history-management) to be used
 
-The utility returns the `router` instance.
-
-{% aside 'History Managers' %}
-The default history manager uses hash-based (fragment style) URLs. You can omit the third argument to `registerRouterInjector` to fallback to hash-based URLs.
-{% endaside %}
+The utility returns the `router` instance if required.
 
 {% instruction 'Initialize the routing' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:40-43 %}
+To initialize the routing, set the registry as a property on the projector.
 
-{% aside 'Important!' %}
-When using a `defaultRoute` in the routing configuration, the `router` will need to be started after the projector is appended.
-{% endaside %}
-
-To initialize the routing:
-
-1. Set the registry on the projector
-2. Call the `start` method on the `router` instance.
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36-37 %}
 
 Next, we will create `outlets` to control when our widgets are displayed.
 

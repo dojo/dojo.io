@@ -70,7 +70,7 @@ The `v` function simply instructs Dojo 2 to create an HTML element, in this case
 {% solution showsolution1 %}
 ```typescript
 export default class HelloWorld extends WidgetBase {
-	render() {
+	protected render() {
 		return v('h1', [ 'Biz-E-Bodies' ]);
 	}
 }
@@ -81,7 +81,7 @@ Now, let's look at the `v` function again. We are intentionally avoiding somethi
 
 In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.
 
-Dojo 2 leverages its own virtual DOM library, initially created as a fork from [Maquette](http://maquettejs.org/), to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../../docs/fundamentals/working_with_virtual_dom/) and [Reactive Programming](../../docs/fundamentals/reactive_programming/) articles in the reference section. For now, let's get back to our application and make some more changes.
+Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../../docs/fundamentals/working_with_virtual_dom/) and [Reactive Programming](../../docs/fundamentals/reactive_programming/) articles in the reference section. For now, let's get back to our application and make some more changes.
 
 In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
 
@@ -97,7 +97,11 @@ Now we will add some additional attributes to the `<h1>` element we created earl
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
 
-Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attribute on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
+Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attributes or properties on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
+
+{% aside 'Virtual Dom Properties and Attributes' %}
+The vdom system will automatically add properties with a type of `string` as an attribute and other values as properties on the DOM node.
+{% endaside %}
 
 {% section %}
 

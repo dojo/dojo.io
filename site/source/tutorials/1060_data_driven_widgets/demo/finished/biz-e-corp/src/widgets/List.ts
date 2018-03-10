@@ -1,9 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import TextInput from '@dojo/widgets/textinput/TextInput';
+import TextInput from '@dojo/widgets/text-input';
 import { WorkerProperties } from './Worker';
-import * as css from '../styles/list.m.css';
 
 export interface ListProperties {
 	data?: WorkerProperties[];
@@ -11,17 +9,16 @@ export interface ListProperties {
 	value: string;
 }
 
-const ListBase = ThemedMixin(WidgetBase);
-
-@theme(css)
-export default class List extends ListBase<ListProperties> {
-	protected onInput({ target: { value } }: any) {
+export default class List extends WidgetBase<ListProperties> {
+	protected onInput(value: string) {
 		this.properties.onInput(value);
 	}
 
 	protected renderItems() {
 		const { data = [] } = this.properties;
-		return data.map((item: any, index: number) => v('div', { key: index }, [ `${item.firstName} ${item.lastName}` ]));
+		return data.map((item: any, index: number) =>
+			v('div', { key: index }, [ `${item.firstName} ${item.lastName}` ])
+		);
 	}
 
 	protected render() {

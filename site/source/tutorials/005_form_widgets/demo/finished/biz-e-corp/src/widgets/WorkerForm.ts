@@ -1,9 +1,8 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v, w } from '@dojo/widget-core/d';
-import Button from '@dojo/widgets/button/Button';
-
-import TextInput from '@dojo/widgets/textinput/TextInput';
+import Button from '@dojo/widgets/button';
+import TextInput from '@dojo/widgets/text-input';
 import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormData {
@@ -28,18 +27,15 @@ export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
 		this.properties.onFormSave();
 	}
 
-	protected onFirstNameInput(event: KeyboardEvent) {
-		const { value: firstName } = event.target as HTMLInputElement;
+	protected onFirstNameInput(firstName: string) {
 		this.properties.onFormInput({ firstName });
 	}
 
-	protected onLastNameInput(event: KeyboardEvent) {
-		const { value: lastName } = event.target as HTMLInputElement;
+	protected onLastNameInput(lastName: string) {
 		this.properties.onFormInput({ lastName });
 	}
 
-	protected onEmailInput(event: KeyboardEvent) {
-		const { value: email } = event.target as HTMLInputElement;
+	protected onEmailInput(email: string) {
 		this.properties.onFormInput({ email });
 	}
 

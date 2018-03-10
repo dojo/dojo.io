@@ -2,7 +2,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
 import { VNode } from '@dojo/widget-core/interfaces';
-import Slider from '@dojo/widgets/slider/Slider';
+import Slider from '@dojo/widgets/slider';
 
 import * as css from './styles/zombies.m.css';
 
@@ -68,7 +68,7 @@ export class Zombies extends WidgetBase {
 				play: this._play
 			}
 		};
-	};
+	}
 
 	private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties {
 		const effects = [
@@ -153,9 +153,7 @@ export class Zombies extends WidgetBase {
 		return hearts;
 	}
 
-	private _onZombieLegsPlaybackRateChange(event: Event) {
-		const value = (event.target as HTMLInputElement).value;
-
+	private _onZombieLegsPlaybackRateChange(value: string) {
 		this._zombieLegsPlaybackRate = parseFloat(value);
 		this.invalidate();
 	}
@@ -173,7 +171,7 @@ export class Zombies extends WidgetBase {
 
 		return v('div', { classes: css.root }, [
 			v('div', { classes: css.controls }, [
-				w(Slider, { min: 0.1, max: 10, step: 0.1, value: this._zombieLegsPlaybackRate, onChange: this._onZombieLegsPlaybackRateChange })
+				w(Slider, { min: 0.1, max: 10, step: 0.1, value: this._zombieLegsPlaybackRate, onInput: this._onZombieLegsPlaybackRateChange })
 			]),
 			v('div', { classes: css.zombieOne, onclick: this._onZombieClick, key: 'zombieOne' }, [
 				v('div', { classes: css.zombieOneBody, key: 'zombieOneBody' }),

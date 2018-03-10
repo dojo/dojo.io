@@ -17,7 +17,6 @@ env:
   - TUTORIAL=1015_form_validation
   - TUTORIAL=1020_registries
   - TUTORIAL=1030_routing
-  - TUTORIAL=1040_dojo1_dijits
   - TUTORIAL=1050_development_environment
   - TUTORIAL=1060_data_driven_widgets
 script:

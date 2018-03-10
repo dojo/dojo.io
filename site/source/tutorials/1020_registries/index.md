@@ -50,7 +50,7 @@ At the moment we haven't affected the application, however we now have a handle 
 
 {% instruction 'Add the widget imports to `main.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:6-11 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:5-10 %}
 
 {% instruction 'Then define widgets in the `registry`.' %}
 
@@ -76,7 +76,7 @@ Notice that we are passing a generic type to the `w()` function call, this is be
 
 {% instruction 'Use registry labels in `WorkerForm.ts`\'s render function.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:45-86 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:42-81 %}
 
 Next, we will create a widget that is lazily loaded when needed!
 

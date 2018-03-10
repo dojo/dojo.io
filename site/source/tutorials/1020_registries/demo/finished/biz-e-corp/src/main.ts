@@ -2,8 +2,8 @@ import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { Registry } from '@dojo/widget-core/Registry';
 import App from './widgets/App';
 
-import Button from '@dojo/widgets/button/Button';
-import TextInput from '@dojo/widgets/textinput/TextInput';
+import Button from '@dojo/widgets/button';
+import TextInput from '@dojo/widgets/text-input';
 import Banner from './widgets/Banner';
 import WorkerForm from './widgets/WorkerForm';
 import WorkerContainer from './widgets/WorkerContainer';
