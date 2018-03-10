@@ -7,7 +7,7 @@ import List from '../../../src/widgets/List';
 
 describe('Banner', () => {
 	it('should render', () => {
-		const h = harness(() => w(Banner, {}))
+		const h = harness(() => w(Banner, {}));
 		h.expect(() => [
 			v('h1', { title: 'I am a title!' }, [ 'Welcome To Biz-E-Bodies' ]),
 			v('label', [ 'Find a worker:' ]),
