@@ -82,7 +82,7 @@ Three new properties need to be added to the `WorkerProperties` interface. These
 
 Now, we need to add the CSS selectors that will provide the rules for rendering this view's elements.
 
-{% instruction 'Open up the `worker.m.css` file and update it as follows.' %}
+{% instruction 'Open `worker.m.css` and update it as follows.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lang:css %}
 
@@ -117,6 +117,7 @@ Now, the widget can be flipped between its front and back sides by clicking on i
 {% task 'Provide additional properties.' %}
 
 Currently, several of the properties are missing for the widgets. As an exercise, try to update the first widget to contain the following properties:
+
 ```ts
 firstName: 'Tim',
 lastName: 'Jones',
@@ -128,28 +129,11 @@ tasks: [
 ]
 ```
 
-When you are ready, click the button below to see our solution.
-
-{% solution showsolution1 %}
 The widget's parent is responsible for passing properties to the widget.
 In this application, `Worker` widgets are receiving data from the `App` class via the `WorkerContainer`.
 
 To pass the specified properties to the first worker, the first element in
 `App`'s `_workerData` array needs to be updated to the following:
-
-```ts
-{
-	firstName: 'Tim',
-	lastName: 'Jones',
-	email: 'tim.jones@bizecorp.org',
-	tasks: [
-		'6267 - Untangle paperclips',
-		'4384 - Shred documents',
-		'9663 - Digitize 1985 archive'
-	]
-}
-```
-{% endsolution %}
 
 {% section %}
 
