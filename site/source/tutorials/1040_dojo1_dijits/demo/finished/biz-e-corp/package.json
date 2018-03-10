@@ -2,7 +2,7 @@
   "name": "biz-e-corp",
   "version": "1.0.0",
   "scripts": {
-    "test": "dojo build -m test && dojo test",
+    "test": "dojo test",
     "build": "dojo build"
   },
   "dependencies": {
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@dojo/cli-build-app": "~0.3.0",
-    "@dojo/cli-test-intern": "~0.5.0",
+    "@dojo/cli-test-intern": "~0.5.1",
     "@dojo/loader": "~0.1.1",
     "@dojo/test-extras": "~0.5.0",
     "@types/glob": "~5.0.0",
