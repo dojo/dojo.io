@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-10T13:31:48.740Z">
+<meta property="og:updated_time" content="2018-03-10T19:33:48.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -148,7 +148,7 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <p>If you open the application in a browser its appearance and behavior should be unchanged.</p>
-<div class="instruction">Now update <code>worker.m.css</code> and <code>workerContain.m.css</code> to use <code>.root</code> and <code>.rootFixed</code> and then update the associated widgets to use the new selectors.</div>
+<div class="instruction">Now update <code>worker.m.css</code> and <code>workerContainer.m.css</code> to use <code>.root</code> and <code>.rootFixed</code> and then update the associated widgets to use the new selectors.</div>
 <div class="instruction">When you are finished, click on toggle solution to see one possible result.</div>
 <div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
 <span class="token comment">/* workerContainer.m.css */</span>
@@ -217,6 +217,12 @@ ga('send', 'pageview');
 <p>Dojo 2 uses the concept of a <code>key</code> to be able to look up and load classnames for a theme, it is a composite of the package name and the widget name joined by <code>/</code>. These keys are used as the keys to object that is exported from the main <code>theme.ts</code>.</p>
 <div class="instruction">Theme the Worker widget</div>
 <p>In order to theme the <code>Worker</code> widget, we need to create <code>worker.m.css</code> within our <code>themes/dojo</code> directory and use it within <code>theme.ts</code>. As mentioned above, the naming of the key of the exported theme must match the name from the project’s <code>package.json</code> and the name of the widget’s style sheet joined by a forward slash (<code>/</code>).</p>
+<p>Let’s start by creating a red <code>Worker</code> and observe our theme being applied correctly.</p>
+<pre class=" language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* worker.m.css */</span>
+<span class="token selector"><span class="token class">.root</span> </span><span class="token punctuation">{</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>So for <code>worker.m.css</code>, you need to add the import for the <code>worker.m.css</code> and the theme itself to the exported object using the key <code>biz-e-corp/worker</code>.</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as textInput <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/text-input/text-input.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as button <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/button/button.m.css'</span><span class="token punctuation">;</span>
@@ -227,12 +233,6 @@ ga('send', 'pageview');
     <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">:</span> textInput<span class="token punctuation">,</span>
     <span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>Let’s start by creating a red <code>Worker</code> and observe our theme being applied correctly.</p>
-<pre class=" language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* worker.m.css */</span>
-<span class="token selector"><span class="token class">.root</span> </span><span class="token punctuation">{</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
 </code></pre>
 <p>To apply a theme to a widget, simply pass the <code>theme</code> as a property to widgets to have the <code>ThemedMixin</code> applied. To ensure that the entire application applies the <code>theme</code> it needs to be passed to all the themed widgets in our application. This can become problematic when an application uses a mixture of themed and non-themed widgets, or uses a widget from a third party, meaning that there is no guarantee that the <code>theme</code> will be propagated as required.</p>
 <article class="aside"><strong>What is a registry?</strong><p>A registry provides a mechanism to inject external payloads into widgets throughout the application tree. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1020_registries/">registry tutorial</a>.</p></article>
@@ -274,7 +274,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 </code></pre>
 <p>In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a <code>:root</code> selector which makes them available on the global scope within our <code>css-modules</code>.<br>To use them, we can <code>@import</code> the <code>variables.css</code> file and use the <code>var</code> keyword to assign a <code>css-custom-property</code> to a css rule.</p>
-<p>Now we will use these variables in <code>worker.m.css</code> to create our fully themed <code>Worker</code>.</p>
+<p>Now we will use these variables in our themes <code>worker.m.css</code> to create our fully themed <code>Worker</code>.</p>
 <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
@@ -378,7 +378,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
     <span class="token string">'biz-e-corp/workerForm'</span><span class="token punctuation">:</span> workerForm<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo 2 <code>TextInput</code> within our <code>WorkerForm</code>, we need to add to the skeleton theme created by <code>@dojo/cli-create-theme</code>, this is already exported from <code>theme.ts</code>.</p>
+<p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo 2 <code>TextInput</code> within our <code>WorkerForm</code>, we need to add to the skeleton <code>text-input.m.css</code> theme created by <code>@dojo/cli-create-theme</code>, this is already exported from <code>theme.ts</code>.</p>
 <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
@@ -399,24 +399,21 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 <p>Notice the styling rule for the <code>.root</code> selector? Here we are introducing another powerful part of the Dojo 2 theming system, <code>composes</code>. Composes originates in the <a href="https://github.com/css-modules/css-modules#composition" target="_blank" rel="noopener"><code>css-module</code> specification</a>, allowing you to apply styles from one class selector to another. Here we are specifying that the <code>root</code> of a <code>TextInput</code> (the label text in this case), should appear the same as the <code>nameLabel</code> class in our <code>WidgetForm</code>. This approach can be very useful when creating multiple themes from a <code>baseTheme</code> and avoids repetitive redefinition of style rules.</p>
 <p>In your web browser you will see the <code>TextInput</code> widgets at the top of the form have been styled.</p>
-<div class="instruction">Create a theme resource for the Dojo Button</div>
-<p>Create a theme resource for the Dojo <code>Button</code> within <code>WidgetForm</code> following the same pattern within this tutorial.</p>
-<div class="instruction">When you are finished, click on toggle solution to see the results.</div>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution2">Toggle Solution</button><section id="showsolution2" class="hidden"><pre class="language-javascript"><code>
-@<span class="token keyword">import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span>
+<div class="instruction">Add the following theme styles to the <code>button.m.css</code> theme resource</div>
+<pre class=" language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
 
-<span class="token punctuation">.</span>root <span class="token punctuation">{</span>
-	height<span class="token punctuation">:</span> <span class="token number">38</span>px<span class="token punctuation">;</span>
-	border<span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token keyword">var</span><span class="token punctuation">(</span><span class="token operator">--</span>input<span class="token operator">-</span>border<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	background<span class="token punctuation">:</span> <span class="token keyword">var</span><span class="token punctuation">(</span><span class="token operator">--</span>card<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	color<span class="token punctuation">:</span> <span class="token keyword">var</span><span class="token punctuation">(</span><span class="token operator">--</span>accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	font<span class="token operator">-</span>size<span class="token punctuation">:</span> <span class="token number">16</span>px<span class="token punctuation">;</span>
-	font<span class="token operator">-</span>weight<span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
-	padding<span class="token punctuation">:</span> <span class="token number">8</span>px<span class="token punctuation">;</span>
-	min<span class="token operator">-</span>width<span class="token punctuation">:</span> <span class="token number">150</span>px<span class="token punctuation">;</span>
-	vertical<span class="token operator">-</span>align<span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
+<span class="token selector"><span class="token class">.root</span> </span><span class="token punctuation">{</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">38</span>px<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token function">var</span><span class="token punctuation">(</span>--input-border<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">16</span>px<span class="token punctuation">;</span>
+    <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">8</span>px<span class="token punctuation">;</span>
+    <span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">150</span>px<span class="token punctuation">;</span>
+    <span class="token property">vertical-align</span><span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
+</code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned:</p>
 <ul>

@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/003_creating_widgets/resources/worker_page.png">
-<meta property="og:updated_time" content="2018-03-10T13:31:48.728Z">
+<meta property="og:updated_time" content="2018-03-10T19:33:48.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -286,7 +286,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 </code></pre>
 <p><code>dojo build -m dev -w memory -s</code> will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the <code>Worker</code> widget.</p>
-<div class="instruction">Return to <code>Worker.ts</code> and update the render method:</div>
+<div class="instruction">Return to <code>Worker.ts</code> and update the render method to add the classes:</div>
 <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">const</span> <span class="token punctuation">{</span>
 			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
@@ -306,6 +306,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 		<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 </code></pre>
+<p>You may notice that we are calling <code>this.theme</code> with the <code>worker</code> and <code>image</code> classes as arguments. <code>theme</code> is a method provided by the <code>ThemedMixin</code> which is used to return the overriding class if the widget has been configured with a theme. To learn more about theming, review the <a href="../007_theming/">Theming an Application</a> tutorial.</p>
 <p>If you return to the browser, you’ll see that the widget now has the classes applied and looks a little better.</p>
 <p class="center"><img src="./resources/worker_page.png" alt="worker_page"></p>
 
@@ -332,7 +333,6 @@ projector<span class="token punctuation">.</span><span class="token function">ap
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>You may notice that we are calling <code>this.theme</code> with the <code>container</code> class as an argument. <code>theme</code> is a method provided by the <code>ThemedMixin</code> which adds the specified class or classes to the widget, and verifies that they exist as part of the widget’s theme.</p>
 <div class="instruction">Now update the <code>render</code> method to include some workers. Add the following to the top of the <code>render</code> method:</div>
 <pre class=" language-ts"><code class="language-ts">        <span class="token keyword">const</span> workers <span class="token operator">=</span> <span class="token punctuation">[</span>
             <span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span>

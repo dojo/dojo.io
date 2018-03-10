@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/html_js.svg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/widget.svg">
-<meta property="og:updated_time" content="2018-03-10T13:31:48.728Z">
+<meta property="og:updated_time" content="2018-03-10T19:33:48.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Components of a Dojo 2 application">
 <meta name="twitter:description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
@@ -97,7 +97,6 @@ ga('send', 'pageview');
 <ul>
 <li>A Dojo 2 application can easily coexist on a page with other content.</li>
 <li>That content can consist of static assets, a legacy application or even another Dojo 2 application.</li>
-<li>Dojo 2 can leverage third-party libraries with ease. For example, if you would like to use the <a href="https://momentjs.com/" target="_blank" rel="noopener">moment.js</a> library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.</li>
 </ul>
 </section><section class="tutorial hidden hiding">
 <h2 id="The-projector"><a href="#The-projector" class="headerlink" title="The projector"></a>The projector</h2><p>In <a href="../001_static_content/">Your first Dojo 2 application</a>, we reviewed Dojo 2’s use of a virtual DOM to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in <code>main.ts</code>:</p>
@@ -134,15 +133,14 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal commands:</p>
-<pre class=" language-bash"><code class="language-bash">dojo build --mode <span class="token function">test</span>
-dojo <span class="token function">test</span>
+<pre class=" language-bash"><code class="language-bash">dojo <span class="token function">test</span>
 </code></pre>
-<p>The tests can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.</p>
+<p>Running <code>dojo test</code> compiles the application on demand (just in time compilation) by default for Node.js. However the tests can also be run against built bundles using the <code>--config</code> config with <code>dojo test</code>, but first we need to make sure we’ve built the test bundles. These bundles can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.</p>
 <p>In one terminal run:</p>
 <pre class=" language-bash"><code class="language-bash">dojo build --mode <span class="token function">test</span> --watch
 </code></pre>
 <p>While this is command is running, in another terminal run:</p>
-<pre class=" language-bash"><code class="language-bash">dojo <span class="token function">test</span>
+<pre class=" language-bash"><code class="language-bash">dojo <span class="token function">test</span> --config local
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.</p>
