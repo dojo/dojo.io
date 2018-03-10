@@ -157,7 +157,7 @@ We will use this `onFinish` callback later in the tutorial to trigger a second a
 
 ## All zombies deserve to be able to move!
 
-So far we have only animated one of our zombies, so we'll abstract the animation to a private method that we can use for both of our zombies.
+So far we have only animated one of our zombies, so we will abstract the animation to a private method that we can use for both of our zombies.
 
 {% instruction 'Add a private method that will return our animation properties' %}
 
@@ -340,7 +340,7 @@ private _onHeartsFinish() {
 }
 ```
 
-{% instruction 'Finally add lets create the hearts for the animation' %}
+{% instruction 'Finally, let's create the hearts for the animation' %}
 
 ```ts
 private _getHearts() {

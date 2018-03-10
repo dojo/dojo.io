@@ -286,7 +286,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:15-32 %}
 
-You may notice that we are calling `this.theme` with the `worker` and `image` classes as argumenta. `theme` is a method provided by the `ThemedMixin` which is used to return the an overriding class if the widget has been configured with a theme. To learn more about theming, take a look at the [Theming an Application](../007_theming/) tutorial.
+You may notice that we are calling `this.theme` with the `worker` and `image` classes as arguments. `theme` is a method provided by the `ThemedMixin` which is used to return the overriding class if the widget has been configured with a theme. To learn more about theming, review the [Theming an Application](../007_theming/) tutorial.
 
 If you return to the browser, you'll see that the widget now has the classes applied and looks a little better.
 

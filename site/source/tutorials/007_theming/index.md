@@ -205,7 +205,7 @@ Let's create `themes/dojo/variables.css` (notice that this file does not have a 
 In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a `:root` selector which makes them available on the global scope within our `css-modules`.
 To use them, we can `@import` the `variables.css` file and use the `var` keyword to assign a `css-custom-property` to a css rule.
 
-Now we will use these variables our themes `worker.m.css` to create our fully themed `Worker`.
+Now we will use these variables in our themes `worker.m.css` to create our fully themed `Worker`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/worker.m.css' lang:css %}
 
