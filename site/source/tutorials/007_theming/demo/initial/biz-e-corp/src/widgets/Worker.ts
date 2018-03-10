@@ -58,7 +58,10 @@ export default class Worker extends WorkerBase<WorkerProperties> {
 				onclick: this.flip
 			}, [
 				v('div', { classes: this.theme(css.heading) }, [
-					v('div', { classes: this.theme(css.imageSmall) }),
+					v('img', {
+						classes: this.theme(css.imageSmall),
+						src: 'https://dojo.io/tutorials/resources/worker.svg'
+					}),
 					v('div', {
 						classes: this.theme(css.generalInfo)
 					}, [

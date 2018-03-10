@@ -97,11 +97,11 @@ Now we will add some additional attributes to the `<h1>` element we created earl
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
 
-Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attributes or properties on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
-
 {% aside 'Virtual Dom Properties and Attributes' %}
 The vdom system will automatically add properties with a type of `string` as an attribute and other values as properties on the DOM node.
 {% endaside %}
+
+Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attributes or properties on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called [HyperScript](https://github.com/hyperhype/hyperscript) and is shared by many virtual DOM implementations.
 
 {% section %}
 

@@ -79,3 +79,23 @@
 	z-index: 4;
 	transform-origin: 50% 30%;
 }
+
+.heartsHolder {
+	position: absolute;
+	bottom: 400px;
+	left: 50%;
+	transform: translateX(-70px);
+	z-index: 10;
+}
+
+.heart {
+	position: absolute;
+	width: 140px;
+	height: 130px;
+	background-image: url('./heart.png');
+	opacity: 0;
+}
+
+.controls {
+	padding: 50px;
+}

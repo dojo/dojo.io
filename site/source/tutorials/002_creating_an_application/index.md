@@ -33,7 +33,6 @@ Notice that we are searching for the `my-app` element and assigning it to the co
 
 * A Dojo 2 application can easily coexist on a page with other content.
 * That content can consist of static assets, a legacy application or even another Dojo 2 application.
-* Dojo 2 can leverage third-party libraries with ease. For example, if you would like to use the [moment.js](https://momentjs.com/) library to simplify working with time in your application, it can be loaded in the main HTML document, and the Dojo 2 application can take advantage of it.
 
 {% section %}
 
@@ -82,11 +81,10 @@ Our demo application includes some tests to verify that it is working as expecte
 This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal commands:
 
 ```bash
-dojo build --mode test
 dojo test
 ```
 
-The tests can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.
+Running `dojo test` compiles the application on demand (just in time compilation) by default for node. However the tests can also be run against built bundles using the `--config` config with `dojo test`, but first we need to make sure we've built the test bundles. These bundles can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.
 
 In one terminal run:
 
@@ -97,7 +95,7 @@ dojo build --mode test --watch
 While this is command is running, in another terminal run:
 
 ```bash
-dojo test
+dojo test --config local
 ```
 
 {% section %}
