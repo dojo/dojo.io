@@ -6,17 +6,17 @@
 
 	<title>State management | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
+	<meta name="description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
 <meta property="og:type" content="website">
 <meta property="og:title" content="State management">
 <meta property="og:url" content="https://dojo.github.io/tutorials/1010_containers_and_injecting_state/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
+<meta property="og:description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.365Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
-<meta name="twitter:description" content="State managementOverviewModern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of stat">
+<meta name="twitter:description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
 	
 		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -82,7 +82,7 @@ ga('send', 'pageview');
 			</ul>
 		</nav>
 		<section class="tutorial hidden hiding">
-<h1 id="State-management"><a href="#State-management" class="headerlink" title="State management"></a>State management</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Modern web applications are required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of state. While Dojo 2’s widgets can manage application state, encapsulation and a clean separation of concerns may be lost if widgets manage their own visual representations, listen for interactions from the user, manage their children, and keep track of state information. Additionally, using widgets to pass state through an application often forces the widgets to be aware of state information for the sole purpose of passing that data down to their children. To allow widgets to remain focused on their primary roles of providing a visual representation of themselves and listening for user interactions, Dojo 2 provides two classes, <code>Container</code> and <code>Injector</code>, that are designed to coordinate an application’s external state and connect and map this state to properties.</p>
+<h1 id="State-management"><a href="#State-management" class="headerlink" title="State management"></a>State management</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Modern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of state. While Dojo 2’s widgets can manage application state, encapsulation and a clean separation of concerns may be lost if widgets manage their own visual representations, listen for interactions from the user, manage their children, and keep track of state information. Additionally, using widgets to pass state through an application often forces the widgets to be aware of state information for the sole purpose of passing that data down to their children. To allow widgets to remain focused on their primary roles of providing a visual representation of themselves and listening for user interactions, Dojo 2 provides two classes, <code>Container</code> and <code>Injector</code>, that are designed to coordinate an application’s external state and connect and map this state to properties.</p>
 <p>In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can <a href="../assets/1010_containers_and_injecting_state-initial.zip">download</a> the demo project to get started.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>This tutorial assumes that you have gone through the <a href="../001_static_content">beginner tutorial</a> series.</p>
 </section><section class="tutorial hidden hiding">
@@ -314,9 +314,17 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <span class="token keyword">import</span> WorkerForm<span class="token punctuation">,</span> <span class="token punctuation">{</span> WorkerFormProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./../widgets/WorkerForm'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">getProperties</span><span class="token punctuation">(</span>inject<span class="token punctuation">:</span> ApplicationContext<span class="token punctuation">,</span> properties<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> <span class="token punctuation">{</span> formData<span class="token punctuation">,</span> formInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">,</span> submitForm<span class="token punctuation">:</span> onFormSave <span class="token punctuation">}</span> <span class="token operator">=</span> inject<span class="token punctuation">;</span>
+	<span class="token keyword">const</span> <span class="token punctuation">{</span>
+		formData<span class="token punctuation">,</span>
+		formInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">,</span>
+		submitForm<span class="token punctuation">:</span> onFormSave
+	<span class="token punctuation">}</span> <span class="token operator">=</span> inject<span class="token punctuation">;</span>
 
-	<span class="token keyword">return</span> <span class="token punctuation">{</span> formData<span class="token punctuation">,</span> onFormInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span><span class="token punctuation">,</span> onFormSave<span class="token punctuation">:</span> onFormSave<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token punctuation">{</span>
+		formData<span class="token punctuation">,</span>
+		onFormInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span><span class="token punctuation">,</span>
+		onFormSave<span class="token punctuation">:</span> onFormSave<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> WorkerFormContainer <span class="token operator">=</span> <span class="token function">Container</span><span class="token punctuation">(</span>WorkerForm<span class="token punctuation">,</span> <span class="token string">'app-state'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> getProperties <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

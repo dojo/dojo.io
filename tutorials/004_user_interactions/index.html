@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.345Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Responding to events">
 <meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
@@ -284,7 +284,7 @@ ga('send', 'pageview');
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 </code></pre>
-<p>Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the <code>_isFlipped</code> field to <code>true</code> and, after the application recompiles, all three widgets should be showing their back faces.</p>
+<p>Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the <code>_isFlipped</code> field to <code>true</code> and, after the application re-compiles, all three widgets should be showing their back faces.</p>
 <p>In order to re-render our widget, we need to update the <code>flip</code> method to toggle the <code>_isFlipped</code> field and invalidate the widget</p>
 <div class="instruction">Replace the <code>flip</code> method with this one.</div>
 <pre class="language-javascript"><code class="language-javascript">	<span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>

@@ -14,7 +14,7 @@
 <meta property="og:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/006_deploying_to_production/resources/build_stats.png">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.349Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deploying to production">
 <meta name="twitter:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
@@ -120,29 +120,30 @@ ga('send', 'pageview');
 <p><code>.dojorc</code> contains a JSON object with configuration information for any of the commands that are run via the <code>dojo</code> command line tool, such as <code>dojo build</code>. Each command is allocated a section within the configuration object where its settings can be stored.</p>
 <p>Consider the following:</p>
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"build-app"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"locale"</span><span class="token operator">:</span> <span class="token string">"en"</span><span class="token punctuation">,</span>
-    <span class="token property">"supportedLocales"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"ja_JP"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token property">"cldrPaths"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token string">"cldr-data/main/{locale}/numbers.json"</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token property">"bundles"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">"src/Foo"</span><span class="token punctuation">,</span>
-        <span class="token string">"src/Bar"</span>
-      <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"features"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-      <span class="token property">"bar"</span><span class="token operator">:</span> <span class="token boolean">false</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"pwa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"manifest"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"My Application"</span><span class="token punctuation">,</span>
-        <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"My amazing application"</span>
-      <span class="token punctuation">}</span>
+    <span class="token property">"build-app"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"locale"</span><span class="token operator">:</span> <span class="token string">"en"</span><span class="token punctuation">,</span>
+        <span class="token property">"supportedLocales"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"ja_JP"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"cldrPaths"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"cldr-data/main/{locale}/numbers.json"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"bundles"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"src/Foo"</span><span class="token punctuation">,</span>
+            <span class="token string">"src/Bar"</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"features"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">"bar"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"pwa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"manifest"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"My Application"</span><span class="token punctuation">,</span>
+                <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"My amazing application"</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
+
 <span class="token punctuation">}</span>
 </code></pre>
 <p>This is a sample <code>.dojorc</code> and contains configuration settings for the <code>dojo build</code> command. Note the field name, <code>build-app</code>. This is the full name of the command that we have been using. Each <code>dojo-cli</code> command group, such as <code>build</code>, has a default sub-command. The <code>build</code> command’s default sub-command is <code>app</code>, so the <code>dojo build</code> command is equivalent to entering <code>dojo build app</code>. Since each entry in <code>.dojorc</code> needs the full command name, the field name must be <code>build-app</code>. That entry contains an object with examples of the available configuration for <code>cli-build-app</code>:</p>

@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Dojo 2 local installationOverviewThis tutorial covers setup of a local Dojo 2 environment. Creating a Dojo ApplicationFirst, we need to create a Dojo 2 project. Dojo 2 is powerful and leverages advanc">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.329Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dojo 2 local installation">
 <meta name="twitter:description" content="Dojo 2 local installationOverviewThis tutorial covers setup of a local Dojo 2 environment. Creating a Dojo ApplicationFirst, we need to create a Dojo 2 project. Dojo 2 is powerful and leverages advanc">
@@ -85,22 +85,26 @@ ga('send', 'pageview');
 <h2 id="Creating-a-Dojo-Application"><a href="#Creating-a-Dojo-Application" class="headerlink" title="Creating a Dojo Application"></a>Creating a Dojo Application</h2><p>First, we need to create a Dojo 2 project. Dojo 2 is powerful and leverages advanced tools for creating applications. It also provides a potent command-line tool to streamline the installation process, which is installed with the following terminal command:</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g @dojo/cli
 </code></pre>
-<p>This command installs the Dojo command-line tool (<code>@dojo/cli</code>) to simplify development tasks related to creating, testing, and building your applications. Initially, the <code>@dojo/cli</code> tool comes with three commands:</p>
+<p>This command installs the Dojo command-line tool (<code>@dojo/cli</code>) to simplify development tasks related to creating, testing, and building your applications. Initially, the <code>@dojo/cli</code> tool only comes with two options:</p>
 <ul>
-<li><code>create</code> - Provides a skeleton template for Dojo 2 projects</li>
 <li><code>eject</code> - Disconnects a project from <code>@dojo/cli</code> allowing advanced users to customize configuration</li>
 <li><code>version</code> - Reports the version of <code>@dojo/cli</code> and any commands that are installed</li>
 </ul>
-<p>In order to create your first Dojo 2 application, run the following command in the directory that will host the new application:</p>
-<pre class=" language-bash"><code class="language-bash">dojo create --name first-dojo-2-app
+<p>Running <code>dojo</code> will show all available commands even if they are not installed, when you try to run a command that is not available the CLI will print a message that the command needs to be installed.</p>
+<p>In order to create your first Dojo 2 application, you need to globally install the <code>@dojo/cli-create-app</code> command which creates a template project to get started:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g @dojo/cli-create-app
 </code></pre>
-<article class="aside"><strong>Dojo create arguments</strong><p>Many of the arguments passed to <code>dojo create</code> have abbreviated versions. So <code>dojo create -n first-dojo-2-app</code> is equivalent to <code>dojo create --name first-dojo-2-app</code>.</p></article>
+<p>Once the command is installed run the following command to create your Dojo 2 project:</p>
+<pre class=" language-bash"><code class="language-bash">dojo create app --name first-dojo-2-app
+</code></pre>
+<article class="aside"><strong>Dojo create arguments</strong><p>Many of the arguments passed to <code>dojo create app</code> have abbreviated versions. So <code>dojo create app -n first-dojo-2-app</code> is equivalent to <code>dojo create app --name first-dojo-2-app</code>.</p></article>
 <p>This command will create the basic scaffolding for a Dojo 2 application in the newly created “first-dojo-2-app” directory with all of its dependencies pre-installed.</p>
-<p>At this point, we’ve successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another <code>@dojo/cli</code> command. You don’t have to install this one, it was added when you installed the other dependencies. In the terminal, switch into the <code>first-dojo-2-app</code> directory and then enter the <code>dojo build --watch</code> command:</p>
+<p>At this point, we’ve successfully created our first basic Dojo 2 application and installed its dependencies. Now it is time to see what our application can do! First, we are going to leverage another <code>@dojo/cli</code> command. You don’t have to install this one, it was added when you installed the other dependencies. In the terminal, switch into the <code>first-dojo-2-app</code> directory and then enter the <code>dojo build --mode dev --watch --serve</code> command:</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> first-dojo-2-app
-dojo build --watch --serve
+dojo build --mode dev --watch --serve
 </code></pre>
-<p>(or, the shorter, <code>dojo build -w -s</code>)</p>
+<p>(or, the shorter, <code>dojo build -m dev -w -s</code>)</p>
+<article class="aside"><strong>Production build as a default</strong><p>The <code>@dojo/cli-build-app</code> command will create a production-ready build using <code>--mode dist</code> by default. Providing <code>--mode dev</code> instructs the command to create a development build that is useful for debugging and ongoing development.</p></article>
 <p>This command will invoke Dojo 2’s tool to build and transpile the project using <a href="https://webpack.github.io/" target="_blank" rel="noopener">Webpack</a>, a popular tool for optimizing JavaScript source code. The <code>--watch</code> (or <code>-w</code>) flag watches and rebuilds your project whenever any changes are saved and the <code>--serve</code> (or <code>-s</code>) flag starts a simple web server which allows us to run our application in the browser while we make modifications.</p>
 <p>In order to see what the application looks like, open a modern web browser (such as the latest version of Chrome, Edge, Firefox, Internet Explorer, or Safari) and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>. You will be greeted by a humble page that welcomes you to your new application.</p>
 

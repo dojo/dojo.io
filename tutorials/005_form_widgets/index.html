@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.345Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form widgets">
 <meta name="twitter:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
@@ -174,9 +174,9 @@ ga('send', 'pageview');
 </ul>
 <p>We could create these fields and buttons using the <code>v</code> function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization (<a href="https://en.wikipedia.org/wiki/Internationalization_and_localization" target="_blank" rel="noopener">i18n</a>) and accessibility (<a href="https://en.wikipedia.org/wiki/Accessibility" target="_blank" rel="noopener">a11y</a>) ourselves. Instead, we are going to leverage some of Dojo 2’s built-in widgets that have been designed with these considerations in mind.</p>
 <div class="instruction">Add <code>w</code> to the imports from <code>@dojo/widget-core/d</code> and add imports for the <code>Button</code> and <code>TextInput</code> classes to <code>WorkerForm.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/button/Button'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
 </code></pre>
 <p>These imports are for <a href="https://github.com/dojo/widgets" target="_blank" rel="noopener">built-in Dojo 2 Widgets</a>. You can explore other widgets in the <a href="https://dojo.github.io/examples/widget-showcase/">Dojo 2 Widget Showcase</a>.</p>
 <p>The <code>Button</code> class will be used to provide the form’s submit button and the <code>TextInput</code> class will provide the data entry fields for the worker data.</p>
@@ -254,23 +254,20 @@ ga('send', 'pageview');
 			<span class="token function">w</span><span class="token punctuation">(</span>Button<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Save'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
 </code></pre>
 <p>This form of the <code>render</code> method now does everything that we need: it creates the user interface and registers event handlers that will update the application as the user enters information. However, we need to add a few more methods to the <code>WorkerForm</code> to define the event handlers.</p>
 <div class="instruction">Add these methods:</div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">onFirstNameInput</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> KeyboardEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> firstName <span class="token punctuation">}</span> <span class="token operator">=</span> event<span class="token punctuation">.</span>target <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">onFirstNameInput</span><span class="token punctuation">(</span>firstName<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormInput</span><span class="token punctuation">(</span><span class="token punctuation">{</span> firstName <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 
-	<span class="token keyword">protected</span> <span class="token function">onLastNameInput</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> KeyboardEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> lastName <span class="token punctuation">}</span> <span class="token operator">=</span> event<span class="token punctuation">.</span>target <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+	<span class="token keyword">protected</span> <span class="token function">onLastNameInput</span><span class="token punctuation">(</span>lastName<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormInput</span><span class="token punctuation">(</span><span class="token punctuation">{</span> lastName <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 
-	<span class="token keyword">protected</span> <span class="token function">onEmailInput</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> KeyboardEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> email <span class="token punctuation">}</span> <span class="token operator">=</span> event<span class="token punctuation">.</span>target <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+	<span class="token keyword">protected</span> <span class="token function">onEmailInput</span><span class="token punctuation">(</span>email<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormInput</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
 </code></pre>
 <p>The <code>render</code> method starts by decomposing the properties into local constants. We still need to define those properties.</p>
 <div class="instruction">Update the <code>WorkerFormProperties</code> interface to include them, and add a <code>WorkerFormData</code> interface.</div>

@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.353Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -82,7 +82,7 @@ ga('send', 'pageview');
 			</ul>
 		</nav>
 		<section class="tutorial hidden hiding">
-<h1 id="Theming"><a href="#Theming" class="headerlink" title="Theming"></a>Theming</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme and apply it to our application. This will be done using the powerful theming system that is included in the Dojo 2 widget system.</p>
+<h1 id="Theming"><a href="#Theming" class="headerlink" title="Theming"></a>Theming</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme and apply it to our application. This will be done using the built-in theming system that is included in Dojo 2.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/007_theming-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
 <p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
@@ -94,7 +94,7 @@ ga('send', 'pageview');
 <li>Visual styles: these are themed</li>
 </ul>
 <p>The current CSS in the example app provides the structural styles, we will now review how to create and manage themes.</p>
-<p>In order to theme our widgets, we must ensure that they each extend <code>ThemedMixin</code> and should change their top level class name to <code>root</code>. <code>ThemedMixin</code> provides a <code>this.theme</code> function for looking up class names in the provided <code>theme</code> file and applies the processed class names. We change the top level class name to <code>root</code> in order to provide a predictable way to target the outer-node of a widget.</p>
+<p>In order to theme our widgets, we must ensure that they each apply the <code>ThemedMixin</code> and change the class name of the widget’s top-level node to <code>root</code>. The <code>ThemedMixin</code> provides a <code>this.theme</code> function that returns (or that will return) the correct class for the <code>theme</code> provided to the widget. The top-level class name is changed to <code>root</code> in order to provide a predictable way to target the outer-node of a widget, this is a pattern used throughout widgets provided by <code>@dojo/widgets</code>.</p>
 <div class="instruction">Replace the contents of <code>Banner.ts</code> with the following</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
@@ -111,7 +111,8 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <article class="aside"><strong>Reminder</strong><p>If you cannot see the application, remember to run <code>dojo build -m dev -w memory -s</code> to build the application and start the development server.</p></article>
-<p>This <code>Banner</code> widget will now have access to the classes in <code>banner.m.css</code> and can receive a <code>theme</code>. We use the <code>root</code> class to ensure that the theme we create can easily target the correct node.<br>Notice that this file and other <code>css</code> files now have a <code>.m.css</code> file extension. This is to indicate to the <a href="../006_deploying_to_production/">Dojo 2 build system</a> that this file is a <code>css-module</code> and should be processed as such.</p>
+<p>This <code>Banner</code> widget will now have access to the classes in <code>banner.m.css</code> and can receive a <code>theme</code>. We use the <code>root</code> class to ensure that the theme we create can easily target the correct node.</p>
+<p>Notice that this file and other <code>css</code> files now have a <code>.m.css</code> file extension. This is to indicate to the <a href="../006_deploying_to_production/">Dojo 2 build system</a> that this file is a <code>css-module</code> and should be processed as such.</p>
 <article class="aside"><strong>CSS Modules</strong><p><a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a> is a technique to use scoped CSS classnames by default.</p></article>
 <div class="instruction">Create a new style sheet for the <code>Banner</code> widget named <code>banner.m.css</code>.</div>
 <p>We will create an empty <code>root</code> class for now as our base theme does not require any styles to be added to the <code>Banner</code> widget.</p>
@@ -197,7 +198,10 @@ ga('send', 'pageview');
 <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// ...</span>
     <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-        classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span><span class="token punctuation">[</span> css<span class="token punctuation">.</span>root<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span>
+        classes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+			<span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span><span class="token punctuation">[</span> css<span class="token punctuation">.</span>root<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">?</span> css<span class="token punctuation">.</span>reverse <span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			css<span class="token punctuation">.</span>rootFixed
+		<span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
     <span class="token comment">// ...</span>
 <span class="token punctuation">}</span>
@@ -206,13 +210,22 @@ ga('send', 'pageview');
 <p>Next, we will start to create a theme.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-a-Theme"><a href="#Creating-a-Theme" class="headerlink" title="Creating a Theme"></a>Creating a Theme</h2><div class="task">Create a theme directory</div>
-<p>Let’s create a <code>themes</code> directory under your project <code>src</code> to store our theme resources, and create a <code>dojo</code> theme with <code>theme.ts</code> under <code>src/themes/dojo/theme.ts</code>. This is the <code>theme</code> resource where we will import our themed CSS files and export the keyed theme for consumption by our widgets.</p>
+<p>Dojo 2 provides a CLI command for creating a skeleton theme from existing Dojo 2 widgets. To do this the command prompts the user to enter the name of the package that contains Dojo 2 widgets and allows you to select specific widgets to include in the output.</p>
+<div class="instruction">At the command line run <code>dojo create theme --name dojo</code></div>
+<p>When prompted for the package to theme enter <code>@dojo/widgets</code> and then type <code>N</code> to indicate their are no more packages. You should now be presented with a list of widgets from @dojo/widgets that can be scaffolded. For this demo we need to select <code>button</code> and <code>text-input</code> using the arrow keys and space to select each one, press enter to complete the process.</p>
+<p>This should have created a <code>themes</code> directory in the project’s <code>src</code> directory, this will be where the custom theme is created.</p>
+<p>Dojo 2 uses the concept of a <code>key</code> to be able to look up and load classnames for a theme, it is a composite of the package name and the widget name joined by <code>/</code>. These keys are used as the keys to object that is exported from the main <code>theme.ts</code>.</p>
 <div class="instruction">Theme the Worker widget</div>
-<p>In order to theme the <code>Worker</code> widget, we need to create <code>worker.m.css</code> within our <code>themes/dojo</code> directory and use it within <code>theme.ts</code>. The naming here is important as the object key of the exported theme must match the naming of the widget’s style sheet.</p>
-<p>Add the following code to <code>theme.ts</code>:</p>
-<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
+<p>In order to theme the <code>Worker</code> widget, we need to create <code>worker.m.css</code> within our <code>themes/dojo</code> directory and use it within <code>theme.ts</code>. As mentioned above, the naming of the key of the exported theme must match the name from the project’s <code>package.json</code> and the name of the widget’s style sheet joined by a forward slash (<code>/</code>).</p>
+<p>So for <code>worker.m.css</code>, you need to add the import for the <code>worker.m.css</code> and the theme itself to the exported object using the key <code>biz-e-corp/worker</code>.</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as textInput <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/text-input/text-input.m.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as button <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/button/button.m.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
+
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    worker
+    <span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">:</span> button<span class="token punctuation">,</span>
+    <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">:</span> textInput<span class="token punctuation">,</span>
+    <span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Let’s start by creating a red <code>Worker</code> and observe our theme being applied correctly.</p>
@@ -361,12 +374,11 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    worker<span class="token punctuation">,</span>
-    workerForm
+    <span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span>
+    <span class="token string">'biz-e-corp/workerForm'</span><span class="token punctuation">:</span> workerForm<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo 2 <code>TextInput</code> within our <code>WorkerForm</code>, we need to create <code>@dojo/widgets/textinput/textinput.m.css</code> and export it from <code>theme.ts</code> using a theme key prefixed with <code>dojo-</code>. The dojo prefix helps ensure that the Dojo widget theme keys do not clash with application widget theme keys.</p>
-<div class="instruction">Create <code>textinput.m.css</code></div>
+<p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo 2 <code>TextInput</code> within our <code>WorkerForm</code>, we need to add to the skeleton theme created by <code>@dojo/cli-create-theme</code>, this is already exported from <code>theme.ts</code>.</p>
 <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
@@ -384,16 +396,6 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">padding</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
 	<span class="token property">min-width</span><span class="token punctuation">:</span> 230px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<div class="instruction">And export it from <code>theme.ts</code></div>
-<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> as workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> as dojoTextInput <span class="token keyword">from</span> <span class="token string">'./@dojo/textinput/textinput.m.css'</span><span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    worker<span class="token punctuation">,</span>
-    workerForm<span class="token punctuation">,</span>
-    <span class="token string">'@dojo/textinput/textinput'</span><span class="token punctuation">:</span> dojoTextInput
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Notice the styling rule for the <code>.root</code> selector? Here we are introducing another powerful part of the Dojo 2 theming system, <code>composes</code>. Composes originates in the <a href="https://github.com/css-modules/css-modules#composition" target="_blank" rel="noopener"><code>css-module</code> specification</a>, allowing you to apply styles from one class selector to another. Here we are specifying that the <code>root</code> of a <code>TextInput</code> (the label text in this case), should appear the same as the <code>nameLabel</code> class in our <code>WidgetForm</code>. This approach can be very useful when creating multiple themes from a <code>baseTheme</code> and avoids repetitive redefinition of style rules.</p>
 <p>In your web browser you will see the <code>TextInput</code> widgets at the top of the form have been styled.</p>

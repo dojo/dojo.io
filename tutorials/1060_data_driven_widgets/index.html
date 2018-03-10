@@ -14,7 +14,7 @@
 <meta property="og:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/list.png">
-<meta property="og:updated_time" content="2018-03-09T21:21:08.393Z">
+<meta property="og:updated_time" content="2018-03-10T13:31:48.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-driven widgets">
 <meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
@@ -95,25 +95,20 @@ ga('send', 'pageview');
 <div class="instruction">Add the following skeleton to <code>List.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/list.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ListProperties</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">const</span> ListBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token keyword">extends</span> <span class="token class-name">ListBase</span><span class="token operator">&lt;</span>ListProperties<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span><span class="token operator">&lt;</span>ListProperties<span class="token operator">></span> <span class="token punctuation">{</span>
 	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>This code lays the base foundation for a themed Dojo 2 widget: it extends the <code>WidgetBase</code> class, it uses the <code>ThemedMixin</code>, and it defines a <code>render</code> method that returns a virtual DOM. The next step is to import a Dojo 2 <code>TextInput</code> and use it inside the <code>List</code>.</p>
+<p>This code lays the base foundation for a standard Dojo 2 widget: it extends the <code>WidgetBase</code> class and it defines a <code>render</code> method that returns a virtual DOM. The next step is to import a Dojo 2 <code>TextInput</code> and use it inside the <code>List</code>.</p>
 <div class="instruction">Import <code>TextInput</code> into <code>List.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/textinput/TextInput'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Update the <code>ListProperties</code> interface so that a <code>value</code> and an <code>onInput</code> callback can be passed into the <code>List</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ListProperties</span> <span class="token punctuation">{</span>
@@ -125,7 +120,7 @@ ga('send', 'pageview');
 <div class="instruction">Update the <code>List</code> to render a <code>TextInput</code> using the <code>value</code> and <code>onInput</code> properties.</div>
 <p>Click the button below to view the solution.</p>
 <div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
-<span class="token keyword">protected</span> <span class="token function">onInput</span><span class="token punctuation">(</span><span class="token punctuation">{</span> target<span class="token punctuation">:</span> <span class="token punctuation">{</span> value <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">protected</span> <span class="token function">onInput</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onInput</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
