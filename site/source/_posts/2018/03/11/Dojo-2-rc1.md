@@ -115,7 +115,7 @@ To compile a Dojo widget into a web component, run the following command:
 npx @dojo/cli build widget --elements src/HelloWorld
 ```
 
-For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm for easy import into your applications.
+For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm for easy import into your projects.
 
 Learn more about creating your first Dojo widgets in the [first Dojo 2 application tutorial](https://dojo.io/tutorials/001_static_content/).
 
@@ -131,9 +131,19 @@ To install the Dojo CLI, run the following command:
 
 The [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app) package provides powerful tools to code split dynamically imported widgets automatically. Support is planned for the near future to enable users to specify this purely by configuration.
 
-`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. Please let us know what feedback you may have!
+`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. To enable build time rendering, add the following configuration to your project's `.dojorc`, include a root element with an `id` (referenced as the `root` in the configuration below) in the `index.html` and use `projector.merge` over `projector.append`:
 
-Use `@dojo/cli-build-app` in your Dojo 2 project by adding it as a dev dependency to your `package.json`.
+```typescript
+{
+  "build-app": {
+    "build-time-render": {
+      "root": "app"
+    }
+  }
+}
+```
+
+Use `@dojo/cli-build-app` in your Dojo 2 project by adding it as a dev dependency to your project's `package.json`.
 
 Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://dojo.io/tutorials/000_local_installation/).
 
@@ -169,7 +179,7 @@ To get started, we have a [series of Dojo tutorials and documentation](https://d
 
 We've created a variety of examples of Dojo 2 usage:
 
-* [TodoMVC](https://dojo.github.io/examples/todo-mvc/) - TodoMVC is the canonical example used to demonstrate basic web application paradigms
+* [TodoMVC](https://dojo.github.io/examples/todo-mvc/) - TodoMVC is the canonical example used to demonstrate fundamental web application paradigms
 * [TodoMVC kitchen sink](https://dojo.github.io/examples/todo-mvc-kitchensink/) - Our extension of TodoMVC used to illustrate a selection of Dojo 2 specific capabilities such as theming and internationalization.
 * [RealWorld](https://github.com/gothinkster/dojo2-realworld-example-app) - A full web application example with authentication, code splitting, state management, routing and more.
 * [HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/) - The spiritual successor to TodoMVC, Hacker News PWA is designed to demonstrate progressive web app capabilities with a focus on providing a fast, reliable experience with rich offline support
