@@ -46,14 +46,16 @@ The `label` property on both form field widgets and the `Label` widget accepts e
 A `<label>` element with hidden text was chosen over the `aria-label` attribute for invisible labels due to [still-inconsistent](https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/) screen reader support for the latter. Should this change, we will update our hidden label implementation to `aria-label` without changing the public-facing properties.
 
 ___
-### TextInput and Textarea
-As with all basic form controls included in `@dojo/widgets`, `TextInput` and `Textarea` use native `<input>`/`<textarea>` elements, which allows them to take advantage of built-in accessibility.
+### TextInput, EnhancedTextInput, and Textarea
+As with all basic form controls included in `@dojo/widgets`, `TextInput`, `EnhancedTextInput`, and `Textarea` use native `<input>`/`<textarea>` elements, which allows them to take advantage of built-in accessibility.
 
 ##### A11y properties
 - `controls`: Text inputs can sometimes be used to control an interactive dropdown. In this case, `controls` can be used to set `aria-controls` to the `id` of the controlled element.
 - `describedBy`: Sets the `aria-describedby` property to point to the `id` of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.
 - `label`: Controls the wrapping `<label>` element.
 - `type`: Specifying text input type to `email`, `search`, etc. when applicable provides more information to screen reader users in addition to other benefits like showing the most helpful mobile keyboard.
+
+When using the `EnhancedTextInput`, determine the instructional text needed to convey the information visually implied by any addons. This can be done in the `label` text, and optionally supplemented by custom descriptive text and `aria-describedby`.
 
 ___
 
@@ -208,14 +210,6 @@ ___
 - `headingLevel`: Optionally customize the heading level of the button controlling the accordion.
 ___
 
-### EnhancedTextInput
-
-TODO
-
-##### A11y properties
-- `TODO`: TODO
-
-___
 
 ### Listbox
 
@@ -246,10 +240,13 @@ ___
 
 ### Progress
 
-TODO
+The `Progress` widget provides a themeable progress bar with a customizable output display.
 
 ##### A11y properties
-- `TODO`: TODO
+- `valuenow`: Current value of the progress bar
+- `valuemax`: Maximum value of the progress bar
+- `valuemin`: Minimum value of the progress bar
+- `valuetext`: Text representation of the current progress
 
 ___
 
