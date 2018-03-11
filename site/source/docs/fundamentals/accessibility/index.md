@@ -70,7 +70,7 @@ ___
 ### Checkbox
 The `Checkbox` widget wraps a native `<input type="checkbox">`, which provides native accessibility and keyboard interaction.
 
-`Checkbox` can also be used as a toggle switch with optional `onLabel` and `offLabel` properties. When a string is passed to `onLabel`, it will be read at the end of the label text when the checkbox is checked. A string passed to `offLabel` will be read when the checkbox is not checked.
+`Checkbox` can also be used as a toggle switch with optional `onLabel` and `offLabel` properties. Note that the toggle switch capabilities will be separated from Checkbox in the near future into a separate widget. When a string is passed to `onLabel`, it will be read at the end of the label text when the checkbox is checked. A string passed to `offLabel` will be read when the checkbox is not checked.
 
 A group of related checkboxes should ideally be wrapped in a `<fieldset>` element containing a `<legend>` with descriptive text.
 
@@ -207,6 +207,71 @@ ___
 ##### A11y properties
 - `headingLevel`: Optionally customize the heading level of the button controlling the accordion.
 ___
+
+### EnhancedTextInput
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### Listbox
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### AccordionPane
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### SplitPane
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### Progress
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### Toolbar
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### Tooltip
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+
 
 This overview only touched on properties that primarily exist for accessibility-related reasons, but any design decision or property change will end up affecting accessibility in some way. For some of those, such as `invalid`, `disabled`, and `readOnly`, widgets included in `@dojo/widgets` handle setting ARIA attributes in the background in addition to toggling classes without any extra attention needed from the author. In other cases, such as `getResultLabel` in `ComboBox` or `renderMonthLabel` in `Calendar`, it is entirely up to the author to ensure the returned result includes clear, screen reader-accessible text content.
 
