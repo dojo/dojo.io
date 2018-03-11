@@ -215,16 +215,22 @@ The base Dojo 2 theme meets WCAG AA color contrast guidelines, but it is up to t
 
 There is a set of base styles provided by `@dojo/widgets` separate from themes, containing basic utility classes like `.visuallyHidden`, which will make content invisible to sighted users but still allow it to be read by screen readers. To use it, import `baseCss` separately like so:
 
-```js
+```typescript
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v } from '@dojo/widget-core/d';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from ‘path/to/your/css’;
 import * as baseCss from ‘@dojo/widgets/common/styles/base.m.css’;
 
+const MyWidgetBase = ThemedMixin(WidgetBase);
+
 @theme(css)
-class MyWidget extends WidgetBase {
-	render() {
+export default class MyWidget extends MyWidgetBase {
+	protected render() {
 		return v(‘div’, {
-			classes: this.classes().fixed(baseCss.visuallyHidden)
+			classes: [ this.theme(css.root), baseCss.visuallyHidden ]
 		}, [ ‘Screen reader instructions’ ]);
+
 	}
 }
 ```
@@ -232,7 +238,56 @@ class MyWidget extends WidgetBase {
 A more in-depth introduction to classes and theming is available in the [Theming tutorial](../../../tutorials/007_theming/).
 
 ## Focus management
-Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since the [virtual DOM approach](../working_with_virtual_dom/) means directly touching the DOM within widgets is discouraged. This feature is currently in development.
+
+Dojo's widget system provides a Focus meta to determine whether a given node is focused or contains document focus in a reactive manner. Calling `this.meta(Focus).get(key)` returns a results object with two properties:
+
+* `active` - A boolean indicating whether the specified node itself is focused.
+* `containsFocus` - A boolean indicating whether one of the descendants of the specified node is currently focused. This will return true if active is true.
+
+An example usage that opens a tooltip if the trigger is focused might look like this:
+
+```typescript
+class MyWidget extends WidgetBase<WidgetProperties> {
+    // ...
+    render() {
+        // run your meta
+        const buttonFocus = this.meta(FocusMeta).get('button');
+        return v('div', {
+          w(Button, {
+            key: 'button'
+          }, [ 'Open Tooltip' ]),
+          w(Tooltip, {
+            content: 'Foo',
+            open: buttonFocus.active
+          }, [ 'modal content' ])
+        });
+    }
+    // ...
+}
+```
+
+The Focus meta also provides a set method to call focus on a given node. This is most relevant when it is necessary to shift focus in response to a user action, e.g. when opening a modal or navigating to a new page. You can use it like this:
+
+```typescript
+class MyWidget extends WidgetBase<WidgetProperties> {
+    // ...
+    render() {
+        // run your meta
+        return v('div', {
+          w(Button, {
+            onClick: () => {
+              this.meta(Focus).set('modal');
+            }
+          }, [ 'Open Modal' ]),
+          v('div', {
+            key: 'modal',
+            tabIndex: -1
+          }, [ 'modal content' ])
+        });
+    }
+    // ...
+}
+```
 
 ## Writing custom widgets
 All DOM attributes can be set with `VirtualDomProperties` so, apart from managing focus, no extra tools should be required to create strongly accessible widgets. The [widgets tutorial](../../../tutorials/003_creating_widgets) goes over widget creation in more technical detail, but the following example shows how to create proper ARIA attributes for an accessible popup button:
