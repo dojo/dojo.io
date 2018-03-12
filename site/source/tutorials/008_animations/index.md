@@ -430,6 +430,6 @@ In this tutorial, we learned:
 * How to control an animation
 * That zombies feel love 😂 💕
 
-You can download the completed [demo application](../assets/008_animation-finished.zip) from this tutorial.
+You can download the completed [demo application](../assets/008_animations-finished.zip) from this tutorial.
 
 {% section 'last' %}
