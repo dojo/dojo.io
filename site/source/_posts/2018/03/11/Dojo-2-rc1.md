@@ -21,8 +21,6 @@ As such, if a viable foundational approach exists that we can leverage or extend
 
 There are plenty of [articles comparing frameworks](https://www.sitepen.com/blog/2017/06/13/if-we-chose-our-javascript-framework-like-we-chose-our-music/), but needless to say, we took a long look at everything else because we want Dojo 2 to be part of the ecosystem rather than its own silo. By leveraging ES modules, TypeScript interfaces, and custom elements, we provide a robust level of interoperability with other frameworks and libraries.
 
-Our focus on developer ergonomics is to get thousands of small details to feel just right. For example, instead of manually worrying about code splitting, we handle this optimization out of the box with zero configuration. Or when you want to style a component, the list of class names available to the component is type safe, saving time in looking up the relevant class names from your CSS file.
-
 So what are Dojo's primary focus and advantages? It is an ergonomic way to build reactive enterprise web apps with TypeScript and numerous modern web standards and best practices, with an easy to use widget system and widget library, and other vital architectural components including routing, data stores, and much more.
 
 ## Author widgets with `@dojo/widget-core`
@@ -67,6 +65,12 @@ export class ImageList extends WidgetBase<ImageListProperties> {
 	}
 }
 ```
+
+## Css Modules and css-next
+
+Dojo 2 uses [css modules](https://github.com/css-modules/css-modules), out of the box to provide localized class names as standard. This ensures that your styles do not leak out of your widgets and provides type-ahead capability when importing your css files into your widget.
+
+[Css-next](http://cssnext.io/) enables allows Dojo 2 widgets to use cutting edge css syntax and features immediately, such as `calc`, `css-variables` and various color functions. These are all compiled down to browser friendly variants at build time so there's no need for a post processor such as SCSS or Less.
 
 ## Dojo loves Custom Elements
 
