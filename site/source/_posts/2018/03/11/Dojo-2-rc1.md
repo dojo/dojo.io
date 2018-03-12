@@ -105,7 +105,7 @@ npx @dojo/cli build widget --elements src/HelloWorld
 
 For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm and easily imported into your projects.
 
-Learn more about creating your first Dojo widgets here [first Dojo 2 application tutorial](https://dojo.io/tutorials/001_static_content/).
+Learn more about creating your first Dojo widgets with the [first Dojo 2 application tutorial](https://dojo.io/tutorials/001_static_content/).
 
 ## The Dojo CLI
 
