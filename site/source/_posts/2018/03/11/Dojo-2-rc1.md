@@ -131,7 +131,11 @@ To install the Dojo CLI, run the following command:
 
 The [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app) package provides powerful tools to code split dynamically imported widgets automatically. Support is planned for the near future to enable users to specify this purely by configuration.
 
-`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. To enable build time rendering, add the following configuration to your project's `.dojorc`, include a root element with an `id` (referenced as the `root` in the configuration below) in the `index.html` and use `projector.merge` over `projector.append`:
+`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. To enable build time rendering
+
+* include a root element with an `id` (referenced as the `root` in the configuration below) in the `index.html`
+* use `projector.merge` over `projector.append`
+* add the following configuration to your project's `.dojorc`
 
 ```typescript
 {
