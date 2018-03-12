@@ -78,7 +78,7 @@ You can do much more than simply use custom elements within a Dojo 2 project, yo
 
 By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning most basic widgets are <20KB (gzipped) including all of the `@dojo` runtime needed to support the custom element.
 
-The `customElement` decorator annotates the widget class and instructs the cli build module to convert it to a custom element:
+The `customElement` decorator annotates the widget class and instructs the cli-build-widget command to convert it to a custom element:
 
 ```typescript
 interface HelloWorldWidgetProperties {
