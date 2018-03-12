@@ -74,7 +74,7 @@ A top priority for Dojo is interoperability with the web platform, both by utili
 
 The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) project was released last year to highlight framework support for using custom elements, and Dojo 2 currently has a perfect score.
 
-You can do much more than using custom elements within a Dojo 2 project, you can compile your Dojo 2 widgets to custom elements via one of our `@dojo/cli` commands, making it shareable and easy to distribute Dojo 2 widgets across projects and frameworks. So if you are in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
+You can do much more than simply use custom elements within a Dojo 2 project, you can compile your Dojo 2 widgets to custom elements via one of our `@dojo/cli` commands, making it shareable and easy to distribute Dojo 2 widgets across projects and frameworks. So if you are in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
 
 By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning most basic widgets are <20KB (gzipped) including all of the `@dojo` runtime needed to support the custom element.
 
