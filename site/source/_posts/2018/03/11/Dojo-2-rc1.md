@@ -31,7 +31,7 @@ Dojo has always emphasized the creation of widgets, and Dojo 2's [`@dojo/widget-
 
 There are many scenarios where it is challenging to preserve a reactive architecture when working with properties of DOM nodes, so `@dojo/widget-core` provides meta abstractions to help deal with DOM nodes without breaking the flexibility of a reactive architecture.
 
-`@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers and Web Animations. With plans to add support for more existing and upcoming living standards from WIGC via meta in the future.
+`@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers, and Web Animations. With plans to add support for more existing and upcoming living standards from WIGC via meta in the future.
 
 The following example renders a list with images. By leveraging the Intersection Observer meta, the image `src` gets added only when the item is in the viewport, which prevents needlessly downloading images until the user scrolls to them.
 
@@ -81,18 +81,18 @@ By default, Dojo's custom elements are built for evergreen browsers to reduce ov
 The `customElement` decorator annotates the widget class and instructs the cli-build-widget command to convert it to a custom element:
 
 ```typescript
-interface HelloWorldWidgetProperties {
+interface HelloWorldProperties {
 	onClick: (event: Event) => void;
 	foo: string;
 	bar: string;
 }
 
-@customElement<HelloWorldWidgetProperties>({
+@customElement({
 	tag: 'hello-world',
 	attribute: [ 'foo', 'bar' ],
 	events: [ 'onClick' ]
 })
-class HelloWorldWidget extends WidgetBase<HelloWorldWidgetProperties> {
+class HelloWorld extends WidgetBase<HelloWorldProperties> {
 // ...
 }
 ```
@@ -133,7 +133,7 @@ cli-build-app also provides powerful tools to code split dynamically imported wi
 
 #### [`@dojo/cli-test-intern`](http://github.com/dojo/cli-test-intern)
 
-A unit and functional testing command for Dojo 2 application using Intern. With support to run tests on popular services such as Browserstack, Saucelabs and TestingBot.
+A unit and functional testing command for Dojo 2 application using [Intern](https://theintern.io/), with support to run tests on popular services such as Browserstack, Saucelabs and TestingBot.
 
 #### [`@dojo/cli-build-widget`](http://github.com/dojo/cli-build-widget)
 
@@ -145,11 +145,11 @@ Creates a skeleton Dojo 2 widget module and all associated meta files.
 
 #### [`@dojo/cli-create-theme`](http://github.com/dojo/cli-create-theme)
 
-Creates a skeleton Dojo 2 theme from your chosen projects dependencies.
+Creates a skeleton Dojo 2 theme from your chosen project's dependencies.
 
 Ultimately, each of the commands require zero configuration to get started, with only some advanced features requiring additional configuration via a project's `.dojorc` file.
 
-To use any of the CLI commands in your Dojo 2 project by adding it as a dev dependency to your project's `package.json`.
+To use any of the CLI commands in your Dojo 2 project by adding them as a dev dependency to your project's `package.json`.
 
 Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://dojo.io/tutorials/000_local_installation/).
 
@@ -201,7 +201,7 @@ We also hope to have Dojo 2 available on CodeSandbox in time for the 2.0.0 relea
 
 ### Versions
 
-After, we wll be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to this version to keep them synchronized. As such, expect 3.0.0 to arrive within a few months rather than 10 years!
+After, we will be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to this version to keep them synchronized. As such, expect 3.0.0 to arrive within a few months rather than 10 years!
 
 ### Feedback and help wanted
 
