@@ -5,33 +5,31 @@ authorId: dylan
 featured_image: featured.png
 ---
 
-We're pleased to announce that Dojo 2 release candidate 1 is now available!
+We're pleased to announce Dojo 2 release candidate 1 is now available!
 
-We first started brainstorming ideas for Dojo 2 back in 2010! While development of Dojo 2 did not quite take as long as Diablo 3 or Duke Nukem Forever, we followed a very deliberate journey along the way. Conceived initially as merely a modern clean-up for Dojo 1.x, with the introduction of ES6, TypeScript, web components, and an array of other features, we realized that we wanted to take a different path and create an approach to building modern apps that would not just be a slight clean-up of Dojo 1 or a clone of other current frameworks, but a productive and efficient development experience and front-end architecture.
+We first started brainstorming ideas for Dojo 2 back in 2010. While development of Dojo 2 did not take quite as long as Diablo 3 or Duke Nukem Forever, we followed a very deliberate journey. Conceived initially as a modern clean-up for Dojo 1.x, with the introduction of ES6, TypeScript, web components, and an array of other features, we realized we wanted to take a different path and create an approach to building modern apps that would not just be a slight clean-up of Dojo 1 or a clone of other current frameworks, but a productive and efficient development experience and front-end architecture.
 
 {% asset_img featured.png feature-full %}
 
 <!-- more -->
 
-The result of these years of rewriting and rethinking is something that we believe offers a compelling way to build modern applications with TypeScript, leveraging a dizzying array of modern standards and best practices including but not limited to ES2015+, TypeScript, custom elements (web components), Progressive Web Apps (PWA), reactive virtual DOM, Intersection Observers, routing, accessibility (a11y), internationalization (i18n), CSS modules, data stores, and much more.
+The result of these years of rewriting and rethinking is something we believe offers a compelling way to build modern applications with TypeScript, leveraging a dizzying array of modern standards and best practices including but not limited to ES2015+, TypeScript, custom elements (web components), Progressive Web Apps (PWA), reactive virtual DOM, Intersection Observers, routing, accessibility (a11y), internationalization (i18n), CSS modules, data stores, and much more.
 
 When Dojo began in 2004, there was no significant JavaScript ecosystem, and the standards process was not evolving rapidly. Much has changed in 14 years!
 
-As such, if a viable foundational approach exists that we can leverage or extend beyond the core of Dojo 2, we chose that route rather than creating our own. By leveraging tools like webpack for building and optimizations, various shims for custom elements and Intersection Observers, Globalize and cldr.js for internationalization, and more. On top of this foundation, we've built a reliable and consistent out of the box approach that makes it easy to get started building applications. Dojo 2 does not require each developer to make every architectural choice up front, but still provides easy ways to override our suggested approach when you prefer an alternative.
+As such, if a viable foundational approach exists that we can leverage or extend beyond the core of Dojo 2, we will choose this route rather than creating our own. By leveraging tools like webpack for building and optimizations, various shims for custom elements and Intersection Observers, Globalize and cldr.js for internationalization and more. On top of this foundation, we have built a reliable and consistent out of the box approach making it easy to get started building applications. Dojo 2 does not require each developer to make every architectural choice up front, but still provides easy ways to override our suggested approach when you prefer an alternative.
 
-There are already plenty of [articles that compare frameworks](https://www.sitepen.com/blog/2017/06/13/if-we-chose-our-javascript-framework-like-we-chose-our-music/), but needless to say, we took a long look at everything else because we want Dojo to be part of the ecosystem rather than its silo. By leveraging ES modules, TypeScript interfaces, and custom elements, we provide a robust level of interoperability with other frameworks and libraries.
+There are plenty of [articles comparing frameworks](https://www.sitepen.com/blog/2017/06/13/if-we-chose-our-javascript-framework-like-we-chose-our-music/), but needless to say, we took a long look at everything else because we want Dojo 2 to be part of the ecosystem rather than its own silo. By leveraging ES modules, TypeScript interfaces, and custom elements, we provide a robust level of interoperability with other frameworks and libraries.
 
-Our focus on developer ergonomics is to get thousands of small details to feel just right. For example, instead of manually worrying about code splitting, we handle this optimization out of the box with zero configuration. Or when you want to style a component, the list of class names available to that component is type safe, saving time in looking up the relevant class names from your CSS file.
-
-So what are Dojo's primary focus and advantages? It's an ergonomic way to build reactive enterprise web apps with TypeScript and numerous modern web standards and best practices, with an easy to use widget system and widget library, and other vital architectural components including routing, data stores, and much more.
+So what are Dojo's primary focus and advantages? It is an ergonomic way to build reactive enterprise web apps with TypeScript and numerous modern web standards and best practices, with an easy to use widget system and widget library, and other vital architectural components including routing, data stores, and much more.
 
 ## Author widgets with `@dojo/widget-core`
 
-Dojo has always emphasized the creation of widgets, and Dojo 2's [`@dojo/widget-core`](http://github.com/dojo/widget-core) package creates an environment that provides developers with simple ergonomics to allow them to build robust applications. Leveraging a modern and reactive, uni-directional approach to data binding with a virtual DOM, `@dojo/widget-core` streamlines the process of creating widgets and apps.
+Dojo has always emphasized the creation of widgets, and Dojo 2's [`@dojo/widget-core`](http://github.com/dojo/widget-core) package creates an environment providing developers with simple ergonomics allowing them to build robust applications. Leveraging a modern and reactive, uni-directional approach to data binding with a virtual DOM, `@dojo/widget-core` streamlines the process of creating widgets and apps.
 
 There are many scenarios where it is challenging to preserve a reactive architecture when working with properties of DOM nodes, so `@dojo/widget-core` provides meta abstractions to help deal with DOM nodes without breaking the flexibility of a reactive architecture.
 
-`@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers, Web Animations, and other APIs, with plans shortly for additional emerging standards such as ResizeObserver.
+`@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers, and Web Animations. With plans to add support for more existing and upcoming living standards from WIGC via meta in the future.
 
 The following example renders a list with images. By leveraging the Intersection Observer meta, the image `src` gets added only when the item is in the viewport, which prevents needlessly downloading images until the user scrolls to them.
 
@@ -51,7 +49,7 @@ class Image extends WidgetBase<ImageProperties> {
 		const properties = isIntersecting ? { key: 'root', src: image } : { key: 'root' };
 
 		return v('img', properties);
-    }
+	}
 }
 
 interface ImageListProperties {
@@ -68,43 +66,37 @@ export class ImageList extends WidgetBase<ImageListProperties> {
 }
 ```
 
-Note that if you prefer React's JSX syntax, you can replace Hyperscript with TSX in the `render` function, e.g.:
+## Css Modules and css-next
 
-```typescript
-protected render() {
-	const { images } = this.properties;
-	const items = images.map((image) => (
-		<ul key={image}>
-			<Image image={image}/>
-		</ul>
-	));
-	return <div>{items}</div>;
-}
-```
+Dojo 2 uses [css modules](https://github.com/css-modules/css-modules), out of the box to provide localized class names as standard. This ensures that your styles do not leak out of your widgets and provides type-ahead capability when importing your css files into your widget.
+
+[Css-next](http://cssnext.io/) enables allows Dojo 2 widgets to use cutting edge css syntax and features immediately, such as `calc`, `css-variables` and various color functions. These are all compiled down to browser friendly variants at build time so there's no need for a post processor such as SCSS or Less.
 
 ## Dojo loves Custom Elements
 
-A top priority for Dojo is interoperability with the web platform, both by leveraging current and emerging standards and providing a mechanism to coexist with other frameworks efficiently. The Custom Elements portion of the Web Components standard is one area to encourage interoperability between UI component libraries and frameworks.
+A top priority for Dojo is interoperability with the web platform, both by utilizing current and emerging standards and providing a mechanism to coexist with other frameworks efficiently. The Custom Elements portion of the Web Components standard is one area to encourage interoperability between UI component libraries and frameworks.
 
-The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) project was released last year to highlight framework support for custom elements, and Dojo currently has a perfect score. Within Dojo 2, you may use custom elements, express Dojo 2 widgets as custom elements, and easily export Dojo 2 widgets as custom elements via one of our `@dojo/cli` commands, making it easy to share and distribute custom elements for easy use across projects and frameworks! So if you're in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
+The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) project was released last year to highlight framework support for using custom elements, and Dojo 2 currently has a perfect score.
 
-By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning that most basic widgets are <20KB (gzipped) which includes all of the `@dojo` runtime needed to support the custom element.
+You can do much more than simply use custom elements within a Dojo 2 project, you can compile your Dojo 2 widgets to custom elements via one of our `@dojo/cli` commands, making it shareable and easy to distribute Dojo 2 widgets across projects and frameworks. So if you are in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
 
-The `customElement` decorator annotates the widget class to convert it to a custom element:
+By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning most basic widgets are <20KB (gzipped) including all of the `@dojo` runtime needed to support the custom element.
+
+The `customElement` decorator annotates the widget class and instructs the cli-build-widget command to convert it to a custom element:
 
 ```typescript
-interface HelloWorldWidgetProperties {
+interface HelloWorldProperties {
 	onClick: (event: Event) => void;
 	foo: string;
 	bar: string;
 }
 
-@customElement<HelloWorldWidgetProperties>({
+@customElement({
 	tag: 'hello-world',
 	attribute: [ 'foo', 'bar' ],
 	events: [ 'onClick' ]
 })
-class HelloWorldWidget extends WidgetBase<HelloWorldWidgetProperties> {
+class HelloWorld extends WidgetBase<HelloWorldProperties> {
 // ...
 }
 ```
@@ -115,39 +107,53 @@ To compile a Dojo widget into a web component, run the following command:
 npx @dojo/cli build widget --elements src/HelloWorld
 ```
 
-For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm for easy import into your projects.
+For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm and easily imported into your projects.
 
-Learn more about creating your first Dojo widgets in the [first Dojo 2 application tutorial](https://dojo.io/tutorials/001_static_content/).
+Learn more about creating your first Dojo widgets with the [first Dojo 2 application tutorial](https://dojo.io/tutorials/001_static_content/).
 
 ## The Dojo CLI
 
-CLI tools provide an easy way to work with frameworks, a trend that was popularized in the JS community by Ember. The [Dojo CLI](http://github.com/dojo/cli) is a collection of packages, providing a CLI architecture which enables a modular approach to create and work with commands.
+CLI tools provide an easy way to work with frameworks, a trend  popularized in the JS community by Ember. The [Dojo CLI](http://github.com/dojo/cli) is a collection of packages, providing a CLI architecture enabling a modular approach to create and work with commands.
 
-One of our goals in creating an easy out of the box experience with Dojo is to abstract users away from complex configuration by providing intelligent defaults internally. These defaults are easily overridden by experienced users who prefer something beyond our recommended default options.
+One of our goals in creating an easy out of the box experience with Dojo is to abstract users away from complex configuration by using intelligent defaults internally.
 
-To install the Dojo CLI, run the following command:
+To install the Dojo CLI, run the following command: `npm install -g @dojo/cli`
 
-`npm install -g @dojo/cli`
+There are currently six officially supported CLI command modules:
 
-The [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app) package provides powerful tools to code split dynamically imported widgets automatically. Support is planned for the near future to enable users to specify this purely by configuration.
+#### [`@dojo/cli-create-app`](http://github.com/dojo/cli-create-app)
 
-`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. To enable build time rendering
+Creates a skeleton Dojo 2 application to get started with development and includes all the Dojo 2 dependencies needed.
 
-* include a root element with an `id` (referenced as the `root` in the configuration below) in the `index.html`
-* use `projector.merge` over `projector.append`
-* add the following configuration to your project's `.dojorc`
-
-```typescript
-{
-  "build-app": {
-    "build-time-render": {
-      "root": "app"
-    }
-  }
-}
+```shell
+$ dojo create app --name my-first-dojo-2-app
 ```
 
-Use `@dojo/cli-build-app` in your Dojo 2 project by adding it as a dev dependency to your project's `package.json`.
+#### [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app)
+
+A command to build your Dojo 2 application with basic command line options to specify the target development or production, start the command in watch mode and even create a basic http server to serve the application locally.
+
+cli-build-app also provides powerful tools to code split dynamically imported widgets automatically and Build Time Rendering.
+
+#### [`@dojo/cli-test-intern`](http://github.com/dojo/cli-test-intern)
+
+A unit and functional testing command for Dojo 2 application using [Intern](https://theintern.io/), with support to run tests on popular services such as Browserstack, Saucelabs and TestingBot.
+
+#### [`@dojo/cli-build-widget`](http://github.com/dojo/cli-build-widget)
+
+The cli-build-widget command enables consumers to build custom elements from one or more of their Dojo 2 widgets.
+
+#### [`@dojo/cli-create-widget`](http://github.com/dojo/cli-create-widget)
+
+Creates a skeleton Dojo 2 widget module and all associated meta files.
+
+#### [`@dojo/cli-create-theme`](http://github.com/dojo/cli-create-theme)
+
+Creates a skeleton Dojo 2 theme from your chosen project's dependencies.
+
+Ultimately, each of the commands require zero configuration to get started, with only some advanced features requiring additional configuration via a project's `.dojorc` file.
+
+To use any of the CLI commands in your Dojo 2 project by adding them as a dev dependency to your project's `package.json`.
 
 Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://dojo.io/tutorials/000_local_installation/).
 
@@ -171,15 +177,15 @@ Key features of `@dojo/stores` include:
 
 When managing application state with the `@dojo/stores` package, there are three core but simple concepts - Operations, Commands, and Processes.
 
-* Operation: Granular instructions to manipulate state based on JSON Patch
-* Command: Simple functions that ultimately return operations needed to perform the required state change
-* Process: A function that executes a group of commands that usually represent a complete application behavior
+* Operations: Granular instructions to manipulate state based on JSON Patch
+* Commands: Simple functions ultimately returning operations needed to perform the required state change
+* Processes: A function executing a group of commands usually representing a complete application behavior
 
 Dojo 2 also makes it easy to support other patterns such as those popularized by Unstated. Less complex applications can simply lift state up to parent widgets and use local state.
 
 ## Documentation and examples
 
-To get started, we have a [series of Dojo tutorials and documentation](https://dojo.io/docs/) that range from the very basics to more complicated topics such as lazy loading, web animations and more. In addition to these, all Dojo 2 packages have detailed READMEs.
+To get started, we have a [series of Dojo tutorials and documentation](https://dojo.io/docs/) ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these, all Dojo 2 packages have detailed READMEs.
 
 We've created a variety of examples of Dojo 2 usage:
 
@@ -193,17 +199,17 @@ To learn more about Dojo 2 and get started, check out the [Dojo 2 tutorial serie
 
 ## What's next?
 
-In the release candidate stage, we'll fix any critical issues reported and then have another release candidate. After a week with no critical blocking issues, we'll announce 2.0.0!
+In the release candidate stage, we will fix any critical issues reported and then have another release candidate. After a week with no critical blocking issues, we will announce 2.0.0!
 
-We also hope to have Dojo 2 available on CodeSandbox in time for the 2.0.0 release as well!
+We also hope to have Dojo 2 available on CodeSandbox in time for the 2.0.0 release as well.
 
 ### Versions
 
-After that, we'll be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to that version to keep them synchronized. As such, expect 3.0.0 to arrive within a few months rather than ten years!
+After, we will be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to this version to keep them synchronized. As such, expect 3.0.0 to arrive within a few months rather than 10 years!
 
 ### Feedback and help wanted
 
 We still have quite a bit of work to do to update and refine our examples and documentation, so if you see an issue, please let us know, or better yet, create a pull request!
-There's still much we want to complete after 2.0.0, but we're ready for you to start using Dojo, give us feedback, and let us know where we should prioritize our efforts.
+There is still much we want to complete after 2.0.0, but we are ready for you to start using Dojo, give us feedback, and let us know where we should prioritize our efforts.
 
 Let us know what you think either on [Gitter](https://gitter.im/dojo/dojo2), [Twitter](https://twitter.com/dojo/) or [Discourse](https://discourse.dojo.io/).
