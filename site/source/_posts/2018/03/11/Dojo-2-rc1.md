@@ -31,7 +31,7 @@ Dojo has always emphasized the creation of widgets, and Dojo 2's [`@dojo/widget-
 
 There are many scenarios where it is challenging to preserve a reactive architecture when working with properties of DOM nodes, so `@dojo/widget-core` provides meta abstractions to help deal with DOM nodes without breaking the flexibility of a reactive architecture.
 
-`@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers, Web Animations, and other APIs, with plans shortly for additional emerging standards such as ResizeObserver.
+`@dojo/widget-core` embraces the future of the web platform with out of the box meta implementations for Intersection Observers and Web Animations. With plans to add more support for existing and upcoming living standards from WIGC via meta in the future.
 
 The following example renders a list with images. By leveraging the Intersection Observer meta, the image `src` gets added only when the item is in the viewport, which prevents needlessly downloading images until the user scrolls to them.
 
@@ -68,29 +68,17 @@ export class ImageList extends WidgetBase<ImageListProperties> {
 }
 ```
 
-Note that if you prefer React's JSX syntax, you can replace Hyperscript with TSX in the `render` function, e.g.:
-
-```typescript
-protected render() {
-	const { images } = this.properties;
-	const items = images.map((image) => (
-		<ul key={image}>
-			<Image image={image}/>
-		</ul>
-	));
-	return <div>{items}</div>;
-}
-```
-
 ## Dojo loves Custom Elements
 
 A top priority for Dojo is interoperability with the web platform, both by leveraging current and emerging standards and providing a mechanism to coexist with other frameworks efficiently. The Custom Elements portion of the Web Components standard is one area to encourage interoperability between UI component libraries and frameworks.
 
-The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) project was released last year to highlight framework support for custom elements, and Dojo currently has a perfect score. Within Dojo 2, you may use custom elements, express Dojo 2 widgets as custom elements, and easily export Dojo 2 widgets as custom elements via one of our `@dojo/cli` commands, making it easy to share and distribute custom elements for easy use across projects and frameworks! So if you're in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
+The [Custom Elements Everywhere](https://custom-elements-everywhere.com/) project was released last year to highlight framework support for using custom elements, and Dojo 2 currently has a perfect score.
+
+More than just using custom elements within a Dojo 2 project, you can also compile your Dojo 2 widgets to custom elements via one of our `@dojo/cli` commands, making it easy to share and distribute custom elements for easy use across projects and frameworks! So if you're in an organization where some teams use Angular, some use React, some use Vue, and some use Dojo, we provide a future today where you can write a component once and share it across those teams!
 
 By default, Dojo's custom elements are built for evergreen browsers to reduce overall bundle size, meaning that most basic widgets are <20KB (gzipped) which includes all of the `@dojo` runtime needed to support the custom element.
 
-The `customElement` decorator annotates the widget class to convert it to a custom element:
+The `customElement` decorator annotates the widget class and instructs the cli build module to convert it to a custom element:
 
 ```typescript
 interface HelloWorldWidgetProperties {
@@ -123,31 +111,45 @@ Learn more about creating your first Dojo widgets in the [first Dojo 2 applicati
 
 CLI tools provide an easy way to work with frameworks, a trend that was popularized in the JS community by Ember. The [Dojo CLI](http://github.com/dojo/cli) is a collection of packages, providing a CLI architecture which enables a modular approach to create and work with commands.
 
-One of our goals in creating an easy out of the box experience with Dojo is to abstract users away from complex configuration by providing intelligent defaults internally. These defaults are easily overridden by experienced users who prefer something beyond our recommended default options.
+One of our goals in creating an easy out of the box experience with Dojo is to abstract users away from complex configuration by using intelligent defaults internally.
 
-To install the Dojo CLI, run the following command:
+To install the Dojo CLI, run the following command: `npm install -g @dojo/cli`
 
-`npm install -g @dojo/cli`
+There are currently six officially supported CLI command modules:
 
-The [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app) package provides powerful tools to code split dynamically imported widgets automatically. Support is planned for the near future to enable users to specify this purely by configuration.
+#### [`@dojo/cli-create-app`](http://github.com/dojo/cli-create-app)
 
-`@dojo/cli-build-app` also offers basic support for Build Time Rendering. During an application's build step, the command renders the application, extracts the resulting HTML into the application's index.html, and inlines critical CSS. Build time rendering is an early minimal viable version with more refinements to come. To enable build time rendering
+Creates a skeleton Dojo 2 application to get started with development, this includes all the Dojo 2 dependencies needed.
 
-* include a root element with an `id` (referenced as the `root` in the configuration below) in the `index.html`
-* use `projector.merge` over `projector.append`
-* add the following configuration to your project's `.dojorc`
-
-```typescript
-{
-  "build-app": {
-    "build-time-render": {
-      "root": "app"
-    }
-  }
-}
+```shell
+$ dojo create app --name my-first-dojo-2-app
 ```
 
-Use `@dojo/cli-build-app` in your Dojo 2 project by adding it as a dev dependency to your project's `package.json`.
+#### [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app)
+
+A command to build you Dojo 2 application with basic command lines options to specify the target development or production, start the command in watch mode and even create a basic http server to serve the application locally.
+
+cli-build-app also provides powerful tools such as automatic code splitting for dynamically imported widgets automatically and Build Time Rendering.
+
+#### [`@dojo/cli-test-intern`](http://github.com/dojo/cli-test-intern)
+
+A unit and functional testing command for Dojo 2 application using Intern. With support to run tests on popular services such as Browserstack, Saucelabs and TestingBot.
+
+#### [`@dojo/cli-build-widget`](http://github.com/dojo/cli-build-widget)
+
+The cli-build-widget command enables consumers to compile one or more of their Dojo 2 widgets to custom elements.
+
+#### [`@dojo/cli-create-widget`](http://github.com/dojo/cli-create-widget)
+
+Creates a skeleton Dojo 2 widget module and all associated meta files.
+
+#### [`@dojo/cli-create-theme`](http://github.com/dojo/cli-create-theme)
+
+Creates a skeleton Dojo 2 theme from your chosen projects dependencies.
+
+Ultimately, each of the commands require zero configuration to get started, with only some advanced features requiring some additional configuration via a project's `.dojorc` file.
+
+To use any of the CLI commands in your Dojo 2 project by adding it as a dev dependency to your project's `package.json`.
 
 Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://dojo.io/tutorials/000_local_installation/).
 
