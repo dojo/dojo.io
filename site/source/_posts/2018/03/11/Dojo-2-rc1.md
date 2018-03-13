@@ -59,8 +59,8 @@ interface ImageListProperties {
 export class ImageList extends WidgetBase<ImageListProperties> {
 	protected render() {
 		const { images } = this.properties;
-			return v('div', images.map((image) => {
-				return v('ul', { key: image }, [ w(Image, { image } )]);
+		return v('div', images.map((image) => {
+			return v('ul', { key: image }, [ w(Image, { image } )]);
 		}));
 	}
 }
