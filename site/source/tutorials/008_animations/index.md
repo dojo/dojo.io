@@ -377,7 +377,8 @@ import { w } from '@dojo/widget-core/d';
 // add the variable and then change event
 private _zombieLegsPlaybackRate = 1;
 
-private _onZombieLegsPlaybackRateChange(value: string) {
+private _onZombieLegsPlaybackRateChange(event: Event) {
+	const value = (event.target as HTMLInputElement).value;
 	this._zombieLegsPlaybackRate = parseFloat(value);
 	this.invalidate();
 }

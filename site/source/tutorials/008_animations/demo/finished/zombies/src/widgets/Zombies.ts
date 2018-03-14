@@ -153,7 +153,8 @@ export class Zombies extends WidgetBase {
 		return hearts;
 	}
 
-	private _onZombieLegsPlaybackRateChange(value: string) {
+	private _onZombieLegsPlaybackRateChange(event: Event) {
+		const value = (event.target as HTMLInputElement).value;
 		this._zombieLegsPlaybackRate = parseFloat(value);
 		this.invalidate();
 	}
