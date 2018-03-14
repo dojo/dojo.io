@@ -2,7 +2,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
 import { VNode } from '@dojo/widget-core/interfaces';
-import Slider from '@dojo/widgets/slider';
+import Slider from '@dojo/widgets/slider/Slider';
 
 import * as css from './styles/zombies.m.css';
 
@@ -153,7 +153,8 @@ export class Zombies extends WidgetBase {
 		return hearts;
 	}
 
-	private _onZombieLegsPlaybackRateChange(value: string) {
+	private _onZombieLegsPlaybackRateChange(event: Event) {
+		const value = (event.target as HTMLInputElement).value;
 		this._zombieLegsPlaybackRate = parseFloat(value);
 		this.invalidate();
 	}
