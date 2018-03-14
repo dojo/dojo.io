@@ -185,7 +185,7 @@ Dojo 2 also makes it easy to support other patterns such as those popularized by
 
 ## Documentation and examples
 
-To get started, we have a [series of Dojo tutorials and documentation](https://dojo.io/docs/fundamentals/accessibility/index.html) ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these, all Dojo 2 packages have detailed READMEs.
+To get started, we have a [series of Dojo tutorials](https://dojo.io/tutorials/) and [reference documentation](https://dojo.io/docs/fundamentals/accessibility/index.html) ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these resources, all Dojo 2 packages have detailed READMEs.
 
 We've created a variety of examples of Dojo 2 usage:
 
