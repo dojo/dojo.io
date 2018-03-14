@@ -23,7 +23,7 @@ There are plenty of [articles comparing frameworks](https://www.sitepen.com/blog
 
 So what are Dojo's primary focus and advantages? It is an ergonomic way to build reactive enterprise web apps with TypeScript and numerous modern web standards and best practices, with an easy to use widget system and widget library, and other vital architectural components including routing, data stores, and much more.
 
-## Author widgets with `@dojo/widget-core`
+## Author widgets with @dojo/widget-core
 
 Dojo has always emphasized the creation of widgets, and Dojo 2's [`@dojo/widget-core`](http://github.com/dojo/widget-core) package creates an environment providing developers with simple ergonomics allowing them to build robust applications. Leveraging a modern and reactive, uni-directional approach to data binding with a virtual DOM, `@dojo/widget-core` streamlines the process of creating widgets and apps.
 
@@ -121,7 +121,7 @@ To install the Dojo CLI, run the following command: `npm install -g @dojo/cli`
 
 There are currently six officially supported CLI command modules:
 
-#### [`@dojo/cli-create-app`](http://github.com/dojo/cli-create-app)
+#### [@dojo/cli-create-app](http://github.com/dojo/cli-create-app)
 
 Creates a skeleton Dojo 2 application to get started with development and includes all the Dojo 2 dependencies needed.
 
@@ -129,25 +129,25 @@ Creates a skeleton Dojo 2 application to get started with development and includ
 $ dojo create app --name my-first-dojo-2-app
 ```
 
-#### [`@dojo/cli-build-app`](http://github.com/dojo/cli-build-app)
+#### [@dojo/cli-build-app](http://github.com/dojo/cli-build-app)
 
 A command to build your Dojo 2 application with basic command line options to specify the target development or production, start the command in watch mode and even create a basic http server to serve the application locally.
 
 cli-build-app also provides powerful tools to code split dynamically imported widgets automatically and Build Time Rendering.
 
-#### [`@dojo/cli-test-intern`](http://github.com/dojo/cli-test-intern)
+#### [@dojo/cli-test-intern](http://github.com/dojo/cli-test-intern)
 
 A unit and functional testing command for Dojo 2 application using [Intern](https://theintern.io/), with support to run tests on popular services such as Browserstack, Saucelabs and TestingBot.
 
-#### [`@dojo/cli-build-widget`](http://github.com/dojo/cli-build-widget)
+#### [@dojo/cli-build-widget](http://github.com/dojo/cli-build-widget)
 
 The cli-build-widget command enables consumers to build custom elements from one or more of their Dojo 2 widgets.
 
-#### [`@dojo/cli-create-widget`](http://github.com/dojo/cli-create-widget)
+#### [@dojo/cli-create-widget](http://github.com/dojo/cli-create-widget)
 
 Creates a skeleton Dojo 2 widget module and all associated meta files.
 
-#### [`@dojo/cli-create-theme`](http://github.com/dojo/cli-create-theme)
+#### [@dojo/cli-create-theme](http://github.com/dojo/cli-create-theme)
 
 Creates a skeleton Dojo 2 theme from your chosen project's dependencies.
 
@@ -185,13 +185,13 @@ Dojo 2 also makes it easy to support other patterns such as those popularized by
 
 ## Documentation and examples
 
-To get started, we have a [series of Dojo tutorials and documentation](https://dojo.io/docs/) ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these, all Dojo 2 packages have detailed READMEs.
+To get started, we have a [series of Dojo tutorials](https://dojo.io/tutorials/) and [reference documentation](https://dojo.io/docs/fundamentals/accessibility/index.html) ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these resources, all Dojo 2 packages have detailed READMEs.
 
 We've created a variety of examples of Dojo 2 usage:
 
 * [TodoMVC](https://dojo.github.io/examples/todo-mvc/) - TodoMVC is the canonical example used to demonstrate fundamental web application paradigms
 * [TodoMVC kitchen sink](https://dojo.github.io/examples/todo-mvc-kitchensink/) - Our extension of TodoMVC used to illustrate a selection of Dojo 2 specific capabilities such as theming and internationalization.
-* [RealWorld](https://github.com/gothinkster/dojo2-realworld-example-app) - A full web application example with authentication, code splitting, state management, routing and more.
+* [RealWorld](https://dojo.github.io/examples/realworld/) - A full web application example with authentication, code splitting, state management, routing and more.
 * [HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/) - The spiritual successor to TodoMVC, Hacker News PWA is designed to demonstrate progressive web app capabilities with a focus on providing a fast, reliable experience with rich offline support
 * [Custom element menus](https://dojo.github.io/examples/custom-element-menu/) - Demonstrates using Dojo 2 widgets both natively and as a custom element without needing to adapt the authoring pattern.
 
