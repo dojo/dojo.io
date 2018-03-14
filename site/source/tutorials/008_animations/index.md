@@ -371,7 +371,7 @@ Let's add slider widgets to our page to change the speed of the zombie shuffle a
 
 ``` typescript
 // add the imports
-import Slider from '@dojo/widgets/slider/Slider';
+import Slider from '@dojo/widgets/slider';
 import { w } from '@dojo/widget-core/d';
 
 // add the variable and then change event
