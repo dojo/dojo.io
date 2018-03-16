@@ -54,12 +54,11 @@
 		var section = document.querySelector('.intersection-observers');
 		var foreground = section.querySelector('.foreground');
 		var background = section.querySelector('.background');
-		var contentWrapper = document.querySelector('.content-wrapper');
 		var reticle = section.querySelector('.reticle');
 		var squares = section.querySelectorAll('.square');
 
 		var reactivateTime = null;
-		contentWrapper.addEventListener('scroll', function (e) {
+		window.addEventListener('scroll', function (e) {
 			var boundingRect = section.getBoundingClientRect();
 			var heightInViewport = window.innerHeight - boundingRect.top;
 			var isShowing = heightInViewport > 0 && boundingRect.bottom > 0;
