@@ -13,6 +13,12 @@ export = function (grunt: IGrunt) {
 		const { src: [ siteDirectory ] } = this.files[0];
 		const configs = [ '_config.yml' ];
 		const options = this.options<any>({});
+		const flags = [];
+
+		if (grunt.option('watch')) {
+			flags.push('-w');
+		}
+
 		const overrideRoot = env.hexoRootOverride();
 
 		if (options.overrides || overrideRoot) {
@@ -28,7 +34,8 @@ export = function (grunt: IGrunt) {
 
 		await hexo({
 			configs,
-			siteDirectory
+			siteDirectory,
+			flags
 		});
 	}
 

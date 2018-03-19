@@ -14,6 +14,12 @@ Published to GitHub Pages and [Dojo.io](http://dojo.io).
 1. `grunt webserv`
 1. open [http://localhost:8888](localhost:8888)
 
+## Development
+
+To have hexo regenerate when files change run:
+
+1. `grunt hexo --watch`
+
 ## Adding Content
 
 ### Writing a Blog
