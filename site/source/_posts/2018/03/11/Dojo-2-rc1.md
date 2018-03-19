@@ -93,7 +93,7 @@ interface HelloWorldProperties {
 
 @customElement({
 	tag: 'hello-world',
-	attribute: [ 'foo', 'bar' ],
+	attributes: [ 'foo', 'bar' ],
 	events: [ 'onClick' ]
 })
 class HelloWorld extends WidgetBase<HelloWorldProperties> {
