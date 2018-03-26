@@ -23,13 +23,13 @@
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> HelloWorld<span class="token punctuation">;</span>
 </code></pre>
-<ol>
+<ol start="2">
 <li>Import the dependencies for your test. This is the start of a new test file which has only one external dependency: <code>proxyquire</code>. The <code>proxyquire</code> module intercepts all of your module imports in a file, <code>proxyquire</code> then offers an API to mock each of these imports for the purpose of test isolation.</li>
 </ol>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> assert <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'assert'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> proxyquire <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'proxyquire'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">noCallThru</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<ol>
+<ol start="3">
 <li>Provide the stubs:</li>
 </ol>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> invalidateCalled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
@@ -56,12 +56,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <li><code>key</code>: A string which represents the string identifier used in the original import</li>
 <li><code>value</code>: A data type which is returned in place of the original imported module</li>
 </ul>
-<ol>
+<ol start="4">
 <li>Within your test file, require your widget through the <code>proxyquire</code> API and pass in the necessary stubs as defined in step 3:</li>
 </ol>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> HelloWorld <span class="token operator">=</span> <span class="token function">proxyquire</span><span class="token punctuation">(</span><span class="token string">'./HelloWorld'</span><span class="token punctuation">,</span> stubs<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<ol>
+<ol start="5">
 <li>Invoke the necessary methods on your widget so you can make assertions:</li>
 </ol>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> widget <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

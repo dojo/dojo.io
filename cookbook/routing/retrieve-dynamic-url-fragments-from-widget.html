@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ObjectiveThis recipe demonstrates how you can inspect dynamic URL parameters through the routing ecosystem in Dojo 2. This recipe also shows how to provide these dynamic URL parameters to a widget. Pr">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-25T21:29:56.655Z">
+<meta property="og:updated_time" content="2018-03-26T21:34:38.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Get the dynamic components of a URL from within a widget">
 <meta name="twitter:description" content="ObjectiveThis recipe demonstrates how you can inspect dynamic URL parameters through the routing ecosystem in Dojo 2. This recipe also shows how to provide these dynamic URL parameters to a widget. Pr">
@@ -87,16 +87,16 @@ ga('send', 'pageview');
 				<li
 					
 				>
-					<a href="/cookbook/modern-web-apps/efficient-state-management.html">
-						Manage state in your application
+					<a href="/cookbook/modern-web-apps/drag-info.html">
+						Access drag information
 					</a>
 				</li>
 			
 				<li
 					
 				>
-					<a href="/cookbook/modern-web-apps/drag-info.html">
-						Access drag information
+					<a href="/cookbook/modern-web-apps/efficient-state-management.html">
+						Manage state in your application
 					</a>
 				</li>
 			
@@ -143,16 +143,16 @@ ga('send', 'pageview');
 				<li
 					
 				>
-					<a href="/cookbook/rendering/use-jsx-templating.html">
-						Use JSX templating
+					<a href="/cookbook/rendering/get-rendered-dimensions-element.html">
+						Get the rendered dimensions of an element
 					</a>
 				</li>
 			
 				<li
 					
 				>
-					<a href="/cookbook/rendering/get-rendered-dimensions-element.html">
-						Get the rendered dimensions of an element
+					<a href="/cookbook/rendering/use-jsx-templating.html">
+						Use JSX templating
 					</a>
 				</li>
 			
@@ -223,6 +223,22 @@ ga('send', 'pageview');
 		</ul>
 	
 	<p class="menu-label">
+			testing
+		</p>
+
+		<ul class="menu-list">
+			
+				<li
+					
+				>
+					<a href="/cookbook/testing/mocking-imports.html">
+						Test and mock the imports of a widget
+					</a>
+				</li>
+			
+		</ul>
+	
+	<p class="menu-label">
 			widgets
 		</p>
 
@@ -263,16 +279,16 @@ ga('send', 'pageview');
 				<li
 					
 				>
-					<a href="/cookbook/widgets/render-built-in-dojo-widget.html">
-						Render a built-in Dojo 2 widget
+					<a href="/cookbook/widgets/render-array.html">
+						Render a list from an array
 					</a>
 				</li>
 			
 				<li
 					
 				>
-					<a href="/cookbook/widgets/render-array.html">
-						Render a list from an array
+					<a href="/cookbook/widgets/render-built-in-dojo-widget.html">
+						Render a built-in Dojo 2 widget
 					</a>
 				</li>
 			
@@ -302,22 +318,6 @@ ga('send', 'pageview');
 			
 		</ul>
 	
-	<p class="menu-label">
-			testing
-		</p>
-
-		<ul class="menu-list">
-			
-				<li
-					
-				>
-					<a href="/cookbook/testing/mocking-imports.html">
-						Test and mock the imports of a widget
-					</a>
-				</li>
-			
-		</ul>
-	
 </aside>
 
 			</div>
@@ -332,7 +332,7 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Note: You can learn how to apply the above routing configuration within a Dojo 2 app in the <a href="https://dojo.io/cookbook/routing/render-widget-url" target="_blank" rel="noopener">‘Render URL aware widgets’ recipe</a>.</p>
-<ol>
+<ol start="2">
 <li>Define an outlet and provide a callback function which returns the properties the wrapped widget expects:</li>
 </ol>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">const</span> ContactWidgetOutlet <span class="token operator">=</span> <span class="token function">Outlet</span><span class="token punctuation">(</span>ContactWidget<span class="token punctuation">,</span> <span class="token string">'contact page'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>params<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -341,7 +341,7 @@ ga('send', 'pageview');
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<ol>
+<ol start="3">
 <li><p>Visit the URL: <code>http://localhost:9999/#contact/person-1</code></p>
 </li>
 <li><p>Your <code>ContactWidget</code> receives the object which the outlet returns:</p>
@@ -353,7 +353,7 @@ ga('send', 'pageview');
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<ol>
+<ol start="5">
 <li>Observe the callback passed to the <code>Outlet()</code> function is invoked with an object argument containing a <code>params</code> property.</li>
 </ol>
 <h2 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h2><ul>
