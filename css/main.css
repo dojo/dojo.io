@@ -14587,7 +14587,7 @@ body {
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 0 auto;
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 2em; }
