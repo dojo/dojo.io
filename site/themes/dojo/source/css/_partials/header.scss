@@ -1,8 +1,14 @@
 .header {
 	background: $header-background;
+	padding: 0.75rem;
 	position: fixed;
 	width: 100%;
 	z-index: 9999;
+
+	@media screen and (max-width: $mobile-break) {
+		padding: 0.5rem;
+	}
+
 }
 
 .navbar {
@@ -15,7 +21,13 @@
 	}
 
 	.navbar-item {
-		@include default-transition();
+		//@include default-transition();
+		text-transform: uppercase;
+		font-size: 0.9rem;
+
+		img {
+			max-height: 2rem;
+		}
 	}
 
 	.site-logo {

@@ -1,30 +1,12 @@
 <section class="section">
 	<div class="container">
-		<%- page.content %>
-		<div class="columns is-mobile is-multiline">
-		<%
-			var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
-			tuts = _.orderBy(tuts, ['path']);
-
-			_.each(tuts, function(tut) {
-				// remove index.html from the path to make relative URLs work consistently
-				var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
-		%>
-			<div class="column is-12-mobile is-6-tablet is-4-desktop is-3-widescreen">
-				<div class="card is-full-height">
-					<a href="<%- url_for(urlRaw) %>">
-						<div class="card-content">
-							<h4 class="is-size-6"><%- tut.title %></h4>
-							<div class="content is-size-7">
-								<%- tut.overview %>
-							</div>
-						</div>
-					</a>
-				</div>
+		<div class="columns">
+			<div class="column is-3">
+				<%- partial('_partial/tutorials-nav') %>	
 			</div>
-		<%
-			});
-		%>
+			<div class="column is-9 article">
+				<%- page.content %>
+			</div>
 		</div>
 	</div>
 </section>

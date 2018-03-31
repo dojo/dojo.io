@@ -1,48 +1,5 @@
 <aside class="menu">
-		<%
-		var docRegex = /docs/;
-		var categoryRegex = /docs\/(.*?)\//;
-
-		var docs = _.filter(site.pages.data, function (page) {
-			return docRegex.test(page.path) && page.path !== 'docs/index.html';
-		});
-		var categories = {};
-		docs.forEach(function (doc) {
-			var match = categoryRegex.exec(doc.path);
-			if (match) {
-				var categoryName = match[1];
-				if (!categories[categoryName]) {
-					categories[categoryName] = [];
-				}
-				categories[categoryName].push(doc);
-			}
-		});
-
-		for (var idx in categories) {
-			var categoryName = idx.replace(/\-/g, ' ');
-	%>
-	<p class="menu-label">
-			<%- categoryName %>
-		</p>
-
+	<p class="menu-label"></p>
 		<ul class="menu-list">
-			<%
-				_.each(categories[idx], function(doc) {
-					// remove index.html from the path to make relative URLs work consistently
-					var urlRaw = doc.path.substr(0, doc.path.length - 10 /* length of 'index.html' */);
-			%>
-				<li
-					<% if (url_for(doc.path) == url_for(path)) { %>class="active" <% } %>
-				>
-					<a href="<%- url_for(doc.path) %>">
-						<%- doc.title %>
-					</a>
-				</li>
-			<%
-				});
-			%>
-		</ul>
-	<%
-		}
-	%>
+		</ul>	
 </aside>

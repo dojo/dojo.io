@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.6.0"
+    "version": "3.7.0"
   },
   "dependencies": {
     "animate-scss": "^3.2.1",
-    "bulma": "^0.5.1",
+    "bulma": "^0.6.2",
     "headroom.js": "^0.9.3",
     "hexo": "^3.3.9",
     "hexo-authors": "^0.1.0",
@@ -30,6 +30,7 @@
     "markdown-it-classy": "^0.2.0",
     "markdown-it-container": "^2.0.0",
     "markdown-it-highlightjs": "^3.0.0",
+    "normalize.css": "^8.0.0",
     "soupselect": "^0.2.0",
     "typesettings": "^4.0.0"
   },

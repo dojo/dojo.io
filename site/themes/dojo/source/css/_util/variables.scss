@@ -1,5 +1,5 @@
 // Colors
-$page-background: #fafafa;
+$page-background: #ffffff;
 
 $color-default: rgba(0,0,0,0.8);
 $color-meta: $color-default;
@@ -22,7 +22,7 @@ $color-inline-code: #353535;
 $code-font-size: 0.85rem;
 
 // Component style variables
-$header-background: #222127;
+$header-background: #212329;
 $footer-background: #fff;
 $paginator-background: $light;
 
@@ -45,7 +45,7 @@ $article-max-width: 900px;
 /* https://github.com/ianrose/typesettings */
 
 $heading-font: 'Roboto Slab', serif;
-$default-font: 'Lato', sans-serif;
+$default-font: "Oxygen", sans-serif;
 $font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 $font-code: $font-mono;
 $font-sans: $default-font;
