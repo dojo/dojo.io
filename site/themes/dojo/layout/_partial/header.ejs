@@ -1,24 +1,18 @@
-<header class="header">
-	<div class="container">
-		<nav class="navbar" role="navigation" aria-label="main navigation">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky animation: uk-animation-slide-top">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a>
 			</div>
-			<div class="navbar-menu">
+			<div class="uk-navbar-right">
 				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+				<ul class="uk-navbar-nav">
+					<li><a class="navbar-item" href="/docs/index.html">Docs</a></li>
+					<li><a class="navbar-item" href="/tutorials">Tutorials</a></li>
+					<li><a class="navbar-item" href="/blog">Blog</a></li>
+					<li><a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a></li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>

@@ -32,7 +32,8 @@
     "markdown-it-highlightjs": "^3.0.0",
     "normalize.css": "^8.0.0",
     "soupselect": "^0.2.0",
-    "typesettings": "^4.0.0"
+    "typesettings": "^4.0.0",
+    "uikit": "^3.0.0-beta.40"
   },
   "devDependencies": {
     "s-grid": "^1.2.0"

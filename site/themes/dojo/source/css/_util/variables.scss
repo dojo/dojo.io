@@ -1,4 +1,12 @@
 // Colors
+$primary: #459DF8;
+$link: darken($primary, 5%);
+$link-hover: $primary;
+$light: #fff;
+$dark: #999;
+$card-color: #fff;
+$success: green;
+
 $page-background: #ffffff;
 
 $color-default: rgba(0,0,0,0.8);
@@ -26,6 +34,8 @@ $header-background: #212329;
 $footer-background: #fff;
 $paginator-background: $light;
 
+$navbar-background: $header-background;
+
 $header-height: 3.25rem;
 $header-offset: $header-height;
 $footer-offset: 3.25rem;
@@ -51,11 +61,3 @@ $font-code: $font-mono;
 $font-sans: $default-font;
 $font-serif: $heading-font;
 $text-color: $color-default;
-$base-vertical-unit: 8px;
-$base-line-multi: 4;
-$base-font-size: 18px;
-$ms-ratio: 1.250;
-$min-width: 600px;
-$paragraph-indent: false;
-$paragraph-justify: true;
-$load-typesetted: true;
