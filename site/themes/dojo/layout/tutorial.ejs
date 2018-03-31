@@ -1,13 +1,14 @@
-<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#"><%- page.title %></a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<%- page.content %>
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
+<section class="section">
+	<div class="container">
+		<div class="uk-offcanvas-content">
+			<div class="sidebar-left uk-visible@m">
+				<%- partial('_partial/tutorials-nav') %>
+			</div>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative">
+					<%- page.content %>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
+</section>

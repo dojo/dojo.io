@@ -18,7 +18,7 @@ body {
 	flex: 1 0 auto;
 	overflow-y: auto;
 	overflow-x: hidden;
-	margin-top: 2em;
+	margin-top: 0;
 
 	@media screen and (max-width: $mobile-break) {
 		overflow-y: scroll;
@@ -35,6 +35,28 @@ body {
 	}
 }
 
-.sidenav .uk-nav {
+@media (min-width: 1400px) {
+	.sidebar-left {
+		width: $sidenav-width !important;
+		padding: 45px 45px 60px 45px;
+	}
+}
+
+@media (min-width: 960px) {
+	
+}
+
+.sidebar-left {
 	position: fixed;
+	top: 80px;
+	bottom: 0;
+	box-sizing: border-box;
+	width: $sidenav-width !important;
+	padding: 40px 40px 60px 40px;
+	border-right: 1px #e5e5e5 solid;
+	overflow: auto;
+
+	& + .uk-section {
+		padding-left: $sidenav-width;
+	}
 }

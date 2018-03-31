@@ -1,11 +1,13 @@
 <section class="section">
 	<div class="container">
-		<div class="columns">
-			<div class="column is-3">
+		<div class="uk-offcanvas-content">
+			<div class="sidebar-left uk-visible@m">
 				<%- partial('_partial/docs-nav') %>
 			</div>
-			<div class="column is-9 article">
-				<%- page.content %>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative">
+					<%- page.content %>
+				</div>
 			</div>
 		</div>
 	</div>

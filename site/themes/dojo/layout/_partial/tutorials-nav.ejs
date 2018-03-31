@@ -1,25 +1,24 @@
-<div class="uk-container">
-	<ul class="uk-nav uk-nav-default">
-		<li class="uk-nav-header">Getting Started</li>
-		<li class="uk-nav-divider"></li>
+<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
 
-		<%
-			var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
-			tuts = _.orderBy(tuts, ['path']);
+	<%
+		var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
+		tuts = _.orderBy(tuts, ['path']);
 
-			_.each(tuts, function(tut, idx) {
-				// remove index.html from the path to make relative URLs work consistently
-				var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
-				if(idx == 7) {
-		%>
-				<li class="uk-nav-header">Advanced</li>
-				<li class="uk-nav-divider"></li>
-		<%
-				}
-		%>
-				<li><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></li>
-		<%
-			});
-		%>
-	</ul>
-</div>
+		_.each(tuts, function(tut, idx) {
+			// remove index.html from the path to make relative URLs work consistently
+			var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
+			if(idx == 7) {
+	%>
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	<%
+			}
+	%>
+			<li><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></li>
+	<%
+		});
+	%>
+</ul>
