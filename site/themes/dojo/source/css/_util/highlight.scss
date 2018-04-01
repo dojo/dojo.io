@@ -1,0 +1,41 @@
+code {
+    background: rgba(27,31,35,0.05);
+    border: 0;
+	padding: .125rem .375rem .1875rem .375rem;
+}
+
+pre code {
+	background: transparent;
+}
+
+body :not(pre) > code[class*="language-"],
+body pre[class*="language-"],
+body code[class*="language-"], 
+body pre[class*="language-"] {
+    background: #F6F8FA;
+    border: 0;
+	color: #032f62;
+	font-family: $base-code-font-family;
+	font-weight: 400;
+
+	.token {
+		&.keyword {
+			color: #d73a49;
+		}
+		&.class-name {
+			color: #6f42c1;
+		}
+
+		&.function {
+			color: #005cc5;
+		}
+
+		&.string {
+			color: $color-inline-code;
+		}
+
+		&.comment {
+			color: #6a737d;
+		}
+	}
+}
