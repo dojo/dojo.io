@@ -1,19 +1,11 @@
+<% 
+	var ver = 'rc2';
+%>
 <ul class="uk-nav uk-nav-primary">
 	<h3>Docs</h3>
-	<li class="uk-nav-divider"></li>
-
-	<%	
-		var tuts = _.filter(site.pages.data, ['layout', 'docs']);
-		console.log(tuts);
-		tuts = _.orderBy(tuts, ['path']);
-
-		_.each(tuts, function(tut, idx) {
-			// remove index.html from the path to make relative URLs work consistently
-			var urlRaw = tut.path.substr(0, tut.path.length - 10 /* length of 'index.html' */);
-			
-	%>
-			<li><a href="<%- url_for(urlRaw) %>"><%- tut.title %></a></li>
-	<%
-		});
-	%>
+	<li class="uk-nav-divider">
+		<% for (var link in site.data.docs_menu) { %>
+			<a href="<%- url_for('docs/'+ver+'/'+site.data.docs_menu[link]) %>"> <%= link %> </a>
+		<% } %>
+	</li>
 </ul>

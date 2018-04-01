@@ -52,7 +52,7 @@ highlight:
 prism_plugin:
 	mode: 'preprocess'    # realtime/preprocess
 	theme: 'ghcolors'
-	line_number: false    # default false
+	line_number: true    # default false
 
 # Authors
 authors:
@@ -65,60 +65,7 @@ authors:
     name: Kitson Kelly
     email: kkelly@sitepen.com
 
-# Yet Another Stylus Renderer
-# https://github.com/celsomiranda/hexo-renderer-yasr
 
-yasr:
-  axis: true              # Enables Axis (Recommends Nib)
-  compress: false         # Disables Compression
-  jeet: false              # Enables Jeet
-  nib: true               # Enables Nib
-  rupture: true           # Enables Rupture
-  typographic: false       # Enables Typographic
-
-# Hexo Filter Cleanup
-# https://github.com/mamboer/hexo-filter-cleanup
-hfc_useref:
-  enable: true
-  concat: true
-  exclude:
-
-hfc_css:
-  enable: true
-  exclude:
-    - '*.min.css'
-    - '**/tutorials/**/*.m.css'
-
-hfc_js:
-  enable: true
-  mangle: true
-  output:
-  compress:
-  exclude:
-    - '*.min.js'
-
-hfc_html:
-  enable: true
-  exclude:
-
-hfc_img:
-  enable: true
-  interlaced: false
-  multipass: false
-  optimizationLevel: 2
-  pngquant: false
-  progressive: false
-  webp: true
-  webpQuality: 75
-  gifslice: true
-  jpegtran: true
-  jpegrecompress: false
-  jpegrecompressQuality: 'medium'
-  optipng: true
-  svgo: true
-
-hfc_favicons:
-  enable: false
 # Sass
 node_sass:
 	outputStyle: nested
@@ -146,6 +93,17 @@ time_format: HH:mm:ss
 ## Set per_page to 0 to disable pagination
 per_page: 15
 pagination_dir: page
+
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+  modifyAnchors: '1'
+  autolink: true
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
