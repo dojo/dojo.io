@@ -1,0 +1,30 @@
+.docs {
+    @media (min-width: 960px) {
+        .uk-section {
+            padding-top: 2.5rem;
+        }
+    }
+}
+
+.doc-detail {
+    max-width: 700px;
+
+    h1 {
+       // @extend .uk-heading-primary;
+
+        &:first-of-type {
+            & + p {
+                display: none;
+
+                & + p {
+                    @extend .uk-text-lead;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+
+    h2 {
+        @extend .uk-heading-divider;
+    }
+}
