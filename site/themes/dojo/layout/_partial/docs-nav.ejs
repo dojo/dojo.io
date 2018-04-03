@@ -1,11 +1,9 @@
-<% 
-	var ver = 'rc2';
-%>
 <ul class="uk-nav uk-nav-primary">
 	<h3>Docs</h3>
 	<li class="uk-nav-divider">
-		<% for (var link in site.data.docs_menu) { %>
-			<a href="<%- url_for('docs/'+ver+'/'+site.data.docs_menu[link]) %>"> <%= link %> </a>
+		<% for (var pkg in site.data.docs_menu) { %>
+			<a href="#<%= site.data.docs_menu[pkg].repo %>/<%= site.data.docs_menu[pkg].version %>"
+				class="repo-doc-link"><%= pkg %></a>
 		<% } %>
 	</li>
 </ul>

@@ -27,4 +27,10 @@
     h2 {
         @extend .uk-heading-divider;
     }
+
+    .anchor {
+        position: relative;
+        display: block;
+        top: -80px;
+    }
 }
