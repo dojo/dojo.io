@@ -57,6 +57,14 @@ body {
 	}
 }
 
+.uk-navbar .uk-navbar-left .uk-navbar-nav > li > a {
+	padding-left: 0;
+}
+
+#mobile-sidebar {
+	border-right: none;
+}
+
 @media (max-width: 960px) {
 	html, body {
 		font-size: $global-font-size * 0.9;

@@ -12,6 +12,8 @@
     h1 {
        // @extend .uk-heading-primary;
 
+       margin-top: 0;
+
         &:first-of-type {
             & + p {
                 display: none;

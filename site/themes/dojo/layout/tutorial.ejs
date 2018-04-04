@@ -4,6 +4,11 @@
 			<div class="sidebar-left uk-visible@m">
 				<%- partial('_partial/tutorials-nav') %>
 			</div>
+			<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+				<div class="uk-offcanvas-bar">
+					<%- partial('_partial/tutorials-nav') %>
+				</div>
+			</div>
 			<div class="uk-section uk-section-default">
 				<div class="uk-container uk-container-small uk-position-relative">
 					<%- page.content %>
