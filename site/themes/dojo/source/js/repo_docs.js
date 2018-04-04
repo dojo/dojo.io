@@ -89,33 +89,36 @@
 
 		// Add listeners to intercept nav link clicks
 		document.querySelectorAll('.repo-doc-link').forEach(function (link) {
-			var currentDocId = getDocId(location);
-
 			// Nav link hrefs are hashes; slice off the '#'
 			var hash = link.getAttribute('href').slice(1);
 
 			var linkDocId = getDocId(hash);
 			docs.push(linkDocId);
-
-			// If the current path is a doc link, load the referenced doc
-			if (linkDocId === currentDocId) {
-				renderDoc(hash);
-			}
 		});
 
 		window.addEventListener('hashchange', function (event) {
 			var hash = location.hash.slice(1);
-			if (hash.indexOf(currentDoc) !== 0) {
+
+			if (hash === currentDoc) {
+				// If the new hash is a base document ID, scroll back to the top
+				// of the doc
+				event.preventDefault();
+				resetScroll();
+			} else if (getDocId(hash) !== currentDoc) {
 				// If the new hash doesn't match the current document, render
 				// the new doc
 				event.preventDefault();
 				renderDoc(hash);
-			} else if (hash === currentDoc) {
-				// If the new hash is a base document ID, scroll back to the top
-				// of the doc
-				resetScroll();
 			}
+
+			// Otherwise just let the browser handle the event normally
 		});
+
+
+		// If the current path is a doc link, load the referenced doc
+		if (location.hash) {
+			renderDoc(location.hash);
+		}
 	}
 
 	/**
@@ -181,6 +184,9 @@
 						}
 					}
 				}
+			} else if (!/^https?:/.test(file)) {
+				// This is a relative link
+				hrefToken[1] = '#' + docId + '/' + file;
 			}
 
 			return defaultLinkRender(tokens, idx, options, env, self);
@@ -231,16 +237,21 @@
 	 * 'dojo/cli/master'.
 	 */
 	function renderDoc(hash) {
+		// Remove a leading #
+		hash = hash.replace(/^#/, '');
+
 		var parts = hash.split(sep);
 		var docId = parts[0];
-		var repo = docId.slice(0, docId.lastIndexOf('/'));
-		var version = docId.slice(repo.length + 1);
+		var idParts = docId.split('/');
+		var repo = idParts[0] + '/' + idParts[1];
+		var version = idParts[2];
+		var path = idParts.slice(3).join('/') || 'README.md';
 
 		// Set the location hash to the base document ID. It will be set back to
 		// its original value once the document is rendered.
 		location.hash = '#' + parts[0];
 
-		return docFetch(repo + '/' + version + '/README.md')
+		return docFetch(repo + '/' + version + '/' + path)
 			.then(function (text) {
 				var content = markdown.render(text, { docId: docId });
 				container.innerHTML = content;
