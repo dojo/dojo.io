@@ -255,6 +255,19 @@
 			.then(function (text) {
 				var content = markdown.render(text, { docId: docId });
 				container.innerHTML = content;
+
+				if (path !== 'README.md') {
+					// If we're not viewing the base README, add a link back to
+					// the parent package to the top of the doc, just for
+					// context.
+					const breadcrumbs = document.createElement('div');
+					const parent = document.createElement('a');
+					parent.href = '#' + repo + '/' + version;
+					parent.textContent = idParts[1];
+					breadcrumbs.appendChild(parent);
+					container.insertBefore(breadcrumbs, container.firstChild);
+				}
+
 				currentDoc = docId;
 				resetScroll();
 
