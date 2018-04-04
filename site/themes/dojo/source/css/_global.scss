@@ -21,7 +21,6 @@ body {
 	margin-top: 0;
 
 	@media screen and (max-width: $mobile-break) {
-		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -42,9 +41,6 @@ body {
 	}
 }
 
-@media (min-width: 960px) {
-	
-}
 
 .sidebar-left {
 	position: fixed;
@@ -58,5 +54,17 @@ body {
 
 	& + .uk-section {
 		padding-left: $sidenav-width;
+	}
+}
+
+@media (max-width: 960px) {
+	html, body {
+		font-size: $global-font-size * 0.9;
+	}
+
+	.sidebar-left {
+		& + .uk-section {
+			padding-left: 0;
+		}
 	}
 }
