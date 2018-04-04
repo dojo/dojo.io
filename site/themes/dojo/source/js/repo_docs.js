@@ -71,13 +71,18 @@
 	 */
 	function getDocId(locationOrHref) {
 		var hash;
+
 		if (typeof locationOrHref === 'string') {
+			// locationOrHref is the href from an anchor tag, so it will be a
+			// hash ref (like #dojo/cli/master)
 			hash = locationOrHref.slice(locationOrHref.indexOf('#') + 1);
 		} else {
+			// locationOrHref is a browser Location object
 			hash = locationOrHref.hash.slice(1);
 		}
 
 		// If the link references an in-page anchor, it will contain a `sep`
+		// character.
 		return hash.split(sep)[0];
 	}
 
@@ -90,10 +95,7 @@
 		// Add listeners to intercept nav link clicks
 		document.querySelectorAll('.repo-doc-link').forEach(function (link) {
 			// Nav link hrefs are hashes; slice off the '#'
-			var hash = link.getAttribute('href').slice(1);
-
-			var linkDocId = getDocId(hash);
-			docs.push(linkDocId);
+			docs.push(getDocId(link.getAttribute('href')));
 		});
 
 		window.addEventListener('hashchange', function (event) {
@@ -233,8 +235,8 @@
 	/**
 	 * Render a README for a particular repo and version.
 	 *
-	 * A doc ID has the format '<org>/<repo>/<version>'. It looks like
-	 * 'dojo/cli/master'.
+	 * A doc ID has the format '<org>/<repo>/<version>[/<path>]'. It looks like
+	 * 'dojo/cli/master' or 'dojo/core/master/docs/math.md'.
 	 */
 	function renderDoc(hash) {
 		// Remove a leading #
