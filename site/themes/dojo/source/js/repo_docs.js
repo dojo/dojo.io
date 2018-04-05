@@ -142,7 +142,6 @@
 		window.addEventListener('hashchange', function (event) {
 			event.preventDefault();
 			var hash = getHash();
-			console.log('hash changed to ' + hash);
 
 			if (hash === currentDoc) {
 				// If the new hash is a base document ID, scroll back to the top
