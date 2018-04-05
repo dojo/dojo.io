@@ -35,26 +35,40 @@ body {
 }
 
 @media (min-width: 1400px) {
-	.sidebar-left {
+	.sidebar-left, .sidebar-right {
 		width: $sidenav-width !important;
 		padding: 45px 45px 60px 45px;
 	}
 }
 
 
-.sidebar-left {
+.sidebar-left,
+.sidebar-right {
 	position: fixed;
 	top: 80px;
 	bottom: 0;
 	box-sizing: border-box;
 	width: $sidenav-width !important;
+	overflow: auto;
+}
+
+.sidebar-left {
 	padding: 40px 40px 60px 40px;
 	border-right: 1px #e5e5e5 solid;
-	overflow: auto;
+}
 
-	& + .uk-section {
-		padding-left: $sidenav-width;
-	}
+.sidebar-right {
+	right: 0;
+	padding: 40px 40px 60px 0;
+
+}
+
+.has-sidebar-left .uk-section {
+	padding-left: $sidenav-width;
+}
+
+.has-sidebar-right .uk-section {
+	padding-right: $sidenav-width;
 }
 
 .uk-navbar .uk-navbar-left .uk-navbar-nav > li > a {
@@ -70,9 +84,11 @@ body {
 		font-size: $global-font-size * 0.9;
 	}
 
-	.sidebar-left {
-		& + .uk-section {
-			padding-left: 0;
-		}
+	.has-sidebar-left .uk-section {
+		padding-left: 0;
+	}
+
+	.has-sidebar-right .uk-section {
+		padding-right: 0;
 	}
 }

@@ -30,9 +30,26 @@
         @extend .uk-heading-divider;
     }
 
-    .anchor {
+    h2, h3, h4 {
+        cursor: pointer;
         position: relative;
-        display: block;
-        top: -80px;
+
+        [uk-icon] {
+            display: none;
+        }
+
+        &:hover [uk-icon] {
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: -25px;
+            transform: translateY(-50%);
+        }
+    }
+
+    h2 {
+        &:hover [uk-icon] {
+            top: 40%;
+        }
     }
 }

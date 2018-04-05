@@ -2,7 +2,7 @@
 	<h3>Docs</h3>
 	<li class="uk-nav-divider">
 		<% for (var pkg in site.data.docs_menu) { %>
-			<a href="#<%= site.data.docs_menu[pkg].repo %>/<%= site.data.docs_menu[pkg].version %>"
+			<a href="#<%= site.data.docs_menu[pkg].repo.split('/').join('__') %>__<%= site.data.docs_menu[pkg].version %>"
 				class="repo-doc-link"><%= pkg %></a>
 		<% } %>
 	</li>
