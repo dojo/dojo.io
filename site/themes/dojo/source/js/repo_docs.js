@@ -16,6 +16,9 @@
 	// The currently visible doc
 	var currentDoc;
 
+	// TOC entries will be created for H2 - H<maxTocLevel> tags (inclusive)
+	var maxTocLevel = 4;
+
 	// Get the doc container based on the location of this script in the DOM
 	var thisScript = document.currentScript;
 	var container = thisScript.parentElement;
@@ -68,7 +71,9 @@
 
 	/**
 	 * Convert a doc ID (org/project/version) to a DOM-compatible ID
-	 * (org__project__version)
+	 * (org__project__version). This is necessary because UIkit uses the IDs as
+	 * CSS selectors for menus and scrolling, and '/' isn't valid in CSS
+	 * selectors.
 	 */
 	function docIdToDomId(docId) {
 		return docId.replace(/\//g, '__');
@@ -83,8 +88,11 @@
 	}
 
 	/**
-	 * Locate and remove a table-of-contents from a README. Return the TOC
+	 * Locate and remove a table of contents from a README. Return the TOC
 	 * element.
+	 *
+	 * For this method's purposes, a "table of contents" is a list of links
+	 * within the first 10 nodes of a document.
 	 */
 	function extractToc(elem) {
 		var child;
@@ -92,7 +100,7 @@
 		// Look through the first few elements for a likely candidate
 		for (var i = 0; i < 10; i++) {
 			child = elem.children[i];
-			if (child && isListOfLinks(child)) {
+			if (child && isToc(child)) {
 				child.parentNode.removeChild(child);
 				return child;
 			}
@@ -100,8 +108,12 @@
 	}
 
 	/**
-	 * Return a doc ID corresponding to a location or href string. Currently, a
-	 * doc ID is just the hash part of a URL.
+	 * Return a doc ID corresponding to a location or href string. For example,
+	 * the doc ID corresponding to
+	 *
+	 * 	 http://localhost:8888/docs/index.html#dojo__routing__master--router
+	 *
+	 * would be 'dojo/routing/master'.
 	 */
 	function getDocId(locationOrHref) {
 		var hash;
@@ -117,7 +129,10 @@
 
 		// If the link references an in-page anchor, it will contain a `sep`
 		// character.
-		return hash.split(sep)[0];
+		const id = hash.split(sep)[0];
+
+		// The hash will be a DOM-combatible ID
+		return domIdToDocId(id);
 	}
 
 	/**
@@ -133,10 +148,20 @@
 	function init() {
 		initMarkdownRenderer();
 
-		// Add listeners to intercept nav link clicks
 		document.querySelectorAll('.repo-doc-link').forEach(function (link) {
 			// Nav link hrefs are hashes; slice off the '#'
 			docs.push(getDocId(link.getAttribute('href')));
+
+			link.addEventListener('click', function (event) {
+				// Consume a nav link event click when the target URL is for the
+				// currently visible doc. This keeps the browser from making the
+				// scroll position jump around.
+				var eventId = getDocId(event.target.href);
+				if (eventId === currentDoc) {
+					event.preventDefault();
+					resetScroll();
+				}
+			});
 		});
 
 		window.addEventListener('hashchange', function (event) {
@@ -164,6 +189,17 @@
 			const target = event.target;
 			if (/H[2-4]/.test(target.tagName)) {
 				setHash(target.id);
+			}
+		});
+
+		// UIkit will emit a 'scrolled' event when an anchor has been scrolled
+		// to using UIkit's scrolling functionality
+		document.body.addEventListener('scrolled', function (event) {
+			var hash = event.target.hasAttribute('href') ?
+				event.target.getAttribute('href') :
+				'#' + event.target.id;
+			if (hash !== location.hash) {
+				history.pushState({}, '', hash);
 			}
 		});
 
@@ -232,7 +268,8 @@
 					var repo = match[1] + '/' + match[2];
 					for (var i = 0; i < docs.length; i++) {
 						if (docs[i].indexOf(repo) === 0) {
-							hrefToken[1] = '#' + docs[i] + sep + hash;
+							hrefToken[1] = '#' + docIdToDomId(docs[i]) + sep +
+								hash;
 							break;
 						}
 					}
@@ -248,19 +285,25 @@
 		// Generate heading IDs for TOC links
 		rules.heading_open = function (tokens, idx, _options, env) {
 			var token = tokens[idx];
+			var level = Number(token.tag.slice(1));
 			var content = tokens[idx + 1].content;
-			var id = content;
 			var domId = docIdToDomId(env.docId);
-			var anchorId = domId + sep + slugify(id);
+			
+			// The page title is given the ID of the page itself. This allows
+			// the H1 to be targetted by UIkit's scrolling code to smooth scroll
+			// to the top of the page when necessary. Everything lower is given
+			// a heading-specific ID.
+			var anchorId = domId;
+			if (level > 1) {
+				anchorId += sep + slugify(content);
+			}
 
-			// Create a separate <a> link above the heading tag. This allows us
-			// to position the anchor some distance above the heading, so that
-			// when the user clicks an anchor link the heading itself will be
-			// visible (not hidden under the top bar).
-			// return '<a class="anchor" id="' + anchorId + '"></a><' + token.tag + '>';
-			var icon = token.tag.toLowerCase() !== 'h1' ?
-				'<span uk-icon="icon: link"></span>' :
-				'';
+			// Links that show up on the TOC get a link icon that shows up when
+			// the heading is hovered over.
+			var icon = '';
+			if (level > 1 && level <= maxTocLevel) {
+				icon = '<span uk-icon="icon: link"></span>';
+			}
 			return '<' + token.tag + ' id="' + anchorId + '">' + icon;
 		};
 	}
@@ -290,7 +333,7 @@
 	/**
 	 * Return true if the given element appears to be a Table of Contents
 	 */
-	function isListOfLinks(elem) {
+	function isToc(elem) {
 		if (elem.tagName !== 'UL') {
 			return false;
 		}
@@ -310,7 +353,7 @@
 			if (sublist && sublist.tagName !== 'UL') {
 				return false;
 			}
-			if (sublist && !isListOfLinks(sublist)) {
+			if (sublist && !isToc(sublist)) {
 				return false;
 			}
 			child = child.nextElementSibling;
@@ -323,9 +366,16 @@
 	 * Create a Table of Contents for a doc
 	 */
 	function makeToc() {
-		var headings = container.querySelectorAll('h2,h3,h4');
+		var tags = ['h2'];
+		for (var i = 3; i <= maxTocLevel; i++) {
+			tags.push('h' + i);
+		}
+		var headings = container.querySelectorAll(tags.join(','));
 
 		var toc = document.createElement('ul');
+
+		// Add UIkit classes and attributes for nav styles and scroll spy
+		// functionality
 		toc.classList.add('uk-nav');
 		toc.classList.add('uk-nav-default');
 		toc.setAttribute('uk-scrollspy-nav', 'closest: li; scroll: true; offset: 100');
@@ -345,16 +395,20 @@
 			var headingLevel = Number(heading.tagName.slice(1)) - 2;
 
 			if (!lastItem) {
+				// This is the first thing in the TOC
 				toc.appendChild(item);
 			} else if (headingLevel === level) {
+				// This is at the same level as the last item in the TOC
 				lastItem.parentElement.appendChild(item);
 			} else if (headingLevel > level) {
+				// This is under the last item in the TOC
 				var submenu = document.createElement('ul');
 				submenu.classList.add('uk-nav-sub');
 				submenu.classList.add('uk-nav-default');
 				submenu.appendChild(item);
 				lastItem.appendChild(submenu);
 			} else {
+				// This is above the last item in the TOC
 				var parent = lastItem.parentElement;
 				var hlvl = level;
 				while (parent && hlvl > headingLevel) {
@@ -368,22 +422,12 @@
 			level = headingLevel;
 		});
 
-		// UIkit will emit a 'scrolled' event when 
-		document.body.addEventListener('scrolled', function (event) {
-			var hash = event.target.hasAttribute('href') ?
-				event.target.getAttribute('href') :
-				'#' + event.target.id;
-			if (hash !== location.hash) {
-				history.pushState({}, '', hash);
-			}
-		});
-
 		return toc;
 	}
 
 
 	/**
-	 * Render a README for a particular repo and version.
+	 * Render a Markdown document for a particular repo and version.
 	 *
 	 * A doc ID has the format '<org>/<repo>/<version>[/<path>]'. It looks like
 	 * 'dojo/cli/master' or 'dojo/core/master/docs/math.md'.
@@ -401,12 +445,15 @@
 				var content = markdown.render(text, { docId: docId });
 				container.innerHTML = content;
 
+				// Pull out any existing TOC and create a new one.
 				tocContainer.innerHTML = '';
 				extractToc(container);
 				var toc = makeToc();
 				tocContainer.appendChild(toc);
 
 				if (window.UIkit) {
+					// Let UIkit know about the TOC since it was adding after
+					// the page was created.
 					window.UIkit.scrollspyNav(toc);
 				}
 
@@ -436,7 +483,8 @@
 	 * Reset the page scroll position
 	 */
 	function resetScroll() {
-		document.body.parentElement.scrollTop = 0;
+		var target = '#' + docIdToDomId(currentDoc);
+		window.UIkit.scroll(target, { offset: 150 }).scrollTo(target);
 	}
 
 	/**
