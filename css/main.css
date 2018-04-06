@@ -15062,15 +15062,17 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly; }
-      .body-front-page .bodyContainer section.up-and-running .commands, .body-front-page .bodyContainer section.up-and-running .results {
-        width: 49%; }
-        @media screen and (max-width: 768px) {
-          .body-front-page .bodyContainer section.up-and-running .commands, .body-front-page .bodyContainer section.up-and-running .results {
-            width: initial; } }
+      .body-front-page .bodyContainer section.up-and-running .commands {
+        width: 52%; }
+      .body-front-page .bodyContainer section.up-and-running .results {
+        width: 46%; }
+      @media screen and (max-width: 768px) {
+        .body-front-page .bodyContainer section.up-and-running .commands, .body-front-page .bodyContainer section.up-and-running .results {
+          width: initial; } }
       .body-front-page .bodyContainer section.up-and-running > div {
         flex: 1 1 50%; }
       .body-front-page .bodyContainer section.up-and-running .commands {
-        padding: 10vh 5vw;
+        padding: 10vh 2vw;
         margin: auto; }
         @media screen and (max-width: 768px) {
           .body-front-page .bodyContainer section.up-and-running .commands {
