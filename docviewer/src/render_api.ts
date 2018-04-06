@@ -69,8 +69,7 @@ export default async function renderApi(
 		docLink = apiCache[docHash].docLink;
 	} else {
 		const file = 'docs/api.json';
-		const repo = ref.repo === 'dojo/core' ? 'devpaul/core' : ref.repo;
-		const version = ref.repo === 'dojo/core' ? 'api' : ref.version;
+		const { repo, version } = ref;
 		const json = await docFetch(repo + '/' + version + '/' + file);
 		const data: ProjectReflection = JSON.parse(json);
 		const repoRef = { type: ref.type, repo: ref.repo, version: ref.version };
