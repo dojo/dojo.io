@@ -1,9 +1,6 @@
 <ul class="uk-nav uk-nav-primary">
 	<li class="uk-nav-header">
-		<span data-doc-type="doc">Docs</span>
-		<% if (Object.keys(site.data.docs_menu).filter(function (name) { return site.data.docs_menu[name].api }).length > 0) { %>
-		| <span data-doc-type="api">API</span>
-		<% } %>
+		<span>Docs</span>
 	</li>
 	<li class="uk-nav-divider"></li>
 	<% for (var pkgName in site.data.docs_menu) { %>
@@ -11,12 +8,5 @@
 		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version %>"
 	  			data-doc-type="doc"
 				class="repo-doc-link"><%= pkgName %></a>
-			<% if (pkg.api) { %>
-				<% var repo = pkg.api.repo || pkg.repo; %>
-				<% var version = pkg.api.version || pkg.version; %>
-				<a href="#api--<%= repo.split('/').join('__') %>__<%= version %>"
-					data-doc-type="api"
-					class="repo-doc-link"><%= pkgName %></a></li>
-			<% } %>
 	<% } %>
 </ul>

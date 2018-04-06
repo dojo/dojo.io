@@ -5,9 +5,18 @@ import {
 	makeToc,
 	renderMarkdown,
 	toHash,
+	DocSet,
 	LocationRef,
 	RenderContext
 } from './common';
+
+const renderCache: {
+	[hash: string]: {
+		page: Element;
+		menu: Element;
+		toc: Element;
+	};
+} = {};
 
 /**
  * Render a Markdown document for a particular repo and version.
@@ -15,47 +24,95 @@ import {
  * A doc ID has the format '<org>/<repo>/<version>[/<path>]'. It looks like
  * 'dojo/cli/master' or 'dojo/core/master/docs/math.md'.
  */
-export default function renderDoc(ref: LocationRef, context: RenderContext) {
-	const { repo, version, path, type } = ref;
-	const { docs, docContainer, tocContainer } = context;
+export default async function renderDoc(
+	ref: LocationRef,
+	context: RenderContext
+) {
+	const { docs, docset, docContainer, tocContainer } = context;
+	const { repo, version, path } = ref;
 	const file = path || 'README.md';
+	const hash = toHash(ref);
+	let page: Element;
+	let menu: Element;
+	let toc: Element;
 
-	return docFetch(repo + '/' + version + '/' + file).then(function(text) {
-		const content = renderMarkdown(text, { ref, docs });
-		docContainer.innerHTML = content;
+	if (renderCache[hash]) {
+		page = renderCache[hash].page;
+		menu = renderCache[hash].menu;
+		toc = renderCache[hash].toc;
+	} else {
+		let text: string;
 
-		// Pull out any existing TOC and create a new one.
-		tocContainer.innerHTML = '';
-		extractToc(docContainer);
-		const toc = makeToc(docContainer);
-		tocContainer.appendChild(toc);
-
-		// Clear out any nav submenu that may have been added by the API
-		// renderer
-		const submenu = context.docSelector.querySelector('ul');
-		if (submenu) {
-			submenu.parentElement.removeChild(submenu);
+		if (file === 'README') {
+			text = context.docset.readme;
+		} else {
+			text = await docFetch(repo + '/' + version + '/' + file);
 		}
 
-		if (global.UIkit) {
-			// Let UIkit know about the TOC since it was adding after
-			// the page was created.
-			global.UIkit.scrollspyNav(toc);
-		}
+		const html = renderMarkdown(text, { ref, docs });
+		page = h('div', { innerHTML: html });
+		toc = makeToc(page);
+		menu = makeMenu(ref, docset);
 
-		if (path && path !== 'README.md') {
-			// If we're not viewing the base README, add a link back to
-			// the parent package to the top of the doc, just for
-			// context.
-			const parentLink = h(
-				'a',
-				{ href: toHash({ type, repo, version }) },
-				repo
-			);
-			const breadcrumbs = h('div', {}, parentLink);
-			docContainer.insertBefore(breadcrumbs, docContainer.firstChild);
-		}
-	});
+		// Pull out any existing TOC from the README itself
+		extractToc(page);
+
+		renderCache[hash] = { page, toc, menu };
+	}
+
+	docContainer.innerHTML = '';
+	docContainer.appendChild(page);
+
+	tocContainer.innerHTML = '';
+	tocContainer.appendChild(toc);
+
+	if (global.UIkit) {
+		// Let UIkit know about the TOC since it was adding after
+		// the page was created.
+		global.UIkit.scrollspyNav(toc);
+	}
+
+	// Clear out any nav submenu that may have been added by the API
+	// renderer
+	const existingMenu = context.docSelector.querySelector('ul');
+	if (existingMenu) {
+		existingMenu.parentElement.removeChild(existingMenu);
+	}
+
+	// Add this page's menu
+	if (menu) {
+		const baseHash = toHash({
+			type: 'doc',
+			repo: ref.repo,
+			version: ref.version
+		});
+		const docLink = context.docSelector.querySelector(`[href="${baseHash}"]`);
+		docLink.parentElement.appendChild(menu);
+	}
+}
+
+/**
+ * Make a package doc menu from a docset
+ */
+function makeMenu(docRef: LocationRef, docset: DocSet) {
+	if (docset.pages.length === 0) {
+		return null;
+	}
+
+	return h(
+		'ul',
+		{ className: 'uk-nav-sub uk-nav-default' },
+		docset.pages.map(page => {
+			const name = page.replace(/^docs\//, '').replace(/\.md$/, '');
+			const hash = toHash({
+				type: 'doc',
+				repo: docRef.repo,
+				version: docRef.version,
+				path: page
+			});
+			return h('li', {}, h('a', { href: hash }, name));
+		})
+	);
 }
 
 /**

@@ -76,6 +76,15 @@ export default async function renderApi(
 
 		pages = renderApiPages(repoRef, data);
 		docLink = docSelector.querySelector(`a[href="${docHash}"]`);
+		menu = h(
+			'ul',
+			{ className: 'uk-nav-sub uk-nav-default' },
+			Object.keys(pages).map(name => {
+				const label = pages[name].title;
+				const href = toHash(pages[name].ref);
+				return h('li', {}, h('a', { href }, label));
+			})
+		);
 
 		apiCache[docHash] = {
 			pages,
@@ -91,16 +100,14 @@ export default async function renderApi(
 	const toc = makeToc(page);
 	tocContainer.appendChild(toc);
 
-	if (docLink.parentElement.querySelector('ul') == null) {
-		menu = h(
-			'ul',
-			{ className: 'uk-nav-sub uk-nav-default' },
-			Object.keys(pages).map(name => {
-				const label = pages[name].title;
-				const href = toHash(pages[name].ref);
-				return h('li', {}, h('a', { href }, label));
-			})
-		);
+	// Clear out any nav submenu that may have been added by the API
+	// renderer
+	const existingMenu = context.docSelector.querySelector('ul');
+	if (existingMenu) {
+		existingMenu.parentElement.removeChild(existingMenu);
+	}
+
+	if (docLink) {
 		docLink.parentElement.appendChild(menu);
 	}
 }

@@ -9,8 +9,15 @@ export const maxTocLevel = 4;
 // Used to separate the document ID from an in-page anchor ID
 export const sep = '--';
 
+export interface DocSet {
+	readme: string;
+	api: string;
+	pages: string[];
+}
+
 export interface RenderContext {
 	docs: string[];
+	docset: DocSet;
 	docContainer: Element;
 	tocContainer: Element;
 	docSelector: Element;
@@ -68,7 +75,7 @@ export async function docFetch(path: string) {
 		result = await doFetch(srcs.shift() + path);
 	}
 
-	if (result.text) {
+	if (result.text != null) {
 		sessionStorage.setItem(cacheKey, result.text);
 		return result.text;
 	} else {
@@ -381,7 +388,8 @@ export function renderMarkdown(
 	if (!markdown) {
 		markdown = initMarkdownRenderer();
 	}
-	return markdown.render(md, context);
+	const filtered = filterGhContent(md);
+	return markdown.render(filtered, context);
 }
 
 /**
@@ -403,13 +411,18 @@ export function isSameDoc(a: LocationRef, b: LocationRef) {
 /**
  * Scroll to a given anchor
  */
-export function scrollTo(target: string | Element, offset = 150) {
+export function scrollTo(target: string | Element, offset = 100) {
 	if (typeof target === 'string') {
 		if (target[0] !== '#') {
 			target = `#${target}`;
 		}
 		target = docIdToDomId(target);
 		target = document.querySelector(target);
+	}
+
+	// If the target is the main page heading, scroll a little extra
+	if (target.tagName === 'H1') {
+		offset = 150;
 	}
 
 	if (target) {
@@ -454,3 +467,34 @@ const sources = [
 
 // The markdown renderer
 let markdown: markdownit.MarkdownIt;
+
+/**
+ * Filter content from a markdown doc that shouldn't be rendered
+ */
+function filterGhContent(text: string) {
+	// This would be simpler with regular expressions, but that makes IE10
+	// sad.
+	const markers = [
+		['<!-- vim-markdown-toc GFM -->', '<!-- vim-markdown-toc -->'],
+		['<!-- start-github-only -->', '<!-- end-github-only -->']
+	];
+	return markers.reduce((text, marker) => {
+		const chunks = [];
+		let start = 0;
+		let left = text.indexOf(marker[0]);
+		let right = 0;
+		while (left !== -1) {
+			chunks.push(text.slice(start, left));
+			right = text.indexOf(marker[1], left);
+			if (right === -1) {
+				break;
+			}
+			start = right + marker[1].length;
+			left = text.indexOf(marker[0], start);
+		}
+		if (right !== -1) {
+			chunks.push(text.slice(start));
+		}
+		return chunks.join('');
+	}, text);
+}

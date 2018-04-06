@@ -1,9 +1,12 @@
+import * as h from 'hyperscript';
 import {
+	docFetch,
 	fromHash,
 	global,
 	isSameDoc,
 	scrollTo,
 	toHash,
+	DocSet,
 	DocType,
 	LocationRef
 } from './common';
@@ -11,10 +14,7 @@ import renderDoc from './render_doc';
 import renderApi from './render_api';
 
 // The list of hash addresses of available top-level docs
-const docs: { doc: string[]; api: string[] } = {
-	doc: [],
-	api: []
-};
+const docs: string[] = [];
 
 // The hash address of the currently visible doc
 let currentDoc: string;
@@ -22,9 +22,10 @@ let currentDoc: string;
 // Get the doc container based on the location of this script in the DOM
 const docContainer = document.currentScript.parentElement;
 const tocContainer = document.querySelector('.docs .sidebar-right');
-const docSelector = document.querySelector('.sidebar-left .uk-nav');
-const mobileSidebar = document.querySelector('#mobile-sidebar');
-const mobileDocSelector = mobileSidebar.querySelector('.uk-nav');
+const sidebar = document.querySelector('.sidebar-left');
+const docSelector = sidebar.querySelector('.uk-nav');
+// const mobileSidebar = document.querySelector('#mobile-sidebar');
+// const mobileDocSelector = mobileSidebar.querySelector('.uk-nav');
 const mobileMedia = window.matchMedia('(max-width: 960px)');
 
 Promise.all([
@@ -40,16 +41,21 @@ Promise.all([
 async function init() {
 	// Keep a list of the available top-level docs
 	docSelector.querySelectorAll('a').forEach(link => {
-		if (link.getAttribute('data-doc-type') === 'doc') {
-			docs.doc.push(link.getAttribute('href'));
-		} else if (link.getAttribute('data-doc-type') === 'api') {
-			docs.api.push(link.getAttribute('href'));
+		docs.push(link.getAttribute('href'));
+	});
+
+	// Update the UI when the viewport changes size
+	mobileMedia.addListener(event => {
+		if (event.matches) {
+			handleMobile();
+		} else {
+			handleDesktop();
 		}
 	});
 
 	// Handle left nav link clicks
 	docSelector.addEventListener('click', handleLeftNavClick);
-	mobileDocSelector.addEventListener('click', handleLeftNavClick);
+	// mobileDocSelector.addEventListener('click', handleLeftNavClick);
 
 	window.addEventListener('hashchange', event => {
 		event.preventDefault();
@@ -62,6 +68,13 @@ async function init() {
 	// UIkit will emit a 'scrolled' event when an anchor has been scrolled
 	// to using UIkit's scrolling functionality
 	document.body.addEventListener('scrolled', handleScrolled);
+
+	// Update the UI to match the current viewport
+	if (mobileMedia.matches) {
+		handleMobile();
+	} else {
+		handleDesktop();
+	}
 
 	// If the current path is a doc link, load the referenced doc
 	const ref = fromHash(location.hash);
@@ -77,11 +90,11 @@ async function init() {
  * Return the doc selector for the active doc type
  */
 function getDocSelector() {
-	if (mobileMedia.matches) {
-		return mobileDocSelector;
-	} else {
-		return docSelector;
-	}
+	// if (mobileMedia.matches) {
+	// 	return mobileDocSelector;
+	// } else {
+	return docSelector;
+	// }
 }
 
 /**
@@ -105,15 +118,28 @@ async function handleHashChange(hash: string) {
 		path: docRef.path
 	});
 
+	// Update the doctype
+
 	// Highlight the currently active doc in the doc selector
 	const docSel = getDocSelector();
-	const activeLink = docSel.querySelector('.uk-active');
-	if (activeLink) {
-		activeLink.classList.remove('uk-active');
+	docSel.querySelectorAll('.uk-active').forEach(link => {
+		link.classList.remove('uk-active');
+	});
+
+	const docLink = docSel.querySelector(`[href="${currentDoc}"]`);
+	if (docLink) {
+		docLink.parentElement.classList.add('uk-active');
 	}
-	docSel
-		.querySelector(`[href="${currentDoc}"]`)
-		.parentElement.classList.add('uk-active');
+
+	const baseDoc = toHash({
+		type: docRef.type,
+		repo: docRef.repo,
+		version: docRef.version
+	});
+	const baseDocLink = docSel.querySelector(`[href="${baseDoc}"]`);
+	if (baseDocLink) {
+		baseDocLink.parentElement.classList.add('uk-active');
+	}
 
 	if (docContainer.querySelector(hash)) {
 		scrollTo(hash);
@@ -150,17 +176,34 @@ function handleLeftNavClick(event: Event) {
 			scrollTo(currentDoc);
 		}
 
-		if (mobileDocSelector.contains(target)) {
-			global.UIkit.offcanvas(mobileSidebar).hide();
+		if (mobileMedia.matches) {
+			global.UIkit.offcanvas(sidebar).hide();
 		}
-	} else if (target.hasAttribute('data-doc-type')) {
+
+		// if (mobileDocSelector.contains(target)) {
+		// 	global.UIkit.offcanvas(mobileSidebar).hide();
+		// }
+	}
+
+	if (target.hasAttribute('data-doc-type')) {
 		const value = <DocType>target.getAttribute('data-doc-type');
 		setDocType(value);
 
-		if (mobileDocSelector.contains(target)) {
-			global.UIkit.offcanvas(mobileSidebar).hide();
-		}
+		// 		if (mobileDocSelector.contains(target)) {
+		// 			global.UIkit.offcanvas(mobileSidebar).hide();
+		// 		}
 	}
+}
+
+function handleDesktop() {
+	sidebar.removeAttribute('uk-offcanvas');
+	sidebar.classList.remove('uk-offcanvas');
+	sidebar.firstElementChild.classList.remove('uk-offcanvas-bar');
+}
+
+function handleMobile() {
+	sidebar.setAttribute('uk-offcanvas', '');
+	sidebar.firstElementChild.classList.add('uk-offcanvas-bar');
 }
 
 /**
@@ -172,7 +215,7 @@ function handleScrolled(event: Event) {
 		? target.getAttribute('href')
 		: '#' + target.id;
 	if (hash !== location.hash) {
-		history.pushState({}, '', hash);
+		setHash(fromHash(hash));
 	}
 }
 
@@ -196,18 +239,11 @@ async function setDocType(type: DocType) {
 	const ref = fromHash(location.hash);
 
 	if (ref && ref.type !== type) {
-		const newRef = {
+		setHash({
 			type,
 			repo: ref.repo,
 			version: ref.version
-		};
-
-		const tdocs = docs[type];
-		if (tdocs.indexOf(toHash(newRef)) === -1) {
-			setHash(fromHash(tdocs[0]));
-		} else {
-			setHash(newRef);
-		}
+		});
 	}
 }
 
@@ -230,16 +266,49 @@ export function setHash(ref: LocationRef) {
  */
 async function render(ref: LocationRef) {
 	try {
+		const docHash = toHash({
+			type: 'doc',
+			repo: ref.repo,
+			version: ref.version
+		});
+		let docset = docsetCache[docHash];
+
+		// Load and cache the docset if it hasn't been loaded yet
+		if (!docset) {
+			const readme = await docFetch(
+				ref.repo + '/' + ref.version + '/README.md'
+			);
+			docset = getDocSetData(readme);
+			docsetCache[docHash] = docset;
+
+			// If the docset has API docs, add the API selector to both doc selectors
+			if (docset.api) {
+				const apiHash = toHash({
+					type: 'api',
+					repo: ref.repo,
+					version: ref.version
+				});
+
+				const docLink = docSelector.querySelector(`[href="${docHash}"]`);
+				const listItem = docLink.parentElement;
+				listItem.appendChild(
+					h('a', { href: apiHash, 'data-doc-type': 'api' }, '[api]')
+				);
+			}
+		}
+
 		if (ref.type === 'doc') {
 			await renderDoc(ref, {
-				docs: docs.doc,
+				docset,
+				docs: docs,
 				docContainer,
 				tocContainer,
 				docSelector: getDocSelector()
 			});
 		} else {
 			await renderApi(ref, {
-				docs: docs.api,
+				docset,
+				docs: docs,
 				docContainer,
 				tocContainer,
 				docSelector: getDocSelector()
@@ -249,3 +318,32 @@ async function render(ref: LocationRef) {
 		console.error(error);
 	}
 }
+
+/**
+ * Get docset data from a README
+ */
+function getDocSetData(text: string): DocSet {
+	const matcher = /^<!--\s+doc-viewer-config\s/m;
+	const result = matcher.exec(text);
+
+	if (result) {
+		const index = result.index;
+		const start = text.indexOf('{', index);
+		const end = text.indexOf('-->', index);
+		const data = text.slice(start, end).trim();
+		return <DocSet>{
+			readme: text,
+			pages: [],
+			...JSON.parse(data)
+		};
+	} else {
+		return <DocSet>{
+			readme: text,
+			pages: []
+		};
+	}
+}
+
+const docsetCache: {
+	[hash: string]: DocSet;
+} = Object.create(null);
