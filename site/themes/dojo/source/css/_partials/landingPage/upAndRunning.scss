@@ -9,9 +9,13 @@ section.up-and-running {
 		justify-content: space-evenly;
 	}
 
+	.commands {
+		width: 52%;
+	}
+	.results {
+		width: 46%;
+	}
 	.commands, .results {
-		width: 49%;
-
 		@media screen and (max-width : $mobile-break) {
 			width: initial;
 		}
