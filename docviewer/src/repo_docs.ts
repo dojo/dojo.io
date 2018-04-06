@@ -115,7 +115,14 @@ async function handleHashChange(hash: string) {
 		.querySelector(`[href="${currentDoc}"]`)
 		.parentElement.classList.add('uk-active');
 
-	scrollTo(hash);
+	if (docContainer.querySelector(hash)) {
+		scrollTo(hash);
+	} else {
+		const heading = docContainer.querySelector('h1');
+		if (heading) {
+			scrollTo(heading.getAttribute('id'));
+		}
+	}
 }
 
 /**
