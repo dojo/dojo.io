@@ -33,12 +33,10 @@ Static pages are built from markdown located in [`site/source`](https://github.c
 
 ### Writing a Tutorial
 
-Tutorials are located in [`site/source/tutorials`](https://github.com/dojo/dojo.io/tree/master/site/source/tutorials) and are similar to static pages. They use the tutorial layout 
- (`layout: tutorial`) and have code content provided in the `demo` subdirectory that is archived during the tutorials
+Tutorials are located in [`site/source/tutorials`](https://github.com/dojo/dojo.io/tree/master/site/source/tutorials) and are similar to static pages. They use the tutorial layout (`layout: tutorial`) and have code content provided in the `demo` subdirectory that is archived during the tutorials
  build process (`grunt tutorials`).
 
- If the `finished` directory of the tutorial should be built and tested as part of the CI build, it needs
- to be added to the list of `TUTORIAL` values in [.travis.yml](./.travis.yml)
+If a tutorial is added or modified, the `grunt precommit` task should be run to test the tutorials locally and store the result, if the tests succeed. If this is not, the CI build will detect this and run the tests automatically. While this ensures that the tutorials will work, it greatly extends the build time and should be avoided.
 
 ## API Documentation
 
@@ -49,8 +47,8 @@ API documentation is generated using the `grunt api` command to the `_dist/api/<
 
 Building documentation for a project requires the project repository to be checked out to a temporary location where its dependencies are added and `typedoc` is ran against the repository. It is a relatively resource intensive
  task.
- 
-Missing APIs are built using the `grunt api` task. You can build APIs for a specific project by selecting the 
+
+Missing APIs are built using the `grunt api` task. You can build APIs for a specific project by selecting the
  appropriate configuration. You can also limit what versions get built using semver matching or the "latest" keyword
  either in the grunt configuration of via the `--apiversion` command line argument.
 
@@ -97,14 +95,14 @@ API documentation will be built on a nightly cron by Travis. This is a WIP.
 
 ### Creating a Staging Environment
 
-This section discusses how to get a complete staging environment working on a `dojo/dojo.io` fork using GitHub and 
+This section discusses how to get a complete staging environment working on a `dojo/dojo.io` fork using GitHub and
  Travis. It is **not necessary** to do this when simply developing content as there is a local development environment
  available that you can run on your machine and see changes. You would typically set up a staging environment when you
  need to test updates to the continuous deployment scripts or want to host a preview of the site on GitHub.
- 
+
 This process has been largely automated with the `grunt setup --repo='you/dojo.io'` command.
- 
-These instructions assume you already have an account on GitHub and Travis and have installed the 
+
+These instructions assume you already have an account on GitHub and Travis and have installed the
  [Travis command line client](https://blog.travis-ci.com/2013-01-14-new-client/).
 
 1. Fork the `dojo/dojo.io` repo to your GitHub account
@@ -130,4 +128,3 @@ development pattern is:
 ### Automated Deploy to Production
 
 TODO: This feature has been temporarily disabled while completing work on dojo/dojo.io. It will work by deploying to the `gh-pages` branch using `grunt publish`.
-

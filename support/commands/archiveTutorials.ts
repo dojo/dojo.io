@@ -39,16 +39,16 @@ export default async function archiveTutorials(tutorialRoot: string, targetDirec
  * Archive a directory
  *
  * @param directory
- * @param targetFile
+ * @param target
  * @param internal
  * @return {Promise<Promise<T>|Promise>}
  */
-export function archiveTutorial(directory: string, targetFile: string, internal: string): Promise<any> {
+export function archiveTutorial(directory: string, target: string, internal: string): Promise<any> {
 	return new Promise(function (resolve, reject) {
 		const archive: FixedArchiver = <FixedArchiver> archiver('zip', {
 			store: true
 		});
-		const output = createWriteStream(targetFile);
+		const output = createWriteStream(target);
 
 		output.on('close', function () {
 			resolve({
