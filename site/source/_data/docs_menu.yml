@@ -4,6 +4,8 @@ cli:
 core:
   repo: dojo/core
   version: master
+  api: true
+  apiRepo: devpaul/core
 has:
   repo: dojo/has
   version: master

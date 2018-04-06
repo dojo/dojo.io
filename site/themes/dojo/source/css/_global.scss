@@ -48,19 +48,19 @@ body {
 	top: 80px;
 	bottom: 0;
 	box-sizing: border-box;
-	width: $sidenav-width !important;
 	overflow: auto;
 }
 
 .sidebar-left {
 	padding: 40px 40px 60px 40px;
 	border-right: 1px #e5e5e5 solid;
+	width: $sidenav-width !important;
 }
 
 .sidebar-right {
 	right: 0;
 	padding: 40px 40px 60px 0;
-
+	width: ($sidenav-width - 50) !important;
 }
 
 .has-sidebar-left .uk-section {
@@ -71,12 +71,21 @@ body {
 	padding-right: $sidenav-width;
 }
 
+.uk-nav .uk-nav-header {
+	font-size: 24px;
+	text-transform: none;
+}
+
 .uk-navbar .uk-navbar-left .uk-navbar-nav > li > a {
 	padding-left: 0;
 }
 
 #mobile-sidebar {
 	border-right: none;
+
+    .uk-offcanvas-bar .uk-nav-primary .uk-nav-header {
+        color: #999;
+    }
 }
 
 @media (max-width: 960px) {

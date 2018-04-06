@@ -8,17 +8,16 @@ Published to GitHub Pages and [Dojo.io](http://dojo.io).
 
 ## Quick Start to run the Dojo.io website locally
 
-1. `npm install grunt-cli -g`
 1. `npm install`
-1. `grunt`
-1. `grunt webserv`
+1. `npm run build`
+1. `npm run serve`
 1. open [http://localhost:8888](localhost:8888)
 
 ## Development
 
-To have hexo regenerate when files change run:
+To have hexo and the docviewer rebuild when files change:
 
-1. `grunt hexo --watch`
+1. `npm run watch
 
 ## Adding Content
 

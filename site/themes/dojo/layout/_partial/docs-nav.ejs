@@ -1,9 +1,17 @@
 <ul class="uk-nav uk-nav-primary">
-	<h3>Docs</h3>
-	<li class="uk-nav-divider">
-		<% for (var pkg in site.data.docs_menu) { %>
-			<a href="#<%= site.data.docs_menu[pkg].repo.split('/').join('__') %>__<%= site.data.docs_menu[pkg].version %>"
-				class="repo-doc-link"><%= pkg %></a>
-		<% } %>
+	<li class="uk-nav-header">
+		<span data-doc-type="doc">Docs</span> | <span data-doc-type="api">API</span>
 	</li>
+	<li class="uk-nav-divider"></li>
+	<% for (var pkgName in site.data.docs_menu) { %>
+		<% var pkg = site.data.docs_menu[pkgName] %>
+		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version %>"
+	  			data-doc-type="doc"
+				class="repo-doc-link"><%= pkgName %></a>
+			<% if (pkg.api) { %>
+			<a href="#api--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version %>"
+	  			data-doc-type="api"
+				class="repo-doc-link"><%= pkgName %></a></li>
+			<% } %>
+	<% } %>
 </ul>

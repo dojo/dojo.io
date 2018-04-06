@@ -4,6 +4,14 @@
             padding-top: 2.5rem;
         }
     }
+
+    .sidebar-left .uk-nav-header {
+        color: #999;
+
+        span {
+            cursor: pointer;
+        }
+    }
 }
 
 .doc-detail {
@@ -52,4 +60,19 @@
             top: 40%;
         }
     }
+}
+
+[data-doc-type="doc"] .sidebar-left span[data-doc-type="doc"],
+[data-doc-type="api"] .sidebar-left span[data-doc-type="api"] {
+	color: black;
+}
+
+[data-doc-type="doc"] .sidebar-left a[data-doc-type="api"],
+[data-doc-type="api"] .sidebar-left a[data-doc-type="doc"] {
+	display: none;
+}
+
+[data-doc-type="doc"] #mobile-sidebar .uk-offcanvas-bar .uk-nav-primary .uk-nav-header span[data-doc-type="doc"],
+[data-doc-type="api"] #mobile-sidebar .uk-offcanvas-bar .uk-nav-primary .uk-nav-header span[data-doc-type="api"] {
+	color: white;
 }

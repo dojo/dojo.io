@@ -18,7 +18,7 @@ export = function (grunt: IGrunt) {
 
 	grunt.initConfig(config);
 
-	grunt.registerTask('default', [ 'hexoClean', 'clean', 'sync', 'hexo' ]);
+	grunt.registerTask('default', [ 'hexoClean', 'clean', 'sync', 'concurrent:build' ]);
 	grunt.registerTask('generate', [ 'hexo' ]);
 	grunt.registerTask('test', [ 'clean:compiledFiles', 'tslint', 'shell:build-ts', 'intern' ]);
 	grunt.registerTask('init', [ 'prompt:github', 'initAutomation' ]);

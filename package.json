@@ -7,7 +7,11 @@
   },
   "private": true,
   "scripts": {
-    "install": "cd site && npm i",
+    "install-site": "cd site && npm i",
+    "install-docviewer": "cd docviewer && npm i",
+    "install": "npm run install-site && npm run install-docviewer",
+    "build": "NODE_ENV=production grunt",
+    "watch": "grunt --watch",
     "serve": "grunt webserv"
   },
   "repository": {
@@ -39,6 +43,7 @@
     "dojo-shim": "^2.0.0-beta.7",
     "dojo-streams": "^2.0.0-alpha.1",
     "grunt": "^1.0.1",
+    "grunt-concurrent": "~2.3.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-dojo2": "^2.0.0-beta2.15",
     "grunt-dojo2-extras": "^2.0.0-beta1.3",
