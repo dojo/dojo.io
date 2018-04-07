@@ -5,8 +5,8 @@ core:
   repo: devpaul/core
   version: api
 has:
-  repo: dojo/has
-  version: master
+  repo: maier49/has
+  version: api-docs
 i18n:
   repo: dojo/i18n
   version: master

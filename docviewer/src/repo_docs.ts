@@ -31,50 +31,57 @@ const sidebar = document.querySelector('.sidebar-left');
 const docSelector = sidebar.querySelector('.uk-nav');
 const mobileMedia = window.matchMedia('(max-width: 960px)');
 
-// Keep a list of the available top-level docs
-docSelector.querySelectorAll('a').forEach(link => {
-	docs.push(link.getAttribute('href'));
-});
+init();
 
-// Update the UI when the viewport changes size
-mobileMedia.addListener(event => {
-	if (event.matches) {
+/**
+ * Initialize the viewer
+ */
+function init() {
+	// Keep a list of the available top-level docs
+	docSelector.querySelectorAll('a').forEach(link => {
+		docs.push(link.getAttribute('href'));
+	});
+
+	// Update the UI when the viewport changes size
+	mobileMedia.addListener(event => {
+		if (event.matches) {
+			handleMobile();
+		} else {
+			handleDesktop();
+		}
+	});
+
+	// Handle left nav link clicks
+	docSelector.addEventListener('click', handleLeftNavClick);
+	// mobileDocSelector.addEventListener('click', handleLeftNavClick);
+
+	window.addEventListener('hashchange', event => {
+		event.preventDefault();
+		handleHashChange(location.hash);
+	});
+
+	// Handle in-page heading clicks
+	docContainer.addEventListener('click', handleHeadingClick);
+
+	// UIkit will emit a 'scrolled' event when an anchor has been scrolled
+	// to using UIkit's scrolling functionality
+	document.body.addEventListener('scrolled', handleScrolled);
+
+	// Update the UI to match the current viewport
+	if (mobileMedia.matches) {
 		handleMobile();
 	} else {
 		handleDesktop();
 	}
-});
 
-// Handle left nav link clicks
-docSelector.addEventListener('click', handleLeftNavClick);
-// mobileDocSelector.addEventListener('click', handleLeftNavClick);
-
-window.addEventListener('hashchange', event => {
-	event.preventDefault();
-	handleHashChange(location.hash);
-});
-
-// Handle in-page heading clicks
-docContainer.addEventListener('click', handleHeadingClick);
-
-// UIkit will emit a 'scrolled' event when an anchor has been scrolled
-// to using UIkit's scrolling functionality
-document.body.addEventListener('scrolled', handleScrolled);
-
-// Update the UI to match the current viewport
-if (mobileMedia.matches) {
-	handleMobile();
-} else {
-	handleDesktop();
-}
-
-// If the current path is a doc link, load the referenced doc
-const ref = fromHash(location.hash);
-if (ref) {
-	setDocType(ref.type);
-	handleHashChange(location.hash);
-} else {
-	setDocType('doc');
+	// If the current path is a doc link, load the referenced doc
+	const ref = fromHash(location.hash);
+	if (ref) {
+		setDocType(ref.type);
+		handleHashChange(location.hash);
+	} else {
+		setDocType('doc');
+	}
 }
 
 /**
@@ -245,13 +252,7 @@ export function setHash(ref: LocationRef) {
  */
 async function render(ref: LocationRef) {
 	try {
-		const docHash = toHash({
-			type: 'doc',
-			repo: ref.repo,
-			version: ref.version
-		});
-
-		const docset = await getDocSet(docHash);
+		const docset = await getDocSet(ref);
 
 		if (ref.type === 'doc') {
 			await renderDoc(ref, {
@@ -278,7 +279,12 @@ async function render(ref: LocationRef) {
 /**
  * Get a given docest, loading it if necessary
  */
-async function getDocSet(hash: string): Promise<DocSet> {
+async function getDocSet(ref: LocationRef): Promise<DocSet> {
+	const hash = toHash({
+		type: 'doc',
+		repo: ref.repo,
+		version: ref.version
+	});
 	let docset = docsetCache[hash];
 
 	// Load and cache the docset metadata if it hasn't been loaded yet
@@ -294,6 +300,7 @@ async function getDocSet(hash: string): Promise<DocSet> {
 				repo: ref.repo,
 				version: ref.version
 			});
+			console.log('api hash:', apiHash);
 
 			const docLink = docSelector.querySelector(`[href="${hash}"]`);
 			const listItem = docLink.parentElement;
