@@ -25,7 +25,7 @@ const docsetCache: {
 let currentDoc: string;
 
 // Get the doc container based on the location of this script in the DOM
-const docContainer = document.currentScript.parentElement;
+const docContainer = document.querySelector('.docs .doc-detail');
 const tocContainer = document.querySelector('.docs .sidebar-right');
 const sidebar = document.querySelector('.sidebar-left');
 const docSelector = sidebar.querySelector('.uk-nav');
@@ -38,10 +38,11 @@ init();
  */
 function init() {
 	// Keep a list of the available top-level docs
-	docSelector.querySelectorAll('a').forEach(link => {
+	const links = docSelector.querySelectorAll('a');
+	for (const link of links) {
 		const pkg = link.getAttribute('data-package');
 		docs[pkg] = link.getAttribute('href');
-	});
+	}
 
 	// Update the UI when the viewport changes size
 	mobileMedia.addListener(event => {
@@ -106,12 +107,11 @@ async function handleHashChange(hash: string) {
 		path: docRef.path
 	});
 
-	// Update the doctype
-
 	// Highlight the currently active doc in the doc selector
-	docSelector.querySelectorAll('.uk-active').forEach(link => {
+	const links = docSelector.querySelectorAll('.uk-active');
+	for (const link of links) {
 		link.classList.remove('uk-active');
-	});
+	}
 
 	const docLink = docSelector.querySelector(`[href="${currentDoc}"]`);
 	if (docLink) {
@@ -129,8 +129,10 @@ async function handleHashChange(hash: string) {
 	}
 
 	if (docContainer.querySelector(hash)) {
+		// Toe doc contains an anchor that matches the hash
 		scrollTo(hash);
 	} else {
+		// Toe doc doesn't contain an anchor that matches the hash
 		const heading = docContainer.querySelector('h1');
 		if (heading) {
 			scrollTo(heading.getAttribute('id'));
@@ -166,28 +168,26 @@ function handleLeftNavClick(event: Event) {
 		if (mobileMedia.matches) {
 			global.UIkit.offcanvas(sidebar).hide();
 		}
-
-		// if (mobileDocSelector.contains(target)) {
-		// 	global.UIkit.offcanvas(mobileSidebar).hide();
-		// }
 	}
 
 	if (target.hasAttribute('data-doc-type')) {
 		const value = <DocType>target.getAttribute('data-doc-type');
 		setDocType(value);
-
-		// 		if (mobileDocSelector.contains(target)) {
-		// 			global.UIkit.offcanvas(mobileSidebar).hide();
-		// 		}
 	}
 }
 
+/**
+ * Handle a switch to a desktop view
+ */
 function handleDesktop() {
 	sidebar.removeAttribute('uk-offcanvas');
 	sidebar.classList.remove('uk-offcanvas');
 	sidebar.firstElementChild.classList.remove('uk-offcanvas-bar');
 }
 
+/**
+ * Handle a switch to a mobile view
+ */
 function handleMobile() {
 	sidebar.setAttribute('uk-offcanvas', '');
 	sidebar.firstElementChild.classList.add('uk-offcanvas-bar');

@@ -25,11 +25,13 @@
     "ajv": "~6.4.0",
     "mark.js": "~8.11.1",
     "markdown-it": "~8.4.1",
+    "promise-polyfill": "~7.1.2",
     "ts-node": "~5.0.1",
     "tslint": "^5.9.1",
     "tslint-sitepen": "^5.0.0",
     "typescript": "~2.4.2",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "whatwg-fetch": "~2.0.4"
   },
   "dependencies": {
     "@types/hyperscript": "0.0.3",

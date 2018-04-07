@@ -1,18 +1,17 @@
 import { join } from 'path';
 import { Configuration, optimize } from 'webpack';
-const PolyfillInjectorPlugin = require('webpack-polyfill-injector');
 
 const distPath = join(__dirname, '..', '_dist', 'js');
 
 const config: Configuration = {
 	devtool: 'source-map',
-	entry: {
-		repo_docs: `webpack-polyfill-injector?${JSON.stringify({
-			modules: [join(__dirname, 'src', 'repo_docs.ts')]
-		})}!`
-	},
+	entry: [
+		'promise-polyfill/src/polyfill',
+		'whatwg-fetch',
+		join(__dirname, 'src', 'repo_docs.ts')
+	],
 	output: {
-		filename: '[name].js',
+		filename: 'repo_docs.js',
 		path: distPath
 	},
 	module: {
@@ -23,11 +22,6 @@ const config: Configuration = {
 			}
 		]
 	},
-	plugins: [
-		new PolyfillInjectorPlugin({
-			polyfills: ['Promise', 'fetch']
-		})
-	],
 	resolve: {
 		extensions: ['.ts', '.js', '.json']
 	}

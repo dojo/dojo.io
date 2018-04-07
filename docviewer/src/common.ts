@@ -56,6 +56,22 @@ export interface LocationRef {
 }
 
 /**
+ * Remove all children from an element without destroying them.
+ *
+ * At least IE will destroy child nodes if an element is cleared by clearing
+ * innerHTML.
+ */
+export function clearNode(elem: Element) {
+	let child = elem.firstElementChild;
+	while (child) {
+		elem.removeChild(child);
+		child = elem.firstElementChild;
+	}
+	// clear any remaining text or comment nodes
+	elem.innerHTML = '';
+}
+
+/**
  * Create a function to generate URL slugs for a page.
  */
 export function createSlugifier() {
@@ -101,25 +117,6 @@ export async function docFetch(path: string) {
 		return result.text;
 	} else {
 		throw new Error(result.error);
-	}
-}
-
-async function doFetch(
-	path: string
-): Promise<{ error?: string; text?: string }> {
-	try {
-		const response = await fetch(path);
-		if (response.status !== 200) {
-			return { error: `Request to ${path} failed: ${response.statusText}` };
-		}
-
-		const text = await response.text();
-		if (text.trim() === '404: Not Found') {
-			return { error: `Request to ${path} failed: ${text.trim()}` };
-		}
-		return { text };
-	} catch (error) {
-		return { error: error.message };
 	}
 }
 
@@ -356,7 +353,7 @@ export function makeToc(container: Element) {
 	let lastItem: Element;
 	let level = 0;
 
-	headings.forEach(function(heading) {
+	for (const heading of headings) {
 		const link = document.createElement('a');
 		link.href = '#' + heading.id;
 		link.textContent = heading.textContent;
@@ -393,7 +390,7 @@ export function makeToc(container: Element) {
 
 		lastItem = item;
 		level = headingLevel;
-	});
+	}
 
 	return toc;
 }
@@ -429,6 +426,19 @@ export function isSameDoc(a: LocationRef, b: LocationRef) {
 }
 
 /**
+ * Reset the scroll position of an element
+ */
+export function resetScroll(elem: Element) {
+	let parent = elem.parentElement;
+	while (parent && parent.scrollTop === 0) {
+		parent = parent.parentElement;
+	}
+	if (parent && parent.scrollTop !== 0) {
+		parent.scrollTop = 0;
+	}
+}
+
+/**
  * Scroll to a given anchor
  */
 export function scrollTo(target: string | Element, offset = 100) {
@@ -440,12 +450,12 @@ export function scrollTo(target: string | Element, offset = 100) {
 		target = document.querySelector(target);
 	}
 
-	// If the target is the main page heading, scroll a little extra
-	if (target.tagName === 'H1') {
-		offset = 150;
-	}
-
 	if (target) {
+		// If the target is the main page heading, scroll a little extra
+		if (target.tagName === 'H1') {
+			offset = 150;
+		}
+
 		global.UIkit.scroll(target, { offset }).scrollTo(target);
 	}
 }
@@ -487,6 +497,28 @@ const sources = [
 
 // The markdown renderer
 let markdown: markdownit.MarkdownIt;
+
+/**
+ * Fetch a file, trying multiple source domains
+ */
+async function doFetch(
+	path: string
+): Promise<{ error?: string; text?: string }> {
+	try {
+		const response = await fetch(path);
+		if (response.status !== 200) {
+			return { error: `Request to ${path} failed: ${response.statusText}` };
+		}
+
+		const text = await response.text();
+		if (text.trim() === '404: Not Found') {
+			return { error: `Request to ${path} failed: ${text.trim()}` };
+		}
+		return { text };
+	} catch (error) {
+		return { error: error.message };
+	}
+}
 
 /**
  * Filter content from a markdown doc that shouldn't be rendered

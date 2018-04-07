@@ -19,6 +19,7 @@ import { UnknownType } from 'typedoc/dist/lib/models/types/unknown';
 import * as h from 'hyperscript';
 
 import {
+	clearNode,
 	createSlugifier,
 	docFetch,
 	docIdToDomId,
@@ -100,11 +101,11 @@ export default async function renderApi(
 
 	const path = ref.path || Object.keys(pages)[0];
 	const page = pages[path].element;
-	docContainer.innerHTML = '';
+	clearNode(docContainer);
 	docContainer.appendChild(page);
 
 	const toc = tocs[path];
-	tocContainer.innerHTML = '';
+	clearNode(tocContainer);
 	tocContainer.scrollTop = 0;
 	tocContainer.appendChild(toc);
 

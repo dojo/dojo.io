@@ -1,9 +1,11 @@
 import * as h from 'hyperscript';
 import {
+	clearNode,
 	docFetch,
 	global,
 	makeToc,
 	renderMarkdown,
+	resetScroll,
 	toHash,
 	DocSet,
 	LocationRef,
@@ -53,9 +55,10 @@ export default async function renderDoc(
 		page = h('div', { innerHTML: html });
 
 		// Make any tables in the page use ui-kit styles
-		page.querySelectorAll('table').forEach(table => {
+		const tables = page.querySelectorAll('table');
+		for (const table of tables) {
 			table.classList.add('uk-table');
-		});
+		}
 
 		toc = makeToc(page);
 		menu = makeMenu(ref, docset);
@@ -66,10 +69,11 @@ export default async function renderDoc(
 		renderCache[hash] = { page, toc, menu };
 	}
 
-	docContainer.innerHTML = '';
+	clearNode(docContainer);
 	docContainer.appendChild(page);
+	resetScroll(docContainer);
 
-	tocContainer.innerHTML = '';
+	clearNode(tocContainer);
 	tocContainer.scrollTop = 0;
 	tocContainer.appendChild(toc);
 
