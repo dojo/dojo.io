@@ -35,5 +35,5 @@ widget-core:
   repo: maier49/widget-core
   version: api-docs
 widgets:
-  repo: dojo/widgets
-  version: master
+  repo: maier49/widgets
+  version: api-docs

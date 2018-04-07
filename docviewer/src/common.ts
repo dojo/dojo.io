@@ -93,7 +93,11 @@ export async function docFetch(path: string) {
 	}
 
 	if (result.text != null) {
-		sessionStorage.setItem(cacheKey, result.text);
+		try {
+			sessionStorage.setItem(cacheKey, result.text);
+		} catch (error) {
+			// ignore storage errors for now
+		}
 		return result.text;
 	} else {
 		throw new Error(result.error);
