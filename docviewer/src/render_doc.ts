@@ -51,6 +51,12 @@ export default async function renderDoc(
 
 		const html = renderMarkdown(text, { ref, docs });
 		page = h('div', { innerHTML: html });
+
+		// Make any tables in the page use ui-kit styles
+		page.querySelectorAll('table').forEach(table => {
+			table.classList.add('uk-table');
+		});
+
 		toc = makeToc(page);
 		menu = makeMenu(ref, docset);
 
