@@ -54,8 +54,7 @@ function init() {
 	});
 
 	// Handle left nav link clicks
-	docSelector.addEventListener('click', handleLeftNavClick);
-	// mobileDocSelector.addEventListener('click', handleLeftNavClick);
+	docSelector.addEventListener('click', handleDocSelectorClick);
 
 	window.addEventListener('hashchange', event => {
 		event.preventDefault();
@@ -94,10 +93,10 @@ async function handleHashChange(hash: string) {
 	const currentRef = fromHash(currentDoc);
 
 	if (!isSameDoc(docRef, currentRef)) {
-		// If the new hash doesn't match the current document, render
-		// the new doc
 		await render(docRef);
 	}
+
+	scrollTo(hash);
 
 	// Keep track of the current doc
 	currentDoc = toHash({
@@ -112,30 +111,22 @@ async function handleHashChange(hash: string) {
 	for (const link of links) {
 		link.classList.remove('uk-active');
 	}
-
 	const docLink = docSelector.querySelector(`[href="${currentDoc}"]`);
 	if (docLink) {
 		docLink.parentElement.classList.add('uk-active');
 	}
 
-	const baseDoc = toHash({
-		type: docRef.type,
-		repo: docRef.repo,
-		version: docRef.version
-	});
-	const baseDocLink = docSelector.querySelector(`[href="${baseDoc}"]`);
-	if (baseDocLink) {
-		baseDocLink.parentElement.classList.add('uk-active');
-	}
-
-	if (docContainer.querySelector(hash)) {
-		// Toe doc contains an anchor that matches the hash
-		scrollTo(hash);
-	} else {
-		// Toe doc doesn't contain an anchor that matches the hash
-		const heading = docContainer.querySelector('h1');
-		if (heading) {
-			scrollTo(heading.getAttribute('id'));
+	if (docRef.path) {
+		// If this is a subpage, hilight the active parent doc in the doc
+		// selector
+		const baseDoc = toHash({
+			type: docRef.type,
+			repo: docRef.repo,
+			version: docRef.version
+		});
+		const baseDocLink = docSelector.querySelector(`[href="${baseDoc}"]`);
+		if (baseDocLink) {
+			baseDocLink.parentElement.classList.add('uk-active');
 		}
 	}
 }
@@ -145,24 +136,29 @@ async function handleHashChange(hash: string) {
  */
 function handleHeadingClick(event: Event) {
 	const target = <HTMLElement>event.target;
-	if (/H[2-4]/.test(target.tagName) && target.id) {
+	if (/^H/.test(target.tagName) && target.id) {
 		setHash(fromHash(target.id));
 	}
 }
 
 /**
- * Handle when a user clicks a left nav link
+ * Handle when a user clicks a link in the doc selector
  */
-function handleLeftNavClick(event: Event) {
+function handleDocSelectorClick(event: Event) {
 	const target = <HTMLAnchorElement>event.target;
+
 	if (target.tagName === 'A') {
+		// Consume nav link events. Rather than relying on link clicks setting
+		// the hash and then responding to hash change events, manually scroll
+		// or navigate directly. Relying on hashchange events can be very slow
+		// in some environments (IE11).
+		event.preventDefault();
+
 		const linkRef = target.getAttribute('href');
 		if (linkRef === currentDoc) {
-			// Consume a nav link event click when the target URL is for the
-			// currently visible doc. This keeps the browser from making the
-			// scroll position jump around.
-			event.preventDefault();
 			scrollTo(currentDoc);
+		} else {
+			setHash(fromHash(linkRef));
 		}
 
 		if (mobileMedia.matches) {
@@ -202,7 +198,9 @@ function handleScrolled(event: Event) {
 		? target.getAttribute('href')
 		: '#' + target.id;
 	if (hash !== location.hash) {
-		setHash(fromHash(hash));
+		// Push the state at the end of a scroll rather than setting
+		// location.hash to avoid triggering any browser scrolling
+		history.pushState({}, '', hash);
 	}
 }
 
@@ -223,16 +221,15 @@ async function setDocType(type: DocType) {
 }
 
 /**
- * Set the current location hash and scroll to the corresponding anchor
+ * Set the current location hash and handle the change.
  */
 export function setHash(ref: LocationRef) {
 	let hash = toHash(ref);
 
-	// Push the hash ont o the history rather than setting it to prevent the
-	// browser from jumping to the hash location. This means the doc viewer
-	// can't entirely rely on hashchange events.
+	// Update the hash value and handle it directly rather than waiting for a
+	// hashchange event. In at least IE11, there can be a significant lag
+	// between when the hash changes and when an event is emitted.
 	history.pushState({}, '', hash);
-
 	handleHashChange(hash);
 }
 

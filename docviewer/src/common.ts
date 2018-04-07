@@ -419,7 +419,7 @@ export function isSameDoc(a: LocationRef, b: LocationRef) {
 	if (a.type !== b.type || a.repo !== b.repo || a.version !== b.version) {
 		return false;
 	}
-	if (a.path || (b.path && a.path !== b.path)) {
+	if (a.path !== b.path) {
 		return false;
 	}
 	return true;
