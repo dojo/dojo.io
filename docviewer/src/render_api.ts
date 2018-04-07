@@ -34,6 +34,7 @@ import {
 const apiCache: {
 	[hash: string]: {
 		pages: { [name: string]: DocPage };
+		tocs: { [name: string]: Element };
 		menu: Element;
 		docLink: Element;
 	};
@@ -50,9 +51,6 @@ export default async function renderApi(
 	context: RenderContext
 ) {
 	const { docContainer, docSelector, tocContainer } = context;
-	docContainer.innerHTML = '';
-	tocContainer.innerHTML = '';
-
 	const docHash = toHash({
 		type: 'api',
 		repo: ref.repo,
@@ -60,11 +58,13 @@ export default async function renderApi(
 	});
 
 	let pages: { [name: string]: DocPage };
+	let tocs: { [name: string]: Element };
 	let menu: Element;
 	let docLink: Element;
 
 	if (apiCache[docHash]) {
 		pages = apiCache[docHash].pages;
+		tocs = apiCache[docHash].tocs;
 		menu = apiCache[docHash].menu;
 		docLink = apiCache[docHash].docLink;
 	} else {
@@ -75,6 +75,10 @@ export default async function renderApi(
 		const repoRef = { type: ref.type, repo: ref.repo, version: ref.version };
 
 		pages = renderApiPages(repoRef, data);
+		tocs = Object.keys(pages).reduce(
+			(allTocs, name) => ({ ...allTocs, [name]: makeToc(pages[name].element) }),
+			{}
+		);
 		docLink = docSelector.querySelector(`a[href="${docHash}"]`);
 		menu = h(
 			'ul',
@@ -88,6 +92,7 @@ export default async function renderApi(
 
 		apiCache[docHash] = {
 			pages,
+			tocs,
 			menu,
 			docLink
 		};
@@ -95,9 +100,12 @@ export default async function renderApi(
 
 	const path = ref.path || Object.keys(pages)[0];
 	const page = pages[path].element;
+	docContainer.innerHTML = '';
 	docContainer.appendChild(page);
 
-	const toc = makeToc(page);
+	const toc = tocs[path];
+	tocContainer.innerHTML = '';
+	tocContainer.scrollTop = 0;
 	tocContainer.appendChild(toc);
 
 	// Clear out any nav submenu that may have been added by the API

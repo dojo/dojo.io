@@ -29,13 +29,8 @@ const docContainer = document.currentScript.parentElement;
 const tocContainer = document.querySelector('.docs .sidebar-right');
 const sidebar = document.querySelector('.sidebar-left');
 const docSelector = sidebar.querySelector('.uk-nav');
-// const mobileSidebar = document.querySelector('#mobile-sidebar');
-// const mobileDocSelector = mobileSidebar.querySelector('.uk-nav');
 const mobileMedia = window.matchMedia('(max-width: 960px)');
 
-/**
- * Initialize the doc viewer
- */
 // Keep a list of the available top-level docs
 docSelector.querySelectorAll('a').forEach(link => {
 	docs.push(link.getAttribute('href'));
@@ -255,31 +250,8 @@ async function render(ref: LocationRef) {
 			repo: ref.repo,
 			version: ref.version
 		});
-		let docset = docsetCache[docHash];
 
-		// Load and cache the docset if it hasn't been loaded yet
-		if (!docset) {
-			const readme = await docFetch(
-				ref.repo + '/' + ref.version + '/README.md'
-			);
-			docset = getDocSetData(readme);
-			docsetCache[docHash] = docset;
-
-			// If the docset has API docs, add the API selector to both doc selectors
-			if (docset.api) {
-				const apiHash = toHash({
-					type: 'api',
-					repo: ref.repo,
-					version: ref.version
-				});
-
-				const docLink = docSelector.querySelector(`[href="${docHash}"]`);
-				const listItem = docLink.parentElement;
-				listItem.appendChild(
-					h('a', { href: apiHash, 'data-doc-type': 'api' }, '[api]')
-				);
-			}
-		}
+		const docset = await getDocSet(docHash);
 
 		if (ref.type === 'doc') {
 			await renderDoc(ref, {
@@ -301,6 +273,37 @@ async function render(ref: LocationRef) {
 	} catch (error) {
 		console.error(error);
 	}
+}
+
+/**
+ * Get a given docest, loading it if necessary
+ */
+async function getDocSet(hash: string): Promise<DocSet> {
+	let docset = docsetCache[hash];
+
+	// Load and cache the docset metadata if it hasn't been loaded yet
+	if (!docset) {
+		const readme = await docFetch(ref.repo + '/' + ref.version + '/README.md');
+		docset = getDocSetData(readme);
+		docsetCache[hash] = docset;
+
+		// If the docset has API docs, add the API selector to the doc selector
+		if (docset.api) {
+			const apiHash = toHash({
+				type: 'api',
+				repo: ref.repo,
+				version: ref.version
+			});
+
+			const docLink = docSelector.querySelector(`[href="${hash}"]`);
+			const listItem = docLink.parentElement;
+			listItem.appendChild(
+				h('a', { href: apiHash, 'data-doc-type': 'api' }, '[api]')
+			);
+		}
+	}
+
+	return docset;
 }
 
 /**

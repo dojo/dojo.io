@@ -70,6 +70,7 @@ export default async function renderDoc(
 	docContainer.appendChild(page);
 
 	tocContainer.innerHTML = '';
+	tocContainer.scrollTop = 0;
 	tocContainer.appendChild(toc);
 
 	if (global.UIkit) {
