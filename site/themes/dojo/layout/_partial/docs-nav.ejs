@@ -7,6 +7,7 @@
 		<% var pkg = site.data.docs_menu[pkgName] %>
 		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version %>"
 	  			data-doc-type="doc"
-				class="repo-doc-link"><%= pkgName %></a>
+				data-package="<%= pkgName %>"
+				class="repo-doc-link"><%= pkgName.replace(/^dojo\//, '') %></a>
 	<% } %>
 </ul>

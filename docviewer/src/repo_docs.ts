@@ -14,7 +14,7 @@ import renderDoc from './render_doc';
 import renderApi from './render_api';
 
 // The list of hash addresses of available top-level docs
-const docs: string[] = [];
+const docs: { [pkg: string]: string } = {};
 
 // A cache of loaded docset metadata
 const docsetCache: {
@@ -39,7 +39,8 @@ init();
 function init() {
 	// Keep a list of the available top-level docs
 	docSelector.querySelectorAll('a').forEach(link => {
-		docs.push(link.getAttribute('href'));
+		const pkg = link.getAttribute('data-package');
+		docs[pkg] = link.getAttribute('href');
 	});
 
 	// Update the UI when the viewport changes size
@@ -85,17 +86,6 @@ function init() {
 }
 
 /**
- * Return the doc selector for the active doc type
- */
-function getDocSelector() {
-	// if (mobileMedia.matches) {
-	// 	return mobileDocSelector;
-	// } else {
-	return docSelector;
-	// }
-}
-
-/**
  * Handle a browser hash change
  */
 async function handleHashChange(hash: string) {
@@ -119,12 +109,11 @@ async function handleHashChange(hash: string) {
 	// Update the doctype
 
 	// Highlight the currently active doc in the doc selector
-	const docSel = getDocSelector();
-	docSel.querySelectorAll('.uk-active').forEach(link => {
+	docSelector.querySelectorAll('.uk-active').forEach(link => {
 		link.classList.remove('uk-active');
 	});
 
-	const docLink = docSel.querySelector(`[href="${currentDoc}"]`);
+	const docLink = docSelector.querySelector(`[href="${currentDoc}"]`);
 	if (docLink) {
 		docLink.parentElement.classList.add('uk-active');
 	}
@@ -134,7 +123,7 @@ async function handleHashChange(hash: string) {
 		repo: docRef.repo,
 		version: docRef.version
 	});
-	const baseDocLink = docSel.querySelector(`[href="${baseDoc}"]`);
+	const baseDocLink = docSelector.querySelector(`[href="${baseDoc}"]`);
 	if (baseDocLink) {
 		baseDocLink.parentElement.classList.add('uk-active');
 	}
@@ -260,7 +249,7 @@ async function render(ref: LocationRef) {
 				docs: docs,
 				docContainer,
 				tocContainer,
-				docSelector: getDocSelector()
+				docSelector
 			});
 		} else {
 			await renderApi(ref, {
@@ -268,7 +257,7 @@ async function render(ref: LocationRef) {
 				docs: docs,
 				docContainer,
 				tocContainer,
-				docSelector: getDocSelector()
+				docSelector
 			});
 		}
 	} catch (error) {
@@ -300,7 +289,6 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 				repo: ref.repo,
 				version: ref.version
 			});
-			console.log('api hash:', apiHash);
 
 			const docLink = docSelector.querySelector(`[href="${hash}"]`);
 			const listItem = docLink.parentElement;

@@ -33,7 +33,7 @@ export interface DocSet {
 }
 
 export interface RenderContext {
-	docs: string[];
+	docs: { [pkg: string]: string };
 	docset: DocSet;
 	docContainer: Element;
 	tocContainer: Element;
@@ -42,7 +42,7 @@ export interface RenderContext {
 
 export interface MarkdownContext {
 	ref: LocationRef;
-	docs: string[];
+	docs: { [pkg: string]: string };
 }
 
 export type DocType = 'doc' | 'api';
@@ -273,14 +273,16 @@ export function initMarkdownRenderer() {
 			hrefToken[1] = '#' + domId + sep + hash;
 		} else if (/github.com/.test(file)) {
 			// This is a github link -- see if it's relative to our docs
-			const match = /https?:\/\/github.com\/(\w+)\/(\w+)/.exec(file);
+			const match = /https?:\/\/github.com\/([^/]+)\/([^/]+)/.exec(file);
 			if (match) {
-				const repo = match[1] + '/' + match[2];
+				const pkg = match[1] + '/' + match[2];
 				const { docs } = env;
-				for (let i = 0; i < docs.length; i++) {
-					if (docs[i].indexOf(repo) === 0) {
-						hrefToken[1] = `#doc${sep}${docIdToDomId(docs[i])}${sep}${hash}`;
-						break;
+				const pkgs = Object.keys(docs);
+				if (pkgs.indexOf(pkg) !== -1) {
+					const docHash = docs[pkg];
+					hrefToken[1] = `${docIdToDomId(docHash)}`;
+					if (hash) {
+						hrefToken[1] += `${sep}${hash}`;
 					}
 				}
 			}
@@ -401,7 +403,7 @@ export function makeToc(container: Element) {
  */
 export function renderMarkdown(
 	md: string,
-	context: { ref: LocationRef; docs: string[] }
+	context: { ref: LocationRef; docs: { [pkg: string]: string } }
 ) {
 	if (!markdown) {
 		markdown = initMarkdownRenderer();

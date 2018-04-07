@@ -767,9 +767,8 @@ function renderText(text: string, _pageName: string) {
 		}
 	});
 	return renderMarkdown(text, {
-		// info: { page: pageName, type: DocType.api }
 		ref: <LocationRef>{},
-		docs: <string[]>[]
+		docs: <{ [pkg: string]: string }>{}
 	});
 }
 

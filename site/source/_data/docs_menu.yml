@@ -1,39 +1,39 @@
-cli:
+dojo/cli:
   repo: jason0x43/cli
   version: api-docs
-core:
+dojo/core:
   repo: devpaul/core
   version: api
-has:
+dojo/has:
   repo: maier49/has
   version: api-docs
-i18n:
+dojo/i18n:
   repo: dojo/i18n
   version: master
-interop:
+dojo/interop:
   repo: dojo/interop
   version: master
-loader:
+dojo/loader:
   repo: dojo/loader
   version: master
-routing:
+dojo/routing:
   repo: dojo/routing
   version: master
-shim:
+dojo/shim:
   repo: dojo/shim
   version: master
-stores:
+dojo/stores:
   repo: dojo/stores
   version: master
-streams:
+dojo/streams:
   repo: dojo/streams
   version: master
-themes:
+dojo/themes:
   repo: dojo/themes
   version: master
-widget-core:
+dojo/widget-core:
   repo: maier49/widget-core
   version: api-docs
-widgets:
+dojo/widgets:
   repo: maier49/widgets
   version: api-docs
