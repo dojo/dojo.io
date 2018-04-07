@@ -16,6 +16,11 @@ import renderApi from './render_api';
 // The list of hash addresses of available top-level docs
 const docs: string[] = [];
 
+// A cache of loaded docset metadata
+const docsetCache: {
+	[hash: string]: DocSet;
+} = Object.create(null);
+
 // The hash address of the currently visible doc
 let currentDoc: string;
 
@@ -28,62 +33,53 @@ const docSelector = sidebar.querySelector('.uk-nav');
 // const mobileDocSelector = mobileSidebar.querySelector('.uk-nav');
 const mobileMedia = window.matchMedia('(max-width: 960px)');
 
-Promise.all([
-	inject(
-		'//cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.1/markdown-it.min.js'
-	),
-	inject('/js/highlight.pack.js')
-]).then(init);
-
 /**
  * Initialize the doc viewer
  */
-async function init() {
-	// Keep a list of the available top-level docs
-	docSelector.querySelectorAll('a').forEach(link => {
-		docs.push(link.getAttribute('href'));
-	});
+// Keep a list of the available top-level docs
+docSelector.querySelectorAll('a').forEach(link => {
+	docs.push(link.getAttribute('href'));
+});
 
-	// Update the UI when the viewport changes size
-	mobileMedia.addListener(event => {
-		if (event.matches) {
-			handleMobile();
-		} else {
-			handleDesktop();
-		}
-	});
-
-	// Handle left nav link clicks
-	docSelector.addEventListener('click', handleLeftNavClick);
-	// mobileDocSelector.addEventListener('click', handleLeftNavClick);
-
-	window.addEventListener('hashchange', event => {
-		event.preventDefault();
-		handleHashChange(location.hash);
-	});
-
-	// Handle in-page heading clicks
-	docContainer.addEventListener('click', handleHeadingClick);
-
-	// UIkit will emit a 'scrolled' event when an anchor has been scrolled
-	// to using UIkit's scrolling functionality
-	document.body.addEventListener('scrolled', handleScrolled);
-
-	// Update the UI to match the current viewport
-	if (mobileMedia.matches) {
+// Update the UI when the viewport changes size
+mobileMedia.addListener(event => {
+	if (event.matches) {
 		handleMobile();
 	} else {
 		handleDesktop();
 	}
+});
 
-	// If the current path is a doc link, load the referenced doc
-	const ref = fromHash(location.hash);
-	if (ref) {
-		setDocType(ref.type);
-		handleHashChange(location.hash);
-	} else {
-		setDocType('doc');
-	}
+// Handle left nav link clicks
+docSelector.addEventListener('click', handleLeftNavClick);
+// mobileDocSelector.addEventListener('click', handleLeftNavClick);
+
+window.addEventListener('hashchange', event => {
+	event.preventDefault();
+	handleHashChange(location.hash);
+});
+
+// Handle in-page heading clicks
+docContainer.addEventListener('click', handleHeadingClick);
+
+// UIkit will emit a 'scrolled' event when an anchor has been scrolled
+// to using UIkit's scrolling functionality
+document.body.addEventListener('scrolled', handleScrolled);
+
+// Update the UI to match the current viewport
+if (mobileMedia.matches) {
+	handleMobile();
+} else {
+	handleDesktop();
+}
+
+// If the current path is a doc link, load the referenced doc
+const ref = fromHash(location.hash);
+if (ref) {
+	setDocType(ref.type);
+	handleHashChange(location.hash);
+} else {
+	setDocType('doc');
 }
 
 /**
@@ -220,18 +216,6 @@ function handleScrolled(event: Event) {
 }
 
 /**
- * Dynamically inject a script into the page
- */
-function inject(scriptUrl: string) {
-	return new Promise(resolve => {
-		const script = document.createElement('script');
-		script.onload = resolve;
-		script.src = scriptUrl;
-		document.head.appendChild(script);
-	});
-}
-
-/**
  * Set the active doc type
  */
 async function setDocType(type: DocType) {
@@ -343,7 +327,3 @@ function getDocSetData(text: string): DocSet {
 		};
 	}
 }
-
-const docsetCache: {
-	[hash: string]: DocSet;
-} = Object.create(null);

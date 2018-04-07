@@ -22,7 +22,9 @@
   "homepage": "https://dojo.io",
   "devDependencies": {
     "@types/mark.js": "~8.11.1",
+    "ajv": "~6.4.0",
     "mark.js": "~8.11.1",
+    "markdown-it": "~8.4.1",
     "ts-node": "~5.0.1",
     "tslint": "^5.9.1",
     "tslint-sitepen": "^5.0.0",
@@ -36,7 +38,6 @@
     "@types/webpack": "^3.8.3",
     "highlight.js": "^9.12.0",
     "hyperscript": "^2.0.2",
-    "markdown-it": "^8.4.0",
     "ts-loader": "^3.2.0",
     "tslib": "^1.6.0",
     "typedoc": "^0.9.0",

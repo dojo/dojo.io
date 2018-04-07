@@ -338,7 +338,7 @@ function renderClass(
 	}
 
 	const formatted = formatDeclaration(declaration);
-	const html = highlight('typescript', formatted).value;
+	const html = highlight('typescript', formatted);
 	context.page.element.appendChild(
 		h('pre', {}, h('code.hljs.lang-typescript', { innerHTML: html }))
 	);

@@ -37,14 +37,4 @@ if (process.env.NODE_ENV === 'production') {
 	config.plugins!.push(new optimize.UglifyJsPlugin());
 }
 
-// CommonsChunk needs to come after UglifyJs to prevent the chunks from being
-// merged
-config.plugins!.push(
-	new optimize.CommonsChunkPlugin({
-		name: 'dependencies.js',
-		filename: 'dependencies.js',
-		minChunks: module => /node_modules/.test(module.resource)
-	})
-);
-
 export default config;

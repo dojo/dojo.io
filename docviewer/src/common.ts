@@ -1,4 +1,21 @@
-import 'markdown-it';
+import * as MarkdownIt from 'markdown-it';
+
+// Load the base highlightjs lib and then just the necessary languages to cut
+// down on build size.
+const hljs = require('highlight.js/lib/highlight');
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
+hljs.registerLanguage(
+	'javascript',
+	require('highlight.js/lib/languages/javascript')
+);
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('shell', require('highlight.js/lib/languages/shell'));
+hljs.registerLanguage(
+	'typescript',
+	require('highlight.js/lib/languages/typescript')
+);
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
 
 // Make a global that doesn't need 'any'
 export const global = <any>window;
@@ -185,7 +202,6 @@ export function getDocId(locationOrHref: string | Location) {
  * Highlight code using hilight.js
  */
 export function highlight(lang: string, code: string) {
-	const hljs = global.hljs;
 	return hljs.highlight(lang, code, true).value;
 }
 
@@ -193,11 +209,9 @@ export function highlight(lang: string, code: string) {
  * Create a markdown renderer
  */
 export function initMarkdownRenderer() {
-	const markdown = new global.markdownit({
+	const markdown = MarkdownIt({
 		// Customize the syntax highlighting process
 		highlight: function(str: string, lang: string) {
-			const hljs = global.hljs;
-
 			if (lang && hljs.getLanguage(lang)) {
 				try {
 					return (
