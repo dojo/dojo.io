@@ -26,6 +26,7 @@ import {
 	highlight,
 	makeToc,
 	renderMarkdown,
+	resetScroll,
 	sep,
 	toHash,
 	LocationRef,
@@ -103,6 +104,7 @@ export default async function renderApi(
 	const page = pages[path].element;
 	clearNode(docContainer);
 	docContainer.appendChild(page);
+	resetScroll(docContainer);
 
 	const toc = tocs[path];
 	clearNode(tocContainer);

@@ -34,235 +34,6 @@ const mobileMedia = window.matchMedia('(max-width: 960px)');
 init();
 
 /**
- * Initialize the viewer
- */
-function init() {
-	// Keep a list of the available top-level docs
-	const links = docSelector.querySelectorAll('a');
-	for (const link of links) {
-		const pkg = link.getAttribute('data-package');
-		docs[pkg] = link.getAttribute('href');
-	}
-
-	// Update the UI when the viewport changes size
-	mobileMedia.addListener(event => {
-		if (event.matches) {
-			handleMobile();
-		} else {
-			handleDesktop();
-		}
-	});
-
-	// Handle left nav link clicks
-	docSelector.addEventListener('click', handleDocSelectorClick);
-
-	window.addEventListener('hashchange', event => {
-		event.preventDefault();
-		handleHashChange(location.hash);
-	});
-
-	// Handle in-page heading clicks
-	docContainer.addEventListener('click', handleHeadingClick);
-
-	// UIkit will emit a 'scrolled' event when an anchor has been scrolled
-	// to using UIkit's scrolling functionality
-	document.body.addEventListener('scrolled', handleScrolled);
-
-	// Update the UI to match the current viewport
-	if (mobileMedia.matches) {
-		handleMobile();
-	} else {
-		handleDesktop();
-	}
-
-	// If the current path is a doc link, load the referenced doc
-	const ref = fromHash(location.hash);
-	if (ref) {
-		setDocType(ref.type);
-		handleHashChange(location.hash);
-	} else {
-		setDocType('doc');
-	}
-}
-
-/**
- * Handle a browser hash change
- */
-async function handleHashChange(hash: string) {
-	const docRef = fromHash(hash);
-	const currentRef = fromHash(currentDoc);
-
-	if (!isSameDoc(docRef, currentRef)) {
-		await render(docRef);
-	}
-
-	scrollTo(hash);
-
-	// Keep track of the current doc
-	currentDoc = toHash({
-		type: docRef.type,
-		repo: docRef.repo,
-		version: docRef.version,
-		path: docRef.path
-	});
-
-	// Highlight the currently active doc in the doc selector
-	const links = docSelector.querySelectorAll('.uk-active');
-	for (const link of links) {
-		link.classList.remove('uk-active');
-	}
-	const docLink = docSelector.querySelector(`[href="${currentDoc}"]`);
-	if (docLink) {
-		docLink.parentElement.classList.add('uk-active');
-	}
-
-	if (docRef.path) {
-		// If this is a subpage, hilight the active parent doc in the doc
-		// selector
-		const baseDoc = toHash({
-			type: docRef.type,
-			repo: docRef.repo,
-			version: docRef.version
-		});
-		const baseDocLink = docSelector.querySelector(`[href="${baseDoc}"]`);
-		if (baseDocLink) {
-			baseDocLink.parentElement.classList.add('uk-active');
-		}
-	}
-}
-
-/**
- * Handle when a user clicks a heading
- */
-function handleHeadingClick(event: Event) {
-	const target = <HTMLElement>event.target;
-	if (/^H/.test(target.tagName) && target.id) {
-		setHash(fromHash(target.id));
-	}
-}
-
-/**
- * Handle when a user clicks a link in the doc selector
- */
-function handleDocSelectorClick(event: Event) {
-	const target = <HTMLAnchorElement>event.target;
-
-	if (target.tagName === 'A') {
-		// Consume nav link events. Rather than relying on link clicks setting
-		// the hash and then responding to hash change events, manually scroll
-		// or navigate directly. Relying on hashchange events can be very slow
-		// in some environments (IE11).
-		event.preventDefault();
-
-		const linkRef = target.getAttribute('href');
-		if (linkRef === currentDoc) {
-			scrollTo(currentDoc);
-		} else {
-			setHash(fromHash(linkRef));
-		}
-
-		if (mobileMedia.matches) {
-			global.UIkit.offcanvas(sidebar).hide();
-		}
-	}
-
-	if (target.hasAttribute('data-doc-type')) {
-		const value = <DocType>target.getAttribute('data-doc-type');
-		setDocType(value);
-	}
-}
-
-/**
- * Handle a switch to a desktop view
- */
-function handleDesktop() {
-	sidebar.removeAttribute('uk-offcanvas');
-	sidebar.classList.remove('uk-offcanvas');
-	sidebar.firstElementChild.classList.remove('uk-offcanvas-bar');
-}
-
-/**
- * Handle a switch to a mobile view
- */
-function handleMobile() {
-	sidebar.setAttribute('uk-offcanvas', '');
-	sidebar.firstElementChild.classList.add('uk-offcanvas-bar');
-}
-
-/**
- * Handle a UIkit scroll event
- */
-function handleScrolled(event: Event) {
-	const target = <HTMLElement>event.target;
-	const hash = target.hasAttribute('href')
-		? target.getAttribute('href')
-		: '#' + target.id;
-	if (hash !== location.hash) {
-		// Push the state at the end of a scroll rather than setting
-		// location.hash to avoid triggering any browser scrolling
-		history.pushState({}, '', hash);
-	}
-}
-
-/**
- * Set the active doc type
- */
-async function setDocType(type: DocType) {
-	document.body.setAttribute('data-doc-type', type);
-	const ref = fromHash(location.hash);
-
-	if (ref && ref.type !== type) {
-		setHash({
-			type,
-			repo: ref.repo,
-			version: ref.version
-		});
-	}
-}
-
-/**
- * Set the current location hash and handle the change.
- */
-export function setHash(ref: LocationRef) {
-	let hash = toHash(ref);
-
-	// Update the hash value and handle it directly rather than waiting for a
-	// hashchange event. In at least IE11, there can be a significant lag
-	// between when the hash changes and when an event is emitted.
-	history.pushState({}, '', hash);
-	handleHashChange(hash);
-}
-
-/**
- * Render a doc ref
- */
-async function render(ref: LocationRef) {
-	try {
-		const docset = await getDocSet(ref);
-
-		if (ref.type === 'doc') {
-			await renderDoc(ref, {
-				docset,
-				docs: docs,
-				docContainer,
-				tocContainer,
-				docSelector
-			});
-		} else {
-			await renderApi(ref, {
-				docset,
-				docs: docs,
-				docContainer,
-				tocContainer,
-				docSelector
-			});
-		}
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-/**
  * Get a given docest, loading it if necessary
  */
 async function getDocSet(ref: LocationRef): Promise<DocSet> {
@@ -320,5 +91,203 @@ function getDocSetData(text: string): DocSet {
 			readme: text,
 			pages: []
 		};
+	}
+}
+
+/**
+ * Initialize the viewer
+ */
+function init() {
+	// Keep a list of the available top-level docs
+	const links = docSelector.querySelectorAll('a');
+	for (const link of links) {
+		const pkg = link.getAttribute('data-package');
+		docs[pkg] = link.getAttribute('href');
+	}
+
+	// Update the UI when the viewport changes size
+	mobileMedia.addListener(event => {
+		updateViewport(event.matches);
+	});
+
+	// Handle left nav link clicks
+	docSelector.addEventListener('click', handleDocSelectorClick);
+
+	window.addEventListener('hashchange', event => {
+		event.preventDefault();
+		render();
+	});
+
+	// Handle in-page heading clicks
+	docContainer.addEventListener('click', handleHeadingClick);
+
+	// UIkit will emit a 'scrolled' event when an anchor has been scrolled
+	// to using UIkit's scrolling functionality
+	document.body.addEventListener('scrolled', handleScrolled);
+
+	// Update the UI to match the current viewport
+	updateViewport(mobileMedia.matches);
+
+	// Render the initial view
+	render();
+}
+
+/**
+ * Handle when a user clicks a heading
+ */
+function handleHeadingClick(event: Event) {
+	const target = <HTMLElement>event.target;
+	if (/^H/.test(target.tagName) && target.id) {
+		setHash(fromHash(target.id));
+	}
+}
+
+/**
+ * Handle when a user clicks a link in the doc selector
+ */
+function handleDocSelectorClick(event: Event) {
+	const target = <HTMLAnchorElement>event.target;
+
+	if (target.tagName === 'A') {
+		// Consume nav link events. Rather than relying on link clicks setting
+		// the hash and then responding to hash change events, manually scroll
+		// or navigate directly. Relying on hashchange events can be very slow
+		// in some environments (IE11).
+		event.preventDefault();
+
+		const linkRef = target.getAttribute('href');
+
+		const currentRef = fromHash(currentDoc);
+		const newRef = fromHash(linkRef);
+
+		// If we're navigating to a new doc of the same type and this is a
+		// mobile view, close the sidebar. If we're changing doc types, keep
+		// the sidebar open.
+		if (mobileMedia.matches && currentRef.type === newRef.type) {
+			global.UIkit.offcanvas(sidebar).hide();
+		}
+
+		if (linkRef === currentDoc) {
+			scrollTo(currentDoc);
+		} else {
+			setHash(fromHash(linkRef));
+		}
+	}
+}
+
+/**
+ * Handle a UIkit scroll event
+ */
+function handleScrolled(event: Event) {
+	const target = <HTMLElement>event.target;
+	const hash = target.hasAttribute('href')
+		? target.getAttribute('href')
+		: '#' + target.id;
+	if (hash !== location.hash) {
+		// Push the state at the end of a scroll rather than setting
+		// location.hash to avoid triggering any browser scrolling
+		history.pushState({}, '', hash);
+	}
+}
+
+/**
+ * Set the active doc type
+ */
+async function setDocType(type: DocType) {
+	document.body.setAttribute('data-doc-type', type);
+}
+
+/**
+ * Set the current location hash and handle the change.
+ */
+export function setHash(ref: LocationRef) {
+	let hash = toHash(ref);
+
+	// Update the hash value and handle it directly rather than waiting for a
+	// hashchange event. In at least IE11, there can be a significant lag
+	// between when the hash changes and when an event is emitted.
+	history.pushState({}, '', hash);
+	render();
+}
+
+/**
+ * Render the view based on a hash value
+ */
+async function render() {
+	const hash = location.hash;
+	const docRef = fromHash(hash);
+	const currentRef = fromHash(currentDoc);
+
+	if (!currentRef || currentRef.type !== docRef.type) {
+		setDocType(docRef.type);
+	}
+
+	if (!isSameDoc(docRef, currentRef)) {
+		const docset = await getDocSet(docRef);
+		if (docRef.type === 'doc') {
+			await renderDoc(docRef, {
+				docset,
+				docs: docs,
+				docContainer,
+				tocContainer,
+				docSelector
+			});
+		} else {
+			await renderApi(docRef, {
+				docset,
+				docs: docs,
+				docContainer,
+				tocContainer,
+				docSelector
+			});
+		}
+	}
+
+	scrollTo(hash);
+
+	// Keep track of the current doc
+	currentDoc = toHash({
+		type: docRef.type,
+		repo: docRef.repo,
+		version: docRef.version,
+		path: docRef.path
+	});
+
+	// Highlight the currently active doc in the doc selector
+	const links = docSelector.querySelectorAll('.uk-active');
+	for (const link of links) {
+		link.classList.remove('uk-active');
+	}
+	const docLink = docSelector.querySelector(`[href="${currentDoc}"]`);
+	if (docLink) {
+		docLink.parentElement.classList.add('uk-active');
+	}
+
+	if (docRef.path) {
+		// If this is a subpage, hilight the active parent doc in the doc
+		// selector
+		const baseDoc = toHash({
+			type: docRef.type,
+			repo: docRef.repo,
+			version: docRef.version
+		});
+		const baseDocLink = docSelector.querySelector(`[href="${baseDoc}"]`);
+		if (baseDocLink) {
+			baseDocLink.parentElement.classList.add('uk-active');
+		}
+	}
+}
+
+/**
+ * Handle a change in the viewport between mobile and desktop
+ */
+function updateViewport(isMobile: boolean) {
+	if (isMobile) {
+		sidebar.setAttribute('uk-offcanvas', '');
+		sidebar.firstElementChild.classList.add('uk-offcanvas-bar');
+	} else {
+		sidebar.removeAttribute('uk-offcanvas');
+		sidebar.classList.remove('uk-offcanvas');
+		sidebar.firstElementChild.classList.remove('uk-offcanvas-bar');
 	}
 }
