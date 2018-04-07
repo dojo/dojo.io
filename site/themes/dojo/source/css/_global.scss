@@ -60,7 +60,7 @@ body {
 .sidebar-right {
 	right: 0;
 	padding: 40px 40px 60px 0;
-	width: ($sidenav-width - 50) !important;
+	width: $sidenav-right-width !important;
 }
 
 .has-sidebar-left .uk-section {
@@ -68,7 +68,7 @@ body {
 }
 
 .has-sidebar-right .uk-section {
-	padding-right: $sidenav-width;
+	padding-right: $sidenav-right-width;
 }
 
 .uk-nav .uk-nav-header {
@@ -80,14 +80,6 @@ body {
 	padding-left: 0;
 }
 
-#mobile-sidebar {
-	border-right: none;
-
-    .uk-offcanvas-bar .uk-nav-primary .uk-nav-header {
-        color: #999;
-    }
-}
-
 @media (max-width: 960px) {
 	html, body {
 		font-size: $global-font-size * 0.9;
@@ -96,7 +88,9 @@ body {
 	.has-sidebar-left .uk-section {
 		padding-left: 0;
 	}
+}
 
+@media (max-width: 1200px) {
 	.has-sidebar-right .uk-section {
 		padding-right: 0;
 	}

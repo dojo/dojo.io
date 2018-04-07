@@ -12,6 +12,13 @@
             cursor: pointer;
         }
     }
+
+    .sidebar-right {
+        a {
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+        }
+    }
 }
 
 .doc-detail {
