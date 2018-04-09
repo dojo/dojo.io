@@ -10,7 +10,7 @@
     "install-site": "cd site && npm i",
     "install-docviewer": "cd docviewer && npm i",
     "install": "npm run install-site && npm run install-docviewer",
-    "build": "NODE_ENV=production grunt",
+    "build": "cross-env NODE_ENV=production grunt",
     "watch": "grunt --watch",
     "serve": "grunt webserv"
   },
@@ -37,6 +37,7 @@
     "@types/node": "^6.0.55",
     "@types/sinon": "^2.1.2",
     "archiver": "^1.3.0",
+    "cross-env": "^5.1.4",
     "dojo-core": "^2.0.0-alpha.18",
     "dojo-has": "^2.0.0-alpha.6",
     "dojo-interfaces": "^2.0.0-alpha.10",
