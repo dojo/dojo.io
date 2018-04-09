@@ -46,14 +46,16 @@ The `label` property on both form field widgets and the `Label` widget accepts e
 A `<label>` element with hidden text was chosen over the `aria-label` attribute for invisible labels due to [still-inconsistent](https://www.powermapper.com/tests/screen-readers/labelling/input-text-aria-label/) screen reader support for the latter. Should this change, we will update our hidden label implementation to `aria-label` without changing the public-facing properties.
 
 ___
-### TextInput and Textarea
-As with all basic form controls included in `@dojo/widgets`, `TextInput` and `Textarea` use native `<input>`/`<textarea>` elements, which allows them to take advantage of built-in accessibility.
+### TextInput, EnhancedTextInput, and Textarea
+As with all basic form controls included in `@dojo/widgets`, `TextInput`, `EnhancedTextInput`, and `Textarea` use native `<input>`/`<textarea>` elements, which allows them to take advantage of built-in accessibility.
 
 ##### A11y properties
 - `controls`: Text inputs can sometimes be used to control an interactive dropdown. In this case, `controls` can be used to set `aria-controls` to the `id` of the controlled element.
 - `describedBy`: Sets the `aria-describedby` property to point to the `id` of an element containing additional descriptive text. Screen readers usually read the descriptive text after the label text, followed by a short pause.
 - `label`: Controls the wrapping `<label>` element.
 - `type`: Specifying text input type to `email`, `search`, etc. when applicable provides more information to screen reader users in addition to other benefits like showing the most helpful mobile keyboard.
+
+When using the `EnhancedTextInput`, determine the instructional text needed to convey the information visually implied by any addons. This can be done in the `label` text, and optionally supplemented by custom descriptive text and `aria-describedby`.
 
 ___
 
@@ -70,7 +72,7 @@ ___
 ### Checkbox
 The `Checkbox` widget wraps a native `<input type="checkbox">`, which provides native accessibility and keyboard interaction.
 
-`Checkbox` can also be used as a toggle switch with optional `onLabel` and `offLabel` properties. When a string is passed to `onLabel`, it will be read at the end of the label text when the checkbox is checked. A string passed to `offLabel` will be read when the checkbox is not checked.
+`Checkbox` can also be used as a toggle switch with optional `onLabel` and `offLabel` properties. Note that the toggle switch capabilities will be separated from Checkbox in the near future into a separate widget. When a string is passed to `onLabel`, it will be read at the end of the label text when the checkbox is checked. A string passed to `offLabel` will be read when the checkbox is not checked.
 
 A group of related checkboxes should ideally be wrapped in a `<fieldset>` element containing a `<legend>` with descriptive text.
 
@@ -208,6 +210,66 @@ ___
 - `headingLevel`: Optionally customize the heading level of the button controlling the accordion.
 ___
 
+
+### Listbox
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### AccordionPane
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### SplitPane
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### Progress
+
+The `Progress` widget provides a themeable progress bar with a customizable output display.
+
+##### A11y properties
+- `valuenow`: Current value of the progress bar
+- `valuemax`: Maximum value of the progress bar
+- `valuemin`: Minimum value of the progress bar
+- `valuetext`: Text representation of the current progress
+
+___
+
+### Toolbar
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+### Tooltip
+
+TODO
+
+##### A11y properties
+- `TODO`: TODO
+
+___
+
+
+
 This overview only touched on properties that primarily exist for accessibility-related reasons, but any design decision or property change will end up affecting accessibility in some way. For some of those, such as `invalid`, `disabled`, and `readOnly`, widgets included in `@dojo/widgets` handle setting ARIA attributes in the background in addition to toggling classes without any extra attention needed from the author. In other cases, such as `getResultLabel` in `ComboBox` or `renderMonthLabel` in `Calendar`, it is entirely up to the author to ensure the returned result includes clear, screen reader-accessible text content.
 
 ## Styling
@@ -215,16 +277,22 @@ The base Dojo 2 theme meets WCAG AA color contrast guidelines, but it is up to t
 
 There is a set of base styles provided by `@dojo/widgets` separate from themes, containing basic utility classes like `.visuallyHidden`, which will make content invisible to sighted users but still allow it to be read by screen readers. To use it, import `baseCss` separately like so:
 
-```js
+```typescript
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v } from '@dojo/widget-core/d';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from ‘path/to/your/css’;
 import * as baseCss from ‘@dojo/widgets/common/styles/base.m.css’;
 
+const MyWidgetBase = ThemedMixin(WidgetBase);
+
 @theme(css)
-class MyWidget extends WidgetBase {
-	render() {
+export default class MyWidget extends MyWidgetBase {
+	protected render() {
 		return v(‘div’, {
-			classes: this.classes().fixed(baseCss.visuallyHidden)
+			classes: [ this.theme(css.root), baseCss.visuallyHidden ]
 		}, [ ‘Screen reader instructions’ ]);
+
 	}
 }
 ```
@@ -232,7 +300,56 @@ class MyWidget extends WidgetBase {
 A more in-depth introduction to classes and theming is available in the [Theming tutorial](../../../tutorials/007_theming/).
 
 ## Focus management
-Dojo 2 will provide a focus manager for situations where focus needs to be directly managed, since the [virtual DOM approach](../working_with_virtual_dom/) means directly touching the DOM within widgets is discouraged. This feature is currently in development.
+
+Dojo's widget system provides a Focus meta to determine whether a given node is focused or contains document focus in a reactive manner. Calling `this.meta(Focus).get(key)` returns a results object with two properties:
+
+* `active` - A boolean indicating whether the specified node itself is focused.
+* `containsFocus` - A boolean indicating whether one of the descendants of the specified node is currently focused. This will return true if active is true.
+
+An example usage that opens a tooltip if the trigger is focused might look like this:
+
+```typescript
+class MyWidget extends WidgetBase<WidgetProperties> {
+    // ...
+    render() {
+        // run your meta
+        const buttonFocus = this.meta(FocusMeta).get('button');
+        return v('div', {
+          w(Button, {
+            key: 'button'
+          }, [ 'Open Tooltip' ]),
+          w(Tooltip, {
+            content: 'Foo',
+            open: buttonFocus.active
+          }, [ 'modal content' ])
+        });
+    }
+    // ...
+}
+```
+
+The Focus meta also provides a set method to call focus on a given node. This is most relevant when it is necessary to shift focus in response to a user action, e.g. when opening a modal or navigating to a new page. You can use it like this:
+
+```typescript
+class MyWidget extends WidgetBase<WidgetProperties> {
+    // ...
+    render() {
+        // run your meta
+        return v('div', {
+          w(Button, {
+            onClick: () => {
+              this.meta(Focus).set('modal');
+            }
+          }, [ 'Open Modal' ]),
+          v('div', {
+            key: 'modal',
+            tabIndex: -1
+          }, [ 'modal content' ])
+        });
+    }
+    // ...
+}
+```
 
 ## Writing custom widgets
 All DOM attributes can be set with `VirtualDomProperties` so, apart from managing focus, no extra tools should be required to create strongly accessible widgets. The [widgets tutorial](../../../tutorials/003_creating_widgets) goes over widget creation in more technical detail, but the following example shows how to create proper ARIA attributes for an accessible popup button:
