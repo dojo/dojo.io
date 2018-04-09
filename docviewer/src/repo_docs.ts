@@ -18,7 +18,13 @@ const docs: { [pkg: string]: string } = {};
 
 // A cache of loaded docset metadata
 const docsetCache: {
-	[hash: string]: DocSet;
+	[hash: string]: DocSet & { loading?: Promise<DocSet> };
+} = Object.create(null);
+
+// A mapping of doc hashes to promises that will be resolved when the given
+// docset is loaded
+const docsetLoads: {
+	[hash: string]: Promise<DocSet>;
 } = Object.create(null);
 
 // The hash address of the currently visible doc
@@ -42,31 +48,44 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 		repo: ref.repo,
 		version: ref.version
 	});
-	let docset = docsetCache[hash];
 
 	// Load and cache the docset metadata if it hasn't been loaded yet
-	if (!docset) {
-		const readme = await docFetch(ref.repo + '/' + ref.version + '/README.md');
-		docset = getDocSetData(readme);
-		docsetCache[hash] = docset;
+	if (!docsetCache[hash]) {
+		if (!docsetLoads[hash]) {
+			docsetLoads[hash] = new Promise(async (resolve, reject) => {
+				try {
+					const readme = await docFetch(
+						ref.repo + '/' + ref.version + '/README.md'
+					);
+					const docset = getDocSetData(readme);
 
-		// If the docset has API docs, add the API selector to the doc selector
-		if (docset.api) {
-			const apiHash = toHash({
-				type: 'api',
-				repo: ref.repo,
-				version: ref.version
+					if (docset.api) {
+						// The docset has API docs, so add an API link to the
+						// doc selector
+						const apiHash = toHash({
+							type: 'api',
+							repo: ref.repo,
+							version: ref.version
+						});
+
+						const docLink = docSelector.querySelector(`[href="${hash}"]`);
+						const listItem = docLink.parentElement;
+						listItem.appendChild(
+							h('a', { href: apiHash, 'data-doc-type': 'api' }, '[api]')
+						);
+					}
+
+					resolve(docset);
+				} catch (error) {
+					reject(error);
+				}
 			});
-
-			const docLink = docSelector.querySelector(`[href="${hash}"]`);
-			const listItem = docLink.parentElement;
-			listItem.appendChild(
-				h('a', { href: apiHash, 'data-doc-type': 'api' }, '[api]')
-			);
 		}
+
+		docsetCache[hash] = await docsetLoads[hash];
 	}
 
-	return docset;
+	return docsetCache[hash];
 }
 
 /**
@@ -102,7 +121,8 @@ function init() {
 	const links = docSelector.querySelectorAll('a');
 	for (const link of links) {
 		const pkg = link.getAttribute('data-package');
-		docs[pkg] = link.getAttribute('href');
+		const hash = link.getAttribute('href');
+		docs[pkg] = hash;
 	}
 
 	// Update the UI when the viewport changes size
@@ -130,6 +150,11 @@ function init() {
 
 	// Render the initial view
 	render();
+
+	// Preload all the docsets so the API links can be shown if available
+	Object.keys(docs).forEach(pkg => {
+		getDocSet(fromHash(docs[pkg]));
+	});
 }
 
 /**
