@@ -1,15 +1,15 @@
-<div class="section uk-container uk-container-expand">
+<div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
 	<div class="container article">
-		<article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+		<article id="<%= post.layout %>-<%= post.slug %>" class="article uk-article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
 			<div class="article-inner">
 				<%- partial('post/gallery') %>
 				<% if (post.link || post.title){ %>
-					<header class="article-header">
-						<div class="article-meta">
+					<header class="article-header uk-margin-bottom">
+						<%- partial('post/title', {class_name: 'article-title'}) %>
+						<div class="article-meta uk-article-meta">
 							<%- partial('post/author-meta') %>
 							<%- partial('post/category') %>
 						</div>
-						<%- partial('post/title', {class_name: 'article-title'}) %>
 					</header>
 				<% } %>
 				<div class="article-entry" itemprop="articleBody">
@@ -17,7 +17,7 @@
 						<%- post.excerpt %>
 						<% if (theme.excerpt_link){ %>
 							<p class="article-more-link">
-								<a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+								<a href="<%- url_for(post.path) %>#more" class="uk-button uk-button-text"><%= theme.excerpt_link %></a>
 							</p>
 						<% } %>
 					<% } else { %>
