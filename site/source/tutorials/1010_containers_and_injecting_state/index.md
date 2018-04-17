@@ -36,7 +36,7 @@ Most of this widget is dedicated to holding and managing the `WorkerData` in the
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' %}
 
 {% aside 'Invalidations' %}
-Dojo 2 Widgets can invoke `invalidate()` directly, however injector factories receive an `invalidator` that can be called to ensure that all connected widgets are invalidated
+Dojo 2 Widgets can invoke `invalidate()` directly, however, injector factories receive an `invalidator` that can be called to ensure that all connected widgets are invalidated
 {% endaside %}
 
 The code begins by importing some modules, including the `WorkerProperties` and `WorkerFormData` interfaces defined in the `Worker` and `WorkerForm` modules. These two interfaces define the shape of state that the `ApplicationContext` manages.
@@ -100,7 +100,7 @@ We need to pass the `registry` to the `projector` via the `setProperties` method
 
 {% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
 
-Now that the `ApplicationContext` injector factory is defined and the `registry` has been set on the `projector`, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a `Container` that will allow state to be injected into the `WorkerForm` and `WorkerContainer` widgets.
+Now that the `ApplicationContext` injector factory is defined, and the `registry` gets set on the `projector`, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a `Container` that will allow injecting state into the `WorkerForm` and `WorkerContainer` widgets.
 
 {% section %}
 
