@@ -1,3 +1,5 @@
+@import 'variables-theme';
+
 // Colors
 $primary: #459DF8;
 $link: darken($primary, 5%);
@@ -55,8 +57,3 @@ $base-code-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courie
 $heading-font: 'Montserrat', sans-serif;
 $base-heading-font-family: $heading-font;
 $nav-primary-item-font-size: 0.95rem;
-
-
-//card
-$card-default-background: #fff;
-$card-default-box-shadow: 0 5px 15px rgba(0,0,0,0.08);

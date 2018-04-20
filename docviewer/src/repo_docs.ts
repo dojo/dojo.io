@@ -1,4 +1,4 @@
-import * as h from 'hyperscript';
+// import * as h from 'hyperscript';
 import {
 	docFetch,
 	fromHash,
@@ -11,7 +11,7 @@ import {
 	LocationRef
 } from './common';
 import renderDoc from './render_doc';
-import renderApi from './render_api';
+// import renderApi from './render_api';
 
 // The list of hash addresses of available top-level docs
 const docs: { [pkg: string]: string } = {};
@@ -59,7 +59,7 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 					);
 					const docset = getDocSetData(readme);
 
-					if (docset.api) {
+					/*if (docset.api) {
 						// The docset has API docs, so add an API link to the
 						// doc selector
 						const apiHash = toHash({
@@ -73,7 +73,7 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 						listItem.appendChild(
 							h('a', { href: apiHash, 'data-doc-type': 'api' }, '[api]')
 						);
-					}
+					}*/
 
 					resolve(docset);
 				} catch (error) {
@@ -257,7 +257,7 @@ async function render() {
 				tocContainer,
 				docSelector
 			});
-		} else {
+		} /* else {
 			await renderApi(docRef, {
 				docset,
 				docs: docs,
@@ -265,7 +265,7 @@ async function render() {
 				tocContainer,
 				docSelector
 			});
-		}
+		} */
 	}
 
 	scrollTo(hash);

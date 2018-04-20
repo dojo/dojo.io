@@ -92,6 +92,12 @@ body {
 }
 
 
-.uk-card-default {
-	//box-shadow: $card-default-box-shadow;
+
+.sp-card-shadow {
+	box-shadow: $global-xlarge-box-shadow;
+}
+
+.sp-button-round {
+	border-radius: 3rem;
+	text-transform: uppercase;
 }
