@@ -101,3 +101,9 @@ body {
 	border-radius: 3rem;
 	text-transform: uppercase;
 }
+
+.uk-navbar-dropdown {
+	a {
+		font-size: $navbar-nav-item-font-size;
+	}
+}
