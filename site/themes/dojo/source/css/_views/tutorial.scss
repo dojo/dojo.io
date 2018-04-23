@@ -1,0 +1,27 @@
+.body-tutorial {
+    @media (min-width: 960px) {
+		.uk-section {
+			padding-top: 2.5rem;
+		}
+    }
+    
+    section.tutorial {
+        &:not(:first-of-type) {
+            &:after {
+                content: "";
+                display: block;
+                border-top: 1px solid $column-divider-rule-color;
+                @extend .uk-margin-medium;
+            }
+        }
+    }
+
+    .aside {
+        @extend .uk-width-large;
+        @extend .uk-card;
+        @extend .uk-card-body;
+        @extend .uk-alert-warning;
+        float: right;
+        margin: 1rem 0 1rem 1rem;
+    }
+}

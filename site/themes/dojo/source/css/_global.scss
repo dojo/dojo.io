@@ -61,6 +61,29 @@ body {
 	right: 0;
 	padding: 40px 40px 60px 0;
 	width: $sidenav-right-width !important;
+	font-size: 0.85rem;
+
+	li {
+		a {
+			padding: 0;
+			padding-left: 1rem;
+		}
+	}
+
+	li.uk-active {
+		& > a {
+			
+			position: relative;
+			&:before {
+				content: "";
+				position: absolute;
+				top: 0.5rem;
+				left: -5px;
+				width: 15px;
+				border-top: 1px solid #1e87f0;
+			}
+		}
+	}
 }
 
 .has-sidebar-left .uk-section {

@@ -32,7 +32,12 @@
 	}
 
 	h2 {
-		@extend .uk-heading-divider;
+		&:before {
+			content: "";
+			display: block;
+			border-top: 1px solid $column-divider-rule-color;
+			@extend .uk-margin-medium;
+		}
 	}
 
 	h2, h3, h4 {

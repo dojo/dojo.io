@@ -76,18 +76,12 @@ $inverse-badge-background: $inverse-global-primary-background !default;
 $inverse-badge-color: $inverse-global-inverse-color !default;
 $inverse-badge-hover-color: $inverse-global-inverse-color !default;
 $base-body-background: $global-background !default;
-$global-font-family: -apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-"Helvetica Neue",
-Arial,
-sans-serif !default;
+$global-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !default;
 $base-body-font-family: $global-font-family !default;
 $base-body-font-weight: normal !default;
-$global-font-size: 16px !default;
+$global-font-size: 15px !default;
 $base-body-font-size: $global-font-size !default;
-$global-line-height: 1.5 !default;
+$global-line-height: 1.65 !default;
 $base-body-line-height: $global-line-height !default;
 $base-body-color: $global-color !default;
 $global-link-color: #1e87f0 !default;
@@ -98,9 +92,7 @@ $base-link-hover-color: $global-link-hover-color !default;
 $base-link-hover-text-decoration: underline !default;
 $base-strong-font-weight: bolder !default;
 $base-code-font-size: $global-small-font-size !default;
-$base-code-font-family: Consolas,
-monaco,
-monospace !default;
+$base-code-font-family: Consolas,monaco,monospace !default;
 $base-code-color: $global-danger-background !default;
 $base-em-color: $global-danger-background !default;
 $base-ins-background: #ffd !default;

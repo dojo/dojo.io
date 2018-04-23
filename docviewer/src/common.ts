@@ -320,9 +320,9 @@ export function initMarkdownRenderer() {
 		// Links that show up on the TOC get a link icon that shows up when
 		// the heading is hovered over.
 		let icon = '';
-		if (level > 1 && level <= maxTocLevel) {
-			icon = '<span uk-icon="icon: link"></span>';
-		}
+		/*if (level > 1 && level <= maxTocLevel) {
+			icon = '<span uk-icon="icon: hashtag"></span>';
+		}*/
 		return '<' + token.tag + ' id="' + anchorId + '">' + icon;
 	};
 

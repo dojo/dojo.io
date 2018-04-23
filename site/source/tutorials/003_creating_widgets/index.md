@@ -147,7 +147,7 @@ Our next step is to override the `render()` method to customize the widget's app
 
 If you need help, or want to check your solution, click the button below to see our solution.
 
-{% solution showsolution1 %}
+
 ```ts
 protected render() {
 	return v('div', [
@@ -158,7 +158,7 @@ protected render() {
 	]);
 }
 ```
-{% endsolution %}
+
 
 Before we continue to refine this widget, let's review our progress by adding the `Worker` widget to the app.
 
@@ -166,7 +166,7 @@ Before we continue to refine this widget, let's review our progress by adding th
 
 {% instruction 'Within `App.ts`, import the `Worker` widget and then update the `App`\'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.' %}
 
-{% solution showsolution2 %}
+
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
@@ -182,7 +182,7 @@ export default class App extends WidgetBase {
 	}
 }
 ```
-{% endsolution %}
+
 
 {% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
