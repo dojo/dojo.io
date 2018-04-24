@@ -17,7 +17,6 @@ hexo.extend.tag.register(
 		var filename = args[0];
 		var lang = false;
 		var lines = false;
-		var solution = false;
 		var content = "";
 
 		_.forEach(args.slice(1), function(arg) {
@@ -27,9 +26,6 @@ hexo.extend.tag.register(
 			if (_.startsWith(arg, "line")) {
 				lines = arg.replace(/([a-zA-Z]+?)(s\b|\b):/gm, "");
 				lines = cf.parseLinesRange(lines);
-			}
-			if (_.startsWith(arg, "solution:")) {
-				solution = arg.replace("solution:", "");
 			}
 		});
 
@@ -44,7 +40,7 @@ hexo.extend.tag.register(
 		}
 
 		var highlighted = Prism.highlight(content, Prism.languages[lang]);
-		var codeString = `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
+		return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
 	},
 	{ async: true }
 );
