@@ -74,9 +74,6 @@ If you open the application in a browser its appearance and behavior should be u
 
 {% instruction 'Now update `worker.m.css` and `workerContainer.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors.' %}
 
-{% instruction 'When you are finished, click on toggle solution to see one possible result.' %}
-
-{% solution showsolution1 %}
 ```css
 /* workerContainer.m.css */
 .rootFixed {
@@ -133,8 +130,6 @@ render() {
     // ...
 }
 ```
-
-{% endsolution %}
 
 Next, we will start to create a theme.
 

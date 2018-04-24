@@ -47,9 +47,6 @@ The next step in creating an initial filterable list widget is to update its `re
 
 {% instruction 'Update the `List` to render a `TextInput` using the `value` and `onInput` properties.' %}
 
-Click the button below to view the solution.
-
-{% solution showsolution1 %}
 ```ts
 protected onInput(value: string) {
     this.properties.onInput(value);
@@ -65,7 +62,6 @@ protected render() {
     ]);
 }
 ```
-{% endsolution %}
 
 Before continuing with the `List` implementation, let’s review and verify the progress so far by adding the current widget to the Biz-E-Bodies application.
 
@@ -85,7 +81,6 @@ We will add the `List` widget to the existing `Banner` widget so users can filte
 
 {% instruction 'Update `Banner` to render an array of virtual DOM nodes including the existing `<h1>` element as well as a `List` widget.' %}
 
-{% solution showsolution2 %}
 ```ts
 protected render() {
     return [
@@ -98,7 +93,6 @@ protected render() {
     ];
 }
 ```
-{% endsolution %}
 
 {% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
@@ -128,7 +122,6 @@ The `ListProperties` interface now defines an optional `data` property that can 
 
 {% instruction 'Update the `List` so it also renders a `<div>` for each item in its `data` array property.' %}
 
-{% solution showsolution3 %}
 ```ts
 protected renderItems() {
     const { data = [] } = this.properties;
@@ -146,7 +139,6 @@ protected render() {
     ]);
 }
 ```
-{% endsolution %}
 
 {% aside 'Injecting state' %}
 The [State management](../1010_containers_and_injecting_state/) tutorial details how to use Dojo 2 `Containers` and `Injectors` to inject external state as properties of widgets.

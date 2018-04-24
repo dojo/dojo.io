@@ -145,8 +145,6 @@ Our next step is to override the `render()` method to customize the widget's app
 
 {% instruction 'Try and implement that using the URL `https://dojo.io/tutorials/resources/worker.svg` and `"lastName, firstName"` as the worker\'s name.' %}
 
-If you need help, or want to check your solution, click the button below to see our solution.
-
 
 ```ts
 protected render() {
@@ -164,7 +162,7 @@ Before we continue to refine this widget, let's review our progress by adding th
 
 {% task 'Add a `Worker` widget to the `App`.' %}
 
-{% instruction 'Within `App.ts`, import the `Worker` widget and then update the `App`\'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.' %}
+{% instruction 'Within `App.ts`, import the `Worker` widget and then update the `App`\'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array.' %}
 
 
 ```ts

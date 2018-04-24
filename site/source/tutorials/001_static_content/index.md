@@ -65,9 +65,6 @@ The `v` function simply instructs Dojo 2 to create an HTML element, in this case
 
 {% instruction 'Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"' %}
 
-{% instruction 'When you are finished, click on show solution to see the results.' %}
-
-{% solution showsolution1 %}
 ```typescript
 export default class HelloWorld extends WidgetBase {
 	protected render() {
@@ -75,7 +72,6 @@ export default class HelloWorld extends WidgetBase {
 	}
 }
 ```
-{% endsolution %}
 
 Now, let's look at the `v` function again. We are intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a *virtual* DOM.
 
