@@ -9,9 +9,9 @@
 			</div>
 			<div class="uk-navbar-right uk-visible@m">
 				<ul class="uk-navbar-nav">
-					<li><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
-					<li><a class="navbar-item" href="/tutorials/000_local_installation/">Tutorials</a></li>
-					<li><a class="navbar-item" href="/blog">Blog</a></li>
+					<li class="<%- is_current('/docs') ? 'uk-active' : '' %>"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class="<%- is_current('/tutorials') ? 'uk-active' : '' %>"><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class="<%- is_current('/blog') ? 'uk-active' : '' %>"><a class="navbar-item" href="/blog">Blog</a></li>
 					<li>
 						<a class="navbar-item">Community</a>
 						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
