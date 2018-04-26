@@ -1,7 +1,6 @@
 code {
 		background: rgba(27,31,35,0.05);
 		border: 0;
-		padding: .125rem .375rem .1875rem .375rem;
 }
 
 pre code {
@@ -11,9 +10,10 @@ pre code {
 body :not(pre) > code[class*="language-"],
 body pre[class*="language-"],
 body code[class*="language-"], 
+body pre,
 body pre[class*="language-"] {
-		background: #F6F8FA;
-		border: 0;
+	background: #F6F8FA;
+	border: 0;
 	color: #032f62;
 	font-family: $base-code-font-family;
 	font-weight: 400;
@@ -54,7 +54,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
  .hljs {
   display: block;
-  background: white;
   padding: 0.5em;
   color: #333333;
   overflow-x: auto;

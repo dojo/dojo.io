@@ -8,7 +8,7 @@
 
 var fs = require("hexo-fs");
 var pathFn = require("path");
-var Prism = require("prismjs");
+var hljs = require("highlight.js")
 var _ = require("lodash");
 
 hexo.extend.tag.register(
@@ -39,14 +39,28 @@ hexo.extend.tag.register(
 			content = rawContent;
 		}
 
-		var highlighted = Prism.highlight(content, Prism.languages[lang]);
+		content = cf.normalizeWhitespace(content);
+
+		var { value: highlighted } = hljs.highlight(lang, content);
 		return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
 	},
 	{ async: true }
 );
 
 var cf = {
-	parseLinesRange: function(str) {
+	normalizeWhitespace(str) {
+		const minSpaceMatch = str.match(/^[ \t]*(?=\S)/gm);
+		const indent = minSpaceMatch ? Math.min(...minSpaceMatch.map(x => x.length)) : 0;
+
+		if (indent === 0) {
+			return str;
+		}
+
+		const re = new RegExp(`^[ \\t]{${indent}}`, 'gm');
+
+		return str.replace(re, '');
+	},
+	parseLinesRange(str) {
 		var lines = {};
 		var lineGroups;
 		if (str.indexOf(",") !== -1) {
@@ -73,7 +87,7 @@ var cf = {
 		return result;
 	},
 
-	getFilePath: function(path, filename) {
+	getFilePath(path, filename) {
 		var dir = path
 			.split("/")
 			.slice(0, -1)
@@ -81,7 +95,7 @@ var cf = {
 		return pathFn.join(hexo.source_dir, dir, filename);
 	},
 
-	extractContent: function(rawContent, lines) {
+	extractContent(rawContent, lines) {
 		var linefeed = rawContent.indexOf("\r\n") !== -1 ? "\r\n" : "\n";
 		var splitContent = rawContent.split(linefeed);
 		var fragment = "";

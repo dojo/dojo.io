@@ -33,7 +33,7 @@ The first step is to add the listener itself. In Dojo 2, event listeners get ass
 
 {% instruction 'Update the object containing that property as follows.' %}
 
-```ts
+```typescript
 {
 	classes: this.theme(css.worker),
 	onclick: this.flip
@@ -44,7 +44,7 @@ The `onclick` property registers a function to call when clicking on the node to
 
 {% instruction 'Add a basic implementation for that method within the Worker class.' %}
 
-```ts
+```typescript
 flip(): void {
 	console.log('the flip method has been fired!');
 }
