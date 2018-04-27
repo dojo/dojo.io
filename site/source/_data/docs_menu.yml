@@ -1,12 +1,12 @@
 dojo/cli:
-  repo: jason0x43/cli
-  version: api-docs
+  repo: dojo/cli
+  version: master
 dojo/core:
-  repo: devpaul/core
-  version: api
+  repo: dojo/core
+  version: master
 dojo/has:
-  repo: maier49/has
-  version: api-docs
+  repo: dojo/has
+  version: master
 dojo/i18n:
   repo: dojo/i18n
   version: master
@@ -32,8 +32,8 @@ dojo/themes:
   repo: dojo/themes
   version: master
 dojo/widget-core:
-  repo: maier49/widget-core
-  version: api-docs
+  repo: dojo/widget-core
+  version: master
 dojo/widgets:
-  repo: maier49/widgets
-  version: api-docs
+  repo: dojo/widgets
+  version: master

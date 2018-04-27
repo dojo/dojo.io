@@ -100,13 +100,13 @@ function getDocSetData(text: string): DocSet {
 		const start = text.indexOf('{', index);
 		const end = text.indexOf('-->', index);
 		const data = text.slice(start, end).trim();
-		return <DocSet>{
+		return <DocSet> {
 			readme: text,
 			pages: [],
 			...JSON.parse(data)
 		};
 	} else {
-		return <DocSet>{
+		return <DocSet> {
 			readme: text,
 			pages: []
 		};
@@ -161,7 +161,7 @@ function init() {
  * Handle when a user clicks a heading
  */
 function handleHeadingClick(event: Event) {
-	const target = <HTMLElement>event.target;
+	const target = <HTMLElement> event.target;
 	if (/^H/.test(target.tagName) && target.id) {
 		setHash(fromHash(target.id));
 	}
@@ -171,7 +171,7 @@ function handleHeadingClick(event: Event) {
  * Handle when a user clicks a link in the doc selector
  */
 function handleDocSelectorClick(event: Event) {
-	const target = <HTMLAnchorElement>event.target;
+	const target = <HTMLAnchorElement> event.target;
 
 	if (target.tagName === 'A') {
 		// Consume nav link events. Rather than relying on link clicks setting
@@ -204,7 +204,7 @@ function handleDocSelectorClick(event: Event) {
  * Handle a UIkit scroll event
  */
 function handleScrolled(event: Event) {
-	const target = <HTMLElement>event.target;
+	const target = <HTMLElement> event.target;
 	const hash = target.hasAttribute('href')
 		? target.getAttribute('href')
 		: '#' + target.id;

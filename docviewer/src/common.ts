@@ -18,7 +18,7 @@ hljs.registerLanguage(
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
 
 // Make a global that doesn't need 'any'
-export const global = <any>window;
+export const global = <any> window;
 
 // TOC entries will be created for H2 - H<maxTocLevel> tags (inclusive)
 export const maxTocLevel = 4;
@@ -168,7 +168,7 @@ export function fromHash(hash: string): LocationRef {
 	// docId.
 	const anchor = idParts.slice(2).join(sep);
 
-	return <LocationRef>{ type, repo, version, path, anchor };
+	return <LocationRef> { type, repo, version, path, anchor };
 }
 
 /**
@@ -489,9 +489,9 @@ export function slugify(str: string) {
 // These are sources for github content. The CDNs will likely be faster than
 // raw.githubusercontent, and are not (as) rate limited.
 const sources = [
-	'https://gitcdn.xyz/repo/',
 	'https://rawcdn.githack.com/',
 	'https://cdn.rawgit.com/',
+	'https://gitcdn.xyz/repo/',
 	'https://raw.githubusercontent.com/'
 ];
 

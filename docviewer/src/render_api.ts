@@ -211,7 +211,7 @@ function getContainingModule(reflection: Reflection) {
 	while (reflection && reflection.kindString !== 'External module') {
 		reflection = reflection.parent;
 	}
-	return <ContainerReflection>reflection;
+	return <ContainerReflection> reflection;
 }
 
 /**
@@ -386,14 +386,14 @@ function renderClass(
  * Indicate whetehr a reflection is a GenericReflection
  */
 function isGenericReflection(type: Reflection): type is GenericReflection {
-	return (<any>type).typeParameter != null;
+	return (<any> type).typeParameter != null;
 }
 
 /**
  * Indicate whetehr a reflection is a ContainerReflection
  */
 function isContainerReflection(type: Reflection): type is ContainerReflection {
-	return (<any>type).children != null;
+	return (<any> type).children != null;
 }
 
 /**
@@ -485,7 +485,7 @@ function renderInterface(
 	if (iface.indexSignature) {
 		renderHeading(level + 1, 'Index signature', context);
 		// TypeDoc's typing is wrong -- this is always an array
-		const sig: SignatureReflection[] = <any>iface.indexSignature;
+		const sig: SignatureReflection[] = <any> iface.indexSignature;
 		renderSignatures(sig, iface, context);
 	}
 
@@ -539,7 +539,7 @@ function renderProperty(
 	if (property.kindString === 'Accessor') {
 		if (property.getSignature) {
 			access.canRead = true;
-			const sig = (<any>property.getSignature)[0];
+			const sig = (<any> property.getSignature)[0];
 			typeString = typeToString(sig.type);
 			if (hasComment(sig)) {
 				comment = sig.comment;
@@ -547,7 +547,7 @@ function renderProperty(
 		}
 		if (property.setSignature) {
 			access.canWrite = true;
-			const sig = (<any>property.setSignature)[0];
+			const sig = (<any> property.setSignature)[0];
 			if (!typeString) {
 				typeString = typeToString(sig.parameters[0].type);
 			}
@@ -629,7 +629,7 @@ function renderSignatures(
 		(params, sig) => {
 			return params.concat(sig.parameters || []);
 		},
-		<ParameterReflection[]>[]
+		<ParameterReflection[]> []
 	);
 	if (parameters.length > 0) {
 		renderParameterTable(parameters, parent, context);
@@ -712,7 +712,7 @@ function renderComment(
 	const { page, linksToResolve } = context;
 	const element = h('p', { innerHTML: commentToHtml(comment, page.name) });
 
-	const links = <NodeListOf<HTMLAnchorElement>>element.querySelectorAll('a');
+	const links = <NodeListOf<HTMLAnchorElement>> element.querySelectorAll('a');
 	for (let i = 0; i < links.length; i++) {
 		if (links[i].href.indexOf('api:') === 0) {
 			const link = links[i];
@@ -770,8 +770,8 @@ function renderText(text: string, _pageName: string) {
 		}
 	});
 	return renderMarkdown(text, {
-		ref: <LocationRef>{},
-		docs: <{ [pkg: string]: string }>{}
+		ref: <LocationRef> {},
+		docs: <{ [pkg: string]: string }> {}
 	});
 }
 
@@ -803,7 +803,7 @@ function createSourceLink(source: SourceReference, _context: ApiRenderContext) {
 	// );
 	const link = h('a');
 	link.title = `${source.fileName}#L${source.line}`;
-	return <HTMLAnchorElement>link;
+	return <HTMLAnchorElement> link;
 }
 
 /**
@@ -1019,7 +1019,7 @@ function renderType(type: any, context: ApiRenderContext): HTMLElement {
  * Find the module that contains a given declaration ID
  */
 function findModule(id: number, index: ApiIndex) {
-	let declaration = <Reflection>index[id];
+	let declaration = <Reflection> index[id];
 	while (declaration && declaration.kindString !== 'External module') {
 		declaration = declaration.parent;
 	}
@@ -1095,7 +1095,7 @@ function getHeadingRenderer(
 			typeof content === 'string'
 				? content
 				: // Module names are surrounded by '"'
-				  content.name.replace(/^"|"$/g, '');
+				content.name.replace(/^"|"$/g, '');
 		const className = classes.join(' ');
 		let id: string;
 
@@ -1107,7 +1107,7 @@ function getHeadingRenderer(
 			)}`.slice(1);
 		}
 
-		const heading = <HTMLElement>h(
+		const heading = <HTMLElement> h(
 			`h${level}`,
 			{ className, id },
 			text.replace(/^src\//, '')
