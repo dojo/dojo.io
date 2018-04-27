@@ -1,12 +1,21 @@
 <section class="section">
 	<div class="container">
 		<div class="uk-grid" uk-grid>
-			<div class="uk-width-auto sidenav">
-				<%- partial('_partial/tutorials-nav') %>	
-			</div>
 			<div class="uk-width-expand">
 				<%- page.content %>
 			</div>
 		</div>
 	</div>
 </section>
+<div class="sidebar-left uk-visible@m">
+	<%- partial('_partial/tutorials-nav') %>
+</div>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<%- partial('_partial/main-nav') %>
+			<hr>
+			<%- partial('_partial/tutorials-nav') %>
+		</div>
+	</div>
+</div>
