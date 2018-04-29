@@ -39,16 +39,7 @@ section.embrace-platform {
 			}
 		}
 
-		h2 {
-			max-width: 60%;
-			line-height: 1.3;
-			padding-bottom: 1em;
-
-			@media screen and (max-width : $mobile-break) {
-				max-width: 100%;
-				font-size: 2em;
-			}
-		}
+		
 		p {
 			margin-right: 10%;
 		}
