@@ -1,4 +1,4 @@
 ---
 title: Dojo 2 local installation
-layout: tutorial
+layout: tutorials
 ---
