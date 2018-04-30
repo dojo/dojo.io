@@ -43,7 +43,7 @@ import 'web-animations-js/web-animations-next-lite.min';
 Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the `domNode` itself.
 {% endaside %}
 
-Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered [virtual dom](https://dojo.io/docs/fundamentals/working_with_virtual_dom/) in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
+Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered Virtual DOM in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
 
 ## Introducing the zombies
 

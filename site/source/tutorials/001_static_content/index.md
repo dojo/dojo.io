@@ -77,9 +77,7 @@ Now, let's look at the `v` function again. We are intentionally avoiding somethi
 
 In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.
 
-Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../../docs/fundamentals/working_with_virtual_dom/) and [Reactive Programming](../../docs/fundamentals/reactive_programming/) articles in the reference section. For now, let's get back to our application and make some more changes.
-
-In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
+Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
 
 {% section %}
 

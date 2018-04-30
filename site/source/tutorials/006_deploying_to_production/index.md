@@ -172,6 +172,4 @@ This brings us to the end of the beginner tutorials for Dojo 2. At this point, y
 
 To learn about those features, take a look at the [advanced tutorials](../tutorials/) section where you will find more tutorials that demonstrate how to use features that almost every application needs such as creating in-page routers, working with client-side data stores, and more.
 
-If you would like to learn more about the underlying architecture and technology behind Dojo 2, take a look at the articles in the [reference guide](../docs/fundamentals/accessibility/). This section contains information about topics such as [TypeScript and Dojo2](../../docs/fundamentals/typescript_and_dojo_2/) and [Working with a Virtual DOM](../../docs/fundamentals/working_with_virtual_dom/). These articles provide valuable insight into why Dojo 2 works the way that it does.
-
 {% section 'last' %}
