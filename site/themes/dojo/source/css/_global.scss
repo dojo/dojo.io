@@ -51,10 +51,18 @@ body {
 	overflow: auto;
 }
 
-.sidebar-left {
-	padding: 40px 40px 60px 40px;
-	border-right: 1px #e5e5e5 solid;
-	width: $sidenav-width !important;
+@media (min-width: 960px) {
+	.sidebar-left {
+		padding: 40px 40px 60px 40px;
+		border-right: 1px #e5e5e5 solid;
+		width: $sidenav-width !important;
+	}
+}
+
+@media (max-width: 960px) {
+	.sidebar-left {
+		width: $sidenav-width !important;
+	}
 }
 
 .sidebar-right {
