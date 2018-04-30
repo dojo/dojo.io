@@ -3,3 +3,9 @@
 	padding: 1rem;
 	font-size: 0.75rem;
 }
+
+[data-doc-type='doc'] {
+	.footer {
+		display: none;
+	}
+}
