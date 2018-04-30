@@ -55,9 +55,9 @@ Our next step is to override `WidgetBase`'s `render` method to generate the appl
 {% instruction 'To start, let\'s use a simple `render` method by adding this to the `App` class:' %}
 
 ```ts
-	protected render() {
-		return v('div');
-	}
+protected render() {
+	return v('div');
+}
 ```
 
 This method will generate a `div` virtual node with no children. To render the `Banner` as a child of the div, we'll use the `w` function that is designed to render widgets.
@@ -65,11 +65,11 @@ This method will generate a `div` virtual node with no children. To render the `
 {% instruction 'Update the `render` method to the following:' %}
 
 ```ts
-	protected render() {
-		return v('div', [
-			w(Banner, {})
-		]);
-	}
+protected render() {
+	return v('div', [
+		w(Banner, {})
+	]);
+}
 ```
 
 {% aside 'Mandatory object for properties' %}

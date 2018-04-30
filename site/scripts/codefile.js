@@ -8,7 +8,7 @@
 
 var fs = require("hexo-fs");
 var pathFn = require("path");
-var hljs = require("highlight.js");
+var Prism = require("prismjs");
 var _ = require("lodash");
 
 hexo.extend.tag.register(
@@ -39,10 +39,8 @@ hexo.extend.tag.register(
 			content = rawContent;
 		}
 
-		content = cf.normalizeWhitespace(content);
-
-		var { value: highlighted } = hljs.highlight(lang, content);
-		return `<pre class="hljs language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
+		var highlighted = Prism.highlight(cf.normalizeWhitespace(content), Prism.languages[lang]);
+		return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
 	},
 	{ async: true }
 );

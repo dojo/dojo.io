@@ -1,21 +1,9 @@
 import * as MarkdownIt from 'markdown-it';
 
-// Load the base highlightjs lib and then just the necessary languages to cut
-// down on build size.
-const hljs = require('highlight.js/lib/highlight');
-hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
-hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
-hljs.registerLanguage(
-	'javascript',
-	require('highlight.js/lib/languages/javascript')
-);
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-hljs.registerLanguage('shell', require('highlight.js/lib/languages/shell'));
-hljs.registerLanguage(
-	'typescript',
-	require('highlight.js/lib/languages/typescript')
-);
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
+const Prism = require('prismjs');
+
+const loadLanguages = require('prismjs/components/index.js');
+loadLanguages(['typescript', 'json', 'bash']);
 
 // Make a global that doesn't need 'any'
 export const global = <any> window;
@@ -203,7 +191,7 @@ export function getDocId(locationOrHref: string | Location) {
  * Highlight code using hilight.js
  */
 export function highlight(lang: string, code: string) {
-	return hljs.highlight(lang, code, true).value;
+	return Prism.highlight(code, Prism.languages[lang]);
 }
 
 /**
@@ -213,27 +201,15 @@ export function initMarkdownRenderer() {
 	const markdown = MarkdownIt({
 		// Customize the syntax highlighting process
 		highlight: function(str: string, lang: string) {
-			if (lang && hljs.getLanguage(lang)) {
+			if (lang && Prism.languages[lang]) {
 				try {
-					return (
-						'<pre class="hljs language-' +
-						lang +
-						'">' +
-						'<code class="hljs language-' +
-						lang +
-						'">' +
-						hljs.highlight(lang, str, true).value +
-						'</code></pre>'
-					);
+					return `<pre class="language-${lang}"><code class="language-${lang}">${highlight(lang, str)}</code></pre>`;
 				} catch (error) {
 					console.error(error);
 				}
 			}
 
-			return '<pre class="hljs language-' + lang + '">'
-			+ '<code class="hljs language-' + lang + '">'
-			+ str +
-			'</code></pre>';
+		return `<pre class="language-${lang}"><code clas="language-${lang}">${str}</code></pre>`;
 		},
 
 		// allow HTML in markdown to pass through

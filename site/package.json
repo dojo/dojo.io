@@ -21,6 +21,7 @@
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-tag": "^0.2.0",
     "hexo-include-markdown": "^1.0.2",
+    "hexo-prism-plugin": "^2.2.0",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.11",
     "hexo-renderer-sass": "^0.3.2",

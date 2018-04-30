@@ -44,12 +44,15 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-	enable: true
+	enable: false
 	line_number: false
 	auto_detect: true
 	tab_replace:
-	hljs:
-	  classPrefix: 'hljs'
+
+prism_plugin:
+	mode: 'preprocess'    # realtime/preprocess
+	theme: 'vs'
+	line_number: false    # default false
 
 # Authors
 authors:

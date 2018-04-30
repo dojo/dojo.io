@@ -351,7 +351,7 @@ function renderClass(
 	const formatted = formatDeclaration(declaration);
 	const html = highlight('typescript', formatted);
 	context.page.element.appendChild(
-		h('pre', {}, h('code.hljs.lang-typescript', { innerHTML: html }))
+		h('pre', {}, h('code.lang-typescript', { innerHTML: html }))
 	);
 
 	if (hasComment(cls)) {
@@ -473,7 +473,7 @@ function renderInterface(
 	const formatted = formatDeclaration(declaration);
 	const html = highlight('typescript', formatted);
 	context.page.element.appendChild(
-		h('pre', {}, h('code.hljs.lang-typescript', { innerHTML: html }))
+		h('pre', {}, h('code.lang-typescript', { innerHTML: html }))
 	);
 
 	if (hasComment(iface)) {
@@ -621,7 +621,7 @@ function renderSignatures(
 		const formatted = formatSignature(text);
 		const html = highlight('typescript', formatted);
 		page.element.appendChild(
-			h('pre', {}, [h('code.hljs.lang-typescript', { innerHTML: html })])
+			h('pre', {}, [h('code.lang-typescript', { innerHTML: html })])
 		);
 	}
 
@@ -782,7 +782,7 @@ function renderCode(text: string, language = 'typescript') {
 	const html = highlight(language, text)
 		.replace(/\n/g, '<br>')
 		.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
-	return h('pre', {}, [h(`code.hljs.lang-${language}`, { innerHTML: html })]);
+	return h('pre', {}, [h(`code.lang-${language}`, { innerHTML: html })]);
 }
 
 /**
