@@ -4,24 +4,20 @@
 			padding-top: 2.5rem;
 		}
     }
-    
-    section.tutorial {
-        &:not(:first-of-type) {
-            &:after {
-                content: "";
-                display: block;
-                border-top: 1px solid $column-divider-rule-color;
-                @extend .uk-margin-medium;
-            }
-        }
-    }
 
     .aside {
-        @extend .uk-width-large;
-        @extend .uk-card;
-        @extend .uk-card-body;
-        @extend .uk-alert-warning;
-        float: right;
-        margin: 1rem 0 1rem 1rem;
+		@extend .uk-margin-medium;
+		@extend .uk-padding-small;
+		@extend .uk-section-secondary;
+		font-size: 0.9em;
+		border-left: 4px solid $alert-warning-color;
+
+		code {
+			background: rgba(#fff, 0.2);
+		}
+
+		p {
+			margin-top: 0.5em;
+		}
     }
 }

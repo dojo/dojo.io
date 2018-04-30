@@ -2,14 +2,14 @@
 .body-tutorial pre,
 pre.hljs {
 		line-height: 1.4;
-    border-radius: 6px;
-    padding: 1.5rem 1.5rem;
-    margin: .85rem 0;
-    white-space: pre-wrap;
-    word-break: break-word;
+		border-radius: 0px;
+    background: #f8f8f8;
     overflow: auto;
 		position: relative;
-		@extend .hljs;
+    white-space: pre-wrap;
+    word-break: break-word;
+		@extend .uk-padding-small;
+		@extend .uk-margin;
 }
 
 pre code {
@@ -33,78 +33,71 @@ body :not(pre) > code {
 	}
 }
 
+/*
 
-/* Tomorrow Night Bright Theme */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
 
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-  color: #969896;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-  color: #d54e53;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-  color: #e78c45;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-  color: #e7c547;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-  color: #b9ca4a;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-  color: #7aa6da;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #c397d8;
-}
+*/
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  background: #212329;
-  color: #eaeaea;
-  padding: 0.5em;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	background: #f8f8f8;
+	color: black;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-variable {
+	color: #008000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+	color: #00f;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+	color: #a31515;
+}
+
+.hljs-deletion,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-meta {
+	color: #2b91af;
+}
+
+.hljs-doctag {
+	color: #808080;
+}
+
+.hljs-attr {
+	color: #f00;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+	color: #00b0e8;
 }
 
 .hljs-emphasis {
-  font-style: italic;
+	font-style: italic;
 }
 
 .hljs-strong {
-  font-weight: bold;
+	font-weight: bold;
 }

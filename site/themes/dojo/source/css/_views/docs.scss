@@ -15,6 +15,10 @@
 
 .doc-detail {
 	max-width: 800px;
+}
+
+.doc-detail,
+.tutorial {
 
 	h1 {
 		margin-top: 0;
@@ -40,21 +44,31 @@
 		}
 	}
 
-	h2, h3, h4 {
+	h3, h4, h5 {
 		cursor: pointer;
+		font-weight: 300;
 		position: relative;
-
-		[uk-icon] {
-			display: none;
-		}
-
-		&:hover [uk-icon] {
-			display: inline-block;
-			position: absolute;
-			top: 50%;
-			left: -25px;
-			transform: translateY(-50%);
-		}
+		margin-left: -25px;
+		
+			&:before {
+				content: "#";
+				color: #999;
+				display: inline-block;
+				font-weight: 100;
+				font-size: 0.8em;
+				font-style: italic;
+				opacity: 0.5;
+				transform: translateX(-5px) translateY(-2px);
+				transition: 0.3s ease;
+				width: 25px;
+			}
+		
+			&:hover {
+				&:before {
+					opacity: 1;
+				}
+			}
+		
 	}
 
 	h2 {
