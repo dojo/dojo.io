@@ -1,20 +1,21 @@
 import { deepAssign } from '@dojo/core/lang';
-import { Injector } from '@dojo/widget-core/Injector';
 
 import { WorkerProperties } from './widgets/Worker';
 import { WorkerFormData, WorkerFormErrors } from './widgets/WorkerForm';
 
-export default class ApplicationContext extends Injector {
+export default class ApplicationContext {
 
 	private _workerData: WorkerProperties[];
 
 	private _formData: Partial<WorkerFormData> = {};
 
+	private _invalidator: () => void;
+
 	private _formErrors: WorkerFormErrors = {};
 
-	constructor(workerData: WorkerProperties[] = []) {
-		super({});
+	constructor(invalidator: () => void, workerData: WorkerProperties[] = []) {
 		this._workerData = workerData;
+		this._invalidator = invalidator;
 	}
 
 	get workerData(): WorkerProperties[] {
@@ -70,27 +71,23 @@ export default class ApplicationContext extends Injector {
 
 	public formValidate(input: Partial<WorkerFormData>): void {
 		this._formErrors = deepAssign({}, this._formErrors, this._validateInput(input));
-		this.emit({ type: 'invalidate' });
+		this._invalidator();
 	}
 
 	public formInput(input: Partial<WorkerFormData>): void {
 		this._formData = deepAssign({}, this._formData, input);
-		this.emit({ type: 'invalidate' });
+		this._invalidator();
 	}
 
 	public submitForm(): void {
 		if (!this._validateOnSubmit()) {
-			this.emit({ type: 'invalidate' });
+			this._invalidator();
 			return;
 		}
 
 		this._workerData = [ ...this._workerData, this._formData ];
 		this._formData = {};
 		this._formErrors = {};
-		this.emit({ type: 'invalidate' });
-	}
-
-	get(): ApplicationContext {
-		return this;
+		this._invalidator();
 	}
 }
