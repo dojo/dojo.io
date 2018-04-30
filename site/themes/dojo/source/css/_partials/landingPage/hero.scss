@@ -3,3 +3,19 @@
 	background: #ECF6FD url("/images/home/herobg.png") no-repeat;
 	background-size: cover;
 }
+
+.threeup {
+	.uk-card {
+		max-width: 33.3333vw;
+	}
+}
+
+@media screen and (max-width: $mobile-break) {
+	.threeup {
+		flex-direction: column;
+		.uk-card {
+			max-width: 100vw;
+			width: 100vw;
+		}
+	}
+}
