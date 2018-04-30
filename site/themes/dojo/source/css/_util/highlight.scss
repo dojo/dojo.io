@@ -1,6 +1,7 @@
 .body-single-page .article pre,
 .body-tutorial pre,
-body pre[class *= "language-"] {
+body pre[class *= "language-"],
+[data-doc-type="api"] pre {
 	line-height: 1.4;
 	border-radius: 0px;
     background-color: #f8f8f8 !important;

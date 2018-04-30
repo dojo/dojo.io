@@ -9,6 +9,19 @@
 		@extend .uk-margin;
 	}
 
+	.instruction {
+		border-left: 4px solid $global-success-background;
+		padding-left: 0.5rem;
+		margin-top: 2rem;
+		font-weight: bold;
+	}
+
+	.task {
+		border-left: 4px solid $global-primary-background;
+		padding-left: 0.5rem;
+		font-weight: bold;
+	}
+
     .aside {
 		@extend .uk-margin-medium;
 		@extend .uk-padding-small;
