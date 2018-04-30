@@ -18,7 +18,7 @@ You can [download](../assets/006_deploying_to_production-initial.zip) the demo p
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 

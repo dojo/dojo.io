@@ -19,7 +19,7 @@ To achieve maximum performance and efficiency, developers should eventually auth
 
 You can [download](../assets/1040_dojo1_dijits-initial.zip) the demo project to get started.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
