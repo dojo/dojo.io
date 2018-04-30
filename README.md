@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dojo/dojo.io.svg?branch=master)](https://travis-ci.org/dojo/dojo.io)
 
-This repository is the source of the [dojo.io](https://dojo.io/) website, including the documentation, tutorials, cookbook and the blog.
+This repository is the source of the [dojo.io](https://dojo.io/) website, including the documentation, tutorials, and the blog.
 
 Published to GitHub Pages and [Dojo.io](http://dojo.io).
 
