@@ -230,7 +230,10 @@ export function initMarkdownRenderer() {
 				}
 			}
 
-			return '<pre class="hljs language-' + lang + '">' + '<code class="hljs language-' + lang + '">' + str + '</code></pre>';
+			return '<pre class="hljs language-' + lang + '">'
+			+ '<code class="hljs language-' + lang + '">'
+			+ str +
+			'</code></pre>';
 		},
 
 		// allow HTML in markdown to pass through

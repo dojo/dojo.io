@@ -265,7 +265,7 @@ async function render() {
 				tocContainer,
 				docSelector
 			});
-		} 
+		}
 	}
 
 	scrollTo(hash);
