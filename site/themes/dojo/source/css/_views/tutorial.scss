@@ -3,14 +3,18 @@
 		.uk-section {
 			padding-top: 2.5rem;
 		}
-    }
+	}
+	
+	.tutorial {
+		@extend .uk-margin;
+	}
 
     .aside {
 		@extend .uk-margin-medium;
 		@extend .uk-padding-small;
 		@extend .uk-section-secondary;
 		font-size: 0.9em;
-		border-left: 4px solid $alert-warning-color;
+		border-left: 10px solid $alert-warning-color;
 
 		code {
 			background: rgba(#fff, 0.2);
