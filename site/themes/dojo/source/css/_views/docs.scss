@@ -36,6 +36,7 @@
 	}
 
 	h2 {
+		cursor: pointer;
 		&:before {
 			content: "";
 			display: block;
@@ -57,8 +58,8 @@
 				font-weight: 100;
 				font-size: 0.8em;
 				font-style: italic;
-				opacity: 0.5;
-				transform: translateX(-5px) translateY(-2px);
+				opacity: 0;
+				transform: translateX(-1px) translateY(-2px);
 				transition: 0.3s ease;
 				width: 25px;
 			}
@@ -71,11 +72,6 @@
 		
 	}
 
-	h2 {
-		&:hover [uk-icon] {
-			top: 40%;
-		}
-	}
 }
 
 [data-doc-type="doc"] #sidebar-nav .uk-active [data-doc-type="doc"],
