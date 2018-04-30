@@ -8,7 +8,7 @@
 
 var fs = require("hexo-fs");
 var pathFn = require("path");
-var hljs = require("highlight.js")
+var hljs = require("highlight.js");
 var _ = require("lodash");
 
 hexo.extend.tag.register(
@@ -42,7 +42,7 @@ hexo.extend.tag.register(
 		content = cf.normalizeWhitespace(content);
 
 		var { value: highlighted } = hljs.highlight(lang, content);
-		return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
+		return `<pre class="hljs language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
 	},
 	{ async: true }
 );
@@ -50,15 +50,17 @@ hexo.extend.tag.register(
 var cf = {
 	normalizeWhitespace(str) {
 		const minSpaceMatch = str.match(/^[ \t]*(?=\S)/gm);
-		const indent = minSpaceMatch ? Math.min(...minSpaceMatch.map(x => x.length)) : 0;
+		const indent = minSpaceMatch
+			? Math.min(...minSpaceMatch.map(x => x.length))
+			: 0;
 
 		if (indent === 0) {
 			return str;
 		}
 
-		const re = new RegExp(`^[ \\t]{${indent}}`, 'gm');
+		const re = new RegExp(`^[ \\t]{${indent}}`, "gm");
 
-		return str.replace(re, '');
+		return str.replace(re, "");
 	},
 	parseLinesRange(str) {
 		var lines = {};

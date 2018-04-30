@@ -219,15 +219,18 @@ export function initMarkdownRenderer() {
 						'<pre class="hljs language-' +
 						lang +
 						'">' +
+						'<code class="hljs language-' +
+						lang +
+						'">' +
 						hljs.highlight(lang, str, true).value +
-						'</pre>'
+						'</code></pre>'
 					);
 				} catch (error) {
 					console.error(error);
 				}
 			}
 
-			return '<pre class="hljs language-' + lang + '">' + str + '</pre>';
+			return '<pre class="hljs language-' + lang + '">' + '<code class="hljs language-' + lang + '">' + str + '</code></pre>';
 		},
 
 		// allow HTML in markdown to pass through
