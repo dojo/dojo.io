@@ -1,5 +1,15 @@
+@import 'variables-theme';
+
 // Colors
-$page-background: #fafafa;
+$primary: #459DF8;
+$link: darken($primary, 5%);
+$link-hover: $primary;
+$light: #fff;
+$dark: #999;
+$card-color: #fff;
+$success: green;
+
+$page-background: #ffffff;
 
 $color-default: rgba(0,0,0,0.8);
 $color-meta: $color-default;
@@ -22,40 +32,33 @@ $color-inline-code: #353535;
 $code-font-size: 0.85rem;
 
 // Component style variables
-$header-background: #222127;
+$header-background: #212329;
 $footer-background: #fff;
 $paginator-background: $light;
+
+$navbar-background: $header-background;
 
 $header-height: 3.25rem;
 $header-offset: $header-height;
 $footer-offset: 3.25rem;
 $border-radius: 6px;
 
-// Bulma overrides
-$navbar-item-hover-color: #fff;
-$navbar-item-color: $primary;
-$navbar-item-hover-background-color: transparent;
 
-// Misc
-$article-max-width: 900px;
+$sidenav-width: 300px;
+$sidenav-right-width: 250px;
 
-
-
-/* Your settings for Typesettings :) */
-/* https://github.com/ianrose/typesettings */
-
-$heading-font: 'Roboto Slab', serif;
-$default-font: 'Lato', sans-serif;
-$font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-$font-code: $font-mono;
-$font-sans: $default-font;
-$font-serif: $heading-font;
-$text-color: $color-default;
-$base-vertical-unit: 8px;
-$base-line-multi: 4;
-$base-font-size: 18px;
-$ms-ratio: 1.250;
-$min-width: 600px;
-$paragraph-indent: false;
-$paragraph-justify: true;
-$load-typesetted: true;
+$global-font-size: 15px;
+$global-line-height: 1.65;
+$global-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$base-code-font-size: 0.85rem;
+$base-code-color: #032f62;
+$base-pre-font-size: 0.85rem;
+$base-code-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+$heading-font: 'Montserrat', sans-serif;
+$base-heading-font-family: $heading-font;
+$navbar-nav-item-font-size: 0.9rem;
+$navbar-dropdown-nav-font-size: $navbar-nav-item-font-size;
+$subnav-item-font-size: $navbar-nav-item-font-size;
+$nav-primary-item-font-size: 0.95rem;
+$navbar-dropdown-width: 165px;
+$navbar-dropdown-margin: 0;

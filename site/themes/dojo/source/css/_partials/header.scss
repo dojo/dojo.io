@@ -1,37 +1,4 @@
-.header {
-	background: $header-background;
-	position: fixed;
-	width: 100%;
-	z-index: 9999;
-}
-
-.navbar {
-	background: transparent;
-
-	.navbar-brand .navbar-item {
-		&:hover {
-			background: transparent;
-		}
-	}
-
-	.navbar-item {
-		@include default-transition();
-	}
-
-	.site-logo {
-		height: 48px;
-		width: 110px;
-	}
-
-	.navbar-burger {
-		span {
-			background: $light;
-		}
-		&:hover {
-			background: $primary;
-			span {
-				background: $dark;
-			}
-		}
-	}
+.site-logo {
+	height: 48px;
+	width: 110px;
 }

@@ -1,0 +1,34 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"downlevelIteration": true,
+		"importHelpers": true,
+		"inlineSources": true,
+		"lib": [
+			"DOM",
+			"ES5",
+			"ES2015.Promise",
+			"es2015.iterable",
+			"ES2015.symbol.wellknown",
+			"ES2015.Symbol",
+			"dom.iterable"
+		],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"outDir": "./_build",
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"rootDir": ".",
+		"sourceMap": true,
+		"target": "ES5",
+		"typeRoots": [
+			"./node_modules/@types",
+			"./types"
+		]
+	}
+}

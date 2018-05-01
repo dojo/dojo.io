@@ -1,22 +1,27 @@
 <% if (post.prev || post.next){ %>
-<nav id="article-nav">
-  <% if (post.prev){ %>
-    <a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><%= __('newer') %></strong>
-      <div class="article-nav-title">
-        <% if (post.prev.title){ %>
-          <%= post.prev.title %>
-        <% } else { %>
-          (no title)
-        <% } %>
-      </div>
-    </a>
-  <% } %>
-  <% if (post.next){ %>
-    <a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><%= __('older') %></strong>
-      <div class="article-nav-title"><%= post.next.title %></div>
-    </a>
-  <% } %>
+<hr>
+<nav id="article-nav" class="uk-child-width-1-2@s uk-text-center uk-grid-match uk-margin-top" uk-grid>
+
+	<% if (post.prev){ %>
+		<div>
+			<div class="uk-card uk-card-muted uk-card-hover uk-card-body">
+				<strong class="uk-text-small">Next Post</strong>
+					<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
+						<% if (post.prev.title){ %>
+							<%= post.prev.title %>
+						<% } else { %>
+							(no title)
+						<% } %>
+					</a></h4>
+				</div>
+			</div>
+		
+	<% } %>
+	<% if (post.next){ %>
+		<div class="uk-card uk-card-hover uk-card-body">
+			<strong class="uk-text-small">Previous Post</strong>
+			<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap"><%= post.next.title %></a></h4>
+		</div>
+	<% } %>
 </nav>
 <% } %>

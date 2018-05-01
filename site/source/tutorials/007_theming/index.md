@@ -17,7 +17,7 @@ You can [download](../assets/007_theming-initial.zip) the demo project and run `
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
@@ -74,9 +74,6 @@ If you open the application in a browser its appearance and behavior should be u
 
 {% instruction 'Now update `worker.m.css` and `workerContainer.m.css` to use `.root` and `.rootFixed` and then update the associated widgets to use the new selectors.' %}
 
-{% instruction 'When you are finished, click on toggle solution to see one possible result.' %}
-
-{% solution showsolution1 %}
 ```css
 /* workerContainer.m.css */
 .rootFixed {
@@ -133,8 +130,6 @@ render() {
     // ...
 }
 ```
-
-{% endsolution %}
 
 Next, we will start to create a theme.
 

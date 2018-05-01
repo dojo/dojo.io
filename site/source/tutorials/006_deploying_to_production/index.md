@@ -18,7 +18,7 @@ You can [download](../assets/006_deploying_to_production-initial.zip) the demo p
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../comingsoon.html) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
@@ -170,8 +170,6 @@ In the event that the development team requires a higher level of control than D
 
 This brings us to the end of the beginner tutorials for Dojo 2. At this point, you should have a good understanding of how to build simple applications with Dojo 2. There are, however, many more features that Dojo 2 has to offer.
 
-To learn about those features, take a look at the [advanced tutorials](../tutorials/) section where you will find more tutorials that demonstrate how to use features that almost every application needs such as creating in-page routers, working with client-side data stores, and more. For less common features, the [cookbook](../cookbook/modern-web-apps/drag-info.html) contains tutorials for features that are more specialized in nature such as data visualization.
-
-If you would like to learn more about the underlying architecture and technology behind Dojo 2, take a look at the articles in the [reference guide](../docs/fundamentals/accessibility/). This section contains information about topics such as [TypeScript and Dojo2](../../docs/fundamentals/typescript_and_dojo_2/) and [Working with a Virtual DOM](../../docs/fundamentals/working_with_virtual_dom/). These articles provide valuable insight into why Dojo 2 works the way that it does.
+To learn about those features, take a look at the [advanced tutorials](../tutorials/) section where you will find more tutorials that demonstrate how to use features that almost every application needs such as creating in-page routers, working with client-side data stores, and more.
 
 {% section 'last' %}

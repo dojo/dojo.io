@@ -1,8 +1,11 @@
 # Header
 menu:
-  Tutorials: /tutorials
-  #Community: /community
+  Docs: /docs/index.html#doc--dojo__cli__master
+  Tutorials: /tutorials/000_local_installation/
   Blog: /blog
+  Github: https://github.com/dojo/meta
+  Gitter: https://gitter.im/dojo/dojo
+  Twitter: https://twitter.com/dojo
 rss: /atom.xml
 
 

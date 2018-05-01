@@ -19,7 +19,7 @@ You can [download](../assets/004_user_interactions-initial.zip) the demo project
 
 You should install the `@dojo/cli` command globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
@@ -33,7 +33,7 @@ The first step is to add the listener itself. In Dojo 2, event listeners get ass
 
 {% instruction 'Update the object containing that property as follows.' %}
 
-```ts
+```typescript
 {
 	classes: this.theme(css.worker),
 	onclick: this.flip
@@ -44,7 +44,7 @@ The `onclick` property registers a function to call when clicking on the node to
 
 {% instruction 'Add a basic implementation for that method within the Worker class.' %}
 
-```ts
+```typescript
 flip(): void {
 	console.log('the flip method has been fired!');
 }

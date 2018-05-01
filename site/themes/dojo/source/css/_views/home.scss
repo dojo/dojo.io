@@ -1,8 +1,7 @@
 .body-front-page {
 
-	.header,
-	.footer {
-		background: #000000;
+	h2 {
+		margin-bottom: 0;
 	}
 
 	.page-content {
@@ -76,11 +75,6 @@
 	margin: 0;
 	padding: 0;
 	width: 100%;
-
-	.footer {
-		color: rgba($light, 0.6);
-		text-align: center;
-	}
 
 	.bodyContainer {
 		display: flex;
