@@ -1,0 +1,39 @@
+dojo/cli:
+  repo: dojo/cli
+  version: master
+dojo/core:
+  repo: dojo/core
+  version: master
+dojo/has:
+  repo: dojo/has
+  version: master
+dojo/i18n:
+  repo: dojo/i18n
+  version: master
+dojo/interop:
+  repo: dojo/interop
+  version: master
+dojo/loader:
+  repo: dojo/loader
+  version: master
+dojo/routing:
+  repo: dojo/routing
+  version: master
+dojo/shim:
+  repo: dojo/shim
+  version: master
+dojo/stores:
+  repo: dojo/stores
+  version: master
+dojo/streams:
+  repo: dojo/streams
+  version: master
+dojo/themes:
+  repo: dojo/themes
+  version: master
+dojo/widget-core:
+  repo: dojo/widget-core
+  version: master
+dojo/widgets:
+  repo: dojo/widgets
+  version: master

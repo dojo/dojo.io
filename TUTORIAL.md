@@ -142,16 +142,6 @@ This will replace the tag with the file's contents and apply syntax highlighting
 
 ```
 
-**NOTE:** The syntax highlighting for TypeScript does not currently work with this tag
-
-- If the code file is part of an exercise solution (see below), then provide the solution ID:
-
- ```markdown
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' solution:showsolution1 %}
-
-```
-
 - If a single line is needed, then provide the "line" argument:
 
  ```markdown
@@ -167,26 +157,3 @@ This will replace the tag with the file's contents and apply syntax highlighting
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' lines:1-2,5,9-12 %}
 
 ```
-
-### 'solution' tag used when possible
-
-When possible, allow the learner to apply what they have learned to achieve a goal on their own. To do that, use the `solution` tag to add a hidden code snippet that the user can reveal by clicking a button.
-
-Example:
-
-```markdown
-
-{% solution showsolution1 %}
-export default class HelloWorld extends WidgetBase<WidgetProperties> {
-  render(): DNode {
-    return v('h1', [ 'Biz-E Bodies' ]);
-  }
-}
-{% endsolution %}
-
-```
-
-**NOTE:** The parameter passed to the `solution` tag must be unique on the page since it is used to set the ID of the hidden code snippet.
-
-**NOTE:** if the solution code can be imported from a file, use the `include_codefile` tag with a `solution` argument
-

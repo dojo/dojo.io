@@ -1,12 +1,28 @@
 <section class="section">
-	<div class="container">
-		<div class="columns">
-			<div class="column is-3">
-				<%- partial('_partial/docs-nav') %>
+	<div class="container docs">
+		<div class="uk-offcanvas-content has-sidebar-left has-sidebar-right">
+			<div id="sidebar-nav" class="sidebar-left uk-offcanvas">
+				<div>
+					<%- partial('_partial/docs-nav') %>
+				</div>
 			</div>
-			<div class="column is-9 article">
-				<%- page.content %>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative .uk-width-1@m doc-detail">
+				</div>
+			</div>
+			<div class="sidebar-right uk-visible@l uk-text-small">
 			</div>
 		</div>
 	</div>
 </section>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+		<%- partial('_partial/main-nav') %>
+		<hr>
+		<%- partial('_partial/docs-nav') %>
+		</div>
+	</div>
+</div>
+
+<script async src="/js/repo_docs.js"></script>

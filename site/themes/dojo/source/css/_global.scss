@@ -9,6 +9,7 @@ body {
 .page-wrapper {
 	display: flex;
 	flex-direction: column;
+	min-height: 100vh;
 }
 
 .content-wrapper {
@@ -17,10 +18,9 @@ body {
 	flex: 1 0 auto;
 	overflow-y: auto;
 	overflow-x: hidden;
-	margin-top: 2em;
+	margin-top: 0;
 
 	@media screen and (max-width: $mobile-break) {
-		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -34,28 +34,111 @@ body {
 	}
 }
 
-.container.article {
-	max-width: $article-max-width;
-
-	h1 {
-		font-weight: 400;
-		line-height: 1.3em;
-		margin-bottom: 0.8em;
+@media (min-width: 1400px) {
+	.sidebar-left, .sidebar-right {
+		width: $sidenav-width !important;
+		padding: 45px 45px 60px 45px;
 	}
 }
 
 
-// Makes inline flex items full height e.g. cards
-.is-full-height {
-	height: 100%;
+.sidebar-left,
+.sidebar-right {
+	position: fixed;
+	top: 80px;
+	bottom: 0;
+	box-sizing: border-box;
+	overflow: auto;
 }
 
-.container {
-	@media screen and (max-width: 1023px) {
-		width: 100%;
+@media (min-width: 960px) {
+	.sidebar-left {
+		padding: 40px 40px 60px 40px;
+		border-right: 1px #e5e5e5 solid;
+		width: $sidenav-width !important;
 	}
 }
 
-.center {
-	text-align: center;
+@media (max-width: 960px) {
+	.sidebar-left {
+		width: $sidenav-width !important;
+	}
+}
+
+.sidebar-right {
+	right: 0;
+	padding: 40px 40px 60px 0;
+	width: $sidenav-right-width !important;
+	font-size: 0.85rem;
+
+	li {
+		a {
+			padding: 0;
+			padding-left: 1rem;
+		}
+	}
+
+	li.uk-active {
+		& > a {
+			
+			position: relative;
+			&:before {
+				content: "";
+				position: absolute;
+				top: 0.5rem;
+				left: -5px;
+				width: 15px;
+				border-top: 1px solid #1e87f0;
+			}
+		}
+	}
+}
+
+.has-sidebar-left .uk-section {
+	padding-left: $sidenav-width;
+}
+
+.has-sidebar-right .uk-section {
+	padding-right: $sidenav-right-width;
+}
+
+.uk-navbar .uk-navbar-left .uk-navbar-nav > li > a {
+	padding-left: 0;
+}
+
+@media (max-width: 960px) {
+	html, body {
+		font-size: $global-font-size * 0.9;
+	}
+
+	.has-sidebar-left .uk-section {
+		padding-left: 0;
+	}
+}
+
+@media (max-width: 1200px) {
+	.has-sidebar-right .uk-section {
+		padding-right: 0;
+	}
+}
+
+
+
+.sp-card-shadow {
+	box-shadow: $global-xlarge-box-shadow;
+}
+
+.sp-button-round {
+	border-radius: 3rem;
+	text-transform: uppercase;
+}
+
+.uk-navbar-dropdown {
+	a {
+		font-size: $navbar-nav-item-font-size;
+	}
+}
+
+h2, .uk-h2 {
+	font-weight: 300;
 }

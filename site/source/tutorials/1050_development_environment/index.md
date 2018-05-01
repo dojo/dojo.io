@@ -158,7 +158,7 @@ Dojo 2 widgets are designed to be accessible by default. A good in-browser acces
 
 <p class="center">![chrome accessibility inspector](./resources/a11y_inspection.png)</p>
 
-The inspector exposes text and semantics visible to a screen reader, providing a page model referred to as the [Accessibility Tree](https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/the-accessibility-tree).
+The inspector exposes text and semantics visible to a screen reader, providing a page model referred to as the Accessibility Tree.
 
 Chrome Accessibility Developer Tools does not run an audit against your code, or validate it in any way. For easy in-browser a11y validation, aXe has free open-source extensions for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd) and [Firefox](https://addons.mozilla.org/en-us/firefox/addon/axe-devtools/).
 

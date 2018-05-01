@@ -19,7 +19,7 @@ You can [download](../assets/008_animations-initial.zip) the initial demo projec
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
@@ -43,7 +43,7 @@ import 'web-animations-js/web-animations-next-lite.min';
 Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the `domNode` itself.
 {% endaside %}
 
-Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered [virtual dom](https://dojo.io/docs/fundamentals/working_with_virtual_dom/) in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
+Dojo 2 provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered Virtual DOM in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.
 
 ## Introducing the zombies
 

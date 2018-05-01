@@ -17,7 +17,7 @@ You can [download](../assets/001_static_content-initial.zip) the demo project an
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
@@ -65,9 +65,6 @@ The `v` function simply instructs Dojo 2 to create an HTML element, in this case
 
 {% instruction 'Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"' %}
 
-{% instruction 'When you are finished, click on show solution to see the results.' %}
-
-{% solution showsolution1 %}
 ```typescript
 export default class HelloWorld extends WidgetBase {
 	protected render() {
@@ -75,15 +72,12 @@ export default class HelloWorld extends WidgetBase {
 	}
 }
 ```
-{% endsolution %}
 
 Now, let's look at the `v` function again. We are intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a *virtual* DOM.
 
 In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.
 
-Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. To learn more about the virtual DOM or reactive programming in Dojo 2, check out the [Working with a Virtual DOM](../../docs/fundamentals/working_with_virtual_dom/) and [Reactive Programming](../../docs/fundamentals/reactive_programming/) articles in the reference section. For now, let's get back to our application and make some more changes.
-
-In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
+Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
 
 {% section %}
 

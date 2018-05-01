@@ -2,23 +2,22 @@
 
 [![Build Status](https://travis-ci.org/dojo/dojo.io.svg?branch=master)](https://travis-ci.org/dojo/dojo.io)
 
-This repository is the source of the [dojo.io](https://dojo.io/) website, including the documentation, tutorials, cookbook and the blog.
+This repository is the source of the [dojo.io](https://dojo.io/) website, including the documentation, tutorials, and the blog.
 
 Published to GitHub Pages and [Dojo.io](http://dojo.io).
 
 ## Quick Start to run the Dojo.io website locally
 
-1. `npm install grunt-cli -g`
 1. `npm install`
-1. `grunt`
-1. `grunt webserv`
+1. `npm run build`
+1. `npm run serve`
 1. open [http://localhost:8888](localhost:8888)
 
 ## Development
 
-To have hexo regenerate when files change run:
+To have hexo and the docviewer rebuild when files change:
 
-1. `grunt hexo --watch`
+1. `npm run watch`
 
 ## Adding Content
 
@@ -42,23 +41,7 @@ Tutorials are located in [`site/source/tutorials`](https://github.com/dojo/dojo.
 
 ## API Documentation
 
-API documentation is generated using the `grunt api` command to the `_dist/api/<project name>/<version>` directory. We currently use
-[TypeDoc](https://github.com/TypeStrong/typedoc) to build projects released via GitHub to this location.
-
-### Building APIs
-
-Building documentation for a project requires the project repository to be checked out to a temporary location where its dependencies are added and `typedoc` is ran against the repository. It is a relatively resource intensive
- task.
- 
-Missing APIs are built using the `grunt api` task. You can build APIs for a specific project by selecting the 
- appropriate configuration. You can also limit what versions get built using semver matching or the "latest" keyword
- either in the grunt configuration of via the `--apiversion` command line argument.
-
-```bash
-grunt api:cli --apiversion="latest"
-```
-
-This will build API documentation to `_dist/api/<name>/<version>`
+API documentation is generated in each package using the `intern-dev-api` from [@theintern/dev](https://github.com/theintern/dev). A viewer application in this site loads API information from the package repos and renders it live.
 
 ## Deployment
 

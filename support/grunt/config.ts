@@ -39,11 +39,24 @@ export const clean = {
 	compiledFiles: [ './+(tests|support)/**/*.d.ts', './+(tests|support)/**/*.js' ]
 };
 
+export const concurrent = {
+	options: {
+		logConcurrentOutput: true
+	},
+	build: {
+		tasks: ['hexo', 'docviewer']
+	}
+};
+
 export const hexo = {
 	generate: {
 		src: '<%= siteDirectory %>',
 		dest: '<%= distDirectory %>'
 	}
+};
+
+export const docviewer = {
+	build: {}
 };
 
 export const intern = {

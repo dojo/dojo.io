@@ -16,7 +16,7 @@ You can [download](../assets/003_creating_widgets-initial.zip) the demo project 
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the [TypeScript and Dojo 2](../../docs/fundamentals/typescript_and_dojo_2/) article.
+You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% section %}
 
@@ -55,9 +55,9 @@ Our next step is to override `WidgetBase`'s `render` method to generate the appl
 {% instruction 'To start, let\'s use a simple `render` method by adding this to the `App` class:' %}
 
 ```ts
-	protected render() {
-		return v('div');
-	}
+protected render() {
+	return v('div');
+}
 ```
 
 This method will generate a `div` virtual node with no children. To render the `Banner` as a child of the div, we'll use the `w` function that is designed to render widgets.
@@ -65,11 +65,11 @@ This method will generate a `div` virtual node with no children. To render the `
 {% instruction 'Update the `render` method to the following:' %}
 
 ```ts
-	protected render() {
-		return v('div', [
-			w(Banner, {})
-		]);
-	}
+protected render() {
+	return v('div', [
+		w(Banner, {})
+	]);
+}
 ```
 
 {% aside 'Mandatory object for properties' %}
@@ -145,9 +145,7 @@ Our next step is to override the `render()` method to customize the widget's app
 
 {% instruction 'Try and implement that using the URL `https://dojo.io/tutorials/resources/worker.svg` and `"lastName, firstName"` as the worker\'s name.' %}
 
-If you need help, or want to check your solution, click the button below to see our solution.
 
-{% solution showsolution1 %}
 ```ts
 protected render() {
 	return v('div', [
@@ -158,15 +156,15 @@ protected render() {
 	]);
 }
 ```
-{% endsolution %}
+
 
 Before we continue to refine this widget, let's review our progress by adding the `Worker` widget to the app.
 
 {% task 'Add a `Worker` widget to the `App`.' %}
 
-{% instruction 'Within `App.ts`, import the `Worker` widget and then update the `App`\'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.' %}
+{% instruction 'Within `App.ts`, import the `Worker` widget and then update the `App`\'s render method to render it. The `Worker` will be another child of the `App`, so we just need to add another entry to the children array.' %}
 
-{% solution showsolution2 %}
+
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
@@ -182,7 +180,7 @@ export default class App extends WidgetBase {
 	}
 }
 ```
-{% endsolution %}
+
 
 {% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
@@ -292,7 +290,7 @@ If you return to the browser, you'll see that the widget now has the classes app
 
 <p class="center">![worker_page](./resources/worker_page.png)</p>
 
-While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../007_theming/) tutorial in the Cookbook section.
+While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget's components. Notice that we don't have class names such as `.worker` or `.image` like we used in the CSS file, rather we have something like `.worker__image__3aIJl`. The `dojo build` command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called "themes"). To learn more about those, take a look at the [Theming an Application](../007_theming/) tutorial.
 
 We've now updated our application to display a single employee, but our goal is to display a collection of employees. We could certainly add additional `Worker` widgets to our application, but they would all be siblings of the `Banner` widget and could be difficult to style properly. In the next section, we'll create a simple container widget that will manage the layout of the `Worker` widgets.
 

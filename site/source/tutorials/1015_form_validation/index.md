@@ -44,7 +44,6 @@ As an exercise, complete the following three steps:
 Hint: Follow the existing `_formData` private field in the `ApplicationContext` class to see how it's used. The `_formErrors` variable you need to add can follow the same flow.
 
 Make sure the following lines are present somewhere in `ApplicationContext.ts`:
-{% solution showsolution1 %}
 ```typescript
 // modify import to include WorkerFormErrors
 import { WorkerFormData, WorkerFormErrors } from './widgets/WorkerForm';
@@ -57,10 +56,8 @@ get formErrors(): WorkerFormErrors {
 	return this._formErrors;
 }
 ```
-{% endsolution %}
 
 The modified `getProperties` function in `WorkerFormContainer.ts`:
-{% solution showsolution2 %}
 ```typescript
 function getProperties(inject: ApplicationContext, properties: any) {
 	const {
@@ -78,7 +75,6 @@ function getProperties(inject: ApplicationContext, properties: any) {
 	};
 }
 ```
-{% endsolution %}
 
 {% instruction 'Finally, modify `WorkerFormProperties` in `WorkerForm.ts` to accept the `formErrors` object passed in by the application context:' %}
 
@@ -117,7 +113,6 @@ At this point in our progress, the `WorkerForm` widget holds the validation stat
 
 The updated render function in `WorkerForm.ts` should set the `invalid` property on all form field widgets to reflect `formErrors`. We also add a `novalidate` attribute to the form element to prevent native browser validation.
 
-{% solution showsolution3 %}
 ```ts
 protected render() {
 	const {
@@ -165,7 +160,6 @@ protected render() {
 	]);
 }
 ```
-{% endsolution %}
 
 Now when you view the app in the browser, the border color of each form field changes as you type. Next we'll add error messages and update `onInput` validation to only occur after the first blur event.
 
@@ -208,7 +202,6 @@ You will also need to create `validatedTextInput.m.css` with `error` and `inputW
 .error {}
 ```
 
-{% solution showsolution4 %}
 ```ts
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
@@ -275,7 +268,6 @@ export default class ValidatedTextInput extends ValidatedTextInputBase<Validated
 	}
 }
 ```
-{% endsolution %}
 
 You may have noticed that we created `ValidatedTextInput` with an `onValidate` property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.
 
