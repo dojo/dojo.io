@@ -42,11 +42,13 @@ jobs:
     env:
       - TUTORIAL=N/A
     script:
+      - touch site/db.json
       - grunt test
       - grunt ci
 deploy:
   provider: script
-  script: grunt publish
+  script:
+    - grunt publish
   skip_cleanup: true
   on:
     branch: master
