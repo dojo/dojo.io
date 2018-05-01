@@ -6,6 +6,7 @@
 
 	<title>Form validation | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta name="description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Form validation">
@@ -13,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-30T21:48:57.457Z">
+<meta property="og:updated_time" content="2018-05-01T20:43:27.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -40,48 +41,93 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-tutorial
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
-					<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#">Form validation</a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<section class="tutorial hidden hiding">
+					<section class="section">
+	<div class="container">
+		<div class="uk-offcanvas-content has-sidebar-left">
+			<div class="sidebar-left uk-visible@m">
+				<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class=""><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+			</div>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative">
+					<section class="tutorial hidden hiding">
 <h1 id="Form-validation"><a href="#Form-validation" class="headerlink" title="Form validation"></a>Form validation</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on <a href="../1010_containers_and_injecting_state">injecting state</a>; here we will build on those concepts to add a validation state and errors to the existing form. Over the course of the tutorial we will build an example pattern for creating both dynamic client-side validation and mock server-side validation.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Start by downloading the <a href="../assets/1015_form_validation-initial.zip">demo project</a> and running <code>npm install</code> to get started.</p>
 <p>This tutorial assumes that you have gone through the <a href="../005_form_widgets">form widgets tutorial</a> as well as the <a href="../1010_containers_and_injecting_state">state management tutorial</a>.</p>
@@ -104,35 +150,35 @@ ga('send', 'pageview');
 <li>Update the <code>getProperties</code> function in the <code>WorkerFormContainer.ts</code> file to pass through the new error object</li>
 </ol>
 <p>Hint: Follow the existing <code>_formData</code> private field in the <code>ApplicationContext</code> class to see how it’s used. The <code>_formErrors</code> variable you need to add can follow the same flow.</p>
-<p>Make sure the following lines are present somewhere in <code>ApplicationContext.ts</code>:<br><div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
-<span class="token comment">// modify import to include WorkerFormErrors</span>
+<p>Make sure the following lines are present somewhere in <code>ApplicationContext.ts</code>:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// modify import to include WorkerFormErrors</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerFormData<span class="token punctuation">,</span> WorkerFormErrors <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerForm'</span><span class="token punctuation">;</span>
 
-<span class="token comment">// private field</span>
+<span class="token comment" spellcheck="true">// private field</span>
 <span class="token keyword">private</span> _formErrors<span class="token punctuation">:</span> WorkerFormErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token comment">// public getter</span>
+<span class="token comment" spellcheck="true">// public getter</span>
 <span class="token keyword">get</span> <span class="token function">formErrors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> WorkerFormErrors <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div></p>
-<p>The modified <code>getProperties</code> function in <code>WorkerFormContainer.ts</code>:<br><div class="solution-container"><button class="toggle-solution" data-target="showsolution2">Toggle Solution</button><section id="showsolution2" class="hidden"><pre class="language-javascript"><code>
-<span class="token keyword">function</span> <span class="token function">getProperties</span><span class="token punctuation">(</span>inject<span class="token punctuation">:</span> ApplicationContext<span class="token punctuation">,</span> properties<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> <span class="token punctuation">{</span>
-		formData<span class="token punctuation">,</span>
-		formErrors<span class="token punctuation">,</span>
-		formInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">,</span>
-		submitForm<span class="token punctuation">:</span> onFormSave
-	<span class="token punctuation">}</span> <span class="token operator">=</span> inject<span class="token punctuation">;</span>
+</code></pre>
+<p>The modified <code>getProperties</code> function in <code>WorkerFormContainer.ts</code>:</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">getProperties</span><span class="token punctuation">(</span>inject<span class="token punctuation">:</span> ApplicationContext<span class="token punctuation">,</span> properties<span class="token punctuation">:</span> <span class="token keyword">any</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        formData<span class="token punctuation">,</span>
+        formErrors<span class="token punctuation">,</span>
+        formInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">,</span>
+        submitForm<span class="token punctuation">:</span> onFormSave
+    <span class="token punctuation">}</span> <span class="token operator">=</span> inject<span class="token punctuation">;</span>
 
-	<span class="token keyword">return</span> <span class="token punctuation">{</span>
-		formData<span class="token punctuation">,</span>
-		formErrors<span class="token punctuation">,</span>
-		onFormInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span><span class="token punctuation">,</span>
-		onFormSave<span class="token punctuation">:</span> onFormSave<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        formData<span class="token punctuation">,</span>
+        formErrors<span class="token punctuation">,</span>
+        onFormInput<span class="token punctuation">:</span> onFormInput<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        onFormSave<span class="token punctuation">:</span> onFormSave<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>inject<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div></p>
+</code></pre>
 <div class="instruction">Finally, modify <code>WorkerFormProperties</code> in <code>WorkerForm.ts</code> to accept the <code>formErrors</code> object passed in by the application context:</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerFormProperties</span> <span class="token punctuation">{</span>
     formData<span class="token punctuation">:</span> WorkerFormData<span class="token punctuation">;</span>
@@ -146,25 +192,25 @@ ga('send', 'pageview');
 <p>We now have a place to store form errors in the application state, and those errors are passed into the form widget. The form still lacks any actual validation of the user input; for that, we need to dust off our regular expressions and write a basic validation function.</p>
 <div class="instruction">Create a private <code>_validateInput</code> method in <code>ApplicationContext.ts</code></div>
 <p>Like the existing <code>formInput</code> function, <code>_validateInput</code> should take a partial <code>WorkerFormData</code> input object. The validation function should return a <code>WorkerFormErrors</code> object. The example app shows only the most basic validation checks – the email regex pattern for example is concise but somewhat lax. You are free to substitute a more robust email test, or add other modifications like a minimum character count for the first and last names.</p>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> WorkerFormErrors <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> errors<span class="token punctuation">:</span> WorkerFormErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> <span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> WorkerFormErrors <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> errors<span class="token punctuation">:</span> WorkerFormErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-		<span class="token comment">// validate input</span>
-		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-				<span class="token keyword">case</span> <span class="token string">'firstName'</span><span class="token punctuation">:</span>
-					errors<span class="token punctuation">.</span>firstName <span class="token operator">=</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>firstName<span class="token punctuation">;</span>
-					<span class="token keyword">break</span><span class="token punctuation">;</span>
-				<span class="token keyword">case</span> <span class="token string">'lastName'</span><span class="token punctuation">:</span>
-					errors<span class="token punctuation">.</span>lastName <span class="token operator">=</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>lastName<span class="token punctuation">;</span>
-					<span class="token keyword">break</span><span class="token punctuation">;</span>
-				<span class="token keyword">case</span> <span class="token string">'email'</span><span class="token punctuation">:</span>
-					errors<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>email <span class="token operator">||</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>email<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span>
+	<span class="token comment">// validate input</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">case</span> <span class="token string">'firstName'</span><span class="token punctuation">:</span>
+				errors<span class="token punctuation">.</span>firstName <span class="token operator">=</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>firstName<span class="token punctuation">;</span>
+				<span class="token keyword">break</span><span class="token punctuation">;</span>
+			<span class="token keyword">case</span> <span class="token string">'lastName'</span><span class="token punctuation">:</span>
+				errors<span class="token punctuation">.</span>lastName <span class="token operator">=</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>lastName<span class="token punctuation">;</span>
+				<span class="token keyword">break</span><span class="token punctuation">;</span>
+			<span class="token keyword">case</span> <span class="token string">'email'</span><span class="token punctuation">:</span>
+				errors<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>email <span class="token operator">||</span> <span class="token operator">!</span>input<span class="token punctuation">.</span>email<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
-
-		<span class="token keyword">return</span> errors<span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
+
+	<span class="token keyword">return</span> errors<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>For now, we will test our validation by calling it directly in every <code>onInput</code> event. Add the following line to <code>formInput</code> in <code>ApplicationContext.ts</code>:</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -172,53 +218,52 @@ ga('send', 'pageview');
 <div class="instruction">Update the render method of the <code>WorkerForm</code> class to display validation state</div>
 <p>At this point in our progress, the <code>WorkerForm</code> widget holds the validation state of each form field in its <code>formErrors</code> property, updated every time an <code>onInput</code> handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo 2 <code>TextInput</code> widget contains an <code>invalid</code> property that sets the <code>aria-invalid</code> attribute on a DOM node, and toggles classes used for visual styling.</p>
 <p>The updated render function in <code>WorkerForm.ts</code> should set the <code>invalid</code> property on all form field widgets to reflect <code>formErrors</code>. We also add a <code>novalidate</code> attribute to the form element to prevent native browser validation.</p>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution3">Toggle Solution</button><section id="showsolution3" class="hidden"><pre class="language-javascript"><code>
-<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> <span class="token punctuation">{</span>
-		formData<span class="token punctuation">:</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">,</span> lastName<span class="token punctuation">,</span> email <span class="token punctuation">}</span><span class="token punctuation">,</span>
-		formErrors
-	<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        formData<span class="token punctuation">:</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">,</span> lastName<span class="token punctuation">,</span> email <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        formErrors
+    <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
-	<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-		classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
-		novalidate<span class="token punctuation">:</span> <span class="token string">'true'</span><span class="token punctuation">,</span>
-		onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
-	<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-		<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'fieldset'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameField<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-			<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'legend'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameLabel<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Name'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-			<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				key<span class="token punctuation">:</span> <span class="token string">'firstNameInput'</span><span class="token punctuation">,</span>
-				label<span class="token punctuation">:</span><span class="token string">'First Name'</span><span class="token punctuation">,</span>
-				labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				placeholder<span class="token punctuation">:</span> <span class="token string">'Given name'</span><span class="token punctuation">,</span>
-				value<span class="token punctuation">:</span> firstName<span class="token punctuation">,</span>
-				required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span>
-				onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameInput
-			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-			<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				key<span class="token punctuation">:</span> <span class="token string">'lastNameInput'</span><span class="token punctuation">,</span>
-				label<span class="token punctuation">:</span> <span class="token string">'Last Name'</span><span class="token punctuation">,</span>
-				labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				placeholder<span class="token punctuation">:</span> <span class="token string">'Surname name'</span><span class="token punctuation">,</span>
-				value<span class="token punctuation">:</span> lastName<span class="token punctuation">,</span>
-				required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span>
-				onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameInput
-			<span class="token punctuation">}</span><span class="token punctuation">)</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			label<span class="token punctuation">:</span> <span class="token string">'Email address'</span><span class="token punctuation">,</span>
-			type<span class="token punctuation">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span>
-			value<span class="token punctuation">:</span> email<span class="token punctuation">,</span>
-			required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-			invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>email<span class="token punctuation">,</span>
-			onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailInput
-		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">w</span><span class="token punctuation">(</span>Button<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Save'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
-	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>workerForm<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        novalidate<span class="token punctuation">:</span> <span class="token string">'true'</span><span class="token punctuation">,</span>
+        onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'fieldset'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameField<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'legend'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameLabel<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Name'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                key<span class="token punctuation">:</span> <span class="token string">'firstNameInput'</span><span class="token punctuation">,</span>
+                label<span class="token punctuation">:</span><span class="token string">'First Name'</span><span class="token punctuation">,</span>
+                labelHidden<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+                placeholder<span class="token punctuation">:</span> <span class="token string">'Given name'</span><span class="token punctuation">,</span>
+                value<span class="token punctuation">:</span> firstName<span class="token punctuation">,</span>
+                required<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+                invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span>
+                onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameInput
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                key<span class="token punctuation">:</span> <span class="token string">'lastNameInput'</span><span class="token punctuation">,</span>
+                label<span class="token punctuation">:</span> <span class="token string">'Last Name'</span><span class="token punctuation">,</span>
+                labelHidden<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+                placeholder<span class="token punctuation">:</span> <span class="token string">'Surname name'</span><span class="token punctuation">,</span>
+                value<span class="token punctuation">:</span> lastName<span class="token punctuation">,</span>
+                required<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+                invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span>
+                onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameInput
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            label<span class="token punctuation">:</span> <span class="token string">'Email address'</span><span class="token punctuation">,</span>
+            type<span class="token punctuation">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span>
+            value<span class="token punctuation">:</span> email<span class="token punctuation">,</span>
+            required<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+            invalid<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span>formErrors<span class="token punctuation">.</span>email<span class="token punctuation">,</span>
+            onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailInput
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">w</span><span class="token punctuation">(</span>Button<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Save'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
+</code></pre>
 <p>Now when you view the app in the browser, the border color of each form field changes as you type. Next we’ll add error messages and update <code>onInput</code> validation to only occur after the first blur event.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Extending-TextInput"><a href="#Extending-TextInput" class="headerlink" title="Extending TextInput"></a>Extending TextInput</h2><div class="task">Create an error message</div>
@@ -246,72 +291,71 @@ ga('send', 'pageview');
 
 <span class="token selector"><span class="token class">.error</span> </span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution4">Toggle Solution</button><section id="showsolution4" class="hidden"><pre class="language-javascript"><code>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> TypedTargetEvent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/interfaces'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> uuid <span class="token keyword">from</span> <span class="token string">'@dojo/core/uuid'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> ThemedMixin<span class="token punctuation">,</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span> TextInputProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/validatedTextInput.m.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'../styles/validatedTextInput.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ValidatedTextInputProperties</span> <span class="token keyword">extends</span> <span class="token class-name">TextInputProperties</span> <span class="token punctuation">{</span>
-	errorMessage<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">;</span>
-	onValidate<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    errorMessage<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
+    onValidate<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">export</span> <span class="token keyword">const</span> ValidatedTextInputBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">ValidatedTextInput</span> <span class="token keyword">extends</span> <span class="token class-name">ValidatedTextInputBase</span><span class="token operator">&lt;</span>ValidatedTextInputProperties<span class="token operator">></span> <span class="token punctuation">{</span>
-	<span class="token keyword">private</span> _errorId <span class="token operator">=</span> <span class="token function">uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> _errorId <span class="token operator">=</span> <span class="token function">uuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span>
-			disabled<span class="token punctuation">,</span>
-			label<span class="token punctuation">,</span>
-			maxLength<span class="token punctuation">,</span>
-			minLength<span class="token punctuation">,</span>
-			name<span class="token punctuation">,</span>
-			placeholder<span class="token punctuation">,</span>
-			readOnly<span class="token punctuation">,</span>
-			required<span class="token punctuation">,</span>
-			type <span class="token operator">=</span> <span class="token string">'text'</span><span class="token punctuation">,</span>
-			value<span class="token punctuation">,</span>
-			invalid<span class="token punctuation">,</span>
-			errorMessage<span class="token punctuation">,</span>
-			onBlur<span class="token punctuation">,</span>
-			onInput
-		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>
+            disabled<span class="token punctuation">,</span>
+            label<span class="token punctuation">,</span>
+            maxLength<span class="token punctuation">,</span>
+            minLength<span class="token punctuation">,</span>
+            name<span class="token punctuation">,</span>
+            placeholder<span class="token punctuation">,</span>
+            readOnly<span class="token punctuation">,</span>
+            required<span class="token punctuation">,</span>
+            type <span class="token operator">=</span> <span class="token string">'text'</span><span class="token punctuation">,</span>
+            value<span class="token punctuation">,</span>
+            invalid<span class="token punctuation">,</span>
+            errorMessage<span class="token punctuation">,</span>
+            onBlur<span class="token punctuation">,</span>
+            onInput
+        <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
-		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>inputWrapper<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-			<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				aria<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-					describedBy<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_errorId
-				<span class="token punctuation">}</span><span class="token punctuation">,</span>
-				disabled<span class="token punctuation">,</span>
-				invalid<span class="token punctuation">,</span>
-				label<span class="token punctuation">,</span>
-				maxLength<span class="token punctuation">,</span>
-				minLength<span class="token punctuation">,</span>
-				name<span class="token punctuation">,</span>
-				placeholder<span class="token punctuation">,</span>
-				readOnly<span class="token punctuation">,</span>
-				required<span class="token punctuation">,</span>
-				type<span class="token punctuation">,</span>
-				value<span class="token punctuation">,</span>
-				onBlur<span class="token punctuation">,</span>
-				onInput
-			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-			invalid <span class="token operator">===</span> <span class="token boolean">true</span> <span class="token operator">?</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_errorId<span class="token punctuation">,</span>
-				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">,</span>
-				<span class="token string">'aria-live'</span><span class="token punctuation">:</span> <span class="token string">'polite'</span>
-			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> errorMessage <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">null</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>inputWrapper<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                aria<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                    describedBy<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_errorId
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                disabled<span class="token punctuation">,</span>
+                invalid<span class="token punctuation">,</span>
+                label<span class="token punctuation">,</span>
+                maxLength<span class="token punctuation">,</span>
+                minLength<span class="token punctuation">,</span>
+                name<span class="token punctuation">,</span>
+                placeholder<span class="token punctuation">,</span>
+                readOnly<span class="token punctuation">,</span>
+                required<span class="token punctuation">,</span>
+                type<span class="token punctuation">,</span>
+                value<span class="token punctuation">,</span>
+                onBlur<span class="token punctuation">,</span>
+                onInput
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            invalid <span class="token operator">===</span> <span class="token keyword">true</span> <span class="token operator">?</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_errorId<span class="token punctuation">,</span>
+                classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'aria-live'</span><span class="token punctuation">:</span> <span class="token string">'polite'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> errorMessage <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">null</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
+</code></pre>
 <p>You may have noticed that we created <code>ValidatedTextInput</code> with an <code>onValidate</code> property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.</p>
 <div class="instruction">Use <code>ValidatedTextInput</code> within <code>WorkerForm</code></div>
 <p>Now that <code>ValidatedTextInput</code> exists, let’s import it and swap it with <code>TextInput</code> in <code>WorkerForm</code>, and write some error message text while we’re at it:</p>
@@ -323,57 +367,57 @@ ga('send', 'pageview');
 <span class="token keyword">import</span> ValidatedTextInput <span class="token keyword">from</span> <span class="token string">'./ValidatedTextInput'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/workerForm.m.css'</span><span class="token punctuation">;</span>
 </code></pre></p>
-<p><strong>Inside render()</strong><br><pre class="language-javascript"><code class="language-javascript">			<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'fieldset'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameField<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'legend'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameLabel<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Name'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-				<span class="token function">w</span><span class="token punctuation">(</span>ValidatedTextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					key<span class="token punctuation">:</span> <span class="token string">'firstNameInput'</span><span class="token punctuation">,</span>
-					label<span class="token punctuation">:</span> <span class="token string">'First Name'</span><span class="token punctuation">,</span>
-					labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-					placeholder<span class="token punctuation">:</span> <span class="token string">'Given name'</span><span class="token punctuation">,</span>
-					value<span class="token punctuation">:</span> firstName<span class="token punctuation">,</span>
-					required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-					onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameInput<span class="token punctuation">,</span>
-					onValidate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameValidate<span class="token punctuation">,</span>
-					invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span>
-					errorMessage<span class="token punctuation">:</span> <span class="token string">'First name is required'</span>
-				<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-				<span class="token function">w</span><span class="token punctuation">(</span>ValidatedTextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					key<span class="token punctuation">:</span> <span class="token string">'lastNameInput'</span><span class="token punctuation">,</span>
-					label<span class="token punctuation">:</span> <span class="token string">'Last Name'</span><span class="token punctuation">,</span>
-					labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-					placeholder<span class="token punctuation">:</span> <span class="token string">'Surname name'</span><span class="token punctuation">,</span>
-					value<span class="token punctuation">:</span> lastName<span class="token punctuation">,</span>
-					required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-					onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameInput<span class="token punctuation">,</span>
-					onValidate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameValidate<span class="token punctuation">,</span>
-					invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span>
-					errorMessage<span class="token punctuation">:</span> <span class="token string">'Last name is required'</span>
-				<span class="token punctuation">}</span><span class="token punctuation">)</span>
-			<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-			<span class="token function">w</span><span class="token punctuation">(</span>ValidatedTextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				label<span class="token punctuation">:</span> <span class="token string">'Email address'</span><span class="token punctuation">,</span>
-				type<span class="token punctuation">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span>
-				value<span class="token punctuation">:</span> email<span class="token punctuation">,</span>
-				required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-				onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailInput<span class="token punctuation">,</span>
-				onValidate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailValidate<span class="token punctuation">,</span>
-				invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>email<span class="token punctuation">,</span>
-				errorMessage<span class="token punctuation">:</span> <span class="token string">'Please enter a valid email address'</span>
-			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<p><strong>Inside render()</strong><br><pre class="language-javascript"><code class="language-javascript"><span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'fieldset'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameField<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+	<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'legend'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>nameLabel<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Name'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token function">w</span><span class="token punctuation">(</span>ValidatedTextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+		key<span class="token punctuation">:</span> <span class="token string">'firstNameInput'</span><span class="token punctuation">,</span>
+		label<span class="token punctuation">:</span> <span class="token string">'First Name'</span><span class="token punctuation">,</span>
+		labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		placeholder<span class="token punctuation">:</span> <span class="token string">'Given name'</span><span class="token punctuation">,</span>
+		value<span class="token punctuation">:</span> firstName<span class="token punctuation">,</span>
+		required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameInput<span class="token punctuation">,</span>
+		onValidate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onFirstNameValidate<span class="token punctuation">,</span>
+		invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span>
+		errorMessage<span class="token punctuation">:</span> <span class="token string">'First name is required'</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token function">w</span><span class="token punctuation">(</span>ValidatedTextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+		key<span class="token punctuation">:</span> <span class="token string">'lastNameInput'</span><span class="token punctuation">,</span>
+		label<span class="token punctuation">:</span> <span class="token string">'Last Name'</span><span class="token punctuation">,</span>
+		labelHidden<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		placeholder<span class="token punctuation">:</span> <span class="token string">'Surname name'</span><span class="token punctuation">,</span>
+		value<span class="token punctuation">:</span> lastName<span class="token punctuation">,</span>
+		required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameInput<span class="token punctuation">,</span>
+		onValidate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onLastNameValidate<span class="token punctuation">,</span>
+		invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span>
+		errorMessage<span class="token punctuation">:</span> <span class="token string">'Last name is required'</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token function">w</span><span class="token punctuation">(</span>ValidatedTextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	label<span class="token punctuation">:</span> <span class="token string">'Email address'</span><span class="token punctuation">,</span>
+	type<span class="token punctuation">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span>
+	value<span class="token punctuation">:</span> email<span class="token punctuation">,</span>
+	required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailInput<span class="token punctuation">,</span>
+	onValidate<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onEmailValidate<span class="token punctuation">,</span>
+	invalid<span class="token punctuation">:</span> formErrors<span class="token punctuation">.</span>email<span class="token punctuation">,</span>
+	errorMessage<span class="token punctuation">:</span> <span class="token string">'Please enter a valid email address'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 </code></pre></p>
 <div class="task">Create <code>onFormValidate</code> method separate from <code>onFormInput</code></div>
 <div class="instruction">Update the context to pass in an <code>onFormValidate</code> method</div>
 <p>Currently the validation logic is unceremoniously dumped in <code>formInput</code> within <code>ApplicationContext.ts</code>. Now let’s break that out into its own <code>formValidate</code> function, and borrow the <code>onFormInput</code> pattern to pass <code>onFormValidate</code> to <code>WorkerForm</code>. There are three steps to this:</p>
 <ol>
-<li>Add a <code>formValidate</code> method to <code>ApplicationContext.ts</code> and update <code>_formErrors</code> there instead of in <code>formInput</code>: <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">public</span> <span class="token function">formValidate</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+<li>Add a <code>formValidate</code> method to <code>ApplicationContext.ts</code> and update <code>_formErrors</code> there instead of in <code>formInput</code>: <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">public</span> <span class="token function">formValidate</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-	<span class="token keyword">public</span> <span class="token function">formInput</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token function">formInput</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre></li>
 <li>Update <code>WorkerFormContainer</code> to pass <code>formValidate</code> as <code>onFormValidate</code>: <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getProperties</span><span class="token punctuation">(</span>inject<span class="token punctuation">:</span> ApplicationContext<span class="token punctuation">,</span> properties<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">const</span> <span class="token punctuation">{</span>
@@ -401,17 +445,17 @@ ga('send', 'pageview');
 	onFormSave<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
- Then create internal methods for each form field’s validation and pass those methods (e.g. <code>onFirstNameValidate</code>) to each <code>ValidatedTextInput</code> widget. This should follow the same pattern as <code>onFormInput</code> and <code>onFirstNameInput</code>, <code>onLastNameInput</code>, and <code>onEmailInput</code>: <pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">onFirstNameValidate</span><span class="token punctuation">(</span>firstName<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormValidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> firstName <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+ Then create internal methods for each form field’s validation and pass those methods (e.g. <code>onFirstNameValidate</code>) to each <code>ValidatedTextInput</code> widget. This should follow the same pattern as <code>onFormInput</code> and <code>onFirstNameInput</code>, <code>onLastNameInput</code>, and <code>onEmailInput</code>: <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">protected</span> <span class="token function">onFirstNameValidate</span><span class="token punctuation">(</span>firstName<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormValidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> firstName <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-	<span class="token keyword">protected</span> <span class="token function">onLastNameValidate</span><span class="token punctuation">(</span>lastName<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormValidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> lastName <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+<span class="token keyword">protected</span> <span class="token function">onLastNameValidate</span><span class="token punctuation">(</span>lastName<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormValidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> lastName <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-	<span class="token keyword">protected</span> <span class="token function">onEmailValidate</span><span class="token punctuation">(</span>email<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormValidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+<span class="token keyword">protected</span> <span class="token function">onEmailValidate</span><span class="token punctuation">(</span>email<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">onFormValidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 </li>
 </ol>
@@ -447,7 +491,7 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Making-use-of-the-blur-event"><a href="#Making-use-of-the-blur-event" class="headerlink" title="Making use of the blur event"></a>Making use of the blur event</h2><div class="task">Only begin validation after the first blur event</div>
 <p>Right now the form displays validation as soon as the user begins typing in a field, which can be a poor user experience. Seeing “invalid email address” types of errors at the beginning of typing an email is both unnecessary and distracting. A better pattern would be to hold off on validation until the first blur event, and then begin updating the validation on input events.</p>
-<article class="aside"><strong>Blur events</strong><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur" target="_blank" rel="noopener">blur</a> event fires when an element loses focus.</p></article>
+<article class="aside"><strong class="label">Blur events</strong><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur" target="_blank" rel="noopener">blur</a> event fires when an element loses focus.</p></article>
 <p>Now that calling <code>onValidate</code> is handled within the <code>ValidatedTextInput</code> widget, this is possible.</p>
 <div class="instruction">Create a private <code>_onBlur</code> function that calls <code>onValidate</code></div>
 <p>In <code>ValidatedTextInput.ts</code>:</p>
@@ -458,34 +502,34 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <p>We only need to use this function on the first blur event, since subsequent validation can be handled by <code>onInput</code>. The following code will use either <code>this._onBlur</code> or <code>this.properties.onBlur</code> depending on whether the input has been previously validated:</p>
-<pre class="language-javascript"><code class="language-javascript">			<span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				aria<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-					describedBy<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_errorId
-				<span class="token punctuation">}</span><span class="token punctuation">,</span>
-				disabled<span class="token punctuation">,</span>
-				invalid<span class="token punctuation">,</span>
-				label<span class="token punctuation">,</span>
-				maxLength<span class="token punctuation">,</span>
-				minLength<span class="token punctuation">,</span>
-				name<span class="token punctuation">,</span>
-				placeholder<span class="token punctuation">,</span>
-				readOnly<span class="token punctuation">,</span>
-				required<span class="token punctuation">,</span>
-				type<span class="token punctuation">,</span>
-				value<span class="token punctuation">,</span>
-				onBlur<span class="token punctuation">:</span> <span class="token keyword">typeof</span> invalid <span class="token operator">===</span> <span class="token string">'undefined'</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onBlur <span class="token punctuation">:</span> onBlur<span class="token punctuation">,</span>
-				onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onInput
-			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">w</span><span class="token punctuation">(</span>TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	aria<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+		describedBy<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_errorId
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	disabled<span class="token punctuation">,</span>
+	invalid<span class="token punctuation">,</span>
+	label<span class="token punctuation">,</span>
+	maxLength<span class="token punctuation">,</span>
+	minLength<span class="token punctuation">,</span>
+	name<span class="token punctuation">,</span>
+	placeholder<span class="token punctuation">,</span>
+	readOnly<span class="token punctuation">,</span>
+	required<span class="token punctuation">,</span>
+	type<span class="token punctuation">,</span>
+	value<span class="token punctuation">,</span>
+	onBlur<span class="token punctuation">:</span> <span class="token keyword">typeof</span> invalid <span class="token operator">===</span> <span class="token string">'undefined'</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onBlur <span class="token punctuation">:</span> onBlur<span class="token punctuation">,</span>
+	onInput<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onInput
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 </code></pre>
 <p>Now all that remains is to modify <code>_onInput</code> to only call <code>onValidate</code> if the field already has a validation state:</p>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_onInput</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span> invalid<span class="token punctuation">,</span> onInput<span class="token punctuation">,</span> onValidate <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
-		onInput <span class="token operator">&amp;&amp;</span> <span class="token function">onInput</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> <span class="token function">_onInput</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> <span class="token punctuation">{</span> invalid<span class="token punctuation">,</span> onInput<span class="token punctuation">,</span> onValidate <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+	onInput <span class="token operator">&amp;&amp;</span> <span class="token function">onInput</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> invalid <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			onValidate <span class="token operator">&amp;&amp;</span> <span class="token function">onValidate</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> invalid <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		onValidate <span class="token operator">&amp;&amp;</span> <span class="token function">onValidate</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Try inputting an email address with these changes; it should only show an error message (or green border) after leaving the form field, while subsequent edits immediately trigger changes in validation.</p>
 </section><section class="tutorial hidden hiding">
@@ -510,37 +554,37 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Next let’s add an extra check: let’s say each worker’s email must be unique, so we’ll test the input email value against the <code>_workerData</code> array. Realistically this check would be performed server-side for security:</p>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">private</span> <span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> boolean <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> errors <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> email<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> errors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> <span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> boolean <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> errors <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> email<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> errors<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">.</span>firstName <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">.</span>lastName <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">.</span>email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Form contains errors'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">.</span>firstName <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">.</span>lastName <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">.</span>email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Form contains errors'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> worker <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_workerData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>worker<span class="token punctuation">.</span>email <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">.</span>email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Email must be unique'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 			<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
-
-		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> worker <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_workerData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token keyword">if</span> <span class="token punctuation">(</span>worker<span class="token punctuation">.</span>email <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">.</span>email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-				console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Email must be unique'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span>
-		<span class="token punctuation">}</span>
-
-		<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
+
+	<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>After modifying the <code>submitForm</code> function in <code>ApplicationContext.ts</code>, only valid worker entries should successfully submit. We also need to clear <code>_formErrors</code> along with <code>_formData</code> on a successful submission:</p>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">public</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">return</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-
-		<span class="token keyword">this</span><span class="token punctuation">.</span>_workerData <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>_workerData<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token punctuation">]</span><span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">public</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
+
+	<span class="token keyword">this</span><span class="token punctuation">.</span>_workerData <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>_workerData<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'invalidate'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>There is no way this tutorial could cover all possible use cases, but the basic patterns for storing, injecting, and displaying validation state provide a strong base for creating more complex form validation. Some possible next steps include:</p>
@@ -552,77 +596,89 @@ ga('send', 'pageview');
 <p>The finished <a href="../assets/1015_form_validation-finished.zip">demo application</a> is available to review and play with.</p>
 </section>
 
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
-	</div>
-</div>
 				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
 			</div>
 		</div>
 	</div>
+</section>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class="uk-active"><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
+			<hr>
+			<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class=""><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
-				<div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-
-				</ul>
-		</nav>
-	</div>
-</div>
-
-
-<script src="/js/tutorial-support.js"></script>
-<script>
-	function isMobile() {
-		if( navigator.userAgent.match(/Android/i)
-		|| navigator.userAgent.match(/webOS/i)
-		|| navigator.userAgent.match(/iPhone/i)
-		|| navigator.userAgent.match(/iPad/i)
-		|| navigator.userAgent.match(/iPod/i)
-		|| navigator.userAgent.match(/BlackBerry/i)
-		|| navigator.userAgent.match(/Windows Phone/i)
-		){
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	if (isMobile()) {
-		(function() {
-			var paginator = document.querySelector('.paginator');
-			paginator && paginator.parentNode.removeChild(paginator);
-			var sections = document.querySelectorAll('section.tutorial');
-			for (var i = 0; i < sections.length; i++) {
-				var section = sections[i];
-				section.classList.remove('hidden', 'hiding');
-			}
-		})();
-	}
-	else {
-		tutorial.populatePaginator(document.getElementById('paginator'), 'Form validation');
-	}
-</script>
-
-			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>

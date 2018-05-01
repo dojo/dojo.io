@@ -6,6 +6,7 @@
 
 	<title>Components of a Dojo 2 application | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta name="description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Components of a Dojo 2 application">
@@ -15,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/html_js.svg">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/widget.svg">
-<meta property="og:updated_time" content="2018-04-30T21:48:57.413Z">
+<meta property="og:updated_time" content="2018-05-01T20:43:27.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Components of a Dojo 2 application">
 <meta name="twitter:description" content="Components of a Dojo 2 applicationOverviewIn this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a compr">
@@ -43,52 +44,97 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-tutorial
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
-					<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#">Components of a Dojo 2 application</a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<section class="tutorial hidden hiding">
+					<section class="section">
+	<div class="container">
+		<div class="uk-offcanvas-content has-sidebar-left">
+			<div class="sidebar-left uk-visible@m">
+				<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class=""><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class=""><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+			</div>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative">
+					<section class="tutorial hidden hiding">
 <h1 id="Components-of-a-Dojo-2-application"><a href="#Components-of-a-Dojo-2-application" class="headerlink" title="Components of a Dojo 2 application"></a>Components of a Dojo 2 application</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the possible parts of a Dojo 2 application. We will focus on the minimum application that we started with in <a href="../001_static_content/">Your first Dojo 2 application</a>.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/002_creating_an_application-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="The-main-HTML-document"><a href="#The-main-HTML-document" class="headerlink" title="The main HTML document"></a>The main HTML document</h2><p>HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the <code>index.html</code> file serves this role. Notice that the <code>&lt;body&gt;</code> tag contains a single element: <code>&lt;my-app&gt;</code>. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in <code>main.ts</code>:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
@@ -105,7 +151,7 @@ ga('send', 'pageview');
 
 projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<article class="aside"><strong>Why is it called a Projector?</strong><p>A physical projector takes some form of media, such as slides or video, and projects them onto a surface, such as a wall. In a similar way, Dojo 2's projector takes a virtual representation of the application and projects it onto the actual page.</p></article>
+<article class="aside"><strong class="label">Why is it called a Projector?</strong><p>A physical projector takes some form of media, such as slides or video, and projects them onto a surface, such as a wall. In a similar way, Dojo 2's projector takes a virtual representation of the application and projects it onto the actual page.</p></article>
 <p>These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the <code>HelloWorld</code> widget as the root widget, making it aware of the Dojo 2 application. An instance is then created and its <code>append</code> method is used to make the projector aware of the HTML document.</p>
 <p>Whenever a Dojo 2 application needs to update the DOM, it informs the vdom system. The DOM updates do not, however, immediately re-render the page. Instead, it registers a render request with the application via the window’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame" target="_blank" rel="noopener">requestAnimationFrame()</a> method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this, update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application’s current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application’s responsiveness.</p>
 </section><section class="tutorial hidden hiding">
@@ -127,10 +173,10 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </section><section class="tutorial hidden hiding">
 <h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>The final aspect that our basic application contains is its test suite. Dojo 2 is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application’s components work together as expected. Dojo 2 leverages the <a href="http://theintern.io" target="_blank" rel="noopener">Intern</a> testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the <a href="https://github.com/dojo/test-extras" target="_blank" rel="noopener">Dojo 2 test-extras library</a> to verify the output of the widget’s render function. The test-extras library is designed to facilitate testing the functionality of Dojo 2 widgets. For more information, refer to the <a href="../comingsoon.html">Testing Dojo 2 Widgets</a> article.</p>
 <p>Our demo application includes some tests to verify that it is working as expected. The tests are found in <code>tests/unit/widgets/HelloWorld.ts</code>. Let’s examine this part of the test code:</p>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should render'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> h <span class="token operator">=</span> <span class="token function">harness</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">w</span><span class="token punctuation">(</span>HelloWorld<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		h<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should render'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> h <span class="token operator">=</span> <span class="token function">harness</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">w</span><span class="token punctuation">(</span>HelloWorld<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	h<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal commands:</p>
 <pre class=" language-bash"><code class="language-bash">dojo <span class="token function">test</span>
@@ -148,77 +194,89 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>In <a href="../003_creating_widgets/">Creating widgets</a>, we will take a deeper look at Dojo 2 widgets. We will go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.</p>
 </section>
 
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
-	</div>
-</div>
 				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
 			</div>
 		</div>
 	</div>
+</section>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class="uk-active"><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
+			<hr>
+			<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class=""><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class=""><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
-				<div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-
-				</ul>
-		</nav>
-	</div>
-</div>
-
-
-<script src="/js/tutorial-support.js"></script>
-<script>
-	function isMobile() {
-		if( navigator.userAgent.match(/Android/i)
-		|| navigator.userAgent.match(/webOS/i)
-		|| navigator.userAgent.match(/iPhone/i)
-		|| navigator.userAgent.match(/iPad/i)
-		|| navigator.userAgent.match(/iPod/i)
-		|| navigator.userAgent.match(/BlackBerry/i)
-		|| navigator.userAgent.match(/Windows Phone/i)
-		){
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	if (isMobile()) {
-		(function() {
-			var paginator = document.querySelector('.paginator');
-			paginator && paginator.parentNode.removeChild(paginator);
-			var sections = document.querySelectorAll('section.tutorial');
-			for (var i = 0; i < sections.length; i++) {
-				var section = sections[i];
-				section.classList.remove('hidden', 'hiding');
-			}
-		})();
-	}
-	else {
-		tutorial.populatePaginator(document.getElementById('paginator'), 'Components of a Dojo 2 application');
-	}
-</script>
-
-			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>

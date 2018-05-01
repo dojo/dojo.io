@@ -6,6 +6,7 @@
 
 	<title>Web Animations | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta name="description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Web Animations">
@@ -15,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/008_animations/zombieCover.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/008_animations/walking.gif">
-<meta property="og:updated_time" content="2018-04-30T21:48:57.445Z">
+<meta property="og:updated_time" content="2018-05-01T20:43:27.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web Animations">
 <meta name="twitter:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
@@ -43,62 +44,107 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-tutorial
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
-					<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#">Web Animations</a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<section class="tutorial hidden hiding">
+					<section class="section">
+	<div class="container">
+		<div class="uk-offcanvas-content has-sidebar-left">
+			<div class="sidebar-left uk-visible@m">
+				<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class=""><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+			</div>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative">
+					<section class="tutorial hidden hiding">
 <h1 id="Web-Animations"><a href="#Web-Animations" class="headerlink" title="Web Animations"></a>Web Animations</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 <code>WebAnimation</code> meta. We will introduce the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">API provided by Web Animations</a> and show you how to use it with Dojo 2.</p>
 <p><img src="./zombieCover.png" alt="Zombies"></p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/008_animations-initial.zip">download</a> the initial demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="What-is-the-Web-Animations-API"><a href="#What-is-the-Web-Animations-API" class="headerlink" title="What is the Web Animations API"></a>What is the Web Animations API</h2><article class="aside"><strong>Effect Timing</strong><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/AnimationEffectTiming" target="_blank" rel="noopener"><code>AnimationEffectTiming</code></a> you control over the timing of the animations you create. It provides access to <code>delay</code>, <code>fill</code>, <code>duration</code> and more.</p></article>
+<h2 id="What-is-the-Web-Animations-API"><a href="#What-is-the-Web-Animations-API" class="headerlink" title="What is the Web Animations API"></a>What is the Web Animations API</h2><article class="aside"><strong class="label">Effect Timing</strong><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/AnimationEffectTiming" target="_blank" rel="noopener"><code>AnimationEffectTiming</code></a> you control over the timing of the animations you create. It provides access to <code>delay</code>, <code>fill</code>, <code>duration</code> and more.</p></article>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">Web Animations API</a> provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of <code>requestAnimationFrame</code> or the less efficient  <code>setInterval</code>.</p>
 <p>The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, a polyfill needs to be included. Dojo 2 does not include the polyfill by default, so will need to be added as a script tag in your index.html or alternatively imported in the application’s main.ts</p>
 <div class="instruction">Import the web animations polyfill</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'web-animations-js/web-animations-next-lite.min'</span><span class="token punctuation">;</span>
 </code></pre>
-<article class="aside"><strong>Meta</strong><p>Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the <code>domNode</code> itself.</p></article>
-<p>Dojo 2 provides a <a href="https://github.com/dojo/widget-core#meta-configuration" target="_blank" rel="noopener">meta</a> that can apply Web Animations to the rendered <a href="https://dojo.io/docs/fundamentals/working_with_virtual_dom/" target="_blank" rel="noopener">virtual dom</a> in the widgets you create. The <code>WebAnimation</code> meta allows properties such as <code>play</code> and <code>duration</code> to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.</p>
+<article class="aside"><strong class="label">Meta</strong><p>Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the <code>domNode</code> itself.</p></article>
+<p>Dojo 2 provides a <a href="https://github.com/dojo/widget-core#meta-configuration" target="_blank" rel="noopener">meta</a> that can apply Web Animations to the rendered Virtual DOM in the widgets you create. The <code>WebAnimation</code> meta allows properties such as <code>play</code> and <code>duration</code> to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.</p>
 <h2 id="Introducing-the-zombies"><a href="#Introducing-the-zombies" class="headerlink" title="Introducing the zombies"></a>Introducing the zombies</h2><p>Looking at the <code>Zombies.ts</code> file within the initial project, there are a series of <code>DIV</code>s representing two zombies, each with a body and two legs. Via the magic of <code>CSS</code> these <code>DIV</code>s are converted into two zombies when you open your web browser. To demonstrate the use of Web Animations with Dojo 2, we will make the zombies walk towards each other when they are clicked.</p>
 <div class="task">Animating our zombies</div>
 <p>To animate the zombies, we use the <code>@dojo/widget-core/meta/WebAnimation</code> meta. This accepts <code>key</code> and <code>AnimationProperties</code> parameters.<br>Let’s add animation properties to our first Zombie.</p>
@@ -125,7 +171,7 @@ ga('send', 'pageview');
 
 <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">meta</span><span class="token punctuation">(</span>WebAnimation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token string">'zombieOne'</span><span class="token punctuation">,</span> zombieOneMoveAnimation<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<article class="aside"><strong>Reminder</strong><p>If you cannot see the zombies, make sure you have run <code>dojo build -m dev -w -s</code> to build the application and start the local development server.</p></article>
+<article class="aside"><strong class="label">Reminder</strong><p>If you cannot see the zombies, make sure you have run <code>dojo build -m dev -w -s</code> to build the application and start the local development server.</p></article>
 <p>Refresh your web browser and you should now see the left zombie moving across the screen for 2 seconds.</p>
 <p>Let’s explore the animation properties we have created:</p>
 <ul>
@@ -409,77 +455,89 @@ ga('send', 'pageview');
 <p>You can download the completed <a href="../assets/008_animations-finished.zip">demo application</a> from this tutorial.</p>
 </section>
 
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
-	</div>
-</div>
 				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
 			</div>
 		</div>
 	</div>
+</section>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class="uk-active"><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
+			<hr>
+			<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class=""><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
-				<div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-
-				</ul>
-		</nav>
-	</div>
-</div>
-
-
-<script src="/js/tutorial-support.js"></script>
-<script>
-	function isMobile() {
-		if( navigator.userAgent.match(/Android/i)
-		|| navigator.userAgent.match(/webOS/i)
-		|| navigator.userAgent.match(/iPhone/i)
-		|| navigator.userAgent.match(/iPad/i)
-		|| navigator.userAgent.match(/iPod/i)
-		|| navigator.userAgent.match(/BlackBerry/i)
-		|| navigator.userAgent.match(/Windows Phone/i)
-		){
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	if (isMobile()) {
-		(function() {
-			var paginator = document.querySelector('.paginator');
-			paginator && paginator.parentNode.removeChild(paginator);
-			var sections = document.querySelectorAll('section.tutorial');
-			for (var i = 0; i < sections.length; i++) {
-				var section = sections[i];
-				section.classList.remove('hidden', 'hiding');
-			}
-		})();
-	}
-	else {
-		tutorial.populatePaginator(document.getElementById('paginator'), 'Web Animations');
-	}
-</script>
-
-			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>

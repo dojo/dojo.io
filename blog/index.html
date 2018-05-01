@@ -6,6 +6,7 @@
 
 	<title>Blog | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta property="og:type" content="website">
 <meta property="og:title" content="Dojo">
 <meta property="og:url" content="https://dojo.github.io/blog/index.html">
@@ -36,48 +37,61 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-archive
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
 					
   
-    <div class="section">
+    <div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
 	<div class="container article">
-		<article id="post-2018-03-11-Dojo-2-rc1" class="article article-type-post" itemscope itemprop="blogPost">
+		<article id="post-2018-03-11-Dojo-2-rc1" class="article uk-article article-type-post" itemscope itemprop="blogPost">
 			<div class="article-inner">
 				
 				
-					<header class="article-header">
-						<div class="article-meta">
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 itemprop="name" class="uk-article-title">
+      <a class="article-title uk-link-reset" href="/blog/2018/03/11/2018-03-11-Dojo-2-rc1/">Dojo 2 Release Candidate 1 is now available!</a>
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
 							<div class="author-meta">
 	
 	<span class="author-name"> Dylan Schiemann</span>
@@ -87,13 +101,6 @@ ga('send', 'pageview');
 </div>
 							
 						</div>
-						
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/03/11/2018-03-11-Dojo-2-rc1/">Dojo 2 Release Candidate 1 is now available!</a>
-    </h1>
-  
-
 					</header>
 				
 				<div class="article-entry" itemprop="articleBody">
@@ -103,7 +110,7 @@ ga('send', 'pageview');
 <img src="/blog/2018/03/11/2018-03-11-Dojo-2-rc1/featured.png" title="feature-full">
 						
 							<p class="article-more-link">
-								<a href="/blog/2018/03/11/2018-03-11-Dojo-2-rc1/#more">Read More</a>
+								<a href="/blog/2018/03/11/2018-03-11-Dojo-2-rc1/#more" class="uk-button uk-button-text">Read More</a>
 							</p>
 						
 					
@@ -121,14 +128,21 @@ ga('send', 'pageview');
 </div>
 
   
-    <div class="section">
+    <div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
 	<div class="container article">
-		<article id="post-Announcing-Dojo-2-beta-5" class="article article-type-post" itemscope itemprop="blogPost">
+		<article id="post-Announcing-Dojo-2-beta-5" class="article uk-article article-type-post" itemscope itemprop="blogPost">
 			<div class="article-inner">
 				
 				
-					<header class="article-header">
-						<div class="article-meta">
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 itemprop="name" class="uk-article-title">
+      <a class="article-title uk-link-reset" href="/blog/2018/01/23/Announcing-Dojo-2-beta-5/">Announcing Dojo 2 beta 5!</a>
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
 							<div class="author-meta">
 	
 	<span class="author-name"> Dylan Schiemann</span>
@@ -138,13 +152,6 @@ ga('send', 'pageview');
 </div>
 							
 						</div>
-						
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/01/23/Announcing-Dojo-2-beta-5/">Announcing Dojo 2 beta 5!</a>
-    </h1>
-  
-
 					</header>
 				
 				<div class="article-entry" itemprop="articleBody">
@@ -154,7 +161,7 @@ ga('send', 'pageview');
 <img src="/blog/2018/01/23/Announcing-Dojo-2-beta-5/featured.png" title="feature-full">
 						
 							<p class="article-more-link">
-								<a href="/blog/2018/01/23/Announcing-Dojo-2-beta-5/#more">Read More</a>
+								<a href="/blog/2018/01/23/Announcing-Dojo-2-beta-5/#more" class="uk-button uk-button-text">Read More</a>
 							</p>
 						
 					
@@ -172,14 +179,21 @@ ga('send', 'pageview');
 </div>
 
   
-    <div class="section">
+    <div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
 	<div class="container article">
-		<article id="post-Announcing-Dojo-2-beta-4" class="article article-type-post" itemscope itemprop="blogPost">
+		<article id="post-Announcing-Dojo-2-beta-4" class="article uk-article article-type-post" itemscope itemprop="blogPost">
 			<div class="article-inner">
 				
 				
-					<header class="article-header">
-						<div class="article-meta">
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 itemprop="name" class="uk-article-title">
+      <a class="article-title uk-link-reset" href="/blog/2017/12/04/Announcing-Dojo-2-beta-4/">Announcing Dojo 2 beta 4!</a>
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
 							<div class="author-meta">
 	
 	<span class="author-name"> Kitson Kelly</span>
@@ -189,13 +203,6 @@ ga('send', 'pageview');
 </div>
 							
 						</div>
-						
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/12/04/Announcing-Dojo-2-beta-4/">Announcing Dojo 2 beta 4!</a>
-    </h1>
-  
-
 					</header>
 				
 				<div class="article-entry" itemprop="articleBody">
@@ -207,7 +214,7 @@ ga('send', 'pageview');
 <img src="/blog/2017/12/04/Announcing-Dojo-2-beta-4/featured.png" title="feature-full">
 						
 							<p class="article-more-link">
-								<a href="/blog/2017/12/04/Announcing-Dojo-2-beta-4/#more">Read More</a>
+								<a href="/blog/2017/12/04/Announcing-Dojo-2-beta-4/#more" class="uk-button uk-button-text">Read More</a>
 							</p>
 						
 					
@@ -225,14 +232,21 @@ ga('send', 'pageview');
 </div>
 
   
-    <div class="section">
+    <div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
 	<div class="container article">
-		<article id="post-Dojo-2-is-coming" class="article article-type-post" itemscope itemprop="blogPost">
+		<article id="post-Dojo-2-is-coming" class="article uk-article article-type-post" itemscope itemprop="blogPost">
 			<div class="article-inner">
 				
 				
-					<header class="article-header">
-						<div class="article-meta">
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 itemprop="name" class="uk-article-title">
+      <a class="article-title uk-link-reset" href="/blog/2017/03/27/Dojo-2-is-coming/">Dojo 2 is coming</a>
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
 							<div class="author-meta">
 	
 	<span class="author-name"> Dylan Schiemann</span>
@@ -242,13 +256,6 @@ ga('send', 'pageview');
 </div>
 							
 						</div>
-						
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/03/27/Dojo-2-is-coming/">Dojo 2 is coming</a>
-    </h1>
-  
-
 					</header>
 				
 				<div class="article-entry" itemprop="articleBody">
@@ -268,7 +275,7 @@ ga('send', 'pageview');
 </ul>
 						
 							<p class="article-more-link">
-								<a href="/blog/2017/03/27/Dojo-2-is-coming/#more">Read More</a>
+								<a href="/blog/2017/03/27/Dojo-2-is-coming/#more" class="uk-button uk-button-text">Read More</a>
 							</p>
 						
 					
@@ -288,27 +295,43 @@ ga('send', 'pageview');
   
 
 
-				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
-			</div>
+
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class="uk-active"><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
 		</div>
 	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>

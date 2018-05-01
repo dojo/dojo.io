@@ -6,6 +6,7 @@
 
 	<title>Creating widgets | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta name="description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creating widgets">
@@ -15,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/worker.png">
 <meta property="og:image" content="https://dojo.github.io/tutorials/003_creating_widgets/resources/worker_page.png">
-<meta property="og:updated_time" content="2018-04-30T21:48:57.433Z">
+<meta property="og:updated_time" content="2018-05-01T20:43:27.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo 2. PrerequisitesYou can download the demo project and run npm install to get started. The @dojo">
@@ -43,52 +44,97 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-tutorial
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
-					<div class="section">
-	<div class="container article">	
-		<nav class="breadcrumb is-small hidden" aria-label="breadcrumbs">
-			<ul>
-				<li><a href="/tutorials">Tutorials</a></li>
-				<li><a href="#">Creating widgets</a></li>
-				<li class="is-active"><a class="step-current"></a></li>
-			</ul>
-		</nav>
-		<section class="tutorial hidden hiding">
+					<section class="section">
+	<div class="container">
+		<div class="uk-offcanvas-content has-sidebar-left">
+			<div class="sidebar-left uk-visible@m">
+				<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class=""><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class=""><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+			</div>
+			<div class="uk-section uk-section-default">
+				<div class="uk-container uk-container-small uk-position-relative">
+					<section class="tutorial hidden hiding">
 <h1 id="Creating-widgets"><a href="#Creating-widgets" class="headerlink" title="Creating widgets"></a>Creating widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to create and style custom widgets in Dojo 2.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/003_creating_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively. For more information, refer to the <a href="../../docs/fundamentals/typescript_and_dojo_2/">TypeScript and Dojo 2</a> article.</p>
+<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Creating-the-application-widget"><a href="#Creating-the-application-widget" class="headerlink" title="Creating the application widget"></a>Creating the application widget</h2><div class="task">Create a new root node for the application.</div>
 <p>In <a href="../001_static_content/">Your first Dojo 2 application</a>, the first tutorial in this series, we created an application with a single widget, which we modified to show the title of our Biz-E-Bodies view. In this tutorial, we are going to expand our application to show the names and portraits of our Biz-E-Bodies, the workers in the fictional Biz-E-Corp. Before we get to that, we have some refactoring to do. Our demo application is currently hard-wired to render our widget, which has been renamed to the more appropriate <code>Banner</code> in this tutorial. This can be found in <code>main.ts</code>:</p>
@@ -120,19 +166,19 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>Notice that the <code>App</code> class is extending <code>WidgetBase</code>, a <a href="https://www.typescriptlang.org/docs/handbook/generics.html#generic-classes" target="_blank" rel="noopener">generic class</a> that accepts the <code>WidgetProperties</code> interface. This will give our class several default properties and behaviors that are expected to be present in a Dojo 2 widget. Also, notice that we have added the <code>export</code> and <code>default</code> keywords before the <code>class</code> keyword. This is the ES6 standard approach for creating modules, which Dojo 2 leverages when creating a widget - the widget should be the default export in order to make it as convenient as possible to use.</p>
 <p>Our next step is to override <code>WidgetBase</code>‘s <code>render</code> method to generate the application’s view. The <code>render</code> method has the following signature <code>protected render(): DNode| DNode[]</code>, which means that our render method has to return a <code>DNode</code> or an array of <code>DNode</code>s so that the application’s projector knows what to render. The only way to generate this <code>DNode</code> is by calling either the <code>v</code> or <code>w</code> functions.</p>
 <div class="instruction">To start, let's use a simple <code>render</code> method by adding this to the <code>App</code> class:</div>
-<pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>This method will generate a <code>div</code> virtual node with no children. To render the <code>Banner</code> as a child of the div, we’ll use the <code>w</code> function that is designed to render widgets.</p>
 <div class="instruction">Update the <code>render</code> method to the following:</div>
-<pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-            <span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<article class="aside"><strong>Mandatory object for properties</strong><p>The 2nd argument of the <code>w()</code> function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.</p></article>
+<article class="aside"><strong class="label">Mandatory object for properties</strong><p>The 2nd argument of the <code>w()</code> function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.</p></article>
 <p>Notice that the <code>w</code> function takes two parameters - a widget class and an object literal. That literal must implement the interface that was passed to <code>WidgetBase</code> via TypeScript generics. In this case, the <code>Banner</code> class uses <code>WidgetProperties</code> which has the following definition:</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WidgetProperties</span> <span class="token punctuation">{</span>
     key<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
@@ -173,35 +219,32 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>This is nearly identical to the <code>App</code> widget with one exception: we are not importing the <code>w</code> function as the <code>Worker</code> widget will not contain any child widgets.</p>
 <p>Our next step is to override the <code>render()</code> method to customize the widget’s appearance. To accomplish this, we are going to need two children. One <code>&lt;img&gt;</code> tag to show the worker’s portrait and a <code>&lt;strong&gt;</code> tag to display the worker’s name.</p>
 <div class="instruction">Try and implement that using the URL <code>https://dojo.io/tutorials/resources/worker.svg</code> and <code>"lastName, firstName"</code> as the worker's name.</div>
-<p>If you need help, or want to check your solution, click the button below to see our solution.</p>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution1">Toggle Solution</button><section id="showsolution1" class="hidden"><pre class="language-javascript"><code>
-<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-		<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-		<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-			<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'lastName, firstName'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span>
-	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'lastName, firstName'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
+</code></pre>
 <p>Before we continue to refine this widget, let’s review our progress by adding the <code>Worker</code> widget to the app.</p>
 <div class="task">Add a <code>Worker</code> widget to the <code>App</code>.</div>
-<div class="instruction">Within <code>App.ts</code>, import the <code>Worker</code> widget and then update the <code>App</code>'s render method to render it. The <code>Worker</code> will be another child of the <code>App</code>, so we just need to add another entry to the children array. Try that now and, when done, check your answer by clicking on the "Toggle solution" button.</div>
-<div class="solution-container"><button class="toggle-solution" data-target="showsolution2">Toggle Solution</button><section id="showsolution2" class="hidden"><pre class="language-javascript"><code>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<div class="instruction">Within <code>App.ts</code>, import the <code>Worker</code> widget and then update the <code>App</code>'s render method to render it. The <code>Worker</code> will be another child of the <code>App</code>, so we just need to add another entry to the children array.</div>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./Banner'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Worker <span class="token keyword">from</span> <span class="token string">'./Worker'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
-	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-			<span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-			<span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></section></div>
+</code></pre>
 <div class="instruction">Run the application with <code>dojo build -m dev -w memory -s</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>.</div>
 <p>We have succeeded in rendering the widget, but there seem to be some styling issues. We’ll come back to that in a bit. For now, let’s continue refining the <code>Worker</code> widget to allow the application to configure it before it is rendered. In Dojo 2, this is done by creating an interface to pass configuration information into the widget.</p>
 </section><section class="tutorial hidden hiding">
@@ -217,10 +260,10 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 <p>The <code>WorkerProperties</code> interface adds two new optional properties that we’ll be able to use. Now that these are available, let’s use them to make the name of the worker controlled by the parent widget.</p>
 <div class="instruction">Inside of the render method, add the following code to create some local constants for the first and last names:</div>
-<pre class="language-javascript"><code class="language-javascript">		<span class="token keyword">const</span> <span class="token punctuation">{</span>
-			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
-			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
-		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span>
+	firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
+	lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
+<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 </code></pre>
 <p>This code retrieves the appropriate property and provides a reasonable default in case the widget doesn’t receive a value. This is done via a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener">destructuring assignment</a>. We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.</p>
 <div class="instruction">Update the <code>render</code> method to look like this:</div>
@@ -240,7 +283,7 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Configuring-a-widget"><a href="#Configuring-a-widget" class="headerlink" title="Configuring a widget"></a>Configuring a widget</h2><div class="task">Pass properties to the Worker widget to configure it.</div>
-<article class="aside"><strong>Remember</strong><p>You should already see the new values. However, if you shut down the build command, you can start it up again by running <code>dojo build -m dev -w memory -s</code> and navigating to <code>http://localhost:9999</code>.</p></article>
+<article class="aside"><strong class="label">Remember</strong><p>You should already see the new values. However, if you shut down the build command, you can start it up again by running <code>dojo build -m dev -w memory -s</code> and navigating to <code>http://localhost:9999</code>.</p></article>
 <p>To use the functionality of the new <code>Worker</code> widget we will update the <code>render</code> method in the <code>App</code> class to pass in some properties. In a full Dojo 2 application, these values could possibly be retrieved from an external state store or fetched from an external resource, but for now, we’ll just use static properties. To learn more about working with stores in Dojo 2, take a look at the <a href="../comingsoon.html">dojo/stores</a> tutorial in the advanced section.</p>
 <div class="instruction">In <code>App.ts</code>, update the line that is rendering the <code>Worker</code> to contain values for the <code>firstName</code> and <code>lastName</code> properties:</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token string">'Jones'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
@@ -287,30 +330,30 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 <p><code>dojo build -m dev -w memory -s</code> will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the <code>Worker</code> widget.</p>
 <div class="instruction">Return to <code>Worker.ts</code> and update the render method to add the classes:</div>
-<pre class="language-javascript"><code class="language-javascript">	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span>
-			firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
-			lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
-		<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> <span class="token punctuation">{</span>
+		firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
+		lastName <span class="token operator">=</span> <span class="token string">'lastName'</span>
+	<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">;</span>
 
-		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span>
-			<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-					classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span>
-					src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-					<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lastName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>firstName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
-				<span class="token punctuation">]</span><span class="token punctuation">)</span>
-			<span class="token punctuation">]</span>
-		<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+			<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+				classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span>
+				src<span class="token punctuation">:</span> <span class="token string">'https://dojo.io/tutorials/resources/worker.svg'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+				<span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'strong'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lastName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>firstName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token punctuation">]</span><span class="token punctuation">)</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>You may notice that we are calling <code>this.theme</code> with the <code>worker</code> and <code>image</code> classes as arguments. <code>theme</code> is a method provided by the <code>ThemedMixin</code> which is used to return the overriding class if the widget has been configured with a theme. To learn more about theming, review the <a href="../007_theming/">Theming an Application</a> tutorial.</p>
 <p>If you return to the browser, you’ll see that the widget now has the classes applied and looks a little better.</p>
 <p class="center"><img src="./resources/worker_page.png" alt="worker_page"></p>
 
-<p>While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget’s components. Notice that we don’t have class names such as <code>.worker</code> or <code>.image</code> like we used in the CSS file, rather we have something like <code>.worker__image__3aIJl</code>. The <code>dojo build</code> command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called “themes”). To learn more about those, take a look at the <a href="../007_theming/">Theming an Application</a> tutorial in the Cookbook section.</p>
+<p>While you are there, open up the developer tools and look at the CSS classes that have been applied to the widget’s components. Notice that we don’t have class names such as <code>.worker</code> or <code>.image</code> like we used in the CSS file, rather we have something like <code>.worker__image__3aIJl</code>. The <code>dojo build</code> command uses CSS Modules to obfuscate class names when it compiles the project to ensure that CSS selectors are localized to a given widget. There are also ways to provide global styling rules (called “themes”). To learn more about those, take a look at the <a href="../007_theming/">Theming an Application</a> tutorial.</p>
 <p>We’ve now updated our application to display a single employee, but our goal is to display a collection of employees. We could certainly add additional <code>Worker</code> widgets to our application, but they would all be siblings of the <code>Banner</code> widget and could be difficult to style properly. In the next section, we’ll create a simple container widget that will manage the layout of the <code>Worker</code> widgets.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Moving-the-Worker-into-a-container"><a href="#Moving-the-Worker-into-a-container" class="headerlink" title="Moving the Worker into a container"></a>Moving the Worker into a container</h2><div class="task">Create a container to handle the layout of Worker widgets.</div>
@@ -389,77 +432,89 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>In <a href="../004_user_interactions/">Responding to events</a>, we will explore the how to add event handlers to allow our application to respond to user interactions.</p>
 </section>
 
-		<div class="section-one hidden"><a class="button is-primary begin-button">Begin Tutorial</a></div>
-	</div>
-</div>
 				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
 			</div>
 		</div>
 	</div>
+</section>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class="uk-active"><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
+			<hr>
+			<ul class="uk-nav uk-nav-primary">
+	<h3>Tutorials</h3>
+	<li class="uk-nav-header">Getting Started</li>
+	<li class="uk-nav-divider"></li>
+
+	
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+	
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+	
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+	
+			<li class="uk-active"><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
+	
+			<li class=""><a href="/tutorials/004_user_interactions/">Responding to events</a></li>
+	
+			<li class=""><a href="/tutorials/005_form_widgets/">Form widgets</a></li>
+	
+			<li class=""><a href="/tutorials/006_deploying_to_production/">Deploying to production</a></li>
+	
+			<li class="uk-nav-header">Advanced</li>
+			<li class="uk-nav-divider"></li>
+	
+			<li class=""><a href="/tutorials/007_theming/">Theming</a></li>
+	
+			<li class=""><a href="/tutorials/008_animations/">Web Animations</a></li>
+	
+			<li class=""><a href="/tutorials/1010_containers_and_injecting_state/">State management</a></li>
+	
+			<li class=""><a href="/tutorials/1015_form_validation/">Form validation</a></li>
+	
+			<li class=""><a href="/tutorials/1020_registries/">Registry</a></li>
+	
+			<li class=""><a href="/tutorials/1030_routing/">Routing</a></li>
+	
+			<li class=""><a href="/tutorials/1050_development_environment/">Setting up a development environment</a></li>
+	
+			<li class=""><a href="/tutorials/1060_data_driven_widgets/">Data-driven widgets</a></li>
+	
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
-				<div class="paginator">
-	<div class="container paginator-controls">
-		<nav id="paginator" class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous">Previous</a>
-				<a class="pagination-next">Next page</a>
-				<ul class="pagination-list">
-
-				</ul>
-		</nav>
-	</div>
-</div>
-
-
-<script src="/js/tutorial-support.js"></script>
-<script>
-	function isMobile() {
-		if( navigator.userAgent.match(/Android/i)
-		|| navigator.userAgent.match(/webOS/i)
-		|| navigator.userAgent.match(/iPhone/i)
-		|| navigator.userAgent.match(/iPad/i)
-		|| navigator.userAgent.match(/iPod/i)
-		|| navigator.userAgent.match(/BlackBerry/i)
-		|| navigator.userAgent.match(/Windows Phone/i)
-		){
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	if (isMobile()) {
-		(function() {
-			var paginator = document.querySelector('.paginator');
-			paginator && paginator.parentNode.removeChild(paginator);
-			var sections = document.querySelectorAll('section.tutorial');
-			for (var i = 0; i < sections.length; i++) {
-				var section = sections[i];
-				section.classList.remove('hidden', 'hiding');
-			}
-		})();
-	}
-	else {
-		tutorial.populatePaginator(document.getElementById('paginator'), 'Creating widgets');
-	}
-</script>
-
-			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>

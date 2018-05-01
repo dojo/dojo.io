@@ -6,6 +6,7 @@
 
 	<title>Dojo 2 is coming | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta name="description" content="Dojo 2 is the most substantial rethink to the Dojo Toolkit in ten years. As it nears Beta status for the majority of its modules, quite a bit has changed these past few months as it has evolved into a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dojo 2 is coming">
@@ -14,7 +15,7 @@
 <meta property="og:description" content="Dojo 2 is the most substantial rethink to the Dojo Toolkit in ten years. As it nears Beta status for the majority of its modules, quite a bit has changed these past few months as it has evolved into a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/blog/2017/03/27/Dojo-2-is-coming/featured.png">
-<meta property="og:updated_time" content="2018-04-30T21:48:57.397Z">
+<meta property="og:updated_time" content="2018-05-01T20:43:27.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dojo 2 is coming">
 <meta name="twitter:description" content="Dojo 2 is the most substantial rethink to the Dojo Toolkit in ten years. As it nears Beta status for the majority of its modules, quite a bit has changed these past few months as it has evolved into a">
@@ -42,46 +43,59 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-single-page
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
-					<div class="section">
+					<div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
 	<div class="container article">
-		<article id="post-Dojo-2-is-coming" class="article article-type-post" itemscope itemprop="blogPost">
+		<article id="post-Dojo-2-is-coming" class="article uk-article article-type-post" itemscope itemprop="blogPost">
 			<div class="article-inner">
 				
 				
-					<header class="article-header">
-						<div class="article-meta">
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 class="article-title uk-article-title" itemprop="name">
+      Dojo 2 is coming
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
 							<div class="author-meta">
 	
 	<span class="author-name"> Dylan Schiemann</span>
@@ -91,13 +105,6 @@ ga('send', 'pageview');
 </div>
 							
 						</div>
-						
-  
-    <h1 class="article-title" itemprop="name">
-      Dojo 2 is coming
-    </h1>
-  
-
 					</header>
 				
 				<div class="article-entry" itemprop="articleBody">
@@ -137,18 +144,23 @@ ga('send', 'pageview');
 			</div>
 			
 				
-<nav id="article-nav">
-  
-    <a href="/blog/2017/12/04/Announcing-Dojo-2-beta-4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Announcing Dojo 2 beta 4!
-        
-      </div>
-    </a>
-  
-  
+<hr>
+<nav id="article-nav" class="uk-child-width-1-2@s uk-text-center uk-grid-match uk-margin-top" uk-grid>
+
+	
+		<div>
+			<div class="uk-card uk-card-muted uk-card-hover uk-card-body">
+				<strong class="uk-text-small">Next Post</strong>
+					<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="/blog/2017/12/04/Announcing-Dojo-2-beta-4/" id="article-nav-newer" class="article-nav-link-wrap">
+						
+							Announcing Dojo 2 beta 4!
+						
+					</a></h4>
+				</div>
+			</div>
+		
+	
+	
 </nav>
 
 			
@@ -158,27 +170,42 @@ ga('send', 'pageview');
 	</div>
 </div>
 
-				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
-			</div>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class="uk-active"><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
 		</div>
 	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>

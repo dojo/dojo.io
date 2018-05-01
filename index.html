@@ -6,6 +6,7 @@
 
 	<title>Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
 	<meta property="og:type" content="website">
 <meta property="og:title" content="Dojo">
 <meta property="og:url" content="https://dojo.github.io/index.html">
@@ -36,135 +37,101 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
 
 	<body class="body-front-page
 ">
 		<div class="page-wrapper">
-			<header class="header">
-	<div class="container">
-		<nav class="navbar">
-			<div class="navbar-brand">
-				<a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
-				<div class="navbar-burger">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
 			</div>
-			<div class="navbar-menu">
-				<div class="navbar-start"></div>
-				<div class="navbar-end">
-					<a class="navbar-item" href="/docs/fundamentals/accessibility/index.html">Docs</a>
-					<a class="navbar-item" href="/tutorials">Tutorials</a>
-					<a class="navbar-item" href="/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
-					<a class="navbar-item" href="/blog">Blog</a>
-					<a class="navbar-item" href="https://github.com/dojo/meta"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
-				</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li class="uk-active"><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+					<li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+					<li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
-</header>
+</div>
 
 			<div class="content-wrapper">
 				<div class="page-content">
 					<div class="bodyContainer">
-	<section class="hero">
-	<div class="shapes">
-		<!--
-		<div class="sphere lower-left"></div>
-		<div class="sphere upper-right"></div>
-		<div class="cube-scene upper-left">
-			<div class="cube">
-				<div class="side back"></div>
-				<div class="side right"></div>
-				<div class="side left"></div>
-				<div class="side top"></div>
-				<div class="side bottom"></div>
-				<div class="side front"></div>
-			</div>
-		</div>
-		<div class="cube-scene lower-left">
-			<div class="cube">
-				<div class="side back"></div>
-				<div class="side right"></div>
-				<div class="side left"></div>
-				<div class="side top"></div>
-				<div class="side bottom"></div>
-				<div class="side front"></div>
-			</div>
-		</div>
-		<div class="cube-scene upper-right">
-			<div class="cube">
-				<div class="side back"></div>
-				<div class="side right"></div>
-				<div class="side left"></div>
-				<div class="side top"></div>
-				<div class="side bottom"></div>
-				<div class="side front"></div>
-			</div>
-		</div>
-		<div class="pyramid-gyro">
-			<div class="pyramid-axis">
-			  <div class="pyramid-wall front"></div>
-			  <div class="pyramid-wall back"></div>
-			  <div class="pyramid-wall left"></div>
-			  <div class="pyramid-wall right"></div>
-			  <div class="bottom"></div>
-			</div>
-		  </div>
-		-->
-	</div>
-	<div class="container">
-		<h1>
-			Enterprise-grade <br> Web Application Development
+	<section class="hero uk-section uk-section-large">
+	<div class="uk-container uk-cover-container uk-text-center">
+		
+		<h1 class="uk-heading uk-light">
+			A Progressive Framework <br>for Modern Web Apps
 		</h1>
-		<a href="/tutorials" class="call-to-action">
+		<a href="tutorials/000_local_installation/" class="uk-button uk-button-default uk-button-primary uk-button-large sp-button-round uk-margin">
 			Build with Dojo
 		</a>
-		<div class="highlight">
-			<div>
-				<h3>
-					<span class="red">
-						▢
-					</span>
-					Productive
-				</h3>
-				<p>
-					Dojo enables teams to build web applications with a deliberate approach to productivity, sustainability and code management.
-				</p>
-			</div>
-			<div>
-				<h3>
-					<span class="blue">
-						△
-					</span>
-					Adaptable
-				</h3>
-				<p>
-					Intent on not reinventing the wheel, Dojo allows for easy integration with  the most powerful solutions available today on the open web.
-				</p>
-			</div>
-			<div>
-				<h3>
-					<span class="purple">
-						◯
-					</span>
-					Inclusive
-				</h3>
-				<p>
-					Demand for accessibility and internationalization are required for enterprise web applications.  Dojo supports inclusivity and provides both.
-				</p>
-			</div>
-		</div>
+	
 	</div>
 </section>
 
-	<section class="up-and-running">
+<div class="uk-flex uk-flex-around threeup">
+	<div class="uk-card uk-card-secondary uk-card-body sp-card-shadow uk-height-match">
+		<h3 class="uk-card-title">
+			<span class="red">
+				▢
+			</span>
+			Productive
+		</h3>
+		<p>
+			Dojo enables teams to build web applications with a deliberate approach to productivity, sustainability and code management.
+		</p>
+	</div>
+
+	<div class="uk-card uk-card-primary uk-card-body sp-card-shadow uk-height-match">
+		<h3>
+			<span class="blue">
+				△
+			</span>
+			Adaptable
+		</h3>
+		<p>
+			Intent on not reinventing the wheel, Dojo allows for easy integration with  the most powerful solutions available today on the open web.
+		</p>
+	</div>
+
+	<div class="uk-card uk-card-muted uk-card-body sp-card-shadow uk-height-match">
+		<h3>
+			<span class="purple">
+				◯
+			</span>
+			Inclusive
+		</h3>
+		<p>
+			Demand for accessibility and internationalization are required for enterprise web applications.  Dojo supports inclusivity and provides both.
+		</p>
+	</div>
+</div>
+
+	<section class="up-and-running uk-section">
 
 	<div class="container">
 		<div class="commands">
-			<h3>
+			<h3 class="uk-heading">
 				Get Going Quickly
 			</h3>
 			<p>
@@ -326,7 +293,7 @@ ga('send', 'pageview');
 			};
 			var typing = {
 				x1: 0.65, x2: 0.8,
-				y1: 0, y2: 60
+				y1: 0, y2: 50
 			};
 
 			lineNumber3Elem.style.opacity = interpolate(percentCompletion, delayShow);
@@ -370,7 +337,7 @@ ga('send', 'pageview');
 	})();
 </script>
 
-	<section class="embrace-platform">
+	<section class="embrace-platform uk-section">
 	<div class="copy">
 		<div>
 			<img src="/images/icon-components.svg" alt="components">
@@ -381,9 +348,6 @@ ga('send', 'pageview');
 		<p>
 			Dojo strives for maximum interoperability. Web components provide a mechanism to leverage non-Dojo components within a Dojo application, and to effortlessly use your Dojo-based widgets in non-Dojo applications. Dojo provides first class support for web components. The decisions you make today should not lock you into decisions for the future.
 		</p>
-		<a href="/tutorials/comingsoon.html">
-			See the Tutorial
-		</a>
 	</div>
 	<div class="demo">
 		<div class="menu-list">
@@ -563,7 +527,7 @@ ga('send', 'pageview');
 	})();
 </script>
 
-	<section class="intersection-observers">
+	<section class="intersection-observers uk-section">
 	<div class="foreground">
 		<div class="scales">
 			<div class="scale">
@@ -1087,7 +1051,7 @@ ga('send', 'pageview');
 	})();
 </script>
 
-	<section class="accessibility">
+	<section class="accessibility uk-section">
 	<div class="animation">
 		<div class="english">Hello, World!</div>
 		<div class="french">Bonjour le monde</div>
@@ -1100,19 +1064,13 @@ ga('send', 'pageview');
 	<div class="content">
 		<img src="/images/icon-internationalization.svg" alt="">
 		<h2>
-			Accessibility and
-			Internationalization
+			A11y and i18n<br>
 			Out of the Box
 		</h2>
 		<p>
-			Dojo widgets offer full
-			<a href="/docs/fundamentals/accessibility/index.html">accessibility</a>
-			and
-			<a href="/docs/fundamentals/internationalization/index.html">internationalization</a> support while providing tools and guidelines to develop applications that provide inclusive experiences for everyone.
+			Dojo widgets offer full accessibility
+			and internationalization support while providing tools and guidelines to develop applications that provide inclusive experiences for everyone.
 		</p>
-		<a href="/tutorials/comingsoon.html">
-			See the Tutorial
-		</a>
 	</div>
 </section>
 
@@ -1331,7 +1289,7 @@ ga('send', 'pageview');
 			TypeScript
 		</h4>
 		<p>
-			<a href="/docs/fundamentals/typescript_and_dojo_2/index.html">TypeScript’s</a> type system, interfaces, and transpiler facilitate more efficient engineering for enterprise development.
+			TypeScript’s type system, interfaces, and transpiler facilitate more efficient engineering for enterprise development.
 		</p>
 	</div>
 	<div class="widget-authoring feature">
@@ -1363,47 +1321,41 @@ ga('send', 'pageview');
 	</div>
 </section>
 
-	<section class="links">
-	<div class="container">
-		<h2>
-			Build with Dojo
-		</h2>
-		<a class="reference-guide" href="/docs">
-			Reference Guide
-		</a>
-		<a class="tutorials" href="/tutorials">
-			Tutorials
-		</a>
-		<!--<a class="api" href="/api">
-			API Docs
-		</a>-->
-	</div>
-	<div class="bottom-border"></div>
-</section>
+</div>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<ul class="uk-nav" data-uk-nav>
+  <li class=""><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+  <li class=""><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+  <li class=""><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
 
+	</div>
 </div>
 
 				</div>
-				<footer class="footer">
-	<div class="container">
-		<div class="info">
-			<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
-		</div>
-		<div class="link-container">
-			<div class="links">
-				<a href="https://twitter.com/dojo" class="twitter"></a>
-				<a href="https://github.com/dojo" class="github"></a>
-			</div>
-		</div>
-	</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
 </footer>
 
 			</div>
 			
 		</div>
 		
-<!-- build:js /js/combined.js -->
-<script src='/js/site.js'></script>
-<!-- endbuild -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
 	</body>
 </html>
