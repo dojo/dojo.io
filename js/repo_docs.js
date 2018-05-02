@@ -754,7 +754,7 @@ var tslib_1 = __webpack_require__(2);
 var MarkdownIt = __webpack_require__(326);
 var Prism = __webpack_require__(382);
 var loadLanguages = __webpack_require__(383);
-loadLanguages(['typescript', 'json', 'bash']);
+loadLanguages(['typescript', 'json', 'bash', 'jsx', 'tsx']);
 exports.global = window;
 exports.maxTocLevel = 4;
 exports.sep = '--';
@@ -827,13 +827,13 @@ function docFetch(path) {
 exports.docFetch = docFetch;
 function docIdToDomId(docId) {
     var id = docId.replace(/\//g, '__');
-    id = id.replace(/(\w)\.(\w+)/, '$1_$2');
+    id = id.replace(/(\w)\.(\w+)\.(\w+)/, '$1_$2_$3');
     return id;
 }
 exports.docIdToDomId = docIdToDomId;
 function domIdToDocId(domId) {
     var id = domId.replace(/__/g, '/');
-    id = id.replace(/(\w)_(\w)/, '$1.$2');
+    id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
     return id;
 }
 exports.domIdToDocId = domIdToDocId;
@@ -849,7 +849,7 @@ function fromHash(hash) {
     var type = idParts[0];
     var docIdParts = idParts[1].split('/');
     var repo = docIdParts[0] + "/" + docIdParts[1];
-    var version = docIdParts[2];
+    var version = docIdParts[2].replace(/_/g, '.');
     var path = docIdParts.slice(3).join('/');
     var anchor = idParts.slice(2).join(exports.sep);
     return { type: type, repo: repo, version: version, path: path, anchor: anchor };
@@ -1049,7 +1049,7 @@ function scrollTo(target, offset) {
 exports.scrollTo = scrollTo;
 function toHash(ref) {
     var type = ref.type, repo = ref.repo, version = ref.version, path = ref.path, anchor = ref.anchor;
-    var hash = "#" + type + exports.sep + docIdToDomId(repo) + "__" + version;
+    var hash = "#" + type + exports.sep + docIdToDomId(repo) + "__" + version.replace(/\./g, '_');
     if (path) {
         hash += "__" + docIdToDomId(path);
     }
