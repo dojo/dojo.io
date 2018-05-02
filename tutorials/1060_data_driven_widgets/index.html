@@ -15,7 +15,7 @@
 <meta property="og:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.github.io/tutorials/resources/list.png">
-<meta property="og:updated_time" content="2018-05-01T21:49:21.002Z">
+<meta property="og:updated_time" content="2018-05-02T17:08:38.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-driven widgets">
 <meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
@@ -132,7 +132,7 @@ ga('send', 'pageview');
 					<section class="tutorial hidden hiding">
 <h1 id="Data-driven-widgets"><a href="#Data-driven-widgets" class="headerlink" title="Data-driven widgets"></a>Data-driven widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>The Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the <code>properties</code> it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.</p>
 <p>In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.</p>
-<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1060_data_driven_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can open the <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/initial/biz-e-corp" target="_blank" rel="noopener">tutorial on codesandbox.io</a> or <a href="../assets/1060_data_driven_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
 <p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
 <p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
@@ -287,7 +287,7 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>A filterable list widget was created throughout this tutorial to demonstrate how Dojo 2 widgets have no coupling to a specific data store implementation. Despite the simplicity of this example widget, it demonstrates a key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.</p>
 <p>It’s also important to note that in this tutorial, hardcoded worker data is passed down from the <code>App</code> widget to the <code>Banner</code> widget and ultimately to the <code>List</code> widget, but the data could be provided from any data source, including a remote server. It’s entirely possible for <code>Banner</code> to directly initiate an XHR request for data, and it’s also possible for <code>Banner</code> to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the <code>List</code> is not concerned with the data origin. Instead, data-driven widgets in Dojo 2 both request and receive data using their <code>properties</code>, and the parent is responsible for either relaying or initiating the data request itself.</p>
-<p>If you would like, you can download the completed <a href="../assets/1060_data_driven_widgets-finished.zip">demo application</a>.</p>
+<p>If you would like, you can open the completed demo application on <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/finished/biz-e-corp" target="_blank" rel="noopener">codesandbox.io</a> or alternatively <a href="../assets/1060_data_driven_widgets-finished.zip">download</a> the project.</p>
 </section>
 
 				</div>
