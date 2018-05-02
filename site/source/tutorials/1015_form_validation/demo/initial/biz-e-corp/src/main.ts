@@ -31,8 +31,6 @@ registry.defineInjector('app-state', (invalidator) => {
 	return () => applicationContext;
 });
 
-registry.defineInjector('app-state', applicationContext);
-
 const Projector = ProjectorMixin(App);
 const projector = new Projector();
 projector.setProperties({ registry });
