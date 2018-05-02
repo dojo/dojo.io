@@ -12,7 +12,7 @@ paginate: true
 In this tutorial, you will learn how to create and style custom widgets in Dojo 2.
 
 ## Prerequisites
-You can [download](../assets/003_creating_widgets-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/003_creating_widgets/demo/initial/biz-e-corp) or [download](../assets/003_creating_widgets-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -388,7 +388,7 @@ In this tutorial, we have created and styled widgets within Dojo 2. Widgets are 
 
 Additionally, we learned how to style widgets by using CSS modules. These modules provide all of the flexibility of CSS with the additional advantages of providing strongly typed and localized class names that allow a widget to be styled without the risk of affecting other aspects of the application.
 
-If you would like, you can download the completed [demo application](../assets/003_creating_widgets-finished.zip).
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/003_creating_widgets/demo/finished/biz-e-corp) or alternatively [download](../assets/003_creating_widgets-finished.zip) the project.
 
 In [Responding to events](../004_user_interactions/), we will explore the how to add event handlers to allow our application to respond to user interactions.
 

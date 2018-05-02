@@ -15,7 +15,7 @@ In this tutorial, you will learn about the structure of a simple Dojo 2 applicat
 
 ## Prerequisites
 
-You can [download](../assets/002_creating_an_application-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/002_creating_an_application/demo/initial/biz-e-corp) or [download](../assets/002_creating_an_application-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -103,7 +103,7 @@ dojo test --config local
 ## Summary
 This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.
 
-If you would like, you can download the completed [demo application](../assets/002_creating_an_application-finished.zip) from this tutorial.
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/002_creating_an_application/demo/finished/biz-e-corp) or alternatively [download](../assets/002_creating_an_application-finished.zip) the project.
 
 In [Creating widgets](../003_creating_widgets/), we will take a deeper look at Dojo 2 widgets. We will go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.
 

@@ -15,7 +15,7 @@ The Dojo 2 widget system provides a functional API that strives to strictly enfo
 In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.
 
 ## Prerequisites
-You can [download](../assets/1060_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/initial/biz-e-corp) or [download](../assets/1060_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -184,6 +184,6 @@ A filterable list widget was created throughout this tutorial to demonstrate how
 
 It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could be provided from any data source, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the `List` is not concerned with the data origin. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
 
-If you would like, you can download the completed [demo application](../assets/1060_data_driven_widgets-finished.zip).
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/finished/biz-e-corp) or alternatively [download](../assets/1060_data_driven_widgets-finished.zip) the project.
 
 {% section 'last' %}

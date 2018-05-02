@@ -1,23 +1,24 @@
 {
-  "name": "biz-e-corp",
+  "name": "dojo-2-user-interactions-tutorial",
   "version": "1.0.0",
+  "main": "src/main.ts",
   "scripts": {
     "test": "dojo test",
     "build": "dojo build"
   },
   "dependencies": {
-    "@dojo/core": "~0.4.0",
-    "@dojo/has": "~0.1.2",
-    "@dojo/routing": "~0.5.0",
-    "@dojo/shim": "~0.2.6",
-    "@dojo/widget-core": "~0.9.6",
-    "@dojo/i18n": "~0.5.1",
-    "@dojo/widgets": "~0.6.1"
+    "@dojo/core": "^2.0.0",
+    "@dojo/has": "^2.0.0",
+    "@dojo/routing": "^2.0.0",
+    "@dojo/shim": "^2.0.0",
+    "@dojo/widget-core": "^2.0.0",
+    "@dojo/i18n": "^2.0.0",
+    "@dojo/widgets": "^2.0.0"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "~0.3.4",
-    "@dojo/cli-test-intern": "~0.5.1",
-    "@dojo/test-extras": "~0.6.0",
+    "@dojo/cli-build-app": "^2.0.0",
+    "@dojo/cli-test-intern": "^2.0.0",
+    "@dojo/test-extras": "^2.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
