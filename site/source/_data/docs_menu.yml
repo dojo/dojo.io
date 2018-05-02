@@ -25,9 +25,6 @@ dojo/shim:
 dojo/stores:
   repo: dojo/stores
   version: master
-dojo/streams:
-  repo: dojo/streams
-  version: master
 dojo/themes:
   repo: dojo/themes
   version: master
