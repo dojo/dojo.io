@@ -47,7 +47,7 @@ The `ApplicationContext` contains the application state information. The constru
 
 {% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:26-35 %}
 
-The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous to the `_addWorker` method from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it cannot call `invalidate();` to schedule a re-render. Instead the instance needs to call the `invalidator` function passed on and stored on construction.
+The `formInput` method provides the same functionality as the `_onFormInput` method in the `App` class and the `submitForm` method is analogous to the `_addWorker` method from the `App` class. The implementations vary slightly as the `ApplicationContext` has dedicated fields to store the state information. Also, since the `ApplicationContext` is not a widget, it cannot call `invalidate();` to schedule a re-render. Instead the instance needs to call the `invalidator` function passed in and stored on construction.
 
 Notice that the `ApplicationContext` does not contain any code to load state information. Currently its only role is only to manage the application's state provided on initialization via its `constructor`. However as the requirements for the application become more advanced, the `ApplicationContext` could make requests to fetch and modify data from a remote service or local storage mechanism.
 
@@ -65,7 +65,7 @@ Currently, the application's `main` module is only responsible for creating the 
 
 Now, we need to:
 
-1. Create a `registry` and then define an injector factory that creates the `ApplicationContext` passing the invalidator and initial state. Returning a function that returns this instance.
+1. Create a `registry` and then define an injector factory that creates the `ApplicationContext` passing the invalidator and initial state. The injector factory returns a function that returns the `ApplicationContext` instance.
 2. To make the `registry` available within the widget tree, we need to pass the `registry` as a property to the `projector`
 
 {% instruction 'Import the `ApplicationContext` module and add this code to the `main` module:' %}
@@ -78,7 +78,7 @@ In a real-world application, this data would probably be loaded via a call to a 
 
 The state stored in the `ApplicationContext` is the same data that was used in the previous version of the `App` module to initialize the `WorkerProperties`, but it is now decoupled into an isolated module that helps to understand and maintain the application. In general, the `main` module of an application should be concerned with initializing application-wide state. Also, as previously mentioned, the `App` class only needed to manage the `WorkerProperties` state so that it could coordinate change to its children.
 
-Now we need to create the registry, injector factory that creates and returns the `ApplicationContext` instance injector, and finally make the registry available to the widget tree.
+Now we need to create the registry, create the injector factory that creates and returns the `ApplicationContext` instance injector, and finally make the registry available to the widget tree.
 
 {% instruction 'Add the `Registry` import to the `main` module.' %}
 
