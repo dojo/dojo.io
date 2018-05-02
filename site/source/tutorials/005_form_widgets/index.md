@@ -13,7 +13,7 @@ paginate: true
 This tutorial will extend on [Responding to events](../004_user_interactions/), where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
 
 ## Prerequisites
-You can [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/005_form_widgets/demo/initial/biz-e-corp) or [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -220,7 +220,7 @@ In this tutorial, we learned how to create complex widgets by composing simpler 
 
 Dojo 2 widgets are provided in the [@dojo/widgets](https://github.com/dojo/widgets) GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the [Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
-If you would like, you can download the completed [demo application](../assets/005_form_widgets-finished.zip) from this tutorial.
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/005_form_widgets/demo/finished/biz-e-corp) or alternatively [download](../assets/005_form_widgets-finished.zip) the project.
 
 In [Deploying to production](../006_deploying_to_production/), we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.
 

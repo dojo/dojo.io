@@ -13,7 +13,7 @@ paginate: true
 In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.
 
 ## Prerequisites
-You can [download](../assets/001_static_content-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/001_static_content/demo/initial/biz-e-corp) or [download](../assets/001_static_content-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -103,6 +103,6 @@ Notice that we have added a parameter between the tag and content parameters. Th
 
 Congratulations! You are off to a good start on your journey to master Dojo 2. In [Components of a Dojo 2 application](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo 2 application.
 
-If you would like, you can download the completed [demo application](../assets/001_static_content-finished.zip) from this tutorial.
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/001_static_content/demo/finished/biz-e-corp) or alternatively [download](../assets/001_static_content-finished.zip) the project.
 
 {% section 'last' %}

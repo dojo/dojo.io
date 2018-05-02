@@ -15,7 +15,7 @@ In this tutorial, you will learn how to update an application in response to use
 We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, "Biz-E Corp". In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.
 
 ## Prerequisites
-You can [download](../assets/004_user_interactions-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/004_user_interactions/demo/initial/biz-e-corp) or [download](../assets/004_user_interactions-initial.zip) the demo project and run `npm install` to get started.
 
 You should install the `@dojo/cli` command globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -142,7 +142,7 @@ widgets are receiving data from the `App` class via the `WorkerContainer`.
 
 In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers get assigned to virtual nodes like any other Dojo 2 property.
 
-If you would like, you can download the [demo application](../assets/004_user_interactions-finished.zip).
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/004_user_interactions/demo/finished/biz-e-corp) or alternatively [download](../assets/004_user_interactions-finished.zip) the project.
 
 In [Form widgets](../005_form_widgets/), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
 

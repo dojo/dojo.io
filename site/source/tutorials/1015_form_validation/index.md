@@ -14,8 +14,7 @@ paginate: true
 This tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on [injecting state](../1010_containers_and_injecting_state); here we will build on those concepts to add a validation state and errors to the existing form. Over the course of the tutorial we will build an example pattern for creating both dynamic client-side validation and mock server-side validation.
 
 ## Prerequisites
-
-Start by downloading the [demo project](../assets/1015_form_validation-initial.zip) and running `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1015_form_validation/demo/initial/biz-e-corp) or [download](../assets/1015_form_validation-initial.zip) the demo project and run `npm install` to get started.
 
 This tutorial assumes that you have gone through the [form widgets tutorial](../005_form_widgets) as well as the [state management tutorial](../1010_containers_and_injecting_state).
 
@@ -414,6 +413,6 @@ There is no way this tutorial could cover all possible use cases, but the basic 
 - Creating a toast to display submission-time errors
 - Add multiple validation steps for a single form field
 
-The finished [demo application](../assets/1015_form_validation-finished.zip) is available to review and play with.
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1015_form_validation/demo/finished/biz-e-corp) or alternatively [download](../assets/1015_form_validation-finished.zip) the project.
 
 {% section 'last' %}

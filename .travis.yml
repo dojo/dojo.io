@@ -4,21 +4,6 @@ node_js:
 - 6
 before_install:
 - npm install @dojo/cli grunt-cli typings -g
-env:
-  - TUTORIAL=001_static_content
-  - TUTORIAL=002_creating_an_application
-  - TUTORIAL=003_creating_widgets
-  - TUTORIAL=004_user_interactions
-  - TUTORIAL=005_form_widgets
-  - TUTORIAL=006_deploying_to_production
-  - TUTORIAL=006_containers_and_injecting_state
-  - TUTORIAL=007_theming
-  - TUTORIAL=1010_containers_and_injecting_state
-  - TUTORIAL=1015_form_validation
-  - TUTORIAL=1020_registries
-  - TUTORIAL=1030_routing
-  - TUTORIAL=1050_development_environment
-  - TUTORIAL=1060_data_driven_widgets
 script:
   - pushd .
   - 'if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
