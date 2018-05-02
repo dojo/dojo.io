@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Introducing Dojo 2.0! | Dojo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
+	<meta name="description" content="IntroAs the earliest, most comprehensive JavaScript framework, the Dojo Toolkit offered up intelligent building blocks for serious web developers. For example, Dojo’s very early work on deferreds and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing Dojo 2.0!">
+<meta property="og:url" content="https://dojo.github.io/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="IntroAs the earliest, most comprehensive JavaScript framework, the Dojo Toolkit offered up intelligent building blocks for serious web developers. For example, Dojo’s very early work on deferreds and">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.github.io/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/featured.jpg">
+<meta property="og:updated_time" content="2018-05-02T17:22:10.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introducing Dojo 2.0!">
+<meta name="twitter:description" content="IntroAs the earliest, most comprehensive JavaScript framework, the Dojo Toolkit offered up intelligent building blocks for serious web developers. For example, Dojo’s very early work on deferreds and">
+<meta name="twitter:image" content="https://dojo.github.io/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/featured.jpg">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+	
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+	
+	
+		<link rel="icon" href="/images/favicons/favicon.ico">
+	
+	<link rel="stylesheet" href="/css/main.css">
+	
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
+
+	<body class="body-single-page
+">
+		<div class="page-wrapper">
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
+	<div class="container article">
+		<article id="post-2018-05-02-Dojo2-0-0-release" class="article uk-article article-type-post" itemscope itemprop="blogPost">
+			<div class="article-inner">
+				
+				
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 class="article-title uk-article-title" itemprop="name">
+      Introducing Dojo 2.0!
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
+							<div class="author-meta">
+	
+	<span class="author-name"> Dylan Schiemann</span>
+	<span class="article-date">
+  <time datetime="2018-05-02T17:00:00.000Z" itemprop="datePublished">May 2nd 2018, 5:00 pm</time>
+</span>
+</div>
+							
+						</div>
+					</header>
+				
+				<div class="article-entry" itemprop="articleBody">
+					
+						<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>As the earliest, most comprehensive JavaScript framework, the Dojo Toolkit offered up intelligent building blocks for serious web developers. For example, Dojo’s very early work on deferreds and async patterns, widgets, modules, i18n, and a11y led to the standardization of promises, fetch, web components, ES modules and other best practices and mainstays of modern web development.  Dojo was the first open source JavaScript framework that treated JavaScript and the browser as a platform for building robust software applications. Its focus on pushing the limits of the open web with diligent consistency means that applications authored in 2007 with Dojo still work today!</p>
+<img src="/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/featured.jpg" title="feature-full">
+<a id="more"></a>
+<p>The web has come a long way, and with many Dojo solutions finding their way into the browser (success!) as well as inspiring even better tools, our team’s focus has moved beyond providing the building blocks and onto helping developers put it all together.</p>
+<h2 id="Dojo-2-0"><a href="#Dojo-2-0" class="headerlink" title="Dojo 2.0"></a>Dojo 2.0</h2><p>Dojo 2 dedicates itself to creating an incredibly ergonomic and efficient way to build modern web apps.</p>
+<p>Leveraging ES2015+, TypeScript, and many modern and emerging standards, best practices, and quality open source dependencies, Dojo 2 focuses on interoperability preventing you from being locked into the specifics of any one framework. Dojo 2 gives you the flexibility to reap the benefits of choosing your preferred micro-libraries to create a custom framework but most notably gives you a robust set of out-of-the-box options, so you don’t need to decide everything up front before you can be productive.</p>
+<h2 id="Let’s-hear-more-about-what’s-Out-of-the-Box"><a href="#Let’s-hear-more-about-what’s-Out-of-the-Box" class="headerlink" title="Let’s hear more about what’s Out-of-the-Box"></a>Let’s hear more about what’s Out-of-the-Box</h2><p>Dojo 2 wants developers to be productive as quickly as possible – like in under a minute! With an eye on creating the best out-of-the-box experience, Dojo 2 makes it easy to get started.  Some of these out-of-the-box features include:</p>
+<ul>
+<li>Reactive, Virtual DOM-based widget system including meta providers to preserve reactivity for things like animations, focus, and resize events and an intuitive CSS.Next-based theming system</li>
+<li>Streamlined support for Web Components including full support for importing and exporting Custom Elements for use within Dojo 2 and other frameworks<br>Application-level declarative routing system focused on patterns for building applications from UI widgets</li>
+<li>A predictable, consistent state container for JavaScript applications, drawing inspiration from Redux and Flux architectures, with built-in support for common patterns, asynchronous behaviors, and undo.</li>
+<li>CLI tooling to create optimized applications with code splitting and build time rendering provided automatically</li>
+<li>An efficient test harness for efficiently testing your apps and widgets</li>
+</ul>
+<p>To be a modern framework, we want to make it easy to leverage features like web components, and emerging web standards such as Intersection Observers, Resize Observers and Web Animations while preserving an efficient, reactive architecture. Consistently aligning with modern standards is our best option for extending the longevity of applications you create.</p>
+<h2 id="For-the-enterprise"><a href="#For-the-enterprise" class="headerlink" title="For the enterprise"></a>For the enterprise</h2><p>With a long history of building mission-critical applications for Fortune 500 companies, Dojo 2 engineers know the pain felt by enterprise development organizations. Dedicated to solutions that promote scalability and complex application development, Dojo 2 adds to its out-of-the-box deliverables with features like accessibility and internationalization - because these should be part of the plan and not a clunky extension or costly afterthought.</p>
+<p>An efficient and intuitive framework is about doing a million things right in a consistent manner whenever possible and leveraging ES2015+, TypeScript, and other patterns allow Dojo 2 to deliver a consistently ergonomic approach.</p>
+<h2 id="See-Dojo-2"><a href="#See-Dojo-2" class="headerlink" title="See Dojo 2"></a>See Dojo 2</h2><p>Dojo 2 does not sacrifice performance to deliver solid ergonomics. See the <a href="https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-2018-update-e5760fb4a962" target="_blank" rel="noopener">RealWorld comparison</a> to see how Dojo 2 measures up!</p>
+<p>View the <a href="https://dojo.github.io/examples/">Dojo 2 reference examples</a> including RealWorld, HNPWA, and ToDoMVC, and <a href="https://github.com/dojo/examples/" target="_blank" rel="noopener">check out the source code</a>. To learn more about using Dojo 2, start with the <a href="https://dojo.io/tutorials/" target="_blank" rel="noopener">Dojo 2 tutorial series</a>.</p>
+<h2 id="Dojo-2-promises-to-do-community-right-and-do-right-by-its-community"><a href="#Dojo-2-promises-to-do-community-right-and-do-right-by-its-community" class="headerlink" title="Dojo 2 promises to do community right and do right by its community"></a>Dojo 2 promises to do community right and do right by its community</h2><p>The Dojo 2 team is excited about the opportunity to build a healthy, diverse and inclusive community to ensure that we are creating an intuitive and flexible framework that meets the needs of the enterprise developer.</p>
+<p>We look forward to your ideas, input, and feedback to make Dojo 2 useful for the greater JavaScript and TypeScript community and we welcome your contributions!<br>You can participate in our community on <a href="https://gitter.im/dojo/dojo2" target="_blank" rel="noopener">Gitter</a>, share information on <a href="https://twitter.com/dojo/" target="_blank" rel="noopener">Twitter</a>.</p>
+
+					
+				</div>
+				<footer class="article-footer">
+					
+					
+				</footer>
+			</div>
+			
+				
+<hr>
+<nav id="article-nav" class="uk-child-width-1-2@s uk-text-center uk-grid-match uk-margin-top" uk-grid>
+
+	
+	
+		<div class="uk-card uk-card-hover uk-card-body">
+			<strong class="uk-text-small">Previous Post</strong>
+			<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="/blog/2018/03/11/2018-03-11-Dojo-2-rc1/" id="article-nav-older" class="article-nav-link-wrap">Dojo 2 Release Candidate 1 is now available!</a></h4>
+		</div>
+	
+</nav>
+
+			
+		</article>
+
+		
+	</div>
+</div>
+
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+	<li><a class="navbar-item" href="/docs/index.html#doc--dojo__cli__master">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials/000_local_installation/">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
+</footer>
+
+			</div>
+			
+		</div>
+		
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
+	</body>
+</html>
