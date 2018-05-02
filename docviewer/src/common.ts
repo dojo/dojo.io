@@ -3,7 +3,7 @@ import * as MarkdownIt from 'markdown-it';
 const Prism = require('prismjs');
 
 const loadLanguages = require('prismjs/components/index.js');
-loadLanguages(['typescript', 'json', 'bash']);
+loadLanguages(['typescript', 'json', 'bash', 'jsx', 'tsx']);
 
 // Make a global that doesn't need 'any'
 export const global = <any> window;

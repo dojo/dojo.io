@@ -9,7 +9,10 @@
 var fs = require("hexo-fs");
 var pathFn = require("path");
 var Prism = require("prismjs");
+const loadLanguages = require('prismjs/components/index.js');
 var _ = require("lodash");
+
+loadLanguages(['typescript', 'json', 'bash', 'jsx', 'tsx']);
 
 hexo.extend.tag.register(
 	"include_codefile",
