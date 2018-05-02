@@ -1,11 +1,23 @@
 <h3>Docs</h3>
 <ul class="uk-nav uk-nav-primary">
+	<% var cliPackages = Object.keys(site.data.docs_menu).filter(pkg => pkg.search(/^(?:dojo\/?)?cli-?/) !== -1); %>
+	<% var packages = Object.keys(site.data.docs_menu).filter(pkg => cliPackages.indexOf(pkg) === -1); %>
+
 	<li class="uk-nav-divider"></li>
-	<% for (var pkgName in site.data.docs_menu) { %>
+	<% for (var pkgName of packages) { %>
 		<% var pkg = site.data.docs_menu[pkgName] %>
-		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version %>"
+		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version.replace(/\./g, '_') %>"
 	  			data-doc-type="doc"
 				data-package="<%= pkgName %>"
 				class="repo-doc-link"><%= pkgName.replace(/^dojo\//, '') %></a>
+	<% } %>
+
+	<li class="uk-nav-divider"></li>
+	<% for (var pkgName of cliPackages) { %>
+	<% var pkg = site.data.docs_menu[pkgName] %>
+	<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version.replace(/\./g, '_') %>"
+			data-doc-type="doc"
+			data-package="<%= pkgName %>"
+			class="repo-doc-link"><%= pkgName.replace(/^dojo\//, '') %></a>
 	<% } %>
 </ul>

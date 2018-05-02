@@ -3,7 +3,7 @@ import * as MarkdownIt from 'markdown-it';
 const Prism = require('prismjs');
 
 const loadLanguages = require('prismjs/components/index.js');
-loadLanguages(['typescript', 'json', 'bash']);
+loadLanguages(['typescript', 'json', 'bash', 'jsx', 'tsx']);
 
 // Make a global that doesn't need 'any'
 export const global = <any> window;
@@ -116,7 +116,7 @@ export async function docFetch(path: string) {
  */
 export function docIdToDomId(docId: string) {
 	let id = docId.replace(/\//g, '__');
-	id = id.replace(/(\w)\.(\w+)/, '$1_$2');
+	id = id.replace(/(\w)\.(\w+)\.(\w+)/, '$1_$2_$3');
 	return id;
 }
 
@@ -126,7 +126,7 @@ export function docIdToDomId(docId: string) {
  */
 export function domIdToDocId(domId: string) {
 	let id = domId.replace(/__/g, '/');
-	id = id.replace(/(\w)_(\w)/, '$1.$2');
+	id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
 	return id;
 }
 
@@ -149,7 +149,7 @@ export function fromHash(hash: string): LocationRef {
 
 	const docIdParts = idParts[1].split('/');
 	const repo = `${docIdParts[0]}/${docIdParts[1]}`;
-	const version = docIdParts[2];
+	const version = docIdParts[2].replace(/_/g, '.');
 	const path = docIdParts.slice(3).join('/');
 
 	// The anchor itself may have contained sep, so rejoin anything after the
@@ -447,7 +447,7 @@ export function scrollTo(target: string | Element, offset = 100) {
  */
 export function toHash(ref: LocationRef) {
 	const { type, repo, version, path, anchor } = ref;
-	let hash = `#${type}${sep}${docIdToDomId(repo)}__${version}`;
+	let hash = `#${type}${sep}${docIdToDomId(repo)}__${version.replace(/\./g, '_')}`;
 	if (path) {
 		hash += `__${docIdToDomId(path)}`;
 	}
