@@ -27,7 +27,7 @@ Dojo 2 wants developers to be productive as quickly as possible -- like in under
 
 * Reactive, Virtual DOM-based widget system including meta providers to preserve reactivity for things like animations, focus, and resize events and an intuitive CSS.Next-based theming system
 * Streamlined support for Web Components including full support for importing and exporting Custom Elements for use within Dojo 2 and other frameworks
-Application-level declarative routing system focused on patterns for building applications from UI widgets
+* Application-level declarative routing system focused on patterns for building applications from UI widgets
 * A predictable, consistent state container for JavaScript applications, drawing inspiration from Redux and Flux architectures, with built-in support for common patterns, asynchronous behaviors, and undo.
 * CLI tooling to create optimized applications with code splitting and build time rendering provided automatically
 * An efficient test harness for efficiently testing your apps and widgets
