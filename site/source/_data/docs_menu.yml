@@ -1,3 +1,36 @@
+dojo/widget-core:
+  repo: dojo/widget-core
+  version: v2.0.0
+dojo/i18n:
+  repo: dojo/i18n
+  version: v2.0.0
+dojo/stores:
+  repo: dojo/stores
+  version: v2.0.0
+dojo/routing:
+  repo: dojo/routing
+  version: v2.0.0
+dojo/widgets:
+  repo: dojo/widgets
+  version: v2.0.0
+dojo/themes:
+  repo: dojo/themes
+  version: v2.0.0
+dojo/interop:
+  repo: dojo/interop
+  version: v2.0.0
+dojo/core:
+  repo: dojo/core
+  version: v2.0.0
+dojo/shim:
+  repo: dojo/shim
+  version: v2.0.0
+dojo/has:
+  repo: dojo/has
+  version: v2.0.0
+dojo/loader:
+  repo: dojo/loader
+  version: v2.0.0
 dojo/cli:
   repo: dojo/cli
   version: v2.0.0
@@ -18,37 +51,4 @@ cli-create-theme:
   version: v2.0.0
 cli-create-widget:
   repo: dojo/cli-create-widget
-  version: v2.0.0
-dojo/widget-core:
-  repo: dojo/widget-core
-  version: v2.0.0
-dojo/widgets:
-  repo: dojo/widgets
-  version: v2.0.0
-dojo/themes:
-  repo: dojo/themes
-  version: v2.0.0
-dojo/core:
-  repo: dojo/core
-  version: v2.0.0
-dojo/has:
-  repo: dojo/has
-  version: v2.0.0
-dojo/i18n:
-  repo: dojo/i18n
-  version: v2.0.0
-dojo/interop:
-  repo: dojo/interop
-  version: v2.0.0
-dojo/loader:
-  repo: dojo/loader
-  version: v2.0.0
-dojo/routing:
-  repo: dojo/routing
-  version: v2.0.0
-dojo/shim:
-  repo: dojo/shim
-  version: v2.0.0
-dojo/stores:
-  repo: dojo/stores
   version: v2.0.0
