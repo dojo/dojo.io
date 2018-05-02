@@ -1,6 +1,36 @@
 dojo/cli:
   repo: dojo/cli
   version: master
+dojo/cli-build-app:
+  repo: dojo/cli-build-app
+  version: master
+cli-build-widget:
+  repo: dojo/cli-build-widget
+  version: master
+cli-create-app:
+  repo: dojo/cli-create-app
+  version: master
+cli-test-intern:
+  repo: dojo/cli-test-intern
+  version: master
+cli-create-theme:
+  repo: dojo/cli-create-theme
+  version: master
+cli-create-widget:
+  repo: dojo/cli-create-widget
+  version: master
+cli-export-project:
+  repo: dojo/cli-export-project
+  version: master
+dojo/widget-core:
+  repo: dojo/widget-core
+  version: master
+dojo/widgets:
+  repo: dojo/widgets
+  version: master
+dojo/themes:
+  repo: dojo/themes
+  version: master
 dojo/core:
   repo: dojo/core
   version: master
@@ -24,13 +54,4 @@ dojo/shim:
   version: master
 dojo/stores:
   repo: dojo/stores
-  version: master
-dojo/themes:
-  repo: dojo/themes
-  version: master
-dojo/widget-core:
-  repo: dojo/widget-core
-  version: master
-dojo/widgets:
-  repo: dojo/widgets
   version: master
