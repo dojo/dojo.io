@@ -52,9 +52,11 @@ body {
 }
 
 @media (min-width: 960px) {
+	.has-sidebar-left .sidebar-left {
+		border-right: 1px #e5e5e5 solid;
+	}
 	.sidebar-left {
 		padding: 40px 40px 60px 40px;
-		border-right: 1px #e5e5e5 solid;
 		width: $sidenav-width !important;
 	}
 }

@@ -1,39 +1,54 @@
-dojo/cli:
-  repo: dojo/cli
-  version: master
-dojo/core:
-  repo: dojo/core
-  version: master
-dojo/has:
-  repo: dojo/has
-  version: master
-dojo/i18n:
-  repo: dojo/i18n
-  version: master
-dojo/interop:
-  repo: dojo/interop
-  version: master
-dojo/loader:
-  repo: dojo/loader
-  version: master
-dojo/routing:
-  repo: dojo/routing
-  version: master
-dojo/shim:
-  repo: dojo/shim
-  version: master
-dojo/stores:
-  repo: dojo/stores
-  version: master
-dojo/streams:
-  repo: dojo/streams
-  version: master
-dojo/themes:
-  repo: dojo/themes
-  version: master
 dojo/widget-core:
   repo: dojo/widget-core
-  version: master
+  version: v2.0.0
+dojo/i18n:
+  repo: dojo/i18n
+  version: v2.0.0
+dojo/stores:
+  repo: dojo/stores
+  version: v2.0.0
+dojo/routing:
+  repo: dojo/routing
+  version: v2.0.0
 dojo/widgets:
   repo: dojo/widgets
-  version: master
+  version: v2.0.0
+dojo/themes:
+  repo: dojo/themes
+  version: v2.0.0
+dojo/interop:
+  repo: dojo/interop
+  version: v2.0.0
+dojo/core:
+  repo: dojo/core
+  version: v2.0.0
+dojo/shim:
+  repo: dojo/shim
+  version: v2.0.0
+dojo/has:
+  repo: dojo/has
+  version: v2.0.0
+dojo/loader:
+  repo: dojo/loader
+  version: v2.0.0
+dojo/cli:
+  repo: dojo/cli
+  version: v2.0.0
+dojo/cli-build-app:
+  repo: dojo/cli-build-app
+  version: v2.0.0
+cli-build-widget:
+  repo: dojo/cli-build-widget
+  version: v2.0.0
+cli-create-app:
+  repo: dojo/cli-create-app
+  version: v2.0.0
+cli-test-intern:
+  repo: dojo/cli-test-intern
+  version: v2.0.0
+cli-create-theme:
+  repo: dojo/cli-create-theme
+  version: v2.0.0
+cli-create-widget:
+  repo: dojo/cli-create-widget
+  version: v2.0.0
