@@ -13,7 +13,9 @@ paginate: true
 
 Modern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices of state. While Dojo 2's widgets can manage application state, encapsulation and a clean separation of concerns may be lost if widgets manage their own visual representations, listen for interactions from the user, manage their children, and keep track of state information. Additionally, using widgets to pass state through an application often forces the widgets to be aware of state information for the sole purpose of passing that data down to their children. To allow widgets to remain focused on their primary roles of providing a visual representation of themselves and listening for user interactions, Dojo 2 provides a mechanism using the `Registry` and `Container` classes, that is designed to coordinate an application's external state and connect and map this state to properties.
 
-In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed. You can [download](../assets/1010_containers_and_injecting_state-initial.zip) the demo project to get started.
+In this tutorial, we will start with an application that is managing its state in the widgets themselves. We will then extract all of the state-related code out of the widgets and inject external state as properties only into widgets as is needed.
+
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1010_containers_and_injecting_state/demo/initial/biz-e-corp) or [download](../assets/1010_containers_and_injecting_state-initial.zip) the demo project and run `npm install` to get started.
 
 ## Prerequisites
 
@@ -191,6 +193,6 @@ At this point, you should reload your page and verify the application is working
 
 Since Dojo 2 widgets are TypeScript classes, they are capable of filling a large number of roles, including state management. With complex widgets, however, combining the responsibilities to manage the widget's visual representation as well as the state of its children can make them difficult to manage and test. Dojo 2 defines the `Registry` and `Container` classes as a way to externalize state management from the app and centralize that management into mechanisms that are designed specifically to fill that role.
 
-If you would like, you can download the finished [demo application](../assets/1010_containers_and_injecting_state-finished.zip) to review.
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1010_containers_and_injecting_state/demo/finished/biz-e-corp) or alternatively [download](../assets/1010_containers_and_injecting_state-finished.zip) the project.
 
 {% section 'last' %}

@@ -16,7 +16,7 @@ paginate: true
 In this tutorial, we will start with a basic application with no routing. We will use Dojo 2's declarative routing to configure some routes, create `outlets` from our existing widgets and use the `Link` component to create links for the application outlets.
 
 ## Prerequisites
-You can [download](../assets/1030_routing-initial.zip) the demo project and run `npm install` to get started.
+You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/initial/biz-e-corp) or [download](../assets/1030_routing-initial.zip) the demo project and run `npm install` to get started.
 
 The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
 
@@ -215,6 +215,6 @@ Previously, the raw Dojo 2 widgets were rendered. Now, Outlets (which are also w
 
 Dojo 2 routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a higher order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.
 
-If you would like, you can download the completed [demo application](../assets/1030_routing-finished.zip) from this tutorial.
+If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/finished/biz-e-corp) or alternatively [download](../assets/1030_routing-finished.zip) the project.
 
 {% section 'last' %}
