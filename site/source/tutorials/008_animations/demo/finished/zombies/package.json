@@ -1,6 +1,7 @@
 {
   "name": "dojo-2-animations-tutorial",
   "version": "1.0.0",
+  "main": "src/main.ts",
   "scripts": {
     "test": "dojo test",
     "dev": "dojo build -m dev -w -s",

@@ -1,6 +1,7 @@
 {
   "name": "biz-e-corp",
   "version": "1.0.0",
+  "main": "src/main.ts",
   "scripts": {
     "test": "dojo test",
     "build": "dojo build"
