@@ -1,10 +1,24 @@
 .tutorial-card {
 	display: block;
+	position: relative;
+
+	.uk-card {
+		display: flex;
+		flex-direction: row;
+	}
+
+	&:hover {
+		.uk-card-header {
+			background: lighten($global-primary-background, 10%);
+		}
+	}
 
 	.uk-card-header {
 		background: $global-primary-background;
-		border-radius: 4px 4px 0 0;
+		border-radius: 4px 0 0 4px;
 		color: #fff;
+		transition: background 0.4s ease;
+		min-width: 60px;
 	}
 
 	.uk-card-title {
@@ -14,6 +28,41 @@
 
 	p {
 		margin: 0;
+	}
+
+	.uk-link {
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
+
+	&[data-topic*="dev"] {
+		.uk-card-header {
+			background: #160405;
+		}
+	}
+
+	&[data-topic*="themes"] {
+		.uk-card-header {
+			background: #20cc76;
+		}
+	}
+
+	&[data-topic*="forms"] {
+		.uk-card-header {
+			background: #a931b6;
+		}
+	}
+
+	&[data-topic="widgets"] {
+		.uk-card-header {
+			background: #f15a24;
+		}
 	}
 }
 

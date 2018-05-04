@@ -4,6 +4,8 @@ title: Web Animations
 icon: film
 overview: Use the Dojo 2 WebAnimations meta to animate your widgets.
 paginate: true
+group: getting_started
+topic: animation
 ---
 
 {% section 'first' %}

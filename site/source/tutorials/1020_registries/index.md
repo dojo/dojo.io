@@ -4,6 +4,7 @@ title: Registry
 icon: list-alt
 overview: Discover how to use Dojo 2's registry to lazily load widgets when they are needed.
 paginate: true
+topic: widgets
 ---
 
 {% section 'first' %}

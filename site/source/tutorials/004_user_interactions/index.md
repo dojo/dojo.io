@@ -4,6 +4,8 @@ icon: hand-pointer
 overview: Update an application in response to user-generated events, such as clicking a button.
 layout: tutorial
 paginate: true
+group: getting_started
+topic: events
 ---
 
 {% section 'first' %}

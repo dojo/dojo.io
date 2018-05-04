@@ -4,6 +4,8 @@ icon: keyboard
 layout: tutorial
 overview: Use some of Dojo 2's out-of-the-box form widgets to create a simple form and use it to update the application.
 paginate: true
+group: getting_started
+topic: forms
 ---
 
 {% section 'first' %}

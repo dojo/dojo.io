@@ -4,6 +4,8 @@ title: State management
 icon: clone
 overview: Learn what Containers and Injectors are.  Use them to manage external state and inject that state into widget properties.
 paginate: true
+group: advanced
+topic: states
 ---
 
 {% section 'first' %}

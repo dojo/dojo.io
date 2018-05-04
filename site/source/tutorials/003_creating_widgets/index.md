@@ -4,6 +4,8 @@ icon: id-badge
 layout: tutorial
 overview: Learn how to create and style custom widgets in Dojo 2.
 paginate: true
+group: getting_started
+topic: widgets
 ---
 
 {% section 'first' %}

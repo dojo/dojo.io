@@ -1,8 +1,8 @@
 <div class="uk-section uk-section-default">
-	<div class="uk-container uk-container-expand uk-position-relative">
+	<div class="uk-container uk-container-default uk-position-relative">
 		
 			<h2 class="uk-margin-large">Getting Started</h2>
-			<div class="uk-grid uk-grid-match" uk-grid>
+			<div class="uk-grid uk-grid-match uk-margin-large" uk-grid>
 				<%
 					var tuts = _.filter(site.pages.data, ['layout', 'tutorial']);
 					tuts = _.orderBy(tuts, ['path']);
@@ -19,13 +19,13 @@
 			<%
 					}
 			%>
-					<div class="tutorial-card uk-width-1-4@l uk-width-1-3@m uk-width-1-2@s" data-path="<%- urlRaw %>">
-						<div class="uk-card sp-card">
-							<div class="uk-card-header uk-padding-large uk-text-center">
-								<a href="<%- url_for(urlRaw) %>" class="uk-link-reset"><span class="fa-4x fas fa-<%- tut.icon %>"></span></a>
+					<div class="tutorial-card uk-width-1-2@l " data-path="<%- urlRaw %>" data-topic="<%- tut.topic %>">
+						<div class="uk-card uk-card-small sp-card">
+							<div class="uk-card-header uk-padding uk-flex-center uk-flex uk-flex-middle">
+								<span class="fa-2x fas fa-<%- tut.icon %>"></span>
 							</div>
 							<div class="uk-card-body">
-								<h1 class="uk-card-title"><a href="<%- url_for(urlRaw) %>" class="uk-link-reset"><%- tut.title %></a></h1>
+								<h1 class="uk-card-title"><a href="<%- url_for(urlRaw) %>" class="uk-link uk-link-reset"><%- tut.title %></a></h1>
 								<p class="uk-text-small"><%- tut.overview %></p>
 							</div>
 						</div>

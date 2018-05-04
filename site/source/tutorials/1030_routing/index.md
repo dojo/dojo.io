@@ -4,6 +4,7 @@ icon: sitemap
 title: Routing
 overview: Use Dojo 2's declarative routing within your application.
 paginate: true
+topic: routing
 ---
 
 {% section 'first' %}

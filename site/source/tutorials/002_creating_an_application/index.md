@@ -4,6 +4,8 @@ icon: cube
 title: Components of a Dojo 2 application
 overview: Learn about the structure of a simple Dojo 2 application and the purpose of each part.
 paginate: true
+group: getting_started
+topic: create
 ---
 
 {% section 'first' %}
