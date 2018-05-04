@@ -1,3 +1,22 @@
+.tutorial-card {
+	display: block;
+
+	.uk-card-header {
+		background: $global-primary-background;
+		border-radius: 4px 4px 0 0;
+		color: #fff;
+	}
+
+	.uk-card-title {
+		margin:0 0 0.5rem 0;
+		font-size: 1.25rem;
+	}
+
+	p {
+		margin: 0;
+	}
+}
+
 .body-tutorial {
     @media (min-width: 960px) {
 		.uk-section {

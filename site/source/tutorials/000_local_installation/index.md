@@ -1,5 +1,6 @@
 ---
 title: Dojo 2 local installation
+icon: cloud-download-alt
 layout: tutorial
 overview: Discover the basics of creating a Dojo 2 application.
 paginate: false
