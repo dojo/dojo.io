@@ -2,11 +2,6 @@
 	display: block;
 	position: relative;
 
-	.uk-card {
-		display: flex;
-		flex-direction: row;
-	}
-
 	&:hover {
 		.uk-card-header {
 			background: lighten($global-primary-background, 10%);
@@ -15,7 +10,7 @@
 
 	.uk-card-header {
 		background: $global-primary-background;
-		border-radius: 4px 0 0 4px;
+		border-radius: 4px 4px 0 0;
 		color: #fff;
 		transition: background 0.4s ease;
 		min-width: 60px;
@@ -41,7 +36,8 @@
 		}
 	}
 
-	&[data-topic*="dev"] {
+	&[data-topic*="dev"],
+	&[data-topic*="cli"] {
 		.uk-card-header {
 			background: #160405;
 		}
@@ -59,7 +55,7 @@
 		}
 	}
 
-	&[data-topic="widgets"] {
+	&[data-topic*="widget"] {
 		.uk-card-header {
 			background: #f15a24;
 		}
