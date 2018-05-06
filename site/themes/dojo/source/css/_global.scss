@@ -63,7 +63,28 @@ body {
 
 @media (max-width: 960px) {
 	.sidebar-left {
-		width: $sidenav-width !important;
+		//width: $sidenav-width !important;
+		width: 100vw;
+		.uk-offcanvas-bar {
+			box-shadow: $global-large-box-shadow;
+			width: 100vw;
+		}
+
+		.uk-nav {
+			.navbar-item {
+				font-size: 1.25rem;
+				//text-transform: uppercase;
+			}
+
+			li {
+				font-size: 1.25rem;
+				padding: .5rem;
+			}
+		}
+
+		.uk-nav-header {
+			text-transform: none;
+		}
 	}
 }
 
@@ -140,8 +161,12 @@ body {
 }
 
 .sp-button-round {
-	border-radius: 3rem;
+	border-radius: 3rem !important;
 	text-transform: uppercase;
+
+	&:hover {
+		border-color: $button-primary-background !important;
+	}
 }
 
 .uk-card-title.sp-card-title-small {

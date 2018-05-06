@@ -41,11 +41,23 @@
 		.uk-card-header {
 			background: #160405;
 		}
+
+		&:hover {
+			.uk-card-header {
+				background: lighten(#160405, 5%);
+			}
+		}
 	}
 
 	&[data-topic*="themes"] {
 		.uk-card-header {
 			background: #20cc76;
+		}
+
+		&:hover {
+			.uk-card-header {
+				background: lighten(#20cc76, 10%);
+			}
 		}
 	}
 
@@ -53,11 +65,21 @@
 		.uk-card-header {
 			background: #a931b6;
 		}
+		&:hover {
+			.uk-card-header {
+				background: lighten(#a931b6, 10%);
+			}
+		}
 	}
 
 	&[data-topic*="widget"] {
 		.uk-card-header {
 			background: #f15a24;
+		}
+		&:hover {
+			.uk-card-header {
+				background: lighten(#f15a24, 10%);
+			}
 		}
 	}
 }

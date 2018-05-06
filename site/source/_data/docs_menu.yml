@@ -86,4 +86,5 @@ cli-create-theme:
 cli-create-widget:
   repo: dojo/cli-create-widget
   description: A Dojo CLI command that creates a Dojo 2 widget template with an optional custom element descriptor.
+  icon: gem
   version: v2.0.0
