@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://dojo.github.io
+url: https://dojo.io
 root: /
 permalink: blog/:year/:month/:day/:title/
 permalink_defaults:
@@ -65,6 +65,11 @@ authors:
     name: Kitson Kelly
     email: kkelly@sitepen.com
 
+feed:
+  type: atom
+  path: atom.xml
+  limit: 30
+  content: true
 
 # Sass
 node_sass:
