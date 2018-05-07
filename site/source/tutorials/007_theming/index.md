@@ -1,8 +1,11 @@
 ---
 layout: tutorial
 title: Theming
+icon: paint-brush
 overview: Use the Dojo 2 theming and styling system to add a theme to an application.
 paginate: true
+group: advanced
+topic: themes
 ---
 
 {% section 'first' %}

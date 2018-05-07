@@ -1,8 +1,11 @@
 ---
 layout: tutorial
+icon: upload
 title: Deploying to production
 overview: Prepare a Dojo 2 application for production deployment.
 paginate: true
+group: getting_started
+topic: deploying
 ---
 
 {% section 'first' %}

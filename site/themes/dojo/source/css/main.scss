@@ -1,9 +1,8 @@
 @import url('//fonts.googleapis.com/css?family=Noto+Sans|Montserrat:300,400,600,700|Source+Code+Pro:400,700');
 @import '_util/mixins';
 @import '_util/variables';
-@import "uikit/src/scss/variables";
-@import "uikit/src/scss/mixins";
-@import "uikit/src/scss/uikit";
+@import "uikit/src/scss/variables-theme.scss";
+@import "uikit/src/scss/mixins-theme.scss";
 @import 'animate-scss/animate.scss';
 @import '_global';
 @import '_util/highlight';
@@ -16,3 +15,4 @@
 @import '_views/blog';
 @import '_views/docs';
 @import '_views/api';
+@import "uikit/src/scss/uikit-theme.scss";

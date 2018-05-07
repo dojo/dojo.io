@@ -1,3 +1,89 @@
+.tutorial-card {
+	display: block;
+	position: relative;
+
+	&:hover {
+		.uk-card-header {
+			background: lighten($global-primary-background, 10%);
+		}
+	}
+
+	.uk-card-header {
+		background: $global-primary-background;
+		border-radius: 4px 4px 0 0;
+		color: #fff;
+		transition: background 0.4s ease;
+		min-width: 60px;
+	}
+
+	.uk-card-title {
+		margin:0 0 0.5rem 0;
+		font-size: 1.25rem;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.uk-link {
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
+
+	&[data-topic*="dev"],
+	&[data-topic*="cli"] {
+		.uk-card-header {
+			background: #160405;
+		}
+
+		&:hover {
+			.uk-card-header {
+				background: lighten(#160405, 5%);
+			}
+		}
+	}
+
+	&[data-topic*="themes"] {
+		.uk-card-header {
+			background: #20cc76;
+		}
+
+		&:hover {
+			.uk-card-header {
+				background: lighten(#20cc76, 10%);
+			}
+		}
+	}
+
+	&[data-topic*="forms"] {
+		.uk-card-header {
+			background: #a931b6;
+		}
+		&:hover {
+			.uk-card-header {
+				background: lighten(#a931b6, 10%);
+			}
+		}
+	}
+
+	&[data-topic*="widget"] {
+		.uk-card-header {
+			background: #f15a24;
+		}
+		&:hover {
+			.uk-card-header {
+				background: lighten(#f15a24, 10%);
+			}
+		}
+	}
+}
+
 .body-tutorial {
     @media (min-width: 960px) {
 		.uk-section {

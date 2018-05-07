@@ -1,3 +1,14 @@
+.doc-card {
+	.uk-card {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.uk-card-header {
+		border-radius: 4px 0 0 4px;
+	}
+}
+
 .docs {
 	@media (min-width: 960px) {
 		.uk-section {

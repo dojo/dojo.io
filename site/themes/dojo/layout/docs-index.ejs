@@ -1,0 +1,50 @@
+<%
+	var cliPackages = Object.keys(site.data.docs_menu).filter(pkg => pkg.search(/^(?:dojo\/?)?cli-?/) !== -1);
+	var packages = Object.keys(site.data.docs_menu).filter(pkg => cliPackages.indexOf(pkg) === -1);
+
+	function card(pkgName) {
+		var pkg = site.data.docs_menu[pkgName];
+		var icon = pkg['icon'];
+		var description = pkg['description'];
+		var link = '/docs/index.html#doc--'+pkg.repo.split('/').join('__') +"__"+ pkg.version.replace(/\./g, '_');
+		var name = pkgName.replace(/^dojo\//, '');
+
+		return `<div class="tutorial-card doc-card uk-width-1-2@l" data-topic="${pkgName}">
+					<div class="uk-card uk-card-small sp-card">
+						<div class="uk-card-header uk-padding uk-flex-center uk-flex uk-flex-middle">
+							<span class="fa-2x fas fa-${icon}"></span>
+						</div>
+						<div class="uk-card-body">
+							<h1 class="uk-card-title"><a href="${link}" data-doc-type="doc" data-package="${pkgName}" class="repo-doc-link uk-link uk-link-reset">${name}</a></h1>
+							<p class="uk-text-small">${description}</p>
+						</div>
+					</div>
+				</div>
+		`;
+	}
+%>
+
+
+<div class="uk-section uk-section-default">
+	<div class="uk-container uk-container-default uk-position-relative">
+		<h2 class="uk-margin-large">Documentation</h2>
+		<div class="uk-grid uk-grid-match uk-margin-large" uk-grid>
+			<% for (var pkgName of packages) { %>
+				<%- card(pkgName) %>
+			<% } %>
+		</div>
+		<div class="uk-grid uk-grid-match uk-margin-large" uk-grid>
+			<% for (var pkgName of cliPackages) { %>
+				<%- card(pkgName) %>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<%- partial('_partial/main-nav') %>
+		</div>
+	</div>
+</div>
