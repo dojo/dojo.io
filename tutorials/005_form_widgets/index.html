@@ -10,11 +10,11 @@
 	<meta name="description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Form widgets">
-<meta property="og:url" content="https://dojo.github.io/tutorials/005_form_widgets/index.html">
+<meta property="og:url" content="https://dojo.io/tutorials/005_form_widgets/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-07T15:52:58.746Z">
+<meta property="og:updated_time" content="2018-05-07T21:12:34.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form widgets">
 <meta name="twitter:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
@@ -65,9 +65,10 @@ ga('send', 'pageview');
 						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
 							<ul class="uk-nav uk-navbar-dropdown-nav">
 								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
-<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://gitter.im/dojo/dojo2"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
 <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
 <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
 
 							</ul>
 						</div>
@@ -225,7 +226,7 @@ ga('send', 'pageview');
 <span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
 </code></pre>
-<p>These imports are for <a href="https://github.com/dojo/widgets" target="_blank" rel="noopener">built-in Dojo 2 Widgets</a>. You can explore other widgets in the <a href="https://dojo.github.io/examples/widget-showcase/">Dojo 2 Widget Showcase</a>.</p>
+<p>These imports are for <a href="https://github.com/dojo/widgets" target="_blank" rel="noopener">built-in Dojo 2 Widgets</a>. You can explore other widgets in the <a href="https://dojo.github.io/examples/widget-showcase/" target="_blank" rel="noopener">Dojo 2 Widget Showcase</a>.</p>
 <p>The <code>Button</code> class will be used to provide the form’s submit button and the <code>TextInput</code> class will provide the data entry fields for the worker data.</p>
 <div class="instruction">Replace your <code>render()</code> method with the definition below. The code below adds the necessary visual elements to the form</div>
 <pre class=" language-ts"><code class="language-ts">    <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -401,7 +402,7 @@ ga('send', 'pageview');
 <p>With the <code>WidgetForm</code> in place and the <code>App</code> configured to handle it, let’s try it. For now let’s test the <a href="https://en.wikipedia.org/wiki/Happy_path" target="_blank" rel="noopener">happy path</a> by providing the expected values to the form. Provide values for the fields, for example: “Suzette McNamara (<a href="mailto:smcnamara359@email.com" target="_blank" rel="noopener">smcnamara359@email.com</a>)” and click the <code>Save</code> button. As expected, the form is cleared and a new <code>Worker</code> widget is added to the page. Clicking on the new <code>Worker</code> widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2’s reactive programming style allows an application’s state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2’s widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.</p>
-<p>Dojo 2 widgets are provided in the <a href="https://github.com/dojo/widgets" target="_blank" rel="noopener">@dojo/widgets</a> GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the <a href="https://dojo.github.io/examples/widget-showcase/">Widget Showcase</a>.</p>
+<p>Dojo 2 widgets are provided in the <a href="https://github.com/dojo/widgets" target="_blank" rel="noopener">@dojo/widgets</a> GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the <a href="https://dojo.github.io/examples/widget-showcase/" target="_blank" rel="noopener">Widget Showcase</a>.</p>
 <p>If you would like, you can open the completed demo application on <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/005_form_widgets/demo/finished/biz-e-corp" target="_blank" rel="noopener">codesandbox.io</a> or alternatively <a href="../assets/005_form_widgets-finished.zip">download</a> the project.</p>
 <p>In <a href="../006_deploying_to_production/">Deploying to production</a>, we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.</p>
 </section>
@@ -422,9 +423,11 @@ ga('send', 'pageview');
 	  <a class="navbar-item">Community</a>
 		  <ul class="uk-nav-sub">
 			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
-			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
-			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
-			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="https://gitter.im/dojo/dojo2"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
+
 		  </ul>
 	  </div>
   </li>

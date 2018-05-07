@@ -10,16 +10,16 @@
 	<meta name="description" content="We’re pleased to announce Dojo 2 release candidate 1 is now available! We first started brainstorming ideas for Dojo 2 back in 2010. While development of Dojo 2 did not take quite as long as Diablo 3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dojo 2 Release Candidate 1 is now available!">
-<meta property="og:url" content="https://dojo.github.io/blog/2018/03/11/2018-03-11-Dojo-2-rc1/index.html">
+<meta property="og:url" content="https://dojo.io/blog/2018/03/11/2018-03-11-Dojo-2-rc1/index.html">
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="We’re pleased to announce Dojo 2 release candidate 1 is now available! We first started brainstorming ideas for Dojo 2 back in 2010. While development of Dojo 2 did not take quite as long as Diablo 3">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://dojo.github.io/blog/2018/03/11/2018-03-11-Dojo-2-rc1/featured.png">
-<meta property="og:updated_time" content="2018-05-07T15:52:58.726Z">
+<meta property="og:image" content="https://dojo.io/blog/2018/03/11/2018-03-11-Dojo-2-rc1/featured.png">
+<meta property="og:updated_time" content="2018-05-07T21:12:34.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dojo 2 Release Candidate 1 is now available!">
 <meta name="twitter:description" content="We’re pleased to announce Dojo 2 release candidate 1 is now available! We first started brainstorming ideas for Dojo 2 back in 2010. While development of Dojo 2 did not take quite as long as Diablo 3">
-<meta name="twitter:image" content="https://dojo.github.io/blog/2018/03/11/2018-03-11-Dojo-2-rc1/featured.png">
+<meta name="twitter:image" content="https://dojo.io/blog/2018/03/11/2018-03-11-Dojo-2-rc1/featured.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
 	
 		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -67,9 +67,10 @@ ga('send', 'pageview');
 						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
 							<ul class="uk-nav uk-navbar-dropdown-nav">
 								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
-<li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://gitter.im/dojo/dojo2"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
 <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
 <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
 
 							</ul>
 						</div>
@@ -179,7 +180,7 @@ ga('send', 'pageview');
 <p>To compile a Dojo widget into a web component, run the following command:</p>
 <pre><code>npx @dojo/cli build widget --elements src/HelloWorld
 </code></pre><p>For ease of use, all <a href="http://github.com/dojo/widgets" target="_blank" rel="noopener"><code>@dojo/widgets</code></a> are compiled to custom elements and published to npm and easily imported into your projects.</p>
-<p>Learn more about creating your first Dojo widgets with the <a href="https://dojo.io/tutorials/001_static_content/" target="_blank" rel="noopener">first Dojo 2 application tutorial</a>.</p>
+<p>Learn more about creating your first Dojo widgets with the <a href="https://dojo.io/tutorials/001_static_content/">first Dojo 2 application tutorial</a>.</p>
 <h2 id="The-Dojo-CLI"><a href="#The-Dojo-CLI" class="headerlink" title="The Dojo CLI"></a>The Dojo CLI</h2><p>CLI tools provide an easy way to work with frameworks, a trend  popularized in the JS community by Ember. The <a href="http://github.com/dojo/cli" target="_blank" rel="noopener">Dojo CLI</a> is a collection of packages, providing a CLI architecture enabling a modular approach to create and work with commands.</p>
 <p>One of our goals in creating an easy out of the box experience with Dojo is to abstract users away from complex configuration by using intelligent defaults internally.</p>
 <p>To install the Dojo CLI, run the following command: <code>npm install -g @dojo/cli</code></p>
@@ -195,7 +196,7 @@ ga('send', 'pageview');
 <h4 id="dojo-cli-create-theme"><a href="#dojo-cli-create-theme" class="headerlink" title="@dojo/cli-create-theme"></a><a href="http://github.com/dojo/cli-create-theme" target="_blank" rel="noopener">@dojo/cli-create-theme</a></h4><p>Creates a skeleton Dojo 2 theme from your chosen project’s dependencies.</p>
 <p>Ultimately, each of the commands require zero configuration to get started, with only some advanced features requiring additional configuration via a project’s <code>.dojorc</code> file.</p>
 <p>To use any of the CLI commands in your Dojo 2 project by adding them as a dev dependency to your project’s <code>package.json</code>.</p>
-<p>Learn more about creating your first Dojo application in the <a href="https://dojo.io/tutorials/000_local_installation/" target="_blank" rel="noopener">Dojo local installation tutorial</a>.</p>
+<p>Learn more about creating your first Dojo application in the <a href="https://dojo.io/tutorials/000_local_installation/">Dojo local installation tutorial</a>.</p>
 <h2 id="State-management"><a href="#State-management" class="headerlink" title="State management"></a>State management</h2><p>No modern framework would be complete without a recommended approach to state management.</p>
 <p>Managing state can become difficult to coordinate when an application becomes complicated with multiple views, widgets, components, and models. With each of these attempting to update attributes of state at varying points within the application lifecycle things can get confusing. When state changes are difficult to understand or non-deterministic, it becomes increasingly difficult to identify and reproduce bugs or add new features.</p>
 <p><code>@dojo/stores</code> is a predictable, consistent state container for JavaScript applications with inspiration from Redux and Flux architectures. However, the <a href="http://github.com/dojo/stores" target="_blank" rel="noopener"><code>@dojo/stores</code></a> package aims to provide more built-in support for common patterns such as asynchronous behaviors, undo support and more!</p>
@@ -215,16 +216,16 @@ ga('send', 'pageview');
 <li>Processes: A function executing a group of commands usually representing a complete application behavior</li>
 </ul>
 <p>Dojo 2 also makes it easy to support other patterns such as those popularized by Unstated. Less complex applications can simply lift state up to parent widgets and use local state.</p>
-<h2 id="Documentation-and-examples"><a href="#Documentation-and-examples" class="headerlink" title="Documentation and examples"></a>Documentation and examples</h2><p>To get started, we have a <a href="https://dojo.io/tutorials/" target="_blank" rel="noopener">series of Dojo tutorials</a> and <a href="https://dojo.io/docs/fundamentals/accessibility/index.html" target="_blank" rel="noopener">reference documentation</a> ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these resources, all Dojo 2 packages have detailed READMEs.</p>
+<h2 id="Documentation-and-examples"><a href="#Documentation-and-examples" class="headerlink" title="Documentation and examples"></a>Documentation and examples</h2><p>To get started, we have a <a href="https://dojo.io/tutorials/">series of Dojo tutorials</a> and <a href="https://dojo.io/docs/fundamentals/accessibility/index.html">reference documentation</a> ranging from the very basic to more complicated topics such as lazy loading, web animations and more. In addition to these resources, all Dojo 2 packages have detailed READMEs.</p>
 <p>We’ve created a variety of examples of Dojo 2 usage:</p>
 <ul>
-<li><a href="https://dojo.github.io/examples/todo-mvc/">TodoMVC</a> - TodoMVC is the canonical example used to demonstrate fundamental web application paradigms</li>
-<li><a href="https://dojo.github.io/examples/todo-mvc-kitchensink/">TodoMVC kitchen sink</a> - Our extension of TodoMVC used to illustrate a selection of Dojo 2 specific capabilities such as theming and internationalization.</li>
-<li><a href="https://dojo.github.io/examples/realworld/">RealWorld</a> - A full web application example with authentication, code splitting, state management, routing and more.</li>
+<li><a href="https://dojo.github.io/examples/todo-mvc/" target="_blank" rel="noopener">TodoMVC</a> - TodoMVC is the canonical example used to demonstrate fundamental web application paradigms</li>
+<li><a href="https://dojo.github.io/examples/todo-mvc-kitchensink/" target="_blank" rel="noopener">TodoMVC kitchen sink</a> - Our extension of TodoMVC used to illustrate a selection of Dojo 2 specific capabilities such as theming and internationalization.</li>
+<li><a href="https://dojo.github.io/examples/realworld/" target="_blank" rel="noopener">RealWorld</a> - A full web application example with authentication, code splitting, state management, routing and more.</li>
 <li><a href="https://dojo-2-hnpwa-d668d.firebaseapp.com/" target="_blank" rel="noopener">HNPWA</a> - The spiritual successor to TodoMVC, Hacker News PWA is designed to demonstrate progressive web app capabilities with a focus on providing a fast, reliable experience with rich offline support</li>
-<li><a href="https://dojo.github.io/examples/custom-element-menu/">Custom element menus</a> - Demonstrates using Dojo 2 widgets both natively and as a custom element without needing to adapt the authoring pattern.</li>
+<li><a href="https://dojo.github.io/examples/custom-element-menu/" target="_blank" rel="noopener">Custom element menus</a> - Demonstrates using Dojo 2 widgets both natively and as a custom element without needing to adapt the authoring pattern.</li>
 </ul>
-<p>To learn more about Dojo 2 and get started, check out the <a href="https://dojo.io/tutorials/" target="_blank" rel="noopener">Dojo 2 tutorial series</a>.</p>
+<p>To learn more about Dojo 2 and get started, check out the <a href="https://dojo.io/tutorials/">Dojo 2 tutorial series</a>.</p>
 <h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><p>In the release candidate stage, we will fix any critical issues reported and then have another release candidate. After a week with no critical blocking issues, we will announce 2.0.0!</p>
 <p>We also hope to have Dojo 2 available on CodeSandbox in time for the 2.0.0 release as well.</p>
 <h3 id="Versions"><a href="#Versions" class="headerlink" title="Versions"></a>Versions</h3><p>After, we will be following semantic versioning for subsequent releases. 2.0.y will include bug fixes, 2.x.0 will provide additions, and 3.0.0 will be the next release with any breaking changes. When we are ready for 3.0.0, all packages will be updated to this version to keep them synchronized. As such, expect 3.0.0 to arrive within a few months rather than 10 years!</p>
@@ -282,9 +283,11 @@ ga('send', 'pageview');
 	  <a class="navbar-item">Community</a>
 		  <ul class="uk-nav-sub">
 			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
-			  <li><a href="https://gitter.im/dojo/dojo"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
-			  <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
-			  <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="https://gitter.im/dojo/dojo2"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
+
 		  </ul>
 	  </div>
   </li>
