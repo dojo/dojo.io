@@ -64,53 +64,10 @@ The same steps as above are followed except Travis does not decrypt the `deploy_
  to publish any changes. Automated scripts should not take any action requiring authentication to git or GitHub
  because credentials will not exist.
 
-*On a Nightly Cron Job*:
-
-API documentation will be built on a nightly cron by Travis. This is a WIP.
-
-1. Travis triggers a build on the master branch through a cron job
-1. Travis decrypts the `deploy_key.enc` file to `deploy_key`
-1. Travis begins a build by running `grunt api`
-1. The build syncs the origin's `gh-pages` branch to a temporary directory
-1. The build script uses GitHub's APIs to check for new releases
-1. If a new release is found, Travis clones the repository and builds API documentation
-1. The built API documentation is moved to the site
-1. Each watched project is checked and API documentation is built
-1. Travis runs `grunt publish` and pushes changes to the `gh-pages` branch
-
-### Creating a Staging Environment
-
-This section discusses how to get a complete staging environment working on a `dojo/dojo.io` fork using GitHub and 
- Travis. It is **not necessary** to do this when simply developing content as there is a local development environment
- available that you can run on your machine and see changes. You would typically set up a staging environment when you
- need to test updates to the continuous deployment scripts or want to host a preview of the site on GitHub.
- 
-This process has been largely automated with the `grunt setup --repo='you/dojo.io'` command.
- 
-These instructions assume you already have an account on GitHub and Travis and have installed the 
- [Travis command line client](https://blog.travis-ci.com/2013-01-14-new-client/).
-
-1. Fork the `dojo/dojo.io` repo to your GitHub account
-1. Enable builds for the fork on Travis
-1. [Generate a new SSH Key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/). Name the public key `deploy_key.pub` and the private key `deploy_key`
-1. On GitHub go to your repo's Deploy Keys (under Settings)
-1. Click *Add deploy key*, paste the contents of `deploy_key.pub`, and check *Allow write access*
-1. Ensure Travis has the proper settings for your repository by running `git config travis.slug`. An empty config value
-   is ok (This step is most important for people with commit access to the `dojo/dojo.io` repository).
-1. Log into travis using the command line client: `travis login`
-1. Encrypt `deploy_key` (the private key) using `travis encrypt-file deploy_key`
-1. Commit the newly created `deploy_key.enc` file to your repository and push to GitHub
-1. Commits to master will now be built and deployed to your repositories GitHub pages
-
-You should now be set up to build a staging environment automatically using Travis and GitHub. The recommended
-development pattern is:
-
-* Work on a branch
-* When you want Travis to publish merge to your local master branch
-* Make sure you never overwrite your `deploy_key.enc`
-* Push and watch the magic!
-
 ### Automated Deploy to Production
 
-TODO: This feature has been temporarily disabled while completing work on dojo/dojo.io. It will work by deploying to the `gh-pages` branch using `grunt publish`.
+Travis automatically builds and deploys the master branch to `gh-pages` on each push.
+
+NOTE: pushing a commit with `[skip ci]` will disable the Travis build and prevent the site from updating. A
+ maintainer can instruct Travis to manually build latest.
 
