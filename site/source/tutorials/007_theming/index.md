@@ -77,9 +77,9 @@ If you open the application in a browser its appearance and behavior should be u
 
 {% instruction 'Now update `worker.m.css` and `workerContainer.m.css` to use `.root` and `.rootFixed`...' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.m.css' highlight:1,10-12 desc:'File: src/styles/workerContainer.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.m.css' highlight:1,10-12 desc:'File: src/styles/workerContainer.m.css' lang:css %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lines:1-13 highlight:1,9 desc:'File: src/styles/worker.m.css. (All rules were originally in the .worker selector.)' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lines:1-13 highlight:1,9 desc:'File: src/styles/worker.m.css. (All rules were originally in the .worker selector.)' lang:css %}
 
 {% instruction '...and then update the associated widgets to use the new selectors.' %}
 
