@@ -3,7 +3,7 @@
 // File path must be a child .md file.
 
 /*
-	Usage: {% include_codefile path/to/file/relative/filename.ts [lines:1-4,7]|[line:4] [lang:ts] %}
+	Usage: {% include_codefile path/to/file/relative/filename.ts [lines:1-4,7]|[line:4] [highlight:1-2,7] [desc:'text appears at bottom of block'] [lang:ts] %}
 */
 
 var fs = require("hexo-fs");
@@ -20,6 +20,9 @@ hexo.extend.tag.register(
 		var filename = args[0];
 		var lang = false;
 		var lines = false;
+		var highlighted = false;
+		var highlightedLines = false;
+		var desc = "";
 		var content = "";
 
 		_.forEach(args.slice(1), function(arg) {
@@ -29,6 +32,15 @@ hexo.extend.tag.register(
 			if (_.startsWith(arg, "line")) {
 				lines = arg.replace(/([a-zA-Z]+?)(s\b|\b):/gm, "");
 				lines = cf.parseLinesRange(lines);
+			}
+			if(_.startsWith(arg, "highlight:")) {
+				highlighted = arg.replace("highlight:", "");
+				highlighted = cf.parseLinesRange(highlighted, true);
+			}
+
+			if(_.startsWith(arg, "desc:")) {
+				desc = arg.replace(/(^desc:\'?)|(\'$)/gm, "");
+				desc = `<div class="prism-code-desc">${desc}</div>`;
 			}
 		});
 
@@ -42,8 +54,14 @@ hexo.extend.tag.register(
 			content = rawContent;
 		}
 
-		var highlighted = Prism.highlight(cf.normalizeWhitespace(content), Prism.languages[lang]);
-		return `<pre class="language-${lang}"><code class="language-${lang}">${highlighted}</code></pre>`;
+		var prismHtml = Prism.highlight(cf.normalizeWhitespace(content), Prism.languages[lang]);
+
+		if(highlighted) {
+			highlightedLines = cf.adjustHighlightedLineNumbers(highlighted, lines);
+			prismHtml = cf.highlightHtml(prismHtml, highlightedLines);
+		}
+
+		return `<pre class="language-${lang}"><code class="language-${lang}">${prismHtml}</code>${desc}</pre>`;
 	},
 	{ async: true }
 );
@@ -63,7 +81,7 @@ var cf = {
 
 		return str.replace(re, "");
 	},
-	parseLinesRange(str) {
+	parseLinesRange(str, returnMap) {
 		var lines = {};
 		var lineGroups;
 		if (str.indexOf(",") !== -1) {
@@ -84,9 +102,14 @@ var cf = {
 			}
 		});
 
-		var result = Object.keys(lines).sort(function(l, r) {
-			return parseInt(l, 10) - parseInt(r, 10);
-		});
+		if(returnMap) {
+			var result = lines;
+		} else {
+			var result = Object.keys(lines).sort(function (l, r) {
+				return parseInt(l, 10) - parseInt(r, 10);
+			});
+		}
+
 		return result;
 	},
 
@@ -115,5 +138,35 @@ var cf = {
 		}
 
 		return fragment;
+	},
+
+	adjustHighlightedLineNumbers(highlightedLines, lines) {
+		var linesToHighlight = {};
+		if(lines) {
+			for (var i = 0; i < lines.length; i++) {
+				if (highlightedLines[lines[i]]) {
+					linesToHighlight[i + 1] = true;
+				}
+			}
+		} else {
+			_.forEach(highlightedLines, function(line, key) {
+				linesToHighlight[parseInt(key, 10) + 1] = true;
+			})
+		}
+		return linesToHighlight;
+	},
+
+	highlightHtml(html, lines) {
+		var lineNumber = 1;
+		var highlighted = [];
+
+		_.forEach(html.split("\n"), function(line) {
+			if(lines[lineNumber++]) {
+				highlighted.push(`<span class="line-highlight">${line}</span>`);
+			} else {
+				highlighted.push(line);
+			}
+		});
+		return highlighted.join("\n");
 	}
 };
