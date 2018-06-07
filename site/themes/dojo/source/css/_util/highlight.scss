@@ -13,6 +13,27 @@ body pre[class *= "language-"],
 	@extend .uk-margin;
 }
 
+pre .prism-code-desc {
+	font-family: sans-serif;
+	font-size: 90%;
+	white-space: normal;
+	background-color: #dddddd !important; /* same bg as prism border, not sure how to get this value in here in case of theme change */
+	margin: $padding-small-padding (0 - $padding-small-padding) (0 - $padding-small-padding) (0 - $padding-small-padding);
+	padding: 5px;
+}
+
+pre[class *= "language-"] .line-highlight {
+	background: transparent;
+	margin-left: -0.75em;
+
+	&:before {
+		font-weight: bolder;
+		content: "\2022";
+		color: #00d096;
+		margin-right: 0.2em;
+	}
+}
+
 pre code {
 	background: transparent;
 }
