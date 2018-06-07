@@ -3,7 +3,7 @@
 // File path must be a child .md file.
 
 /*
-	Usage: {% include_codefile path/to/file/relative/filename.ts [lines:1-4,7]|[line:4] [highlight:1-2,7] [lang:ts] %}
+	Usage: {% include_codefile path/to/file/relative/filename.ts [lines:1-4,7]|[line:4] [highlight:1-2,7] [desc:'text appears at bottom of block'] [lang:ts] %}
 */
 
 var fs = require("hexo-fs");
