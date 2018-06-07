@@ -39,7 +39,7 @@ In order to theme our widgets, we must ensure that they each apply the `ThemedMi
 
 {% instruction 'Replace the contents of `Banner.ts` with the following' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-13 highlight:3-9 desc:'File: src/widgets/Banner.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-13 highlight:3-9 title:'File: src/widgets/Banner.ts' lang:typescript %}
 
 {% aside 'Reminder' %}
 If you cannot see the application, remember to run `dojo build -m dev -w memory -s` to build the application and start the development server.
@@ -57,7 +57,7 @@ Notice that this file and other `css` files now have a `.m.css` file extension. 
 
 We will create an empty `root` class for now as our base theme does not require any styles to be added to the `Banner` widget.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/banner.m.css' lang:css desc:'File: src/styles/banner.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/banner.m.css' lang:css title:'File: src/styles/banner.m.css' %}
 
 {% instruction 'Now, let\'s look at changing the `WorkerForm` widget' %}
 
@@ -67,19 +67,19 @@ Fixed classes apply styles that cannot be overridden by a theme, using a suffix 
 
 `WorkerForm` already uses the `ThemedMixin` and has a `workerForm` class on its root node. Let's change the workerForm class to a `root` class, and while we are there, we will create a `rootFixed` class too, and apply it to the root node. Classes that are not passed to `theme` cannot be changed or overridden via a theme, ensuring that structured or nested styles are not lost when a theme is used.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:47-50 highlight:48 desc:'File: src/widgets/WorkerForms.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:47-50 highlight:48 title:'File: src/widgets/WorkerForms.ts' lang:typescript %}
 
 Replace all of the selectors containing `.workerForm` with the following rules in `workerForm.m.css`.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.m.css' lines:1-17 highlight:1,5,9-10,15 lang:css desc:'File: src/styles/workerForm.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerForm.m.css' lines:1-17 highlight:1,5,9-10,15 lang:css title:'File: src/styles/workerForm.m.css' %}
 
 If you open the application in a browser its appearance and behavior should be unchanged.
 
 {% instruction 'Now update `worker.m.css` and `workerContainer.m.css` to use `.root` and `.rootFixed`...' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.m.css' highlight:1,10-12 desc:'File: src/styles/workerContainer.m.css' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/workerContainer.m.css' highlight:1,10-12 title:'File: src/styles/workerContainer.m.css' lang:css %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lines:1-13 highlight:1,9 desc:'File: src/styles/worker.m.css. (All rules were originally in the .worker selector.)' lang:css %}
+{% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lines:1-13 highlight:1,9 title:'File: src/styles/worker.m.css.' note:'All rules were originally in the .worker selector.' lang:css %}
 
 {% instruction '...and then update the associated widgets to use the new selectors.' %}
 
@@ -141,7 +141,7 @@ Let's start by creating a red `Worker` and observe our theme being applied corre
 
 So for `theme.ts`, you need to add the import for the `worker.m.css` and the theme itself to the exported object using the key `biz-e-corp/worker`.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,6-9,11,14-16 highlight:3,11 desc:'File: src/themes/dojo/theme.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,6-9,11,14-16 highlight:3,11 title:'File: src/themes/dojo/theme.ts' lang:typescript %}
 
 To apply a theme to a widget, simply pass the `theme` as a property to widgets to have the `ThemedMixin` applied. To ensure that the entire application applies the `theme` it needs to be passed to all the themed widgets in our application. This can become problematic when an application uses a mixture of themed and non-themed widgets, or uses a widget from a third party, meaning that there is no guarantee that the `theme` will be propagated as required.
 
@@ -153,7 +153,7 @@ However an application can automatically inject a `theme` from the `registry` to
 
 {% instruction 'Update our `main.ts` file to import our theme and create a `themeInjector`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' highlight:3-5,8-9,14-16 desc:'File: src/main.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' highlight:3-5,8-9,14-16 title:'File: src/main.ts' lang:typescript %}
 
 Open the application in your web browser and see that the `Worker` backgrounds are now `red`.
 
@@ -162,14 +162,14 @@ Open the application in your web browser and see that the `Worker` backgrounds a
 The [Dojo 2 build system](../006_deploying_to_production/) supports new CSS features such as `css-custom-properties` by using PostCSS to process our `.m.css` files. We can use these new CSS features to add variables to `worker.m.css` and complete its theme.
 Let's create `themes/dojo/variables.css` (notice that this file does not have a `.m.css` extension as it is not a `css-module` file).
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/variables.css' lang:css desc:'File: src/themes/dojo/variables.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/variables.css' lang:css title:'File: src/themes/dojo/variables.css' %}
 
 In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a `:root` selector which makes them available on the global scope within our `css-modules`.
 To use them, we can `@import` the `variables.css` file and use the `var` keyword to assign a `css-custom-property` to a css rule.
 
 Now we will use these variables in our themes `worker.m.css` to create our fully themed `Worker`.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/worker.m.css' lang:css highlight:1,7,12,16,20,34,39,45,46,50,51,66,67,77 desc:'File: src/themes/dojo/worker.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/worker.m.css' lang:css highlight:1,7,12,16,20,34,39,45,46,50,51,66,67,77 title:'File: src/themes/dojo/worker.m.css' %}
 
 {% section %}
 
@@ -179,15 +179,15 @@ Thus far in this tutorial, we have themed our custom `Worker` widget, but we hav
 
 {% instruction 'Let\'s create `workerForm.m.css`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/workerForm.m.css' lang:css desc:'File: src/themes/dojo/workerForm.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/workerForm.m.css' lang:css title:'File: src/themes/dojo/workerForm.m.css' %}
 
 {% instruction 'And include it in `theme.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,8,9,11,13,16 highlight:5,13 desc:'File: src/themes/dojo/theme.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,8,9,11,13,16 highlight:5,13 title:'File: src/themes/dojo/theme.ts' lang:typescript %}
 
 This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to add to the skeleton `text-input.m.css` theme created by `@dojo/cli-create-theme`, this is already exported from `theme.ts`.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' lang:css highlight:6 desc:'File: src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' lang:css highlight:6 title:'File: src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' %}
 
 Notice the styling rule for the `.root` selector? Here we are introducing another powerful part of the Dojo 2 theming system, `composes`. Composes originates in the [`css-module` specification](https://github.com/css-modules/css-modules#composition), allowing you to apply styles from one class selector to another. Here we are specifying that the `root` of a `TextInput` (the label text in this case), should appear the same as the `nameLabel` class in our `WidgetForm`. This approach can be very useful when creating multiple themes from a `baseTheme` and avoids repetitive redefinition of style rules.
 
@@ -195,7 +195,7 @@ In your web browser you will see the `TextInput` widgets at the top of the form 
 
 {% instruction 'Add the following theme styles to the `button.m.css` theme resource' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/button/button.m.css' lang:css desc:'File: src/themes/dojo/@dojo/widgets/button/button.m.css' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/button/button.m.css' lang:css title:'File: src/themes/dojo/@dojo/widgets/button/button.m.css' %}
 
 {% section %}
 

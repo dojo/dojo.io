@@ -3,7 +3,7 @@
 // File path must be a child .md file.
 
 /*
-	Usage: {% include_codefile path/to/file/relative/filename.ts [lines:1-4,7]|[line:4] [highlight:1-2,7] [desc:'text appears at bottom of block'] [lang:ts] %}
+	Usage: {% include_codefile path/to/file/relative/filename.ts [lines:1-4,7]|[line:4] [highlight:1-2,7] [title:'text/HTML appears at top of block'] [note:'text/HTML appears at bottom of block'] [lang:ts] %}
 */
 
 var fs = require("hexo-fs");
@@ -22,7 +22,8 @@ hexo.extend.tag.register(
 		var lines = false;
 		var highlighted = false;
 		var highlightedLines = false;
-		var desc = "";
+		var title = "";
+		var note = "";
 		var content = "";
 
 		_.forEach(args.slice(1), function(arg) {
@@ -38,9 +39,14 @@ hexo.extend.tag.register(
 				highlighted = cf.parseLinesRange(highlighted, true);
 			}
 
-			if(_.startsWith(arg, "desc:")) {
-				desc = arg.replace(/(^desc:\'?)|(\'$)/gm, "");
-				desc = `<div class="prism-code-desc">${desc}</div>`;
+			if(_.startsWith(arg, "title:")) {
+				title = arg.replace(/(^title:\'?)|(\'$)/gm, "");
+				title = `<div class="prism-code-title">${title}</div>`;
+			}
+
+			if(_.startsWith(arg, "note:")) {
+				note = arg.replace(/(^note:\'?)|(\'$)/gm, "");
+				note = `<div class="prism-code-note">${note}</div>`;
 			}
 		});
 
@@ -61,7 +67,7 @@ hexo.extend.tag.register(
 			prismHtml = cf.highlightHtml(prismHtml, highlightedLines);
 		}
 
-		return `<pre class="language-${lang}"><code class="language-${lang}">${prismHtml}</code>${desc}</pre>`;
+		return `<pre class="language-${lang}">${title}<code class="language-${lang}">${prismHtml}</code>${note}</pre>`;
 	},
 	{ async: true }
 );

@@ -13,13 +13,20 @@ body pre[class *= "language-"],
 	@extend .uk-margin;
 }
 
-pre .prism-code-desc {
+pre .prism-code-title,
+pre .prism-code-note {
 	font-family: sans-serif;
 	font-size: 90%;
 	white-space: normal;
 	background-color: #dddddd !important; /* same bg as prism border, not sure how to get this value in here in case of theme change */
-	margin: $padding-small-padding (0 - $padding-small-padding) (0 - $padding-small-padding) (0 - $padding-small-padding);
 	padding: 5px;
+}
+pre .prism-code-title {
+	margin: (0 - $padding-small-padding) (0 - $padding-small-padding) $padding-small-padding (0 - $padding-small-padding);
+}
+
+pre .prism-code-note {
+	margin: $padding-small-padding (0 - $padding-small-padding) (0 - $padding-small-padding) (0 - $padding-small-padding);
 }
 
 pre[class *= "language-"] .line-highlight {
