@@ -8297,6 +8297,30 @@ body pre[class*="language-"],
   white-space: pre-wrap;
   word-break: break-word; }
 
+pre .prism-code-title,
+pre .prism-code-note {
+  font-family: sans-serif;
+  font-size: 90%;
+  white-space: normal;
+  background-color: #dddddd !important;
+  /* same bg as prism border, not sure how to get this value in here in case of theme change */
+  padding: 5px; }
+
+pre .prism-code-title {
+  margin: -15px -15px 15px -15px; }
+
+pre .prism-code-note {
+  margin: 15px -15px -15px -15px; }
+
+pre[class*="language-"] .line-highlight {
+  background: transparent;
+  margin-left: -0.75em; }
+  pre[class*="language-"] .line-highlight:before {
+    font-weight: bolder;
+    content: "\2022";
+    color: #00d096;
+    margin-right: 0.2em; }
+
 pre code {
   background: transparent; }
 
@@ -10013,13 +10037,6 @@ a.uk-link-reset:hover,
   text-align: left;
   color: #999; }
 
-/* Row
- ========================================================================== */
-.uk-table > tr.uk-active, [data-doc-type="api"] .table > tr.uk-active,
-.uk-table tbody tr.uk-active,
-[data-doc-type="api"] .table tbody tr.uk-active {
-  background: #ffd; }
-
 /* Alignment modifier
  ========================================================================== */
 .uk-table-middle,
@@ -10052,6 +10069,13 @@ a.uk-link-reset:hover,
  */
 .uk-table-hover > tr:hover,
 .uk-table-hover tbody tr:hover {
+  background: #ffd; }
+
+/* Active state
+ ========================================================================== */
+.uk-table > tr.uk-active, [data-doc-type="api"] .table > tr.uk-active,
+.uk-table tbody tr.uk-active,
+[data-doc-type="api"] .table tbody tr.uk-active {
   background: #ffd; }
 
 /* Size modifier

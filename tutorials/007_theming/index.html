@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-05T09:05:27.703Z">
+<meta property="og:updated_time" content="2018-06-15T21:29:08.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -144,15 +144,15 @@ ga('send', 'pageview');
 <p>The current CSS in the example app provides the structural styles, we will now review how to create and manage themes.</p>
 <p>In order to theme our widgets, we must ensure that they each apply the <code>ThemedMixin</code> and change the class name of the widget’s top-level node to <code>root</code>. The <code>ThemedMixin</code> provides a <code>this.theme</code> function that returns (or that will return) the correct class for the <code>theme</code> provided to the widget. The top-level class name is changed to <code>root</code> in order to provide a predictable way to target the outer-node of a widget, this is a pattern used throughout widgets provided by <code>@dojo/widgets</code>.</p>
 <div class="instruction">Replace the contents of <code>Banner.ts</code> with the following</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<pre class="language-typescript"><div class="prism-code-title">File: src/widgets/Banner.ts</div><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/banner.m.css'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> BannerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Banner</span> <span class="token keyword">extends</span> <span class="token class-name">BannerBase</span> <span class="token punctuation">{</span>
+<span class="line-highlight"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/banner.m.css'</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"></span>
+<span class="line-highlight"><span class="token keyword">const</span> BannerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"></span>
+<span class="line-highlight">@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span></span>
+<span class="line-highlight"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Banner</span> <span class="token keyword">extends</span> <span class="token class-name">BannerBase</span> <span class="token punctuation">{</span></span>
 	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span><span class="token punctuation">,</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
@@ -164,70 +164,67 @@ ga('send', 'pageview');
 <article class="aside"><strong class="label">CSS Modules</strong><p><a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a> is a technique to use scoped CSS classnames by default.</p></article>
 <div class="instruction">Create a new style sheet for the <code>Banner</code> widget named <code>banner.m.css</code>.</div>
 <p>We will create an empty <code>root</code> class for now as our base theme does not require any styles to be added to the <code>Banner</code> widget.</p>
-<pre class="language-css"><code class="language-css"><span class="token selector">.root</span> <span class="token punctuation">{</span>
+<pre class="language-css"><div class="prism-code-title">File: src/styles/banner.m.css</div><code class="language-css"><span class="token selector">.root</span> <span class="token punctuation">{</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
 <div class="instruction">Now, let's look at changing the <code>WorkerForm</code> widget</div>
 <article class="aside"><strong class="label">Fixed Classes</strong><p>Fixed classes apply styles that cannot be overridden by a theme, using a suffix is a convention that helps easily differentiate the intention of these classes.</p></article>
 <p><code>WorkerForm</code> already uses the <code>ThemedMixin</code> and has a <code>workerForm</code> class on its root node. Let’s change the workerForm class to a <code>root</code> class, and while we are there, we will create a <code>rootFixed</code> class too, and apply it to the root node. Classes that are not passed to <code>theme</code> cannot be changed or overridden via a theme, ensuring that structured or nested styles are not lost when a theme is used.</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-	classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<pre class="language-typescript"><div class="prism-code-title">File: src/widgets/WorkerForms.ts</div><code class="language-typescript"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+<span class="line-highlight">	classes<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">,</span> css<span class="token punctuation">.</span>rootFixed <span class="token punctuation">]</span><span class="token punctuation">,</span></span>
 	onsubmit<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_onSubmit
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
 </code></pre>
 <p>Replace all of the selectors containing <code>.workerForm</code> with the following rules in <code>workerForm.m.css</code>.</p>
-<pre class="language-css"><code class="language-css"><span class="token selector">.root</span> <span class="token punctuation">{</span>
+<pre class="language-css"><div class="prism-code-title">File: src/styles/workerForm.m.css</div><code class="language-css"><span class="line-highlight"><span class="token selector">.root</span> <span class="token punctuation">{</span></span>
 	<span class="token property">margin-bottom</span><span class="token punctuation">:</span> 40px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token selector">.rootFixed</span> <span class="token punctuation">{</span>
+<span class="line-highlight"><span class="token selector">.rootFixed</span> <span class="token punctuation">{</span></span>
 	<span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token selector">.rootFixed fieldset,
-.rootFixed label</span> <span class="token punctuation">{</span>
+<span class="line-highlight"><span class="token selector">.rootFixed fieldset,</span>
+<span class="line-highlight">.rootFixed label</span> <span class="token punctuation">{</span></span>
 	<span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
 	<span class="token property">text-align</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token selector">.rootFixed label</span> <span class="token punctuation">{</span>
+<span class="line-highlight"><span class="token selector">.rootFixed label</span> <span class="token punctuation">{</span></span>
 	<span class="token property">margin-right</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>If you open the application in a browser its appearance and behavior should be unchanged.</p>
-<div class="instruction">Now update <code>worker.m.css</code> and <code>workerContainer.m.css</code> to use <code>.root</code> and <code>.rootFixed</code> and then update the associated widgets to use the new selectors.</div>
-<pre class=" language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* workerContainer.m.css */</span>
-<span class="token selector"><span class="token class">.rootFixed</span> </span><span class="token punctuation">{</span>
-    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
-    <span class="token property">flex-flow</span><span class="token punctuation">:</span> row wrap<span class="token punctuation">;</span>
-    <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
-    <span class="token property">align-items</span><span class="token punctuation">:</span> stretch<span class="token punctuation">;</span>
-    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span> auto<span class="token punctuation">;</span>
-    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+<div class="instruction">Now update <code>worker.m.css</code> and <code>workerContainer.m.css</code> to use <code>.root</code> and <code>.rootFixed</code>...</div>
+<pre class="language-css"><div class="prism-code-title">File: src/styles/workerContainer.m.css</div><code class="language-css"><span class="line-highlight"><span class="token selector">.rootFixed</span> <span class="token punctuation">{</span></span>
+	<span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+	<span class="token property">flex-flow</span><span class="token punctuation">:</span> row wrap<span class="token punctuation">;</span>
+	<span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+	<span class="token property">align-items</span><span class="token punctuation">:</span> stretch<span class="token punctuation">;</span>
+	<span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+	<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token selector"><span class="token class">.root</span> </span><span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">/* worker.m.css */</span>
-
-<span class="token comment" spellcheck="true">/* all rules were originally in the .worker selector */</span>
-<span class="token selector"><span class="token class">.root</span> </span><span class="token punctuation">{</span>
-    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span> <span class="token number">10</span>px <span class="token number">40</span>px<span class="token punctuation">;</span>
-    <span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token number">350</span>px<span class="token punctuation">;</span>
-    <span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">250</span>px<span class="token punctuation">;</span>
-    <span class="token property">flex</span><span class="token punctuation">:</span> <span class="token number">1</span> <span class="token number">1</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">33%</span> - <span class="token number">20</span>px<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token selector"><span class="token class">.rootFixed</span> </span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* flip transform styles */</span>
-    <span class="token property">perspective</span><span class="token punctuation">:</span> <span class="token number">1000</span>px<span class="token punctuation">;</span>
-    <span class="token property">transform-style</span><span class="token punctuation">:</span> preserve-<span class="token number">3</span>d<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="line-highlight"><span class="token selector">.root</span> <span class="token punctuation">{</span></span>
+<span class="line-highlight"></span>
+<span class="line-highlight"><span class="token punctuation">}</span></span>
 </code></pre>
+<pre class="language-css"><div class="prism-code-title">File: src/styles/worker.m.css.</div><code class="language-css"><span class="line-highlight"><span class="token selector">.root</span> <span class="token punctuation">{</span></span>
+	<span class="token property">margin</span><span class="token punctuation">:</span> 0 10px 40px<span class="token punctuation">;</span>
+	<span class="token property">max-width</span><span class="token punctuation">:</span> 350px<span class="token punctuation">;</span>
+	<span class="token property">min-width</span><span class="token punctuation">:</span> 250px<span class="token punctuation">;</span>
+	<span class="token property">flex</span><span class="token punctuation">:</span> 1 1 <span class="token function">calc</span><span class="token punctuation">(</span>33% - 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="line-highlight"><span class="token selector">.rootFixed</span> <span class="token punctuation">{</span></span>
+	<span class="token comment">/* flip transform styles */</span>
+	<span class="token property">perspective</span><span class="token punctuation">:</span> 1000px<span class="token punctuation">;</span>
+	<span class="token property">transform-style</span><span class="token punctuation">:</span> preserve-3d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code><div class="prism-code-note">All rules were originally in the .worker selector.</div></pre>
+<div class="instruction">...and then update the associated widgets to use the new selectors.</div>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// WorkerContainer.ts</span>
 <span class="token comment" spellcheck="true">// ...</span>
 <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -267,44 +264,44 @@ ga('send', 'pageview');
     <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>So for <code>worker.m.css</code>, you need to add the import for the <code>worker.m.css</code> and the theme itself to the exported object using the key <code>biz-e-corp/worker</code>.</p>
-<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as textInput <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/text-input/text-input.m.css'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> as button <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/button/button.m.css'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
+<p>So for <code>theme.ts</code>, you need to add the import for the <code>worker.m.css</code> and the theme itself to the exported object using the key <code>biz-e-corp/worker</code>.</p>
+<pre class="language-typescript"><div class="prism-code-title">File: src/themes/dojo/theme.ts</div><code class="language-typescript"><span class="line-highlight"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span></span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> textInput <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/text-input/text-input.m.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> button <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/button/button.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    <span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">:</span> button<span class="token punctuation">,</span>
-    <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">:</span> textInput<span class="token punctuation">,</span>
-    <span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker
+<span class="line-highlight">	<span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span></span>
+	<span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">:</span> textInput<span class="token punctuation">,</span>
+	<span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">:</span> button
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>To apply a theme to a widget, simply pass the <code>theme</code> as a property to widgets to have the <code>ThemedMixin</code> applied. To ensure that the entire application applies the <code>theme</code> it needs to be passed to all the themed widgets in our application. This can become problematic when an application uses a mixture of themed and non-themed widgets, or uses a widget from a third party, meaning that there is no guarantee that the <code>theme</code> will be propagated as required.</p>
 <article class="aside"><strong class="label">What is a registry?</strong><p>A registry provides a mechanism to inject external payloads into widgets throughout the application tree. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1020_registries/">registry tutorial</a>.</p></article>
 <p>However an application can automatically inject a <code>theme</code> from the <code>registry</code> to every themed widget in an application tree. First, create a <code>themeInjector</code> using the <code>registerThemeInjector</code> function by passing a <code>registry</code> instance and <code>theme</code>. This will return a handle to the <code>themeInjector</code> that can be used to change the theme using <code>themeInjector.set()</code>, which will invalidate all themed widgets in the application tree and re-render using the new theme!</p>
 <div class="instruction">Update our <code>main.ts</code> file to import our theme and create a <code>themeInjector</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
+<pre class="language-typescript"><div class="prism-code-title">File: src/main.ts</div><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> registerThemeInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> theme <span class="token keyword">from</span> <span class="token string">'./themes/dojo/theme'</span><span class="token punctuation">;</span>
+<span class="line-highlight"><span class="token keyword">import</span> <span class="token punctuation">{</span> registerThemeInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"><span class="token keyword">import</span> theme <span class="token keyword">from</span> <span class="token string">'./themes/dojo/theme'</span><span class="token punctuation">;</span></span>
 
 <span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
-<span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">registerThemeInjector</span><span class="token punctuation">(</span>theme<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"><span class="token function">registerThemeInjector</span><span class="token punctuation">(</span>theme<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 
 <span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> projector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Projector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-	registry
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span>
+<span class="line-highlight">	registry</span>
+<span class="line-highlight"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 
 projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Open the application in your web browser and see that the <code>Worker</code> backgrounds are now <code>red</code>.</p>
 <div class="instruction">Use variables and complete the Worker theme</div>
 <p>The <a href="../006_deploying_to_production/">Dojo 2 build system</a> supports new CSS features such as <code>css-custom-properties</code> by using PostCSS to process our <code>.m.css</code> files. We can use these new CSS features to add variables to <code>worker.m.css</code> and complete its theme.<br>Let’s create <code>themes/dojo/variables.css</code> (notice that this file does not have a <code>.m.css</code> extension as it is not a <code>css-module</code> file).</p>
-<pre class="language-css"><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">{</span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/variables.css</div><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">{</span>
 	<span class="token property">--font</span><span class="token punctuation">:</span> <span class="token string">'arial'</span><span class="token punctuation">;</span>
 	<span class="token property">--container</span><span class="token punctuation">:</span> #f9f9f9<span class="token punctuation">;</span>
 	<span class="token property">--body</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
@@ -319,26 +316,26 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 </code></pre>
 <p>In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a <code>:root</code> selector which makes them available on the global scope within our <code>css-modules</code>.<br>To use them, we can <code>@import</code> the <code>variables.css</code> file and use the <code>var</code> keyword to assign a <code>css-custom-property</code> to a css rule.</p>
 <p>Now we will use these variables in our themes <code>worker.m.css</code> to create our fully themed <code>Worker</code>.</p>
-<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/worker.m.css</div><code class="language-css"><span class="line-highlight"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">width</span><span class="token punctuation">:</span> 320px<span class="token punctuation">;</span>
 	<span class="token property">height</span><span class="token punctuation">:</span> 370px<span class="token punctuation">;</span>
 	<span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
-	<span class="token property">margin</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--spacing<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">margin</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--spacing<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 	<span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token selector">.image</span> <span class="token punctuation">{</span>
-	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 	<span class="token property">border-radius</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
 	<span class="token property">width</span><span class="token punctuation">:</span> 250px<span class="token punctuation">;</span>
 	<span class="token property">height</span><span class="token punctuation">:</span> 250px<span class="token punctuation">;</span>
-	<span class="token property">margin-bottom</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--padding<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">margin-bottom</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--padding<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">}</span>
 
 <span class="token selector">.imageSmall</span> <span class="token punctuation">{</span>
-	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 	<span class="token property">border-radius</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
 	<span class="token property">width</span><span class="token punctuation">:</span> 72px<span class="token punctuation">;</span>
 	<span class="token property">height</span><span class="token punctuation">:</span> 72px<span class="token punctuation">;</span>
@@ -352,24 +349,24 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 	<span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
 	<span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
 	<span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-	<span class="token property">border</span><span class="token punctuation">:</span> 1px solid <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">border</span><span class="token punctuation">:</span> 1px solid <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">}</span>
 
 <span class="token selector">.workerFront</span> <span class="token punctuation">{</span>
 	<span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 1px 2px 0 <span class="token function">rgba</span><span class="token punctuation">(</span>0, 0, 0, 0.35<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token property">padding</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--padding<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">padding</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--padding<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 	<span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token selector">.workerBack</span> <span class="token punctuation">{</span>
 	<span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 20px 35px 0 <span class="token function">rgba</span><span class="token punctuation">(</span>0, 0, 0, 0.15<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line-highlight">	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--body<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">}</span>
 
 <span class="token selector">.heading</span> <span class="token punctuation">{</span>
-	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line-highlight">	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 	<span class="token property">padding</span><span class="token punctuation">:</span> 24px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
@@ -384,8 +381,8 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 
 <span class="token selector">.tasks strong</span> <span class="token punctuation">{</span>
-	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--secondary-accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--secondary-accent<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line-highlight">	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 	<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
 	<span class="token property">font-size</span><span class="token punctuation">:</span> 14px<span class="token punctuation">;</span>
 	<span class="token property">padding</span><span class="token punctuation">:</span> 14px 24px<span class="token punctuation">;</span>
@@ -395,13 +392,13 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 
 <span class="token selector">.task</span> <span class="token punctuation">{</span>
 	<span class="token property">padding</span><span class="token punctuation">:</span> 12px 24px<span class="token punctuation">;</span>
-	<span class="token property">border-bottom</span><span class="token punctuation">:</span> 1px solid <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">border-bottom</span><span class="token punctuation">:</span> 1px solid <span class="token function">var</span><span class="token punctuation">(</span>--component-accent<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">}</span>
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Theming-Dojo-widgets"><a href="#Theming-Dojo-widgets" class="headerlink" title="Theming Dojo widgets"></a>Theming Dojo widgets</h2><p>Thus far in this tutorial, we have themed our custom <code>Worker</code> widget, but we have not targeted Dojo widgets that are contained within our application. To demonstrate the styling of Dojo widgets, we will theme the <code>workerForm</code> widget as it contains both DOM nodes and Dojo widgets.</p>
 <div class="instruction">Let's create <code>workerForm.m.css</code></div>
-<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/workerForm.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--font<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -415,20 +412,21 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="token punctuation">}</span>
 </code></pre>
 <div class="instruction">And include it in <code>theme.ts</code></div>
-<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> as worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">*</span> as workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span>
+<pre class="language-typescript"><div class="prism-code-title">File: src/themes/dojo/theme.ts</div><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> worker <span class="token keyword">from</span> <span class="token string">'./worker.m.css'</span><span class="token punctuation">;</span>
+<span class="line-highlight"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span></span>
+
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    <span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span>
-    <span class="token string">'biz-e-corp/workerForm'</span><span class="token punctuation">:</span> workerForm<span class="token punctuation">,</span>
+	<span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span>
+<span class="line-highlight">	<span class="token string">'biz-e-corp/workerForm'</span><span class="token punctuation">:</span> workerForm<span class="token punctuation">,</span></span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo 2 <code>TextInput</code> within our <code>WorkerForm</code>, we need to add to the skeleton <code>text-input.m.css</code> theme created by <code>@dojo/cli-create-theme</code>, this is already exported from <code>theme.ts</code>.</p>
-<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/@dojo/widgets/text-input/text-input.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">margin-right</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
 	<span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
-	<span class="token property">composes</span><span class="token punctuation">:</span> nameLabel from <span class="token string">'./../../../workerForm.m.css'</span><span class="token punctuation">;</span>
+<span class="line-highlight">	<span class="token property">composes</span><span class="token punctuation">:</span> nameLabel from <span class="token string">'./../../../workerForm.m.css'</span><span class="token punctuation">;</span></span>
 	<span class="token property">text-align</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
@@ -444,18 +442,18 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <p>Notice the styling rule for the <code>.root</code> selector? Here we are introducing another powerful part of the Dojo 2 theming system, <code>composes</code>. Composes originates in the <a href="https://github.com/css-modules/css-modules#composition" target="_blank" rel="noopener"><code>css-module</code> specification</a>, allowing you to apply styles from one class selector to another. Here we are specifying that the <code>root</code> of a <code>TextInput</code> (the label text in this case), should appear the same as the <code>nameLabel</code> class in our <code>WidgetForm</code>. This approach can be very useful when creating multiple themes from a <code>baseTheme</code> and avoids repetitive redefinition of style rules.</p>
 <p>In your web browser you will see the <code>TextInput</code> widgets at the top of the form have been styled.</p>
 <div class="instruction">Add the following theme styles to the <code>button.m.css</code> theme resource</div>
-<pre class=" language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/@dojo/widgets/button/button.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
 
-<span class="token selector"><span class="token class">.root</span> </span><span class="token punctuation">{</span>
-    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">38</span>px<span class="token punctuation">;</span>
-    <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token function">var</span><span class="token punctuation">(</span>--input-border<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">16</span>px<span class="token punctuation">;</span>
-    <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
-    <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">8</span>px<span class="token punctuation">;</span>
-    <span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">150</span>px<span class="token punctuation">;</span>
-    <span class="token property">vertical-align</span><span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
+<span class="token selector">.root</span> <span class="token punctuation">{</span>
+	<span class="token property">height</span><span class="token punctuation">:</span> 38px<span class="token punctuation">;</span>
+	<span class="token property">border</span><span class="token punctuation">:</span> 1px solid <span class="token function">var</span><span class="token punctuation">(</span>--input-border<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--card<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--accent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token property">font-size</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+	<span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+	<span class="token property">padding</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
+	<span class="token property">min-width</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+	<span class="token property">vertical-align</span><span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 </section><section class="tutorial hidden hiding">
