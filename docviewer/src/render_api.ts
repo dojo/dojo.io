@@ -1101,9 +1101,9 @@ function getHeadingRenderer(
 		let id: string;
 
 		if (level === 1) {
-			id = `${toHash(ref)}--${docIdToDomId(name)}`.slice(1);
+			id = `${toHash(ref)}${sep}${docIdToDomId(name)}${sep}`.slice(1);
 		} else {
-			id = `${toHash(ref)}--${docIdToDomId(name)}${sep}${slugify(
+			id = `${toHash(ref)}${sep}${docIdToDomId(name)}${sep}${slugify(
 				docIdToDomId(text)
 			)}`.slice(1);
 		}
