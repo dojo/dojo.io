@@ -120,7 +120,8 @@ function makeMenu(docRef: LocationRef, docset: DocSet) {
 				type: 'doc',
 				repo: docRef.repo,
 				version: docRef.version,
-				path: page
+				path: docRef.path,
+				section: page
 			});
 			return h('li', {}, h('a', { href: hash }, name));
 		})
