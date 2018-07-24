@@ -115,9 +115,10 @@ export async function docFetch(path: string) {
  * CSS selectors for menus and scrolling, and '/' isn't valid in CSS
  * selectors.
  */
-export function docIdToDomId(docId: string): string {
+export function docIdToDomId(docId: string = ''): string {
 	let id = docId.replace(/\//g, '__');
 	id = id.replace(/(\w)\.(\w+)\.(\w+)/, '$1_$2_$3');
+	id = id.replace(/\.md/g, '_md');
 	return id;
 }
 
@@ -125,9 +126,10 @@ export function docIdToDomId(docId: string): string {
  * Convert a DOC ID (org__project__version) to a doc ID
  * (org/project/version)
  */
-export function domIdToDocId(domId: string): string {
+export function domIdToDocId(domId: string = ''): string {
 	let id = domId.replace(/__/g, '/');
 	id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
+	id = id.replace(/_md/g, '.md');
 	return id;
 }
 
@@ -140,11 +142,11 @@ export function toHash(ref: LocationRef): string {
 	if (path) {
 		hash += `__${docIdToDomId(path)}`;
 	}
-	if (anchor) {
-		hash += `${sep}${docIdToDomId(anchor)}`;
-	}
 	if (section) {
 		hash += `${sep}${docIdToDomId(section)}`;
+	}
+	if (anchor) {
+		hash += `${sep}${docIdToDomId(anchor)}`;
 	}
 	return hash;
 }
