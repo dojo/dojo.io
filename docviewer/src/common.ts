@@ -174,6 +174,8 @@ export function fromHash(hash?: string): LocationRef {
 	const path = docIdParts.slice(3).join('/');
 
 	let [ section, anchor ] = idParts.slice(2);
+	// FIXME: it's not great that we can't really tell the difference between
+	// a section and an anchor. Find a better way tot do this.
 	if (section && !anchor) {
 		anchor = section;
 		// section = undefined;

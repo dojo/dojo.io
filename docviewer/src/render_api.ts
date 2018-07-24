@@ -101,7 +101,7 @@ export default async function renderApi(
 		};
 	}
 
-	const path = ref.section || Object.keys(pages)[0];
+	const path = ref.section && pages[ref.section] ? ref.section : Object.keys(pages)[0];
 	const page = pages[path].element;
 	clearNode(docContainer);
 	docContainer.appendChild(page);
