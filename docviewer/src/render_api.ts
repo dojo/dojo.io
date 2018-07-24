@@ -89,8 +89,6 @@ export default async function renderApi(
 			Object.keys(pages).map(name => {
 				const label = pages[name].title;
 				const href = toHash(pages[name].ref);
-				// FIXME: This is where the sub-navigaiton for API is generated
-				console.log('%cpages href', 'font-weight:bold;color:orange;', label, href, pages[name].ref);
 				return h('li', {}, h('a', { href }, label));
 			})
 		);

@@ -118,7 +118,6 @@ export async function docFetch(path: string) {
 export function docIdToDomId(docId: string): string {
 	let id = docId.replace(/\//g, '__');
 	id = id.replace(/(\w)\.(\w+)\.(\w+)/, '$1_$2_$3');
-	// console.log('%c[docIdToDomId]', 'font-weight:bold;color:yellow;', { docId, domId: id });
 	return id;
 }
 
@@ -129,7 +128,6 @@ export function docIdToDomId(docId: string): string {
 export function domIdToDocId(domId: string): string {
 	let id = domId.replace(/__/g, '/');
 	id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
-	// console.log('%c[domIdToDocId]', 'font-weight:bold;color:orange;', { domId, docId: id });
 	return id;
 }
 
@@ -148,7 +146,6 @@ export function toHash(ref: LocationRef): string {
 	if (section) {
 		hash += `${sep}${docIdToDomId(section)}`;
 	}
-	// console.log('%c[toHash]', 'font-weight:bold;color:blue;', { ref, hash });
 	return hash;
 }
 
@@ -181,7 +178,6 @@ export function fromHash(hash?: string): LocationRef {
 	}
 
 	const ref: LocationRef = { type, repo, version, path, section, anchor } as LocationRef;
-	// console.log('%c[fromhash]', 'font-weight:bold;color:purple;', { hash, ref });
 	return ref;
 }
 
