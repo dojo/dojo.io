@@ -7,7 +7,7 @@
 		const icon = pkg.icon;
 		const repo = pkg.repo.split('/').join('__');
 		const description = pkg.description;
-		const path = pkg.path.replace(/\./g, '_');
+		const path = pkg.path ? pkg.path.replace(/\./g, '_') : '';
 		const name = pkgName.replace(/^dojo\//, '');
 		const version = pkg.version.replace(/\./g, '_');
 		let link = `/docs/index.html#doc--${repo}__${version}`;
