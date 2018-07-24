@@ -31,8 +31,8 @@ export default async function renderDoc(
 	context: RenderContext
 ) {
 	const { docs, docset, docContainer, tocContainer } = context;
-	const { repo, version, path } = ref;
-	const file = path || 'README.md';
+	const { repo, version, path, section } = ref;
+	const file = section || path || 'README.md';
 	const hash = toHash(ref);
 	let page: Element;
 	let menu: Element;
