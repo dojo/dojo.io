@@ -115,7 +115,7 @@ function makeMenu(docRef: LocationRef, docset: DocSet) {
 		'ul',
 		{ className: 'uk-nav-sub uk-nav-default' },
 		docset.pages.map(page => {
-			const name = page.replace(/^docs\//, '').replace(/\.md$/, '');
+			let name = page.replace(/^docs\/[^\/]*\//, '').replace(/\.md$/, '');
 			const hash = toHash({
 				type: 'doc',
 				repo: docRef.repo,
