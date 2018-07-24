@@ -41,6 +41,7 @@ export interface LocationRef {
 	version: string;
 	path?: string;
 	anchor?: string;
+	section?: string;
 }
 
 /**
@@ -114,9 +115,10 @@ export async function docFetch(path: string) {
  * CSS selectors for menus and scrolling, and '/' isn't valid in CSS
  * selectors.
  */
-export function docIdToDomId(docId: string) {
+export function docIdToDomId(docId: string): string {
 	let id = docId.replace(/\//g, '__');
 	id = id.replace(/(\w)\.(\w+)\.(\w+)/, '$1_$2_$3');
+	// console.log('%c[docIdToDomId]', 'font-weight:bold;color:yellow;', { docId, domId: id });
 	return id;
 }
 
@@ -124,17 +126,37 @@ export function docIdToDomId(docId: string) {
  * Convert a DOC ID (org__project__version) to a doc ID
  * (org/project/version)
  */
-export function domIdToDocId(domId: string) {
+export function domIdToDocId(domId: string): string {
 	let id = domId.replace(/__/g, '/');
 	id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
+	// console.log('%c[domIdToDocId]', 'font-weight:bold;color:orange;', { domId, docId: id });
 	return id;
 }
 
 /**
- * Return the current location has as a doc location reference
- * (type--org/project/version--anchor)
+ * Convert a location ref to a URL hash
  */
-export function fromHash(hash: string): LocationRef {
+export function toHash(ref: LocationRef): string {
+	const { type, repo, version, path, section, anchor } = ref;
+	let hash = `#${type}${sep}${docIdToDomId(repo)}__${version.replace(/\./g, '_')}`;
+	if (path) {
+		hash += `__${docIdToDomId(path)}`;
+	}
+	if (anchor) {
+		hash += `${sep}${anchor}`;
+	}
+	if (section) {
+		hash += `${sep}${docIdToDomId(section)}`;
+	}
+	// console.log('%c[toHash]', 'font-weight:bold;color:blue;', { ref, hash });
+	return hash;
+}
+
+/**
+ * Return the current location has as a doc location reference
+ * (type--org/project/subsection/version--anchor)
+ */
+export function fromHash(hash?: string): LocationRef {
 	if (!hash) {
 		return;
 	}
@@ -152,11 +174,15 @@ export function fromHash(hash: string): LocationRef {
 	const version = docIdParts[2].replace(/_/g, '.');
 	const path = docIdParts.slice(3).join('/');
 
-	// The anchor itself may have contained sep, so rejoin anything after the
-	// docId.
-	const anchor = idParts.slice(2).join(sep);
+	let [ section, anchor ] = idParts.slice(2);
+	if (section && !anchor) {
+		anchor = section;
+		// section = undefined;
+	}
 
-	return <LocationRef> { type, repo, version, path, anchor };
+	const ref: LocationRef = { type, repo, version, path, section, anchor } as LocationRef;
+	// console.log('%c[fromhash]', 'font-weight:bold;color:purple;', { hash, ref });
+	return ref;
 }
 
 /**
@@ -289,6 +315,9 @@ export function initMarkdownRenderer() {
 		if (ref.path) {
 			docId += `/${ref.path}`;
 		}
+		if (ref.section) {
+			docId += `${sep}${ref.section}`;
+		}
 
 		// The page title is given the ID of the page itself. This allows
 		// the H1 to be targetted by UIkit's scrolling code to smooth scroll
@@ -404,6 +433,9 @@ export function isSameDoc(a: LocationRef, b: LocationRef) {
 	if (a.path !== b.path) {
 		return false;
 	}
+	if (a.section !== b.section) {
+		return false;
+	}
 	return true;
 }
 
@@ -440,21 +472,6 @@ export function scrollTo(target: string | Element, offset = 100) {
 
 		global.UIkit.scroll(target, { offset }).scrollTo(target);
 	}
-}
-
-/**
- * Convert a location ref to a URL hash
- */
-export function toHash(ref: LocationRef) {
-	const { type, repo, version, path, anchor } = ref;
-	let hash = `#${type}${sep}${docIdToDomId(repo)}__${version.replace(/\./g, '_')}`;
-	if (path) {
-		hash += `__${docIdToDomId(path)}`;
-	}
-	if (anchor) {
-		hash += `${sep}${anchor}`;
-	}
-	return hash;
 }
 
 /**

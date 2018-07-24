@@ -6,7 +6,8 @@
 	<li class="uk-nav-divider"></li>
 	<% for (var pkgName of packages) { %>
 		<% var pkg = site.data.docs_menu[pkgName] %>
-		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version.replace(/\./g, '_') %>"
+		<li><a href="#doc--<%= pkg.repo.split('/').join('__') %>__<%= pkg.version.replace(/\./g, '_') %><%= pkg.path ?
+		`__${pkg.path.split('/').join('__')}` : '' %>"
 	  			data-doc-type="doc"
 				data-package="<%= pkgName %>"
 				class="repo-doc-link"><%= pkgName.replace(/^dojo\//, '') %></a>

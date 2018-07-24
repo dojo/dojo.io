@@ -3,11 +3,18 @@
 	var packages = Object.keys(site.data.docs_menu).filter(pkg => cliPackages.indexOf(pkg) === -1);
 
 	function card(pkgName) {
-		var pkg = site.data.docs_menu[pkgName];
-		var icon = pkg['icon'];
-		var description = pkg['description'];
-		var link = '/docs/index.html#doc--'+pkg.repo.split('/').join('__') +"__"+ pkg.version.replace(/\./g, '_');
-		var name = pkgName.replace(/^dojo\//, '');
+		const pkg = site.data.docs_menu[pkgName];
+		const icon = pkg.icon;
+		const repo = pkg.repo.split('/').join('__');
+		const description = pkg.description;
+		const path = pkg.path;
+		const name = pkgName.replace(/^dojo\//, '');
+		const version = pkg.version.replace(/\./g, '_');
+		let link = `/docs/index.html#doc--${repo}__${version}`;
+
+		if (path) {
+			link += '__' + path.split('/').join('__');
+		}
 
 		return `<div class="tutorial-card doc-card uk-width-1-2@l" data-topic="${pkgName}">
 					<div class="uk-card uk-card-small sp-card">

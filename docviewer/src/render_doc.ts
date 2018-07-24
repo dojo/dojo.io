@@ -95,7 +95,8 @@ export default async function renderDoc(
 		const baseHash = toHash({
 			type: 'doc',
 			repo: ref.repo,
-			version: ref.version
+			version: ref.version,
+			path: ref.path
 		});
 		const docLink = context.docSelector.querySelector(`[href="${baseHash}"]`);
 		docLink.parentElement.appendChild(menu);
