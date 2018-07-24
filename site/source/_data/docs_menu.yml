@@ -55,11 +55,6 @@ dojo/interop:
   description: Provides interoperability between Dojo 2 and other code
   icon: handshake
   version: v3.0.0
-dojo/loader:
-  repo: dojo/loader
-  description: The loader can load both AMD and CJS formatted modules.
-  icon: sign-in-alt
-  version: v3.0.0
 dojo/cli:
   repo: dojo/cli
   description: The CLI is the officially supported way to create and maintain Dojo 2 apps.
