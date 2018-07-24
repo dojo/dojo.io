@@ -143,7 +143,7 @@ export function toHash(ref: LocationRef): string {
 		hash += `__${docIdToDomId(path)}`;
 	}
 	if (anchor) {
-		hash += `${sep}${anchor}`;
+		hash += `${sep}${docIdToDomId(anchor)}`;
 	}
 	if (section) {
 		hash += `${sep}${docIdToDomId(section)}`;

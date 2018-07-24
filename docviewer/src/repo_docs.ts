@@ -70,8 +70,6 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 							section: ref.section
 						});
 
-						console.log('apiHash', apiHash);
-
 						const docLink = docSelector.querySelector(`[href="${hash}"]`);
 						const listItem = docLink.parentElement;
 						listItem.appendChild(
@@ -279,7 +277,8 @@ async function render() {
 		type: docRef.type,
 		repo: docRef.repo,
 		version: docRef.version,
-		path: docRef.path
+		path: docRef.path,
+		section: docRef.section
 	});
 
 	// Highlight the currently active doc in the doc selector
