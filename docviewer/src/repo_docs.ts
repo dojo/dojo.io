@@ -46,7 +46,8 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 	const hash = toHash({
 		type: 'doc',
 		repo: ref.repo,
-		version: ref.version
+		version: ref.version,
+		path: ref.path
 	});
 
 	// Load and cache the docset metadata if it hasn't been loaded yet
@@ -54,9 +55,8 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 		if (!docsetLoads[hash]) {
 			docsetLoads[hash] = new Promise(async (resolve, reject) => {
 				try {
-					const readme = await docFetch(
-						ref.repo + '/' + ref.version + '/README.md'
-					);
+					const path = `${ref.repo}/${ref.version}/${ref.path || 'README.md'}`;
+					const readme = await docFetch(path);
 					const docset = getDocSetData(readme);
 
 					if (docset.api) {
@@ -65,7 +65,9 @@ async function getDocSet(ref: LocationRef): Promise<DocSet> {
 						const apiHash = toHash({
 							type: 'api',
 							repo: ref.repo,
-							version: ref.version
+							version: ref.version,
+							path: ref.path,
+							section: ref.section
 						});
 
 						const docLink = docSelector.querySelector(`[href="${hash}"]`);
@@ -275,7 +277,8 @@ async function render() {
 		type: docRef.type,
 		repo: docRef.repo,
 		version: docRef.version,
-		path: docRef.path
+		path: docRef.path,
+		section: docRef.section
 	});
 
 	// Highlight the currently active doc in the doc selector
@@ -288,19 +291,20 @@ async function render() {
 		docLink.parentElement.classList.add('uk-active');
 	}
 
-	if (docRef.path) {
+	// if (docRef.path) {
 		// If this is a subpage, hilight the active parent doc in the doc
 		// selector
 		const baseDoc = toHash({
 			type: docRef.type,
 			repo: docRef.repo,
-			version: docRef.version
+			version: docRef.version,
+			path: docRef.path
 		});
 		const baseDocLink = docSelector.querySelector(`[href="${baseDoc}"]`);
 		if (baseDocLink) {
 			baseDocLink.parentElement.classList.add('uk-active');
 		}
-	}
+	// }
 }
 
 /**

@@ -56,7 +56,8 @@ export default async function renderApi(
 	const docHash = toHash({
 		type: 'api',
 		repo: ref.repo,
-		version: ref.version
+		version: ref.version,
+		path: ref.path
 	});
 
 	let pages: { [name: string]: DocPage };
@@ -70,11 +71,11 @@ export default async function renderApi(
 		menu = apiCache[docHash].menu;
 		docLink = apiCache[docHash].docLink;
 	} else {
-		const file = 'docs/api.json';
+		const { docset: { api: file = 'docs/api.json' } = {} } = context;
 		const { repo, version } = ref;
 		const json = await docFetch(repo + '/' + version + '/' + file);
 		const data: ProjectReflection = JSON.parse(json);
-		const repoRef = { type: ref.type, repo: ref.repo, version: ref.version };
+		const repoRef = { type: ref.type, repo: ref.repo, version: ref.version, path: ref.path, section: ref.section };
 
 		pages = renderApiPages(repoRef, data);
 		tocs = Object.keys(pages).reduce(
@@ -100,7 +101,7 @@ export default async function renderApi(
 		};
 	}
 
-	const path = ref.path || Object.keys(pages)[0];
+	const path = ref.section && pages[ref.section] ? ref.section : Object.keys(pages)[0];
 	const page = pages[path].element;
 	clearNode(docContainer);
 	docContainer.appendChild(page);
@@ -162,7 +163,7 @@ export function renderApiPages(ref: LocationRef, data: ProjectReflection) {
 				element,
 				ref: {
 					...ref,
-					path: name
+					section: name
 				}
 			});
 			const context: ApiRenderContext = {
@@ -195,7 +196,7 @@ export function renderApiPages(ref: LocationRef, data: ProjectReflection) {
 		} else {
 			link.href = toHash({
 				...ref,
-				path: pageIndex[module.id],
+				section: pageIndex[module.id],
 				anchor: slugIndex[type.id]
 			});
 		}
@@ -1100,9 +1101,9 @@ function getHeadingRenderer(
 		let id: string;
 
 		if (level === 1) {
-			id = `${toHash(ref)}__${docIdToDomId(name)}`.slice(1);
+			id = `${toHash(ref)}${sep}${docIdToDomId(name)}${sep}`.slice(1);
 		} else {
-			id = `${toHash(ref)}__${docIdToDomId(name)}${sep}${slugify(
+			id = `${toHash(ref)}${sep}${docIdToDomId(name)}${sep}${slugify(
 				docIdToDomId(text)
 			)}`.slice(1);
 		}

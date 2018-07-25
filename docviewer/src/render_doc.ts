@@ -31,8 +31,8 @@ export default async function renderDoc(
 	context: RenderContext
 ) {
 	const { docs, docset, docContainer, tocContainer } = context;
-	const { repo, version, path } = ref;
-	const file = path || 'README.md';
+	const { repo, version, path, section } = ref;
+	const file = section || path || 'README.md';
 	const hash = toHash(ref);
 	let page: Element;
 	let menu: Element;
@@ -95,7 +95,8 @@ export default async function renderDoc(
 		const baseHash = toHash({
 			type: 'doc',
 			repo: ref.repo,
-			version: ref.version
+			version: ref.version,
+			path: ref.path
 		});
 		const docLink = context.docSelector.querySelector(`[href="${baseHash}"]`);
 		docLink.parentElement.appendChild(menu);
@@ -114,12 +115,13 @@ function makeMenu(docRef: LocationRef, docset: DocSet) {
 		'ul',
 		{ className: 'uk-nav-sub uk-nav-default' },
 		docset.pages.map(page => {
-			const name = page.replace(/^docs\//, '').replace(/\.md$/, '');
+			let name = page.replace(/^docs\/[^\/]*\//, '').replace(/\.md$/, '');
 			const hash = toHash({
 				type: 'doc',
 				repo: docRef.repo,
 				version: docRef.version,
-				path: page
+				path: docRef.path,
+				section: page
 			});
 			return h('li', {}, h('a', { href: hash }, name));
 		})
