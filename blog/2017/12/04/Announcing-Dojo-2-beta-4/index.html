@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://dojo.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/featured.png">
 <meta property="og:image" content="https://dojo.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/accordion.png">
 <meta property="og:image" content="https://dojo.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/tooltip.png">
-<meta property="og:updated_time" content="2018-06-15T21:29:08.941Z">
+<meta property="og:updated_time" content="2018-07-25T22:24:23.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Announcing Dojo 2 beta 4!">
 <meta name="twitter:description" content="Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and optimized with the needs of enterprise application development in mind. With a focus on leveraging cutting edge standards">
@@ -69,7 +69,7 @@ ga('send', 'pageview');
 						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
 							<ul class="uk-nav uk-navbar-dropdown-nav">
 								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
-<li><a href="https://gitter.im/dojo/dojo2"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://discord.gg/M7yRngE"><span class="uk-margin-small-right" uk-icon="icon: comment"></span> Discord</a></li>
 <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
 <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
 <li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
@@ -256,13 +256,13 @@ ga('send', 'pageview');
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-menu-item</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>b<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Menu Item B<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu-item</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo-menu-item</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Menu Item C<span class="token punctuation">"</span></span> <span class="token attr-name">selected</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu-item</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo-menu</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
-  a.data = { foo: 'bar' };
-  menu.addEventListener('selected', function(event) {
-    const detail = event.detail;
-    console.log(detail);
-  });
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+  a<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">'bar'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  menu<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'selected'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> detail <span class="token operator">=</span> event<span class="token punctuation">.</span>detail<span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>detail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>We have a <a href="https://dojo.github.io/examples/custom-element-menu/" target="_blank" rel="noopener">live custom elements example</a>, along with the example’s <a href="https://github.com/dojo/examples/tree/master/custom-element-menu" target="_blank" rel="noopener">source code</a>.</p>
 <h2 id="Other-widget-system-improvements"><a href="#Other-widget-system-improvements" class="headerlink" title="Other widget system improvements"></a>Other widget system improvements</h2><p>Additional widget system changes enable features and capabilities to make widgets more robust:</p>
@@ -351,7 +351,7 @@ ga('send', 'pageview');
 	  <a class="navbar-item">Community</a>
 		  <ul class="uk-nav-sub">
 			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
-<li><a href="https://gitter.im/dojo/dojo2"><span class="uk-margin-small-right" uk-icon="icon: gitter"></span> Gitter</a></li>
+<li><a href="https://discord.gg/M7yRngE"><span class="uk-margin-small-right" uk-icon="icon: comment"></span> Discord</a></li>
 <li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
 <li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
 <li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
