@@ -18,7 +18,7 @@ dojo/framework/stores:
   path: src/stores/README.md
 dojo/framework/routing:
   repo: dojo/framework
-  description: Widgets are a fundamental concept for any Dojo 2 application and as such Dojo 2 Routing provides a collection of components that integrate directly with existing widgets within an application.
+  description: Widgets are a fundamental concept for any Dojo application and as such Dojo Routing provides a collection of components that integrate directly with existing widgets within an application.
   icon: sitemap
   version: v3.0.0
   path: src/routing/README.md
@@ -30,7 +30,7 @@ dojo/framework/core:
   path: src/core/README.md
 dojo/framework/shim:
   repo: dojo/framework
-  description: This package provides functional shims for ECMAScript, access to the Typescript helpers, and a quick way to include the polyfills needed to run Dojo 2 in the browser.
+  description: This package provides functional shims for ECMAScript, access to the Typescript helpers, and a quick way to include the polyfills needed to run Dojo in the browser.
   icon: puzzle-piece
   version: v3.0.0
   path: src/shim/README.md
@@ -42,32 +42,32 @@ dojo/framework/has:
   path: src/has/README.md
 dojo/widgets:
   repo: dojo/widgets
-  description: A suite of pre-built Dojo 2 widgets, ready to use in your web application. These widgets are built using Dojo 2's widget authoring system 
+  description: A suite of pre-built Dojo widgets, ready to use in your web application. These widgets are built using Dojo's widget authoring system 
   icon: cubes
   version: v3.0.0
 dojo/themes:
   repo: dojo/themes
-  description: Theme system for Dojo 2 widgets
+  description: Theme system for Dojo widgets
   icon: paint-brush
   version: v3.0.0
 dojo/interop:
   repo: dojo/interop
-  description: Provides interoperability between Dojo 2 and other code
+  description: Provides interoperability between Dojo and other code
   icon: handshake
   version: v3.0.0
 dojo/cli:
   repo: dojo/cli
-  description: The CLI is the officially supported way to create and maintain Dojo 2 apps.
+  description: The CLI is the officially supported way to create and maintain Dojo apps.
   icon: terminal
   version: v3.0.0
 dojo/cli-build-app:
   repo: dojo/cli-build-app
-  description: The official CLI command for building Dojo 2 applications.
+  description: The official CLI command for building Dojo applications.
   icon: wrench
   version: v3.0.0
 cli-build-widget:
   repo: dojo/cli-build-widget
-  description: The official CLI command for building Dojo 2 custom elements.
+  description: The official CLI command for building Dojo custom elements.
   icon: box
   version: v3.0.0
 cli-create-app:
@@ -77,16 +77,16 @@ cli-create-app:
   version: v3.0.0
 cli-test-intern:
   repo: dojo/cli-test-intern
-  description: The official Dojo 2 test command. This package uses Intern to run unit and functional tests against your Dojo project.
+  description: The official Dojo test command. This package uses Intern to run unit and functional tests against your Dojo project.
   icon: vial
   version: v3.0.0
 cli-create-theme:
   repo: dojo/cli-create-theme
-  description: This package provides tooling support for theme generation in Dojo 2.
+  description: This package provides tooling support for theme generation in Dojo.
   icon: paint-brush
   version: v3.0.0
 cli-create-widget:
   repo: dojo/cli-create-widget
-  description: A Dojo CLI command that creates a Dojo 2 widget template with an optional custom element descriptor.
+  description: A Dojo CLI command that creates a Dojo widget template with an optional custom element descriptor.
   icon: gem
   version: v3.0.0
