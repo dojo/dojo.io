@@ -49,7 +49,7 @@ dojo/themes:
   repo: dojo/themes
   description: Theme system for Dojo widgets
   icon: paint-brush
-  version: v3.0.0
+  version: master
 dojo/interop:
   repo: dojo/interop
   description: Provides interoperability between Dojo and other code
