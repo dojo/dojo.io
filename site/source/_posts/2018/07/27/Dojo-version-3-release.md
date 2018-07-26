@@ -13,7 +13,7 @@ Some changes are happening with Dojo. As the project continues to stabilize arou
 
 First things first, when we released the next generation of Dojo, we wanted to strongly disambiguate between the legacy Dojo toolkit by naming it Dojo 2. Now that we have released Dojo 2 and are moving on with further releases we are going to drop the version number, and from now on we refer to it as Dojo.
 
-Also of note during the Dojo 2 cycle, we identified that pain points were going to become bottlenecks and affect the momentum of the project. Central to these issues was the complexity of managing the seven projects that make up the basis of the dojo framework: core, has, i18n, routing, shim, stores, test-extras, and widget-core. We found that managing these projects individually required a great deal of coordination when publishing and working with their inter-dependencies.
+Also of note during the Dojo 2 cycle, we identified that pain points were going to become bottlenecks and affect the momentum of the project. Central to these issues was the complexity of managing the eight projects that make up the basis of the dojo framework: core, has, i18n, routing, shim, stores, test-extras, and widget-core. We found that managing these projects individually required a great deal of coordination when publishing and working with their inter-dependencies.
 
 ## So We Made a Change
 
