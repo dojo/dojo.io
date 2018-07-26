@@ -1,8 +1,8 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
 import Zombies from './widgets/Zombies';
 
 // Create a projector to convert the virtual DOM produced by the application into the rendered page.
-// For more information on setting up a Dojo 2 application, take a look at
+// For more information on setting up a Dojo application, take a look at
 // https://dojo.io/tutorials/002_creating_an_application/
 const Projector = ProjectorMixin(Zombies);
 const projector = new Projector();

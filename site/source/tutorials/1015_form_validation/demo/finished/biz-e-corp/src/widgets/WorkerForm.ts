@@ -1,7 +1,7 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { TypedTargetEvent } from '@dojo/framework/widget-core/interfaces';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import Button from '@dojo/widgets/button';
 import ValidatedTextInput from './ValidatedTextInput';
 import * as css from '../styles/workerForm.m.css';

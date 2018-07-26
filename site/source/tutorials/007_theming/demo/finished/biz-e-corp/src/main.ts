@@ -1,7 +1,7 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
 import App from './widgets/App';
-import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
-import { Registry } from '@dojo/widget-core/Registry';
+import { registerThemeInjector } from '@dojo/framework/widget-core/mixins/Themed';
+import { Registry } from '@dojo/framework/widget-core/Registry';
 import theme from './themes/dojo/theme';
 
 const root = document.querySelector('my-app') || undefined;

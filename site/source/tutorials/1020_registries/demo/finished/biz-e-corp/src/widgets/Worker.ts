@@ -1,7 +1,7 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
-import { registry } from '@dojo/widget-core/decorators/registry';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { registry } from '@dojo/framework/widget-core/decorators/registry';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 
 import * as css from '../styles/worker.m.css';
 import WorkerBack from './WorkerBack';

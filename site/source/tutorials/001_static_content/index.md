@@ -1,8 +1,8 @@
 ---
-title: Your first Dojo 2 application
+title: Your first Dojo application
 icon: magic
 layout: tutorial
-overview: Create your first Dojo 2 application and use it to print a simple message in the browser.
+overview: Create your first Dojo application and use it to print a simple message in the browser.
 paginate: true
 group: getting_started
 topic: create
@@ -10,17 +10,17 @@ topic: create
 
 {% section 'first' %}
 
-# Your first Dojo 2 application
+# Your first Dojo application
 
 ## Overview
-In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.
+In this tutorial, you will learn how to the create your first Dojo application and use it to print a simple message in the browser.
 
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/001_static_content/demo/initial/biz-e-corp) or [download](../assets/001_static_content-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -64,7 +64,7 @@ Some of this code may not make sense now, but over the next few tutorials, you w
 
 {% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
 
-The `v` function simply instructs Dojo 2 to create an HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. We will build a view that allows the user to view Biz-E Corp's workers, so let's update the tag and message to something more appropriate.
+The `v` function simply instructs Dojo to create an HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. We will build a view that allows the user to view Biz-E Corp's workers, so let's update the tag and message to something more appropriate.
 
 {% instruction 'Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"' %}
 
@@ -76,11 +76,11 @@ export default class HelloWorld extends WidgetBase {
 }
 ```
 
-Now, let's look at the `v` function again. We are intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a *virtual* DOM.
+Now, let's look at the `v` function again. We are intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a *virtual* DOM.
 
 In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.
 
-Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
+Dojo leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.
 
 {% section %}
 
@@ -104,7 +104,7 @@ Notice that we have added a parameter between the tag and content parameters. Th
 
 ## Summary
 
-Congratulations! You are off to a good start on your journey to master Dojo 2. In [Components of a Dojo 2 application](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo 2 application.
+Congratulations! You are off to a good start on your journey to master Dojo. In [Components of a Dojo application](../002_creating_an_application/), we will start to get familiar with the major components of a Dojo application.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/001_static_content/demo/finished/biz-e-corp) or alternatively [download](../assets/001_static_content-finished.zip) the project.
 

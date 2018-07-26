@@ -2,7 +2,7 @@
 title: Form widgets
 icon: keyboard
 layout: tutorial
-overview: Use some of Dojo 2's out-of-the-box form widgets to create a simple form and use it to update the application.
+overview: Use some of Dojo's out-of-the-box form widgets to create a simple form and use it to update the application.
 paginate: true
 group: getting_started
 topic: forms
@@ -13,14 +13,14 @@ topic: forms
 # Working with forms
 
 ## Overview
-This tutorial will extend on [Responding to events](../004_user_interactions/), where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo 2's form widgets to allow the feature to be developed more rapidly.
+This tutorial will extend on [Responding to events](../004_user_interactions/), where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a form to the Biz-E-Worker page so that a user can add new workers to the application. This will be done by using some of Dojo's form widgets to allow the feature to be developed more rapidly.
 
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/005_form_widgets/demo/initial/biz-e-corp) or [download](../assets/005_form_widgets-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -33,9 +33,9 @@ The first step to allowing the user to create new workers is to create a form. T
 {% instruction 'Add the following to `WorkerForm.ts`.' %}
 
 ```typescript
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v } from '@dojo/widget-core/d';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v } from '@dojo/framework/widget-core/d';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import * as css from '../styles/workerForm.m.css';
 
 export interface WorkerFormProperties {
@@ -92,13 +92,13 @@ Our form will contain fields allowing the user to create a new worker:
 * An e-mail address field
 * A save button that will use the form's data to create a new worker
 
-We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo 2's built-in widgets that have been designed with these considerations in mind.
+We could create these fields and buttons using the `v` function to create simple virtual DOM elements. If we did this, however, we would have to handle details such as theming, internationalization ([i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)) and accessibility ([a11y](https://en.wikipedia.org/wiki/Accessibility)) ourselves. Instead, we are going to leverage some of Dojo's built-in widgets that have been designed with these considerations in mind.
 
-{% instruction 'Add `w` to the imports from `@dojo/widget-core/d` and add imports for the `Button` and `TextInput` classes to `WorkerForm.ts`.' %}
+{% instruction 'Add `w` to the imports from `@dojo/framework/widget-core/d` and add imports for the `Button` and `TextInput` classes to `WorkerForm.ts`.' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:3-5 %}
 
-These imports are for [built-in Dojo 2 Widgets](https://github.com/dojo/widgets). You can explore other widgets in the [Dojo 2 Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
+These imports are for [built-in Dojo Widgets](https://github.com/dojo/widgets). You can explore other widgets in the [Dojo Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
 The `Button` class will be used to provide the form's submit button and the `TextInput` class will provide the data entry fields for the worker data.
 
@@ -163,9 +163,9 @@ There are two types of properties that we are using in this form. The `firstName
 
 The first thing that we see is a `key` property. As mentioned before, a key is necessary whenever more than one of the same type of widget or virtual DOM element will be rendered by a widget. The `label`, `placeholder`, and `required` fields map to their expected properties.
 
-The `value` property renders the value of the field that is passed into the widget via its properties. Notice that there is no code that manipulates this value within the widget. As parts of a [reactive framework](https://en.wikipedia.org/wiki/Reactive_programming), Dojo 2 widgets do not normally update their own state. Rather, they inform their parent that a change has occurred via events or some other mechanism. The parent will then pass updated properties back into the widget after all of the changes have been processed. This allows Dojo 2 applications to centralize data and keep the entire application synchronized.
+The `value` property renders the value of the field that is passed into the widget via its properties. Notice that there is no code that manipulates this value within the widget. As parts of a [reactive framework](https://en.wikipedia.org/wiki/Reactive_programming), Dojo widgets do not normally update their own state. Rather, they inform their parent that a change has occurred via events or some other mechanism. The parent will then pass updated properties back into the widget after all of the changes have been processed. This allows Dojo applications to centralize data and keep the entire application synchronized.
 
-The final property assigns the `onFirstNameInput` method to the `onInput` property. The `onFirstNameInput` method, in turn, calls the `onFormInput` property, informing the `WorkerForm`'s parent that a change has occurred. This is another common pattern within Dojo 2 applications - the `WorkerForm` does not expose any of the components that it is using to build the form. Rather, the `WorkerForm` manages its children internally and, if necessary, calls its event properties to inform its parent of any changes. This decouples the consumers of the `WorkerForm` widget and frees them from having to understand the internal structure of the widget. Additionally, it allows the `WorkerForm` to change its implementation without affecting its parent as long as it continues to fulfill the `WorkerFormProperties` interface.
+The final property assigns the `onFirstNameInput` method to the `onInput` property. The `onFirstNameInput` method, in turn, calls the `onFormInput` property, informing the `WorkerForm`'s parent that a change has occurred. This is another common pattern within Dojo applications - the `WorkerForm` does not expose any of the components that it is using to build the form. Rather, the `WorkerForm` manages its children internally and, if necessary, calls its event properties to inform its parent of any changes. This decouples the consumers of the `WorkerForm` widget and frees them from having to understand the internal structure of the widget. Additionally, it allows the `WorkerForm` to change its implementation without affecting its parent as long as it continues to fulfill the `WorkerFormProperties` interface.
 
 The last change that needs to be made in the `WorkerForm` is to update the `_onSubmit` method to delegate to the `onFormSave` property when it is called.
 
@@ -181,7 +181,7 @@ The form is now ready to be integrated into the application. We will do that in 
 
 {% task 'Integrate the form into the application.' %}
 
-Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We will add a private property to the `App` to store this state, and a method to update the state and re-render the parts of the application that have changed. As the application grows and needs to store more data, using private properties on a widget class can become difficult to maintain. Dojo 2 uses containers and injectors to help manage the complexities of dealing with state in a large application. For more information, refer to the [Containers and Injecting State](../1010_containers_and_injecting_state/) article.
+Now that the `WorkerForm` widget is complete, we will update the `App` class to use it. First, we need to address how to store the user-completed form data. Recall that the `WorkerForm` will accept an `onFormInput` property that will allow the `App` class to be informed when a field value changes. However, the `App` class does not currently have a place to store those changes. We will add a private property to the `App` to store this state, and a method to update the state and re-render the parts of the application that have changed. As the application grows and needs to store more data, using private properties on a widget class can become difficult to maintain. Dojo uses containers and injectors to help manage the complexities of dealing with state in a large application. For more information, refer to the [Containers and Injecting State](../1010_containers_and_injecting_state/) article.
 
 {% instruction 'Import the `WorkerFormData` interface into `App.ts`.' %}
 
@@ -211,7 +211,7 @@ The `onFormSave` handler calls the `_addWorker` method.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:32-36 %}
 
-The `_addWorker` method sets `_workerData` to a new array that includes the `_newWorker` object (which is the current `WorkerFormData`), sets `_newWorker` to a new empty object, and then invalidates the `App` widget. The reason that `_workerData` is not updated in place is because Dojo 2 decides whether a new render is needed by comparing the previous value of a property to the current value. If we are modifying the existing value then any comparison performed would report that the previous and current values are identical.
+The `_addWorker` method sets `_workerData` to a new array that includes the `_newWorker` object (which is the current `WorkerFormData`), sets `_newWorker` to a new empty object, and then invalidates the `App` widget. The reason that `_workerData` is not updated in place is because Dojo decides whether a new render is needed by comparing the previous value of a property to the current value. If we are modifying the existing value then any comparison performed would report that the previous and current values are identical.
 
 With the `WidgetForm` in place and the `App` configured to handle it, let's try it. For now let's test the [happy path](https://en.wikipedia.org/wiki/Happy_path) by providing the expected values to the form. Provide values for the fields, for example: "Suzette McNamara (smcnamara359@email.com)" and click the `Save` button. As expected, the form is cleared and a new `Worker` widget is added to the page. Clicking on the new `Worker` widget shows the detailed information of the card where we find that the first name, last name, and email values have been properly rendered.
 
@@ -219,12 +219,12 @@ With the `WidgetForm` in place and the `App` configured to handle it, let's try 
 
 ## Summary
 
-In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo 2's reactive programming style allows an application's state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo 2's widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.
+In this tutorial, we learned how to create complex widgets by composing simpler widgets together. We also got a first-hand look at how Dojo's reactive programming style allows an application's state to be centralized, simplifying data validation and synchronization tasks. Finally, we saw a couple of the widgets that come in Dojo's widgets package and learned how they address many common use cases while providing support for theming, internationalization, and accessibility.
 
-Dojo 2 widgets are provided in the [@dojo/widgets](https://github.com/dojo/widgets) GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the [Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
+Dojo widgets are provided in the [@dojo/widgets](https://github.com/dojo/widgets) GitHub repository. Common built-in widgets exist, such as buttons, accordions, form inputs, etc. You can view these widgets in the [Widget Showcase](https://dojo.github.io/examples/widget-showcase/).
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/005_form_widgets/demo/finished/biz-e-corp) or alternatively [download](../assets/005_form_widgets-finished.zip) the project.
 
-In [Deploying to production](../006_deploying_to_production/), we will wrap up this series by learning how to take a completed Dojo 2 application and prepare it for deployment to production.
+In [Deploying to production](../006_deploying_to_production/), we will wrap up this series by learning how to take a completed Dojo application and prepare it for deployment to production.
 
 {% section 'last' %}

@@ -1,4 +1,4 @@
-import { Container } from '@dojo/widget-core/Container';
+import { Container } from '@dojo/framework/widget-core/Container';
 
 import ApplicationContext from './../ApplicationContext';
 import WorkerContainer, { WorkerContainerProperties } from './../widgets/WorkerContainer';

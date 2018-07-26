@@ -1,8 +1,8 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
-import uuid from '@dojo/core/uuid';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { TypedTargetEvent } from '@dojo/framework/widget-core/interfaces';
+import { v, w } from '@dojo/framework/widget-core/d';
+import uuid from '@dojo/framework/core/uuid';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/text-input';
 import * as css from '../styles/workerForm.m.css';
 

@@ -2,7 +2,7 @@
 layout: tutorial
 title: Registry
 icon: list-alt
-overview: Discover how to use Dojo 2's registry to lazily load widgets when they are needed.
+overview: Discover how to use Dojo's registry to lazily load widgets when they are needed.
 paginate: true
 topic: widgets
 ---
@@ -13,16 +13,16 @@ topic: widgets
 
 ## Overview
 
-Flexibility to override the default type of a widget's children provides a powerful configuration option when it comes to using and customizing widgets with any web application. Additionally, as web applications grow, the physical size of the resources required to load the application becomes increasingly critical. Keeping the size of resources required to load a web application as small as possible ensures that the application can provide an optimal performance for all users. To help with these challenges, Dojo 2 provides a concept of a `registry` that can be used to achieve both of these goals in a simple and effective manner, without intruding on the existing development experience.
+Flexibility to override the default type of a widget's children provides a powerful configuration option when it comes to using and customizing widgets with any web application. Additionally, as web applications grow, the physical size of the resources required to load the application becomes increasingly critical. Keeping the size of resources required to load a web application as small as possible ensures that the application can provide an optimal performance for all users. To help with these challenges, Dojo provides a concept of a `registry` that can be used to achieve both of these goals in a simple and effective manner, without intruding on the existing development experience.
 
 In this tutorial, we will start with an application that uses concrete widget classes and request all assets when the application first loads. First we will swap all the concrete widget references to load the widgets from a `registry`. Then we will create a new widget that will be lazily loaded when the worker card is clicked the first time.
 
 ## Prerequisites
 You can [download](../assets/1020_registries-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -110,7 +110,7 @@ The `registry` is designed to mirror the behavior and API of custom elements whe
 
 Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual `render` cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.
 
-There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated `main.ts`. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the `@registry` decorator from `@dojo/widget-core/decorators/registry`.
+There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated `main.ts`. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the `@registry` decorator from `@dojo/framework/widget-core/decorators/registry`.
 
 {% task 'Add the import for the `@registry` decorator `Worker.ts`' %}
 

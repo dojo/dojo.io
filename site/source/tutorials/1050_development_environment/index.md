@@ -2,7 +2,7 @@
 layout: tutorial
 icon: terminal
 title: Setting up a development environment
-overview: This tutorial shows how to set up and use a development environment to optimize your Dojo 2 experience.
+overview: This tutorial shows how to set up and use a development environment to optimize your Dojo experience.
 paginate: true
 topic: dev
 ---
@@ -13,7 +13,7 @@ topic: dev
 
 ## Overview
 
-This tutorial explores setting up your tools and environment for the best possible Dojo 2 development experience. You may use demo code from any of the Dojo 2 tutorials, but this tutorial will reference finished code from the [Forms tutorial](../005_form_widgets/).
+This tutorial explores setting up your tools and environment for the best possible Dojo development experience. You may use demo code from any of the Dojo tutorials, but this tutorial will reference finished code from the [Forms tutorial](../005_form_widgets/).
 
 ## Prerequisites
 You can [download](../assets/1050_development_environment-initial.zip) a fresh install of the demo code to get started.
@@ -26,7 +26,7 @@ You should be familiar with the developer tools in your browser of choice. This 
 
 The [local installation tutorial](../000_local_installation/) covers the installation of the Dojo CLI and its available commands. Before installing the Dojo CLI, we assume you have an environment with supported versions of `node`, `npm`, and `git` installed.
 
-While `git` is not strictly necessary to use Dojo 2, a robust development environment also needs some sort of version control system. All of Dojo 2 uses `git` as the version control tool and we manage all of our code on GitHub. Many of our READMEs and other documentation may assume that `git` is being used. If it or another version control tool is not already installed, you can follow [the Git installation instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+While `git` is not strictly necessary to use Dojo, a robust development environment also needs some sort of version control system. All of Dojo uses `git` as the version control tool and we manage all of our code on GitHub. Many of our READMEs and other documentation may assume that `git` is being used. If it or another version control tool is not already installed, you can follow [the Git installation instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 {% task 'Initialize a git repository' %}
 
@@ -44,7 +44,7 @@ Use `git add` to begin tracking files, and `git commit` to create a commit. For 
 
 {% task 'Get an editor that supports TypeScript.' %}
 
-Any code editor will allow you to work on a Dojo 2 project, but an editor that supports TypeScript will give you a richer development experience, as Dojo 2 is built with TypeScript and specifically designed to take advantage of its features. A [list of editors with plugins that enable TypeScript support](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) is available to help you find an appropriate editor.
+Any code editor will allow you to work on a Dojo project, but an editor that supports TypeScript will give you a richer development experience, as Dojo is built with TypeScript and specifically designed to take advantage of its features. A [list of editors with plugins that enable TypeScript support](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support) is available to help you find an appropriate editor.
 
 {% instruction 'Install TypeScript support' %}
 
@@ -133,9 +133,9 @@ To access your tasks:
 
 ## Debugging
 
-If you are developing a Dojo 2 application in TypeScript, your application code must be transpiled from TypeScript into JavaScript. This transpilation can happen through the Dojo CLI tool, or through your own configured build system.
+If you are developing a Dojo application in TypeScript, your application code must be transpiled from TypeScript into JavaScript. This transpilation can happen through the Dojo CLI tool, or through your own configured build system.
 
-If you are also using `dojo build`, then your code is also being bundled and minimized. Bundling and minimizing could make it challenging to debug your application in the browser, but we have made efforts to integrate Dojo 2 into modern debugging tools.
+If you are also using `dojo build`, then your code is also being bundled and minimized. Bundling and minimizing could make it challenging to debug your application in the browser, but we have made efforts to integrate Dojo into modern debugging tools.
 
  Source maps describe a way to map from transformed source code back to its original source. The `dojo build` command maps the code throughout the process so that both the original TypeScript code and CSS code is available when debugging. This integrated workflow should allow you to set breakpoints and watch expressions on the original code as well as see the original code when there is a run-time error.
 
@@ -156,7 +156,7 @@ Using breakpoints enables the JavaScript engine to pause execution at a line of 
 
 {% task 'Install an accessibility inspector' %}
 
-Dojo 2 widgets are designed to be accessible by default. A good in-browser accessibility inspector helps integrate accessibility into the development process. The Google Accessibility team provides a [Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb) browser extension on the Chrome Web Store, which can be used when inspecting the DOM:
+Dojo widgets are designed to be accessible by default. A good in-browser accessibility inspector helps integrate accessibility into the development process. The Google Accessibility team provides a [Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb) browser extension on the Chrome Web Store, which can be used when inspecting the DOM:
 
 <p class="center">![chrome accessibility inspector](./resources/a11y_inspection.png)</p>
 
@@ -168,13 +168,13 @@ Chrome Accessibility Developer Tools does not run an audit against your code, or
 
 ## Summary
 
-Dojo 2 can be used out of the box with any code editor, but good TypeScript support will provide integrated code help and intellisense. Together with robust in-browser debugging, this should set you up with a streamlined process for editing, troubleshooting, and committing code.
+Dojo can be used out of the box with any code editor, but good TypeScript support will provide integrated code help and intellisense. Together with robust in-browser debugging, this should set you up with a streamlined process for editing, troubleshooting, and committing code.
 
 Moving forward, you can:
 
 * Explore other [TypeScript compatible editors](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)
 * Use _code editor snippets_ to quickly generate code snippets from simple shortcuts (see docs for [VS Code](https://code.visualstudio.com/docs/editor/userdefinedsnippets), [Sublime Text](http://docs.sublimetext.info/en/latest/extensibility/snippets.html) & [Atom](http://flight-manual.atom.io/using-atom/sections/snippets/))
-* Familiarize yourself with browser developer tooling such as the [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/), [Firefox Developer Tools](https://developer.mozilla.org/son/docs/Tools), [Safari Web Inspector](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/Web_Inspector_Tutorial/EnableWebInspector/EnableWebInspector.html) or the [Edge F12 Developer Tools](https://docs.microsoft.com/en-us/microsoft-edge/f12-devtools-guide). Understanding developer tooling will help you effectively edit and debug Dojo 2 web applications
+* Familiarize yourself with browser developer tooling such as the [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/), [Firefox Developer Tools](https://developer.mozilla.org/son/docs/Tools), [Safari Web Inspector](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/Web_Inspector_Tutorial/EnableWebInspector/EnableWebInspector.html) or the [Edge F12 Developer Tools](https://docs.microsoft.com/en-us/microsoft-edge/f12-devtools-guide). Understanding developer tooling will help you effectively edit and debug Dojo web applications
 * Use [npm scripts](https://docs.npmjs.com/misc/scripts) to configure commands such as `npm start` to execute `dojo build -w` making it easier for you and your team to get started
 
 {% section 'last' %}

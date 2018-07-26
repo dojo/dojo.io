@@ -20,9 +20,9 @@ We will start with an application that renders widgets containing the portrait a
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/004_user_interactions/demo/initial/biz-e-corp) or [download](../assets/004_user_interactions-initial.zip) the demo project and run `npm install` to get started.
 
-You should install the `@dojo/cli` command globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+You should install the `@dojo/cli` command globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -32,7 +32,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 In [Creating widgets](../003_creating_widgets/), we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when clicking on the widget.
 
-The first step is to add the listener itself. In Dojo 2, event listeners get assigned like any other property passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level `DNode` has one property assigned: `classes`.
+The first step is to add the listener itself. In Dojo, event listeners get assigned like any other property passed to the rendering function, `v`. Look at the `Worker` widget that is in `src/widgets`. Currently, the top level `DNode` has one property assigned: `classes`.
 
 {% instruction 'Update the object containing that property as follows.' %}
 
@@ -97,7 +97,7 @@ Finally, we need to update the `render` method to choose between the two renderi
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:18 %}
 
-In general, the use of private state is discouraged. Dojo 2 encourages the use of a form of the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) pattern, where the properties passed to the component by its parent control the behavior of the component. This pattern helps make components more modular and reusable since the parent component is in complete control of the child component's behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget's published state, and private fields are used to enable widgets to encapsulate state information that should not be exposed publicly.
+In general, the use of private state is discouraged. Dojo encourages the use of a form of the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) pattern, where the properties passed to the component by its parent control the behavior of the component. This pattern helps make components more modular and reusable since the parent component is in complete control of the child component's behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo. Properties are used to allow other components to view and modify a widget's published state, and private fields are used to enable widgets to encapsulate state information that should not be exposed publicly.
 
 {% instruction 'Use that field\'s value to determine which side to show.' %}
 
@@ -143,10 +143,10 @@ widgets are receiving data from the `App` class via the `WorkerContainer`.
 
 ## Summary
 
-In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers get assigned to virtual nodes like any other Dojo 2 property.
+In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers get assigned to virtual nodes like any other Dojo property.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/004_user_interactions/demo/finished/biz-e-corp) or alternatively [download](../assets/004_user_interactions-finished.zip) the project.
 
-In [Form widgets](../005_form_widgets/), we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.
+In [Form widgets](../005_form_widgets/), we will work with more complicated interactions in Dojo by extending the demo application, allowing new Workers to be created using forms.
 
 {% section 'last' %}

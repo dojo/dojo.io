@@ -1,6 +1,6 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 
 import Banner from './Banner';
 import WorkerForm, { WorkerFormData } from './WorkerForm';

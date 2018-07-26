@@ -2,7 +2,7 @@
 layout: tutorial
 icon: sitemap
 title: Routing
-overview: Use Dojo 2's declarative routing within your application.
+overview: Use Dojo's declarative routing within your application.
 paginate: true
 topic: routing
 ---
@@ -13,16 +13,16 @@ topic: routing
 
 ## Overview
 
-`@dojo/routing` is a powerful set of tools to support declarative routing using a higher order component, an `Outlet` and a component that creates links with a `href` generated from an `outlet` name.
+`@dojo/framework/routing` is a powerful set of tools to support declarative routing using a higher order component, an `Outlet` and a component that creates links with a `href` generated from an `outlet` name.
 
-In this tutorial, we will start with a basic application with no routing. We will use Dojo 2's declarative routing to configure some routes, create `outlets` from our existing widgets and use the `Link` component to create links for the application outlets.
+In this tutorial, we will start with a basic application with no routing. We will use Dojo's declarative routing to configure some routes, create `outlets` from our existing widgets and use the `Link` component to create links for the application outlets.
 
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/initial/biz-e-corp) or [download](../assets/1030_routing-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -58,7 +58,7 @@ Explanations for the route configuration in the above code block are explained e
 The default history manager uses hash-based (fragment style) URLs. To use one of the other provided history managers pass it as the `HistoryManager` in the third argument of `registerRouterInjector`.
 {% endaside %}
 
-The `registerRouterInjector` helper utility used in the code above is provided by `@dojo/routing`, and can be used to create a routing instance. The utility accepts:
+The `registerRouterInjector` helper utility used in the code above is provided by `@dojo/framework/routing`, and can be used to create a routing instance. The utility accepts:
 
 * The application's routing configuration
 * A `registry` to define a `router` injector against
@@ -132,7 +132,7 @@ Next, we will add a side menu with links for the created outlets.
 
 {% task 'Add a sidebar menu to the application.' %}
 
-In this section we will be using the `Link` component, provided by `@dojo/routing`, to create link elements with an `href` attribute for an outlet name. A `label` for the `Link` can be passed as children and parameter values for the outlet can be passed to a `Link` component using the `params` property.
+In this section we will be using the `Link` component, provided by `@dojo/framework/routing`, to create link elements with an `href` attribute for an outlet name. A `label` for the `Link` can be passed as children and parameter values for the outlet can be passed to a `Link` component using the `params` property.
 
 ```ts
 w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
@@ -163,7 +163,7 @@ Now, the links in the side menu can be used to navigate around the application!
 Finally, we are going to enhance the `WorkerContainer.ts` with a filter on the workers' last name. To do this we need to use the `filter` outlet configured in the first section. The key difference for the `filter` outlet is that the path is using a placeholder that indicates a path parameter, `{filter}`.
 
 {% aside 'URL matching in routes' %}
-The [Dojo 2 Routing documentation](https://github.com/dojo/routing/#route-registration) on GitHub further explains how outlets map to URLs.
+The [Dojo Routing documentation](https://github.com/dojo/routing/#route-registration) on GitHub further explains how outlets map to URLs.
 {% endaside %}
 
 This means a route with any value will match the `filter` as long as the previous path segments match, so for the `filter` outlet a route of `directory/any-value-here` would be considered a match.
@@ -191,7 +191,7 @@ We have added a new property named `filter` to `WorkerContainerProperties` in `W
 * `router`,
 * `matchType`
 
-Each of these four properties are documented in the [Dojo 2 Routing documentation](https://github.com/dojo/routing/#map-params) on GitHub.
+Each of these four properties are documented in the [Dojo Routing documentation](https://github.com/dojo/routing/#map-params) on GitHub.
 
 The mapping function callback can return an object which is then injected into the wrapped widget properties.
 
@@ -209,13 +209,13 @@ This code defines an `Outlet`. The third argument passed into the `Outlet` is a 
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-61 %}
 
-Previously, the raw Dojo 2 widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets 'wrap' the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.
+Previously, the raw Dojo widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets 'wrap' the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.
 
 {% section %}
 
 ## Summary
 
-Dojo 2 routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a higher order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.
+Dojo routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a higher order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/finished/biz-e-corp) or alternatively [download](../assets/1030_routing-finished.zip) the project.
 

@@ -1,4 +1,4 @@
-import { Outlet } from '@dojo/routing/Outlet';
+import { Outlet } from '@dojo/framework/routing/Outlet';
 
 import Banner from './../widgets/Banner';
 
