@@ -20,7 +20,7 @@ Also of note during the Dojo 2 cycle, we identified that pain points were going 
 Now that the core Dojo packages are stable, we decided to consolidate these packages into a single one with [@dojo/framework](https://github.com/dojo/framework). In doing this, we have hopefully improved the Dojo project in a few ways:
 
 * End users no longer have to worry about the current working set of package versions, there is just one package and version.
-* A single place to raise issues and feature requests (https://github.com/dojo/framework/issues).
+* [A single place to raise issues and feature requests](https://github.com/dojo/framework/issues).
 * A stronger focus on how dojo as a framework fits together to provide the best possible experience, over the old siloed packages approach.
 * Simplifying our management and release process allowing us to iterate quicker
 
