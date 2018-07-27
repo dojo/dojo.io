@@ -2,7 +2,9 @@
 title: Dojo Version 3.0
 date: 2018-07-27 08:00:00
 authorId: devpaul
+featured_image: featured.jpg
 ---
+{% asset_img featured.jpg feature-full %}
 
 ## Building on Success
 
