@@ -9095,9 +9095,6 @@ body :not(pre) > code {
   .body-tutorial .aside p {
     margin-top: 0.5em; }
 
-.uk-article-title {
-  font-weight: 300; }
-
 .doc-card .uk-card {
   display: flex;
   flex-direction: row; }
