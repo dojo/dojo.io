@@ -1,6 +1,6 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import Button from '@dojo/widgets/button/';
 import TextInput from '@dojo/widgets/text-input';
 import * as css from '../styles/workerForm.m.css';

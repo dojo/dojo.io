@@ -1,10 +1,10 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { w, v } from '@dojo/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { w, v } from '@dojo/framework/widget-core/d';
 import Worker, { WorkerProperties } from './Worker';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 import * as css from '../styles/workerContainer.m.css';
 
-import { Link } from '@dojo/routing/Link';
+import { Link } from '@dojo/framework/routing/Link';
 
 export interface WorkerContainerProperties {
 	workerData: WorkerProperties[];

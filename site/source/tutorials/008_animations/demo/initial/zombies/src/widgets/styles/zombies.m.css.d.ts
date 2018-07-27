@@ -9,3 +9,6 @@ export const zombieTwoBody: string;
 export const zombieTwoLeg: string;
 export const zombieTwoBackLeg: string;
 export const zombieTwoFrontLeg: string;
+export const heartsHolder: string;
+export const heart: string;
+export const controls: string;

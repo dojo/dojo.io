@@ -2,7 +2,7 @@
 layout: tutorial
 title: Data-driven widgets
 icon: database
-overview: In this tutorial, you will learn how to create reactive, data-driven widgets in Dojo 2.
+overview: In this tutorial, you will learn how to create reactive, data-driven widgets in Dojo.
 paginate: true
 topic: widgets
 ---
@@ -12,30 +12,30 @@ topic: widgets
 # Data-driven widgets
 
 ## Overview
-The Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the `properties` it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.
+The Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the `properties` it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.
 
-In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.
+In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo widgets should be decoupled from data providers.
 
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/initial/biz-e-corp) or [download](../assets/1060_data_driven_widgets-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
 ## Creating a filterable List widget
 
-{% task 'Create a widget that uses a Dojo 2 `TextInput`.' %}
+{% task 'Create a widget that uses a Dojo `TextInput`.' %}
 
-Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo 2 `TextInput` widget, with additional functionality to be added later within this tutorial. `List.ts` will contain our implementation, and similarly to widgets created during previous Dojo 2 tutorials, initial dependencies and a class declaration are needed to get started.
+Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo `TextInput` widget, with additional functionality to be added later within this tutorial. `List.ts` will contain our implementation, and similarly to widgets created during previous Dojo tutorials, initial dependencies and a class declaration are needed to get started.
 
 {% instruction 'Add the following skeleton to `List.ts`:' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/List.ts' lines:1-2,5-6,10,11-12,24-25,32-34 %}
 
-This code lays the base foundation for a standard Dojo 2 widget: it extends the `WidgetBase` class and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo 2 `TextInput` and use it inside the `List`.
+This code lays the base foundation for a standard Dojo widget: it extends the `WidgetBase` class and it defines a `render` method that returns a virtual DOM. The next step is to import a Dojo `TextInput` and use it inside the `List`.
 
 {% instruction 'Import `TextInput` into `List.ts`:' %}
 
@@ -98,7 +98,7 @@ protected render() {
 
 {% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
-A solid foundation for a filterable list widget using a Dojo 2 `TextInput` widget has been created and added to the existing `Banner`. Thus far, the widget is not connected to an external data source.
+A solid foundation for a filterable list widget using a Dojo `TextInput` widget has been created and added to the existing `Banner`. Thus far, the widget is not connected to an external data source.
 
 {% section %}
 
@@ -108,7 +108,7 @@ A solid foundation for a filterable list widget using a Dojo 2 `TextInput` widge
 
 Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a `store` property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to call specific methods on stores.
 
-Data-driven widgets in Dojo 2 do not call methods on a store directly (and are not connected directly to a data store at all). Instead widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data down to its children. The parent can in turn request data from _its_ parent in the same manner, or it can fetch data directly, such as by dispatching an action to an app store like Redux or making an XHR request directly. **Dojo 2 widgets can use this parent-driven data approach to enable compatibility with virtually any data provider by strictly decoupling widgets from the stores that power them.**
+Data-driven widgets in Dojo do not call methods on a store directly (and are not connected directly to a data store at all). Instead widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data down to its children. The parent can in turn request data from _its_ parent in the same manner, or it can fetch data directly, such as by dispatching an action to an app store like Redux or making an XHR request directly. **Dojo widgets can use this parent-driven data approach to enable compatibility with virtually any data provider by strictly decoupling widgets from the stores that power them.**
 
 The first step to connecting the `List` to worker data is to update its `properties` interface so it can accept a `data` array.
 
@@ -143,7 +143,7 @@ protected render() {
 ```
 
 {% aside 'Injecting state' %}
-The [State management](../1010_containers_and_injecting_state/) tutorial details how to use Dojo 2 `Containers` and `Injectors` to inject external state as properties of widgets.
+The [State management](../1010_containers_and_injecting_state/) tutorial details how to use Dojo `Containers` and `Injectors` to inject external state as properties of widgets.
 {% endaside %}
 
 The `List` widget now renders both a `TextInput` to accept user input and a list of result items based on its `data` property. Item rendering is offloaded into a helper method (`renderItems`) so widgets extending `List` that need to modify the rendering of items only need to override a small helper method instead of the main `render` method.
@@ -182,9 +182,9 @@ A helper method was added that filters worker data items by name based on a quer
 
 ## Summary
 
-A filterable list widget was created throughout this tutorial to demonstrate how Dojo 2 widgets have no coupling to a specific data store implementation. Despite the simplicity of this example widget, it demonstrates a key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.
+A filterable list widget was created throughout this tutorial to demonstrate how Dojo widgets have no coupling to a specific data store implementation. Despite the simplicity of this example widget, it demonstrates a key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.
 
-It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could be provided from any data source, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the `List` is not concerned with the data origin. Instead, data-driven widgets in Dojo 2 both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
+It's also important to note that in this tutorial, hardcoded worker data is passed down from the `App` widget to the `Banner` widget and ultimately to the `List` widget, but the data could be provided from any data source, including a remote server. It's entirely possible for `Banner` to directly initiate an XHR request for data, and it's also possible for `Banner` to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the `List` is not concerned with the data origin. Instead, data-driven widgets in Dojo both request and receive data using their `properties`, and the parent is responsible for either relaying or initiating the data request itself.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/finished/biz-e-corp) or alternatively [download](../assets/1060_data_driven_widgets-finished.zip) the project.
 

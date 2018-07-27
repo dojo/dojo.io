@@ -1,8 +1,8 @@
 ---
 layout: tutorial
 icon: cube
-title: Components of a Dojo 2 application
-overview: Learn about the structure of a simple Dojo 2 application and the purpose of each part.
+title: Components of a Dojo application
+overview: Learn about the structure of a simple Dojo application and the purpose of each part.
 paginate: true
 group: getting_started
 topic: create
@@ -10,54 +10,54 @@ topic: create
 
 {% section 'first' %}
 
-# Components of a Dojo 2 application
+# Components of a Dojo application
 
 ## Overview
 
-In this tutorial, you will learn about the structure of a simple Dojo 2 application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the possible parts of a Dojo 2 application. We will focus on the minimum application that we started with in [Your first Dojo 2 application](../001_static_content/).
+In this tutorial, you will learn about the structure of a simple Dojo application and the purpose of each part of the application. This will not be a comprehensive discussion about all of the possible parts of a Dojo application. We will focus on the minimum application that we started with in [Your first Dojo application](../001_static_content/).
 
 ## Prerequisites
 
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/002_creating_an_application/demo/initial/biz-e-corp) or [download](../assets/002_creating_an_application-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
 ## The main HTML document
 
-HTML pages are the foundation for every web application and Dojo 2 applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in `main.ts`:
+HTML pages are the foundation for every web application and Dojo applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in `main.ts`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' line:4 %}
 
-Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo 2 application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach:
+Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach:
 
-* A Dojo 2 application can easily coexist on a page with other content.
-* That content can consist of static assets, a legacy application or even another Dojo 2 application.
+* A Dojo application can easily coexist on a page with other content.
+* That content can consist of static assets, a legacy application or even another Dojo application.
 
 {% section %}
 
 ## The projector
 
-In [Your first Dojo 2 application](../001_static_content/), we reviewed Dojo 2's use of a virtual DOM to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in `main.ts`:
+In [Your first Dojo application](../001_static_content/), we reviewed Dojo's use of a virtual DOM to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in `main.ts`:
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:6-9 %}
 
 {% aside "Why is it called a Projector?" %}
-A physical projector takes some form of media, such as slides or video, and projects them onto a surface, such as a wall. In a similar way, Dojo 2's projector takes a virtual representation of the application and projects it onto the actual page.
+A physical projector takes some form of media, such as slides or video, and projects them onto a surface, such as a wall. In a similar way, Dojo's projector takes a virtual representation of the application and projects it onto the actual page.
 {% endaside %}
 
-These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root widget, making it aware of the Dojo 2 application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
+These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root widget, making it aware of the Dojo application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
 
-Whenever a Dojo 2 application needs to update the DOM, it informs the vdom system. The DOM updates do not, however, immediately re-render the page. Instead, it registers a render request with the application via the window's [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this, update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application's current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application's responsiveness.
+Whenever a Dojo application needs to update the DOM, it informs the vdom system. The DOM updates do not, however, immediately re-render the page. Instead, it registers a render request with the application via the window's [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this, update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application's current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application's responsiveness.
 
 {% section %}
 
 ## Widgets
 
-Widgets are the basic building blocks of Dojo 2's user interface. They combine both the visual and behavioral aspects of a component into a single element. These aspects are encapsulated within the widget's implementation. The widget then exposes properties and methods that allow other components to interact with it. Consider the following diagrams:
+Widgets are the basic building blocks of Dojo's user interface. They combine both the visual and behavioral aspects of a component into a single element. These aspects are encapsulated within the widget's implementation. The widget then exposes properties and methods that allow other components to interact with it. Consider the following diagrams:
 
 <img src="../resources/html_js.svg" title="HTML and JavaScript" class="half-width"/><img src="../resources/widget.svg" title="Widget" class="half-width"/>
 
@@ -75,7 +75,7 @@ This is very simple, containing a single `<h1>` tag and no behavior, but it demo
 
 ## Tests
 
-The final aspect that our basic application contains is its test suite. Dojo 2 is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application's components work together as expected. Dojo 2 leverages the [Intern](http://theintern.io) testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the [Dojo 2 test-extras library](https://github.com/dojo/test-extras) to verify the output of the widget's render function. The test-extras library is designed to facilitate testing the functionality of Dojo 2 widgets. For more information, refer to the [Testing Dojo 2 Widgets](../comingsoon.html) article.
+The final aspect that our basic application contains is its test suite. Dojo is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application's components work together as expected. Dojo leverages the [Intern](http://theintern.io) testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the [Dojo test-extras library](https://github.com/dojo/test-extras) to verify the output of the widget's render function. The test-extras library is designed to facilitate testing the functionality of Dojo widgets. For more information, refer to the [Testing Dojo Widgets](../comingsoon.html) article.
 
 Our demo application includes some tests to verify that it is working as expected. The tests are found in `tests/unit/widgets/HelloWorld.ts`. Let's examine this part of the test code:
 
@@ -104,10 +104,10 @@ dojo test --config local
 {% section %}
 
 ## Summary
-This tutorial introduced the components that make up the core of every Dojo 2 application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.
+This tutorial introduced the components that make up the core of every Dojo application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/002_creating_an_application/demo/finished/biz-e-corp) or alternatively [download](../assets/002_creating_an_application-finished.zip) the project.
 
-In [Creating widgets](../003_creating_widgets/), we will take a deeper look at Dojo 2 widgets. We will go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.
+In [Creating widgets](../003_creating_widgets/), we will take a deeper look at Dojo widgets. We will go beyond the static widgets that we have worked with so far and learn how to create widgets that encapsulate state and behavior.
 
 {% section 'last' %}

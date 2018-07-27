@@ -1,7 +1,7 @@
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import WebAnimation, { AnimationProperties } from '@dojo/widget-core/meta/WebAnimation';
-import { VNode } from '@dojo/widget-core/interfaces';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import WebAnimation, { AnimationProperties } from '@dojo/framework/widget-core/meta/WebAnimation';
+import { VNode } from '@dojo/framework/widget-core/interfaces';
 import Slider from '@dojo/widgets/slider';
 
 import * as css from './styles/zombies.m.css';

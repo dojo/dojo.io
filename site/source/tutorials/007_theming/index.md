@@ -2,7 +2,7 @@
 layout: tutorial
 title: Theming
 icon: paint-brush
-overview: Use the Dojo 2 theming and styling system to add a theme to an application.
+overview: Use the Dojo theming and styling system to add a theme to an application.
 paginate: true
 group: advanced
 topic: themes
@@ -13,14 +13,14 @@ topic: themes
 # Theming
 
 ## Overview
-This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme and apply it to our application. This will be done using the built-in theming system that is included in Dojo 2.
+This tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme and apply it to our application. This will be done using the built-in theming system that is included in Dojo.
 
 ## Prerequisites
 You can [download](../assets/007_theming-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -47,7 +47,7 @@ If you cannot see the application, remember to run `dojo build -m dev -w memory 
 
 This `Banner` widget will now have access to the classes in `banner.m.css` and can receive a `theme`. We use the `root` class to ensure that the theme we create can easily target the correct node.
 
-Notice that this file and other `css` files now have a `.m.css` file extension. This is to indicate to the [Dojo 2 build system](../006_deploying_to_production/) that this file is a `css-module` and should be processed as such.
+Notice that this file and other `css` files now have a `.m.css` file extension. This is to indicate to the [Dojo build system](../006_deploying_to_production/) that this file is a `css-module` and should be processed as such.
 
 {% aside 'CSS Modules' %}
 [CSS Modules](https://github.com/css-modules/css-modules) is a technique to use scoped CSS classnames by default.
@@ -116,7 +116,7 @@ Next, we will start to create a theme.
 
 {% task 'Create a theme directory' %}
 
-Dojo 2 provides a CLI command for creating a skeleton theme from existing Dojo 2 widgets. To do this the command prompts the user to enter the name of the package that contains Dojo 2 widgets and allows you to select specific widgets to include in the output.
+Dojo provides a CLI command for creating a skeleton theme from existing Dojo widgets. To do this the command prompts the user to enter the name of the package that contains Dojo widgets and allows you to select specific widgets to include in the output.
 
 {% instruction 'At the command line run `dojo create theme --name dojo`' %}
 
@@ -124,7 +124,7 @@ When prompted for the package to theme enter `@dojo/widgets` and then type `N` t
 
 This should have created a `themes` directory in the project's `src` directory, this will be where the custom theme is created.
 
-Dojo 2 uses the concept of a `key` to be able to look up and load classnames for a theme, it is a composite of the package name and the widget name joined by `/`. These keys are used as the keys to object that is exported from the main `theme.ts`.
+Dojo uses the concept of a `key` to be able to look up and load classnames for a theme, it is a composite of the package name and the widget name joined by `/`. These keys are used as the keys to object that is exported from the main `theme.ts`.
 
 {% instruction 'Theme the Worker widget' %}
 
@@ -159,7 +159,7 @@ Open the application in your web browser and see that the `Worker` backgrounds a
 
 {% instruction 'Use variables and complete the Worker theme' %}
 
-The [Dojo 2 build system](../006_deploying_to_production/) supports new CSS features such as `css-custom-properties` by using PostCSS to process our `.m.css` files. We can use these new CSS features to add variables to `worker.m.css` and complete its theme.
+The [Dojo build system](../006_deploying_to_production/) supports new CSS features such as `css-custom-properties` by using PostCSS to process our `.m.css` files. We can use these new CSS features to add variables to `worker.m.css` and complete its theme.
 Let's create `themes/dojo/variables.css` (notice that this file does not have a `.m.css` extension as it is not a `css-module` file).
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/variables.css' lang:css title:'File: src/themes/dojo/variables.css' %}
@@ -185,11 +185,11 @@ Thus far in this tutorial, we have themed our custom `Worker` widget, but we hav
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/theme.ts' lines:3,5,8,9,11,13,16 highlight:5,13 title:'File: src/themes/dojo/theme.ts' lang:typescript %}
 
-This should be familiar from theming the `Worker` in the previous section. To theme the Dojo 2 `TextInput` within our `WorkerForm`, we need to add to the skeleton `text-input.m.css` theme created by `@dojo/cli-create-theme`, this is already exported from `theme.ts`.
+This should be familiar from theming the `Worker` in the previous section. To theme the Dojo `TextInput` within our `WorkerForm`, we need to add to the skeleton `text-input.m.css` theme created by `@dojo/cli-create-theme`, this is already exported from `theme.ts`.
 
 {% include_codefile 'demo/finished/biz-e-corp/src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' lang:css highlight:6 title:'File: src/themes/dojo/@dojo/widgets/text-input/text-input.m.css' %}
 
-Notice the styling rule for the `.root` selector? Here we are introducing another powerful part of the Dojo 2 theming system, `composes`. Composes originates in the [`css-module` specification](https://github.com/css-modules/css-modules#composition), allowing you to apply styles from one class selector to another. Here we are specifying that the `root` of a `TextInput` (the label text in this case), should appear the same as the `nameLabel` class in our `WidgetForm`. This approach can be very useful when creating multiple themes from a `baseTheme` and avoids repetitive redefinition of style rules.
+Notice the styling rule for the `.root` selector? Here we are introducing another powerful part of the Dojo theming system, `composes`. Composes originates in the [`css-module` specification](https://github.com/css-modules/css-modules#composition), allowing you to apply styles from one class selector to another. Here we are specifying that the `root` of a `TextInput` (the label text in this case), should appear the same as the `nameLabel` class in our `WidgetForm`. This approach can be very useful when creating multiple themes from a `baseTheme` and avoids repetitive redefinition of style rules.
 
 In your web browser you will see the `TextInput` widgets at the top of the form have been styled.
 
@@ -205,7 +205,7 @@ In this tutorial, we learned:
 
 * How to create a theme
 * How to apply a theme to both Dojo and custom widgets using the `themeInjector`.
-* How to leverage functionality from the Dojo 2 theming system to apply variables
+* How to leverage functionality from the Dojo theming system to apply variables
 * How to use `composes` to share styles between components
 
 You can download the completed [demo application](../assets/007_theming-finished.zip) from this tutorial.

@@ -1,7 +1,7 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import { Link } from '@dojo/routing/Link';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
+import { Link } from '@dojo/framework/routing/Link';
 
 import { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';

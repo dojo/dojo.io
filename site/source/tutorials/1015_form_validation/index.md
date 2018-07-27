@@ -110,7 +110,7 @@ this._formErrors = deepAssign({}, this._formErrors, this._validateInput(input));
 
 {% instruction 'Update the render method of the `WorkerForm` class to display validation state' %}
 
-At this point in our progress, the `WorkerForm` widget holds the validation state of each form field in its `formErrors` property, updated every time an `onInput` handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo 2 `TextInput` widget contains an `invalid` property that sets the `aria-invalid` attribute on a DOM node, and toggles classes used for visual styling.
+At this point in our progress, the `WorkerForm` widget holds the validation state of each form field in its `formErrors` property, updated every time an `onInput` handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo `TextInput` widget contains an `invalid` property that sets the `aria-invalid` attribute on a DOM node, and toggles classes used for visual styling.
 
 The updated render function in `WorkerForm.ts` should set the `invalid` property on all form field widgets to reflect `formErrors`. We also add a `novalidate` attribute to the form element to prevent native browser validation.
 
@@ -204,11 +204,11 @@ You will also need to create `validatedTextInput.m.css` with `error` and `inputW
 ```
 
 ```ts
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { TypedTargetEvent } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
-import uuid from '@dojo/core/uuid';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { TypedTargetEvent } from '@dojo/framework/widget-core/interfaces';
+import { v, w } from '@dojo/framework/widget-core/d';
+import uuid from '@dojo/framework/core/uuid';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/text-input';
 import * as css from '../styles/validatedTextInput.m.css';
 

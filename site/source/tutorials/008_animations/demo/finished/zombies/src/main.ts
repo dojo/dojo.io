@@ -1,4 +1,4 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
 import Zombies from './widgets/Zombies';
 import 'web-animations-js/web-animations-next-lite.min';
 

@@ -2,7 +2,7 @@
 layout: tutorial
 icon: upload
 title: Deploying to production
-overview: Prepare a Dojo 2 application for production deployment.
+overview: Prepare a Dojo application for production deployment.
 paginate: true
 group: getting_started
 topic: deploying
@@ -19,9 +19,9 @@ This tutorial will extend on [Form widgets](../005_form_widgets/), where we adde
 ## Prerequisites
 You can [download](../assets/006_deploying_to_production-initial.zip) the demo project and run `npm install` to get started.
 
-The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo 2 local installation](../000_local_installation/) article for more information.
+The `@dojo/cli` command line tool should be installed globally. Refer to the [Dojo local installation](../000_local_installation/) article for more information.
 
-You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
+You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% section %}
 
@@ -29,7 +29,7 @@ You also need to be familiar with TypeScript as Dojo 2 uses it extensively.
 
 {% task 'Create a production build.' %}
 
-Creating a production build of a Dojo 2 application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w memory -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
+Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w memory -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
 
 {% instruction 'Run the `dojo build` command.' %}
 
@@ -53,7 +53,7 @@ While the default `dojo build` command can handle many common scenarios, there a
 
 ## Build options
 
-{% task 'Learn how to customize a Dojo 2 build.' %}
+{% task 'Learn how to customize a Dojo build.' %}
 
 The default options for `dojo build` are sufficient for many situations, but there are cases where additional configuration is required.
 
@@ -67,8 +67,8 @@ The build command supports two modes of `--watch`, `file` which writes built fil
 
 The `--help` argument displays the help information for the `dojo build` command and is equivalent to the `dojo build help` command.
 
-{% aside 'I18n in Dojo 2' %}
-Dojo 2 has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo 2, refer to the [Internationalization in Dojo 2 tutorial](../comingsoon.html).
+{% aside 'I18n in Dojo' %}
+Dojo has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo, refer to the [Internationalization in Dojo tutorial](../comingsoon.html).
 {% endaside %}
 
 The command line arguments give control over how the application is built and prepared for deployment. However, there is further configuration that can be provided for build concerns such as Internationalization. In the next section, we will learn how to configure these options using the `.dojorc`.
@@ -83,7 +83,7 @@ The command line arguments that the `dojo build` tool accepts generally relate t
 
 The `.dojorc` configuration expands on these settings enabling configuration for internationalization, code splitting, PWA manifest and eliding code based on feature tests.
 
-For more information about creating internationalized applications with Dojo 2, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
+For more information about creating internationalized applications with Dojo, refer to the [Internationalization](../comingsoon.html) article in the reference guide.
 
 {% aside 'Arguments vs .dojorc' %}
 It is possible to provide different settings when using command line arguments and `.dojorc`. When this occurs, command line arguments always take precedence over configuration settings stored in `.dojorc`.
@@ -137,7 +137,7 @@ A map of has features to boolean flags that can be used when building in `dist` 
 #### `pwa.manifest`
 Specifies information for a web app manifest.
 
-Dojo 2's build system is designed to encapsulate the build process as completely as possible. However, there may be times when a greater degree of control is required. In those situations, a project can be *ejected* from the `dojo` command line tool. We will take a look at that next.
+Dojo's build system is designed to encapsulate the build process as completely as possible. However, there may be times when a greater degree of control is required. In those situations, a project can be *ejected* from the `dojo` command line tool. We will take a look at that next.
 
 {% section %}
 
@@ -145,7 +145,7 @@ Dojo 2's build system is designed to encapsulate the build process as completely
 
 {% task 'Take full control of the build process.' %}
 
-The build tool is designed to cover the most common use cases for developing and deploying Dojo 2 applications. There are times, however, when you need to take full control of the deployment process. To achieve this level of control, a project can be *ejected* from the `dojo` tool and all of its configuration information exported.
+The build tool is designed to cover the most common use cases for developing and deploying Dojo applications. There are times, however, when you need to take full control of the deployment process. To achieve this level of control, a project can be *ejected* from the `dojo` tool and all of its configuration information exported.
 
 **Note:** This is a *non-reversible* process. Once a project has been ejected, the `dojo` tool can no longer be used to manage a project.
 
@@ -163,15 +163,15 @@ A build can then be triggered by running `webpack`'s build command and providing
 
 ## Summary
 
-For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo 2, on the other hand, provides a single command, `dojo build` that is used both during development as well as for production deployments.
+For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo, on the other hand, provides a single command, `dojo build` that is used both during development as well as for production deployments.
 
 While the `dojo build` command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios.
 
-In the event that the development team requires a higher level of control than Dojo 2's build system offers, a project can be exported via the `dojo eject` command. This non-reversible command exports all of the `dojo` CLI commands' configuration information, providing a solid starting point for additional optimizations.
+In the event that the development team requires a higher level of control than Dojo's build system offers, a project can be exported via the `dojo eject` command. This non-reversible command exports all of the `dojo` CLI commands' configuration information, providing a solid starting point for additional optimizations.
 
 ## Next steps
 
-This brings us to the end of the beginner tutorials for Dojo 2. At this point, you should have a good understanding of how to build simple applications with Dojo 2. There are, however, many more features that Dojo 2 has to offer.
+This brings us to the end of the beginner tutorials for Dojo. At this point, you should have a good understanding of how to build simple applications with Dojo. There are, however, many more features that Dojo has to offer.
 
 To learn about those features, take a look at the [advanced tutorials](../tutorials/) section where you will find more tutorials that demonstrate how to use features that almost every application needs such as creating in-page routers, working with client-side data stores, and more.
 
