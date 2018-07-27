@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Dojo Version 3.0 | Dojo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
+	<meta name="description" content="Building on SuccessSome changes are happening with Dojo. As the project continues to stabilize around a set of modules and APIs, we are continually evaluating feedback from the community as well as ou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dojo Version 3.0">
+<meta property="og:url" content="https://dojo.io/blog/2018/07/27/2018-07-27-Dojo-version-3-release/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Building on SuccessSome changes are happening with Dojo. As the project continues to stabilize around a set of modules and APIs, we are continually evaluating feedback from the community as well as ou">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-27T17:27:31.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dojo Version 3.0">
+<meta name="twitter:description" content="Building on SuccessSome changes are happening with Dojo. As the project continues to stabilize around a set of modules and APIs, we are continually evaluating feedback from the community as well as ou">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+	
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+	
+	
+		<link rel="icon" href="/images/favicons/favicon.ico">
+	
+	<link rel="stylesheet" href="/css/main.css">
+	
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
+
+	<body class="body-single-page
+">
+		<div class="page-wrapper">
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li><a class="navbar-item" href="/docs.html">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+					<li>
+						<a class="navbar-item">Community</a>
+						<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+<li><a href="https://discord.gg/M7yRngE"><span class="uk-margin-small-right" uk-icon="icon: comment"></span> Discord</a></li>
+<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
+
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
+	<div class="container article">
+		<article id="post-2018-07-27-Dojo-version-3-release" class="article uk-article article-type-post" itemscope itemprop="blogPost">
+			<div class="article-inner">
+				
+				
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 class="article-title uk-article-title" itemprop="name">
+      Dojo Version 3.0
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
+							<div class="author-meta">
+	
+	<span class="author-name"> Paul Shannon</span>
+	<span class="article-date">
+  <time datetime="2018-07-27T08:00:00.000Z" itemprop="datePublished">July 27th 2018, 8:00 am</time>
+</span>
+</div>
+							
+						</div>
+					</header>
+				
+				<div class="article-entry" itemprop="articleBody">
+					
+						<h2 id="Building-on-Success"><a href="#Building-on-Success" class="headerlink" title="Building on Success"></a>Building on Success</h2><p>Some changes are happening with Dojo. As the project continues to stabilize around a set of modules and APIs, we are continually evaluating feedback from the community as well as our processes.</p>
+<a id="more"></a>
+<p>First things first, when we released the next generation of Dojo, we wanted to strongly disambiguate between the legacy Dojo toolkit by naming it Dojo 2. Now that we have released Dojo 2 and are moving on with further releases we are going to drop the version number, and from now on we refer to it as Dojo.</p>
+<p>Also of note during the Dojo 2 cycle, we identified that pain points were going to become bottlenecks and affect the momentum of the project. Central to these issues was the complexity of managing the eight projects that make up the basis of the dojo framework: core, has, i18n, routing, shim, stores, test-extras, and widget-core. We found that managing these projects individually required a great deal of coordination when publishing and working with their inter-dependencies.</p>
+<h2 id="So-We-Made-a-Change"><a href="#So-We-Made-a-Change" class="headerlink" title="So We Made a Change"></a>So We Made a Change</h2><p>Now that the core Dojo packages are stable, we decided to consolidate these packages into a single one with <a href="https://github.com/dojo/framework" target="_blank" rel="noopener">@dojo/framework</a>. In doing this, we have hopefully improved the Dojo project in a few ways:</p>
+<ul>
+<li>End users no longer have to worry about the current working set of package versions, there is just one package and version.</li>
+<li><a href="https://github.com/dojo/framework/issues" target="_blank" rel="noopener">A single place to raise issues and feature requests</a>.</li>
+<li>A stronger focus on how dojo as a framework fits together to provide the best possible experience, over the old siloed packages approach.</li>
+<li>Simplifying our management and release process allowing us to iterate quicker</li>
+</ul>
+<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p>The new @dojo/cli-upgrade-app package aims to provide users with a friction-free upgrade path between major Dojo versions starting at 2.x.</p>
+<h2 id="Support"><a href="#Support" class="headerlink" title="Support"></a>Support</h2><p>In other news, our official chat support is now on Discord, so head on over to the <a href="https://discord.gg/M7yRngE" target="_blank" rel="noopener">Dojo Discord channel</a> and also check out updated examples on <a href="https://codesandbox.io/s/github/dojo/dojo-codesandbox-template" target="_blank" rel="noopener">CodeSandbox</a>.</p>
+
+					
+				</div>
+				<footer class="article-footer">
+					
+					
+				</footer>
+			</div>
+			
+				
+<hr>
+<nav id="article-nav" class="uk-child-width-1-2@s uk-text-center uk-grid-match uk-margin-top" uk-grid>
+
+	
+	
+		<div class="uk-card uk-card-hover uk-card-body">
+			<strong class="uk-text-small">Previous Post</strong>
+			<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/" id="article-nav-older" class="article-nav-link-wrap">Introducing Dojo 2.0!</a></h4>
+		</div>
+	
+</nav>
+
+			
+		</article>
+
+		
+	</div>
+</div>
+
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+	<li><a class="navbar-item" href="/docs.html">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+  <li class="uk-parent">
+	  <a class="navbar-item">Community</a>
+		  <ul class="uk-nav-sub">
+			  <li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+<li><a href="https://discord.gg/M7yRngE"><span class="uk-margin-small-right" uk-icon="icon: comment"></span> Discord</a></li>
+<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+<li><a href="/atom.xml"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>
+
+		  </ul>
+	  </div>
+  </li>
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
+</footer>
+
+			</div>
+			
+		</div>
+		
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
+
+	</body>
+</html>
