@@ -61,9 +61,12 @@ authors:
 	dylan:
 		name: Dylan Schiemann
 		email: dylan@sitepen.com
-  kitsonk:
-    name: Kitson Kelly
-    email: kkelly@sitepen.com
+	kitsonk:
+		name: Kitson Kelly
+		email: kkelly@sitepen.com
+	devpaul:
+		name: Paul Shannon
+		email: pshannon@sitepen.com
 
 feed:
   type: atom
