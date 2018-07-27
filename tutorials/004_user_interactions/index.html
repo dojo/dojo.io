@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.213Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Responding to events">
 <meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
@@ -91,11 +91,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -133,12 +133,12 @@ ga('send', 'pageview');
 <h1 id="Responding-to-events"><a href="#Responding-to-events" class="headerlink" title="Responding to events"></a>Responding to events</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button.</p>
 <p>We will start with an application that renders widgets containing the portrait and names of several employees for the hypothetical company, “Biz-E Corp”. In this tutorial, you will learn how to add event listeners to these widgets so that they show additional information about each worker including a list of their active tasks.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can open the <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/004_user_interactions/demo/initial/biz-e-corp" target="_blank" rel="noopener">tutorial on codesandbox.io</a> or <a href="../assets/004_user_interactions-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>You should install the <code>@dojo/cli</code> command globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>You should install the <code>@dojo/cli</code> command globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Event-listeners"><a href="#Event-listeners" class="headerlink" title="Event listeners"></a>Event listeners</h2><div class="task">Create an event listener.</div>
 <p>In <a href="../003_creating_widgets/">Creating widgets</a>, we created an application that contains several widgets that render worker information. In this tutorial, you will add event listeners to these widgets to show additional information about an employee when clicking on the widget.</p>
-<p>The first step is to add the listener itself. In Dojo 2, event listeners get assigned like any other property passed to the rendering function, <code>v</code>. Look at the <code>Worker</code> widget that is in <code>src/widgets</code>. Currently, the top level <code>DNode</code> has one property assigned: <code>classes</code>.</p>
+<p>The first step is to add the listener itself. In Dojo, event listeners get assigned like any other property passed to the rendering function, <code>v</code>. Look at the <code>Worker</code> widget that is in <code>src/widgets</code>. Currently, the top level <code>DNode</code> has one property assigned: <code>classes</code>.</p>
 <div class="instruction">Update the object containing that property as follows.</div>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token punctuation">{</span>
     classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>worker<span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -321,7 +321,7 @@ ga('send', 'pageview');
 <div class="instruction">Add a private field to the class.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> _isFlipped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 </code></pre>
-<p>In general, the use of private state is discouraged. Dojo 2 encourages the use of a form of the <a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="noopener">inversion of control</a> pattern, where the properties passed to the component by its parent control the behavior of the component. This pattern helps make components more modular and reusable since the parent component is in complete control of the child component’s behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo 2. Properties are used to allow other components to view and modify a widget’s published state, and private fields are used to enable widgets to encapsulate state information that should not be exposed publicly.</p>
+<p>In general, the use of private state is discouraged. Dojo encourages the use of a form of the <a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="noopener">inversion of control</a> pattern, where the properties passed to the component by its parent control the behavior of the component. This pattern helps make components more modular and reusable since the parent component is in complete control of the child component’s behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo. Properties are used to allow other components to view and modify a widget’s published state, and private fields are used to enable widgets to encapsulate state information that should not be exposed publicly.</p>
 <div class="instruction">Use that field's value to determine which side to show.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -357,9 +357,9 @@ ga('send', 'pageview');
 </code></pre>
 <p>This change will pass the specified properties to the first worker. The widget’s parent<br>is responsible for passing properties to the widget. In this application, <code>Worker</code><br>widgets are receiving data from the <code>App</code> class via the <code>WorkerContainer</code>.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers get assigned to virtual nodes like any other Dojo 2 property.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned how to attach event listeners to respond to widget-generated events. Event handlers get assigned to virtual nodes like any other Dojo property.</p>
 <p>If you would like, you can open the completed demo application on <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/004_user_interactions/demo/finished/biz-e-corp" target="_blank" rel="noopener">codesandbox.io</a> or alternatively <a href="../assets/004_user_interactions-finished.zip">download</a> the project.</p>
-<p>In <a href="../005_form_widgets/">Form widgets</a>, we will work with more complicated interactions in Dojo 2 by extending the demo application, allowing new Workers to be created using forms.</p>
+<p>In <a href="../005_form_widgets/">Form widgets</a>, we will work with more complicated interactions in Dojo by extending the demo application, allowing new Workers to be created using forms.</p>
 </section>
 
 				</div>
@@ -395,11 +395,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

@@ -7,17 +7,17 @@
 	<title>Routing | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
-	<meta name="description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
+	<meta name="description" content="Application routingOverview@dojo/framework/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href g">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Routing">
 <meta property="og:url" content="https://dojo.io/tutorials/1030_routing/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
+<meta property="og:description" content="Application routingOverview@dojo/framework/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href g">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.241Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
-<meta name="twitter:description" content="Application routingOverview@dojo/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href generated f">
+<meta name="twitter:description" content="Application routingOverview@dojo/framework/routing is a powerful set of tools to support declarative routing using a higher order component, an Outlet and a component that creates links with a href g">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
 	
 		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -91,11 +91,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -130,11 +130,11 @@ ga('send', 'pageview');
 			<div class="uk-section uk-section-default">
 				<div class="uk-container uk-container-small uk-position-relative">
 					<section class="tutorial hidden hiding">
-<h1 id="Application-routing"><a href="#Application-routing" class="headerlink" title="Application routing"></a>Application routing</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><code>@dojo/routing</code> is a powerful set of tools to support declarative routing using a higher order component, an <code>Outlet</code> and a component that creates links with a <code>href</code> generated from an <code>outlet</code> name.</p>
-<p>In this tutorial, we will start with a basic application with no routing. We will use Dojo 2’s declarative routing to configure some routes, create <code>outlets</code> from our existing widgets and use the <code>Link</code> component to create links for the application outlets.</p>
+<h1 id="Application-routing"><a href="#Application-routing" class="headerlink" title="Application routing"></a>Application routing</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><code>@dojo/framework/routing</code> is a powerful set of tools to support declarative routing using a higher order component, an <code>Outlet</code> and a component that creates links with a <code>href</code> generated from an <code>outlet</code> name.</p>
+<p>In this tutorial, we will start with a basic application with no routing. We will use Dojo’s declarative routing to configure some routes, create <code>outlets</code> from our existing widgets and use the <code>Link</code> component to create links for the application outlets.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can open the <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/initial/biz-e-corp" target="_blank" rel="noopener">tutorial on codesandbox.io</a> or <a href="../assets/1030_routing-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Configuring-the-router"><a href="#Configuring-the-router" class="headerlink" title="Configuring the router"></a>Configuring the router</h2><div class="task">Create the routing configuration</div>
 <p>All application routes needs to be to configured when creating the router instance, otherwise entering a route will not trigger a transition within the application. The <code>RouteConfig</code> object is an object consisting of various properties:</p>
@@ -147,8 +147,8 @@ ga('send', 'pageview');
 </ul>
 <p>Application routing paths are assembled into a hierarchy based on the routing configuration. The <code>children</code> property of a parent route accepts an array of more route configurations.</p>
 <div class="instruction">Include the required imports in the file <code>main.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> registerRouterInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/RouterInjector'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/Registry'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> registerRouterInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/RouterInjector'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Define the routing configuration.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> routingConfig <span class="token operator">=</span> <span class="token punctuation">[</span>
@@ -179,7 +179,7 @@ ga('send', 'pageview');
 <span class="token function">registerRouterInjector</span><span class="token punctuation">(</span>routingConfig<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <article class="aside"><strong class="label">History Managers</strong><p>The default history manager uses hash-based (fragment style) URLs. To use one of the other provided history managers pass it as the <code>HistoryManager</code> in the third argument of <code>registerRouterInjector</code>.</p></article>
-<p>The <code>registerRouterInjector</code> helper utility used in the code above is provided by <code>@dojo/routing</code>, and can be used to create a routing instance. The utility accepts:</p>
+<p>The <code>registerRouterInjector</code> helper utility used in the code above is provided by <code>@dojo/framework/routing</code>, and can be used to create a routing instance. The utility accepts:</p>
 <ul>
 <li>The application’s routing configuration</li>
 <li>A <code>registry</code> to define a <code>router</code> injector against</li>
@@ -196,7 +196,7 @@ ga('send', 'pageview');
 <article class="aside"><strong class="label">Reminder</strong><p>The path that is associated to an outlet name is defined by the routing configuration from the first section of this tutorial.</p></article>
 <p>An <code>Outlet</code> is a higher order component that wraps a widget, and controls whether the widget is rendered based on the navigated route associated to the outlets name. To keep our application organized, outlets are usually stored in a separate directory named <code>outlets</code>.</p>
 <div class="instruction">Add the following code to <code>WorkerFormOutlet.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Outlet'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/Outlet'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> WorkerForm <span class="token keyword">from</span> <span class="token string">'./../widgets/WorkerForm'</span><span class="token punctuation">;</span>
 
@@ -214,7 +214,7 @@ ga('send', 'pageview');
 </code></pre>
 <p>We use the advanced configuration for both the <code>BannerOutlet.ts</code> and <code>WorkerContainerOutlet.ts</code>, as we do not want the widgets to render for routes unless they are an exact match for the selected route.</p>
 <div class="instruction">Add the following code to <code>WorkerContainerOutlet.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Outlet'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/Outlet'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./../widgets/WorkerContainer'</span><span class="token punctuation">;</span>
 
@@ -223,7 +223,7 @@ ga('send', 'pageview');
 <span class="token keyword">export</span> <span class="token keyword">default</span> WorkerContainerOutlet<span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Add the following code to <code>BannerOutlet.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Outlet'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/Outlet'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> Banner <span class="token keyword">from</span> <span class="token string">'./../widgets/Banner'</span><span class="token punctuation">;</span>
 
@@ -252,11 +252,11 @@ ga('send', 'pageview');
 <p>Next, we will add a side menu with links for the created outlets.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Adding-Links"><a href="#Adding-Links" class="headerlink" title="Adding Links"></a>Adding Links</h2><div class="task">Add a sidebar menu to the application.</div>
-<p>In this section we will be using the <code>Link</code> component, provided by <code>@dojo/routing</code>, to create link elements with an <code>href</code> attribute for an outlet name. A <code>label</code> for the <code>Link</code> can be passed as children and parameter values for the outlet can be passed to a <code>Link</code> component using the <code>params</code> property.</p>
+<p>In this section we will be using the <code>Link</code> component, provided by <code>@dojo/framework/routing</code>, to create link elements with an <code>href</code> attribute for an outlet name. A <code>label</code> for the <code>Link</code> can be passed as children and parameter values for the outlet can be passed to a <code>Link</code> component using the <code>params</code> property.</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Link<span class="token punctuation">,</span> <span class="token punctuation">{</span> to<span class="token punctuation">:</span> <span class="token string">'outlet-name'</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span> <span class="token punctuation">{</span> paramName<span class="token punctuation">:</span> <span class="token string">'value'</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Add the <code>Link</code> import in <code>App.ts</code>.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Link'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/Link'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Replace the <code>render</code> function in <code>App.ts</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -295,7 +295,7 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Dynamic-Outlet"><a href="#Dynamic-Outlet" class="headerlink" title="Dynamic Outlet"></a>Dynamic <code>Outlet</code></h2><div class="task">Add filters to the <code>WorkerContainer.ts</code> widget and create an outlet.</div>
 <p>Finally, we are going to enhance the <code>WorkerContainer.ts</code> with a filter on the workers’ last name. To do this we need to use the <code>filter</code> outlet configured in the first section. The key difference for the <code>filter</code> outlet is that the path is using a placeholder that indicates a path parameter, <code>{filter}</code>.</p>
-<article class="aside"><strong class="label">URL matching in routes</strong><p>The <a href="https://github.com/dojo/routing/#route-registration" target="_blank" rel="noopener">Dojo 2 Routing documentation</a> on GitHub further explains how outlets map to URLs.</p></article>
+<article class="aside"><strong class="label">URL matching in routes</strong><p>The <a href="https://github.com/dojo/routing/#route-registration" target="_blank" rel="noopener">Dojo Routing documentation</a> on GitHub further explains how outlets map to URLs.</p></article>
 <p>This means a route with any value will match the <code>filter</code> as long as the previous path segments match, so for the <code>filter</code> outlet a route of <code>directory/any-value-here</code> would be considered a match.</p>
 <div class="instruction">Add the new property to the <code>WidgetContainerProperties</code> interface in <code>WorkerContainer.ts</code>.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerContainerProperties</span> <span class="token punctuation">{</span>
@@ -304,7 +304,7 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <div class="instruction">Include the <code>Link</code> import</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Link'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/Link'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Add a private function to generate the filter links</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> <span class="token function">_createFilterLinks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -352,10 +352,10 @@ ga('send', 'pageview');
 <li><code>router</code>,</li>
 <li><code>matchType</code></li>
 </ul>
-<p>Each of these four properties are documented in the <a href="https://github.com/dojo/routing/#map-params" target="_blank" rel="noopener">Dojo 2 Routing documentation</a> on GitHub.</p>
+<p>Each of these four properties are documented in the <a href="https://github.com/dojo/routing/#map-params" target="_blank" rel="noopener">Dojo Routing documentation</a> on GitHub.</p>
 <p>The mapping function callback can return an object which is then injected into the wrapped widget properties.</p>
 <div class="instruction">Add the following code to <code>FilteredWorkerContainerOutlet.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/routing/Outlet'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Outlet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/routing/Outlet'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> WorkerContainer <span class="token keyword">from</span> <span class="token string">'./../widgets/WorkerContainer'</span><span class="token punctuation">;</span>
 
@@ -383,9 +383,9 @@ ga('send', 'pageview');
 	workerData<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_workerData
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
-<p>Previously, the raw Dojo 2 widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets ‘wrap’ the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.</p>
+<p>Previously, the raw Dojo widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets ‘wrap’ the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Dojo 2 routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a higher order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Dojo routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a higher order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.</p>
 <p>If you would like, you can open the completed demo application on <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/finished/biz-e-corp" target="_blank" rel="noopener">codesandbox.io</a> or alternatively <a href="../assets/1030_routing-finished.zip">download</a> the project.</p>
 </section>
 
@@ -422,11 +422,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

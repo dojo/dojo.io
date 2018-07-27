@@ -4,20 +4,20 @@
 	<meta charset="utf-8">
 	
 
-	<title>Your first Dojo 2 application | Dojo</title>
+	<title>Your first Dojo application | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
-	<meta name="description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can open th">
+	<meta name="description" content="Your first Dojo applicationOverviewIn this tutorial, you will learn how to the create your first Dojo application and use it to print a simple message in the browser. PrerequisitesYou can open the tu">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Your first Dojo 2 application">
+<meta property="og:title" content="Your first Dojo application">
 <meta property="og:url" content="https://dojo.io/tutorials/001_static_content/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can open th">
+<meta property="og:description" content="Your first Dojo applicationOverviewIn this tutorial, you will learn how to the create your first Dojo application and use it to print a simple message in the browser. PrerequisitesYou can open the tu">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.205Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.062Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Your first Dojo 2 application">
-<meta name="twitter:description" content="Your first Dojo 2 applicationOverviewIn this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser. PrerequisitesYou can open th">
+<meta name="twitter:title" content="Your first Dojo application">
+<meta name="twitter:description" content="Your first Dojo applicationOverviewIn this tutorial, you will learn how to the create your first Dojo application and use it to print a simple message in the browser. PrerequisitesYou can open the tu">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
 	
 		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
@@ -91,11 +91,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class="uk-active"><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class="uk-active"><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -130,10 +130,10 @@ ga('send', 'pageview');
 			<div class="uk-section uk-section-default">
 				<div class="uk-container uk-container-small uk-position-relative">
 					<section class="tutorial hidden hiding">
-<h1 id="Your-first-Dojo-2-application"><a href="#Your-first-Dojo-2-application" class="headerlink" title="Your first Dojo 2 application"></a>Your first Dojo 2 application</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to the create your first Dojo 2 application and use it to print a simple message in the browser.</p>
+<h1 id="Your-first-Dojo-application"><a href="#Your-first-Dojo-application" class="headerlink" title="Your first Dojo application"></a>Your first Dojo application</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this tutorial, you will learn how to the create your first Dojo application and use it to print a simple message in the browser.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can open the <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/001_static_content/demo/initial/biz-e-corp" target="_blank" rel="noopener">tutorial on codesandbox.io</a> or <a href="../assets/001_static_content-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Starting-the-development-server"><a href="#Starting-the-development-server" class="headerlink" title="Starting the development server"></a>Starting the development server</h2><div class="task">Build and run the application.</div>
 <p>Before we start making changes, let’s start the application with the development server so that we can observe the impact of our changes. Run the following command in the application’s root directory:</p>
@@ -150,8 +150,8 @@ ga('send', 'pageview');
 <p>Now, let’s remove the “Hello, Dojo World!” message.</p>
 <div class="instruction">Open <code>HelloWorld.ts</code>, located in <code>/src/widgets</code>.</div>
 <p>You should see something like this:</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
 	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -162,7 +162,7 @@ ga('send', 'pageview');
 <p>Some of this code may not make sense now, but over the next few tutorials, you will find out what all of it means. For now, let’s focus on this line:</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Hello, Dojo World!'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>The <code>v</code> function simply instructs Dojo 2 to create an HTML element, in this case a <code>&lt;div&gt;</code> element with the text “Hello, Dojo World!” inside of it. We will build a view that allows the user to view Biz-E Corp’s workers, so let’s update the tag and message to something more appropriate.</p>
+<p>The <code>v</code> function simply instructs Dojo to create an HTML element, in this case a <code>&lt;div&gt;</code> element with the text “Hello, Dojo World!” inside of it. We will build a view that allows the user to view Biz-E Corp’s workers, so let’s update the tag and message to something more appropriate.</p>
 <div class="instruction">Replace the <code>&lt;div&gt;</code> tag with an <code>&lt;h1&gt;</code> tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"</div>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span> <span class="token punctuation">{</span>
     <span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -170,9 +170,9 @@ ga('send', 'pageview');
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Now, let’s look at the <code>v</code> function again. We are intentionally avoiding something like <code>document.createElement</code> to create DOM (<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank" rel="noopener">Document Object Model</a>) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo 2 efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a <em>virtual</em> DOM.</p>
+<p>Now, let’s look at the <code>v</code> function again. We are intentionally avoiding something like <code>document.createElement</code> to create DOM (<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank" rel="noopener">Document Object Model</a>) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a <em>virtual</em> DOM.</p>
 <p>In traditional web applications, keeping the DOM and JavaScript application logic in sync led to significant complexity and inefficiency for non-trivial applications. When building applications with numerous changes to state and data, the virtual DOM approach can greatly simplify your application logic and improve performance. A virtual DOM serves as an intermediary between your application logic and what is rendered in the real DOM on the page.</p>
-<p>Dojo 2 leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.</p>
+<p>Dojo leverages its own virtual DOM library, to determine the most efficient way to interact with the DOM elements in your view. An additional benefit of the virtual DOM is that it facilitates a reactive programming style which simplifies your application. In the final part of this tutorial, we will learn how to set properties on virtual DOM nodes.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Virtual-DOM-properties"><a href="#Virtual-DOM-properties" class="headerlink" title="Virtual DOM properties"></a>Virtual DOM properties</h2><div class="task">Set properties on virtual DOM nodes.</div>
 <p>Now we will add some additional attributes to the <code>&lt;h1&gt;</code> element we created earlier in <code>HelloWorld.ts</code>. These attributes can be passed in the second argument to the <code>v</code> function.</p>
@@ -182,7 +182,7 @@ ga('send', 'pageview');
 <article class="aside"><strong class="label">Virtual Dom Properties and Attributes</strong><p>The vdom system will automatically add properties with a type of <code>string</code> as an attribute and other values as properties on the DOM node.</p></article>
 <p>Notice that we have added a parameter between the tag and content parameters. The object used as the second parameter can set any attributes or properties on the element being created. This method of using JavaScript or TypeScript to create DOM elements is called <a href="https://github.com/hyperhype/hyperscript" target="_blank" rel="noopener">HyperScript</a> and is shared by many virtual DOM implementations.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Congratulations! You are off to a good start on your journey to master Dojo 2. In <a href="../002_creating_an_application/">Components of a Dojo 2 application</a>, we will start to get familiar with the major components of a Dojo 2 application.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Congratulations! You are off to a good start on your journey to master Dojo. In <a href="../002_creating_an_application/">Components of a Dojo application</a>, we will start to get familiar with the major components of a Dojo application.</p>
 <p>If you would like, you can open the completed demo application on <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/001_static_content/demo/finished/biz-e-corp" target="_blank" rel="noopener">codesandbox.io</a> or alternatively <a href="../assets/001_static_content-finished.zip">download</a> the project.</p>
 </section>
 
@@ -219,11 +219,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class="uk-active"><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class="uk-active"><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

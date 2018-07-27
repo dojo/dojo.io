@@ -7,18 +7,18 @@
 	<title>Data-driven widgets | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
-	<meta name="description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
+	<meta name="description" content="Data-driven widgetsOverviewThe Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the properti">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Data-driven widgets">
 <meta property="og:url" content="https://dojo.io/tutorials/1060_data_driven_widgets/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
+<meta property="og:description" content="Data-driven widgetsOverviewThe Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the properti">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/resources/list.png">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.249Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-driven widgets">
-<meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the proper">
+<meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the properti">
 <meta name="twitter:image" content="https://dojo.io/tutorials/resources/list.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
 	
@@ -93,11 +93,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -132,17 +132,17 @@ ga('send', 'pageview');
 			<div class="uk-section uk-section-default">
 				<div class="uk-container uk-container-small uk-position-relative">
 					<section class="tutorial hidden hiding">
-<h1 id="Data-driven-widgets"><a href="#Data-driven-widgets" class="headerlink" title="Data-driven widgets"></a>Data-driven widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>The Dojo 2 widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the <code>properties</code> it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.</p>
-<p>In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo 2 widgets should be decoupled from data providers.</p>
+<h1 id="Data-driven-widgets"><a href="#Data-driven-widgets" class="headerlink" title="Data-driven widgets"></a>Data-driven widgets</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>The Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the <code>properties</code> it exposes, and dealing directly with widget instances is both uncommon and considered an anti-pattern. It may initially be challenging to understand how to build data-driven widgets in such a reactive framework, especially when widgets in past frameworks such as Dojo 1 were so tightly coupled to data store implementations.</p>
+<p>In this tutorial we will create a filterable data-driven list widget, demonstrating how Dojo widgets should be decoupled from data providers.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can open the <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/initial/biz-e-corp" target="_blank" rel="noopener">tutorial on codesandbox.io</a> or <a href="../assets/1060_data_driven_widgets-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Creating-a-filterable-List-widget"><a href="#Creating-a-filterable-List-widget" class="headerlink" title="Creating a filterable List widget"></a>Creating a filterable List widget</h2><div class="task">Create a widget that uses a Dojo 2 <code>TextInput</code>.</div>
-<p>Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo 2 <code>TextInput</code> widget, with additional functionality to be added later within this tutorial. <code>List.ts</code> will contain our implementation, and similarly to widgets created during previous Dojo 2 tutorials, initial dependencies and a class declaration are needed to get started.</p>
+<h2 id="Creating-a-filterable-List-widget"><a href="#Creating-a-filterable-List-widget" class="headerlink" title="Creating a filterable List widget"></a>Creating a filterable List widget</h2><div class="task">Create a widget that uses a Dojo <code>TextInput</code>.</div>
+<p>Before digging into the specifics of wiring a widget to a data source, a basic list widget with a filter input must first be created. Initially, the widget will simply render a Dojo <code>TextInput</code> widget, with additional functionality to be added later within this tutorial. <code>List.ts</code> will contain our implementation, and similarly to widgets created during previous Dojo tutorials, initial dependencies and a class declaration are needed to get started.</p>
 <div class="instruction">Add the following skeleton to <code>List.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ListProperties</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
@@ -154,7 +154,7 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>This code lays the base foundation for a standard Dojo 2 widget: it extends the <code>WidgetBase</code> class and it defines a <code>render</code> method that returns a virtual DOM. The next step is to import a Dojo 2 <code>TextInput</code> and use it inside the <code>List</code>.</p>
+<p>This code lays the base foundation for a standard Dojo widget: it extends the <code>WidgetBase</code> class and it defines a <code>render</code> method that returns a virtual DOM. The next step is to import a Dojo <code>TextInput</code> and use it inside the <code>List</code>.</p>
 <div class="instruction">Import <code>TextInput</code> into <code>List.ts</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> TextInput <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
 </code></pre>
@@ -187,7 +187,7 @@ ga('send', 'pageview');
 <p class="center"><img src="/tutorials/resources/list.png" alt="list_widget"></p>
 
 <div class="instruction">Import the <code>List</code> and the <code>w</code> module into <code>Banner.ts</code>:</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> List <span class="token keyword">from</span> <span class="token string">'./List'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Update <code>Banner</code> to render an array of virtual DOM nodes including the existing <code>&lt;h1&gt;</code> element as well as a <code>List</code> widget.</div>
@@ -203,11 +203,11 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <div class="instruction">Run the application with <code>dojo build -m dev -w memory -s</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>.</div>
-<p>A solid foundation for a filterable list widget using a Dojo 2 <code>TextInput</code> widget has been created and added to the existing <code>Banner</code>. Thus far, the widget is not connected to an external data source.</p>
+<p>A solid foundation for a filterable list widget using a Dojo <code>TextInput</code> widget has been created and added to the existing <code>Banner</code>. Thus far, the widget is not connected to an external data source.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Connecting-the-List-to-data"><a href="#Connecting-the-List-to-data" class="headerlink" title="Connecting the List to data"></a>Connecting the List to data</h2><div class="task">Connect the <code>List</code> to data using its <code>properties</code>.</div>
 <p>Traditional widget frameworks like Dojo 1 required developers to tightly couple widget instances to data store instances. For example, it was common for Dojo 1 widget code to expect a <code>store</code> property to exist on a widget instance, and to further expect that store to expose a Dojo-specific data store API. While effective, this method of explicitly connecting widgets to data stores is brittle and forces widgets to call specific methods on stores.</p>
-<p>Data-driven widgets in Dojo 2 do not call methods on a store directly (and are not connected directly to a data store at all). Instead widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data down to its children. The parent can in turn request data from <em>its</em> parent in the same manner, or it can fetch data directly, such as by dispatching an action to an app store like Redux or making an XHR request directly. <strong>Dojo 2 widgets can use this parent-driven data approach to enable compatibility with virtually any data provider by strictly decoupling widgets from the stores that power them.</strong></p>
+<p>Data-driven widgets in Dojo do not call methods on a store directly (and are not connected directly to a data store at all). Instead widgets request data from their parent widget using callback properties, and the parent passes properties containing relevant data down to its children. The parent can in turn request data from <em>its</em> parent in the same manner, or it can fetch data directly, such as by dispatching an action to an app store like Redux or making an XHR request directly. <strong>Dojo widgets can use this parent-driven data approach to enable compatibility with virtually any data provider by strictly decoupling widgets from the stores that power them.</strong></p>
 <p>The first step to connecting the <code>List</code> to worker data is to update its <code>properties</code> interface so it can accept a <code>data</code> array.</p>
 <div class="instruction">Update the <code>ListProperties</code> to support passing a <code>data</code> array property into the <code>List</code>:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./Worker'</span><span class="token punctuation">;</span>
@@ -237,7 +237,7 @@ ga('send', 'pageview');
     <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<article class="aside"><strong class="label">Injecting state</strong><p>The <a href="../1010_containers_and_injecting_state/">State management</a> tutorial details how to use Dojo 2 <code>Containers</code> and <code>Injectors</code> to inject external state as properties of widgets.</p></article>
+<article class="aside"><strong class="label">Injecting state</strong><p>The <a href="../1010_containers_and_injecting_state/">State management</a> tutorial details how to use Dojo <code>Containers</code> and <code>Injectors</code> to inject external state as properties of widgets.</p></article>
 <p>The <code>List</code> widget now renders both a <code>TextInput</code> to accept user input and a list of result items based on its <code>data</code> property. Item rendering is offloaded into a helper method (<code>renderItems</code>) so widgets extending <code>List</code> that need to modify the rendering of items only need to override a small helper method instead of the main <code>render</code> method.</p>
 <p>The next step updates the <code>Banner</code> widget to pass the correct <code>data</code> into the <code>List</code></p>
 <div class="task">Pass worker data down through the <code>Banner</code> to the <code>List</code></div>
@@ -287,8 +287,8 @@ ga('send', 'pageview');
 </code></pre>
 <p>A helper method was added that filters worker data items by name based on a query value. These filtered items are passed to the <code>List</code> as its <code>data</code>, causing the <code>List</code> to render result items if any items exist based on the user-specified filter.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>A filterable list widget was created throughout this tutorial to demonstrate how Dojo 2 widgets have no coupling to a specific data store implementation. Despite the simplicity of this example widget, it demonstrates a key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.</p>
-<p>It’s also important to note that in this tutorial, hardcoded worker data is passed down from the <code>App</code> widget to the <code>Banner</code> widget and ultimately to the <code>List</code> widget, but the data could be provided from any data source, including a remote server. It’s entirely possible for <code>Banner</code> to directly initiate an XHR request for data, and it’s also possible for <code>Banner</code> to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the <code>List</code> is not concerned with the data origin. Instead, data-driven widgets in Dojo 2 both request and receive data using their <code>properties</code>, and the parent is responsible for either relaying or initiating the data request itself.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>A filterable list widget was created throughout this tutorial to demonstrate how Dojo widgets have no coupling to a specific data store implementation. Despite the simplicity of this example widget, it demonstrates a key departure from Dojo 1 and other widget frameworks that lack reactivity: data-driven widgets request data from their parent and parents pass data back down to their children.</p>
+<p>It’s also important to note that in this tutorial, hardcoded worker data is passed down from the <code>App</code> widget to the <code>Banner</code> widget and ultimately to the <code>List</code> widget, but the data could be provided from any data source, including a remote server. It’s entirely possible for <code>Banner</code> to directly initiate an XHR request for data, and it’s also possible for <code>Banner</code> to dispatch an action to an application store that in turn requests data. The flexibility provided by the widget system makes it so the <code>List</code> is not concerned with the data origin. Instead, data-driven widgets in Dojo both request and receive data using their <code>properties</code>, and the parent is responsible for either relaying or initiating the data request itself.</p>
 <p>If you would like, you can open the completed demo application on <a href="https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1060_data_driven_widgets/demo/finished/biz-e-corp" target="_blank" rel="noopener">codesandbox.io</a> or alternatively <a href="../assets/1060_data_driven_widgets-finished.zip">download</a> the project.</p>
 </section>
 
@@ -325,11 +325,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

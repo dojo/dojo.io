@@ -15,7 +15,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.237Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -93,11 +93,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -132,16 +132,16 @@ ga('send', 'pageview');
 			<div class="uk-section uk-section-default">
 				<div class="uk-container uk-container-small uk-position-relative">
 					<section class="tutorial hidden hiding">
-<h1 id="Working-with-the-Registry"><a href="#Working-with-the-Registry" class="headerlink" title="Working with the Registry"></a>Working with the Registry</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Flexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web application. Additionally, as web applications grow, the physical size of the resources required to load the application becomes increasingly critical. Keeping the size of resources required to load a web application as small as possible ensures that the application can provide an optimal performance for all users. To help with these challenges, Dojo 2 provides a concept of a <code>registry</code> that can be used to achieve both of these goals in a simple and effective manner, without intruding on the existing development experience.</p>
+<h1 id="Working-with-the-Registry"><a href="#Working-with-the-Registry" class="headerlink" title="Working with the Registry"></a>Working with the Registry</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Flexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web application. Additionally, as web applications grow, the physical size of the resources required to load the application becomes increasingly critical. Keeping the size of resources required to load a web application as small as possible ensures that the application can provide an optimal performance for all users. To help with these challenges, Dojo provides a concept of a <code>registry</code> that can be used to achieve both of these goals in a simple and effective manner, without intruding on the existing development experience.</p>
 <p>In this tutorial, we will start with an application that uses concrete widget classes and request all assets when the application first loads. First we will swap all the concrete widget references to load the widgets from a <code>registry</code>. Then we will create a new widget that will be lazily loaded when the worker card is clicked the first time.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/1020_registries-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="The-default-registry"><a href="#The-default-registry" class="headerlink" title="The default registry"></a>The default registry</h2><div class="task">Create a default registry.</div>
 <p>The first step is to create a <code>registry</code> that will be made available to the application by passing the instance as the <code>registry</code> property on the <code>projector</code>.</p>
 <div class="instruction">Add the <code>Registry</code> import to the <code>main.ts</code> module.</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/Registry'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/Registry'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Now, create a <code>Registry</code> instance.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -238,9 +238,9 @@ registry<span class="token punctuation">.</span><span class="token function">def
 </section><section class="tutorial hidden hiding">
 <h2 id="Lazy-loading-widgets"><a href="#Lazy-loading-widgets" class="headerlink" title="Lazy loading widgets"></a>Lazy loading widgets</h2><p>First we need to extract the <code>_renderBack</code> function from <code>Worker.ts</code> into a new widget, <code>WorkerBack.ts</code>, and then add the new widget to the registry.</p>
 <div class="task">Add the following code in <code>WorkerBack.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/workerBack.m.css'</span><span class="token punctuation">;</span>
 
@@ -298,7 +298,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <span class="token punctuation">}</span>
 </code></pre>
 <div class="task">Add <code>w</code> import to <code>Worker.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="task">Add <code>WorkerBack</code> import to <code>Worker.ts</code></div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerBack <span class="token keyword">from</span> <span class="token string">'./WorkerBack'</span><span class="token punctuation">;</span>
@@ -330,9 +330,9 @@ registry<span class="token punctuation">.</span><span class="token function">def
 </code></pre>
 <article class="aside"><strong class="label">Use Before You Define</strong><p>The <code>registry</code> is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the <code>registry</code> will automatically re-render!</p></article>
 <p>Now we need to add the <code>registry</code> definition for <code>WorkerBack.ts</code> to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual <code>render</code> cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.</p>
-<p>There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated <code>main.ts</code>. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the <code>@registry</code> decorator from <code>@dojo/widget-core/decorators/registry</code>.</p>
+<p>There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated <code>main.ts</code>. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the <code>@registry</code> decorator from <code>@dojo/framework/widget-core/decorators/registry</code>.</p>
 <div class="task">Add the import for the <code>@registry</code> decorator <code>Worker.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/decorators/registry'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/decorators/registry'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="task">Add the registry item using the <code>@registry</code> decorator in <code>WorkerBack.ts</code></div>
 <pre class="language-javascript"><code class="language-javascript">@<span class="token function">registry</span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span> <span class="token punctuation">(</span><span class="token string">'./WorkerBack'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -378,11 +378,11 @@ registry<span class="token punctuation">.</span><span class="token function">def
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

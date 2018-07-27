@@ -15,7 +15,7 @@
 <meta property="og:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/006_deploying_to_production/resources/build_stats.png">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.213Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deploying to production">
 <meta name="twitter:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
@@ -93,11 +93,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -134,11 +134,11 @@ ga('send', 'pageview');
 					<section class="tutorial hidden hiding">
 <h1 id="Deploying-to-production"><a href="#Deploying-to-production" class="headerlink" title="Deploying to production"></a>Deploying to production</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial will extend on <a href="../005_form_widgets/">Form widgets</a>, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployment to production.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/006_deploying_to_production-initial.zip">download</a> the demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Production-builds"><a href="#Production-builds" class="headerlink" title="Production builds"></a>Production builds</h2><div class="task">Create a production build.</div>
-<p>Creating a production build of a Dojo 2 application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the <code>dojo build -m dev -w memory -s</code> command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.</p>
+<p>Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the <code>dojo build -m dev -w memory -s</code> command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.</p>
 <div class="instruction">Run the <code>dojo build</code> command.</div>
 <p>The build command creates a new folder, <code>output/dist</code>, where all of the built files are located. Open that directory and examine <code>index.html</code>. This version of <code>index.html</code> is slightly different than the one in the <code>src</code> directory - the build process has added links to <code>main.[hash].bundle.css</code> and <code>main.[hash].bundle.js</code> so the application and its styling rules will be available.</p>
 <p>Along with the <code>index.html</code> the directory contains two bundles, <code>main.[hash].bundle.js</code> and <code>runtime.[hash].bundle.js</code>. The runtime bundle contains all of the code required by webpack to load the application and the main bundle contains all of the application source code. Both bundles have been transpiled to JavaScript, bundled, and <a href="http://bit.ly/2rVdhNk" target="_blank" rel="noopener">minified</a>. This allows the application to be served as efficiently as possible. <code>main.[bundle].js.map</code> is used to allow developers to view the original source code when debugging the application.</p>
@@ -150,20 +150,20 @@ ga('send', 'pageview');
 <p>Since all of the resources in the <code>dist</code> folder are optimized for use in production, deployment only involves copying the contents of the <code>dist</code> directory to the location that the web application expects them to be.</p>
 <p>While the default <code>dojo build</code> command can handle many common scenarios, there are some arguments that can be passed to the command to influence the build process. We will talk about those in the next section.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Build-options"><a href="#Build-options" class="headerlink" title="Build options"></a>Build options</h2><div class="task">Learn how to customize a Dojo 2 build.</div>
+<h2 id="Build-options"><a href="#Build-options" class="headerlink" title="Build options"></a>Build options</h2><div class="task">Learn how to customize a Dojo build.</div>
 <p>The default options for <code>dojo build</code> are sufficient for many situations, but there are cases where additional configuration is required.</p>
 <div class="instruction">Run the <code>dojo build help</code> command and examine the result.</div>
 <p>There are four groups of command line arguments that are available when using the <code>dojo build</code> command.</p>
 <p>The first group is <code>--mode</code> that accepts <code>dist</code>, <code>dev</code>, and <code>test</code> depending on the bundle that is needed, the argument defaults to <code>dist</code>.</p>
 <p>The build command supports two modes of <code>--watch</code>, <code>file</code> which writes built files to the relevant directory in <code>output</code> and <code>memory</code> that uses webpack dev server (and must be run with the <code>--serve</code> argument).</p>
 <p>The <code>--help</code> argument displays the help information for the <code>dojo build</code> command and is equivalent to the <code>dojo build help</code> command.</p>
-<article class="aside"><strong class="label">I18n in Dojo 2</strong><p>Dojo 2 has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo 2, refer to the <a href="../comingsoon.html">Internationalization in Dojo 2 tutorial</a>.</p></article>
+<article class="aside"><strong class="label">I18n in Dojo</strong><p>Dojo has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo, refer to the <a href="../comingsoon.html">Internationalization in Dojo tutorial</a>.</p></article>
 <p>The command line arguments give control over how the application is built and prepared for deployment. However, there is further configuration that can be provided for build concerns such as Internationalization. In the next section, we will learn how to configure these options using the <code>.dojorc</code>.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><div class="task">Use .dojorc to store configuration settings.</div>
 <p>The command line arguments that the <code>dojo build</code> tool accepts generally relate to the build target such as the <code>mode</code>, whether to run the build with under <code>watch</code> and if the build command needs to start a web server using <code>serve</code>.</p>
 <p>The <code>.dojorc</code> configuration expands on these settings enabling configuration for internationalization, code splitting, PWA manifest and eliding code based on feature tests.</p>
-<p>For more information about creating internationalized applications with Dojo 2, refer to the <a href="../comingsoon.html">Internationalization</a> article in the reference guide.</p>
+<p>For more information about creating internationalized applications with Dojo, refer to the <a href="../comingsoon.html">Internationalization</a> article in the reference guide.</p>
 <article class="aside"><strong class="label">Arguments vs .dojorc</strong><p>It is possible to provide different settings when using command line arguments and <code>.dojorc</code>. When this occurs, command line arguments always take precedence over configuration settings stored in <code>.dojorc</code>.</p></article>
 <p><code>.dojorc</code> contains a JSON object with configuration information for any of the commands that are run via the <code>dojo</code> command line tool, such as <code>dojo build</code>. Each command is allocated a section within the configuration object where its settings can be stored.</p>
 <p>Consider the following:</p>
@@ -201,20 +201,20 @@ ga('send', 'pageview');
 <h4 id="bundles"><a href="#bundles" class="headerlink" title="bundles"></a><code>bundles</code></h4><p>Useful for breaking an application into smaller bundles, the bundles option is a map of webpack bundle names to arrays of modules that should be bundled together. For example, with the following configuration, both <code>src/Foo</code> and <code>src/Bar</code> will be grouped in the foo.[hash].js bundle:</p>
 <h4 id="features"><a href="#features" class="headerlink" title="features"></a><code>features</code></h4><p>A map of has features to boolean flags that can be used when building in <code>dist</code> mode to remove unneeded imports or conditional branches.</p>
 <h4 id="pwa-manifest"><a href="#pwa-manifest" class="headerlink" title="pwa.manifest"></a><code>pwa.manifest</code></h4><p>Specifies information for a web app manifest.</p>
-<p>Dojo 2’s build system is designed to encapsulate the build process as completely as possible. However, there may be times when a greater degree of control is required. In those situations, a project can be <em>ejected</em> from the <code>dojo</code> command line tool. We will take a look at that next.</p>
+<p>Dojo’s build system is designed to encapsulate the build process as completely as possible. However, there may be times when a greater degree of control is required. In those situations, a project can be <em>ejected</em> from the <code>dojo</code> command line tool. We will take a look at that next.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Taking-full-control"><a href="#Taking-full-control" class="headerlink" title="Taking full control"></a>Taking full control</h2><div class="task">Take full control of the build process.</div>
-<p>The build tool is designed to cover the most common use cases for developing and deploying Dojo 2 applications. There are times, however, when you need to take full control of the deployment process. To achieve this level of control, a project can be <em>ejected</em> from the <code>dojo</code> tool and all of its configuration information exported.</p>
+<p>The build tool is designed to cover the most common use cases for developing and deploying Dojo applications. There are times, however, when you need to take full control of the deployment process. To achieve this level of control, a project can be <em>ejected</em> from the <code>dojo</code> tool and all of its configuration information exported.</p>
 <p><strong>Note:</strong> This is a <em>non-reversible</em> process. Once a project has been ejected, the <code>dojo</code> tool can no longer be used to manage a project.</p>
 <p>To eject a project, use the <code>dojo eject</code> command. You will be prompted to ensure that you understand that this is a non-reversible action. Entering <strong>‘y’</strong> will begin to export process. The export process generates a new directory - <code>config</code> that contains all of the exported configuration information for each of the <code>dojo-cli</code> tools that the project had been using. The process will also install some additional dependencies that the project now requires.</p>
 <p>The project is now configured to be managed as a webpack project. Changes can be made to the build configuration by altering <code>config/build-app/base.config.js</code> and the relevant configuration for the target mode e.g. <code>dist.config.js</code>.</p>
 <p>A build can then be triggered by running <code>webpack</code>‘s build command and providing the configuration. Further, the modes are specified using webpack’s env flag (e.g., –env.mode=dev), defaulting to dist. You can run a build using webpack with:</p>
 <pre><code>./node_modules/.bin/webpack --config=config/build-app/ejected.config.js --env.mode={dev|dist|test}
 </code></pre></section><section class="tutorial hidden hiding">
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo 2, on the other hand, provides a single command, <code>dojo build</code> that is used both during development as well as for production deployments.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo, on the other hand, provides a single command, <code>dojo build</code> that is used both during development as well as for production deployments.</p>
 <p>While the <code>dojo build</code> command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios.</p>
-<p>In the event that the development team requires a higher level of control than Dojo 2’s build system offers, a project can be exported via the <code>dojo eject</code> command. This non-reversible command exports all of the <code>dojo</code> CLI commands’ configuration information, providing a solid starting point for additional optimizations.</p>
-<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>This brings us to the end of the beginner tutorials for Dojo 2. At this point, you should have a good understanding of how to build simple applications with Dojo 2. There are, however, many more features that Dojo 2 has to offer.</p>
+<p>In the event that the development team requires a higher level of control than Dojo’s build system offers, a project can be exported via the <code>dojo eject</code> command. This non-reversible command exports all of the <code>dojo</code> CLI commands’ configuration information, providing a solid starting point for additional optimizations.</p>
+<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>This brings us to the end of the beginner tutorials for Dojo. At this point, you should have a good understanding of how to build simple applications with Dojo. There are, however, many more features that Dojo has to offer.</p>
 <p>To learn about those features, take a look at the <a href="../tutorials/">advanced tutorials</a> section where you will find more tutorials that demonstrate how to use features that almost every application needs such as creating in-page routers, working with client-side data stores, and more.</p>
 </section>
 
@@ -251,11 +251,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

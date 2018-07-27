@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.229Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -91,11 +91,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -218,7 +218,7 @@ ga('send', 'pageview');
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Update the render method of the <code>WorkerForm</code> class to display validation state</div>
-<p>At this point in our progress, the <code>WorkerForm</code> widget holds the validation state of each form field in its <code>formErrors</code> property, updated every time an <code>onInput</code> handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo 2 <code>TextInput</code> widget contains an <code>invalid</code> property that sets the <code>aria-invalid</code> attribute on a DOM node, and toggles classes used for visual styling.</p>
+<p>At this point in our progress, the <code>WorkerForm</code> widget holds the validation state of each form field in its <code>formErrors</code> property, updated every time an <code>onInput</code> handler is called. All that remains is to pass the valid/invalid property to the inputs themselves. Luckily the Dojo <code>TextInput</code> widget contains an <code>invalid</code> property that sets the <code>aria-invalid</code> attribute on a DOM node, and toggles classes used for visual styling.</p>
 <p>The updated render function in <code>WorkerForm.ts</code> should set the <code>invalid</code> property on all form field widgets to reflect <code>formErrors</code>. We also add a <code>novalidate</code> attribute to the form element to prevent native browser validation.</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> <span class="token punctuation">{</span>
@@ -293,11 +293,11 @@ ga('send', 'pageview');
 
 <span class="token selector"><span class="token class">.error</span> </span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> TypedTargetEvent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/interfaces'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> uuid <span class="token keyword">from</span> <span class="token string">'@dojo/core/uuid'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> ThemedMixin<span class="token punctuation">,</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TypedTargetEvent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/interfaces'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> uuid <span class="token keyword">from</span> <span class="token string">'@dojo/framework/core/uuid'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ThemedMixin<span class="token punctuation">,</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TextInput<span class="token punctuation">,</span> <span class="token punctuation">{</span> TextInputProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> as css <span class="token keyword">from</span> <span class="token string">'../styles/validatedTextInput.m.css'</span><span class="token punctuation">;</span>
 
@@ -361,10 +361,10 @@ ga('send', 'pageview');
 <p>You may have noticed that we created <code>ValidatedTextInput</code> with an <code>onValidate</code> property, but we have yet to use it. This will become important in the next few steps by allowing us to have greater control over when validation occurs. For now, just treat it as a placeholder.</p>
 <div class="instruction">Use <code>ValidatedTextInput</code> within <code>WorkerForm</code></div>
 <p>Now that <code>ValidatedTextInput</code> exists, let’s import it and swap it with <code>TextInput</code> in <code>WorkerForm</code>, and write some error message text while we’re at it:</p>
-<p><strong>Import block</strong><br><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> TypedTargetEvent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/interfaces'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> ThemedMixin<span class="token punctuation">,</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
+<p><strong>Import block</strong><br><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WidgetBase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/WidgetBase'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TypedTargetEvent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/interfaces'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v<span class="token punctuation">,</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ThemedMixin<span class="token punctuation">,</span> theme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Themed'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Button <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> ValidatedTextInput <span class="token keyword">from</span> <span class="token string">'./ValidatedTextInput'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/workerForm.m.css'</span><span class="token punctuation">;</span>
@@ -631,11 +631,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	

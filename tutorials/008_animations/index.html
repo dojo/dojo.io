@@ -7,19 +7,19 @@
 	<title>Web Animations | Dojo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
-	<meta name="description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
+	<meta name="description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo WebAnimation meta. We will introduce the API provided by Web Animations and show you h">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Web Animations">
 <meta property="og:url" content="https://dojo.io/tutorials/008_animations/index.html">
 <meta property="og:site_name" content="Dojo">
-<meta property="og:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
+<meta property="og:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo WebAnimation meta. We will introduce the API provided by Web Animations and show you h">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/008_animations/zombieCover.png">
 <meta property="og:image" content="https://dojo.io/tutorials/008_animations/walking.gif">
-<meta property="og:updated_time" content="2018-07-27T20:30:53.221Z">
+<meta property="og:updated_time" content="2018-07-27T22:11:21.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web Animations">
-<meta name="twitter:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 WebAnimation meta. We will introduce the API provided by Web Animations and show you">
+<meta name="twitter:description" content="Web AnimationsOverviewThis tutorial introduces two lovable zombies which we will learn to animate using the Dojo WebAnimation meta. We will introduce the API provided by Web Animations and show you h">
 <meta name="twitter:image" content="https://dojo.io/tutorials/008_animations/zombieCover.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
 	
@@ -94,11 +94,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
@@ -133,25 +133,25 @@ ga('send', 'pageview');
 			<div class="uk-section uk-section-default">
 				<div class="uk-container uk-container-small uk-position-relative">
 					<section class="tutorial hidden hiding">
-<h1 id="Web-Animations"><a href="#Web-Animations" class="headerlink" title="Web Animations"></a>Web Animations</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial introduces two lovable zombies which we will learn to animate using the Dojo 2 <code>WebAnimation</code> meta. We will introduce the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">API provided by Web Animations</a> and show you how to use it with Dojo 2.</p>
+<h1 id="Web-Animations"><a href="#Web-Animations" class="headerlink" title="Web Animations"></a>Web Animations</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This tutorial introduces two lovable zombies which we will learn to animate using the Dojo <code>WebAnimation</code> meta. We will introduce the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">API provided by Web Animations</a> and show you how to use it with Dojo.</p>
 <p><img src="./zombieCover.png" alt="Zombies"></p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>You can <a href="../assets/008_animations-initial.zip">download</a> the initial demo project and run <code>npm install</code> to get started.</p>
-<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo 2 local installation</a> article for more information.</p>
-<p>You also need to be familiar with TypeScript as Dojo 2 uses it extensively.</p>
+<p>The <code>@dojo/cli</code> command line tool should be installed globally. Refer to the <a href="../000_local_installation/">Dojo local installation</a> article for more information.</p>
+<p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="What-is-the-Web-Animations-API"><a href="#What-is-the-Web-Animations-API" class="headerlink" title="What is the Web Animations API"></a>What is the Web Animations API</h2><article class="aside"><strong class="label">Effect Timing</strong><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/AnimationEffectTiming" target="_blank" rel="noopener"><code>AnimationEffectTiming</code></a> you control over the timing of the animations you create. It provides access to <code>delay</code>, <code>fill</code>, <code>duration</code> and more.</p></article>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener">Web Animations API</a> provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of <code>requestAnimationFrame</code> or the less efficient  <code>setInterval</code>.</p>
-<p>The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, a polyfill needs to be included. Dojo 2 does not include the polyfill by default, so will need to be added as a script tag in your index.html or alternatively imported in the application’s main.ts</p>
+<p>The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, a polyfill needs to be included. Dojo does not include the polyfill by default, so will need to be added as a script tag in your index.html or alternatively imported in the application’s main.ts</p>
 <div class="instruction">Import the web animations polyfill</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'web-animations-js/web-animations-next-lite.min'</span><span class="token punctuation">;</span>
 </code></pre>
-<article class="aside"><strong class="label">Meta</strong><p>Dojo 2 meta provides a means to get and set properties against the generated HTML without exposing the <code>domNode</code> itself.</p></article>
-<p>Dojo 2 provides a <a href="https://github.com/dojo/widget-core#meta-configuration" target="_blank" rel="noopener">meta</a> that can apply Web Animations to the rendered Virtual DOM in the widgets you create. The <code>WebAnimation</code> meta allows properties such as <code>play</code> and <code>duration</code> to be reactive to state changes and fits in consistently within the Dojo 2 ecosystem.</p>
-<h2 id="Introducing-the-zombies"><a href="#Introducing-the-zombies" class="headerlink" title="Introducing the zombies"></a>Introducing the zombies</h2><p>Looking at the <code>Zombies.ts</code> file within the initial project, there are a series of <code>DIV</code>s representing two zombies, each with a body and two legs. Via the magic of <code>CSS</code> these <code>DIV</code>s are converted into two zombies when you open your web browser. To demonstrate the use of Web Animations with Dojo 2, we will make the zombies walk towards each other when they are clicked.</p>
+<article class="aside"><strong class="label">Meta</strong><p>Dojo meta provides a means to get and set properties against the generated HTML without exposing the <code>domNode</code> itself.</p></article>
+<p>Dojo provides a <a href="https://github.com/dojo/widget-core#meta-configuration" target="_blank" rel="noopener">meta</a> that can apply Web Animations to the rendered Virtual DOM in the widgets you create. The <code>WebAnimation</code> meta allows properties such as <code>play</code> and <code>duration</code> to be reactive to state changes and fits in consistently within the Dojo ecosystem.</p>
+<h2 id="Introducing-the-zombies"><a href="#Introducing-the-zombies" class="headerlink" title="Introducing the zombies"></a>Introducing the zombies</h2><p>Looking at the <code>Zombies.ts</code> file within the initial project, there are a series of <code>DIV</code>s representing two zombies, each with a body and two legs. Via the magic of <code>CSS</code> these <code>DIV</code>s are converted into two zombies when you open your web browser. To demonstrate the use of Web Animations with Dojo, we will make the zombies walk towards each other when they are clicked.</p>
 <div class="task">Animating our zombies</div>
-<p>To animate the zombies, we use the <code>@dojo/widget-core/meta/WebAnimation</code> meta. This accepts <code>key</code> and <code>AnimationProperties</code> parameters.<br>Let’s add animation properties to our first Zombie.</p>
-<div class="instruction">Import the <code>WebAnimation</code> meta from <code>@dojo/widget-core</code></div>
-<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> WebAnimation<span class="token punctuation">,</span> <span class="token punctuation">{</span> AnimationProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/meta/WebAnimation'</span><span class="token punctuation">;</span>
+<p>To animate the zombies, we use the <code>@dojo/framework/widget-core/meta/WebAnimation</code> meta. This accepts <code>key</code> and <code>AnimationProperties</code> parameters.<br>Let’s add animation properties to our first Zombie.</p>
+<div class="instruction">Import the <code>WebAnimation</code> meta from <code>@dojo/framework/widget-core</code></div>
+<pre class=" language-ts"><code class="language-ts"><span class="token keyword">import</span> WebAnimation<span class="token punctuation">,</span> <span class="token punctuation">{</span> AnimationProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/meta/WebAnimation'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="instruction">Add the following to the render function in Zombies.ts</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token comment" spellcheck="true">// add to the top of the render function</span>
@@ -397,11 +397,11 @@ ga('send', 'pageview');
 </code></pre>
 <p>Now you should see the hearts appearing and floating away when the zombies get to the middle of the screen.</p>
 </section><section class="tutorial hidden hiding">
-<h2 id="Controlling-our-animations"><a href="#Controlling-our-animations" class="headerlink" title="Controlling our animations"></a>Controlling our animations</h2><p>Due to the reactive nature of the Dojo 2 <code>WebAnimation</code> meta, we can control our animation by changing the properties passed into the get animation functions. For example we can change the <code>playbackRate</code> programmatically.</p>
+<h2 id="Controlling-our-animations"><a href="#Controlling-our-animations" class="headerlink" title="Controlling our animations"></a>Controlling our animations</h2><p>Due to the reactive nature of the Dojo <code>WebAnimation</code> meta, we can control our animation by changing the properties passed into the get animation functions. For example we can change the <code>playbackRate</code> programmatically.</p>
 <p>Let’s add slider widgets to our page to change the speed of the zombie shuffle and legs.</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token comment" spellcheck="true">// add the imports</span>
 <span class="token keyword">import</span> Slider <span class="token keyword">from</span> <span class="token string">'@dojo/widgets/slider'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/widget-core/d'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// add the variable and then change event</span>
 <span class="token keyword">private</span> _zombieLegsPlaybackRate <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -448,7 +448,7 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this tutorial, we learned:</p>
 <ul>
-<li>How to use a Dojo 2 meta</li>
+<li>How to use a Dojo meta</li>
 <li>How to pass <code>AnimationProperties</code> via the <code>WebAnimation</code> meta</li>
 <li>How to stop and start an animation</li>
 <li>How to control an animation</li>
@@ -490,11 +490,11 @@ ga('send', 'pageview');
 	<li class="uk-nav-divider"></li>
 
 	
-			<li class=""><a href="/tutorials/000_local_installation/">Dojo 2 local installation</a></li>
+			<li class=""><a href="/tutorials/000_local_installation/">Dojo local installation</a></li>
 	
-			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/001_static_content/">Your first Dojo application</a></li>
 	
-			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo 2 application</a></li>
+			<li class=""><a href="/tutorials/002_creating_an_application/">Components of a Dojo application</a></li>
 	
 			<li class=""><a href="/tutorials/003_creating_widgets/">Creating widgets</a></li>
 	
