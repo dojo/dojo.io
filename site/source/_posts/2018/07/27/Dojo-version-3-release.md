@@ -7,8 +7,6 @@ featured_image: featured.jpg
 
 Some changes are happening with Dojo. As the project continues to stabilize around a set of modules and APIs, we are continually evaluating feedback from the community as well as our processes.
 
-{% asset_img featured.jpg feature-full %}
-
 <!-- more -->
 
 First things first, when we released the next generation of Dojo, we wanted to strongly disambiguate between the legacy Dojo toolkit by naming it Dojo 2. Now that we have released Dojo 2 and are moving on with further releases we are going to drop the version number, and from now on we refer to it as Dojo.
