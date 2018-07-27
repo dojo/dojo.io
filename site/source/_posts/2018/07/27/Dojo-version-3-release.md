@@ -1,8 +1,7 @@
 ---
 title: Dojo Version 3.0: Building on Success
-date: 2018-07-26 09:00:00
+date: 2018-07-27 08:00:00
 authorId: paul
-featured_image: featured.jpg
 ---
 
 Some changes are happening with Dojo. As the project continues to stabilize around a set of modules and APIs, we are continually evaluating feedback from the community as well as our processes.
