@@ -27,7 +27,7 @@ Now that the core Dojo packages are stable, we decided to consolidate these pack
 
 ## Migration
 
-The new @dojo/cli-upgrade-app package aims to provide users with a friction-free upgrade path between major Dojo versions starting at 2.x.
+The new @dojo/cli-upgrade-app package aims to provide users with a friction-free upgrade path between major Dojo versions starting at 2.x. For more information see the [v3 migration guide](https://github.com/dojo/framework/blob/55042dfbb8b7c9b46012be3351fd7fa064e0fa5a/docs/V3-Migration-Guide.md).
 
 ## Support
 
