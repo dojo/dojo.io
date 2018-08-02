@@ -1,5 +1,5 @@
 {
-  "name": "dojo-creating-an-application-tutorial",
+  "name": "dojo-static-content-tutorial",
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@dojo/framework": "^3.0.0",
+    "@dojo/core": "^2.0.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
