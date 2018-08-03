@@ -10,10 +10,10 @@ section.up-and-running {
 	}
 
 	.commands {
-		width: 52%;
+		width: 43%;
 	}
 	.results {
-		width: 46%;
+		width: 55%;
 	}
 	.commands, .results {
 		@media screen and (max-width : $mobile-break) {
@@ -118,9 +118,9 @@ section.up-and-running {
 			position: relative;
 			background-color: #000000;
 			border-radius: 5px;
-			width: 515px;
+			width: 540px;
 			height: 340px;
-			font-size: 14px;
+			font-size: 13px;
 			padding: 1em;
 
 			&:before {
