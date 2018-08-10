@@ -1,0 +1,79 @@
+<div class="uk-section uk-section-default">
+    <div class="uk-container uk-container-default">
+        <h2>Community Links</h2>
+        
+          <ul class="uk-list uk-list-large community-links">
+                <li><a href="https://github.com/dojo/meta" class="uk-link-reset"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+                <li><a href="https://discord.gg/M7yRngE" class="uk-link-reset"><span class="uk-margin-small-right" uk-icon="icon: comment"></span> Discord</a></li>
+                <li><a href="https://discourse.dojo.io/" class="uk-link-reset"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+                <li><a href="https://twitter.com/dojo" class="uk-link-reset"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+                <li><a href="/atom.xml" class="uk-link-reset"><span class="uk-margin-small-right" uk-icon="icon: rss"></span> RSS</a></li>                
+          </ul>
+    
+        <h2>Dojo 4.0 Roadmap</h2>
+        <h3>Framework</h3>
+        <ul class="uk-list uk-list-striped">
+            <li>Upgrade codebase to leverage TypeScript 3.0</li>
+            <li>Dragon: New VDOM engine</li>
+            <li>Dragon: Better VDOM debugging</li>
+            <li>Dragon: Enhanced VDOM scheduler</li>
+            <li>Dragon: meta mechanism api changes</li>
+            <li>Dragon: Support lazy loading widgets directly with w()</li>
+            <li>Dragon: Explore a new combined v() and w() wrapper</li>
+            <li>Consolidate existing dojo/framework/core modules</li>
+            <li>New dojo platform for polyfills and ponyfills</li>
+            <li>Functional approach to defining a routing outlet</li>
+            <li>ActiveLink in Routing</li>
+        </ul>
+
+        <h3>CLI</h3>
+        <ul class="uk-list uk-list-striped">
+            <li>Zero configuration, route-based code splitting.</li>
+            <li>Zero configuration code splitting based on build time rendering heuristics</li>
+            <li>Support static resources in build commands.</li>
+            <li>Externals support for build app command.</li>
+            <li>Theme build command</li>
+            <li>New widget library target for cli-build-widget</li>
+            <li>Improvements to cli-create-widget</li>
+            <li>.dojorc validation</li>
+            <li>Ability to save arguments from cli to .dojorc</li>
+            <li>Update postcss-cssnext to postcss-preset-env, as part of this for non-legacy builds do not compile CSS variables</li>
+            <li>Widgets and themes</li>
+            <li>Leverage @dojo/scripts for widgets and themes</li>
+            <li>Process themes through PostCSS/css-modules for distributable (like widgets) and continue to deliver the source CSS</li>
+            <li>Revisit api consistency and document approaches for widgets</li>
+            <li>Input Chip widget</li>
+            <li>Date picker widget</li>
+            <li>Snackbar widget</li>
+            <li>Menu widget</li>
+            <li>Card widget</li>
+        </ul>
+        
+        <h3>Interoperability</h3>
+        <ul class="uk-list uk-list-striped">
+            <li>
+                dgrid wrapper
+            </li>
+        </ul>
+        
+        
+        <h3>Community</h3>
+        <ul class="uk-list uk-list-striped">
+            <li>
+                Resolve outstanding CodeSandbox issues with typings and using themes
+            </li>
+        </ul>
+        
+        <h3>Upgrade Path</h3>
+        <ul class="uk-list uk-list-striped">
+            <li>
+                Continue to evolve the upgrade command for migration of future major version updates.
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+        <%- partial('_partial/main-nav') %>
+    </div>
+</div>
