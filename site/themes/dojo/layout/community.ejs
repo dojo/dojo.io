@@ -1,0 +1,156 @@
+<div class="uk-section uk-section-default">
+    <div class="uk-container uk-container-default">
+        <h2 class="uk-margin-medium-bottom">Community Links</h2>
+        
+          <div class="uk-child-width-1-2@s uk-child-width-1-4@l  uk-grid-match community-links" uk-grid>
+              <div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-small card-github">
+                        <div class="uk-grid-small uk-margin-remove-bottom" uk-grid>
+                            <div class="uk-width-auto">
+                                <a href="https://github.com/dojo/meta" class="uk-link-reset"><img src="/images/logo-github.svg" alt="Github"></a>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title"><a href="https://github.com/dojo/meta" class="uk-link-reset">Github</a></h3>
+                            </div>
+                        </div>
+                        <p class="uk-text-meta">Pull requests always welcomed</p>
+                    </div>
+              </div>
+              <div>
+                  <div class="uk-card uk-card-default uk-card-body uk-card-small card-discord">
+                        <div class="uk-grid-small uk-margin-remove-bottom" uk-grid>
+                            <div class="uk-width-auto">
+                                <a href="https://discord.gg/M7yRngE" class="uk-link-reset"><img src="/images/logo-discord.svg" alt="Discord"></a>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom"><a href="https://discord.gg/M7yRngE" class="uk-link-reset">Discord</a></h3>
+                            </div>
+                        </div>
+                        <p class="uk-text-meta">Chat with us on Discord!</p>
+                  </div>
+              </div>
+              <div>
+                  <div class="uk-card uk-card-default uk-card-body uk-card-small card-discourse">
+                        <div class="uk-grid-small uk-margin-remove-bottom" uk-grid>
+                            <div class="uk-width-auto">
+                                <a href="https://discourse.dojo.io/" class="uk-link-reset"><img src="/images/logo-discourse.svg" alt="Discord"></a>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title"><a href="https://discourse.dojo.io/" class="uk-link-reset">Discourse</a></h3>
+                            </div>
+                        </div>
+                        <p class="uk-text-meta">Questions asked and answered</p>
+                  </div>
+              </div>
+              <div>
+                  <div class="uk-card uk-card-default uk-card-body uk-card-small card-twitter">
+                        <div class="uk-grid-small uk-margin-remove-bottom" uk-grid>
+                            <div class="uk-width-auto">
+                                <a href="https://twitter.com/dojo" class="uk-link-reset"><img src="/images/logo-twitter.svg" alt="Twitter"></a>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title"><a href="https://twitter.com/dojo" class="uk-link-reset">Twitter</a></h3>
+                            </div>
+                        </div>
+                        <p class="uk-text-meta">We have the tweets</p>
+                  </div>
+              </div>
+          </div>
+    
+        <h2 class="uk-margin-large-top uk-margin-medium-bottom">Dojo Roadmap</h2>
+        <span class="uk-label">Version 4.0</span>
+        <div class="uk-child-width-1-2@m uk-margin-medium-top" uk-grid="masonry: true">
+            <div>
+                <div class="uk-card uk-card-body uk-card-default">
+                    <h3 class="uk-heading">Framework</h3>
+                    <hr class="uk-divider-small">
+                    <ul class="uk-list uk-list-bullet">
+                        <li>Upgrade codebase to leverage TypeScript 3.0</li>
+                        <li>Dragon: New VDOM engine
+                            <ul class="uk-list uk-list-bullet">
+                                <li>Better VDOM debugging</li>
+                                <li>Enhanced VDOM scheduler</li>
+                                <li>meta mechanism api changes</li>
+                                <li>Support lazy loading widgets directly with <code>w()</code></li>
+                                <li>Explore a new combined <code>v()</code> and <code>w()</code> wrapper</li>
+                            </ul>
+                        </li>
+                        <li>Consolidate existing dojo/framework/core modules</li>
+                        <li>New dojo platform for polyfills and ponyfills</li>
+                        <li>Functional approach to defining a routing outlet</li>
+                        <li>ActiveLink in Routing</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-body uk-card-default">
+                    <h3>CLI</h3>
+                    <hr class="uk-divider-small">
+            
+                    <ul class="uk-list uk-list-bullet">
+                        <li>Zero configuration, route-based code splitting.</li>
+                        <li>Zero configuration code splitting based on build time rendering heuristics</li>
+                        <li>Support static resources in build commands.</li>
+                        <li>Externals support for build app command.</li>
+                        <li>Theme build command</li>
+                        <li>New widget library target for <code>cli-build-widget</code></li>
+                        <li>Improvements to <code>cli-create-widget</code></li>
+                        <li><code>.dojorc</code> validation</li>
+                        <li>Ability to save arguments from cli to .dojorc</li>
+                        <li>Update <code>postcss-cssnext</code> to <code>postcss-preset-env</code>, as part of this for non-legacy builds do not compile CSS variables</li>
+                        <li>Widgets and themes</li>
+                        <li>Leverage <code>@dojo/scripts</code> for widgets and themes</li>
+                        <li>Process themes through <code>PostCSS/css-modules</code> for distributable (like widgets) and continue to deliver the source CSS</li>
+                        <li>Revisit api consistency and document approaches for widgets</li>
+                        <li>Input Chip widget</li>
+                        <li>Date picker widget</li>
+                        <li>Snackbar widget</li>
+                        <li>Menu widget</li>
+                        <li>Card widget</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-body uk-card-default">
+                    <h3>Interoperability</h3>
+                    <hr class="uk-divider-small">
+            
+                    <ul class="uk-list uk-list-bullet">
+                        <li>
+                            dgrid wrapper
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-body uk-card-default">
+                    <h3>Community</h3>
+                    <hr class="uk-divider-small">
+            
+                    <ul class="uk-list uk-list-bullet">
+                        <li>
+                            Resolve outstanding CodeSandbox issues with typings and using themes
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-body uk-card-default">
+                        <h3>Upgrade Path</h3>
+                        <hr class="uk-divider-small">
+                
+                        <ul class="uk-list uk-list-bullet">
+                            <li>
+                                Continue to evolve the upgrade command for migration of future major version updates.
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+        <%- partial('_partial/main-nav') %>
+    </div>
+</div>
