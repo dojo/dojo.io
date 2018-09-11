@@ -67,6 +67,9 @@ authors:
 	devpaul:
 		name: Paul Shannon
 		email: pshannon@sitepen.com
+	mattwistrand:
+		name: Matt Wistrand
+		email: mwistrand@sitepen.com
 
 feed:
   type: atom
