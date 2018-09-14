@@ -199,29 +199,6 @@ This means a route with any value will match the `filter` as long as the previou
 
 We have added a new property named `filter` to `WorkerContainerProperties` in `WorkerContainer.ts`, which will be used to filter the workers based on their last name. When used by a normal widget this would be determined by its parent and passed in like any normal property. However for this application we need the route param value to be passed as the filter property. To achieve this, we can add a mapping function callback which receives an object argument consisting of four properties:
 
-* `params`
-* `location`
-* `router`,
-* `matchType`
-
-Each of these four properties are documented in the [Dojo Routing documentation](https://github.com/dojo/routing/#map-params) on GitHub.
-
-The mapping function callback can return an object which is then injected into the wrapped widget properties.
-
-{% instruction 'Add the following code to `FilteredWorkerContainerOutlet.ts`' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/outlets/FilteredWorkerContainerOutlet.ts' %}
-
-This code defines an `Outlet`. The third argument passed into the `Outlet` is a callback function which receives an object as specified earlier. A new object is constructed and returned from this function which includes a `filter` property which in turn comes from the `params` property.
-
-{% instruction 'Add a `FilteredWorkerContainerOutlet.ts` import in `App.ts`' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:11 %}
-
-{% instruction 'Include the `outlet` in the render function' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-61 %}
-
 Previously, the raw Dojo widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets 'wrap' the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.
 
 {% section %}

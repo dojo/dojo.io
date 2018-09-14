@@ -28,11 +28,7 @@ You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 ## The main HTML document
 
-HTML pages are the foundation for every web application and Dojo applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, it is important that we can uniquely identify it. To find out why, look at this line in `main.ts`:
-
-{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' line:4 %}
-
-Notice that we are searching for the `my-app` element and assigning it to the constant `root`. The application is using this node to determine where to place the Dojo application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach:
+HTML pages are the foundation for every web application and Dojo applications are no different. In the sample application, the `index.html` file serves this role. Notice that the `<body>` tag contains a single element: `<my-app>`. While there is nothing special about this element, the application is using this node to determine where to place the Dojo application on the page. Everything that the application does should be contained within this single element. There are several benefits to this approach:
 
 * A Dojo application can easily coexist on a page with other content.
 * That content can consist of static assets, a legacy application or even another Dojo application.
@@ -41,7 +37,7 @@ Notice that we are searching for the `my-app` element and assigning it to the co
 
 ## Mounting Your Dojo Application
 
-In [Your first Dojo application](../001_static_content/), we reviewed Dojo's use of a virtual DOM to provide an abstraction between the application and the rendered page. To actually render your dojo application, we use the `renderer` function from the `vdom` modules. The `renderer` accepts a function that return the virtual DOM.
+In [Your first Dojo application](../001_static_content/), we reviewed Dojo's use of a virtual DOM to provide an abstraction between the application and the rendered page. To actually render your dojo application, we use the `renderer` function from the `vdom` module. The `renderer` accepts a function that returns virtual DOM (generated either the `w()` or `v()` pragma, more on these later!).
 
 {% instruction 'Review these lines in `main.ts`:' %}
 
@@ -67,7 +63,7 @@ The first diagram shows a traditional HTML + JavaScript architecture. Since the 
 
 The second image shows how widgets ensure that components only interact according to their design intent. The widget encapsulates its visual and behavioral aspects. It then exposes properties and methods that allow other components to interact with it. By providing a controlled interface, it is much easier to keep the visual and behavioral aspects of the widget synchronized.
 
-In our demo application, we don't currently have any widgets, but let's abstract the virtual DOM from `main.ts` out into a dedicated widget.
+In our demo application, we don't currently have any widgets, but let's abstract the virtual DOM from `main.ts` out into a dedicated widget. You'll notice that to render a widget, we use a different pragma, `w()`, than we used before to render nodes that directly represent the DOM nodes.
 
 {% instruction 'Create a widget `HelloWorld.ts` in `src/widgets`' %}
 
