@@ -1,6 +1,7 @@
 import renderer from '@dojo/framework/widget-core/vdom';
-import { w } from '@dojo/framework/widget-core/d';
-import HelloWorld from './widgets/HelloWorld';
+import { v } from '@dojo/framework/widget-core/d';
 
-const r = renderer(() => w(HelloWorld, {}));
+const r = renderer(() =>
+	v('div', [ 'Hello, Dojo World!' ])
+);
 r.mount({ domNode: document.querySelector('my-app') });

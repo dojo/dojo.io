@@ -54,26 +54,24 @@ Notice that the page has automatically updated for us. That means that we can im
 
 Now, let's remove the "Hello, Dojo World!" message.
 
-{% instruction 'Open `HelloWorld.ts`, located in `/src/widgets`.' %}
+{% instruction 'Open `main.ts`, located in `/src`.' %}
 
 You should see something like this:
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' %}
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' %}
 
 Some of this code may not make sense now, but over the next few tutorials, you will find out what all of it means. For now, let's focus on this line:
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' line:5 %}
 
 The `v` function simply instructs Dojo to create an HTML element, in this case a `<div>` element with the text "Hello, Dojo World!" inside of it. We will build a view that allows the user to view Biz-E Corp's workers, so let's update the tag and message to something more appropriate.
 
 {% instruction 'Replace the `<div>` tag with an `<h1>` tag, and replace "Hello, Dojo World!" with "Biz-E-Bodies"' %}
 
-```typescript
-export default class HelloWorld extends WidgetBase {
-	protected render() {
-		return v('h1', [ 'Biz-E-Bodies' ]);
-	}
-}
+```ts
+const r = renderer(() =>
+	v('h1', [ 'Biz-E-Bodies' ])
+);
 ```
 
 Now, let's look at the `v` function again. We are intentionally avoiding something like `document.createElement` to create DOM ([Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)) elements. This is because we are not directly creating a DOM element. Instead, we are creating a representation of the view in TypeScript and letting Dojo efficiently determine how to convert it into DOM elements that are rendered onto the page. This rendering technique is called using a *virtual* DOM.
@@ -92,7 +90,7 @@ Now we will add some additional attributes to the `<h1>` element we created earl
 
 {% instruction 'Update the `v` function call, with a `title` attribute like this.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' line:6 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:5 %}
 
 {% aside 'Virtual Dom Properties and Attributes' %}
 The vdom system will automatically add properties with a type of `string` as an attribute and other values as properties on the DOM node.
