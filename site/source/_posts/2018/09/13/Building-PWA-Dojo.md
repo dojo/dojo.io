@@ -4,6 +4,8 @@ Within the past few years, new features get added to browsers at breakneck speed
 
 Networks, on the other hand, are neither universally reliable nor universally performant. As developers, we have a responsibility to ensure our users do not suffer from our technical decisions. One step we can take against this is by delivering our application using Progressive Web Applications (PWA) technologies which are resilient to network issues.
 
+<!-- more -->
+
 At its most basic definition, “Progressive Web  App” (or “PWA”) is an umbrella term for a web application that applies a set of techniques and technologies to mimic the responsiveness and feel of a native application. Since progressive web apps at their heart are regular web pages, they run in the browser and bypass any native app store.
 
 Network resilience that we see in native apps is provided in PWAs by a technology called Service Workers. A Service Worker is a worker that sits as a proxy between the page and the server. They can intercept requests and cache results. We also get the ‘install to homescreen’ experience courtesy of what is called the web manifest file (manifest.json). This manifest instructs the browser that the page is a PWA that is installable and provides things like application colors and icons.
