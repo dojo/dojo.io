@@ -2,13 +2,14 @@ import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import { v, w } from '@dojo/framework/widget-core/d';
 import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 import { Link } from '@dojo/framework/routing/Link';
+import { Outlet } from '@dojo/framework/routing/Outlet';
+import { MatchDetails } from '@dojo/framework/routing/interfaces';
 
 import { WorkerFormData } from './WorkerForm';
 import { WorkerProperties } from './Worker';
-import WorkerFormOutlet from './../outlets/WorkerFormOutlet';
-import WorkerContainerOutlet from './../outlets/WorkerContainerOutlet';
-import BannerOutlet from './../outlets/BannerOutlet';
-import FilteredWorkerContainerOutlet from './../outlets/FilteredWorkerContainerOutlet';
+import Banner from './Banner';
+import WorkerForm from './../widgets/WorkerForm';
+import WorkerContainer from './../widgets/WorkerContainer';
 
 import workerData from './../support/workerData';
 
@@ -47,18 +48,25 @@ export default class App extends ThemedMixin(WidgetBase) {
 				])
 			]),
 			v('div', { classes: this.theme(css.main) },  [
-				w(BannerOutlet, {}),
-				w(WorkerFormOutlet, {
-					formData: this._newWorker,
-					onFormInput: this._onFormInput,
-					onFormSave: this._addWorker
-				}),
-				w(FilteredWorkerContainerOutlet, {
-					workerData: this._workerData
-				}),
-				w(WorkerContainerOutlet, {
-					workerData: this._workerData
-				})
+				w(Outlet, { id: 'home', renderer: () => {
+					return w(Banner, {});
+				}}),
+				w(Outlet, { id: 'new-worker', renderer: () => {
+					return w(WorkerForm, {
+						formData: this._newWorker,
+						onFormInput: this._onFormInput,
+						onFormSave: this._addWorker
+					});
+				}}),
+				w(Outlet, { id: 'filter', renderer: (matchDetails: MatchDetails) => {
+					if (matchDetails.isExact()) {
+						return w(WorkerContainer, {
+							workerData: this._workerData,
+							filter: matchDetails.params.filter
+						});
+					}
+					return w(WorkerContainer, { workerData: this._workerData });
+				}})
 			])
 		]);
 	}
