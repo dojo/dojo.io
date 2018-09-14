@@ -112,7 +112,7 @@ Now we need to add the `registry` definition for `WorkerBack.ts` to lazily load 
 
 There are two ways to register a widget in a registry, the first is to define the item in the global registry as demonstrated `main.ts`. This method makes the widget available to the entire application, if the widget is only needed by a single widget then the registry item can be defined using the `@registry` decorator from `@dojo/framework/widget-core/decorators/registry`.
 
-{% task 'Add the import for the `@registry` decorator `Worker.ts`' %}
+{% task 'Add the import for the `@registry` decorator `WorkerBack.ts`' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:3 %}
 
