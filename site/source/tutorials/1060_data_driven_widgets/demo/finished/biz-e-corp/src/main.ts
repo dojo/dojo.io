@@ -1,4 +1,5 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import { Registry } from '@dojo/framework/widget-core/Registry';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 
@@ -31,8 +32,5 @@ const routingConfig = [
 const registry = new Registry();
 registerRouterInjector(routingConfig, registry);
 
-const Projector = ProjectorMixin(App);
-const projector = new Projector();
-projector.setProperties({ registry });
-
-projector.append(root);
+const r = renderer(() => w(App, {}));
+r.mount({ domNode: document.querySelector('my-app'), registry });

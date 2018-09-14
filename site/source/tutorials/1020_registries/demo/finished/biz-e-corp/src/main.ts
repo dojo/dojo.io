@@ -1,4 +1,5 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import { Registry } from '@dojo/framework/widget-core/Registry';
 import App from './widgets/App';
 
@@ -19,8 +20,5 @@ registry.define('worker', Worker);
 registry.define('worker-form', WorkerForm);
 registry.define('worker-container', WorkerContainer);
 
-const Projector = ProjectorMixin(App);
-const projector = new Projector();
-projector.setProperties({ registry });
-
-projector.append(root);
+const r = renderer(() => w(App, {}));
+r.mount({ domNode: document.querySelector('my-app'), registry });
