@@ -39,25 +39,27 @@ Notice that we are searching for the `my-app` element and assigning it to the co
 
 {% section %}
 
-## The projector
+## Mounting Your Dojo Application
 
-In [Your first Dojo application](../001_static_content/), we reviewed Dojo's use of a virtual DOM to provide an abstraction between the application and the rendered page. The projector is the component that serves as the intermediary between these two aspects of the application and, as such, has a presence in both the application and the main HTML document. Review these lines in `main.ts`:
+In [Your first Dojo application](../001_static_content/), we reviewed Dojo's use of a virtual DOM to provide an abstraction between the application and the rendered page. To actually render your dojo application, we use the `renderer` function from the `vdom` modules. The `renderer` accepts a function that return the virtual DOM.
 
-{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:6-9 %}
+{% instruction 'Review these lines in `main.ts`:' %}
 
-{% aside "Why is it called a Projector?" %}
-A physical projector takes some form of media, such as slides or video, and projects them onto a surface, such as a wall. In a similar way, Dojo's projector takes a virtual representation of the application and projects it onto the actual page.
-{% endaside %}
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:4-6 %}
 
-These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The first line creates a class that registers the `HelloWorld` widget as the root widget, making it aware of the Dojo application. An instance is then created and its `append` method is used to make the projector aware of the HTML document.
+These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The final step is to call `mount` on the value returned from the `renderer` call. By default the `renderer` will mount the application on the HTML documents body, but this can be overridden by providing a `domNode` option to the `mount` function.
 
-Whenever a Dojo application needs to update the DOM, it informs the vdom system. The DOM updates do not, however, immediately re-render the page. Instead, it registers a render request with the application via the window's [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) method. This method allows the application to delay updating the DOM until the browser is ready to re-render the page. By doing this, update operations can be grouped together which improves rendering performance. When the window re-renders the page, the application's current virtual DOM is used to determine what updates need to be made in a single operation. This allows the application to update the virtual DOM as often as required without the risk of reducing the application's responsiveness.
+{% instruction 'The `mount` operation in `main.ts`:' %}
+
+{% include_codefile 'demo/initial/biz-e-corp/src/main.ts' line:7 %}
 
 {% section %}
 
 ## Widgets
 
-Widgets are the basic building blocks of Dojo's user interface. They combine both the visual and behavioral aspects of a component into a single element. These aspects are encapsulated within the widget's implementation. The widget then exposes properties and methods that allow other components to interact with it. Consider the following diagrams:
+Up until now, we've return virtual DOM that represents HTML elements directly from the `renderer`, however that wouldn't scale very well as an application grow.
+
+That were widgets come into play, widgets are the basic building blocks of Dojo's user interface. They combine both the visual and behavioral aspects of a component into a single element. These aspects are encapsulated within the widget's implementation. The widget then exposes properties and methods that allow other components to interact with it. Consider the following diagrams:
 
 <img src="../resources/html_js.svg" title="HTML and JavaScript" class="half-width"/><img src="../resources/widget.svg" title="Widget" class="half-width"/>
 
@@ -65,21 +67,27 @@ The first diagram shows a traditional HTML + JavaScript architecture. Since the 
 
 The second image shows how widgets ensure that components only interact according to their design intent. The widget encapsulates its visual and behavioral aspects. It then exposes properties and methods that allow other components to interact with it. By providing a controlled interface, it is much easier to keep the visual and behavioral aspects of the widget synchronized.
 
-In our demo application, we only have one widget, the HelloWorld widget:
+In our demo application, we don't currently have any widgets, but let's abstract the virtual DOM from `main.ts` out into a dedicated widget.
 
-{% include_codefile 'demo/initial/biz-e-corp/src/widgets/HelloWorld.ts' %}
+{% instruction 'Create a widget `HelloWorld.ts` in `src/widgets`' %}
 
-This is very simple, containing a single `<h1>` tag and no behavior, but it demonstrates some important concepts. Notice the `render` method, which provides the virtual nodes (also known as DNodes) for the Projector to determine what to add to the HTML document. In this example, the widget is simple enough that the function always returns the same result. We could make this widget more sophisticated by allowing it to take additional properties that can be used to alter how the DNodes are generated. We can provide sensible default values for these properties to add more complex behavior without having to change how the rest of the application interacts with it. This encourages the development of loosely coupled components that are easier to develop and maintain over time.
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/HelloWorld.ts' %}
+
+{% instruction 'Use the `HelloWorld` widget in the `renderer` in `src/main.ts`' %}
+
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:5 %}
+
+This is very simple widget, containing the virtual DOM that we previously were returning straight from the vdom `renderer`, but it demonstrates some important concepts. Notice the `render` method, which provides the virtual nodes (also known as DNodes) for the `renderer` to determine what to add to the HTML document. In this example, the widget is simple enough that the function always returns the same result. We could make this widget more sophisticated by allowing it to take additional properties that can be used to alter how the DNodes are generated. We can provide sensible default values for these properties to add more complex behavior without having to change how the rest of the application interacts with it. This encourages the development of loosely coupled components that are easier to develop and maintain over time.
 
 {% section %}
 
 ## Tests
 
-The final aspect that our basic application contains is its test suite. Dojo is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application's components work together as expected. Dojo leverages the [Intern](http://theintern.io) testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the [Dojo test-extras library](https://github.com/dojo/test-extras) to verify the output of the widget's render function. The test-extras library is designed to facilitate testing the functionality of Dojo widgets. For more information, refer to the [Testing Dojo Widgets](../comingsoon.html) article.
+The final aspect that our basic application contains is its test suite. Dojo is designed to ensure that errors are either not possible or easily detected, but tests are still required to verify business logic and ensure the application's components work together as expected. Dojo leverages the [Intern](http://theintern.io) testing framework to provide its testing capabilities. Intern supports several testing strategies including unit, functional, performance benchmark, accessibility and visual regression testing. The tests also use the [Dojo test-extras library](https://github.com/dojo/framework/testing) from `@dojo/framework` to verify the output of the widget's render function. The test-extras library is designed to facilitate testing the functionality of Dojo widgets. For more information, refer to the [Testing Dojo Widgets](../comingsoon.html) article.
 
 Our demo application includes some tests to verify that it is working as expected. The tests are found in `tests/unit/widgets/HelloWorld.ts`. Let's examine this part of the test code:
 
-{% include_codefile 'demo/initial/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:8-11 %}
+{% include_codefile 'demo/finished/biz-e-corp/tests/unit/widgets/HelloWorld.ts' lines:8-11 %}
 
 This test is ensuring that the rendering function is returning the correct tag and that the tag has the correct content. We will return to the topic of testing in a later tutorial, but for now you can use them to check your work as you progress through this series by running the following terminal commands:
 
@@ -104,7 +112,7 @@ dojo test --config local
 {% section %}
 
 ## Summary
-This tutorial introduced the components that make up the core of every Dojo application. While there are many other components that are optional, the main HTML document, projector, widgets and, hopefully, tests are present in all of them.
+This tutorial introduced the components that make up the core of every Dojo application. While there are many other components that are optional, the main HTML document, renderer, widgets and, hopefully, tests are present in all of them.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/002_creating_an_application/demo/finished/biz-e-corp) or alternatively [download](../assets/002_creating_an_application-finished.zip) the project.
 
