@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Building Progressive Web Apps With Dojo | Dojo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
+	<meta name="description" content="Within the past few years, new features get added to browsers at breakneck speed. The time between proposal and standardization has dropped from years to months, and browser vendors are eager to main">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building Progressive Web Apps With Dojo">
+<meta property="og:url" content="https://dojo.io/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Within the past few years, new features get added to browsers at breakneck speed. The time between proposal and standardization has dropped from years to months, and browser vendors are eager to main">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.io/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/featured.jpg">
+<meta property="og:updated_time" content="2018-09-17T23:10:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Building Progressive Web Apps With Dojo">
+<meta name="twitter:description" content="Within the past few years, new features get added to browsers at breakneck speed. The time between proposal and standardization has dropped from years to months, and browser vendors are eager to main">
+<meta name="twitter:image" content="https://dojo.io/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/featured.jpg">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+	
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+	
+	
+		<link rel="icon" href="/images/favicons/favicon.ico">
+	
+	<link rel="stylesheet" href="/css/main.css">
+	
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
+
+	<body class="body-single-page
+">
+		<div class="page-wrapper">
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li><a class="navbar-item" href="/docs.html">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+<li><a class="navbar-item" href="/community">Community</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
+	<div class="container article">
+		<article id="post-2018-09-13-Building-PWA-Dojo" class="article uk-article article-type-post" itemscope itemprop="blogPost">
+			<div class="article-inner">
+				
+				
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 class="article-title uk-article-title" itemprop="name">
+      Building Progressive Web Apps With Dojo
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
+							<div class="author-meta">
+	
+	<span class="author-name"> Matt Wistrand</span>
+	<span class="article-date">
+  <time datetime="2018-09-13T08:00:00.000Z" itemprop="datePublished">September 13th 2018, 8:00 am</time>
+</span>
+</div>
+							
+						</div>
+					</header>
+				
+				<div class="article-entry" itemprop="articleBody">
+					
+						<img src="/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/featured.jpg" title="feature-full">
+<p>Within the past few years, new features get added to browsers at breakneck speed. The time between proposal and standardization has dropped from years to months, and browser vendors are eager to maintain similar turnaround times for implementing new standards. In many ways, it has never been a better time to be a web developer.</p>
+<p>Networks, on the other hand, are neither universally reliable nor universally performant. As developers, we have a responsibility to ensure our users do not suffer from our technical decisions. One step we can take against this is by delivering our application using Progressive Web Applications (PWA) technologies which are resilient to network issues.</p>
+<a id="more"></a>
+<p>At its most basic definition, “Progressive Web  App” (or “PWA”) is an umbrella term for a web application that applies a set of techniques and technologies to mimic the responsiveness and feel of a native application. Since progressive web apps at their heart are regular web pages, they run in the browser and bypass any native app store.</p>
+<p>Network resilience that we see in native apps is provided in PWAs by a technology called Service Workers. A Service Worker is a worker that sits as a proxy between the page and the server. They can intercept requests and cache results. We also get the ‘install to homescreen’ experience courtesy of what is called the web manifest file (manifest.json). This manifest instructs the browser that the page is a PWA that is installable and provides things like application colors and icons.</p>
+<p>Dojo makes it easy to deliver an app-like, offline-first experience to your users using only configuration settings supplied in the application’s <code>.dojorc</code>. Suppose we are developing an application for rock climbers that delivers information on climbing routes within the U.S. National Parks. The application allows users to view and rate routes, add their routes, and track those routes they have climbed. Further, the application contains an admin area and a user preferences screen. Finally, since there is a good chance that users do not get reliable wireless access while climbing, we need to ensure they can view route details offline.</p>
+<p>Before delving into PWA features, we lay out a basic <code>.dojorc</code>  that instructs the Dojo build to separate the user preference and admin areas into separate bundles that get loaded on-demand.</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"build-app"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"bundles"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">[</span> ... <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">"admin"</span><span class="token operator">:</span> <span class="token punctuation">[</span> ... <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Adding-a-Web-App-Manifest"><a href="#Adding-a-Web-App-Manifest" class="headerlink" title="Adding a Web App Manifest"></a>Adding a Web App Manifest</h2><p>The next step is to add a <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest" target="_blank" rel="noopener">web app manifest</a> that provides information about the application like a name and available icons to display on the users’ home screens. The manifest for our application contains a set of icons that can be displayed on the home screen, the name to display alongside the icon, a brief description, and the background color to display while the app is loading:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"build-app"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"bundles"</span><span class="token operator">:</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"pwa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"manifest"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"background_color"</span><span class="token operator">:</span> <span class="token string">"#212329"</span><span class="token punctuation">,</span>
+                <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"National Parks Climbing"</span><span class="token punctuation">,</span>
+                <span class="token property">"short_name"</span><span class="token operator">:</span> <span class="token string">"Climbing"</span><span class="token punctuation">,</span>
+                <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"A guide to climbing routes in the U.S. National Parks"</span><span class="token punctuation">,</span>
+                <span class="token property">"icons"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span> <span class="token property">"src"</span><span class="token operator">:</span> <span class="token string">"./icon-48x48.png"</span><span class="token punctuation">,</span> <span class="token property">"sizes"</span><span class="token operator">:</span> <span class="token string">"48x48"</span><span class="token punctuation">,</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"image/png"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span> <span class="token property">"src"</span><span class="token operator">:</span> <span class="token string">"./icon-96x96.png"</span><span class="token punctuation">,</span> <span class="token property">"sizes"</span><span class="token operator">:</span> <span class="token string">"96x96"</span><span class="token punctuation">,</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"image/png"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span> <span class="token property">"src"</span><span class="token operator">:</span> <span class="token string">"./icon-256x256.png"</span><span class="token punctuation">,</span> <span class="token property">"sizes"</span><span class="token operator">:</span> <span class="token string">"256x256"</span><span class="token punctuation">,</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"image/png"</span> <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>With the above configuration, the Dojo build generates a JSON file and inline it within the <code>&lt;head&gt;</code> tag of the <code>index.html</code>. Since iOS devices do not currently use PWA manifests to read app data, <a href="https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank" rel="noopener">iOS-specific tags</a> get inlined as well. When the user adds the app to their home screen, either the name or the short name gets displayed (depending upon available space), along with one of the provided icons. We provide multiple sizes so that the user’s device can choose the most appropriate one to display.</p>
+<blockquote>
+<p>If you are as internationalization-minded as we are, you should notice that there is no mechanism to localize the web app manifest. So your app uses the same icon, name, description, etc., regardless of the user’s preferred language. As a result, you need a server-side solution to localize your manifest.</p>
+</blockquote>
+<p>Our application can now get installed on users home screens like a native app, but we still need a way to display content even when offline. That is where service workers come into play.</p>
+<h2 id="Adding-a-Service-Worker"><a href="#Adding-a-Service-Worker" class="headerlink" title="Adding a Service Worker"></a>Adding a Service Worker</h2><p>A service worker is essentially a proxy between the network and the application. It is a single JavaScript file that runs in a separate thread from the application itself, and it can intercept and modify network requests, cache responses, and control how the browser responds to those requests.</p>
+<p>As with the PWA manifest, the application’s service worker gets generated entirely from options specified in the <code>.dojorc</code>, this time housed beneath the <a href="https://github.com/dojo/cli-build-app#pwaserviceworker-object" target="_blank" rel="noopener"><code>pwa.serviceWorker</code></a> namespace. When Dojo builds the application, it generates both the service worker file and ensures it is registered when the application starts. At this point, the service worker gets registered, but by default, it does not control the application until the next refresh. This default may get overridden by setting <code>&quot;clientsClaim&quot;: true</code> , which causes the service worker to take control immediately. That said, in most cases, this override is not necessary, and we recommend not setting it until you have proven you need it.</p>
+<p>Once the service worker gets successfully installed, it can begin intercepting requests and caching responses. There are two types of caches involved: the precache that is populated when the service worker gets installed with the static assets required to render the application shell and the runtime caches that gets populated with responses from network requests sent while using the application. By default, all assets in the build pipeline get added to the precache, but this can be limited to a subset of bundles. Alternatively, specific bundles may deliberately get excluded from the precache as well.</p>
+<p>Since we are only concerned with making climbing routes available offline, we exclude the admin and preferences bundles from the precache:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"build-app"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        "bundles<span class="token operator">:</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"pwa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"manifest"</span><span class="token operator">:</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"serviceWorker"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"excludeBundles"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"admin"</span><span class="token punctuation">,</span> <span class="token string">"settings"</span> <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>While setting the precache is rather straightforward, controlling the runtime caches requires a little consideration. There are four strategies when determining how network requests should get handled:</p>
+<ul>
+<li><code>networkFirst</code> instructs the service worker to attempt to load the resource over the network, falling back to the cache if the network is unavailable.</li>
+<li><code>cacheFirst</code> instructs the service worker to deliver the resource from the cache, sending a network request only when the resource does not exist in the cache.</li>
+<li><code>networkOnly</code> prevents the resource from ever being loaded from the cache.</li>
+<li><code>staleWhileRevalidate</code> loads the resource from the cache while it gets simultaneously fetched over the network. This strategy is useful when a resource is updated frequently, but having the latest version is not crucial to the user experience.</li>
+</ul>
+<p>Choosing the right strategy depends on the type of resource as well as on how the user needs to use that resource. For example, we know that the climbers using our application need the most up-to-date information on unexpected park closures or dangers like mountain lion sightings or lightning storms. We also know they want accurate data on route locations, access, difficulty levels, and that they also want any maps that depict those routes. At the same time, we recognize that loading maps or images over a poor network connection are not an option, so we want to limit any network requests to fetching the lower-cost text descriptions.</p>
+<p>Armed with that knowledge, we can add sensible route handling to our config:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"build-app"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"bundles"</span><span class="token operator">:</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"pwa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            "manifest<span class="token operator">:</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"serviceWorker"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"excludeBundles"</span><span class="token operator">:</span> <span class="token punctuation">[</span> ... <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">"routes"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"urlPattern"</span><span class="token operator">:</span> <span class="token string">"\/parks"</span><span class="token punctuation">,</span>
+                        <span class="token property">"strategy"</span><span class="token operator">:</span> <span class="token string">"networkFirst"</span><span class="token punctuation">,</span>
+                        <span class="token property">"expiration"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                            <span class="token property">"maxEntries"</span><span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+                            <span class="token property">"maxAgeSeconds"</span><span class="token operator">:</span> <span class="token number">604800</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"urlPattern"</span><span class="token operator">:</span> <span class="token string">"images\/route-maps"</span><span class="token punctuation">,</span>
+                        <span class="token property">"strategy"</span><span class="token operator">:</span> <span class="token string">"cacheFirst"</span><span class="token punctuation">,</span>
+                        <span class="token property">"expiration"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                            <span class="token property">"maxEntries"</span><span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+                            <span class="token property">"maxAgeSeconds"</span><span class="token operator">:</span> <span class="token number">2592000</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Let’s break this down. Runtime strategies get specified at the route level under the <code>pwa.serviceWorker.routes</code> array. Each route includes a <code>”urlPattern”</code> that is converted internally to a regular expression and matches specific request URLs. Since users need to have the latest text information on parks and routes, we use the <code>networkFirst</code> strategy to ensure that users can get the latest data whenever the network is available. We then limit that cache to 25 pages, each cached for seven days before being removed. Finally, we instruct the service worker to load the route maps from the cache whenever possible and limit that cache to 25 maps with each expiring thirty days out. Of course, in a real application, you want to adjust the expirations according to what users access and how often.</p>
+<p>With that, you are ready to begin upgrading your Dojo application to a PWA! There are of course several additional configuration options for both the <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest" target="_blank" rel="noopener">manifest</a> and the <a href="https://github.com/dojo/webpack-contrib/#service-worker-plugin" target="_blank" rel="noopener">service worker</a>, and you can even provide your service worker if the generated service worker does not meet your needs. Finally, if you want to get further background knowledge on  PWAs, both Jake Archibald’s <a href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle" target="_blank" rel="noopener">The Service Worker Lifecycle</a> and MDN’s <a href="https://developer.mozilla.org/en-US/Apps/Progressive/Introduction" target="_blank" rel="noopener">Introduction to progressive web apps</a> are excellent places to start.</p>
+
+					
+				</div>
+				<footer class="article-footer">
+					
+					
+				</footer>
+			</div>
+			
+				
+<hr>
+<nav id="article-nav" class="uk-child-width-1-2@s uk-text-center uk-grid-match uk-margin-top" uk-grid>
+
+	
+	
+		<div class="uk-card uk-card-hover uk-card-body">
+			<strong class="uk-text-small">Previous Post</strong>
+			<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="/blog/2018/07/27/2018-07-27-Dojo-version-3-release/" id="article-nav-older" class="article-nav-link-wrap">Dojo Version 3.0</a></h4>
+		</div>
+	
+</nav>
+
+			
+		</article>
+
+		
+	</div>
+</div>
+
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+	<li><a class="navbar-item" href="/docs.html">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+<li><a class="navbar-item" href="/community">Community</a></li>
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
+</footer>
+
+			</div>
+			
+		</div>
+		
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
+
+	</body>
+</html>
