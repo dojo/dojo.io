@@ -15,7 +15,7 @@ topic: routing
 
 `@dojo/framework/routing` is a powerful set of tools to support declarative routing using a specialized widget that accepts a render property called an `Outlet` and a widget that creates links with a `href` generated from an `outlet` id.
 
-In this tutorial, we will start with a basic application with no routing. We will use Dojo's declarative routing to configure some routes, use `Outlet` widget to define the view for each route and use the `Link` widget to create links for the application's outlets.
+In this tutorial, we will start with a basic application with no routing. We will use Dojo's declarative routing to configure some routes, use the `Outlet` widget to define the view for each route and use the `Link` widget to create links for the application's outlets.
 
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/initial/biz-e-corp) or [download](../assets/1030_routing-initial.zip) the demo project and run `npm install` to get started.
@@ -38,7 +38,7 @@ All application routes needs to be to configured when creating the router instan
 * `defaultRoute` - a default route to be used if there is no other matching route
 * `children` - nested route configurations which can represent a nested path within a parent route
 
-The route configuration should be static, i.e. not dynamically determined at runtime and defined as the default export of a module called `routes.ts` in the projects `src` directory.
+The route configuration should be static, i.e. not dynamically determined at runtime and defined as the default export of a module called `routes.ts` in the project's `src` directory.
 
 Application routing paths are assembled into a hierarchy based on the routing configuration. The `children` property of a parent route accepts an array of more route configurations.
 
@@ -86,11 +86,11 @@ Next, we will create `outlets` to control when our widgets are displayed.
 The path that is associated to an outlet name is defined by the routing configuration from the first section of this tutorial.
 {% endaside %}
 
-The `Outlet` widget accepts two properties `id` and `renderer`, the `id` is the `outlet` from the routing configuration and the `renderer` is a function that returns widgets and nodes to display using `v()` and `w()`.
+The `Outlet` widget accepts two properties, `id` and `renderer`. The `id` is the `outlet` from the routing configuration and the `renderer` is a function that returns widgets and nodes to display using `v()` and `w()`.
 
 The `renderer` function receives a `MatchDetails` object that provides information about the route match.
 
- * router: The router instance, which can be used to generate links with, for example, `router.getLine('outlet-id')`.
+ * router: The router instance, which can be used to generate links, for example, `router.getLine('outlet-id')`.
  * queryParams: An object that contains any query params for the route.
  * params: An object that contains any path params for the route.
  * type: The type of match:
@@ -102,7 +102,7 @@ The `renderer` function receives a `MatchDetails` object that provides informati
 
 Consider an `outlet` configured for a `path` of `about`, the widget that it returns from the `renderer` will render for a selected route `about` (described as an `index` match). The widget will also display for any route that the outlet's `path` partially matches, for example, `about/company` or `about/company/team`.
 
-Simply returning the widget or nodes that need to be displayed when an outlet has matched is usually all that is required, however there are scenarios where it is necessary to explicitly define a widget for an `index` or `error` match. This is where the `matchDetails` comes is, using the information from here we can write some simple logic to determine which widget to render for each scenario.
+Simply returning the widget or nodes that need to be displayed when an outlet has matched is usually all that is required, however there are scenarios where it is necessary to explicitly define a widget for an `index` or `error` match. This is where `matchDetails` is beneficial. By using the information from `matchDetails`, we can create simple logic to determine which widget to render for each scenario.
 
 ```ts
 w(Outlet, {
