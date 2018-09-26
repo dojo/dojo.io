@@ -766,6 +766,7 @@ loadLanguages(['typescript', 'json', 'bash', 'jsx', 'tsx']);
 exports.global = window;
 exports.maxTocLevel = 4;
 exports.sep = '--';
+exports.anchorSep = '___';
 function clearNode(elem) {
     var child = elem.firstElementChild;
     while (child) {
@@ -843,7 +844,7 @@ function docIdToDomId(docId) {
 exports.docIdToDomId = docIdToDomId;
 function domIdToDocId(domId) {
     if (domId === void 0) { domId = ''; }
-    var id = domId.replace(/__/g, '/');
+    var id = domId.replace(/([^_])__(?!_)/g, '$1/');
     id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
     id = id.replace(/_md/g, '.md');
     return id;
@@ -859,7 +860,7 @@ function toHash(ref) {
         hash += "" + exports.sep + docIdToDomId(section);
     }
     if (anchor) {
-        hash += "" + exports.sep + docIdToDomId(anchor);
+        hash += "" + exports.anchorSep + docIdToDomId(anchor);
     }
     return hash;
 }
@@ -877,11 +878,9 @@ function fromHash(hash) {
     var docIdParts = idParts[1].split('/');
     var repo = docIdParts[0] + "/" + docIdParts[1];
     var version = docIdParts[2].replace(/_/g, '.');
-    var path = docIdParts.slice(3).join('/');
-    var _a = tslib_1.__read(idParts.slice(2), 2), section = _a[0], anchor = _a[1];
-    if (section && !anchor) {
-        anchor = section;
-    }
+    var path = docIdParts.slice(3).join('/').split(exports.anchorSep)[0];
+    var sectionParts = idParts[2] || '';
+    var _a = tslib_1.__read(sectionParts.split(exports.anchorSep), 2), section = _a[0], anchor = _a[1];
     var ref = { type: type, repo: repo, version: version, path: path, section: section, anchor: anchor };
     return ref;
 }
@@ -894,7 +893,7 @@ function getDocId(locationOrHref) {
     else {
         hash = locationOrHref.hash.slice(1);
     }
-    var id = hash.split(exports.sep)[0];
+    var id = hash.split(exports.anchorSep)[0];
     return domIdToDocId(id);
 }
 exports.getDocId = getDocId;
@@ -931,7 +930,7 @@ function initMarkdownRenderer() {
         var ref = env.ref;
         var domId = docIdToDomId(ref.repo + "/" + ref.version);
         if (!file) {
-            hrefToken[1] = '#' + domId + exports.sep + hash;
+            hrefToken[1] = '#' + domId + exports.anchorSep + hash;
         }
         else if (/github.com/.test(file)) {
             var match = /https?:\/\/github.com\/([^/]+)\/([^/]+)/.exec(file);
@@ -943,13 +942,13 @@ function initMarkdownRenderer() {
                     var docHash = docs[pkg];
                     hrefToken[1] = "" + docIdToDomId(docHash);
                     if (hash) {
-                        hrefToken[1] += "" + exports.sep + hash;
+                        hrefToken[1] += "" + exports.anchorSep + hash;
                     }
                 }
             }
         }
         else if (!/^https?:/.test(file)) {
-            hrefToken[1] = docIdToDomId("#doc" + exports.sep + domId + "/" + file);
+            hrefToken[1] = docIdToDomId("#doc" + exports.anchorSep + domId + "/" + file);
         }
         return defaultLinkRender(tokens, idx, options, env, self);
     };
@@ -967,7 +966,7 @@ function initMarkdownRenderer() {
         }
         var anchorId = "" + ref.type + exports.sep + docIdToDomId(docId);
         if (level > 1) {
-            anchorId += exports.sep + slugify(content);
+            anchorId += exports.anchorSep + slugify(content);
         }
         var icon = '';
         return '<' + token.tag + ' id="' + anchorId + '">' + icon;
