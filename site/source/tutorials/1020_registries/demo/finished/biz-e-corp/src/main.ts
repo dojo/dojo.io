@@ -10,8 +10,6 @@ import WorkerForm from './widgets/WorkerForm';
 import WorkerContainer from './widgets/WorkerContainer';
 import Worker from './widgets/Worker';
 
-const root = document.querySelector('my-app') || undefined;
-
 const registry = new Registry();
 registry.define('dojo-button', Button);
 registry.define('dojo-text-input', TextInput);
@@ -21,4 +19,4 @@ registry.define('worker-form', WorkerForm);
 registry.define('worker-container', WorkerContainer);
 
 const r = renderer(() => w(App, {}));
-r.mount({ domNode: document.querySelector('my-app'), registry });
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement, registry });

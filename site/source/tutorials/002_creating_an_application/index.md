@@ -91,12 +91,12 @@ This test is ensuring that the rendering function is returning the correct tag a
 dojo test
 ```
 
-Running `dojo test` compiles the application on demand (just in time compilation) by default for Node.js. However the tests can also be run against built bundles using the `--config` config with `dojo test`, but first we need to make sure we've built the test bundles. These bundles can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change.
+Running `dojo test` compiles the application on demand (just in time compilation) by default for Node.js. However the tests can also be run against built bundles using the `--config` config with `dojo test`, but first we need to make sure we've built the test bundles. These bundles can be built using a watch command, meaning that the full application does not need to be rebuilt to re-run the tests after every change. There is a separate mode for unit and functional test bundles, `--mode unit` and `--mode functional` respectively.
 
 In one terminal run:
 
 ```bash
-dojo build --mode test --watch
+dojo build --mode unit --watch
 ```
 
 While this is command is running, in another terminal run:

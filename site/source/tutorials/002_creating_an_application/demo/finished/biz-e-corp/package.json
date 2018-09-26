@@ -7,12 +7,8 @@
     "build": "dojo build"
   },
   "dependencies": {
-<<<<<<< a97fe623264dce6280aff4694f864977b09b66ab
-    "@dojo/framework": "^3.0.0",
     "@dojo/core": "^2.0.0",
-=======
     "@dojo/framework": "next",
->>>>>>> Use next versions
     "tslib": "~1.8.1"
   },
   "devDependencies": {

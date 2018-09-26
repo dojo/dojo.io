@@ -75,7 +75,7 @@ Now, we need to:
 
 {% instruction 'Import the `ApplicationContext` module and add this code to the `main` module:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:4 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:5 %}
 
 {% aside 'Loading data' %}
 In a real-world application, this data would probably be loaded via a call to a web service or a local data store. To learn more, take a look at the [stores tutorial](../comingsoon.html).
@@ -87,11 +87,11 @@ Now we need to create the registry, create the injector factory that creates and
 
 {% instruction 'Add the `Registry` import to the `main` module.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:2 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:3 %}
 
 {% instruction 'Now, create an injector factory that creates and returns the application context' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-32 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:8-31 %}
 
 {% aside 'Registry' %}
 The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the [registry tutorial](../1020_registries/).
@@ -99,11 +99,11 @@ The registry provides a way to register a widget via a label, making it accessib
 
 The first statement creates a `registry` where the application context can be registered. The second statement registers an injector factory that creates the `ApplicationContext` instance passing in the `invalidator` function passed to the factory. The factory creates an injector function that returns the created `ApplicationContext` instance.
 
-{% instruction 'Add the registry to the projector' %}
+{% instruction 'Pass the registry to the renderer when mounting' %}
 
-We need to pass the `registry` to the `projector` via the `setProperties` method to ensure that it is available for all widget and container instances.
+We need to pass the `registry` to the `renderer` as an option on the `mount` function. This ensures that the `registry` instance is available for all widget and container instances.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:34 %}
 
 Now that the `ApplicationContext` injector factory is defined, and the `registry` gets set on the `projector`, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a `Container` that will allow injecting state into the `WorkerForm` and `WorkerContainer` widgets.
 

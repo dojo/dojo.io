@@ -1,4 +1,4 @@
-import { deepAssign } from '@dojo/framework/core/lang';
+import { deepAssign } from '@dojo/framework/core/util';
 
 import { WorkerProperties } from './widgets/Worker';
 import { WorkerFormData, WorkerFormErrors } from './widgets/WorkerForm';

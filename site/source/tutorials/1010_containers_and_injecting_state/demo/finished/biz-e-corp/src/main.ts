@@ -31,4 +31,4 @@ registry.defineInjector('app-state', (invalidator) => {
 });
 
 const r = renderer(() => w(App, {}));
-r.mount({ domNode: document.querySelector('my-app'), registry });
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement, registry });

@@ -5,7 +5,7 @@ import { Registry } from '@dojo/framework/widget-core/Registry';
 import ApplicationContext from './ApplicationContext';
 import App from './widgets/App';
 
-const root = document.querySelector('my-app') || undefined;
+const root = document.querySelector('my-app') as HTMLElement || undefined;
 
 const registry = new Registry();
 registry.defineInjector('app-state', (invalidator) => {
@@ -33,4 +33,4 @@ registry.defineInjector('app-state', (invalidator) => {
 });
 
 const r = renderer(() => w(App, {}));
-r.mount({ domNode: document.querySelector('my-app'), registry });
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement, registry });

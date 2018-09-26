@@ -99,11 +99,11 @@ Our `App` class is now complete and ready to replace the `Banner` class as the r
 
 {% instruction 'The first update will replace the `import` statement from the `Banner` class to the new `App` class:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:2 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:3 %}
 
-{% instruction 'The only other change we need to make is to pass the `App` class into the `ProjectorMixin` function call on line 6:' %}
+{% instruction 'The only other change we need to make is to pass the `App` to the `w()` call in the `renderer`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:6 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:5 %}
 
 With that change, the `App` widget is ready to serve as the root of our application. Let's test everything by building and running the project.
 
@@ -209,7 +209,7 @@ The `WorkerProperties` interface adds two new optional properties that we'll be 
 
 {% instruction 'Inside of the render method, add the following code to create some local constants for the first and last names:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:16-19 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:14-17 %}
 
 This code retrieves the appropriate property and provides a reasonable default in case the widget doesn't receive a value. This is done via a [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment). We can now update the generated virtual DOM with those values by updating the returned value from the render method with those property values.
 
@@ -275,7 +275,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% instruction 'With the imports in place, add the **@theme** decorator and apply the mixin to the `Worker` class in `Worker.ts`:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:11-14 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:11-12 %}
 
 {% instruction 'Add the CSS rules in `src/styles/worker.m.css` which will allow us to style the `Worker` widget:' %}
 
@@ -285,7 +285,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% instruction 'Return to `Worker.ts` and update the render method to add the classes:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:15-32 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:13-30 %}
 
 You may notice that we are calling `this.theme` with the `worker` and `image` classes as arguments. `theme` is a method provided by the `ThemedMixin` which is used to return the overriding class if the widget has been configured with a theme. To learn more about theming, review the [Theming an Application](../007_theming/) tutorial.
 

@@ -4,4 +4,4 @@ import Zombies from './widgets/Zombies';
 import 'web-animations-js/web-animations-next-lite.min';
 
 const r = renderer(() => w(Zombies, {}));
-r.mount({ domNode: document.querySelector('my-app') });
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement });

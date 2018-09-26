@@ -3,11 +3,12 @@ import { v } from '@dojo/framework/widget-core/d';
 import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 import * as css from '../styles/banner.m.css';
 
-const BannerBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class Banner extends BannerBase {
+export default class Banner extends ThemedMixin(WidgetBase) {
 	protected render() {
-		return v('h1', { title: 'I am a title!', classes: this.theme(css.root) }, [ 'Biz-E-Bodies' ]);
+		return v('h1', {
+			title: 'I am a title!',
+			classes: this.theme(css.root)
+		}, [ 'Biz-E-Bodies' ]);
 	}
 }

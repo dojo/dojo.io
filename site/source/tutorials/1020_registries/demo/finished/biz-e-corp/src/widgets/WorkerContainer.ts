@@ -8,10 +8,8 @@ export interface WorkerContainerProperties {
 	workerData?: WorkerProperties[];
 }
 
-const WorkerContainerBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class WorkerContainer extends WorkerContainerBase<WorkerContainerProperties> {
+export default class WorkerContainer extends ThemedMixin(WidgetBase)<WorkerContainerProperties> {
 
 	protected render() {
 		const {

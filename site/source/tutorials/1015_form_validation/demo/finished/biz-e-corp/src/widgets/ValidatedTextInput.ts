@@ -11,10 +11,8 @@ export interface ValidatedTextInputProperties extends TextInputProperties {
 	onValidate?: (value: string) => void;
 }
 
-export const ValidatedTextInputBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class ValidatedTextInput extends ValidatedTextInputBase<ValidatedTextInputProperties> {
+export default class ValidatedTextInput extends ThemedMixin(WidgetBase)<ValidatedTextInputProperties> {
 	private _errorId = uuid();
 
 	private _onBlur(value: string) {

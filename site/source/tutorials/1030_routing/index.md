@@ -70,9 +70,9 @@ The utility returns the `router` instance if required.
 
 {% instruction 'Initialize the routing' %}
 
-To initialize the routing, set the registry as a property on the projector.
+To initialize the routing, pass the registry to the renderer's `mount` function.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:12 %}
 
 Next, we will create `outlets` to control when our widgets are displayed.
 
@@ -90,15 +90,15 @@ The `Outlet` widget accepts two properties, `id` and `renderer`. The `id` is the
 
 The `renderer` function receives a `MatchDetails` object that provides information about the route match.
 
- * router: The router instance, which can be used to generate links, for example, `router.getLine('outlet-id')`.
- * queryParams: An object that contains any query params for the route.
- * params: An object that contains any path params for the route.
- * type: The type of match:
+ * `router`: The router instance, which can be used to generate links.
+ * `queryParams`: An object that contains any query params for the route.
+ * `params`: An object that contains any path params for the route.
+ * `type`: The type of match:
    * `index`: An exact match
    * `partial`: The route is a match but not exact
    * `error`: The route is an error match
- * isError: Helper function that returns true when the match type is error
- * isExact: Helper function that returns true when the match type is exact
+ * `isError`: Helper function that returns true when the match type is error
+ * `isExact`: Helper function that returns true when the match type is exact
 
 Consider an `outlet` configured for a `path` of `about`, the widget that it returns from the `renderer` will render for a selected route `about` (described as an `index` match). The widget will also display for any route that the outlet's `path` partially matches, for example, `about/company` or `about/company/team`.
 
@@ -157,7 +157,7 @@ w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
 
 {% instruction 'Replace the `render` function in `App.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:37-55,59-64 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:38-55,59-72 %}
 
 The updated block of code continues to render the banner, worker form and worker container widgets, and additionally renders three `Link` widgets:
 
@@ -191,11 +191,11 @@ This means a route with any value will match the `filter` as long as the previou
 
 {% instruction 'Add a private function to generate the filter links' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:19-31 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:17-29 %}
 
 {% instruction 'Re-work the render function to filter using the new property' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:33-54 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:31-52 %}
 
 We have added a new property named `filter` to `WorkerContainerProperties` in `WorkerContainer.ts`, which will be used to filter the workers based on their last name. When used by a normal widget this would be determined by its parent and passed in like any normal property. However for this application we need the route param value to be passed as the filter property. To achieve this, we can add a mapping function callback which receives an object argument consisting of four properties:
 

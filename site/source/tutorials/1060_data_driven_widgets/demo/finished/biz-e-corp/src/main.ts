@@ -5,7 +5,7 @@ import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 
 import App from './widgets/App';
 
-const root = document.querySelector('my-app') || undefined;
+const root = document.querySelector('my-app') as HTMLElement || undefined;
 
 const routingConfig = [
 	{
@@ -33,4 +33,4 @@ const registry = new Registry();
 registerRouterInjector(routingConfig, registry);
 
 const r = renderer(() => w(App, {}));
-r.mount({ domNode: document.querySelector('my-app'), registry });
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement, registry });

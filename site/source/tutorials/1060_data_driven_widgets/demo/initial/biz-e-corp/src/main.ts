@@ -31,4 +31,4 @@ const registry = new Registry();
 registerRouterInjector(routingConfig, registry);
 
 const r = renderer(() => w(App, {}));
-r.mount({ domNode: document.querySelector('my-app'), registry });
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement, registry });

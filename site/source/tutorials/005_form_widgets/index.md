@@ -41,10 +41,8 @@ import * as css from '../styles/workerForm.m.css';
 export interface WorkerFormProperties {
 }
 
-export const WorkerFormBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
+export default class WorkerForm extends ThemedMixin(WidgetBase)<WorkerFormProperties> {
 
 	private _onSubmit(event: Event) {
 		event.preventDefault();
@@ -141,13 +139,13 @@ At this point, the user interface for the form is available, but it does not do 
 
 {% instruction 'Update the `render` method once again.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:42-81 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:40-79 %}
 
 This form of the `render` method now does everything that we need: it creates the user interface and registers event handlers that will update the application as the user enters information. However, we need to add a few more methods to the `WorkerForm` to define the event handlers.
 
 {% instruction 'Add these methods:' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:30-40 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:28-38 %}
 
 The `render` method starts by decomposing the properties into local constants. We still need to define those properties.
 
@@ -159,7 +157,7 @@ Most of these properties should be familiar by now, but notice the type signatur
 
 There are two types of properties that we are using in this form. The `firstName`, `lastName` and `email` properties are grouped together in the `WorkerFormData` interface and are going to set the values that are displayed in the form fields. The `onFormInput` and `onFormSave` properties expose the events that the `WorkerForm` widget can emit. To see how these different property types are used, let's examine the properties that are being passed into the first `TextInput` widget:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:53-61 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:51-59 %}
 
 The first thing that we see is a `key` property. As mentioned before, a key is necessary whenever more than one of the same type of widget or virtual DOM element will be rendered by a widget. The `label`, `placeholder`, and `required` fields map to their expected properties.
 
@@ -171,7 +169,7 @@ The last change that needs to be made in the `WorkerForm` is to update the `_onS
 
 {% instruction 'Replace the `_onSubmit` method with.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:25-28 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:23-26 %}
 
 The form is now ready to be integrated into the application. We will do that in the next step.
 

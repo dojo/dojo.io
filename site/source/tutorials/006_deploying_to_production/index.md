@@ -61,7 +61,7 @@ The default options for `dojo build` are sufficient for many situations, but the
 
 There are four groups of command line arguments that are available when using the `dojo build` command.
 
-The first group is `--mode` that accepts `dist`, `dev`, and `test` depending on the bundle that is needed, the argument defaults to `dist`.
+The first group is `--mode` that accepts `dist`, `dev`, `unit` and `functional` depending on the bundle that is needed, the argument defaults to `dist`.
 
 The build command supports two modes of `--watch`, `file` which writes built files to the relevant directory in `output` and `memory` that uses webpack dev server (and must be run with the `--serve` argument).
 
@@ -104,7 +104,7 @@ Consider the following:
 		"bundles": {
 			"foo": [
 				"src/Foo",
-			"src/Bar"
+				"src/Bar"
 			]
 		},
 		"features": {
@@ -118,7 +118,6 @@ Consider the following:
 			}
 		}
 	}
-
 }
 ```
 
@@ -156,7 +155,7 @@ The project is now configured to be managed as a webpack project. Changes can be
 A build can then be triggered by running `webpack`'s build command and providing the configuration. Further, the modes are specified using webpack's env flag (e.g., --env.mode=dev), defaulting to dist. You can run a build using webpack with:
 
 ```
-./node_modules/.bin/webpack --config=config/build-app/ejected.config.js --env.mode={dev|dist|test}
+./node_modules/.bin/webpack --config=config/build-app/ejected.config.js --env.mode={dev|dist|unit|functional}
 ```
 
 {% section %}
