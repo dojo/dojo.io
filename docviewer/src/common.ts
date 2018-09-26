@@ -13,6 +13,7 @@ export const maxTocLevel = 4;
 
 // Used to separate the document ID from an in-page anchor ID
 export const sep = '--';
+export const anchorSep = '___';
 
 export interface DocSet {
 	readme: string;
@@ -127,7 +128,7 @@ export function docIdToDomId(docId: string = ''): string {
  * (org/project/version)
  */
 export function domIdToDocId(domId: string = ''): string {
-	let id = domId.replace(/__/g, '/');
+	let id = domId.replace(/([^_])__(?!_)/g, '$1/');
 	id = id.replace(/(\w)_(\w)_(\w)/, '$1.$2.$3');
 	id = id.replace(/_md/g, '.md');
 	return id;
@@ -146,7 +147,7 @@ export function toHash(ref: LocationRef): string {
 		hash += `${sep}${docIdToDomId(section)}`;
 	}
 	if (anchor) {
-		hash += `${sep}${docIdToDomId(anchor)}`;
+		hash += `${anchorSep}${docIdToDomId(anchor)}`;
 	}
 	return hash;
 }
@@ -171,15 +172,10 @@ export function fromHash(hash?: string): LocationRef {
 	const docIdParts = idParts[1].split('/');
 	const repo = `${docIdParts[0]}/${docIdParts[1]}`;
 	const version = docIdParts[2].replace(/_/g, '.');
-	const path = docIdParts.slice(3).join('/');
+	const path = docIdParts.slice(3).join('/').split(anchorSep)[0];
 
-	let [ section, anchor ] = idParts.slice(2);
-	// FIXME: it's not great that we can't really tell the difference between
-	// a section and an anchor. Find a better way tot do this.
-	if (section && !anchor) {
-		anchor = section;
-		// section = undefined;
-	}
+	const sectionParts = idParts[2] || '';
+	let [ section, anchor ] = sectionParts.split(anchorSep);
 
 	const ref: LocationRef = { type, repo, version, path, section, anchor } as LocationRef;
 	return ref;
@@ -207,7 +203,7 @@ export function getDocId(locationOrHref: string | Location) {
 
 	// If the link references an in-page anchor, it will contain a `sep`
 	// character.
-	const id = hash.split(sep)[0];
+	const id = hash.split(anchorSep)[0];
 
 	// The hash will be a DOM-combatible ID
 	return domIdToDocId(id);
@@ -235,7 +231,7 @@ export function initMarkdownRenderer() {
 				}
 			}
 
-		return `<pre class="language-${lang}"><code clas="language-${lang}">${str}</code></pre>`;
+			return `<pre class="language-${lang}"><code clas="language-${lang}">${str}</code></pre>`;
 		},
 
 		// allow HTML in markdown to pass through
@@ -275,7 +271,7 @@ export function initMarkdownRenderer() {
 
 		if (!file) {
 			// This is an in-page anchor link
-			hrefToken[1] = '#' + domId + sep + hash;
+			hrefToken[1] = '#' + domId + anchorSep + hash;
 		} else if (/github.com/.test(file)) {
 			// This is a github link -- see if it's relative to our docs
 			const match = /https?:\/\/github.com\/([^/]+)\/([^/]+)/.exec(file);
@@ -287,13 +283,13 @@ export function initMarkdownRenderer() {
 					const docHash = docs[pkg];
 					hrefToken[1] = `${docIdToDomId(docHash)}`;
 					if (hash) {
-						hrefToken[1] += `${sep}${hash}`;
+						hrefToken[1] += `${anchorSep}${hash}`;
 					}
 				}
 			}
 		} else if (!/^https?:/.test(file)) {
 			// This is a relative link
-			hrefToken[1] = docIdToDomId(`#doc${sep}${domId}/${file}`);
+			hrefToken[1] = docIdToDomId(`#doc${anchorSep}${domId}/${file}`);
 		}
 
 		return defaultLinkRender(tokens, idx, options, env, self);
@@ -325,7 +321,7 @@ export function initMarkdownRenderer() {
 		// a heading-specific ID.
 		let anchorId = `${ref.type}${sep}${docIdToDomId(docId)}`;
 		if (level > 1) {
-			anchorId += sep + slugify(content);
+			anchorId += anchorSep + slugify(content);
 		}
 
 		// Links that show up on the TOC get a link icon that shows up when
