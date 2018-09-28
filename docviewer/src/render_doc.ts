@@ -53,8 +53,8 @@ export default async function renderDoc(
 
 		if (file.indexOf('widget-core') > -1) {
 			text = removeReadMeSections(text);
-			text = text.replace(/<!--DOCSONLY/g, '');
-			text = text.replace(/DOCSONLY-->/g, '');
+			text = text.replace(/<!--DOCSONLY--/g, '');
+			text = text.replace(/--DOCSONLY-->/g, '');
 			console.log(text);
 		}
 
