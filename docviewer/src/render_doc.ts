@@ -51,12 +51,9 @@ export default async function renderDoc(
 			text = await docFetch(repo + '/' + version + '/' + file);
 		}
 
-		if (file.indexOf('widget-core') > -1) {
-			text = removeReadMeSections(text);
-			text = text.replace(/<!--DOCSONLY--/g, '');
-			text = text.replace(/--DOCSONLY-->/g, '');
-			console.log(text);
-		}
+		text = removeReadMeSections(text);
+		text = text.replace(/<!--DOCSONLY--/g, '');
+		text = text.replace(/--DOCSONLY-->/g, '');
 
 		const html = renderMarkdown(text, { ref, docs });
 		page = h('div', { innerHTML: html });
