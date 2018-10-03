@@ -22002,6 +22002,9 @@ function renderDoc(ref, context) {
                     text = _b.sent();
                     _b.label = 4;
                 case 4:
+                    text = removeReadMeSections(text);
+                    text = text.replace(/<!--DOCSONLY--/g, '');
+                    text = text.replace(/--DOCSONLY-->/g, '');
                     html = common_1.renderMarkdown(text, { ref: ref, docs: docs });
                     page = h('div', { innerHTML: html });
                     tables = page.querySelectorAll('table');
@@ -22078,6 +22081,16 @@ function extractToc(elem) {
             return child;
         }
     }
+}
+function removeReadMeSections(content) {
+    var startIndex = content.indexOf('<!--READMEONLY-->');
+    var endIndex = null;
+    while (startIndex > -1) {
+        endIndex = content.indexOf('<!--READMEONLY-->', startIndex + 1);
+        content = content.replace(content.slice(startIndex, endIndex + 17), '');
+        startIndex = content.indexOf('<!--READMEONLY-->');
+    }
+    return content;
 }
 function isToc(elem) {
     if (elem.tagName !== 'UL') {
