@@ -70,7 +70,7 @@ The existing widgets received many accessibility, keyboard, and focus refinement
 
 ## Migration
 
-Our goal is to make smaller breaking changes with easy to migrate updates rather than substantial rewrites. The [`@dojo/cli-upgrade-app`][cli-upgrade] tool was updated to allow for a smooth transition between versions 3 and 4 of Dojo. Simply upgrade Dojo's cli and widget packages to 4.0 and run `npm install @dojo/cli-upgrade-app@4 --no-save` and run `dojo upgrade app`. For more information on what has changed since version 3, please see the [migration guide][Migration Guide].
+All of the breaking changes in Dojo 4, were carefully considered beforehand as we understand the impact that they can have on your decision to upgrade. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 4, please see the [migration guide][Migration Guide].
 
 Finally, TypeScript forwards-compatibility was updated from 2.7 to 3.0.
 
