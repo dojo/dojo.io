@@ -20,7 +20,7 @@ The application template used by `cli-build-app` provides this functionality out
 
 # TODO: Add image here
 
-<img src="./bundleanalyzer.png" alt="Dojo Bundle Analyzer" height="465" width="351" />
+<img src="./bundleAnalyzer.png" alt="Dojo Bundle Analyzer" height="500" width="334" />
 
 This is provided by the template app generated with `@dojo/cli-create-app`!
 
