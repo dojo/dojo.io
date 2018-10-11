@@ -485,7 +485,6 @@ export function slugify(str: string) {
 // raw.githubusercontent, and are not (as) rate limited.
 const sources = [
 	'https://rawcdn.githack.com/',
-	'https://cdn.rawgit.com/',
 	'https://gitcdn.xyz/repo/',
 	'https://raw.githubusercontent.com/'
 ];
