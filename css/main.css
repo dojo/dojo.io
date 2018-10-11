@@ -9846,6 +9846,15 @@ a.uk-link-reset:hover,
   border-top: 1px solid #e5e5e5;
   vertical-align: top; }
 
+/* Vertical
+ ========================================================================== */
+.uk-divider-vertical {
+  width: 1px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 1px solid #e5e5e5; }
+
 /* ========================================================================
    Component: List
  ========================================================================== */
@@ -10217,10 +10226,10 @@ button.uk-icon:not(:disabled) {
 /*
  * Set the fill and stroke color of all SVG elements to the current text color
  */
-.uk-icon [fill*='#']:not(.uk-preserve) {
+.uk-icon:not(.uk-preserve) [fill*='#']:not(.uk-preserve) {
   fill: currentcolor; }
 
-.uk-icon [stroke*='#']:not(.uk-preserve) {
+.uk-icon:not(.uk-preserve) [stroke*='#']:not(.uk-preserve) {
   stroke: currentcolor; }
 
 /*
@@ -14276,7 +14285,7 @@ ul.uk-nav-sub {
   background: rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.7); }
 
-.uk-lightbox-toolbar * {
+.uk-lightbox-toolbar > * {
   color: rgba(255, 255, 255, 0.7); }
 
 /* Toolbar Icon (Close)
@@ -17968,6 +17977,8 @@ body pre[class*="language-"],
     border-bottom-color: rgba(255, 255, 255, 0.2); }
   .uk-light .uk-divider-small::after, .uk-section-primary:not(.uk-preserve-color) .uk-divider-small::after, .uk-section-secondary:not(.uk-preserve-color) .uk-divider-small::after, .body-tutorial .aside:not(.uk-preserve-color) .uk-divider-small::after, .uk-tile-primary:not(.uk-preserve-color) .uk-divider-small::after, .uk-tile-secondary:not(.uk-preserve-color) .uk-divider-small::after, .uk-card-primary.uk-card-body .uk-divider-small::after, .uk-card-primary > :not([class*='uk-card-media']) .uk-divider-small::after, .uk-card-secondary.uk-card-body .uk-divider-small::after, .uk-card-secondary > :not([class*='uk-card-media']) .uk-divider-small::after, .uk-overlay-primary .uk-divider-small::after, .uk-offcanvas-bar .uk-divider-small::after {
     border-top-color: rgba(255, 255, 255, 0.2); }
+  .uk-light .uk-divider-vertical::after, .uk-section-primary:not(.uk-preserve-color) .uk-divider-vertical::after, .uk-section-secondary:not(.uk-preserve-color) .uk-divider-vertical::after, .body-tutorial .aside:not(.uk-preserve-color) .uk-divider-vertical::after, .uk-tile-primary:not(.uk-preserve-color) .uk-divider-vertical::after, .uk-tile-secondary:not(.uk-preserve-color) .uk-divider-vertical::after, .uk-card-primary.uk-card-body .uk-divider-vertical::after, .uk-card-primary > :not([class*='uk-card-media']) .uk-divider-vertical::after, .uk-card-secondary.uk-card-body .uk-divider-vertical::after, .uk-card-secondary > :not([class*='uk-card-media']) .uk-divider-vertical::after, .uk-overlay-primary .uk-divider-vertical::after, .uk-offcanvas-bar .uk-divider-vertical::after {
+    border-left-color: rgba(255, 255, 255, 0.2); }
   .uk-light .uk-list-divider > li:nth-child(n+2), .uk-section-primary:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2), .uk-section-secondary:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2), .body-tutorial .aside:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2), .uk-tile-primary:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2), .uk-tile-secondary:not(.uk-preserve-color) .uk-list-divider > li:nth-child(n+2), .uk-card-primary.uk-card-body .uk-list-divider > li:nth-child(n+2), .uk-card-primary > :not([class*='uk-card-media']) .uk-list-divider > li:nth-child(n+2), .uk-card-secondary.uk-card-body .uk-list-divider > li:nth-child(n+2), .uk-card-secondary > :not([class*='uk-card-media']) .uk-list-divider > li:nth-child(n+2), .uk-overlay-primary .uk-list-divider > li:nth-child(n+2), .uk-offcanvas-bar .uk-list-divider > li:nth-child(n+2) {
     border-top-color: rgba(255, 255, 255, 0.2); }
   .uk-light .uk-list-striped > li:nth-of-type(odd), .uk-section-primary:not(.uk-preserve-color) .uk-list-striped > li:nth-of-type(odd), .uk-section-secondary:not(.uk-preserve-color) .uk-list-striped > li:nth-of-type(odd), .body-tutorial .aside:not(.uk-preserve-color) .uk-list-striped > li:nth-of-type(odd), .uk-tile-primary:not(.uk-preserve-color) .uk-list-striped > li:nth-of-type(odd), .uk-tile-secondary:not(.uk-preserve-color) .uk-list-striped > li:nth-of-type(odd), .uk-card-primary.uk-card-body .uk-list-striped > li:nth-of-type(odd), .uk-card-primary > :not([class*='uk-card-media']) .uk-list-striped > li:nth-of-type(odd), .uk-card-secondary.uk-card-body .uk-list-striped > li:nth-of-type(odd), .uk-card-secondary > :not([class*='uk-card-media']) .uk-list-striped > li:nth-of-type(odd), .uk-overlay-primary .uk-list-striped > li:nth-of-type(odd), .uk-offcanvas-bar .uk-list-striped > li:nth-of-type(odd) {

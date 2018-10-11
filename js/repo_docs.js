@@ -1092,7 +1092,6 @@ function slugify(str) {
 exports.slugify = slugify;
 var sources = [
     'https://rawcdn.githack.com/',
-    'https://cdn.rawgit.com/',
     'https://gitcdn.xyz/repo/',
     'https://raw.githubusercontent.com/'
 ];
