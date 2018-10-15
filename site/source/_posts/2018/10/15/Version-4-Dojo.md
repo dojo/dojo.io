@@ -18,8 +18,6 @@ The main focus of version 4 of Dojo is improving application optimization and an
 
 The application template used by `cli-build-app` provides this functionality out of the box. In addition to this a bundle analyzer is automatically generated when running a build in production mode, providing even more insight into you bundles.
 
-# TODO: Add image here
-
 <img src="./bundleAnalyzer.png" alt="Dojo Bundle Analyzer" height="500" width="334" />
 
 This is provided by the template app generated with `@dojo/cli-create-app`.
@@ -72,15 +70,17 @@ The existing widgets received many accessibility, keyboard, and focus refinement
 
 All of the breaking changes in Dojo 4, were carefully considered beforehand as we understand the impact that they can have on your decision to upgrade. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 4, please see the [migration guide][Migration Guide].
 
-Finally, TypeScript forwards-compatibility was updated from 2.7 to 3.0.
+TypeScript forwards-compatibility was updated from 2.7 to 3.0.
 
 ## Support
+
+See the [release notes](https://github.com/dojo/framework/releases/tag/untagged-eb604998f18249110827) for more details on version 4.0.0 of Dojo!
 
 Love what we're doing or having a problem? We ❤️ our community. Reach out to us on [Discord], check out our [roadmap] and see where Dojo is headed, and try out the new Dojo on [CodeSandbox]. We look forward to your feedback!
 
 [StoreProvider PR]: https://github.com/dojo/framework/issues/76
 [Outlet PR]: https://github.com/dojo/framework/pull/63
-[Migration Guide]:https://github.com/dojo/framework/blob/47dddefb4e237069b31cc45bc4216182fc2017b3/docs/V4-Migration-Guide.md
+[Migration Guide]:https://github.com/dojo/framework/blob/master/docs/V4-Migration-Guide.md
 [cli-upgrade]: https://www.npmjs.com/package/@dojo/cli-upgrade-app
 [Discord]: https://discord.gg/M7yRngE
 [roadmap]: https://dojo.io/community/
