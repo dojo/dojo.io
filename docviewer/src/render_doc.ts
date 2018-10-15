@@ -52,8 +52,8 @@ export default async function renderDoc(
 		}
 
 		text = removeReadMeSections(text);
-		text = text.replace(/<!--DOCSONLY--/g, '');
-		text = text.replace(/--DOCSONLY-->/g, '');
+		text = text.replace(/<!--DOCSONLY/g, '');
+		text = text.replace(/DOCSONLY-->/g, '');
 
 		const html = renderMarkdown(text, { ref, docs });
 		page = h('div', { innerHTML: html });
