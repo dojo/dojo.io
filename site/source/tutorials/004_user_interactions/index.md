@@ -69,11 +69,11 @@ We could add the additional rendering logic in the current `render` method, but 
 
 {% instruction 'Create a new private method called `_renderFront` and move the existing render code inside it.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:29-47 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:27-45 %}
 
 {% instruction 'Create another private method called `_renderBack` to render the back view.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:49-90 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:47-88 %}
 
 This code is not doing anything new. We are composing together multiple virtual nodes to generate the elements required to render the detailed view. This method does, however, refer to some properties and CSS selectors that do not exist yet.
 
@@ -95,13 +95,13 @@ Finally, we need to update the `render` method to choose between the two renderi
 
 {% instruction 'Add a private field to the class.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:18 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:16 %}
 
 In general, the use of private state is discouraged. Dojo encourages the use of a form of the [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) pattern, where the properties passed to the component by its parent control the behavior of the component. This pattern helps make components more modular and reusable since the parent component is in complete control of the child component's behavior and does not need to make any assumptions about its internal state. For widgets that have state, the use of a field to store this kind of data is standard practice in Dojo. Properties are used to allow other components to view and modify a widget's published state, and private fields are used to enable widgets to encapsulate state information that should not be exposed publicly.
 
 {% instruction 'Use that field\'s value to determine which side to show.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:20-27 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:18-25 %}
 
 Confirm that everything is working by viewing the application in a browser. All three cards should be showing their front faces. Now change the value of the `_isFlipped` field to `true` and, after the application re-compiles, all three widgets should be showing their back faces.
 
@@ -109,7 +109,7 @@ To re-render our widget, we need to update the `flip` method to toggle the `_isF
 
 {% instruction 'Replace the `flip` method with this one.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:92-95 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:90-93 %}
 
 Now, the widget may flip between its front and back sides by clicking on it.
 

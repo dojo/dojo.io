@@ -280,7 +280,7 @@ Now that `ValidatedTextInput` exists, let's import it and swap it with `TextInpu
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:1-7 %}
 
 **Inside render()**
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:74-110 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:72-108 %}
 
 {% task 'Create `onFormValidate` method separate from `onFormInput`' %}
 
@@ -289,13 +289,13 @@ Now that `ValidatedTextInput` exists, let's import it and swap it with `TextInpu
 Currently the validation logic is unceremoniously dumped in `formInput` within `ApplicationContext.ts`. Now let's break that out into its own `formValidate` function, and borrow the `onFormInput` pattern to pass `onFormValidate` to `WorkerForm`. There are three steps to this:
 
 1. Add a `formValidate` method to `ApplicationContext.ts` and update `_formErrors` there instead of in `formInput`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:71-79 %}
+	{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:72-80 %}
 2. Update `WorkerFormContainer` to pass `formValidate` as `onFormValidate`:
 	{% include_codefile 'demo/finished/biz-e-corp/src/containers/WorkerFormContainer.ts' lines:6-22 %}
 3. Within `WorkerForm` first add `onFormValidate` to the `WorkerFormProperties` interface:
 	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:21-27 %}
 	Then create internal methods for each form field's validation and pass those methods (e.g. `onFirstNameValidate`) to each `ValidatedTextInput` widget. This should follow the same pattern as `onFormInput` and `onFirstNameInput`, `onLastNameInput`, and `onEmailInput`:
-	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:51-61 %}
+	{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:49-59 %}
 
 {% instruction 'Handle calling `onValidate` within `ValidatedTextInput`' %}
 
@@ -360,11 +360,11 @@ private _onBlur(value: string) {
 
 We only need to use this function on the first blur event, since subsequent validation can be handled by `onInput`. The following code will use either `this._onBlur` or `this.properties.onBlur` depending on whether the input has been previously validated:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:52-69 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:50-67 %}
 
 Now all that remains is to modify `_onInput` to only call `onValidate` if the field already has a validation state:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:26-33 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/ValidatedTextInput.ts' lines:24-31 %}
 
 Try inputting an email address with these changes; it should only show an error message (or green border) after leaving the form field, while subsequent edits immediately trigger changes in validation.
 
@@ -399,11 +399,11 @@ private _validateOnSubmit(): boolean {
 
 Next let's add an extra check: let's say each worker's email must be unique, so we'll test the input email value against the `_workerData` array. Realistically this check would be performed server-side for security:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:52-69 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:53-70 %}
 
 After modifying the `submitForm` function in `ApplicationContext.ts`, only valid worker entries should successfully submit. We also need to clear `_formErrors` along with `_formData` on a successful submission:
 
-{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:81-91 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/ApplicationContext.ts' lines:82-92 %}
 
 {% section %}
 

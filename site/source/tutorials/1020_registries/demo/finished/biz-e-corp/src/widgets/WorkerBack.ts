@@ -12,10 +12,8 @@ export interface WorkerBackProperties {
 	tasks?: string[];
 }
 
-const WorkerBackBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class WorkerBack extends WorkerBackBase<WorkerBackProperties> {
+export default class WorkerBack extends ThemedMixin(WidgetBase)<WorkerBackProperties> {
 
 	protected render() {
 		const {

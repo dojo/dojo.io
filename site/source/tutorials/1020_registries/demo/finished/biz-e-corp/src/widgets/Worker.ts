@@ -14,11 +14,9 @@ export interface WorkerProperties {
 	tasks?: string[];
 }
 
-const WorkerBase = ThemedMixin(WidgetBase);
-
 @theme(css)
 @registry('worker-back', () => import ('./WorkerBack'))
-export default class Worker extends WorkerBase<WorkerProperties> {
+export default class Worker extends ThemedMixin(WidgetBase)<WorkerProperties> {
 	private _isFlipped = false;
 
 	protected render() {

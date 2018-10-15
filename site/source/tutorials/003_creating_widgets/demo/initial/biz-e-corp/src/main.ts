@@ -1,9 +1,6 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import Banner from './widgets/Banner';
 
-const root = document.querySelector('my-app') || undefined;
-
-const Projector = ProjectorMixin(Banner);
-const projector = new Projector();
-
-projector.append(root);
+const r = renderer(() => w(Banner, {}));
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement });

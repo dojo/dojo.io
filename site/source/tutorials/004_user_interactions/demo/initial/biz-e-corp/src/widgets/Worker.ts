@@ -8,10 +8,8 @@ export interface WorkerProperties {
 	lastName?: string;
 }
 
-const WorkerBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class Worker extends WorkerBase<WorkerProperties> {
+export default class Worker extends ThemedMixin(WidgetBase)<WorkerProperties> {
 	protected render() {
 		const {
 			firstName = 'firstName',

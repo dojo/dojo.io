@@ -60,7 +60,9 @@ Let's add animation properties to our first Zombie.
 {% instruction 'Import the `WebAnimation` meta from `@dojo/framework/widget-core`' %}
 
 ```ts
-import WebAnimation, { AnimationProperties } from '@dojo/framework/widget-core/meta/WebAnimation';
+import WebAnimation, {
+	AnimationProperties
+} from '@dojo/framework/widget-core/meta/WebAnimation';
 ```
 
 {% instruction 'Add the following to the render function in Zombies.ts' %}
@@ -117,7 +119,8 @@ export class Zombies extends WidgetBase {
 		this.invalidate();
 	}
 
-	// now use this._play instead of a hardcoded `true` in the `zombieOneMoveAnimation` object
+	// now use this._play instead of a hardcoded `true` in
+	// the `zombieOneMoveAnimation` object
 ```
 
 Refresh the web browser and the zombie animation should now play / pause when clicked.
@@ -188,8 +191,14 @@ private _getZombieAnimation(id: string, direction: string): AnimationProperties 
 {% instruction 'Replace the current animation in the render function' %}
 
 ```ts
-this.meta(WebAnimation).animate('zombieOne', this._getZombieAnimation('zombieOneShuffle', 'left'));
-this.meta(WebAnimation).animate('zombieTwo', this._getZombieAnimation('zombieTwoShuffle', 'right'));
+this.meta(WebAnimation).animate(
+	'zombieOne',
+	this._getZombieAnimation('zombieOneShuffle', 'left')
+);
+this.meta(WebAnimation).animate(
+	'zombieTwo',
+	this._getZombieAnimation('zombieTwoShuffle', 'right')
+);
 ```
 
 
@@ -247,12 +256,30 @@ private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties
 }
 
 // add this to the render function with the other `animate` calls
-this.meta(WebAnimation).animate('zombieOneBody', this._getZombieBodyAnimation('zombieOneBody'));
-this.meta(WebAnimation).animate('zombieOneBackLeg', this._getZombieLegAnimation('zombieOneBackLeg'));
-this.meta(WebAnimation).animate('zombieOneFrontLeg', this._getZombieLegAnimation('zombieOneFrontLeg', true));
-this.meta(WebAnimation).animate('zombieTwoBody', this._getZombieBodyAnimation('zombieTwoBody'));
-this.meta(WebAnimation).animate('zombieTwoBackLeg', this._getZombieLegAnimation('zombieTwoBackLeg'));
-this.meta(WebAnimation).animate('zombieTwoFrontLeg', this._getZombieLegAnimation('zombieTwoFrontLeg', true));
+this.meta(WebAnimation).animate(
+	'zombieOneBody',
+	this._getZombieBodyAnimation('zombieOneBody')
+);
+this.meta(WebAnimation).animate(
+	'zombieOneBackLeg',
+	this._getZombieLegAnimation('zombieOneBackLeg')
+);
+this.meta(WebAnimation).animate(
+	'zombieOneFrontLeg',
+	this._getZombieLegAnimation('zombieOneFrontLeg', true)
+);
+this.meta(WebAnimation).animate(
+	'zombieTwoBody',
+	this._getZombieBodyAnimation('zombieTwoBody')
+);
+this.meta(WebAnimation).animate(
+	'zombieTwoBackLeg',
+	this._getZombieLegAnimation('zombieTwoBackLeg')
+);
+this.meta(WebAnimation).animate(
+	'zombieTwoFrontLeg',
+	this._getZombieLegAnimation('zombieTwoFrontLeg', true)
+);
 ```
 
 Refresh your browser and you should now see two stumbling zombies moving towards one another. Feel free to experiment with the parameters for rotation and timings.
@@ -279,7 +306,11 @@ private _numHearts = 5;
 {% instruction 'Add a method to return the heart animation' %}
 
 ```ts
-private _getHeartAnimation(id: string, sequence: number, play: boolean): AnimationProperties[] {
+private _getHeartAnimation(
+	id: string,
+	sequence: number,
+	play: boolean
+): AnimationProperties[] {
 	const delay = sequence * 500;
 	const leftOffset = Math.floor(Math.random() * 400) - 200;
 
@@ -287,9 +318,21 @@ private _getHeartAnimation(id: string, sequence: number, play: boolean): Animati
 		{
 			id: `${id}FloatAway`,
 			effects: [
-				{ opacity: 0, marginTop: '0', marginLeft: '0px' },
-				{ opacity: 0.8, marginTop: '-300px', marginLeft: `${1- leftOffset}px` },
-				{ opacity: 0, marginTop: '-600px', marginLeft: `${leftOffset}px` }
+				{
+					opacity: 0,
+					marginTop: '0',
+					marginLeft: '0px'
+				},
+				{
+					opacity: 0.8,
+					marginTop: '-300px',
+					marginLeft: `${1- leftOffset}px`
+				},
+				{
+					opacity: 0,
+					marginTop: '-600px',
+					marginLeft: `${leftOffset}px`
+				}
 			],
 			timing: {
 				duration: 1500,
@@ -297,7 +340,8 @@ private _getHeartAnimation(id: string, sequence: number, play: boolean): Animati
 			},
 			controls: {
 				play: this._playHearts,
-				onFinish: sequence === this._numHearts -1 ? this._onHeartsFinish : undefined
+				onFinish: sequence === this._numHearts -1 ?
+					this._onHeartsFinish : undefined
 			}
 		},
 		{
@@ -415,7 +459,13 @@ private _getZombieLegAnimation(id: string, front?: boolean): AnimationProperties
 
 // finally, add the control to the top of the render function
 v('div', { classes: css.controls }, [
-	w(Slider, { min: 0.1, max: 10, step: 0.1, value: this._zombieLegsPlaybackRate, onInput: this._onZombieLegsPlaybackRateChange })
+	w(Slider, {
+		min: 0.1,
+		max: 10,
+		step: 0.1,
+		value: this._zombieLegsPlaybackRate,
+		onInput: this._onZombieLegsPlaybackRateChange
+	})
 ])
 ```
 

@@ -1,9 +1,7 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
-import HelloWorld from './widgets/HelloWorld';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { v } from '@dojo/framework/widget-core/d';
 
-const root = document.querySelector('my-app') || undefined;
-
-const Projector = ProjectorMixin(HelloWorld);
-const projector = new Projector();
-
-projector.append(root);
+const r = renderer(() =>
+	v('h1', { title: 'I am a title!' }, [ 'Biz-E-Bodies' ])
+);
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement });

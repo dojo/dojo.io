@@ -7,10 +7,10 @@ import * as textInput from './@dojo/widgets/text-input/text-input.m.css';
 import * as button from './@dojo/widgets/button/button.m.css';
 
 export default {
-	'biz-e-corp/banner': banner,
-	'biz-e-corp/worker': worker,
-	'biz-e-corp/workerContainer': workerContainer,
-	'biz-e-corp/workerForm': workerForm,
+	'dojo-theming-tutorial/banner': banner,
+	'dojo-theming-tutorial/worker': worker,
+	'dojo-theming-tutorial/workerContainer': workerContainer,
+	'dojo-theming-tutorial/workerForm': workerForm,
 	'@dojo/widgets/text-input': textInput,
 	'@dojo/widgets/button': button
 };

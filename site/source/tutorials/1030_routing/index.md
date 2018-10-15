@@ -13,9 +13,9 @@ topic: routing
 
 ## Overview
 
-`@dojo/framework/routing` is a powerful set of tools to support declarative routing using a higher order component, an `Outlet` and a component that creates links with a `href` generated from an `outlet` name.
+`@dojo/framework/routing` is a powerful set of tools to support declarative routing using a specialized widget that accepts a render property called an `Outlet` and a widget that creates links with a `href` generated from an `outlet` id.
 
-In this tutorial, we will start with a basic application with no routing. We will use Dojo's declarative routing to configure some routes, create `outlets` from our existing widgets and use the `Link` component to create links for the application outlets.
+In this tutorial, we will start with a basic application with no routing. We will use Dojo's declarative routing to configure some routes, use the `Outlet` widget to define the view for each route and use the `Link` widget to create links for the application's outlets.
 
 ## Prerequisites
 You can open the [tutorial on codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/initial/biz-e-corp) or [download](../assets/1030_routing-initial.zip) the demo project and run `npm install` to get started.
@@ -38,21 +38,23 @@ All application routes needs to be to configured when creating the router instan
 * `defaultRoute` - a default route to be used if there is no other matching route
 * `children` - nested route configurations which can represent a nested path within a parent route
 
+The route configuration should be static, i.e. not dynamically determined at runtime and defined as the default export of a module called `routes.ts` in the project's `src` directory.
+
 Application routing paths are assembled into a hierarchy based on the routing configuration. The `children` property of a parent route accepts an array of more route configurations.
 
 {% instruction 'Include the required imports in the file `main.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:2-3 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:4-6 %}
 
-{% instruction 'Define the routing configuration.' %}
+{% instruction 'Define the routing configuration in `routes.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:9-29 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/routes.ts' %}
 
 Explanations for the route configuration in the above code block are explained earlier in this step.
 
 {% instruction 'Now, register the router in a `registry`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:31-32 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:8-9 %}
 
 {% aside 'History Managers' %}
 The default history manager uses hash-based (fragment style) URLs. To use one of the other provided history managers pass it as the `HistoryManager` in the third argument of `registerRouterInjector`.
@@ -68,59 +70,70 @@ The utility returns the `router` instance if required.
 
 {% instruction 'Initialize the routing' %}
 
-To initialize the routing, set the registry as a property on the projector.
+To initialize the routing, pass the registry to the renderer's `mount` function.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:36 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:12 %}
 
 Next, we will create `outlets` to control when our widgets are displayed.
 
 {% section %}
 
-## Routing outlets
+## Routing Outlets
 
-{% task 'Create outlets for the routed widgets.' %}
+{% task 'Wrap the application widgets with the `Outlet` widget.' %}
 
 {% aside 'Reminder' %}
 The path that is associated to an outlet name is defined by the routing configuration from the first section of this tutorial.
 {% endaside %}
 
-An `Outlet` is a higher order component that wraps a widget, and controls whether the widget is rendered based on the navigated route associated to the outlets name. To keep our application organized, outlets are usually stored in a separate directory named `outlets`.
+The `Outlet` widget accepts two properties, `id` and `renderer`. The `id` is the `outlet` from the routing configuration and the `renderer` is a function that returns widgets and nodes to display using `v()` and `w()`.
 
-{% instruction 'Add the following code to `WorkerFormOutlet.ts`.' %}
+The `renderer` function receives a `MatchDetails` object that provides information about the route match.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/outlets/WorkerFormOutlet.ts' %}
+ * `router`: The router instance, which can be used to generate links.
+ * `queryParams`: An object that contains any query params for the route.
+ * `params`: An object that contains any path params for the route.
+ * `type`: The type of match:
+   * `index`: An exact match
+   * `partial`: The route is a match but not exact
+   * `error`: The route is an error match
+ * `isError`: Helper function that returns true when the match type is error
+ * `isExact`: Helper function that returns true when the match type is exact
 
-The first argument for the `Outlet` function determines the widget to display when the configured route is selected. Consider an `outlet` configured for a `path` of `about`, its wrapped widget will render for a selected route `about` (described as an `index` match). The widget will also display for any route that the outlet's `path` partially matches, for example, `about/company` or `about/company/team`.
+Consider an `outlet` configured for a `path` of `about`, the widget that it returns from the `renderer` will render for a selected route `about` (described as an `index` match). The widget will also display for any route that the outlet's `path` partially matches, for example, `about/company` or `about/company/team`.
 
-Normally using a component as the first argument of `Outlet` is perfectly acceptable, however there are scenarios where it is necessary to explicitly define a widget for an `index` match. To support this more advanced configuration, the first argument also accepts an object that can be used to specify these components explicitly.
+Simply returning the widget or nodes that need to be displayed when an outlet has matched is usually all that is required, however there are scenarios where it is necessary to explicitly define a widget for an `index` or `error` match. This is where `matchDetails` is beneficial. By using the information from `matchDetails`, we can create simple logic to determine which widget to render for each scenario.
 
 ```ts
-const ExampleOutlet = Outlet({
-	index: MyIndexComponent,
-	component: MyComponent,
-	error: MyErrorComponent
-}, 'outlet-name');
+w(Outlet, {
+	id: 'outlet-name',
+	renderer: (matchDetails: MatchDetails) => {
+		if (matchDetails.isExact()) {
+			return w(MyIndexComponent, {});
+		} else if (matchDetails.isError()) {
+			return w(MyErrorComponent, {});
+		}
+		return w(MyComponent, {});
+	}
+});
 ```
+{% instruction 'Import the `Outlet` widget and `MatchDetails` interface.' %}
 
-We use the advanced configuration for both the `BannerOutlet.ts` and `WorkerContainerOutlet.ts`, as we do not want the widgets to render for routes unless they are an exact match for the selected route.
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:5-6 %}
 
-{% instruction 'Add the following code to `WorkerContainerOutlet.ts`.' %}
+{% instruction 'Replace `Banner` with an `Outlet` that returns `Banner`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/outlets/WorkerContainerOutlet.ts' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:51-53 %}
 
-{% instruction 'Add the following code to `BannerOutlet.ts`.' %}
+{% instruction 'Replace `WorkerForm` with an `Outlet` that returns `WorkerForm`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/outlets/BannerOutlet.ts' %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:54-60 %}
 
-Now, we can the swap out the widgets for the newly created `outlets`. Notice we don’t need to change any of the wrapped widgets!
+The `filter` outlet use the match details information to determine if the `filter` param should be passed to the `WorkerContainer` widget.
 
-{% instruction 'First, swap the widget imports for the outlet imports in `App.ts`.' %}
+{% instruction 'Replace `WorkerContainer` with an `Outlet` that returns `WorkerContainer`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:8-10 %}
-
-{% instruction 'Then, swap the widget usages for their outlets.' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-55,59-61 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:61-70 %}
 
 Running the application now should display the `Banner.ts` by default, but also enable routing to the other widgets using the `/directory` and `/new-worker` routes.
 
@@ -132,7 +145,7 @@ Next, we will add a side menu with links for the created outlets.
 
 {% task 'Add a sidebar menu to the application.' %}
 
-In this section we will be using the `Link` component, provided by `@dojo/framework/routing`, to create link elements with an `href` attribute for an outlet name. A `label` for the `Link` can be passed as children and parameter values for the outlet can be passed to a `Link` component using the `params` property.
+In this section we will be using the `Link` widget, provided by `@dojo/framework/routing`, to create link elements with an `href` attribute for an outlet name. A `label` for the `Link` can be passed as children and parameter values for the outlet can be passed to a `Link` widget using the `params` property.
 
 ```ts
 w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
@@ -144,7 +157,7 @@ w(Link, { to: 'outlet-name', params: { paramName: 'value' } });
 
 {% instruction 'Replace the `render` function in `App.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:37-55,59-64 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:38-55,59-72 %}
 
 The updated block of code continues to render the banner, worker form and worker container widgets, and additionally renders three `Link` widgets:
 
@@ -178,36 +191,13 @@ This means a route with any value will match the `filter` as long as the previou
 
 {% instruction 'Add a private function to generate the filter links' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:19-31 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:17-29 %}
 
 {% instruction 'Re-work the render function to filter using the new property' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:33-54 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:31-52 %}
 
 We have added a new property named `filter` to `WorkerContainerProperties` in `WorkerContainer.ts`, which will be used to filter the workers based on their last name. When used by a normal widget this would be determined by its parent and passed in like any normal property. However for this application we need the route param value to be passed as the filter property. To achieve this, we can add a mapping function callback which receives an object argument consisting of four properties:
-
-* `params`
-* `location`
-* `router`,
-* `matchType`
-
-Each of these four properties are documented in the [Dojo Routing documentation](https://github.com/dojo/routing/#map-params) on GitHub.
-
-The mapping function callback can return an object which is then injected into the wrapped widget properties.
-
-{% instruction 'Add the following code to `FilteredWorkerContainerOutlet.ts`' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/outlets/FilteredWorkerContainerOutlet.ts' %}
-
-This code defines an `Outlet`. The third argument passed into the `Outlet` is a callback function which receives an object as specified earlier. A new object is constructed and returned from this function which includes a `filter` property which in turn comes from the `params` property.
-
-{% instruction 'Add a `FilteredWorkerContainerOutlet.ts` import in `App.ts`' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' line:11 %}
-
-{% instruction 'Include the `outlet` in the render function' %}
-
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/App.ts' lines:50-61 %}
 
 Previously, the raw Dojo widgets were rendered. Now, Outlets (which are also widgets) are rendered instead. These outlets 'wrap' the original widgets and pass-through parameters to the wrapped widget, as you define them in the Outlet callback function.
 
@@ -215,7 +205,7 @@ Previously, the raw Dojo widgets were rendered. Now, Outlets (which are also wid
 
 ## Summary
 
-Dojo routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a higher order component pattern, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.
+Dojo routing is a declarative, non-intrusive, mechanism to add complicated route logic to a web application. Importantly, by using a specialized widget with a render property, the widgets for the routes should not need to be updated and can remain solely responsible for their existing view logic.
 
 If you would like, you can open the completed demo application on [codesandbox.io](https://codesandbox.io/s/github/dojo/dojo.io/tree/master/site/source/tutorials/1030_routing/demo/finished/biz-e-corp) or alternatively [download](../assets/1030_routing-finished.zip) the project.
 

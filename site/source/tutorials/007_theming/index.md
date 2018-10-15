@@ -39,7 +39,7 @@ In order to theme our widgets, we must ensure that they each apply the `ThemedMi
 
 {% instruction 'Replace the contents of `Banner.ts` with the following' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-13 highlight:3-9 title:'File: src/widgets/Banner.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-14 highlight:3-7 title:'File: src/widgets/Banner.ts' lang:typescript %}
 
 {% aside 'Reminder' %}
 If you cannot see the application, remember to run `dojo build -m dev -w memory -s` to build the application and start the development server.
@@ -67,7 +67,7 @@ Fixed classes apply styles that cannot be overridden by a theme, using a suffix 
 
 `WorkerForm` already uses the `ThemedMixin` and has a `workerForm` class on its root node. Let's change the workerForm class to a `root` class, and while we are there, we will create a `rootFixed` class too, and apply it to the root node. Classes that are not passed to `theme` cannot be changed or overridden via a theme, ensuring that structured or nested styles are not lost when a theme is used.
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:47-50 highlight:48 title:'File: src/widgets/WorkerForms.ts' lang:typescript %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:45-48 highlight:46 title:'File: src/widgets/WorkerForms.ts' lang:typescript %}
 
 Replace all of the selectors containing `.workerForm` with the following rules in `workerForm.m.css`.
 

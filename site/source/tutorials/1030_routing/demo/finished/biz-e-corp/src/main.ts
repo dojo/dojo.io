@@ -1,37 +1,12 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
+import App from './widgets/App';
 import { Registry } from '@dojo/framework/widget-core/Registry';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
-
-import App from './widgets/App';
-
-const root = document.querySelector('my-app') || undefined;
-
-const routingConfig = [
-	{
-		path: 'directory',
-		outlet: 'directory',
-		children: [
-			{
-				path: '{filter}',
-				outlet: 'filter'
-			}
-		]
-	},
-	{
-		path: 'new-worker',
-		outlet: 'new-worker'
-	},
-	{
-		path: '/',
-		outlet: 'home',
-		defaultRoute: true
-	}
-];
+import routes from './routes';
 
 const registry = new Registry();
-registerRouterInjector(routingConfig, registry);
+registerRouterInjector(routes, registry);
 
-const Projector = ProjectorMixin(App);
-const projector = new Projector();
-projector.setProperties({ registry });
-projector.append(root);
+const r = renderer(() => w(App, {}));
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement, registry });

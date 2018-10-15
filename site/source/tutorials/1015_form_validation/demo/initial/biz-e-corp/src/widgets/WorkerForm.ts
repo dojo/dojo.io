@@ -18,10 +18,8 @@ export interface WorkerFormProperties {
 	onFormSave: () => void;
 }
 
-export const WorkerFormBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class WorkerForm extends WorkerFormBase<WorkerFormProperties> {
+export default class WorkerForm extends ThemedMixin(WidgetBase)<WorkerFormProperties> {
 
 	private _onSubmit(event: Event) {
 		event.preventDefault();

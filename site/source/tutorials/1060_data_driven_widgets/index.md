@@ -165,9 +165,11 @@ Currently, the application keeps all worker data as a private variable within th
 {% instruction 'Pass worker data to the routing outlet for the `Banner` widget in `App.ts`:' %}
 
 ```ts
-w(BannerOutlet, {
-    data: this._workerData
-})
+w(Outlet, { id: 'home', renderer: () => {
+	return w(Banner, {
+		data: this._workerData
+	});
+}})
 ```
 
 Now that the `Banner` widget has worker data, it can pass a subset of this data into the `List` widget based on the current `List` input value.

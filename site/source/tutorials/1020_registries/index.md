@@ -34,15 +34,15 @@ The first step is to create a `registry` that will be made available to the appl
 
 {% instruction 'Add the `Registry` import to the `main.ts` module.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:2 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:3 %}
 
 {% instruction 'Now, create a `Registry` instance.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:14 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:13 %}
 
-{% instruction 'And finally set the `registry` on the `projector`.' %}
+{% instruction 'And finally pass the `registry` to the renderer\'s `mount` function.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:24 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' line:22 %}
 
 {% aside 'Registries Everywhere!' %}
 A `registry` can also be used to define an injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the [container tutorial](../1010_containers_and_injecting_state/) and [routing tutorial](../1030_routing/) .
@@ -52,11 +52,11 @@ At the moment we haven't affected the application, however we now have a handle 
 
 {% instruction 'Add the widget imports to `main.ts`.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:5-10 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:6-11 %}
 
 {% instruction 'Then define widgets in the `registry` after creating the registry.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:15-20 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/main.ts' lines:14-19 %}
 
 In the next section we will use the registry label in our render functions.
 
@@ -74,11 +74,11 @@ Notice that we are passing a generic type to the `w()` function call, this is be
 
 {% instruction 'Use registry labels in `WorkerContainer.ts`\'s render function.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:21-24 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerContainer.ts' lines:19-22 %}
 
 {% instruction 'Use registry labels in `WorkerForm.ts`\'s render function.' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:42-81 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/WorkerForm.ts' lines:40-79 %}
 
 Next, we will create a widget that is lazily loaded when needed!
 
@@ -102,7 +102,7 @@ First we need to extract the `_renderBack` function from `Worker.ts` into a new 
 
 {% task 'Update the `_renderBack` function to use the `WorkerBack` registry items in `Worker.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:56-78 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' lines:51-73 %}
 
 {% aside 'Use Before You Define' %}
 The `registry` is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the `registry` will automatically re-render!
@@ -118,7 +118,7 @@ There are two ways to register a widget in a registry, the first is to define th
 
 {% task 'Add the registry item using the `@registry` decorator in `WorkerBack.ts`' %}
 
-{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:20 %}
+{% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:18 %}
 
 Now that the `WorkerBack` widget is defined to load lazily, running the application with the browser developer tools open should show that the `WorkerBack.js` file is only loaded when a worker card is clicked on for the first time:
 

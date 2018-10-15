@@ -11,10 +11,8 @@ export interface WorkerContainerProperties {
 	filter?: string;
 }
 
-const WorkerContainerBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class WorkerContainer extends WorkerContainerBase<WorkerContainerProperties> {
+export default class WorkerContainer extends ThemedMixin(WidgetBase)<WorkerContainerProperties> {
 
 	private _createFilterLinks() {
 		const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

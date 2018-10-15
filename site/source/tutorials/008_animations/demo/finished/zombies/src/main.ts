@@ -1,7 +1,7 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import Zombies from './widgets/Zombies';
 import 'web-animations-js/web-animations-next-lite.min';
 
-const Projector = ProjectorMixin(Zombies);
-const projector = new Projector();
-projector.append();
+const r = renderer(() => w(Zombies, {}));
+r.mount({ domNode: document.querySelector('my-app') as HTMLElement });
