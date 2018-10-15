@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Announcing Version 4 of Dojo | Dojo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property=”og:image” content=”https://dojo.io/images/og.jpg” />
+	<meta name="description" content="Being a Better DojoDeveloper ergonomics, efficient source code, consistent and flexible architecture, interoperability and alignment with modern standards, and strong community support are fundamental">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Announcing Version 4 of Dojo">
+<meta property="og:url" content="https://dojo.io/blog/2018/10/15/2018-10-15-Version-4-Dojo/index.html">
+<meta property="og:site_name" content="Dojo">
+<meta property="og:description" content="Being a Better DojoDeveloper ergonomics, efficient source code, consistent and flexible architecture, interoperability and alignment with modern standards, and strong community support are fundamental">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://dojo.io/blog/2018/10/15/2018-10-15-Version-4-Dojo/featured.png">
+<meta property="og:image" content="https://dojo.io/blog/2018/10/15/2018-10-15-Version-4-Dojo/bundleAnalyzer.png">
+<meta property="og:updated_time" content="2018-10-15T21:14:22.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Announcing Version 4 of Dojo">
+<meta name="twitter:description" content="Being a Better DojoDeveloper ergonomics, efficient source code, consistent and flexible architecture, interoperability and alignment with modern standards, and strong community support are fundamental">
+<meta name="twitter:image" content="https://dojo.io/blog/2018/10/15/2018-10-15-Version-4-Dojo/featured.png">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+	
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+	
+	
+		<link rel="icon" href="/images/favicons/favicon.ico">
+	
+	<link rel="stylesheet" href="/css/main.css">
+	
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-3242977-15', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css"></head>
+
+	<body class="body-single-page
+">
+		<div class="page-wrapper">
+			<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<div class="uk-container uk-container-expand uk-navbar-container">
+		<nav class="uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<li><a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a></li>
+					<li><a href="/" class="navbar-item"><img src="/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo"></a></li>
+				</ul>
+			</div>
+			<div class="uk-navbar-right uk-visible@m">
+				<ul class="uk-navbar-nav">
+					<li><a class="navbar-item" href="/docs.html">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+<li><a class="navbar-item" href="/community">Community</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="uk-section uk-container uk-container-small uk-padding-remove-bottom">
+	<div class="container article">
+		<article id="post-2018-10-15-Version-4-Dojo" class="article uk-article article-type-post" itemscope itemprop="blogPost">
+			<div class="article-inner">
+				
+				
+					<header class="article-header uk-margin-bottom">
+						
+  
+    <h1 class="article-title uk-article-title" itemprop="name">
+      Announcing Version 4 of Dojo
+    </h1>
+  
+
+						<div class="article-meta uk-article-meta">
+							<div class="author-meta">
+	
+	<span class="author-name"> Paul Shannon</span>
+	<span class="article-date">
+  <time datetime="2018-10-15T12:00:00.000Z" itemprop="datePublished">October 15th 2018, 12:00 pm</time>
+</span>
+</div>
+							
+						</div>
+					</header>
+				
+				<div class="article-entry" itemprop="articleBody">
+					
+						<h2 id="Being-a-Better-Dojo"><a href="#Being-a-Better-Dojo" class="headerlink" title="Being a Better Dojo"></a>Being a Better Dojo</h2><p>Developer ergonomics, efficient source code, consistent and flexible architecture, interoperability and alignment with modern standards, and strong community support are fundamental reasons for choosing a framework. We’re constantly looking for ways to improve Dojo and provide the community with the best possible modern framework.</p>
+<img src="/blog/2018/10/15/2018-10-15-Version-4-Dojo/featured.png" title="feature-full">
+<a id="more"></a>
+<h2 id="Dojo-CLI-Tooling"><a href="#Dojo-CLI-Tooling" class="headerlink" title="Dojo CLI Tooling"></a>Dojo CLI Tooling</h2><p>The main focus of version 4 of Dojo is improving application optimization and analyzing, focusing on tooling that can enable these features by default. Separating a Dojo application into bundles (often referred to as code splitting) has been possible since the initial Dojo release. Although this did not require you to change your source code, it did require adding some configuration to specify how your application should be bundled. We wanted to do better by default and in version 4, the <a href="https://github.com/dojo/cli-build-app#code-splitting-by-route" target="_blank" rel="noopener">Dojo build tooling will automatically split an application based on its top-level routes</a>!</p>
+<p>The application template used by <code>cli-build-app</code> provides this functionality out of the box. In addition to this a bundle analyzer is automatically generated when running a build in production mode, providing even more insight into you bundles.</p>
+<p><img src="./bundleAnalyzer.png" alt="Dojo Bundle Analyzer" height="500" width="334"></p>
+<p>This is provided by the template app generated with <code>@dojo/cli-create-app</code>.</p>
+<p>Even with version 4 of Dojo being a step in the right direction, there’s much more we can and are planning to do including critical path bundling, bundle size analysis and budgets, lighthouse reports, and more.</p>
+<p>Enabling you to create applications that perform better for your end users is very important to us, however, we also want to ensure that the development experience remains streamlined. As a result, we’ve made a number of changes to our build tooling to enable features such as HTTPS and proxy configuration support.</p>
+<p>Other CLI improvements include the <a href="https://github.com/dojo/cli-build-app#externals-object" target="_blank" rel="noopener">support for externals</a>, allowing non-modular libraries or standalone applications that cannot be bundled normally to be included in a Dojo application.</p>
+<p>The automatic parsing, hashing and bundling of resources from index.html, and inclusion of assets from the catch-all <code>assets</code> directory. These changes support the creation of more complex applications.</p>
+<h2 id="Performance-First"><a href="#Performance-First" class="headerlink" title="Performance First"></a>Performance First</h2><p>To keep applications as small as possible, the CLI follows a few key principles:<br>Evergreen builds by default, with support for older browsers back to IE11 by explicit opt-in. This reverses behavior in the past of supporting all browsers by default, so that newer browsers get smaller and faster applications as they add support for features natively.</p>
+<p>As part of our support for Progressive Web Apps (PWA), we optimize for the the <a href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/" target="_blank" rel="noopener">PRPL pattern</a>:</p>
+<ul>
+<li>Push critical resources for the initial URL route.</li>
+<li>Render initial route.</li>
+<li>Pre-cache remaining routes.</li>
+<li>Lazy-load and create remaining routes on demand.</li>
+</ul>
+<p>The <a href="https://dojo-2-hnpwa-d668d.firebaseapp.com/" target="_blank" rel="noopener">HNPWA reference Dojo example</a> is less than 20KB gzipped and is among the fastest performance of any client-side JavaScript application framework!</p>
+<p>The CLI tooling has three main pathways for the creation and building of apps, themes, and widgets.</p>
+<h2 id="Dojo-Framework"><a href="#Dojo-Framework" class="headerlink" title="Dojo Framework"></a>Dojo Framework</h2><p>It has been a busy release for <code>@dojo/framework</code> also, which adds a range of new features plus a few changes to existing concepts and patterns. The focus has been cleaning up the existing codebase and creating better ergonomics for a few concepts.</p>
+<p>The Virtual DOM engine has been redesigned and rewritten from the ground up. This was a large undertaking which identified and resolved a number of bugs in the old engine, enabled a number of new features, improved rendering performance and finally reduced the overall size of the framework!</p>
+<p>The are a few improvements when using the <code>w()</code> and <code>v()</code> pragmas, including better composition of nodes, rendering a dynamic import directly using <code>w()</code> and enabling the use of <code>meta</code> for nodes that are passed as children to a widget.</p>
+<p>The routing system within the framework received an improved route matching algorithm for this release. Additionally a <a href="https://github.com/dojo/framework/pull/63" target="_blank" rel="noopener">more flexible <code>Outlet</code></a> works via a render property. The <code>ActiveLink</code> widget also applies classes when an item is considered active.</p>
+<p>dojo/stores adds middleware support for Local storage in this release, and a new <a href="https://github.com/dojo/framework/issues/76" target="_blank" rel="noopener"><code>StoreProvider</code></a> eases the injection of application state.</p>
+<h2 id="Widgets"><a href="#Widgets" class="headerlink" title="Widgets"></a>Widgets</h2><p>With the concentration on the CLI tooling and <code>@dojo/framework</code> itself, it has not left much time for <code>@dojo/widgets</code>. But…. yes but, as part of Dojo 4 there is a new data grid available, it’s currently very basic in terms of features, but over the next few months we will be working on improving, with a focus on feedback from our users. This feedback will help us decide which features to work on next.</p>
+<p>If our <code>@dojo/widgets</code> grid does not work for you yet, a new dgrid wrapper has been added to <code>@dojo/interop</code>. The wrapper can be used in combination with the CLI build externals to support using dgrid with Dojo version 4 and includes support with some of the most populate dgrid mixins.</p>
+<p>The existing widgets received many accessibility, keyboard, and focus refinements.</p>
+<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p>All of the breaking changes in Dojo 4, were carefully considered beforehand as we understand the impact that they can have on your decision to upgrade. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 4, please see the <a href="https://github.com/dojo/framework/blob/master/docs/V4-Migration-Guide.md" target="_blank" rel="noopener">migration guide</a>.</p>
+<p>TypeScript forwards-compatibility was updated from 2.7 to 3.0.</p>
+<h2 id="Support"><a href="#Support" class="headerlink" title="Support"></a>Support</h2><p>See the <a href="https://github.com/dojo/framework/releases/tag/v4.0.0" target="_blank" rel="noopener">release notes</a> for more details on version 4.0.0 of Dojo!</p>
+<p>Love what we’re doing or having a problem? We ❤️ our community. Reach out to us on <a href="https://discord.gg/M7yRngE" target="_blank" rel="noopener">Discord</a>, check out our <a href="https://dojo.io/community/">roadmap</a> and see where Dojo is headed, and try out the new Dojo on <a href="https://codesandbox.io/s/github/dojo/dojo-codesandbox-template" target="_blank" rel="noopener">CodeSandbox</a>. We look forward to your feedback!</p>
+
+					
+				</div>
+				<footer class="article-footer">
+					
+					
+				</footer>
+			</div>
+			
+				
+<hr>
+<nav id="article-nav" class="uk-child-width-1-2@s uk-text-center uk-grid-match uk-margin-top" uk-grid>
+
+	
+	
+		<div class="uk-card uk-card-hover uk-card-body">
+			<strong class="uk-text-small">Previous Post</strong>
+			<h4 class="uk-h4 uk-padding-remove-top uk-margin-small-top"><a href="/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/" id="article-nav-older" class="article-nav-link-wrap">Building Progressive Web Apps With Dojo</a></h4>
+		</div>
+	
+</nav>
+
+			
+		</article>
+
+		
+	</div>
+</div>
+
+<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+	<div class="uk-offcanvas-bar">
+		<div>
+			<ul class="uk-nav" data-uk-nav>
+	<li><a class="navbar-item" href="/docs.html">Docs</a></li>
+<li><a class="navbar-item " href="/tutorials">Tutorials</a></li>
+<li><a class="navbar-item" href="/blog">Blog</a></li>
+<li><a class="navbar-item" href="/community">Community</a></li>
+</ul>
+
+		</div>
+	</div>
+</div>
+
+				</div>
+				<footer class="footer uk-text-small uk-text-muted uk-container-expanded">
+	<span>&copy; 2018 JS Foundation, All Rights Reserved.</span>
+</footer>
+
+			</div>
+			
+		</div>
+		
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
+
+	</body>
+</html>
