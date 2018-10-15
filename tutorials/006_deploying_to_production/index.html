@@ -15,7 +15,7 @@
 <meta property="og:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/006_deploying_to_production/resources/build_stats.png">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.661Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deploying to production">
 <meta name="twitter:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
@@ -142,7 +142,7 @@ ga('send', 'pageview');
 <p>The default options for <code>dojo build</code> are sufficient for many situations, but there are cases where additional configuration is required.</p>
 <div class="instruction">Run the <code>dojo build help</code> command and examine the result.</div>
 <p>There are four groups of command line arguments that are available when using the <code>dojo build</code> command.</p>
-<p>The first group is <code>--mode</code> that accepts <code>dist</code>, <code>dev</code>, and <code>test</code> depending on the bundle that is needed, the argument defaults to <code>dist</code>.</p>
+<p>The first group is <code>--mode</code> that accepts <code>dist</code>, <code>dev</code>, <code>unit</code> and <code>functional</code> depending on the bundle that is needed, the argument defaults to <code>dist</code>.</p>
 <p>The build command supports two modes of <code>--watch</code>, <code>file</code> which writes built files to the relevant directory in <code>output</code> and <code>memory</code> that uses webpack dev server (and must be run with the <code>--serve</code> argument).</p>
 <p>The <code>--help</code> argument displays the help information for the <code>dojo build</code> command and is equivalent to the <code>dojo build help</code> command.</p>
 <article class="aside"><strong class="label">I18n in Dojo</strong><p>Dojo has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo, refer to the <a href="../comingsoon.html">Internationalization in Dojo tutorial</a>.</p></article>
@@ -165,7 +165,7 @@ ga('send', 'pageview');
         <span class="token property">"bundles"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
             <span class="token property">"foo"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
                 <span class="token string">"src/Foo"</span><span class="token punctuation">,</span>
-            <span class="token string">"src/Bar"</span>
+                <span class="token string">"src/Bar"</span>
             <span class="token punctuation">]</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token property">"features"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -179,7 +179,6 @@ ga('send', 'pageview');
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-
 <span class="token punctuation">}</span>
 </code></pre>
 <p>This is a sample <code>.dojorc</code> and contains configuration settings for the <code>dojo build</code> command. Note the field name, <code>build-app</code>. This is the full name of the command that we have been using. Each <code>dojo-cli</code> command group, such as <code>build</code>, has a default sub-command. The <code>build</code> command’s default sub-command is <code>app</code>, so the <code>dojo build</code> command is equivalent to entering <code>dojo build app</code>. Since each entry in <code>.dojorc</code> needs the full command name, the field name must be <code>build-app</code>. That entry contains an object with examples of the available configuration for <code>cli-build-app</code>:</p>
@@ -197,7 +196,7 @@ ga('send', 'pageview');
 <p>To eject a project, use the <code>dojo eject</code> command. You will be prompted to ensure that you understand that this is a non-reversible action. Entering <strong>‘y’</strong> will begin to export process. The export process generates a new directory - <code>config</code> that contains all of the exported configuration information for each of the <code>dojo-cli</code> tools that the project had been using. The process will also install some additional dependencies that the project now requires.</p>
 <p>The project is now configured to be managed as a webpack project. Changes can be made to the build configuration by altering <code>config/build-app/base.config.js</code> and the relevant configuration for the target mode e.g. <code>dist.config.js</code>.</p>
 <p>A build can then be triggered by running <code>webpack</code>‘s build command and providing the configuration. Further, the modes are specified using webpack’s env flag (e.g., –env.mode=dev), defaulting to dist. You can run a build using webpack with:</p>
-<pre><code>./node_modules/.bin/webpack --config=config/build-app/ejected.config.js --env.mode={dev|dist|test}
+<pre><code>./node_modules/.bin/webpack --config=config/build-app/ejected.config.js --env.mode={dev|dist|unit|functional}
 </code></pre></section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>For many software projects, preparing an application for deployment to production often involves creating complicated settings and at least a little bit of experimentation. Dojo, on the other hand, provides a single command, <code>dojo build</code> that is used both during development as well as for production deployments.</p>
 <p>While the <code>dojo build</code> command addresses many use cases, a few configuration options are necessary to support certain development and deployment scenarios.</p>

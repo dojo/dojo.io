@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.661Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form widgets">
 <meta name="twitter:description" content="Working with formsOverviewThis tutorial will extend on Responding to events, where we allowed the user to interact with the application by listening for click events. In this tutorial, we will add a">
@@ -134,10 +134,8 @@ ga('send', 'pageview');
 <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">WorkerFormProperties</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> WorkerFormBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">WorkerForm</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerFormBase</span><span class="token operator">&lt;</span>WorkerFormProperties<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">WorkerForm</span> <span class="token keyword">extends</span> <span class="token class-name">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token operator">&lt;</span>WorkerFormProperties<span class="token operator">></span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token function">_onSubmit</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> Event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

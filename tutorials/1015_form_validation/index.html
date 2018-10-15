@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.673Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Form validation">
 <meta name="twitter:description" content="Form validationOverviewThis tutorial will cover how to handle basic form validation within the context of the demo app. Handling form data has already been covered in the tutorial on injecting state;">
@@ -399,8 +399,7 @@ ga('send', 'pageview');
 <div class="instruction">Update the context to pass in an <code>onFormValidate</code> method</div>
 <p>Currently the validation logic is unceremoniously dumped in <code>formInput</code> within <code>ApplicationContext.ts</code>. Now let’s break that out into its own <code>formValidate</code> function, and borrow the <code>onFormInput</code> pattern to pass <code>onFormValidate</code> to <code>WorkerForm</code>. There are three steps to this:</p>
 <ol>
-<li>Add a <code>formValidate</code> method to <code>ApplicationContext.ts</code> and update <code>_formErrors</code> there instead of in <code>formInput</code>: <pre class="language-javascript"><code class="language-javascript">
-<span class="token keyword">public</span> <span class="token function">formValidate</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+<li>Add a <code>formValidate</code> method to <code>ApplicationContext.ts</code> and update <code>_formErrors</code> there instead of in <code>formInput</code>: <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">public</span> <span class="token function">formValidate</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_invalidator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -408,6 +407,7 @@ ga('send', 'pageview');
 <span class="token keyword">public</span> <span class="token function">formInput</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> Partial<span class="token operator">&lt;</span>WorkerFormData<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_invalidator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre></li>
 <li>Update <code>WorkerFormContainer</code> to pass <code>formValidate</code> as <code>onFormValidate</code>: <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getProperties</span><span class="token punctuation">(</span>inject<span class="token punctuation">:</span> ApplicationContext<span class="token punctuation">,</span> properties<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">const</span> <span class="token punctuation">{</span>
@@ -544,8 +544,7 @@ ga('send', 'pageview');
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Next let’s add an extra check: let’s say each worker’s email must be unique, so we’ll test the input email value against the <code>_workerData</code> array. Realistically this check would be performed server-side for security:</p>
-<pre class="language-javascript"><code class="language-javascript">
-<span class="token keyword">private</span> <span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> boolean <span class="token punctuation">{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> <span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> boolean <span class="token punctuation">{</span>
 	<span class="token keyword">const</span> errors <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateInput</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_formData<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token function">deepAssign</span><span class="token punctuation">(</span><span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> email<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> errors<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -562,10 +561,10 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 
 	<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>After modifying the <code>submitForm</code> function in <code>ApplicationContext.ts</code>, only valid worker entries should successfully submit. We also need to clear <code>_formErrors</code> along with <code>_formData</code> on a successful submission:</p>
-<pre class="language-javascript"><code class="language-javascript">
-<span class="token keyword">public</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">public</span> <span class="token function">submitForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
 	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_validateOnSubmit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_invalidator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -575,6 +574,7 @@ ga('send', 'pageview');
 	<span class="token keyword">this</span><span class="token punctuation">.</span>_formData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span>_formErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_invalidator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>There is no way this tutorial could cover all possible use cases, but the basic patterns for storing, injecting, and displaying validation state provide a strong base for creating more complex form validation. Some possible next steps include:</p>

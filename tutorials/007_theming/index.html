@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.661Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -137,12 +137,13 @@ ga('send', 'pageview');
 <span class="line-highlight"><span class="token keyword">import</span> <span class="token punctuation">{</span> theme<span class="token punctuation">,</span> ThemedMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Themed'</span><span class="token punctuation">;</span></span>
 <span class="line-highlight"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> css <span class="token keyword">from</span> <span class="token string">'../styles/banner.m.css'</span><span class="token punctuation">;</span></span>
 <span class="line-highlight"></span>
-<span class="line-highlight"><span class="token keyword">const</span> BannerBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="line-highlight"></span>
 <span class="line-highlight">@<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span></span>
-<span class="line-highlight"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Banner</span> <span class="token keyword">extends</span> <span class="token class-name">BannerBase</span> <span class="token punctuation">{</span></span>
+<span class="line-highlight"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Banner</span> <span class="token keyword">extends</span> <span class="token class-name">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
 	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span><span class="token punctuation">,</span> classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+			title<span class="token punctuation">:</span> <span class="token string">'I am a title!'</span><span class="token punctuation">,</span>
+			classes<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">.</span>root<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token string">'Biz-E-Bodies'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -258,7 +259,7 @@ ga('send', 'pageview');
 <span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> button <span class="token keyword">from</span> <span class="token string">'./@dojo/widgets/button/button.m.css'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-<span class="line-highlight">	<span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span></span>
+<span class="line-highlight">	<span class="token string">'dojo-theming-tutorial/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span></span>
 	<span class="token string">'@dojo/widgets/text-input'</span><span class="token punctuation">:</span> textInput<span class="token punctuation">,</span>
 	<span class="token string">'@dojo/widgets/button'</span><span class="token punctuation">:</span> button
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -267,24 +268,18 @@ ga('send', 'pageview');
 <article class="aside"><strong class="label">What is a registry?</strong><p>A registry provides a mechanism to inject external payloads into widgets throughout the application tree. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1020_registries/">registry tutorial</a>.</p></article>
 <p>However an application can automatically inject a <code>theme</code> from the <code>registry</code> to every themed widget in an application tree. First, create a <code>themeInjector</code> using the <code>registerThemeInjector</code> function by passing a <code>registry</code> instance and <code>theme</code>. This will return a handle to the <code>themeInjector</code> that can be used to change the theme using <code>themeInjector.set()</code>, which will invalidate all themed widgets in the application tree and re-render using the new theme!</p>
 <div class="instruction">Update our <code>main.ts</code> file to import our theme and create a <code>themeInjector</code>.</div>
-<pre class="language-typescript"><div class="prism-code-title">File: src/main.ts</div><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
+<pre class="language-typescript"><div class="prism-code-title">File: src/main.ts</div><code class="language-typescript"><span class="token keyword">import</span> renderer <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/vdom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="line-highlight"><span class="token keyword">import</span> <span class="token punctuation">{</span> registerThemeInjector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Themed'</span><span class="token punctuation">;</span></span>
 <span class="line-highlight"><span class="token keyword">import</span> <span class="token punctuation">{</span> Registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/Registry'</span><span class="token punctuation">;</span></span>
-<span class="line-highlight"><span class="token keyword">import</span> theme <span class="token keyword">from</span> <span class="token string">'./themes/dojo/theme'</span><span class="token punctuation">;</span></span>
+<span class="line-highlight"><span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span></span>
+<span class="token keyword">import</span> theme <span class="token keyword">from</span> <span class="token string">'./themes/dojo/theme'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
 <span class="line-highlight"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="line-highlight"><span class="token function">registerThemeInjector</span><span class="token punctuation">(</span>theme<span class="token punctuation">,</span> registry<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 
-<span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> projector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Projector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="line-highlight">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span>
-<span class="line-highlight">	registry</span>
-<span class="line-highlight"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-
-projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> r <span class="token operator">=</span> <span class="token function">renderer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">w</span><span class="token punctuation">(</span>App<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+r<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token punctuation">{</span> domNode<span class="token punctuation">:</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">,</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Open the application in your web browser and see that the <code>Worker</code> backgrounds are now <code>red</code>.</p>
 <div class="instruction">Use variables and complete the Worker theme</div>
@@ -404,8 +399,8 @@ projector<span class="token punctuation">.</span><span class="token function">ap
 <span class="line-highlight"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> workerForm <span class="token keyword">from</span> <span class="token string">'./workerForm.m.css'</span><span class="token punctuation">;</span></span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-	<span class="token string">'biz-e-corp/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span>
-<span class="line-highlight">	<span class="token string">'biz-e-corp/workerForm'</span><span class="token punctuation">:</span> workerForm<span class="token punctuation">,</span></span>
+	<span class="token string">'dojo-theming-tutorial/worker'</span><span class="token punctuation">:</span> worker<span class="token punctuation">,</span>
+<span class="line-highlight">	<span class="token string">'dojo-theming-tutorial/workerForm'</span><span class="token punctuation">:</span> workerForm<span class="token punctuation">,</span></span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo <code>TextInput</code> within our <code>WorkerForm</code>, we need to add to the skeleton <code>text-input.m.css</code> theme created by <code>@dojo/cli-create-theme</code>, this is already exported from <code>theme.ts</code>.</p>

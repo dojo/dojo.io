@@ -15,7 +15,7 @@
 <meta property="og:description" content="Data-driven widgetsOverviewThe Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the properti">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/resources/list.png">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.689Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data-driven widgets">
 <meta name="twitter:description" content="Data-driven widgetsOverviewThe Dojo widget system provides a functional API that strives to strictly enforce a unidirectional data flow. The only way to interact with a widget is through the properti">
@@ -241,9 +241,11 @@ ga('send', 'pageview');
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Banner</span> <span class="token keyword">extends</span> <span class="token class-name">WidgetBase</span><span class="token operator">&lt;</span>BannerProperties<span class="token operator">></span> <span class="token punctuation">{</span>
 </code></pre>
 <div class="instruction">Pass worker data to the routing outlet for the <code>Banner</code> widget in <code>App.ts</code>:</div>
-<pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>BannerOutlet<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    data<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_workerData
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Outlet<span class="token punctuation">,</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span> renderer<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">w</span><span class="token punctuation">(</span>Banner<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        data<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_workerData
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Now that the <code>Banner</code> widget has worker data, it can pass a subset of this data into the <code>List</code> widget based on the current <code>List</code> input value.</p>
 <div class="instruction">Pass a subset of worker data into the <code>List</code> based on its <code>value</code> in <code>Banner.ts</code>:</div>

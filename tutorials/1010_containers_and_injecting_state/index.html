@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.673Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State management">
 <meta name="twitter:description" content="State managementOverviewModern web applications are often required to manage complex state models which can involve fetching data from a remote service or multiple widgets requiring the same slices o">
@@ -187,7 +187,7 @@ ga('send', 'pageview');
 </code></pre>
 <p>Most of this widget is dedicated to holding and managing the <code>WorkerData</code> in the application. Notice, however, that it never actually uses that data itself. <code>App</code> is only containing the state and passing it to the children as required via properties. Lifting up state to the highest common widget in the tree is a valid pattern, but as an application’s state grows in size and complexity, it is often desirable to decouple this from widgets. In larger applications, the <code>App</code> class would become complicated and more difficult to maintain due to the additional state information that it would be required to track. Since the state information is not a primary concern of the <code>App</code> class, let’s refactor it out of <code>App</code> and into a new <code>ApplicationContext</code> class that extends the base <code>Injector</code>.</p>
 <div class="instruction">Add the following to the existing <code>ApplicationContext.ts</code> file in the <code>src</code> directory</div>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> deepAssign <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/core/lang'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> deepAssign <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/core/util'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerProperties <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./widgets/Worker'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerFormData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./widgets/WorkerForm'</span><span class="token punctuation">;</span>
@@ -246,15 +246,12 @@ ga('send', 'pageview');
 </section><section class="tutorial hidden hiding">
 <h2 id="Injectors"><a href="#Injectors" class="headerlink" title="Injectors"></a>Injectors</h2><div class="task">Register an injector factory that will allow state to be injected into widgets.</div>
 <p>Currently, the application’s <code>main</code> module is only responsible for creating the <code>Projector</code>, which provides the bridge between the application code and the DOM.</p>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ProjectorMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/mixins/Projector'</span><span class="token punctuation">;</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> renderer <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/vdom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> w <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/d'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./widgets/App'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token operator">||</span> undefined<span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> Projector <span class="token operator">=</span> <span class="token function">ProjectorMixin</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> projector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Projector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-projector<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> r <span class="token operator">=</span> <span class="token function">renderer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">w</span><span class="token punctuation">(</span>App<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+r<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token punctuation">{</span> domNode<span class="token punctuation">:</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Now, we need to:</p>
 <ol>
@@ -298,9 +295,9 @@ registry<span class="token punctuation">.</span><span class="token function">def
 </code></pre>
 <article class="aside"><strong class="label">Registry</strong><p>The registry provides a way to register a widget via a label, making it accessible to other parts of the application. You can learn more in the <a href="../1020_registries/">registry tutorial</a>.</p></article>
 <p>The first statement creates a <code>registry</code> where the application context can be registered. The second statement registers an injector factory that creates the <code>ApplicationContext</code> instance passing in the <code>invalidator</code> function passed to the factory. The factory creates an injector function that returns the created <code>ApplicationContext</code> instance.</p>
-<div class="instruction">Add the registry to the projector</div>
-<p>We need to pass the <code>registry</code> to the <code>projector</code> via the <code>setProperties</code> method to ensure that it is available for all widget and container instances.</p>
-<pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="instruction">Pass the registry to the renderer when mounting</div>
+<p>We need to pass the <code>registry</code> to the <code>renderer</code> as an option on the <code>mount</code> function. This ensures that the <code>registry</code> instance is available for all widget and container instances.</p>
+<pre class="language-javascript"><code class="language-javascript">r<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token punctuation">{</span> domNode<span class="token punctuation">:</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">,</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Now that the <code>ApplicationContext</code> injector factory is defined, and the <code>registry</code> gets set on the <code>projector</code>, it is time to create the components that will use it. In the next section, we will create a non-visual widget called a <code>Container</code> that will allow injecting state into the <code>WorkerForm</code> and <code>WorkerContainer</code> widgets.</p>
 </section><section class="tutorial hidden hiding">

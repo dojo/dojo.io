@@ -15,7 +15,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2018-10-11T16:47:16.681Z">
+<meta property="og:updated_time" content="2018-10-15T19:58:20.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -134,8 +134,8 @@ ga('send', 'pageview');
 <div class="instruction">Now, create a <code>Registry</code> instance.</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> registry <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Registry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<div class="instruction">And finally set the <code>registry</code> on the <code>projector</code>.</div>
-<pre class="language-javascript"><code class="language-javascript">projector<span class="token punctuation">.</span><span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="instruction">And finally pass the <code>registry</code> to the renderer's <code>mount</code> function.</div>
+<pre class="language-javascript"><code class="language-javascript">r<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token punctuation">{</span> domNode<span class="token punctuation">:</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">,</span> registry <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <article class="aside"><strong class="label">Registries Everywhere!</strong><p>A <code>registry</code> can also be used to define an injector that can be used to provide context for responsibilities such as state injection and routing. To learn more, take a look at the <a href="../1010_containers_and_injecting_state/">container tutorial</a> and <a href="../1030_routing/">routing tutorial</a> .</p></article>
 <p>At the moment we haven’t affected the application, however we now have a handle to a <code>registry</code> where we can start to define widgets. Once the widgets are defined in the <code>registry</code>, they will be available through the application and can be used by switching the concrete class in <code>w()</code> with the <code>registry</code> label.</p>
@@ -240,10 +240,8 @@ registry<span class="token punctuation">.</span><span class="token function">def
 	tasks<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">const</span> WorkerBackBase <span class="token operator">=</span> <span class="token function">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
 @<span class="token function">theme</span><span class="token punctuation">(</span>css<span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">WorkerBack</span> <span class="token keyword">extends</span> <span class="token class-name">WorkerBackBase</span><span class="token operator">&lt;</span>WorkerBackProperties<span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">WorkerBack</span> <span class="token keyword">extends</span> <span class="token class-name">ThemedMixin</span><span class="token punctuation">(</span>WidgetBase<span class="token punctuation">)</span><span class="token operator">&lt;</span>WorkerBackProperties<span class="token operator">></span> <span class="token punctuation">{</span>
 
 	<span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 		<span class="token keyword">const</span> <span class="token punctuation">{</span>
@@ -292,7 +290,10 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> WorkerBack <span class="token keyword">from</span> <span class="token string">'./WorkerBack'</span><span class="token punctuation">;</span>
 </code></pre>
 <div class="task">Update the <code>_renderBack</code> function to use the <code>WorkerBack</code> registry items in <code>Worker.ts</code></div>
-<pre class="language-javascript"><code class="language-javascript">		lastName <span class="token operator">=</span> <span class="token string">'lastName'</span><span class="token punctuation">,</span>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">private</span> <span class="token function">_renderBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> <span class="token punctuation">{</span>
+		firstName <span class="token operator">=</span> <span class="token string">'firstName'</span><span class="token punctuation">,</span>
+		lastName <span class="token operator">=</span> <span class="token string">'lastName'</span><span class="token punctuation">,</span>
 		email <span class="token operator">=</span> <span class="token string">'unavailable'</span><span class="token punctuation">,</span>
 		timePerTask <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
 		tasks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
@@ -312,9 +313,6 @@ registry<span class="token punctuation">.</span><span class="token function">def
 			<span class="token punctuation">:</span> <span class="token keyword">null</span>
 	<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
-<span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-	<span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_isFlipped<span class="token punctuation">;</span>
 </code></pre>
 <article class="aside"><strong class="label">Use Before You Define</strong><p>The <code>registry</code> is designed to mirror the behavior and API of custom elements wherever possible. One neat feature is that a registry item can be used before it is defined, and once defined, widgets that use the <code>registry</code> will automatically re-render!</p></article>
 <p>Now we need to add the <code>registry</code> definition for <code>WorkerBack.ts</code> to lazily load when the worker is clicked. Instead of adding a concrete widget class, we add a function that, when called, dynamically imports the widget and returns a promise that returns the widget. This function will not be called until the first time the application tries to use the widget label as part of the usual <code>render</code> cycle. Initially, before the widget has loaded, nothing will be rendered. Once it has loaded, any widgets that use the lazy widget will automatically re-render.</p>
