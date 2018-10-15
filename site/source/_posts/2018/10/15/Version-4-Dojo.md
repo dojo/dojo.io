@@ -1,6 +1,6 @@
 ---
 title: Announcing Version 4 of Dojo
-date: 2018-10-04 08:00:00
+date: 2018-10-15 12:00:00
 authorId: devpaul
 featured_image: featured.jpg
 ---
