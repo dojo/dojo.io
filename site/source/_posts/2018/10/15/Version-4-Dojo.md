@@ -74,7 +74,7 @@ TypeScript forwards-compatibility was updated from 2.7 to 3.0.
 
 ## Support
 
-See the [release notes](https://github.com/dojo/framework/releases/tag/untagged-eb604998f18249110827) for more details on version 4.0.0 of Dojo!
+See the [release notes](https://github.com/dojo/framework/releases/tag/v4.0.0) for more details on version 4.0.0 of Dojo!
 
 Love what we're doing or having a problem? We ❤️ our community. Reach out to us on [Discord], check out our [roadmap] and see where Dojo is headed, and try out the new Dojo on [CodeSandbox]. We look forward to your feedback!
 
