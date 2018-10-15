@@ -22002,8 +22002,8 @@ function renderDoc(ref, context) {
                     _b.label = 4;
                 case 4:
                     text = removeReadMeSections(text);
-                    text = text.replace(/<!--DOCSONLY--/g, '');
-                    text = text.replace(/--DOCSONLY-->/g, '');
+                    text = text.replace(/<!--DOCSONLY/g, '');
+                    text = text.replace(/DOCSONLY-->/g, '');
                     html = common_1.renderMarkdown(text, { ref: ref, docs: docs });
                     page = h('div', { innerHTML: html });
                     tables = page.querySelectorAll('table');
