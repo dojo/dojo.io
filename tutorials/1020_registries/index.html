@@ -15,7 +15,7 @@
 <meta property="og:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/1020_registries/images/lazy-load-widget.gif">
-<meta property="og:updated_time" content="2018-10-15T21:14:22.502Z">
+<meta property="og:updated_time" content="2018-10-16T11:11:22.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Registry">
 <meta name="twitter:description" content="Working with the RegistryOverviewFlexibility to override the default type of a widget’s children provides a powerful configuration option when it comes to using and customizing widgets with any web a">
@@ -320,7 +320,7 @@ registry<span class="token punctuation">.</span><span class="token function">def
 <div class="task">Add the import for the <code>@registry</code> decorator <code>Worker.ts</code></div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> registry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@dojo/framework/widget-core/decorators/registry'</span><span class="token punctuation">;</span>
 </code></pre>
-<div class="task">Add the registry item using the <code>@registry</code> decorator in <code>WorkerBack.ts</code></div>
+<div class="task">Add the registry item using the <code>@registry</code> decorator in <code>Worker.ts</code></div>
 <pre class="language-javascript"><code class="language-javascript">@<span class="token function">registry</span><span class="token punctuation">(</span><span class="token string">'worker-back'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">import</span> <span class="token punctuation">(</span><span class="token string">'./WorkerBack'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Now that the <code>WorkerBack</code> widget is defined to load lazily, running the application with the browser developer tools open should show that the <code>WorkerBack.js</code> file is only loaded when a worker card is clicked on for the first time:</p>
