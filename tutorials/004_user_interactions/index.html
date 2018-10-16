@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-16T11:11:22.626Z">
+<meta property="og:updated_time" content="2018-10-16T13:01:29.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Responding to events">
 <meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
@@ -141,7 +141,7 @@ ga('send', 'pageview');
 </code></pre>
 <p>Now, run the app (using <code>dojo build -m dev -w memory -s</code>) and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener">localhost:9999</a>. Once there,</p>
 <div class="instruction">Open the console window and click on any of the worker widgets to confirm that the <code>flip</code> method gets called as expected.</div>
-<article class="aside"><strong class="label">Automatic Binding of Handlers</strong><p>The scope for event handlers and function properties are automatically bound to the <code>this</code> scope of the widget that defined the <code>v()</code> or <code>w()</code> call. If you are just passing on a property that has already been bound, then this will _not_ be bound again.</p></article>
+<article class="aside"><strong class="label">Automatic Binding of Handlers</strong><p>The context for event handlers and function properties are automatically bound to the <code>this</code> context of the widget that defined the <code>v()</code> or <code>w()</code> call. If you are just passing on a property that has already been bound, then this will _not_ be bound again.</p></article>
 </section><section class="tutorial hidden hiding">
 <h2 id="Using-event-handlers"><a href="#Using-event-handlers" class="headerlink" title="Using event handlers"></a>Using event handlers</h2><div class="task">Add a second visual state.</div>
 <p>Now that we have an event handler, it is time to extend the <code>render</code> method to show detailed information about a worker in addition to the current overview. For the sake of this tutorial, we will call the current view the front and the detailed view the back.</p>

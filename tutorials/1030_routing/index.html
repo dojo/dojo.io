@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Application routingOverview@dojo/framework/routing is a powerful set of tools to support declarative routing using a specialized widget that accepts a render property called an Outlet and a widget th">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-16T11:11:22.678Z">
+<meta property="og:updated_time" content="2018-10-16T13:01:29.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Application routingOverview@dojo/framework/routing is a powerful set of tools to support declarative routing using a specialized widget that accepts a render property called an Outlet and a widget th">
@@ -200,7 +200,7 @@ ga('send', 'pageview');
 <li><code>isExact</code>: Helper function that returns true when the match type is exact</li>
 </ul>
 <p>Consider an <code>outlet</code> configured for a <code>path</code> of <code>about</code>, the widget that it returns from the <code>renderer</code> will render for a selected route <code>about</code> (described as an <code>index</code> match). The widget will also display for any route that the outlet’s <code>path</code> partially matches, for example, <code>about/company</code> or <code>about/company/team</code>.</p>
-<article class="aside"><strong class="label">Warning: Make sure functions used in render property are bound!</strong><p>Functions passed to <code>v()</code> and <code>w()</code> in a render property need to already have been bound to the correct scope. This is because the render property is actually executed and returned from the <code>Outlet</code> and therefore will be bound to the scope of the <code>Outlet</code> and not your widget.</p></article>
+<article class="aside"><strong class="label">Warning: Make sure functions used in render property are bound!</strong><p>Functions passed to <code>v()</code> and <code>w()</code> in a render property need to already have been bound to the correct context. This is because the render property is actually executed and returned from the <code>Outlet</code> and therefore will be bound to the context of the <code>Outlet</code> and not your widget.</p></article>
 <p>Simply returning the widget or nodes that need to be displayed when an outlet has matched is usually all that is required, however there are scenarios where it is necessary to explicitly define a widget for an <code>index</code> or <code>error</code> match. This is where <code>matchDetails</code> is beneficial. By using the information from <code>matchDetails</code>, we can create simple logic to determine which widget to render for each scenario.</p>
 <pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Outlet<span class="token punctuation">,</span> <span class="token punctuation">{</span>
     id<span class="token punctuation">:</span> <span class="token string">'outlet-name'</span><span class="token punctuation">,</span>
