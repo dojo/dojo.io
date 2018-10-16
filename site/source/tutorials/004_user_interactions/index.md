@@ -57,6 +57,10 @@ Now, run the app (using `dojo build -m dev -w memory -s`) and navigate to [local
 
 {% instruction 'Open the console window and click on any of the worker widgets to confirm that the `flip` method gets called as expected.' %}
 
+{% aside 'Automatic Binding of Handlers' %}
+The scope for event handlers and function properties are automatically bound to the `this` scope of the widget that defined the `v()` or `w()` call. If you are just passing on a property that has already been bound, then this will _not_ be bound again.
+{% endaside %}
+
 {% section %}
 
 ## Using event handlers
