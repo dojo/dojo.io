@@ -116,7 +116,7 @@ There are two ways to register a widget in a registry, the first is to define th
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:3 %}
 
-{% task 'Add the registry item using the `@registry` decorator in `WorkerBack.ts`' %}
+{% task 'Add the registry item using the `@registry` decorator in `Worker.ts`' %}
 
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Worker.ts' line:18 %}
 
