@@ -102,6 +102,10 @@ The `renderer` function receives a `MatchDetails` object that provides informati
 
 Consider an `outlet` configured for a `path` of `about`, the widget that it returns from the `renderer` will render for a selected route `about` (described as an `index` match). The widget will also display for any route that the outlet's `path` partially matches, for example, `about/company` or `about/company/team`.
 
+{% aside 'Warning: Make sure functions used in render property are bound!' %}
+Functions passed to `v()` and `w()` in a render property need to already have been bound to the correct scope. This is because the render property is actually executed and returned from the `Outlet` and therefore will be bound to the scope of the `Outlet` and not your widget.
+{% endaside %}
+
 Simply returning the widget or nodes that need to be displayed when an outlet has matched is usually all that is required, however there are scenarios where it is necessary to explicitly define a widget for an `index` or `error` match. This is where `matchDetails` is beneficial. By using the information from `matchDetails`, we can create simple logic to determine which widget to render for each scenario.
 
 ```ts

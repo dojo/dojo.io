@@ -21,13 +21,13 @@ export default class App extends ThemedMixin(WidgetBase) {
 
 	private _workerData: WorkerProperties[] = workerData;
 
-	private _addWorker() {
+	private _addWorker = () => {
 		this._workerData = this._workerData.concat(this._newWorker);
 		this._newWorker = {};
 		this.invalidate();
 	}
 
-	private _onFormInput(data: Partial<WorkerFormData>) {
+	private _onFormInput = (data: Partial<WorkerFormData>) => {
 		this._newWorker = {
 			...this._newWorker,
 			...data
