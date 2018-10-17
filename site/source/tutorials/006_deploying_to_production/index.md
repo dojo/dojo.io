@@ -29,7 +29,7 @@ You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% task 'Create a production build.' %}
 
-Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w memory -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
+Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
 
 {% instruction 'Run the `dojo build` command.' %}
 

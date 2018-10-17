@@ -42,7 +42,7 @@ In order to theme our widgets, we must ensure that they each apply the `ThemedMi
 {% include_codefile 'demo/finished/biz-e-corp/src/widgets/Banner.ts' lines:1-14 highlight:3-7 title:'File: src/widgets/Banner.ts' lang:typescript %}
 
 {% aside 'Reminder' %}
-If you cannot see the application, remember to run `dojo build -m dev -w memory -s` to build the application and start the development server.
+If you cannot see the application, remember to run `dojo build -m dev -w -s` to build the application and start the development server.
 {% endaside %}
 
 This `Banner` widget will now have access to the classes in `banner.m.css` and can receive a `theme`. We use the `root` class to ensure that the theme we create can easily target the correct node.

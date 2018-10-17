@@ -30,11 +30,11 @@ You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 Before we start making changes, let's start the application with the development server so that we can observe the impact of our changes. Run the following command in the application's root directory:
 
-`dojo build --mode dev --watch memory --serve`
+`dojo build --mode dev --watch --serve`
 
 or using the abbreviated parameters:
 
-`dojo build -m dev -w memory -s`
+`dojo build -m dev -w -s`
 
 Now, open up a web browser to [http://localhost:9999](http://localhost:9999) to view the current application.
 
@@ -50,7 +50,11 @@ To start customizing the application, let's remove the existing content. There a
 
 {% instruction 'Open `index.html` file in the `src` directory and remove the `<p>` tag and its content, "Welcome to biz-e-corp".' %}
 
-Notice that the page has automatically updated for us. That means that we can immediately see the impact of the change without having to stop our work and refresh or rebuild the application.
+Refresh the browser page to see the changes in your application.
+
+{% aside 'Webpack Dev Server' %}
+The build command also supports automatically refreshing the application when running in the memory watch mode. To enable this pass `memory` after the `--watch` option: `dojo build -m dev -w memory -s`.
+{% endaside %}
 
 Now, let's remove the "Hello, Dojo World!" message.
 

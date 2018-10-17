@@ -110,7 +110,7 @@ With that change, the `App` widget is ready to serve as the root of our applicat
 {% instruction 'If you are working locally, run the following command:' %}
 
 ```bash
-dojo build -m dev -w memory -s
+dojo build -m dev -w -s
 ```
 
 then open up a web browser and navigate to [`http://localhost:9999`](http://localhost:9999). You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner's `<h1>` tag has been wrapped by the App's `<div>`, so everything appears to be working.
@@ -185,7 +185,7 @@ export default class App extends WidgetBase {
 ```
 
 
-{% instruction 'Run the application with `dojo build -m dev -w memory -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
+{% instruction 'Run the application with `dojo build -m dev -w -s` and navigate to [`http://localhost:9999`](http://localhost:9999).' %}
 
 We have succeeded in rendering the widget, but there seem to be some styling issues. We'll come back to that in a bit. For now, let's continue refining the `Worker` widget to allow the application to configure it before it is rendered. In Dojo, this is done by creating an interface to pass configuration information into the widget.
 
@@ -238,7 +238,7 @@ protected render() {
 {% task 'Pass properties to the Worker widget to configure it.' %}
 
 {% aside 'Remember' %}
-You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -m dev -w memory -s` and navigating to `http://localhost:9999`.
+You should already see the new values. However, if you shut down the build command, you can start it up again by running `dojo build -m dev -w -s` and navigating to `http://localhost:9999`.
 {% endaside %}
 
 To use the functionality of the new `Worker` widget we will update the `render` method in the `App` class to pass in some properties. In a full Dojo application, these values could possibly be retrieved from an external state store or fetched from an external resource, but for now, we'll just use static properties. To learn more about working with stores in Dojo, take a look at the [dojo/stores](../comingsoon.html) tutorial in the advanced section.
@@ -281,7 +281,7 @@ To allow our `Worker` widget to be styled, we need to modify the class. First, a
 
 {% include_codefile 'demo/finished/biz-e-corp/src/styles/worker.m.css' lang:css %}
 
-`dojo build -m dev -w memory -s` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget.
+`dojo build -m dev -w -s` will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the `Worker` widget.
 
 {% instruction 'Return to `Worker.ts` and update the render method to add the classes:' %}
 
