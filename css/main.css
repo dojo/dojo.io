@@ -9258,15 +9258,15 @@ a:hover,
 /* Text-level semantics
  ========================================================================== */
 /*
- * 1. Remove the bottom border in Chrome 57-.
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ * 1. Add an underline text decoration in Safari, Edge and IE.
+ * 2. Add `dotted` style in Safari.
+ * Note: The shorthand declaration `underline dotted` is not supported in Safari, Edge and IE.
  */
 abbr[title] {
   /* 1 */
-  border-bottom: none;
-  /* 2 */
   text-decoration: underline;
-  text-decoration: underline dotted; }
+  /* 2 */
+  -webkit-text-decoration-style: dotted; }
 
 /*
  * Add the correct font weight in Chrome, Edge, and Safari.
@@ -9921,7 +9921,7 @@ a.uk-link-reset:hover,
 
 /*
  * Bullet
- * 1. Reset display table which causes issues in combination with multi column layouts
+ * 1. Reset display `table` which causes issues in combination with multi column layouts.
  */
 .uk-list-bullet > li {
   position: relative;
@@ -14482,6 +14482,7 @@ ul.uk-nav-sub {
 /*
  * 1. Hide by default
  * 2. Set position
+ * 3. Use height instead of `bottom: 0` because of wrong height calculation on Android (+ Chrome Responsive Mode)
  */
 .uk-offcanvas {
   /* 1 */
@@ -14489,9 +14490,10 @@ ul.uk-nav-sub {
   /* 2 */
   position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  z-index: 1000; }
+  z-index: 1000;
+  /* 3 */
+  height: 100vh; }
 
 /*
  * Flip modifier
@@ -14630,7 +14632,7 @@ ul.uk-nav-sub {
 .uk-offcanvas-overlay.uk-open::before {
   opacity: 1; }
 
-/* Container
+/* Prevent scrolling
  ========================================================================== */
 /*
  * Prevent horizontal scrollbar when the content is slide-out
@@ -14640,46 +14642,36 @@ ul.uk-nav-sub {
 .uk-offcanvas-container {
   overflow-x: hidden; }
 
-/*
- * Prevent all scrollbars if overlay is used
- */
-.uk-offcanvas-container-overlay {
-  overflow: hidden; }
-
-/* Content
+/* Container
  ========================================================================== */
 /*
  * Prepare slide-out animation (Used in reveal and push mode)
  * Using `position: left` instead of `transform` because position `fixed` elements like sticky navbars
  * lose their fixed state and behaves like `absolute` within a transformed container
- * Note: JS sets a fixed width and height so the page can slide-out without shrinking
- * 1. Smooth scrolling
+ * 1. Provide a fixed width and prevent shrinking
  */
-.uk-offcanvas-container .uk-offcanvas-content {
+.uk-offcanvas-container {
   position: relative;
   left: 0;
   transition: left 0.3s ease-out;
   /* 1 */
-  -webkit-overflow-scrolling: touch; }
-
-/* Disable scrolling if overlay mode */
-.uk-offcanvas-overlay .uk-offcanvas-content {
-  overflow-y: hidden; }
+  box-sizing: border-box;
+  width: 100%; }
 
 /*
  * Activate slide-out animation
  */
-:not(.uk-offcanvas-flip) > .uk-offcanvas-content-animation {
+:not(.uk-offcanvas-flip).uk-offcanvas-container-animation {
   left: 270px; }
 
-.uk-offcanvas-flip > .uk-offcanvas-content-animation {
+.uk-offcanvas-flip.uk-offcanvas-container-animation {
   left: -270px; }
 
 /* Tablet landscape and bigger */
 @media (min-width: 960px) {
-  :not(.uk-offcanvas-flip) > .uk-offcanvas-content-animation {
+  :not(.uk-offcanvas-flip).uk-offcanvas-container-animation {
     left: 350px; }
-  .uk-offcanvas-flip > .uk-offcanvas-content-animation {
+  .uk-offcanvas-flip.uk-offcanvas-container-animation {
     left: -350px; } }
 
 /* ========================================================================
@@ -15917,6 +15909,9 @@ ul.uk-nav-sub {
  ========================================================================== */
 .uk-text-muted {
   color: #999 !important; }
+
+.uk-text-emphasis {
+  color: #333 !important; }
 
 .uk-text-primary {
   color: #009dff !important; }
@@ -18790,6 +18785,8 @@ body pre[class*="language-"],
     color: rgba(255, 255, 255, 0.5); }
   .uk-light .uk-text-muted, .uk-section-primary:not(.uk-preserve-color) .uk-text-muted, .uk-section-secondary:not(.uk-preserve-color) .uk-text-muted, .body-tutorial .aside:not(.uk-preserve-color) .uk-text-muted, .uk-tile-primary:not(.uk-preserve-color) .uk-text-muted, .uk-tile-secondary:not(.uk-preserve-color) .uk-text-muted, .uk-card-primary.uk-card-body .uk-text-muted, .uk-card-primary > :not([class*='uk-card-media']) .uk-text-muted, .uk-card-secondary.uk-card-body .uk-text-muted, .uk-card-secondary > :not([class*='uk-card-media']) .uk-text-muted, .uk-overlay-primary .uk-text-muted, .uk-offcanvas-bar .uk-text-muted {
     color: rgba(255, 255, 255, 0.5) !important; }
+  .uk-light .uk-text-emphasis, .uk-section-primary:not(.uk-preserve-color) .uk-text-emphasis, .uk-section-secondary:not(.uk-preserve-color) .uk-text-emphasis, .body-tutorial .aside:not(.uk-preserve-color) .uk-text-emphasis, .uk-tile-primary:not(.uk-preserve-color) .uk-text-emphasis, .uk-tile-secondary:not(.uk-preserve-color) .uk-text-emphasis, .uk-card-primary.uk-card-body .uk-text-emphasis, .uk-card-primary > :not([class*='uk-card-media']) .uk-text-emphasis, .uk-card-secondary.uk-card-body .uk-text-emphasis, .uk-card-secondary > :not([class*='uk-card-media']) .uk-text-emphasis, .uk-overlay-primary .uk-text-emphasis, .uk-offcanvas-bar .uk-text-emphasis {
+    color: #fff !important; }
   .uk-light .uk-text-primary, .uk-section-primary:not(.uk-preserve-color) .uk-text-primary, .uk-section-secondary:not(.uk-preserve-color) .uk-text-primary, .body-tutorial .aside:not(.uk-preserve-color) .uk-text-primary, .uk-tile-primary:not(.uk-preserve-color) .uk-text-primary, .uk-tile-secondary:not(.uk-preserve-color) .uk-text-primary, .uk-card-primary.uk-card-body .uk-text-primary, .uk-card-primary > :not([class*='uk-card-media']) .uk-text-primary, .uk-card-secondary.uk-card-body .uk-text-primary, .uk-card-secondary > :not([class*='uk-card-media']) .uk-text-primary, .uk-overlay-primary .uk-text-primary, .uk-offcanvas-bar .uk-text-primary {
     color: rgba(255, 255, 255, 0.7) !important; }
   .uk-light .uk-column-divider, .uk-section-primary:not(.uk-preserve-color) .uk-column-divider, .uk-section-secondary:not(.uk-preserve-color) .uk-column-divider, .body-tutorial .aside:not(.uk-preserve-color) .uk-column-divider, .uk-tile-primary:not(.uk-preserve-color) .uk-column-divider, .uk-tile-secondary:not(.uk-preserve-color) .uk-column-divider, .uk-card-primary.uk-card-body .uk-column-divider, .uk-card-primary > :not([class*='uk-card-media']) .uk-column-divider, .uk-card-secondary.uk-card-body .uk-column-divider, .uk-card-secondary > :not([class*='uk-card-media']) .uk-column-divider, .uk-overlay-primary .uk-column-divider, .uk-offcanvas-bar .uk-column-divider {
