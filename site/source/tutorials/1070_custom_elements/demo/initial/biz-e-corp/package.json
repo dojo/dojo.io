@@ -1,0 +1,23 @@
+{
+  "name": "dojo-data-driven-widgets-tutorial",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "dojo test",
+    "build": "dojo build"
+  },
+  "dependencies": {
+    "@dojo/cli-build-widget": "^4.0.0",
+    "@dojo/framework": "^4.0.0",
+    "@dojo/widgets": "^4.0.0",
+    "tslib": "~1.8.1"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-app": "^4.0.0",
+    "@dojo/cli-test-intern": "^4.0.0",
+    "@types/node": "~9.6.5",
+    "@types/sinon": "^1.16.35",
+    "sinon": "^2.0.0",
+    "typescript": "~2.6.1"
+  }
+}
