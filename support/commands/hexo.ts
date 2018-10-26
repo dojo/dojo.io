@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { existsSync, writeFileSync } from 'fs';
 import { exec, promisify } from 'grunt-dojo2-extras/src/util/process';
 
 function generateHexo(siteDirectory: string, configs: string[] = ['_config.yml'], flags: string[] = []) {
@@ -20,6 +21,10 @@ export async function hexo(options: Options) {
 
 export async function hexoClean(targetDirectory: string) {
 	const hexoBin = join('node_modules', '.bin', 'hexo');
+	const dbJson = join(targetDirectory, 'db.json');
+	if (!existsSync(dbJson)) {
+		writeFileSync(dbJson, '{}');
+	}
 	const proc = exec(`${ hexoBin } clean`, { silent: false, cwd: targetDirectory });
 	await promisify(proc);
 }

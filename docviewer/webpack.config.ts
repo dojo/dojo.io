@@ -28,6 +28,9 @@ const config: Configuration = {
 };
 
 if (process.env.NODE_ENV === 'production') {
+	if (!config.plugins) {
+		config.plugins = [];
+	}
 	config.plugins!.push(new optimize.UglifyJsPlugin());
 }
 
