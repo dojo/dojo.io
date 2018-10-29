@@ -45,6 +45,8 @@ To allow `@dojo/cli-build-widget` to build the widget into a Custom Element, we 
 
 Here we have to give a `tag` property to the object passed to the decotrator. The tag is the HTML Element name we will use for the Custom Element. In this case the tag would be used like `<worker-profile></worker-profile>`. We have also let the CLI know how to map our properties and attributes correctly, as well as our events, using the respective properties in the decorator argument. 
 
+Here we ommit a couple of potential arguments from the above decorator demonstration for simplicity. However we will explain the other two for completeness. Firstly, there is `childType`. This property is relevant if you are interested in having children in the Custom Element. The property takes one of three arguments, namely `DOJO` (default), `NODE` or `TEXT`, each corresponding to what children the Custom Element accepts. `DOJO` will allow a Custom Element to render other Custom Elements created from Dojo Widgets. `NODE` means it will accept regular DOM Nodes, and `TEXT` means the element will accept plain text as a child. The next property is  `registry` which accepts a given `Registry` chosen by the developer. Explaining registries in detail is outside the scope of this tutorial, but you can see the <a href="https://dojo.io/tutorials/1020_registries/">Registry tutorial for more information</a>. 
+
 {% section %}
 
 ## Creating a Custom Element with the Dojo CLI
@@ -54,7 +56,7 @@ Now to compile the Widget to a Custom Element. We do this via the command line, 
 {% instruction 'Run the build custom element command like so:' %}
 `dojo build widget --elements=src/widgets/WorkerProfile`
 
-Here we've called `dojo build widget` and passed it the path of the WorkerProfile TypeScript file to build it to a Custom Element. This file will be outputted to the a path of `output/dist/` in it's own folder called `workerprofile`.
+Here we've called `dojo build widget` and passed it the path of the WorkerProfile TypeScript file to build it to a Custom Element. This Custom Element files will be outputted to a folder inside of `output/dist/` called `workerprofile`. Here you will find the JavaScript, CSS and the source maps for the generated element.
 
 {% section %}
 
@@ -69,11 +71,12 @@ Now we have generated a the worker profile Custom Element, we can use it in othe
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>biz-e-corp</title>
-		<link href="worker-profile/worker-profile-1.0.0.css" rel="stylesheet"></head>
+		<title>Custom Element Demo</title>
+		<link href="../output/dist/worker-profile/worker-profile-1.0.0.css" rel="stylesheet">
+	</head>
 	<body>
-	
-	<script src='worker-profile/worker-profile-1.0.0.js'></script>
+
+	<script src='../output/dist/worker-profile/worker-profile-1.0.0.js'></script>
 	<script> 
 		var worker = document.createElement('worker-profile');
 		worker.setAttribute('firstName', "Joe");
@@ -93,6 +96,6 @@ We can see that we import the JavaScript and CSS files for the Custom Element. O
 
 ## Summary
 
-We have shown how we can create a Dojo Widget, and then use the `@customElement` decorator to allow us to generate a Custom Element using `@dojo/cli-create-widget`. We have then demonstrated how you can use that Custom Element in another seperate page. Hopefully you can see how this might beneficial with regards to sharing your Dojo Widgets around your projects, for example between applications are or teams that are using different approaches to writing applications.
+In this tutorial we have shown how we can create a Dojo Widget, and then use the `@customElement` decorator to allow us to generate a Custom Element using `@dojo/cli-create-widget`. We have then demonstrated how you can use that Custom Element in another seperate page. Here, the ability to provide Custom Elements as an output from your widgets provides the benefit of having the ability to share code between different teams, projects and even companies that may be using other frameworks.
 
 {% section 'last' %}
