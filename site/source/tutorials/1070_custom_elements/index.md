@@ -62,7 +62,30 @@ Here we've called `dojo build widget` and passed it the path of the WorkerProfil
 
 ## Using the Created Custom Element
 
-Now we have generated a the worker profile Custom Element, we can use it in other projects. As a basic example, lets show how that could be used in a blank web page.
+Now we have generated a the worker profile Custom Element, we can use it in other projects. As a basic example, lets show how that could be used in a blank web page. There are two ways to use a Custom Element, either declaratively (via HTML markup) or imperatively via JavaScript. Let's take a look at both approaches.
+
+{% instruction 'The declarative approach can be done in the following manner:' %}
+
+```html
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Custom Element Demo</title>
+		<link href="../output/dist/worker-profile/worker-profile-1.0.0.css" rel="stylesheet">
+	</head>
+	<body>
+
+		<worker-profile firstName="Joe" secondName="Bloggs"></worker-profile>
+
+		<script src='../output/dist/worker-profile/worker-profile-1.0.0.js'></script>
+	
+	</body>
+	</html>
+
+```
+
+This works well, we can see that we import the JavaScript and CSS files for the Custom Element and then use it like we would any other HTML Element. However using the declarative approach means we can't access Custom Element properties or events. If we go down the imperative route, we can set these accordingly.
 
 {% instruction 'You can use the outputted worker profile element in the following manner` like so:' %}
 
@@ -76,23 +99,24 @@ Now we have generated a the worker profile Custom Element, we can use it in othe
 	</head>
 	<body>
 
-	<script src='../output/dist/worker-profile/worker-profile-1.0.0.js'></script>
-	<script> 
-		var worker = document.createElement('worker-profile');
-		worker.setAttribute('firstName', "Joe");
-		worker.setAttribute('lastName', "Bloggs");
-		worker.setAttribute('email', "j.bloggs@bizecorp.com");
-		worker.timePerTask = 100;
-		worker.tasks = ['Being real busy'];
-		worker.addEventListener('selected', (data) => { console.log(data.detail) })
-		document.body.appendChild(worker);
-	</script>
+		<script src='../output/dist/worker-profile/worker-profile-1.0.0.js'></script>
+		<script> 
+			var worker = document.createElement('worker-profile');
+			worker.setAttribute('firstName', "Joe");
+			worker.setAttribute('lastName', "Bloggs");
+			worker.setAttribute('email', "j.bloggs@bizecorp.com");
+			worker.timePerTask = 100;
+			worker.tasks = ['Being real busy'];
+			worker.addEventListener('selected', (data) => { console.log(data.detail) })
+			document.body.appendChild(worker);
+		</script>
+
 	</body>
 	</html>
 
 ```
 
-We can see that we import the JavaScript and CSS files for the Custom Element. Once the JavaScript is imported, we use Custom Elements just like we would use other HTML Elements using standard DOM APIs like `document.createElement`, `setAttribute` and `addEventListener` (which is one of their strengths!). 
+Once the JavaScript is imported, we use Custom Elements just like we would use other HTML Elements using standard DOM APIs like `document.createElement`, `setAttribute` and `addEventListener` (which is one of their strengths!). 
 
 ## Summary
 

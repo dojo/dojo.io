@@ -55,17 +55,17 @@ export default class WorkerProfile extends ThemedMixin(WidgetBase)<WorkerProfile
 					classes: this.theme(css.label)
 				}, ['Email']),
 				v('div', [`${email}`]),
-				v('div', {
+				timePerTask ? v('div', {
 					classes: this.theme(css.label)
-				}, ['Avg. Time per Task']),
-				v('div', [`${timePerTask}`])
+				}, ['Avg. Time per Task']) : undefined,
+				timePerTask ? v('div', [`${timePerTask}`]) : undefined
 			]),
-			v('div', [
+			tasks && tasks.length ? v('div', [
 				v('strong', ['Current Tasks']),
 				v('div', tasks.map(task => {
 					return v('div', { classes: this.theme(css.task) }, [ task ]);
 				}))
-			])
+			]) : undefined
 		]);
 	}
 
