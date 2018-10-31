@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Element Demo</title>
+    <link href="../output/dist/worker-profile/worker-profile-1.0.0.css" rel="stylesheet">
+</head>
+<body>
+
+    <worker-profile firstName="Jane" lastName="Smith" email="jane.bloggs@bizecorp.com"></worker-profile>
+
+    <script src='../output/dist/worker-profile/worker-profile-1.0.0.js'></script>
+    <script> 
+        var worker = document.createElement('worker-profile');
+        worker.setAttribute('firstName', "Joe");
+        worker.setAttribute('lastName', "Bloggs");
+        worker.setAttribute('email', "j.bloggs@bizecorp.com");
+        worker.timePerTask = 100;
+        worker.tasks = ['Being real busy'];
+        worker.addEventListener('selected', (data) => { console.log(data.detail) })
+        document.body.appendChild(worker);
+    </script>
+
+</body>
+</html>
