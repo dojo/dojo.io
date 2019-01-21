@@ -58,31 +58,16 @@
           </div>
     
         <h2 class="uk-margin-large-top uk-margin-medium-bottom">Dojo Roadmap</h2>
-        <span class="uk-label">Version 4.0</span>
+        <span class="uk-label">Version 5.0</span>
         <div class="uk-child-width-1-2@m uk-margin-medium-top" uk-grid="masonry: true">
             <div>
                 <div class="uk-card uk-card-body uk-card-default">
                     <h3 class="uk-heading">Framework</h3>
                     <hr class="uk-divider-small">
                     <ul class="uk-list uk-list-bullet">
-                        <li>Upgrade codebase to leverage TypeScript 3.0</li>
-                        <li>Dragon: New VDOM engine
-                            <ul class="uk-list uk-list-bullet">
-                                <li>Better VDOM debugging</li>
-                                <li>Enhanced VDOM scheduler</li>
-                                <li>meta mechanism api changes</li>
-                                <li>Support lazy loading widgets directly with <code>w()</code></li>
-                                <li>Explore a new combined <code>v()</code> and <code>w()</code> wrapper</li>
-                            </ul>
-                        </li>
-                        <li>Consolidate existing dojo/framework/core modules</li>
-                        <li>New dojo platform for polyfills and ponyfills</li>
-                        <li>Decorator to implicitly call invalidate for a widget on setting a property</li>
-                        <li>Functional approach to defining a routing outlet</li>
-                        <li>Widget that provides a prompt before a route transition to prevent a user navagating away</li>
-                        <li>ActiveLink in Routing</li>
-                        <li>Local storage middleware for Stores</li>
-                        <li>StoreProvider component to inject the store into an application</li>
+                        <li>Extended support for TypeScript 3.2</li>
+                        <li>Improved runtime support for using and conditionally loading polyfills</li>
+                        <li>before and after middleware for stores</li>
                     </ul>
                 </div>
             </div>
@@ -92,20 +77,15 @@
                     <hr class="uk-divider-small">
             
                     <ul class="uk-list uk-list-bullet">
-                        <li>Zero configuration, route-based code splitting.</li>
-                        <li>Zero configuration code splitting based on build time rendering heuristics</li>
-                        <li>Support static resources in build commands.</li>
-                        <li>Externals support for build app command.</li>
-                        <li>Theme build command</li>
-                        <li>New widget library target for <code>cli-build-widget</code></li>
-                        <li>Improvements to <code>cli-create-widget</code></li>
-                        <li><code>.dojorc</code> validation</li>
-                        <li>Ability to save arguments from cli to .dojorc</li>
-                        <li>Update <code>postcss-cssnext</code> to <code>postcss-preset-env</code>, as part of this for non-legacy builds do not compile CSS variables</li>
+                        <li>Improved build support for using and conditionally loading polyfills</li>
+                        <li>Assertion templates for testing complex widgets</li>
+                        <li>Extended support in Build Time Rendering for StateHistory routing</li>
+                        <li>Dojo Blocks - Node.js execution during build time rendering</li>
+                        <li>Consolidated watch option for build app command that supports automatic refreshing the browser</li>
                     </ul>
                 </div>
             </div>
-            <div>
+            <!--<div>
                 <div class="uk-card uk-card-body uk-card-default">
                     <h3>Widgets and Themes</h3>
                     <hr class="uk-divider-small">
@@ -145,7 +125,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>-->
             <div>
                 <div class="uk-card uk-card-body uk-card-default">
                         <h3>Upgrade Path</h3>
