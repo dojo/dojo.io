@@ -14,7 +14,7 @@ We're excited to announce the 5.0.0 release of Dojo. This version builds on prev
 
 One of our primary goals for modern Dojo is to improve performance by serving minimal JavaScript bundles by default. For version 5, we're happy to announce an out of the box solution to optimize user experience for dealing with bundling and loading polyfills in Dojo applications.
 
-By using `@dojo/framework/shim` ponyfills for [`WebAnimations`](WebAnimationsAPI), [`IntersectionObserver`](IntersectionObserverAPI), [`ResizeObserver`](ResizeObserverAPI), and [`fetch`](FetchAPI) the Dojo build produces separate "platform" bundles that will be **only** be loaded based on two key conditions:
+By using `@dojo/framework/shim` ponyfills for [`WebAnimations`][WebAnimationsAPI], [`IntersectionObserver`][IntersectionObserverAPI], [`ResizeObserver`][ResizeObserverAPI], and [`fetch`][FetchAPI] the Dojo build produces separate "platform" bundles that will be **only** be loaded based on two key conditions:
 
 1) The shim module is imported somewhere in an application.
 1) A users browser does not natively support the browser feature.
@@ -23,11 +23,11 @@ In short, if your application does not use the browser feature or you use a brow
 
 ### Better Build Time Rendering (BTR)
 
-Build time rendering provides the rendering of your application to HTML during the build and in-lines critical CSS. This allows an application to effectively render static HTML pages and provide some advantages of server-side rendering (SSR) such as performance and search engine optimization without the complexities of running a server to support full SSR. Build time rendering has been available via the Dojo [cli-build-app](CliBuildAppReadme)  command since our initial 2.0.0 release.
+Build time rendering provides the rendering of your application to HTML during the build and in-lines critical CSS. This allows an application to effectively render static HTML pages and provide some advantages of server-side rendering (SSR) such as performance and search engine optimization without the complexities of running a server to support full SSR. Build time rendering has been available via the Dojo [cli-build-app][CliBuildAppReadme]  command since our initial 2.0.0 release.
 
 The 5.0.0 release brings a more robust, flexible and feature-rich build time render by running your application at build time in a browser environment.
 
-Routing support has also been extended to support a `HistoryManager` using the browser [history API](HistoryAPI) via the `@dojo/framework/routing/history/StateHistory`. For `StateHistory` BTR produces a static html file for each of the paths defined in the build time rendering configuration.
+Routing support has also been extended to support a `HistoryManager` using the browser [history API][HistoryAPI] via the `@dojo/framework/routing/history/StateHistory`. For `StateHistory` BTR produces a static html file for each of the paths defined in the build time rendering configuration.
 
 To configure build time rendering to create static pages for the BTR paths, ensure you are using the `StateHistory` in your application and update your BTR config to specify paths without a `#` prefix.
 
@@ -49,7 +49,7 @@ Leveraging the improved BTR, Dojo Blocks open the door for creating rich static 
 
 For example, a Dojo Block module could read a group of markdown files, transform them into VNodes, and make them available to render in the application, all at build time. The result of this Dojo Block module is then cached into the application bundle for use at runtime in the browser.
 
-A Dojo Block module gets used like any other [meta](MetaReadme) in any Dojo widget, as a result there is no extensive configuration or alternative authoring patterns needed.
+A Dojo Block module gets used like any other [meta][MetaReadme] in any Dojo widget, as a result there is no extensive configuration or alternative authoring patterns needed.
 
 For example, a block module could read a text file and return the content to the application:
 
@@ -158,17 +158,17 @@ Once we have the `message` node we then set the children to the expected `the nu
 
 ### Improved Stores Middleware
 
-Middleware for Dojo stores has always been executed after a process has completed or throws an error, enabling users to make decisions based on the result and perform some additional actions. However, this was limiting middleware from running before or effectively wrapping a process. Version 5 of Dojo introduces `before` and `after` middleware to perform such actions around processes completely. [Read more on the `@dojo/framework/stores` readme](StoresReadme).
+Middleware for Dojo stores has always been executed after a process has completed or throws an error, enabling users to make decisions based on the result and perform some additional actions. However, this was limiting middleware from running before or effectively wrapping a process. Version 5 of Dojo introduces `before` and `after` middleware to perform such actions around processes completely. [Read more on the `@dojo/framework/stores` readme][StoresReadme].
 
 This is a breaking change. However, if your application was already using `createCallbackDecorator` to create your middleware, then they should continue to work with your application in version 5 of Dojo application as the `createCallbackDecorator` function has been adapted to transform existing middleware API to the new API.
 
 ### Extended TypeScript Support
 
-Dojo now supports TypeScript versions from 2.6.x to 3.2.x, please see our [TypeScript and Dojo compatibility matrix](TypeScriptSupport) for more information.
+Dojo now supports TypeScript versions from 2.6.x to 3.2.x, please see our [TypeScript and Dojo compatibility matrix][TypeScriptSupport] for more information.
 
 ### Update to Dojo 5.0.0
 
-Visit the [Dojo version 5 migration guide](MigrationGuide) for detailed information and guidance on updating your application. Updating from 4.0.x to 5.0.0 should require running one command for most users.
+Visit the [Dojo version 5 migration guide][MigrationGuide] for detailed information and guidance on updating your application. Updating from 4.0.x to 5.0.0 should require running one command for most users.
 
 After installing the latest version of the `@dojo/cli-upgrade-app`, run the following command:
 
@@ -178,13 +178,13 @@ dojo upgrade app
 
 ### Beyond version 5
 
-We are working on a detailed road map for the next major release, however in the meantime check out our [future road map](RoadMap) for ideas we want to investigate over the next 12 months.
+We are working on a detailed road map for the next major release, however in the meantime check out our [future road map][RoadMap] for ideas we want to investigate over the next 12 months.
 
 ### Support
 
-See the [release notes](ReleaseNotes) for more details on version 5 of Dojo.
+See the [release notes][ReleaseNotes] for more details on version 5 of Dojo.
 
-Love what we’re doing or having a problem? We ❤️ our community. Reach out to us on [Discord](Discord), check out our [roadmap](https://dojo.io/community/) and see where Dojo is headed, and try out the new [Dojo on CodeSandbox](Codesanbox). We look forward to your feedback.
+Love what we’re doing or having a problem? We ❤️ our community. Reach out to us on [Discord][Discord], check out our [roadmap](https://dojo.io/community/) and see where Dojo is headed, and try out the new [Dojo on CodeSandbox][Codesanbox]. We look forward to your feedback.
 
 [CliBuildAppReadme]: https://github.com/dojo/cli-build-app#build-time-render-object
 [FetchAPI]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
