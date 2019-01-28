@@ -26,10 +26,10 @@ In short, if your application does not use the browser feature or you use a brow
 
 We've added additional third party polyfills to `@dojo/framework/shim`:
 
-* [`fetch`][FetchAPI] - The Fetch API provides an interface for fetching resources (including across the network).
-* [`IntersectionObserver`][IntersectionObserverAPI] - The Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
-* [`WebAnimations`][WebAnimationsAPI] - The Web Animations API allows for synchronizing and timing changes to the presentation of a Web page, i.e. animation of DOM elements.
-* [`ResizeObserver`][ResizeObserverAPI] - The ResizeObserver interface reports changes to the content rectangle of an Element or the bounding box of an SVGElement. The content rectangle is the box in which content can be placed, meaning the border box minus the padding.
+* [`@dojo/framework/shim/fetch`][FetchAPI] - The Fetch API provides an interface for fetching resources (including across the network).
+* [`@dojo/framework/shim/IntersectionObserver`][IntersectionObserverAPI] - The Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+* [`@dojo/framework/shim/WebAnimations`][WebAnimationsAPI] - The Web Animations API allows for synchronizing and timing changes to the presentation of a Web page, i.e. animation of DOM elements.
+* [`@dojo/framework/shim/ResizeObserver`][ResizeObserverAPI] - The ResizeObserver interface reports changes to the content rectangle of an Element or the bounding box of an SVGElement. The content rectangle is the box in which content can be placed, meaning the border box minus the padding.
 
 To use these additional polyfills they should be imported like any other ponyfill provided by `@dojo/framework/shim` and they no longer need to be explicitly added/import to your Dojo application.
 
