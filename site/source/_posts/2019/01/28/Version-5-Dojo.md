@@ -45,7 +45,7 @@ There have been a number of stability and feature enhancements in 5.0.0 thanks t
  * Screenshots of pages visited during Build Time Rendering
  * Better error messaging
 
-Routing support has also been extended to support a `HistoryManager` using the browser [history API][HistoryAPI] via the `@dojo/framework/routing/history/StateHistory`. For `StateHistory` BTR produces a static HTML file for each of the paths defined in the build time rendering configuration.
+Routing support has been extended to support a `HistoryManager` using the browser [history API][HistoryAPI] via the `@dojo/framework/routing/history/StateHistory`. For `StateHistory` BTR produces a static HTML file for each of the paths defined in the build time rendering configuration.
 
 To configure build time rendering to create static pages for the BTR paths, ensure you are using the `StateHistory` in your application and update your BTR config to specify paths without a `#` prefix.
 
