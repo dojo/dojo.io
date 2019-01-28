@@ -4,11 +4,12 @@ date: 2019-01-28 08:00:00
 authorId: unknown
 featured_image: featured.jpg
 ---
-{% asset_img featured.jpg feature-full %}
 
 Dojo version 5 has arrived!
 
 We're excited to announce the 5.0.0 release of Dojo. This version builds on previous releases with a vast array of bug fixes and improvements throughout the framework.
+
+{% asset_img featured.jpg feature-full %}
 
 ### Conditional Polyfills - Serving Less JavaScript
 
