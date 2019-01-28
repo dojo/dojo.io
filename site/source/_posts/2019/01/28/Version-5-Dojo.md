@@ -15,18 +15,29 @@ We're excited to announce the 5.0.0 release of Dojo. This version builds on prev
 
 One of our primary goals for modern Dojo is to improve performance by serving minimal JavaScript bundles by default. For version 5, we're happy to announce an out of the box solution to optimize the user experience for dealing with bundling and loading polyfills in Dojo applications.
 
-By using `@dojo/framework/shim` ponyfills for [`WebAnimations`][WebAnimationsAPI], [`IntersectionObserver`][IntersectionObserverAPI], [`ResizeObserver`][ResizeObserverAPI], and [`fetch`][FetchAPI] the Dojo build produces separate "platform" bundles that will be **only** be loaded based on two key conditions:
+The Dojo build produces separate "platform" bundles that will be **only** be loaded based on two key conditions:
 
 1) The shim module is imported somewhere in an application.
 1) A users browser does not natively support the browser feature.
 
 In short, if your application does not use the browser feature or you use a browser with native support, the polyfill will not be loaded! This change means serving less JavaScript and improving your application performance without compromising on features.
 
+### New Polyfills Added to Shim
+
+We've added additional third party polyfills to `@dojo/framework/shim`:
+
+* [`fetch`][FetchAPI] - The Fetch API provides an interface for fetching resources (including across the network).
+* [`IntersectionObserver`][IntersectionObserverAPI] - The Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+* [`WebAnimations`][WebAnimationsAPI] - The Web Animations API allows for synchronizing and timing changes to the presentation of a Web page, i.e. animation of DOM elements.
+* [`ResizeObserver`][ResizeObserverAPI] - The ResizeObserver interface reports changes to the content rectangle of an Element or the bounding box of an SVGElement. The content rectangle is the box in which content can be placed, meaning the border box minus the padding.
+
+To use these additional polyfills they should be imported like any other ponyfill provided by `@dojo/framework/shim` and they no longer need to be explicitly added/import to your Dojo application.
+
 ### Better Build Time Rendering (BTR)
 
 Build time rendering provides the rendering of your application to HTML during the build and in-lines critical CSS. BTR allows an application to render static HTML pages and offer some advantages of server-side rendering (SSR) such as performance and search engine optimization without the complexities of running a server to support full SSR. Build time rendering has been available via the Dojo [cli-build-app][CliBuildAppReadme]  command since our initial 2.0.0 release.
 
-The 5.0.0 release brings a more robust, flexible and feature-rich build time render by running your application at build time in a browser environment.
+The 5.0.0 release brings a more robust, flexible and feature-rich build time rendering. This is made possible by running your application in a browser environment, ensuring maximum support for browser APIs and functionality.
 
 Routing support has also been extended to support a `HistoryManager` using the browser [history API][HistoryAPI] via the `@dojo/framework/routing/history/StateHistory`. For `StateHistory` BTR produces a static HTML file for each of the paths defined in the build time rendering configuration.
 
@@ -46,7 +57,7 @@ To configure build time rendering to create static pages for the BTR paths, ensu
 
 ### Introducing Dojo Blocks
 
-Leveraging the improved BTR, Dojo Blocks open the door for creating rich static websites by enabling code to be executed in Node.js at build time and cached in the appropriate bundle for runtime.
+Dojo Blocks is a new mechanism leveraging Build Time Rendering that allows executing code in node.js as part of the build. The results from the execution are written to a cache that can then be transparently used in the same way at runtime in the browser. This opens up new opportunities for performing operations that might be not possible or unperformant in a browser.
 
 For example, a Dojo Block module could read a group of markdown files, transform them into VNodes, and make them available to render in the application, all at build time. The result of this Dojo Block module is then cached into the application bundle for use at runtime in the browser.
 
@@ -99,6 +110,8 @@ This widget runs the `read-file.block.ts` module at build time, loading the file
 ```
 
 ### Simplifying Testing with Assertion Templates
+
+Assertion Templates make testing widgets with the testing harness even easier. Instead of having to manually curate each expectedRender result per test, you can now use the Assertion Template primitive to easily modify and layer outputs for the expected render.
 
 Assertion Templates allow you to build expected render functions to pass to `h.expect()`. Assertion Templates always assert against the entire render output, modifying portions of the assertion itself as needed.
 
