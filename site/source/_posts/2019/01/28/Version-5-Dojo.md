@@ -182,6 +182,17 @@ Middleware for Dojo stores has always gotten executed after a process has comple
 
 This addition of `before` and `after` middleware is a breaking change. However, if your application was already using `createCallbackDecorator` to create your middleware, then your application should continue to work with your application in version 5 of Dojo application as the `createCallbackDecorator` function has been adapted to transform existing middleware API to the new API.
 
+### Improvements for `serve` and `watch` options in `@dojo/cli-build-app`
+
+The `@dojo/cli-build-app` command includes a number improvements to for running a development server:
+
+* The previous `watch` modes, `memory` and `file` have been consolidated into a unified `watch` option
+* Rebuilds your application when you make any changes within the project directory, not limited to `src` and `test` directories.
+* Live reload when when application is rebuilt during `watch` and running the development server using `serve`.
+* Customized live reload `client` that does not affect your built application bundles
+* Conditionally loads the live reload `client` only when using the `serve` option
+* Fallback to default `index.html` and rewrite resources when using the `StateHistory` history manager with `@dojo/framework/routing`
+
 ### Extended TypeScript Support
 
 Dojo now supports TypeScript versions from 2.6.x to 3.2.x, please see our [TypeScript and Dojo compatibility matrix][TypeScriptSupport] for more information.
