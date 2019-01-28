@@ -15,7 +15,7 @@ We're excited to announce the 5.0.0 release of Dojo. This version builds on prev
 
 One of our primary goals for modern Dojo is to improve performance by serving minimal JavaScript bundles by default. For version 5, we're happy to announce an out of the box solution to optimize the user experience for dealing with bundling and loading polyfills in Dojo applications.
 
-The Dojo build produces separate "platform" bundles that will be **only** be loaded based on two key conditions:
+The Dojo build produces separate platform bundles that will be **only** be loaded based on two key conditions:
 
 1) The shim module is imported somewhere in an application.
 1) A users browser does not natively support the browser feature.
@@ -31,16 +31,16 @@ We've added additional third party polyfills to `@dojo/framework/shim`:
 * [`@dojo/framework/shim/WebAnimations`][WebAnimationsAPI] - The Web Animations API allows for synchronizing and timing changes to the presentation of a Web page, i.e. animation of DOM elements.
 * [`@dojo/framework/shim/ResizeObserver`][ResizeObserverAPI] - The ResizeObserver interface reports changes to the content rectangle of an Element or the bounding box of an SVGElement. The content rectangle is the box in which content can be placed, meaning the border box minus the padding.
 
-To use these additional polyfills they should be imported like any other ponyfill provided by `@dojo/framework/shim` and they no longer need to be explicitly added/import to your Dojo application.
+To use these additional polyfills they should be imported like any other ponyfill provided by `@dojo/framework/shim` and they no longer need to be explicitly added/imported to your Dojo application.
 
 ### Better Build Time Rendering (BTR)
 
 Build time rendering provides the rendering of your application to HTML during the build and in-lines critical CSS. BTR allows an application to render static HTML pages and offer some advantages of server-side rendering (SSR) such as performance and search engine optimization without the complexities of running a server to support full SSR. Build time rendering has been available via the Dojo [cli-build-app][CliBuildAppReadme]  command since our initial 2.0.0 release.
 
-There have been a number of stability and feature enhancements in 5.0.0 thanks to now running your application in a real browser environment. New features include:
+There are a number of stability and feature enhancements in the 5.0.0 release thanks to the BTR process now running your application in a real browser environment. New features include:
 
  * [Dojo Blocks](#introducing-dojo-blocks)
- * Support for StateHistory api (see below)
+ * Support for `StateHistory` API (see below)
  * Multiple page HTML generation
  * Screenshots of pages visited during Build Time Rendering
  * Better error messaging
@@ -63,7 +63,7 @@ To configure build time rendering to create static pages for the BTR paths, ensu
 
 ### Introducing Dojo Blocks
 
-Dojo Blocks is a new mechanism leveraging Build Time Rendering that allows executing code in node.js as part of the build. The results from the execution are written to a cache that can then be transparently used in the same way at runtime in the browser. This opens up new opportunities for performing operations that might be not possible or unperformant in a browser.
+Dojo Blocks is a new mechanism leveraging Build Time Rendering that allows executing code in Node.js as part of the build. The results from the execution are written to a cache that can then be transparently used in the same way at runtime in the browser. This opens up new opportunities for performing operations that might be not possible or unperformant in a browser.
 
 For example, a Dojo Block module could read a group of markdown files, transform them into VNodes, and make them available to render in the application, all at build time. The result of this Dojo Block module is then cached into the application bundle for use at runtime in the browser.
 
@@ -117,7 +117,7 @@ This widget runs the `read-file.block.ts` module at build time, loading the file
 
 ### Simplifying Testing with Assertion Templates
 
-Assertion Templates make testing widgets with the testing harness even easier. Instead of having to manually curate each expectedRender result per test, you can now use the Assertion Template primitive to easily modify and layer outputs for the expected render.
+Assertion Templates make testing widgets with the testing harness even easier. Instead of needing to manually curate each `expectedRender` result per test, you can now use the Assertion Template primitive to easily modify and layer outputs for the expected render.
 
 Assertion Templates allow you to build expected render functions to pass to `h.expect()`. Assertion Templates always assert against the entire render output, modifying portions of the assertion itself as needed.
 
@@ -184,11 +184,11 @@ This addition of `before` and `after` middleware is a breaking change. However, 
 
 ### Improvements for `serve` and `watch` options in `@dojo/cli-build-app`
 
-The `@dojo/cli-build-app` command includes a number improvements to for running a development server:
+The `@dojo/cli-build-app` command includes a number improvements for running a development server:
 
 * The previous `watch` modes, `memory` and `file` have been consolidated into a unified `watch` option
 * Rebuilds your application when you make any changes within the project directory, not limited to `src` and `test` directories.
-* Live reload when when application is rebuilt during `watch` and running the development server using `serve`.
+* Live reload when the application is rebuilt during `watch` and running the development server using `serve`
 * Customized live reload `client` that does not affect your built application bundles
 * Conditionally loads the live reload `client` only when using the `serve` option
 * Fallback to default `index.html` and rewrite resources when using the `StateHistory` history manager with `@dojo/framework/routing`
