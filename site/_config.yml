@@ -70,6 +70,9 @@ authors:
 	mattwistrand:
 		name: Matt Wistrand
 		email: mwistrand@sitepen.com
+	agubler:
+		name: Anthony Gubler
+		email: agubler@sitepen.com
 
 feed:
   type: atom
