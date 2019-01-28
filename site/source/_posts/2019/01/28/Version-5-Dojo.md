@@ -37,7 +37,13 @@ To use these additional polyfills they should be imported like any other ponyfil
 
 Build time rendering provides the rendering of your application to HTML during the build and in-lines critical CSS. BTR allows an application to render static HTML pages and offer some advantages of server-side rendering (SSR) such as performance and search engine optimization without the complexities of running a server to support full SSR. Build time rendering has been available via the Dojo [cli-build-app][CliBuildAppReadme]  command since our initial 2.0.0 release.
 
-The 5.0.0 release brings a more robust, flexible and feature-rich build time rendering. This is made possible by running your application in a browser environment, ensuring maximum support for browser APIs and functionality.
+There have been a number of stability and feature enhancements in 5.0.0 thanks to now running your application in a real browser environment. New features include:
+
+ * [Dojo Blocks](#introducing-dojo-blocks)
+ * Support for StateHistory api (see below)
+ * Multiple page HTML generation
+ * Screenshots of pages visited during Build Time Rendering
+ * Better error messaging
 
 Routing support has also been extended to support a `HistoryManager` using the browser [history API][HistoryAPI] via the `@dojo/framework/routing/history/StateHistory`. For `StateHistory` BTR produces a static HTML file for each of the paths defined in the build time rendering configuration.
 
