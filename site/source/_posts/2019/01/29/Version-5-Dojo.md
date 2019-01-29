@@ -1,15 +1,16 @@
 ---
-title: Dojo 5
+title: Announcing Dojo 5.0.0
 date: 2019-01-29 08:00:00
 authorId: agubler
 featured_image: featured.jpg
 ---
-
-Dojo version 5 has arrived!
+## Dojo version 5 has arrived!
 
 We're excited to announce the 5.0.0 release of Dojo. This version builds on previous releases with a vast array of bug fixes and improvements throughout the framework.
 
 {% asset_img featured.jpg feature-full %}
+
+<!-- more -->
 
 ### Conditional Polyfills - Serving Less JavaScript
 
