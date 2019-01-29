@@ -17665,9 +17665,10 @@ body pre[class*="language-"],
  */
 .uk-transition-fade,
 [class*='uk-transition-scale'],
-[class*='uk-transition-slide'] {
+[class*='uk-transition-slide'],
+.uk-transition-stroke {
   transition: 0.3s ease-out;
-  transition-property: opacity, transform, filter;
+  transition-property: opacity, transform, filter, stroke-dashoffset;
   opacity: 0; }
 
 /*
@@ -17746,6 +17747,19 @@ body pre[class*="language-"],
 .uk-transition-active.uk-active [class*='uk-transition-slide'] {
   opacity: 1;
   transform: translate(0, 0); }
+
+/*
+ * Stroke
+ */
+.uk-transition-stroke {
+  transition-duration: 3s; }
+
+/* Show */
+.uk-transition-stroke:hover,
+.uk-transition-stroke:focus,
+.uk-transition-stroke.uk-transition-active {
+  opacity: 1;
+  stroke-dashoffset: 0 !important; }
 
 /* Opacity modifier
  ========================================================================== */
