@@ -1,6 +1,6 @@
 ---
 title: Dojo 5
-date: 2019-01-28 08:00:00
+date: 2019-01-29 08:00:00
 authorId: agubler
 featured_image: featured.jpg
 ---
