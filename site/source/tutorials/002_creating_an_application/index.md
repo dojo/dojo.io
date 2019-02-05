@@ -43,7 +43,7 @@ In [Your first Dojo application](../001_static_content/), we reviewed Dojo's use
 
 {% include_codefile 'demo/initial/biz-e-corp/src/main.ts' lines:4-6 %}
 
-These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The final step is to call `mount` on the value returned from the `renderer` call. By default the `renderer` will mount the application on the HTML documents body, but this can be overridden by providing a `domNode` option to the `mount` function.
+These lines are the key to allowing the projector to coordinate between the virtual DOM and the rendered HTML that the user sees. The final step is to call `mount` on the value returned from the `renderer` call. By default the `renderer` will mount the application on the HTML document's body, but this can be overridden by providing a `domNode` option to the `mount` function.
 
 {% instruction 'The `mount` operation in `main.ts`:' %}
 
