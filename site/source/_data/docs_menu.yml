@@ -2,43 +2,49 @@ dojo/framework/widget-core:
   repo: dojo/framework
   description: widget-core is a library to create powerful, composable user interface widgets.
   icon: cube
-  version: v5.0.0
+  version: v5.0.1
   path: src/widget-core/README.md
 dojo/framework/i18n:
   repo: dojo/framework
   description: An internationalization library that provides locale-specific message loading, and support for locale-specific message, date, and number formatting.
   icon: globe
-  version: master
+  version: v5.0.1
   path: src/i18n/README.md
 dojo/framework/stores:
   repo: dojo/framework
   description: This library provides an application store designed to complement @dojo/widgets and @dojo/widget-core or any other reactive application.
   icon: clone
-  version: master
+  version: v5.0.1
   path: src/stores/README.md
 dojo/framework/routing:
   repo: dojo/framework
   description: Widgets are a fundamental concept for any Dojo application and as such Dojo Routing provides a collection of components that integrate directly with existing widgets within an application.
   icon: sitemap
-  version: master
+  version: v5.0.1
   path: src/routing/README.md
+dojo/framework/testing:
+  repo: dojo/framework
+  description: Harness for testing and asserting Dojo widget's expected virtual DOM and behavior.
+  icon: check-double
+  version: v5.0.1
+  path: src/testing/README.md
 dojo/framework/core:
   repo: dojo/framework
   description: This package provides a set of language helpers, utility functions, and classes for writing TypeScript applications.
   icon: cogs
-  version: v5.0.0
+  version: v5.0.1
   path: src/core/README.md
 dojo/framework/shim:
   repo: dojo/framework
   description: This package provides functional shims for ECMAScript, access to the Typescript helpers, and a quick way to include the polyfills needed to run Dojo in the browser.
   icon: puzzle-piece
-  version: master
+  version: v5.0.1
   path: src/shim/README.md
 dojo/framework/has:
   repo: dojo/framework
   description: This package provides an API for expressing feature detection to allow developers to branch code based upon the detected features.
   icon: binoculars
-  version: master
+  version: v5.0.1
   path: src/has/README.md
 dojo/widgets:
   repo: dojo/widgets
@@ -64,12 +70,12 @@ cli-create-app:
   repo: dojo/cli-create-app
   description: The create app command for @dojo/cli.
   icon: plus-square
-  version: v5.0.0
+  version: v5.0.1
 dojo/cli-build-app:
   repo: dojo/cli-build-app
   description: The official CLI command for building Dojo applications.
   icon: wrench
-  version: v5.0.0
+  version: v5.0.1
 cli-build-widget:
   repo: dojo/cli-build-widget
   description: The official CLI command for building Dojo custom elements.
