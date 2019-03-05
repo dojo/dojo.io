@@ -1,4 +1,4 @@
-@import './variables';
+@import './variables.css';
 
 .root {
 	font-family: var(--font);
