@@ -29,7 +29,7 @@ You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 {% task 'Create a production build.' %}
 
-Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w memory -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
+Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the `dojo build -m dev -w -s` command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.
 
 {% instruction 'Run the `dojo build` command.' %}
 
@@ -63,7 +63,7 @@ There are four groups of command line arguments that are available when using th
 
 The first group is `--mode` that accepts `dist`, `dev`, `unit` and `functional` depending on the bundle that is needed, the argument defaults to `dist`.
 
-The build command supports two modes of `--watch`, `file` which writes built files to the relevant directory in `output` and `memory` that uses webpack dev server (and must be run with the `--serve` argument).
+The build command `--watch` writes files to the relevant directory in `output`.
 
 The `--help` argument displays the help information for the `dojo build` command and is equivalent to the `dojo build help` command.
 
