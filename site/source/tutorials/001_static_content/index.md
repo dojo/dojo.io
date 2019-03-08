@@ -30,11 +30,11 @@ You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 Before we start making changes, let's start the application with the development server so that we can observe the impact of our changes. Run the following command in the application's root directory:
 
-`dojo build --mode dev --watch memory --serve`
+`dojo build --mode dev --watch --serve`
 
 or using the abbreviated parameters:
 
-`dojo build -m dev -w memory -s`
+`dojo build -m dev -w -s`
 
 Now, open up a web browser to [http://localhost:9999](http://localhost:9999) to view the current application.
 
