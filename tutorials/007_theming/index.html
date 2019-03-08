@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-27T14:56:22.661Z">
+<meta property="og:updated_time" content="2019-03-08T09:55:17.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Theming">
 <meta name="twitter:description" content="ThemingOverviewThis tutorial will extend on previous tutorials where we created the basic biz-e-corp application. In this tutorial, we will adapt the app to allow it to be themed, then write a theme">
@@ -149,7 +149,7 @@ ga('send', 'pageview');
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<article class="aside"><strong class="label">Reminder</strong><p>If you cannot see the application, remember to run <code>dojo build -m dev -w memory -s</code> to build the application and start the development server.</p></article>
+<article class="aside"><strong class="label">Reminder</strong><p>If you cannot see the application, remember to run <code>dojo build -m dev -w -s</code> to build the application and start the development server.</p></article>
 <p>This <code>Banner</code> widget will now have access to the classes in <code>banner.m.css</code> and can receive a <code>theme</code>. We use the <code>root</code> class to ensure that the theme we create can easily target the correct node.</p>
 <p>Notice that this file and other <code>css</code> files now have a <code>.m.css</code> file extension. This is to indicate to the <a href="../006_deploying_to_production/">Dojo build system</a> that this file is a <code>css-module</code> and should be processed as such.</p>
 <article class="aside"><strong class="label">CSS Modules</strong><p><a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener">CSS Modules</a> is a technique to use scoped CSS classnames by default.</p></article>
@@ -301,7 +301,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 </code></pre>
 <p>In the above code you can see that we have created a number of CSS Custom Properties to be used within our theme and wrapped them in a <code>:root</code> selector which makes them available on the global scope within our <code>css-modules</code>.<br>To use them, we can <code>@import</code> the <code>variables.css</code> file and use the <code>var</code> keyword to assign a <code>css-custom-property</code> to a css rule.</p>
 <p>Now we will use these variables in our themes <code>worker.m.css</code> to create our fully themed <code>Worker</code>.</p>
-<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/worker.m.css</div><code class="language-css"><span class="line-highlight"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/worker.m.css</div><code class="language-css"><span class="line-highlight"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables.css'</span><span class="token punctuation">;</span></span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">width</span><span class="token punctuation">:</span> 320px<span class="token punctuation">;</span>
@@ -383,7 +383,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 </section><section class="tutorial hidden hiding">
 <h2 id="Theming-Dojo-widgets"><a href="#Theming-Dojo-widgets" class="headerlink" title="Theming Dojo widgets"></a>Theming Dojo widgets</h2><p>Thus far in this tutorial, we have themed our custom <code>Worker</code> widget, but we have not targeted Dojo widgets that are contained within our application. To demonstrate the styling of Dojo widgets, we will theme the <code>workerForm</code> widget as it contains both DOM nodes and Dojo widgets.</p>
 <div class="instruction">Let's create <code>workerForm.m.css</code></div>
-<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/workerForm.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/workerForm.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./variables.css'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--font<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -406,7 +406,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This should be familiar from theming the <code>Worker</code> in the previous section. To theme the Dojo <code>TextInput</code> within our <code>WorkerForm</code>, we need to add to the skeleton <code>text-input.m.css</code> theme created by <code>@dojo/cli-create-theme</code>, this is already exported from <code>theme.ts</code>.</p>
-<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/@dojo/widgets/text-input/text-input.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/@dojo/widgets/text-input/text-input.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables.css'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">margin-right</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
@@ -427,7 +427,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 <p>Notice the styling rule for the <code>.root</code> selector? Here we are introducing another powerful part of the Dojo theming system, <code>composes</code>. Composes originates in the <a href="https://github.com/css-modules/css-modules#composition" target="_blank" rel="noopener"><code>css-module</code> specification</a>, allowing you to apply styles from one class selector to another. Here we are specifying that the <code>root</code> of a <code>TextInput</code> (the label text in this case), should appear the same as the <code>nameLabel</code> class in our <code>WidgetForm</code>. This approach can be very useful when creating multiple themes from a <code>baseTheme</code> and avoids repetitive redefinition of style rules.</p>
 <p>In your web browser you will see the <code>TextInput</code> widgets at the top of the form have been styled.</p>
 <div class="instruction">Add the following theme styles to the <code>button.m.css</code> theme resource</div>
-<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/@dojo/widgets/button/button.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables'</span><span class="token punctuation">;</span></span>
+<pre class="language-css"><div class="prism-code-title">File: src/themes/dojo/@dojo/widgets/button/button.m.css</div><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'./../../../variables.css'</span><span class="token punctuation">;</span></span>
 
 <span class="token selector">.root</span> <span class="token punctuation">{</span>
 	<span class="token property">height</span><span class="token punctuation">:</span> 38px<span class="token punctuation">;</span>

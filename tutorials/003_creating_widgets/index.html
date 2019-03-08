@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/resources/worker.png">
 <meta property="og:image" content="https://dojo.io/tutorials/003_creating_widgets/resources/worker_page.png">
-<meta property="og:updated_time" content="2019-02-27T14:56:22.653Z">
+<meta property="og:updated_time" content="2019-03-08T09:55:17.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating widgets">
 <meta name="twitter:description" content="Creating widgetsOverviewIn this tutorial, you will learn how to create and style custom widgets in Dojo. PrerequisitesYou can open the tutorial on codesandbox.io or download the demo project and run">
@@ -185,7 +185,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 </code></pre>
 <p>With that change, the <code>App</code> widget is ready to serve as the root of our application. Let’s test everything by building and running the project.</p>
 <div class="instruction">If you are working locally, run the following command:</div>
-<pre class=" language-bash"><code class="language-bash">dojo build -m dev -w memory -s
+<pre class=" language-bash"><code class="language-bash">dojo build -m dev -w -s
 </code></pre>
 <p>then open up a web browser and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>. You should see the Biz-E-Bodies title that we started with, but if you examine the actual DOM, you will see that the Banner’s <code>&lt;h1&gt;</code> tag has been wrapped by the App’s <code>&lt;div&gt;</code>, so everything appears to be working.</p>
 <p>In the next section, we’ll create the <code>Worker</code> widget that will show the portrait and name of our Biz-E-Bodies.</p>
@@ -234,7 +234,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<div class="instruction">Run the application with <code>dojo build -m dev -w memory -s</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>.</div>
+<div class="instruction">Run the application with <code>dojo build -m dev -w -s</code> and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener"><code>http://localhost:9999</code></a>.</div>
 <p>We have succeeded in rendering the widget, but there seem to be some styling issues. We’ll come back to that in a bit. For now, let’s continue refining the <code>Worker</code> widget to allow the application to configure it before it is rendered. In Dojo, this is done by creating an interface to pass configuration information into the widget.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Making-a-configurable-widget"><a href="#Making-a-configurable-widget" class="headerlink" title="Making a configurable widget"></a>Making a configurable widget</h2><div class="task">Add properties to the <code>Worker</code> and use those to configure it.</div>
@@ -272,7 +272,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 </code></pre>
 </section><section class="tutorial hidden hiding">
 <h2 id="Configuring-a-widget"><a href="#Configuring-a-widget" class="headerlink" title="Configuring a widget"></a>Configuring a widget</h2><div class="task">Pass properties to the Worker widget to configure it.</div>
-<article class="aside"><strong class="label">Remember</strong><p>You should already see the new values. However, if you shut down the build command, you can start it up again by running <code>dojo build -m dev -w memory -s</code> and navigating to <code>http://localhost:9999</code>.</p></article>
+<article class="aside"><strong class="label">Remember</strong><p>You should already see the new values. However, if you shut down the build command, you can start it up again by running <code>dojo build -m dev -w -s</code> and navigating to <code>http://localhost:9999</code>.</p></article>
 <p>To use the functionality of the new <code>Worker</code> widget we will update the <code>render</code> method in the <code>App</code> class to pass in some properties. In a full Dojo application, these values could possibly be retrieved from an external state store or fetched from an external resource, but for now, we’ll just use static properties. To learn more about working with stores in Dojo, take a look at the <a href="../comingsoon.html">dojo/stores</a> tutorial in the advanced section.</p>
 <div class="instruction">In <code>App.ts</code>, update the line that is rendering the <code>Worker</code> to contain values for the <code>firstName</code> and <code>lastName</code> properties:</div>
 <pre class=" language-ts"><code class="language-ts"><span class="token function">w</span><span class="token punctuation">(</span>Worker<span class="token punctuation">,</span> <span class="token punctuation">{</span> firstName<span class="token punctuation">:</span> <span class="token string">'Tim'</span><span class="token punctuation">,</span> lastName<span class="token punctuation">:</span> <span class="token string">'Jones'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
@@ -315,7 +315,7 @@ r<span class="token punctuation">.</span><span class="token function">mount</spa
 	<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><code>dojo build -m dev -w memory -s</code> will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the <code>Worker</code> widget.</p>
+<p><code>dojo build -m dev -w -s</code> will detect these new rules and generate the type declaration files automatically, allowing us to apply them to the <code>Worker</code> widget.</p>
 <div class="instruction">Return to <code>Worker.ts</code> and update the render method to add the classes:</div>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">protected</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">const</span> <span class="token punctuation">{</span>

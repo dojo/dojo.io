@@ -15,7 +15,7 @@
 <meta property="og:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://dojo.io/tutorials/006_deploying_to_production/resources/build_stats.png">
-<meta property="og:updated_time" content="2019-02-27T14:56:22.657Z">
+<meta property="og:updated_time" content="2019-03-08T09:55:17.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deploying to production">
 <meta name="twitter:description" content="Deploying to productionOverviewThis tutorial will extend on Form widgets, where we added a form to allow the user to create new workers. In this tutorial, we will prepare the application for deployme">
@@ -128,7 +128,7 @@ ga('send', 'pageview');
 <p>You also need to be familiar with TypeScript as Dojo uses it extensively.</p>
 </section><section class="tutorial hidden hiding">
 <h2 id="Production-builds"><a href="#Production-builds" class="headerlink" title="Production builds"></a>Production builds</h2><div class="task">Create a production build.</div>
-<p>Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the <code>dojo build -m dev -w memory -s</code> command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.</p>
+<p>Creating a production build of a Dojo application is straightforward. We have actually been creating an application for production throughout this tutorial series. If you have been following the tutorials locally, you have been using the <code>dojo build -m dev -w -s</code> command to build the application and start a web-server to view the application as it developed. This version of the application is almost the same as what should be deployed to production.</p>
 <div class="instruction">Run the <code>dojo build</code> command.</div>
 <p>The build command creates a new folder, <code>output/dist</code>, where all of the built files are located. Open that directory and examine <code>index.html</code>. This version of <code>index.html</code> is slightly different than the one in the <code>src</code> directory - the build process has added links to <code>main.[hash].bundle.css</code> and <code>main.[hash].bundle.js</code> so the application and its styling rules will be available.</p>
 <p>Along with the <code>index.html</code> the directory contains two bundles, <code>main.[hash].bundle.js</code> and <code>runtime.[hash].bundle.js</code>. The runtime bundle contains all of the code required by webpack to load the application and the main bundle contains all of the application source code. Both bundles have been transpiled to JavaScript, bundled, and <a href="http://bit.ly/2rVdhNk" target="_blank" rel="noopener">minified</a>. This allows the application to be served as efficiently as possible. <code>main.[bundle].js.map</code> is used to allow developers to view the original source code when debugging the application.</p>
@@ -145,7 +145,7 @@ ga('send', 'pageview');
 <div class="instruction">Run the <code>dojo build help</code> command and examine the result.</div>
 <p>There are four groups of command line arguments that are available when using the <code>dojo build</code> command.</p>
 <p>The first group is <code>--mode</code> that accepts <code>dist</code>, <code>dev</code>, <code>unit</code> and <code>functional</code> depending on the bundle that is needed, the argument defaults to <code>dist</code>.</p>
-<p>The build command supports two modes of <code>--watch</code>, <code>file</code> which writes built files to the relevant directory in <code>output</code> and <code>memory</code> that uses webpack dev server (and must be run with the <code>--serve</code> argument).</p>
+<p>The build command <code>--watch</code> writes files to the relevant directory in <code>output</code>.</p>
 <p>The <code>--help</code> argument displays the help information for the <code>dojo build</code> command and is equivalent to the <code>dojo build help</code> command.</p>
 <article class="aside"><strong class="label">I18n in Dojo</strong><p>Dojo has a complete set of internationalization (i18n) capabilities that are beyond the scope of this tutorial. To learn more about i18n in Dojo, refer to the <a href="../comingsoon.html">Internationalization in Dojo tutorial</a>.</p></article>
 <p>The command line arguments give control over how the application is built and prepared for deployment. However, there is further configuration that can be provided for build concerns such as Internationalization. In the next section, we will learn how to configure these options using the <code>.dojorc</code>.</p>

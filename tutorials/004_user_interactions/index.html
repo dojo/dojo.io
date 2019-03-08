@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Dojo">
 <meta property="og:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-27T14:56:22.653Z">
+<meta property="og:updated_time" content="2019-03-08T09:55:17.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Responding to events">
 <meta name="twitter:description" content="Responding to eventsOverviewIn this tutorial, you will learn how to update an application in response to user-generated events, such as clicking a button. We will start with an application that rende">
@@ -141,7 +141,7 @@ ga('send', 'pageview');
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the flip method has been fired!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Now, run the app (using <code>dojo build -m dev -w memory -s</code>) and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener">localhost:9999</a>. Once there,</p>
+<p>Now, run the app (using <code>dojo build -m dev -w -s</code>) and navigate to <a href="http://localhost:9999" target="_blank" rel="noopener">localhost:9999</a>. Once there,</p>
 <div class="instruction">Open the console window and click on any of the worker widgets to confirm that the <code>flip</code> method gets called as expected.</div>
 <article class="aside"><strong class="label">Automatic Binding of Handlers</strong><p>The context for event handlers and function properties are automatically bound to the <code>this</code> context of the widget that defined the <code>v()</code> or <code>w()</code> call. If you are just passing on a property that has already been bound, then this will _not_ be bound again.</p></article>
 </section><section class="tutorial hidden hiding">
