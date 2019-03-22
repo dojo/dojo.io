@@ -207,7 +207,7 @@ You will also need to create `validatedTextInput.m.css` with `error` and `inputW
 import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import { TypedTargetEvent } from '@dojo/framework/widget-core/interfaces';
 import { v, w } from '@dojo/framework/widget-core/d';
-import uuid from '@dojo/framework/core/uuid';
+import { uuid } from '@dojo/framework/core/util';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import TextInput, { TextInputProperties } from '@dojo/widgets/text-input';
 import * as css from '../styles/validatedTextInput.m.css';
