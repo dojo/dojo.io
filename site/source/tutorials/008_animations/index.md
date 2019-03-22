@@ -34,19 +34,13 @@ You also need to be familiar with TypeScript as Dojo uses it extensively.
 
 The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) provides programmatic control over web animations via the timing model and the animation model. This allows animations to be created and controlled via javascript with access to playbackrate, iterations, events and more. Previously this would have required the use of `requestAnimationFrame` or the less efficient  `setInterval`.
 
-The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, a polyfill needs to be included. Dojo does not include the polyfill by default, so will need to be added as a script tag in your index.html or alternatively imported in the application's main.ts
-
-{% instruction 'Import the web animations polyfill' in `main.ts` %}
-
-```ts
-import 'web-animations-js/web-animations-next-lite.min';
-```
-
 {% aside 'Meta' %}
 Dojo meta provides a means to get and set properties against the generated HTML without exposing the `domNode` itself.
 {% endaside %}
 
 Dojo provides a [meta](https://github.com/dojo/widget-core#meta-configuration) that can apply Web Animations to the rendered Virtual DOM in the widgets you create. The `WebAnimation` meta allows properties such as `play` and `duration` to be reactive to state changes and fits in consistently within the Dojo ecosystem.
+
+The Web Animations API is not currently available even in the latest browsers. To use the Web Animations API, Dojo provides a shim from `@dojo/framework/shim/WebAnimations` which is used by the `WebAnimation` meta.
 
 ## Introducing the zombies
 
