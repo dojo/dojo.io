@@ -30,7 +30,7 @@
     "tslint": "^5.9.1",
     "tslint-sitepen": "^5.0.0",
     "typescript": "~2.4.2",
-    "webpack": "^3.5.5",
+    "webpack": "^5.75.0",
     "whatwg-fetch": "~2.0.4"
   },
   "dependencies": {
