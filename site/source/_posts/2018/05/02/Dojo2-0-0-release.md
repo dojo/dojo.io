@@ -51,4 +51,4 @@ View the [Dojo 2 reference examples](https://dojo.github.io/examples/) including
 The Dojo 2 team is excited about the opportunity to build a healthy, diverse and inclusive community to ensure that we are creating an intuitive and flexible framework that meets the needs of the enterprise developer.
 
 We look forward to your ideas, input, and feedback to make Dojo 2 useful for the greater JavaScript and TypeScript community and we welcome your contributions!
-You can participate in our community on [Gitter](https://gitter.im/dojo/dojo2), share information on [Twitter](https://twitter.com/dojo/).
+You can participate in our community on [Gitter](https://gitter.im/dojo/dojo2), share information on [Twitter](https://twitter.com/DojoFramework/).
