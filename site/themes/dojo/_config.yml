@@ -5,7 +5,7 @@ menu:
   Blog: /blog
   Github: https://github.com/dojo/framework
   Gitter: https://gitter.im/dojo/dojo
-  Twitter: https://twitter.com/dojo
+  Twitter:https://twitter.com/DojoFramework/
 rss: /atom.xml
 
 
@@ -35,5 +35,5 @@ show_count: false
 # Miscellaneous
 google_analytics: UA-3242977-15
 favicon: /images/favicons/favicon.ico
-twitter: https://twitter.com/dojo
+twitter:https://twitter.com/DojoFramework/
 github: https://github.com/dojo/framework

@@ -212,4 +212,4 @@ After, we will be following semantic versioning for subsequent releases. 2.0.y w
 We still have quite a bit of work to do to update and refine our examples and documentation, so if you see an issue, please let us know, or better yet, create a pull request!
 There is still much we want to complete after 2.0.0, but we are ready for you to start using Dojo, give us feedback, and let us know where we should prioritize our efforts.
 
-Let us know what you think either on [Gitter](https://gitter.im/dojo/dojo2), [Twitter](https://twitter.com/dojo/) or [Discourse](https://discourse.dojo.io/).
+Let us know what you think either on [Gitter](https://gitter.im/dojo/dojo2), [Twitter](https://twitter.com/DojoFramework/) or [Discourse](https://discourse.dojo.io/).
