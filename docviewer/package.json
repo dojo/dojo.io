@@ -24,7 +24,7 @@
     "@types/mark.js": "~8.11.1",
     "ajv": "~6.4.0",
     "mark.js": "~8.11.1",
-    "markdown-it": "~8.4.1",
+    "markdown-it": "~12.3.2",
     "promise-polyfill": "~7.1.2",
     "ts-node": "~5.0.1",
     "tslint": "^5.9.1",
