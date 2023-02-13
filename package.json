@@ -44,7 +44,7 @@
     "dojo-interfaces": "^2.0.0-alpha.10",
     "dojo-shim": "^2.0.0-beta.7",
     "dojo-streams": "^2.0.0-alpha.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.5.3",
     "grunt-concurrent": "~2.3.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-dojo2": "^2.0.0-beta2.15",
