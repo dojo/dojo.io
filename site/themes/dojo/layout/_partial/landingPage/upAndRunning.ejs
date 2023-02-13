@@ -110,13 +110,19 @@
 
 			requestAnimationFrame(animate);
 		}
-
+		
 		var typing1Elem = document.querySelector('#upAndRunning-typing-1 .typed-text');
+		var fontSize = window.getComputedStyle(typing1Elem, null).getPropertyValue('font-size');
+
+		window.onresize = function() {
+			fontSize = window.getComputedStyle(typing1Elem, null).getPropertyValue('font-size');
+		}
 
 		function updateTyping1Animations(percentCompletion) {
+			var width = calculateWidth(typing1Elem);
 			var typing = {
 				x1: 0, x2: 0.15,
-				y1: 0, y2: 365
+				y1: 0, y2: width
 			};
 			var fadeIn = {
 				x1: 0.15, x2: 0.2,
@@ -133,13 +139,14 @@
 		var typing2Elem = document.querySelector('#upAndRunning-typing-2 .typed-text');
 
 		function updateTyping2Animations(percentCompletion) {
+			var width = calculateWidth(typing1Elem);
 			var delayShow = {
 				x1: 0.25, x2: 0.26,
 				y1: 0, y2: 1
 			};
 			var typing = {
 				x1: 0.25, x2: 0.4,
-				y1: 0, y2: 350
+				y1: 0, y2: width
 			};
 			var fadeIn = {
 				x1: 0.4, x2: 0.45,
@@ -204,6 +211,13 @@
 			}
 		}
 
+		function calculateWidth(el) {
+			var textLen = typing1Elem.textContent.length;
+			var buffer = 5;
+			return (parseFloat(fontSize) * textLen) / 2 + buffer;
+		}
+
 		requestAnimationFrame(animate);
+
 	})();
 </script>

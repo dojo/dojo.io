@@ -32,6 +32,7 @@ section.up-and-running {
 
 		@media screen and (max-width : $mobile-break) {
 			padding: 3vh 5vw;
+			width: 100%;
 		}
 
 		margin: auto;
@@ -60,6 +61,7 @@ section.up-and-running {
 					@media screen and (max-width : $mobile-break) {
 						font-size: 30px;
 						padding-right: 0.3em;
+						width: 100%;
 					}
 				}
 				&.typed-text {
@@ -77,6 +79,7 @@ section.up-and-running {
 
 					@media screen and (max-width : $mobile-break) {
 						margin-bottom: 10px;
+						font-size: $base-pre-font-size-mobile
 					}
 				}
 			}
